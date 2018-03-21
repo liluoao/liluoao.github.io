@@ -5,19 +5,20 @@
   
 
   
-  <title>40.Laravel 路由是如何调用到控制器 | 李罗奥的博客</title>
+  <title>40.Laravel 路由是如何调用到控制器 | To be a Web Artisan</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="原文链接：https://juejin.im/post/595f2ed76fb9a06bbe7dc4ed">
+  <meta name="description" content="原文链接：https://juejin.im/post/595f2ed76fb9a06bbe7dc4ed 概述laravel 的路由相比其他PHP框架非常灵活和优雅，它也能做的在url不变的情况下改变调用的控制器和方法。 那么这到底在 laravel 里是怎么完成的呢 路由到底是如何获取的？这没什么神秘的，回忆一下我们写一个单页过程化 PHP 脚本时我们是如何接收 HTML 页面传输的参数的？ 是">
 <meta property="og:type" content="article">
 <meta property="og:title" content="40.Laravel 路由是如何调用到控制器">
-<meta property="og:url" content="https://liluoao.github.io/2018/03/19/40、Laravel路由是如何调用到控制器/index.html">
-<meta property="og:site_name" content="李罗奥的博客">
-<meta property="og:description" content="原文链接：https://juejin.im/post/595f2ed76fb9a06bbe7dc4ed">
+<meta property="og:url" content="https://liluoao.github.io/Laravel路由是如何调用到控制器/index.html">
+<meta property="og:site_name" content="To be a Web Artisan">
+<meta property="og:description" content="原文链接：https://juejin.im/post/595f2ed76fb9a06bbe7dc4ed 概述laravel 的路由相比其他PHP框架非常灵活和优雅，它也能做的在url不变的情况下改变调用的控制器和方法。 那么这到底在 laravel 里是怎么完成的呢 路由到底是如何获取的？这没什么神秘的，回忆一下我们写一个单页过程化 PHP 脚本时我们是如何接收 HTML 页面传输的参数的？ 是">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-03-20T07:58:04.053Z">
+<meta property="og:updated_time" content="2018-03-21T07:42:57.071Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="40.Laravel 路由是如何调用到控制器">
-<meta name="twitter:description" content="原文链接：https://juejin.im/post/595f2ed76fb9a06bbe7dc4ed">
+<meta name="twitter:description" content="原文链接：https://juejin.im/post/595f2ed76fb9a06bbe7dc4ed 概述laravel 的路由相比其他PHP框架非常灵活和优雅，它也能做的在url不变的情况下改变调用的控制器和方法。 那么这到底在 laravel 里是怎么完成的呢 路由到底是如何获取的？这没什么神秘的，回忆一下我们写一个单页过程化 PHP 脚本时我们是如何接收 HTML 页面传输的参数的？ 是">
+<meta name="twitter:creator" content="@liluoao">
   
   
     <link rel="icon" href="/favicon.png">
@@ -33,7 +34,7 @@
   <div id="header-outer" class="outer">
     <div id="header-title" class="inner">
       <h1 id="logo-wrap">
-        <a href="/" id="logo">李罗奥的博客</a>
+        <a href="/" id="logo">To be a Web Artisan</a>
       </h1>
       
     </div>
@@ -44,6 +45,14 @@
           <a class="main-nav-link" href="/">首页</a>
         
           <a class="main-nav-link" href="/archives">文章列表</a>
+        
+          <a class="main-nav-link" href="/categories/laravel">Laravel</a>
+        
+          <a class="main-nav-link" href="/categories/phalcon">Phalcon</a>
+        
+          <a class="main-nav-link" href="/categories/mysql">MySQL</a>
+        
+          <a class="main-nav-link" href="/me.html">关于作者</a>
         
       </nav>
       <nav id="sub-nav">
@@ -57,9 +66,9 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-40、Laravel路由是如何调用到控制器" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-Laravel路由是如何调用到控制器" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2018/03/19/40、Laravel路由是如何调用到控制器/" class="article-date">
+    <a href="/Laravel路由是如何调用到控制器/" class="article-date">
   <time datetime="2018-03-19T01:31:16.542Z" itemprop="datePublished">2018-03-19</time>
 </a>
     
@@ -83,14 +92,14 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>原文链接：<a href="https://juejin.im/post/595f2ed76fb9a06bbe7dc4ed" target="_blank" rel="noopener">https://juejin.im/post/595f2ed76fb9a06bbe7dc4ed</a><br><a id="more"></a></p>
+        <p>原文链接：<a href="https://juejin.im/post/595f2ed76fb9a06bbe7dc4ed" target="_blank" rel="noopener">https://juejin.im/post/595f2ed76fb9a06bbe7dc4ed</a></p>
 <h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3><p>laravel 的路由相比其他PHP框架非常灵活和优雅，它也能做的在url不变的情况下改变调用的控制器和方法。</p>
 <p>那么这到底在 laravel 里是怎么完成的呢</p>
 <h3 id="路由到底是如何获取的？"><a href="#路由到底是如何获取的？" class="headerlink" title="路由到底是如何获取的？"></a>路由到底是如何获取的？</h3><p>这没什么神秘的，回忆一下我们写一个单页过程化 PHP 脚本时我们是如何接收 HTML 页面传输的参数的？</p>
 <p>是的，也许你想起来了我们会使用 PHP 的超全局变量 <code>$_SERVER</code>、<code>$_GET</code>、<code>$_POST</code> 等等，是的框架的底层同样是使用它们的，只是框架进行了更详尽的封装。</p>
 <p>laravel 对 Symfony 框架提供的 HttpFoundation 组件，这个组件对 HTTP 进行了面向对象封装，laravel在其基础上又进行了封装，以适合 laravel 框架自身的需求。</p>
 <p>HttpFoundation 组件将 <code>$_GET</code>、<code>$_POST</code>、<code>$_FILES</code>、<code>$_COOKIE</code> 等一些超全局变量进行封装，不仅将超全局变量调用转变为面向对象的方式，而且也简化了操作。比如 <code>Symfony\Component\HttpFoundation\Request::createFromGlobals()</code> 的返回值就是所有超全局组成的一个集合。</p>
-<p>如果你对这个组件感兴趣可以查看其文档 <a href="https://symfony.com/doc/current/components/http_foundation.html" target="_blank" rel="noopener">HttpFoundation</a></p>
+<p>如果你对这个组件感兴趣可以查看其文档 <a href="https://symfony.com/doc/current/components/http_foundation.html" target="_blank" rel="noopener">HttpFoundation</a><br><a id="more"></a></p>
 <h3 id="路由是如何启动的？"><a href="#路由是如何启动的？" class="headerlink" title="路由是如何启动的？"></a>路由是如何启动的？</h3><p>路由启动我们要从原点找起，那么原点就是 laravel 框架的入口文件 <code>public/index.php</code>。</p>
 <p>index.php 里首先把 bootstrap/autoload.php 引入，这个文件引入的是 composer 的 autoload 文件，将所有的包加载到脚本里，这个脚本文件还定义了一个常量 LARAVEL_START 记录了框架启动的微秒时间戳。</p>
 <p>然后引入了 bootstrap/app.php 脚本，这个脚本加载了 laravl 框架的核心文件，返回了一个应用实例。</p>
@@ -110,7 +119,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2018/03/19/40、Laravel路由是如何调用到控制器/" data-id="cjezisg0y000838hh4izi4iig" class="article-share-link">分享</a>
+      <a data-url="https://liluoao.github.io/Laravel路由是如何调用到控制器/" data-id="cjf0w6zrb000archhp5k9vkzx" class="article-share-link">分享</a>
       
       
     </footer>
@@ -119,7 +128,7 @@
     
 <nav id="article-nav">
   
-    <a href="/2018/03/19/41、MySQL优化那些事/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/MySQL优化那些事/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption">下一篇</strong>
       <div class="article-nav-title">
         
@@ -129,7 +138,7 @@
     </a>
   
   
-    <a href="/2018/03/19/39、什么是JWT/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/什么是JWT/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">上一篇</strong>
       <div class="article-nav-title">39.什么是 JWT</div>
     </a>
@@ -147,7 +156,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">分类</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/composer/">composer</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/laravel/">laravel</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/mysql/">mysql</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/phalcon/">phalcon</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/安全/">安全</a></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/composer/">composer</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/laravel/">laravel</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/mysql/">mysql</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/phalcon/">phalcon</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/安全/">安全</a><span class="category-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -162,7 +171,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a><span class="archive-list-count">7</span></li></ul>
     </div>
   </div>
 
@@ -175,23 +184,23 @@
       <ul>
         
           <li>
-            <a href="/2018/03/19/41、MySQL优化那些事/">41.MySQL优化那些事儿</a>
+            <a href="/MySQL优化那些事/">41.MySQL优化那些事儿</a>
           </li>
         
           <li>
-            <a href="/2018/03/19/40、Laravel路由是如何调用到控制器/">40.Laravel 路由是如何调用到控制器</a>
+            <a href="/Laravel路由是如何调用到控制器/">40.Laravel 路由是如何调用到控制器</a>
           </li>
         
           <li>
-            <a href="/2018/03/19/39、什么是JWT/">39.什么是 JWT</a>
+            <a href="/什么是JWT/">39.什么是 JWT</a>
           </li>
         
           <li>
-            <a href="/2018/03/19/38、Phalcon启动流程/">38.Phalcon 启动流程</a>
+            <a href="/Phalcon启动流程/">38.Phalcon 启动流程</a>
           </li>
         
           <li>
-            <a href="/2018/03/19/37、使用Phalcon/">37.使用Phalcon框架</a>
+            <a href="/使用Phalcon/">37.使用Phalcon框架</a>
           </li>
         
       </ul>
@@ -217,6 +226,14 @@
     <a href="/" class="mobile-nav-link">首页</a>
   
     <a href="/archives" class="mobile-nav-link">文章列表</a>
+  
+    <a href="/categories/laravel" class="mobile-nav-link">Laravel</a>
+  
+    <a href="/categories/phalcon" class="mobile-nav-link">Phalcon</a>
+  
+    <a href="/categories/mysql" class="mobile-nav-link">MySQL</a>
+  
+    <a href="/me.html" class="mobile-nav-link">关于作者</a>
   
 </nav>
     

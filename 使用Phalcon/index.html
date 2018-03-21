@@ -5,21 +5,22 @@
   
 
   
-  <title>37.使用Phalcon框架 | 李罗奥的博客</title>
+  <title>37.使用Phalcon框架 | To be a Web Artisan</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="安装PhalconPhalcon 是使用 C 扩展编写、高性能的 PHP 框架。">
+  <meta name="description" content="安装PhalconPhalcon 是使用 C 扩展编写、高性能的 PHP 框架。 Windows用户可以在https://github.com/phalcon/cphalcon/releases 下载 .dll 文件，加入 php.ini 配置中： 1extension=php_phalcon.dll 重启你的WEB服务器后，在 phpinfo() 中看到 Phalcon 扩展，代表你安装成功。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="37.使用Phalcon框架">
-<meta property="og:url" content="https://liluoao.github.io/2018/03/19/37、使用Phalcon/index.html">
-<meta property="og:site_name" content="李罗奥的博客">
-<meta property="og:description" content="安装PhalconPhalcon 是使用 C 扩展编写、高性能的 PHP 框架。">
+<meta property="og:url" content="https://liluoao.github.io/使用Phalcon/index.html">
+<meta property="og:site_name" content="To be a Web Artisan">
+<meta property="og:description" content="安装PhalconPhalcon 是使用 C 扩展编写、高性能的 PHP 框架。 Windows用户可以在https://github.com/phalcon/cphalcon/releases 下载 .dll 文件，加入 php.ini 配置中： 1extension=php_phalcon.dll 重启你的WEB服务器后，在 phpinfo() 中看到 Phalcon 扩展，代表你安装成功。">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://camo.githubusercontent.com/d3e1b2e83cf1128d8efa920680443fef6527739d/68747470733a2f2f696d672e736869656c64732e696f2f7061636b61676973742f762f686279632f7068616c636f6e2e7376673f7374796c653d666c61742d737175617265">
-<meta property="og:updated_time" content="2018-03-20T07:57:56.874Z">
+<meta property="og:updated_time" content="2018-03-21T07:42:11.480Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="37.使用Phalcon框架">
-<meta name="twitter:description" content="安装PhalconPhalcon 是使用 C 扩展编写、高性能的 PHP 框架。">
+<meta name="twitter:description" content="安装PhalconPhalcon 是使用 C 扩展编写、高性能的 PHP 框架。 Windows用户可以在https://github.com/phalcon/cphalcon/releases 下载 .dll 文件，加入 php.ini 配置中： 1extension=php_phalcon.dll 重启你的WEB服务器后，在 phpinfo() 中看到 Phalcon 扩展，代表你安装成功。">
 <meta name="twitter:image" content="https://camo.githubusercontent.com/d3e1b2e83cf1128d8efa920680443fef6527739d/68747470733a2f2f696d672e736869656c64732e696f2f7061636b61676973742f762f686279632f7068616c636f6e2e7376673f7374796c653d666c61742d737175617265">
+<meta name="twitter:creator" content="@liluoao">
   
   
     <link rel="icon" href="/favicon.png">
@@ -35,7 +36,7 @@
   <div id="header-outer" class="outer">
     <div id="header-title" class="inner">
       <h1 id="logo-wrap">
-        <a href="/" id="logo">李罗奥的博客</a>
+        <a href="/" id="logo">To be a Web Artisan</a>
       </h1>
       
     </div>
@@ -46,6 +47,14 @@
           <a class="main-nav-link" href="/">首页</a>
         
           <a class="main-nav-link" href="/archives">文章列表</a>
+        
+          <a class="main-nav-link" href="/categories/laravel">Laravel</a>
+        
+          <a class="main-nav-link" href="/categories/phalcon">Phalcon</a>
+        
+          <a class="main-nav-link" href="/categories/mysql">MySQL</a>
+        
+          <a class="main-nav-link" href="/me.html">关于作者</a>
         
       </nav>
       <nav id="sub-nav">
@@ -59,9 +68,9 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-37、使用Phalcon" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-使用Phalcon" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2018/03/19/37、使用Phalcon/" class="article-date">
+    <a href="/使用Phalcon/" class="article-date">
   <time datetime="2018-03-19T01:29:58.957Z" itemprop="datePublished">2018-03-19</time>
 </a>
     
@@ -85,10 +94,11 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="安装Phalcon"><a href="#安装Phalcon" class="headerlink" title="安装Phalcon"></a>安装Phalcon</h3><p>Phalcon 是使用 C 扩展编写、高性能的 PHP 框架。<br><a id="more"></a><br>Windows用户可以在<a href="https://github.com/phalcon/cphalcon/releases" target="_blank" rel="noopener">https://github.com/phalcon/cphalcon/releases</a> 下载 <code>.dll</code> 文件，加入 <code>php.ini</code> 配置中：</p>
+        <h3 id="安装Phalcon"><a href="#安装Phalcon" class="headerlink" title="安装Phalcon"></a>安装Phalcon</h3><p>Phalcon 是使用 C 扩展编写、高性能的 PHP 框架。</p>
+<p>Windows用户可以在<a href="https://github.com/phalcon/cphalcon/releases" target="_blank" rel="noopener">https://github.com/phalcon/cphalcon/releases</a> 下载 <code>.dll</code> 文件，加入 <code>php.ini</code> 配置中：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">extension=php_phalcon.dll</span><br></pre></td></tr></table></figure>
 <p>重启你的WEB服务器后，在 <code>phpinfo()</code> 中看到 Phalcon 扩展，代表你安装成功。</p>
-<p>其它平台安装方法见：<a href="https://phalconphp.com/zh/download/linux" target="_blank" rel="noopener">https://phalconphp.com/zh/download/linux</a></p>
+<p>其它平台安装方法见：<a href="https://phalconphp.com/zh/download/linux" target="_blank" rel="noopener">https://phalconphp.com/zh/download/linux</a><br><a id="more"></a></p>
 <h3 id="安装Phalcon-devtool"><a href="#安装Phalcon-devtool" class="headerlink" title="安装Phalcon-devtool"></a>安装Phalcon-devtool</h3><p><a href="https://github.com/phalcon/phalcon-devtools" target="_blank" rel="noopener">phalcon-devtools</a> 是Phalcon开发者工具，可以自动生成代码，和为IDE创建Phalcon语法提示。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/phalcon/phalcon-devtools.git</span><br></pre></td></tr></table></figure>
 <p>然后将<code>~/phalcon-devtools</code>目录加入系统环境变量<strong>PATH</strong>，在命令行输入：</p>
@@ -105,7 +115,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2018/03/19/37、使用Phalcon/" data-id="cjezisg0i000238hhs14mewz8" class="article-share-link">分享</a>
+      <a data-url="https://liluoao.github.io/使用Phalcon/" data-id="cjf0w6zr70007rchhtba5079n" class="article-share-link">分享</a>
       
       
     </footer>
@@ -114,7 +124,7 @@
     
 <nav id="article-nav">
   
-    <a href="/2018/03/19/38、Phalcon启动流程/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/Phalcon启动流程/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption">下一篇</strong>
       <div class="article-nav-title">
         
@@ -124,7 +134,7 @@
     </a>
   
   
-    <a href="/2018/03/19/36、使用依赖管理-以Composer为例/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/使用依赖管理-以Composer为例/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">上一篇</strong>
       <div class="article-nav-title">36.使用依赖管理——以Composer为例</div>
     </a>
@@ -142,7 +152,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">分类</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/composer/">composer</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/laravel/">laravel</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/mysql/">mysql</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/phalcon/">phalcon</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/安全/">安全</a></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/composer/">composer</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/laravel/">laravel</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/mysql/">mysql</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/phalcon/">phalcon</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/安全/">安全</a><span class="category-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -157,7 +167,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a><span class="archive-list-count">7</span></li></ul>
     </div>
   </div>
 
@@ -170,23 +180,23 @@
       <ul>
         
           <li>
-            <a href="/2018/03/19/41、MySQL优化那些事/">41.MySQL优化那些事儿</a>
+            <a href="/MySQL优化那些事/">41.MySQL优化那些事儿</a>
           </li>
         
           <li>
-            <a href="/2018/03/19/40、Laravel路由是如何调用到控制器/">40.Laravel 路由是如何调用到控制器</a>
+            <a href="/Laravel路由是如何调用到控制器/">40.Laravel 路由是如何调用到控制器</a>
           </li>
         
           <li>
-            <a href="/2018/03/19/39、什么是JWT/">39.什么是 JWT</a>
+            <a href="/什么是JWT/">39.什么是 JWT</a>
           </li>
         
           <li>
-            <a href="/2018/03/19/38、Phalcon启动流程/">38.Phalcon 启动流程</a>
+            <a href="/Phalcon启动流程/">38.Phalcon 启动流程</a>
           </li>
         
           <li>
-            <a href="/2018/03/19/37、使用Phalcon/">37.使用Phalcon框架</a>
+            <a href="/使用Phalcon/">37.使用Phalcon框架</a>
           </li>
         
       </ul>
@@ -212,6 +222,14 @@
     <a href="/" class="mobile-nav-link">首页</a>
   
     <a href="/archives" class="mobile-nav-link">文章列表</a>
+  
+    <a href="/categories/laravel" class="mobile-nav-link">Laravel</a>
+  
+    <a href="/categories/phalcon" class="mobile-nav-link">Phalcon</a>
+  
+    <a href="/categories/mysql" class="mobile-nav-link">MySQL</a>
+  
+    <a href="/me.html" class="mobile-nav-link">关于作者</a>
   
 </nav>
     
