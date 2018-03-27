@@ -14,13 +14,13 @@
 <meta property="og:site_name" content="To be a Web Artisan">
 <meta property="og:description" content="中文文档：http://docs.phpcomposer.com/ 英文文档：https://getcomposer.org/ 依赖管理Composer 不是一个包管理器。是的，它涉及 “packages” 和 “libraries”，但它在每个项目的基础上进行管理，在你项目的某个目录中（例如 vendor）进行安装。默认情况下它不会在全局安装任何东西。因此，这仅仅是一个依赖管理。 这种想法并不新">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://liluoao.github.io/assets/composer-setting.png">
-<meta property="og:image" content="https://liluoao.github.io/assets/packagist-final.png">
-<meta property="og:updated_time" content="2018-03-21T07:42:25.708Z">
+<meta property="og:image" content="https://liluoao.github.io/images/composer-setting.png">
+<meta property="og:image" content="https://liluoao.github.io/images/packagist-final.png">
+<meta property="og:updated_time" content="2018-03-27T02:53:51.885Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="36.使用依赖管理——以Composer为例">
 <meta name="twitter:description" content="中文文档：http://docs.phpcomposer.com/ 英文文档：https://getcomposer.org/ 依赖管理Composer 不是一个包管理器。是的，它涉及 “packages” 和 “libraries”，但它在每个项目的基础上进行管理，在你项目的某个目录中（例如 vendor）进行安装。默认情况下它不会在全局安装任何东西。因此，这仅仅是一个依赖管理。 这种想法并不新">
-<meta name="twitter:image" content="https://liluoao.github.io/assets/composer-setting.png">
+<meta name="twitter:image" content="https://liluoao.github.io/images/composer-setting.png">
 <meta name="twitter:creator" content="@liluoao">
   
   
@@ -143,13 +143,13 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    &quot;name&quot;: &quot;liluoao/api-doc&quot;,</span><br><span class="line">    &quot;description&quot;: &quot;Generate API doc from PHPDoc.&quot;,</span><br><span class="line">    &quot;keywords&quot;: [</span><br><span class="line">        &quot;api-documentation&quot;,</span><br><span class="line">        &quot;phpdoc&quot;</span><br><span class="line">    ],</span><br><span class="line">    &quot;homepage&quot;: &quot;https://github.com/liluoao/api-doc&quot;,</span><br><span class="line">    &quot;time&quot;: &quot;2018-02-11&quot;,</span><br><span class="line">    &quot;license&quot;: &quot;MIT&quot;,</span><br><span class="line">    &quot;type&quot;: &quot;library&quot;,</span><br><span class="line">    &quot;require&quot;: &#123;</span><br><span class="line">        &quot;php&quot;: &quot;&gt;=5.4.0&quot;</span><br><span class="line">    &#125;,</span><br><span class="line">    &quot;authors&quot;: [</span><br><span class="line">        &#123;</span><br><span class="line">            &quot;name&quot;: &quot;Li Luoao&quot;,</span><br><span class="line">            &quot;email&quot;: &quot;liluoao@qq.com&quot;,</span><br><span class="line">            &quot;homepage&quot;: &quot;https://github.com/liluoao&quot;,</span><br><span class="line">            &quot;role&quot;: &quot;Developer&quot;</span><br><span class="line">        &#125;</span><br><span class="line">    ],</span><br><span class="line">    &quot;autoload&quot;: &#123;</span><br><span class="line">        &quot;psr-4&quot;: &#123;</span><br><span class="line">            &quot;Liluoao\\ApiDoc\\&quot;: &quot;src&quot;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    &quot;repositories&quot;: &#123;</span><br><span class="line">        &quot;packagist&quot;: &#123;</span><br><span class="line">            &quot;type&quot;: &quot;composer&quot;,</span><br><span class="line">            &quot;url&quot;: &quot;https://packagist.phpcomposer.com&quot;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h2 id="发布到Packagist"><a href="#发布到Packagist" class="headerlink" title="发布到Packagist"></a>发布到Packagist</h2><p>进入 <a href="https://packagist.org/packages/submit" target="_blank" rel="noopener">https://packagist.org/packages/submit</a> ，填写你的项目地址。</p>
 <p>在你的项目设置中开启packagist服务，让每一次代码更新都自动发布到packagist上：</p>
-<p><img src="/assets/composer-setting.png" alt="">最终可以在Packagist上看到如下界面：</p>
-<p><img src="/assets/packagist-final.png" alt=""></p>
+<p><img src="/images/composer-setting.png" alt="">最终可以在Packagist上看到如下界面：</p>
+<p><img src="/images/packagist-final.png" alt=""></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/使用依赖管理-以Composer为例/" data-id="cjf1vmeg500077whhh3t06l3t" class="article-share-link">分享</a>
+      <a data-url="https://liluoao.github.io/使用依赖管理-以Composer为例/" data-id="cjf91zav6000hckhhb3cva2u1" class="article-share-link">分享</a>
       
       
     </footer>
@@ -193,15 +193,29 @@
 
   
     
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/算法/">算法</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
 
   
     
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/算法/" style="font-size: 10px;">算法</a>
+    </div>
+  </div>
+
   
     
   <div class="widget-wrap">
     <h3 class="widget-title">归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a><span class="archive-list-count">7</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a><span class="archive-list-count">8</span></li></ul>
     </div>
   </div>
 
@@ -212,6 +226,10 @@
     <h3 class="widget-title">最新文章</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/蓄水池算法题/">蓄水池算法题</a>
+          </li>
         
           <li>
             <a href="/MySQL优化那些事/">41.MySQL优化那些事儿</a>
@@ -227,10 +245,6 @@
         
           <li>
             <a href="/Phalcon启动流程/">38.Phalcon 启动流程</a>
-          </li>
-        
-          <li>
-            <a href="/使用Phalcon/">37.使用Phalcon框架</a>
           </li>
         
       </ul>

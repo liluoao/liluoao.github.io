@@ -14,13 +14,13 @@
 <meta property="og:site_name" content="To be a Web Artisan">
 <meta property="og:description" content="原文链接：https://www.jianshu.com/p/576dbf44b2ae  Json web token (JWT)，是为了在网络应用环境间传递声明而执行的一种基于JSON的开放标准(RFC 7519)。该token被设计为紧凑且安全的，特别适用于分布式站点的单点登录（ Single Sign On）场景。JWT的声明一般被用来在身份提供者和服务提供者间传递被认证的用户身份信息，以便">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://liluoao.github.io/assets/jwt.png">
-<meta property="og:image" content="https://liluoao.github.io/assets/jwt-http.png">
-<meta property="og:updated_time" content="2018-03-21T07:42:35.685Z">
+<meta property="og:image" content="https://liluoao.github.io/images/jwt.png">
+<meta property="og:image" content="https://liluoao.github.io/images/jwt-http.png">
+<meta property="og:updated_time" content="2018-03-27T02:53:51.878Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="39.什么是 JWT">
 <meta name="twitter:description" content="原文链接：https://www.jianshu.com/p/576dbf44b2ae  Json web token (JWT)，是为了在网络应用环境间传递声明而执行的一种基于JSON的开放标准(RFC 7519)。该token被设计为紧凑且安全的，特别适用于分布式站点的单点登录（ Single Sign On）场景。JWT的声明一般被用来在身份提供者和服务提供者间传递被认证的用户身份信息，以便">
-<meta name="twitter:image" content="https://liluoao.github.io/assets/jwt.png">
+<meta name="twitter:image" content="https://liluoao.github.io/images/jwt.png">
 <meta name="twitter:creator" content="@liluoao">
   
   
@@ -117,7 +117,7 @@
 <p>这个token必须要在每次请求时传递给服务端，它应该保存在请求头里， 另外，服务端要支持<code>CORS(跨来源资源共享)</code>策略，一般我们在服务端这么做就可以了<code>Access-Control-Allow-Origin: *</code>。</p>
 <p>那么我们现在回到JWT的主题上。</p>
 <h2 id="JWT长什么样？"><a href="#JWT长什么样？" class="headerlink" title="JWT长什么样？"></a>JWT长什么样？</h2><p>JWT是由三段信息构成的，将这三段信息文本用<code>.</code>链接一起就构成了Jwt字符串。就像这样:</p>
-<h2 id="JWT的构成"><a href="#JWT的构成" class="headerlink" title="JWT的构成"></a><img src="/assets/jwt.png" alt="">JWT的构成</h2><p>第一部分我们称它为头部（header)，第二部分我们称其为载荷（payload，类似于飞机上承载的物品)，第三部分是签证（signature)。</p>
+<h2 id="JWT的构成"><a href="#JWT的构成" class="headerlink" title="JWT的构成"></a><img src="/images/jwt.png" alt="">JWT的构成</h2><p>第一部分我们称它为头部（header)，第二部分我们称其为载荷（payload，类似于飞机上承载的物品)，第三部分是签证（signature)。</p>
 <h3 id="header"><a href="#header" class="headerlink" title="header"></a>header</h3><p>jwt的头部承载两部分信息：</p>
 <ul>
 <li>声明类型，这里是jwt</li>
@@ -166,7 +166,7 @@
 <h3 id="如何应用"><a href="#如何应用" class="headerlink" title="如何应用"></a>如何应用</h3><p>一般是在请求头里加入<code>Authorization</code>，并加上<code>Bearer</code>标注：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">fetch(<span class="string">'api/user/1'</span>, &#123;</span><br><span class="line">  headers: &#123;</span><br><span class="line">    <span class="string">'Authorization'</span>: <span class="string">'Bearer '</span> + token</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
 <p>服务端会验证token，如果验证通过就会返回相应的资源。整个流程就是这样的:</p>
-<p><img src="/assets/jwt-http.png" alt=""></p>
+<p><img src="/images/jwt-http.png" alt=""></p>
 <h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><h3 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h3><ul>
 <li>因为json的通用性，所以JWT是可以进行跨语言支持的，像JAVA、JavaScript、NodeJS、PHP等很多语言都可以使用。</li>
 <li>因为有了payload部分，所以JWT可以在自身存储一些其他业务逻辑所必要的非敏感信息。</li>
@@ -182,7 +182,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/什么是JWT/" data-id="cjf1vmeg100057whh3ph7ntw5" class="article-share-link">分享</a>
+      <a data-url="https://liluoao.github.io/什么是JWT/" data-id="cjf91zauo0006ckhhusymneoy" class="article-share-link">分享</a>
       
       
     </footer>
@@ -226,15 +226,29 @@
 
   
     
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/算法/">算法</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
 
   
     
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/算法/" style="font-size: 10px;">算法</a>
+    </div>
+  </div>
+
   
     
   <div class="widget-wrap">
     <h3 class="widget-title">归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a><span class="archive-list-count">7</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a><span class="archive-list-count">8</span></li></ul>
     </div>
   </div>
 
@@ -245,6 +259,10 @@
     <h3 class="widget-title">最新文章</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/蓄水池算法题/">蓄水池算法题</a>
+          </li>
         
           <li>
             <a href="/MySQL优化那些事/">41.MySQL优化那些事儿</a>
@@ -260,10 +278,6 @@
         
           <li>
             <a href="/Phalcon启动流程/">38.Phalcon 启动流程</a>
-          </li>
-        
-          <li>
-            <a href="/使用Phalcon/">37.使用Phalcon框架</a>
           </li>
         
       </ul>

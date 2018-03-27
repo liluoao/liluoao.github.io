@@ -5,18 +5,23 @@
   
 
   
-  <title>To be a Web Artisan</title>
+  <title>蓄水池算法题 | To be a Web Artisan</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="李罗奥的博客">
-<meta property="og:type" content="website">
-<meta property="og:title" content="To be a Web Artisan">
-<meta property="og:url" content="https://liluoao.github.io/index.html">
+  <meta name="description" content="原文链接：https://www.fanhaobai.com/2017/12/2017-ziroom-king-2.html 题目某地准备用砖头围立一个蓄水池子，从上面看凹凸不平，凹的地方会有积水。如果用数字代表每个砖头的高度，就形成一个二维数据（如示例），请问这个池子能存储多少单位的水？ 例如二维数组为： 9 9 9 9 3 0 0 9 7 8 2 6 时，答案是中间的 0,0 位置可以存储 2">
+<meta name="keywords" content="算法">
+<meta property="og:type" content="article">
+<meta property="og:title" content="蓄水池算法题">
+<meta property="og:url" content="https://liluoao.github.io/蓄水池算法题/index.html">
 <meta property="og:site_name" content="To be a Web Artisan">
-<meta property="og:description" content="李罗奥的博客">
+<meta property="og:description" content="原文链接：https://www.fanhaobai.com/2017/12/2017-ziroom-king-2.html 题目某地准备用砖头围立一个蓄水池子，从上面看凹凸不平，凹的地方会有积水。如果用数字代表每个砖头的高度，就形成一个二维数据（如示例），请问这个池子能存储多少单位的水？ 例如二维数组为： 9 9 9 9 3 0 0 9 7 8 2 6 时，答案是中间的 0,0 位置可以存储 2">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://liluoao.github.io/images/pool.png">
+<meta property="og:image" content="https://liluoao.github.io/images/twitter_pool.png">
+<meta property="og:updated_time" content="2018-03-27T03:02:29.125Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="To be a Web Artisan">
-<meta name="twitter:description" content="李罗奥的博客">
+<meta name="twitter:title" content="蓄水池算法题">
+<meta name="twitter:description" content="原文链接：https://www.fanhaobai.com/2017/12/2017-ziroom-king-2.html 题目某地准备用砖头围立一个蓄水池子，从上面看凹凸不平，凹的地方会有积水。如果用数字代表每个砖头的高度，就形成一个二维数据（如示例），请问这个池子能存储多少单位的水？ 例如二维数组为： 9 9 9 9 3 0 0 9 7 8 2 6 时，答案是中间的 0,0 位置可以存储 2">
+<meta name="twitter:image" content="https://liluoao.github.io/images/pool.png">
 <meta name="twitter:creator" content="@liluoao">
   
   
@@ -65,9 +70,7 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-    <article id="post-蓄水池算法题" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-蓄水池算法题" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/蓄水池算法题/" class="article-date">
   <time datetime="2018-03-27T02:37:19.000Z" itemprop="datePublished">2018-03-27</time>
@@ -80,8 +83,8 @@
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/蓄水池算法题/">蓄水池算法题</a>
+    <h1 class="article-title" itemprop="name">
+      蓄水池算法题
     </h1>
   
 
@@ -151,360 +154,19 @@
     </footer>
   </div>
   
-</article>
-
-
+    
+<nav id="article-nav">
   
-    <article id="post-MySQL优化那些事" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/MySQL优化那些事/" class="article-date">
-  <time datetime="2018-03-19T01:32:06.264Z" itemprop="datePublished">2018-03-19</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/mysql/">mysql</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/MySQL优化那些事/">41.MySQL优化那些事儿</a>
-    </h1>
+    <a href="/MySQL优化那些事/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">41.MySQL优化那些事儿</div>
+    </a>
   
+</nav>
 
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>原文链接：<a href="https://juejin.im/post/5a9b6342f265da23a2289281" target="_blank" rel="noopener">https://juejin.im/post/5a9b6342f265da23a2289281</a></p>
-<h1 id="一、优化库表结构"><a href="#一、优化库表结构" class="headerlink" title="一、优化库表结构"></a>一、优化库表结构</h1><h3 id="（1）字符串类型"><a href="#（1）字符串类型" class="headerlink" title="（1）字符串类型"></a>（1）字符串类型</h3><blockquote>
-<p>在MySQL中表示字符串的类型有多种,其中常见的有<code>Char</code>和<code>VarChar</code>,<code>BLOB</code>和<code>TEXT</code>以及可以实现某些优化的<code>ENUM</code>。我们要认识到不同的数据类型在存储和使用的区别,然后合理的使用就能实现优化。</p>
-</blockquote>
-<p>关于MySQL中数据类型的介绍，可以参看我的另一篇博文： <a href="http://beautifulsoup.top/2018/02/22/MySQL%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C/" target="_blank" rel="noopener">MySQL的常见操作</a></p>
-<ol>
-<li><strong>Char和VarChar</strong></li>
-</ol>
-<p><code>Char</code>是定长类型，MySQL会根据定义的字符串的长度分配足够的空间，并且MySQL在存储CHAR值的时候会删除末尾所有的空格。对于经常变更的数据，一般采用CHAR来进行存储,因为CHAR类型在变化的时候不容易产生碎片。</p>
-<p>VARCHAR是变长类型，它比CHAR更加节省空间，但是VARCHAR在数据变化的时候容易产生碎片，所以一般用于作为不经常变化的数据的数据类型。VARCHAR需要多使用一个或者两个额外字节来记录字符串的长度，如果列的最大长度小于等于255字节就用一个额外的字节来存储长度，否则使用两个字节。例如<code>VARCHAR(10)</code>的列需要11个字节的存储空间，<code>VARCHAR(1000)</code>的列需要1002个字节。<br>
-        
-          <p class="article-more-link">
-            <a href="/MySQL优化那些事/#more">阅读全文</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/MySQL优化那些事/" data-id="cjf91zaub0002ckhhzgznesjk" class="article-share-link">分享</a>
-      
-      
-    </footer>
-  </div>
   
 </article>
-
-
-  
-    <article id="post-Laravel路由是如何调用到控制器" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/Laravel路由是如何调用到控制器/" class="article-date">
-  <time datetime="2018-03-19T01:31:16.542Z" itemprop="datePublished">2018-03-19</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/laravel/">laravel</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/Laravel路由是如何调用到控制器/">40.Laravel 路由是如何调用到控制器</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>原文链接：<a href="https://juejin.im/post/595f2ed76fb9a06bbe7dc4ed" target="_blank" rel="noopener">https://juejin.im/post/595f2ed76fb9a06bbe7dc4ed</a></p>
-<h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3><p>laravel 的路由相比其他PHP框架非常灵活和优雅，它也能做的在url不变的情况下改变调用的控制器和方法。</p>
-<p>那么这到底在 laravel 里是怎么完成的呢</p>
-<h3 id="路由到底是如何获取的？"><a href="#路由到底是如何获取的？" class="headerlink" title="路由到底是如何获取的？"></a>路由到底是如何获取的？</h3><p>这没什么神秘的，回忆一下我们写一个单页过程化 PHP 脚本时我们是如何接收 HTML 页面传输的参数的？</p>
-<p>是的，也许你想起来了我们会使用 PHP 的超全局变量 <code>$_SERVER</code>、<code>$_GET</code>、<code>$_POST</code> 等等，是的框架的底层同样是使用它们的，只是框架进行了更详尽的封装。</p>
-<p>laravel 对 Symfony 框架提供的 HttpFoundation 组件，这个组件对 HTTP 进行了面向对象封装，laravel在其基础上又进行了封装，以适合 laravel 框架自身的需求。</p>
-<p>HttpFoundation 组件将 <code>$_GET</code>、<code>$_POST</code>、<code>$_FILES</code>、<code>$_COOKIE</code> 等一些超全局变量进行封装，不仅将超全局变量调用转变为面向对象的方式，而且也简化了操作。比如 <code>Symfony\Component\HttpFoundation\Request::createFromGlobals()</code> 的返回值就是所有超全局组成的一个集合。</p>
-<p>如果你对这个组件感兴趣可以查看其文档 <a href="https://symfony.com/doc/current/components/http_foundation.html" target="_blank" rel="noopener">HttpFoundation</a><br>
-        
-          <p class="article-more-link">
-            <a href="/Laravel路由是如何调用到控制器/#more">阅读全文</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/Laravel路由是如何调用到控制器/" data-id="cjf91zav4000gckhho8urammy" class="article-share-link">分享</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-什么是JWT" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/什么是JWT/" class="article-date">
-  <time datetime="2018-03-19T01:31:00.007Z" itemprop="datePublished">2018-03-19</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/安全/">安全</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/什么是JWT/">39.什么是 JWT</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>原文链接：<a href="https://www.jianshu.com/p/576dbf44b2ae" target="_blank" rel="noopener">https://www.jianshu.com/p/576dbf44b2ae</a></p>
-<blockquote>
-<p>Json web token (<a href="https://jwt.io/introduction/" target="_blank" rel="noopener">JWT</a>)，是为了在网络应用环境间传递声明而执行的一种基于JSON的开放标准(<a href="https://tools.ietf.org/html/rfc7519" target="_blank" rel="noopener">RFC 7519</a>)。该token被设计为紧凑且安全的，特别适用于分布式站点的单点登录（ Single Sign On）场景。JWT的声明一般被用来在身份提供者和服务提供者间传递被认证的用户身份信息，以便于从资源服务器获取资源，也可以增加一些额外的其它业务逻辑所必须的声明信息，该token也可直接被用于认证，也可被加密。</p>
-</blockquote>
-<h2 id="起源"><a href="#起源" class="headerlink" title="起源"></a>起源</h2><p>说起JWT，我们应该来谈一谈基于token的认证和传统的session认证的区别。</p>
-<h3 id="传统的session认证"><a href="#传统的session认证" class="headerlink" title="传统的session认证"></a>传统的session认证</h3><p>我们知道，http协议本身是一种无状态的协议，而这就意味着如果用户向我们的应用提供了用户名和密码来进行用户认证，那么下一次请求时，用户还要再一次进行用户认证才行，因为根据http协议，我们并不能知道是哪个用户发出的请求，所以为了让我们的应用能识别是哪个用户发出的请求，我们只能在服务器存储一份用户登录的信息，这份登录信息会在响应时传递给浏览器，告诉其保存为cookie,以便下次请求时发送给我们的应用，这样我们的应用就能识别请求来自哪个用户了,这就是传统的基于session认证。</p>
-<p>但是这种基于session的认证使应用本身很难得到扩展，随着不同客户端用户的增加，独立的服务器已无法承载更多的用户，而这时候基于session认证应用的问题就会暴露出来.<br>
-        
-          <p class="article-more-link">
-            <a href="/什么是JWT/#more">阅读全文</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/什么是JWT/" data-id="cjf91zauo0006ckhhusymneoy" class="article-share-link">分享</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-Phalcon启动流程" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/Phalcon启动流程/" class="article-date">
-  <time datetime="2018-03-19T01:30:38.863Z" itemprop="datePublished">2018-03-19</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/phalcon/">phalcon</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/Phalcon启动流程/">38.Phalcon 启动流程</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>原文链接：<a href="https://avnpc.com/pages/phalcon-mvc-process" target="_blank" rel="noopener">https://avnpc.com/pages/phalcon-mvc-process</a></p>
-<p>入口文件为<code>public/index.php</code>，简化后一共5行，包含了整个Phalcon的启动流程，以下将按顺序说明</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">require</span>  <span class="keyword">__DIR__</span> . <span class="string">'/../config/services.php'</span>;</span><br><span class="line">$application = <span class="keyword">new</span> Phalcon\Mvc\Application();</span><br><span class="line">$application-&gt;setDI($di);</span><br><span class="line"><span class="keyword">require</span> <span class="keyword">__DIR__</span> . <span class="string">'/../config/modules.php'</span>;</span><br><span class="line"><span class="keyword">echo</span> $application-&gt;handle()-&gt;getContent();</span><br></pre></td></tr></table></figure>
-        
-          <p class="article-more-link">
-            <a href="/Phalcon启动流程/#more">阅读全文</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/Phalcon启动流程/" data-id="cjf91zauf0003ckhh7lbmr87u" class="article-share-link">分享</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-使用Phalcon" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/使用Phalcon/" class="article-date">
-  <time datetime="2018-03-19T01:29:58.957Z" itemprop="datePublished">2018-03-19</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/phalcon/">phalcon</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/使用Phalcon/">37.使用Phalcon框架</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="安装Phalcon"><a href="#安装Phalcon" class="headerlink" title="安装Phalcon"></a>安装Phalcon</h3><p>Phalcon 是使用 C 扩展编写、高性能的 PHP 框架。</p>
-<p>Windows用户可以在<a href="https://github.com/phalcon/cphalcon/releases" target="_blank" rel="noopener">https://github.com/phalcon/cphalcon/releases</a> 下载 <code>.dll</code> 文件，加入 <code>php.ini</code> 配置中：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">extension=php_phalcon.dll</span><br></pre></td></tr></table></figure>
-<p>重启你的WEB服务器后，在 <code>phpinfo()</code> 中看到 Phalcon 扩展，代表你安装成功。</p>
-<p>其它平台安装方法见：<a href="https://phalconphp.com/zh/download/linux" target="_blank" rel="noopener">https://phalconphp.com/zh/download/linux</a><br>
-        
-          <p class="article-more-link">
-            <a href="/使用Phalcon/#more">阅读全文</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/使用Phalcon/" data-id="cjf91zav3000fckhhhs5i7r54" class="article-share-link">分享</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-使用依赖管理-以Composer为例" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/使用依赖管理-以Composer为例/" class="article-date">
-  <time datetime="2018-03-19T01:21:30.239Z" itemprop="datePublished">2018-03-19</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/composer/">composer</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/使用依赖管理-以Composer为例/">36.使用依赖管理——以Composer为例</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>中文文档：<a href="http://docs.phpcomposer.com/" target="_blank" rel="noopener">http://docs.phpcomposer.com/</a></p>
-<p>英文文档：<a href="https://getcomposer.org/" target="_blank" rel="noopener">https://getcomposer.org/</a></p>
-<h2 id="依赖管理"><a href="#依赖管理" class="headerlink" title="依赖管理"></a>依赖管理</h2><p>Composer 不是一个包管理器。是的，它涉及 “packages” 和 “libraries”，但它在每个项目的基础上进行管理，在你项目的某个目录中（例如 <code>vendor</code>）进行安装。默认情况下它不会在全局安装任何东西。因此，这仅仅是一个依赖管理。</p>
-<p>这种想法并不新鲜，Composer 受到了 node’s <a href="http://npmjs.org/" target="_blank" rel="noopener">npm</a> 和 ruby’s <a href="http://gembundler.com/" target="_blank" rel="noopener">bundler</a> 的强烈启发。而当时 PHP 下并没有类似的工具。</p>
-<p>Composer 将这样为你解决问题：</p>
-<p>a) 你有一个项目依赖于若干个库。</p>
-<p>b) 其中一些库依赖于其他库。</p>
-<p>c) 你声明你所依赖的东西。</p>
-<p>d) Composer 会找出哪个版本的包需要安装，并安装它们（将它们下载到你的项目中）。<br>
-        
-          <p class="article-more-link">
-            <a href="/使用依赖管理-以Composer为例/#more">阅读全文</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/使用依赖管理-以Composer为例/" data-id="cjf91zav6000hckhhb3cva2u1" class="article-share-link">分享</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-使用Hexo" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/使用Hexo/" class="article-date">
-  <time datetime="2018-03-19T00:59:42.462Z" itemprop="datePublished">2018-03-19</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/使用Hexo/">使用Hexo</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>中文文档：<a href="https://hexo.io/zh-cn/docs/" target="_blank" rel="noopener">https://hexo.io/zh-cn/docs/</a></p>
-<h3 id="创建新文章"><a href="#创建新文章" class="headerlink" title="创建新文章"></a>创建新文章</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>更多请看: <a href="https://hexo.io/zh-cn/docs/writing.html" target="_blank" rel="noopener">写作</a><br>
-        
-          <p class="article-more-link">
-            <a href="/使用Hexo/#more">阅读全文</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/使用Hexo/" data-id="cjf91zaul0005ckhhchazu6n3" class="article-share-link">分享</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-
 
 </section>
         
