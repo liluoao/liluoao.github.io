@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>使用Phalcon框架 | To be a Web Artisan</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="安装PhalconPhalcon 是使用 C 扩展编写、高性能的 PHP 框架。 Windows用户可以在https://github.com/phalcon/cphalcon/releases 下载 .dll 文件，加入 php.ini 配置中： 1extension=php_phalcon.dll 重启你的WEB服务器后，在 phpinfo() 中看到 Phalcon 扩展，代表你安装成功。">
+<meta name="keywords" content="phalcon">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用Phalcon框架">
+<meta property="og:url" content="https://liluoao.github.io/2018/03/使用Phalcon/index.html">
+<meta property="og:site_name" content="To be a Web Artisan">
+<meta property="og:description" content="安装PhalconPhalcon 是使用 C 扩展编写、高性能的 PHP 框架。 Windows用户可以在https://github.com/phalcon/cphalcon/releases 下载 .dll 文件，加入 php.ini 配置中： 1extension=php_phalcon.dll 重启你的WEB服务器后，在 phpinfo() 中看到 Phalcon 扩展，代表你安装成功。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://camo.githubusercontent.com/d3e1b2e83cf1128d8efa920680443fef6527739d/68747470733a2f2f696d672e736869656c64732e696f2f7061636b61676973742f762f686279632f7068616c636f6e2e7376673f7374796c653d666c61742d737175617265">
+<meta property="og:updated_time" content="2018-03-30T08:25:12.724Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="使用Phalcon框架">
+<meta name="twitter:description" content="安装PhalconPhalcon 是使用 C 扩展编写、高性能的 PHP 框架。 Windows用户可以在https://github.com/phalcon/cphalcon/releases 下载 .dll 文件，加入 php.ini 配置中： 1extension=php_phalcon.dll 重启你的WEB服务器后，在 phpinfo() 中看到 Phalcon 扩展，代表你安装成功。">
+<meta name="twitter:image" content="https://camo.githubusercontent.com/d3e1b2e83cf1128d8efa920680443fef6527739d/68747470733a2f2f696d672e736869656c64732e696f2f7061636b61676973742f762f686279632f7068616c636f6e2e7376673f7374796c653d666c61742d737175617265">
+<meta name="twitter:creator" content="@liluoao">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">To be a Web Artisan</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">首页</a>
+        
+          <a class="main-nav-link" href="/archives">文章列表</a>
+        
+          <a class="main-nav-link" href="/categories/laravel">Laravel</a>
+        
+          <a class="main-nav-link" href="/categories/phalcon">Phalcon</a>
+        
+          <a class="main-nav-link" href="/categories/mysql">MySQL</a>
+        
+          <a class="main-nav-link" href="/me.html">关于作者</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://liluoao.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-使用Phalcon" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/03/使用Phalcon/" class="article-date">
+  <time datetime="2018-03-17T02:37:19.000Z" itemprop="datePublished">2018-03-17</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/phalcon/">phalcon</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      使用Phalcon框架
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="安装Phalcon"><a href="#安装Phalcon" class="headerlink" title="安装Phalcon"></a>安装Phalcon</h3><p>Phalcon 是使用 C 扩展编写、高性能的 PHP 框架。</p>
+<p>Windows用户可以在<a href="https://github.com/phalcon/cphalcon/releases" target="_blank" rel="noopener">https://github.com/phalcon/cphalcon/releases</a> 下载 <code>.dll</code> 文件，加入 <code>php.ini</code> 配置中：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">extension=php_phalcon.dll</span><br></pre></td></tr></table></figure>
+<p>重启你的WEB服务器后，在 <code>phpinfo()</code> 中看到 Phalcon 扩展，代表你安装成功。</p>
+<p>其它平台安装方法见：<a href="https://phalconphp.com/zh/download/linux" target="_blank" rel="noopener">https://phalconphp.com/zh/download/linux</a><br><a id="more"></a></p>
+<h3 id="安装Phalcon-devtool"><a href="#安装Phalcon-devtool" class="headerlink" title="安装Phalcon-devtool"></a>安装Phalcon-devtool</h3><p><a href="https://github.com/phalcon/phalcon-devtools" target="_blank" rel="noopener">phalcon-devtools</a> 是Phalcon开发者工具，可以自动生成代码，和为IDE创建Phalcon语法提示。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/phalcon/phalcon-devtools.git</span><br></pre></td></tr></table></figure>
+<p>然后将<code>~/phalcon-devtools</code>目录加入系统环境变量<strong>PATH</strong>，在命令行输入：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">phalcon --<span class="built_in">help</span></span><br></pre></td></tr></table></figure>
+<p>返回如下信息，说明设置成功：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">Phalcon DevTools (3.2.12)</span><br><span class="line"></span><br><span class="line">Help:</span><br><span class="line">  Lists the commands available </span><br><span class="line"><span class="keyword">in</span></span><br><span class="line"> Phalcon devtools</span><br><span class="line"></span><br><span class="line">Available commands:</span><br><span class="line">  info             (<span class="built_in">alias</span> of: i)</span><br><span class="line">  commands         (<span class="built_in">alias</span> of: list, enumerate)</span><br><span class="line">  controller       (<span class="built_in">alias</span> of: create-controller)</span><br><span class="line">  module           (<span class="built_in">alias</span> of: create-module)</span><br><span class="line">  model            (<span class="built_in">alias</span> of: create-model)</span><br><span class="line">  all-models       (<span class="built_in">alias</span> of: create-all-models)</span><br><span class="line">  project          (<span class="built_in">alias</span> of: create-project)</span><br><span class="line">  scaffold         (<span class="built_in">alias</span> of: create-scaffold)</span><br><span class="line">  migration        (<span class="built_in">alias</span> of: create-migration)</span><br><span class="line">  webtools         (<span class="built_in">alias</span> of: create-webtools)</span><br><span class="line">  serve            (<span class="built_in">alias</span> of: server)</span><br><span class="line">  console          (<span class="built_in">alias</span> of: shell, psysh)</span><br></pre></td></tr></table></figure>
+<h4 id="为IDE创建语法提示"><a href="#为IDE创建语法提示" class="headerlink" title="为IDE创建语法提示"></a>为IDE创建语法提示</h4><p>进入 <code>~/phalcon-devtools/ide</code> 文件夹，运行命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">php gen-stubs.php</span><br></pre></td></tr></table></figure>
+<p>它会在本文件夹中生成相应版本语法目录，在你的IDE中导入 <code>Configure PHP Include Paths</code> 即可。</p>
+<h3 id="下载框架文件"><a href="#下载框架文件" class="headerlink" title="下载框架文件"></a>下载框架文件</h3><p>安利我的项目：<a href="https://github.com/huobanyangche/phalcon-framework" target="_blank" rel="noopener">https://github.com/huobanyangche/phalcon-framework</a></p>
+<p><a href="https://packagist.org/packages/hbyc/phalcon" target="_blank" rel="noopener"><img src="https://camo.githubusercontent.com/d3e1b2e83cf1128d8efa920680443fef6527739d/68747470733a2f2f696d672e736869656c64732e696f2f7061636b61676973742f762f686279632f7068616c636f6e2e7376673f7374796c653d666c61742d737175617265" alt="" title="Packagist"></a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">composer create-project hbyc/phalcon</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://liluoao.github.io/2018/03/使用Phalcon/" data-id="cjfdooas9000j98mjrhmu7407" class="article-share-link">分享</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/phalcon/">phalcon</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2018/03/使用依赖管理-以Composer为例/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">
+        
+          使用依赖管理——以Composer为例
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/03/什么是JWT/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">什么是 JWT</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/composer/">composer</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/laravel/">laravel</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/mysql/">mysql</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/phalcon/">phalcon</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/安全/">安全</a><span class="category-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/ci/">ci</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/culture/">culture</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/laravel/">laravel</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/">mysql</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/phalcon/">phalcon</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/算法/">算法</a><span class="tag-list-count">2</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/ci/" style="font-size: 10px;">ci</a> <a href="/tags/culture/" style="font-size: 20px;">culture</a> <a href="/tags/laravel/" style="font-size: 10px;">laravel</a> <a href="/tags/mysql/" style="font-size: 10px;">mysql</a> <a href="/tags/phalcon/" style="font-size: 15px;">phalcon</a> <a href="/tags/算法/" style="font-size: 15px;">算法</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">二月 2018</a><span class="archive-list-count">5</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2018/03/使用AppVeyor持续集成本博客/">使用AppVeyor持续集成本博客</a>
+          </li>
+        
+          <li>
+            <a href="/2018/03/求数组中非负元素组合的最大字符串/">求数组中非负元素组合的最大字符串</a>
+          </li>
+        
+          <li>
+            <a href="/2018/03/蓄水池算法题/">蓄水池算法题</a>
+          </li>
+        
+          <li>
+            <a href="/2018/03/使用依赖管理-以Composer为例/">使用依赖管理——以Composer为例</a>
+          </li>
+        
+          <li>
+            <a href="/2018/03/使用Phalcon/">使用Phalcon框架</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      <div class="footer-copyright">
+        &copy; 2018 李罗奥<br>
+        Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+      </div>
+      <div class="footer-about-me">
+        关于作者<br>
+        <a href="https://github.com/liluoao" target="_blank" title="GitHub">GitHub</a><br>
+        <a href="https://segmentfault.com/u/liluoao" target="_blank" title="SegmentFault">SegmentFault</a><br>
+        <a href="https://laravel-china.org/users/7144" target="_blank" title="LaravelChina">LaravelChina</a><br>
+        <a href="https://gitee.com/liluoao" target="_blank" title="码云">码云</a><br>
+        <a href="https://juejin.im/user/5a19374cf265da4332274600" target="_blank" title="掘金">掘金</a><br>
+        <a href="https://packagist.org/users/liluoao/" target="_blank" title="Packagist">Packagist</a><br>
+        <a href="https://www.gitbook.com/@liluoao" target="_blank" title="GitBook">GitBook</a>
+      </div>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">首页</a>
+  
+    <a href="/archives" class="mobile-nav-link">文章列表</a>
+  
+    <a href="/categories/laravel" class="mobile-nav-link">Laravel</a>
+  
+    <a href="/categories/phalcon" class="mobile-nav-link">Phalcon</a>
+  
+    <a href="/categories/mysql" class="mobile-nav-link">MySQL</a>
+  
+    <a href="/me.html" class="mobile-nav-link">关于作者</a>
+  
+</nav>
+    
+
+<script src="//lib.sinaapp.com/js/jquery/3.1.0/jquery-3.1.0.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>
