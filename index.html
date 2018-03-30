@@ -99,7 +99,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2018/03/使用AppVeyor持续集成本博客/" data-id="cjfdooas9000d98mj5zpf4te4" class="article-share-link">分享</a>
+      <a data-url="https://liluoao.github.io/2018/03/使用AppVeyor持续集成本博客/" data-id="cjfdp10up000d5smj8mqhri9s" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ci/">ci</a></li></ul>
@@ -152,7 +152,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2018/03/求数组中非负元素组合的最大字符串/" data-id="cjfdooat4001198mjxnzjywxq" class="article-share-link">分享</a>
+      <a data-url="https://liluoao.github.io/2018/03/求数组中非负元素组合的最大字符串/" data-id="cjfdp10v400115smj6m4btaio" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/算法/">算法</a></li></ul>
@@ -201,7 +201,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2018/03/蓄水池算法题/" data-id="cjfdooat4001398mjb49gyivr" class="article-share-link">分享</a>
+      <a data-url="https://liluoao.github.io/2018/03/蓄水池算法题/" data-id="cjfdp10v400135smjvgo43184" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/算法/">算法</a></li></ul>
@@ -256,7 +256,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2018/03/使用依赖管理-以Composer为例/" data-id="cjfdooasp000n98mjvpbcvibv" class="article-share-link">分享</a>
+      <a data-url="https://liluoao.github.io/2018/03/使用依赖管理-以Composer为例/" data-id="cjfdp10up000n5smjgmkbk54n" class="article-share-link">分享</a>
       
       
     </footer>
@@ -305,264 +305,11 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2018/03/使用Phalcon/" data-id="cjfdooas9000j98mjrhmu7407" class="article-share-link">分享</a>
+      <a data-url="https://liluoao.github.io/2018/03/使用Phalcon/" data-id="cjfdp10up000j5smj9dt4ouj5" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/phalcon/">phalcon</a></li></ul>
 
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-什么是JWT" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/03/什么是JWT/" class="article-date">
-  <time datetime="2018-03-16T02:37:19.000Z" itemprop="datePublished">2018-03-16</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/安全/">安全</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/03/什么是JWT/">什么是 JWT</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>原文链接：<a href="https://www.jianshu.com/p/576dbf44b2ae" target="_blank" rel="noopener">https://www.jianshu.com/p/576dbf44b2ae</a></p>
-<blockquote>
-<p>Json web token (<a href="https://jwt.io/introduction/" target="_blank" rel="noopener">JWT</a>)，是为了在网络应用环境间传递声明而执行的一种基于JSON的开放标准(<a href="https://tools.ietf.org/html/rfc7519" target="_blank" rel="noopener">RFC 7519</a>)。该token被设计为紧凑且安全的，特别适用于分布式站点的单点登录（ Single Sign On）场景。JWT的声明一般被用来在身份提供者和服务提供者间传递被认证的用户身份信息，以便于从资源服务器获取资源，也可以增加一些额外的其它业务逻辑所必须的声明信息，该token也可直接被用于认证，也可被加密。</p>
-</blockquote>
-<h2 id="起源"><a href="#起源" class="headerlink" title="起源"></a>起源</h2><p>说起JWT，我们应该来谈一谈基于token的认证和传统的session认证的区别。</p>
-<h3 id="传统的session认证"><a href="#传统的session认证" class="headerlink" title="传统的session认证"></a>传统的session认证</h3><p>我们知道，http协议本身是一种无状态的协议，而这就意味着如果用户向我们的应用提供了用户名和密码来进行用户认证，那么下一次请求时，用户还要再一次进行用户认证才行，因为根据http协议，我们并不能知道是哪个用户发出的请求，所以为了让我们的应用能识别是哪个用户发出的请求，我们只能在服务器存储一份用户登录的信息，这份登录信息会在响应时传递给浏览器，告诉其保存为cookie,以便下次请求时发送给我们的应用，这样我们的应用就能识别请求来自哪个用户了,这就是传统的基于session认证。</p>
-<p>但是这种基于session的认证使应用本身很难得到扩展，随着不同客户端用户的增加，独立的服务器已无法承载更多的用户，而这时候基于session认证应用的问题就会暴露出来.<br>
-        
-          <p class="article-more-link">
-            <a href="/2018/03/什么是JWT/#more">阅读全文</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2018/03/什么是JWT/" data-id="cjfdooas9000c98mjnn6ffjwt" class="article-share-link">分享</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-Phalcon启动流程" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/03/Phalcon启动流程/" class="article-date">
-  <time datetime="2018-03-15T02:37:19.000Z" itemprop="datePublished">2018-03-15</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/phalcon/">phalcon</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/03/Phalcon启动流程/">Phalcon 启动流程</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>原文链接：<a href="https://avnpc.com/pages/phalcon-mvc-process" target="_blank" rel="noopener">https://avnpc.com/pages/phalcon-mvc-process</a></p>
-<p>入口文件为<code>public/index.php</code>，简化后一共5行，包含了整个Phalcon的启动流程，以下将按顺序说明</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">require</span>  <span class="keyword">__DIR__</span> . <span class="string">'/../config/services.php'</span>;</span><br><span class="line">$application = <span class="keyword">new</span> Phalcon\Mvc\Application();</span><br><span class="line">$application-&gt;setDI($di);</span><br><span class="line"><span class="keyword">require</span> <span class="keyword">__DIR__</span> . <span class="string">'/../config/modules.php'</span>;</span><br><span class="line"><span class="keyword">echo</span> $application-&gt;handle()-&gt;getContent();</span><br></pre></td></tr></table></figure>
-        
-          <p class="article-more-link">
-            <a href="/2018/03/Phalcon启动流程/#more">阅读全文</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2018/03/Phalcon启动流程/" data-id="cjfdooart000698mjz0zwp9y8" class="article-share-link">分享</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/phalcon/">phalcon</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-MySQL优化那些事" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/03/MySQL优化那些事/" class="article-date">
-  <time datetime="2018-03-14T02:37:19.000Z" itemprop="datePublished">2018-03-14</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/mysql/">mysql</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/03/MySQL优化那些事/">MySQL优化那些事儿</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>原文链接：<a href="https://juejin.im/post/5a9b6342f265da23a2289281" target="_blank" rel="noopener">https://juejin.im/post/5a9b6342f265da23a2289281</a></p>
-<h1 id="一、优化库表结构"><a href="#一、优化库表结构" class="headerlink" title="一、优化库表结构"></a>一、优化库表结构</h1><h3 id="（1）字符串类型"><a href="#（1）字符串类型" class="headerlink" title="（1）字符串类型"></a>（1）字符串类型</h3><blockquote>
-<p>在MySQL中表示字符串的类型有多种,其中常见的有<code>Char</code>和<code>VarChar</code>,<code>BLOB</code>和<code>TEXT</code>以及可以实现某些优化的<code>ENUM</code>。我们要认识到不同的数据类型在存储和使用的区别,然后合理的使用就能实现优化。</p>
-</blockquote>
-<p>关于MySQL中数据类型的介绍，可以参看我的另一篇博文： <a href="http://beautifulsoup.top/2018/02/22/MySQL%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C/" target="_blank" rel="noopener">MySQL的常见操作</a></p>
-<ol>
-<li><strong>Char和VarChar</strong></li>
-</ol>
-<p><code>Char</code>是定长类型，MySQL会根据定义的字符串的长度分配足够的空间，并且MySQL在存储CHAR值的时候会删除末尾所有的空格。对于经常变更的数据，一般采用CHAR来进行存储,因为CHAR类型在变化的时候不容易产生碎片。</p>
-<p>VARCHAR是变长类型，它比CHAR更加节省空间，但是VARCHAR在数据变化的时候容易产生碎片，所以一般用于作为不经常变化的数据的数据类型。VARCHAR需要多使用一个或者两个额外字节来记录字符串的长度，如果列的最大长度小于等于255字节就用一个额外的字节来存储长度，否则使用两个字节。例如<code>VARCHAR(10)</code>的列需要11个字节的存储空间，<code>VARCHAR(1000)</code>的列需要1002个字节。<br>
-        
-          <p class="article-more-link">
-            <a href="/2018/03/MySQL优化那些事/#more">阅读全文</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2018/03/MySQL优化那些事/" data-id="cjfdooare000398mje8c5cc5x" class="article-share-link">分享</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mysql/">mysql</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-Laravel路由是如何调用到控制器" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/03/Laravel路由是如何调用到控制器/" class="article-date">
-  <time datetime="2018-03-13T02:37:19.000Z" itemprop="datePublished">2018-03-13</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/laravel/">laravel</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/03/Laravel路由是如何调用到控制器/">Laravel 路由是如何调用到控制器</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>原文链接：<a href="https://juejin.im/post/595f2ed76fb9a06bbe7dc4ed" target="_blank" rel="noopener">https://juejin.im/post/595f2ed76fb9a06bbe7dc4ed</a></p>
-<h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3><p>laravel 的路由相比其他PHP框架非常灵活和优雅，它也能做的在url不变的情况下改变调用的控制器和方法。</p>
-<p>那么这到底在 laravel 里是怎么完成的呢</p>
-<h3 id="路由到底是如何获取的？"><a href="#路由到底是如何获取的？" class="headerlink" title="路由到底是如何获取的？"></a>路由到底是如何获取的？</h3><p>这没什么神秘的，回忆一下我们写一个单页过程化 PHP 脚本时我们是如何接收 HTML 页面传输的参数的？</p>
-<p>是的，也许你想起来了我们会使用 PHP 的超全局变量 <code>$_SERVER</code>、<code>$_GET</code>、<code>$_POST</code> 等等，是的框架的底层同样是使用它们的，只是框架进行了更详尽的封装。</p>
-<p>laravel 对 Symfony 框架提供的 HttpFoundation 组件，这个组件对 HTTP 进行了面向对象封装，laravel在其基础上又进行了封装，以适合 laravel 框架自身的需求。</p>
-<p>HttpFoundation 组件将 <code>$_GET</code>、<code>$_POST</code>、<code>$_FILES</code>、<code>$_COOKIE</code> 等一些超全局变量进行封装，不仅将超全局变量调用转变为面向对象的方式，而且也简化了操作。比如 <code>Symfony\Component\HttpFoundation\Request::createFromGlobals()</code> 的返回值就是所有超全局组成的一个集合。</p>
-<p>如果你对这个组件感兴趣可以查看其文档 <a href="https://symfony.com/doc/current/components/http_foundation.html" target="_blank" rel="noopener">HttpFoundation</a><br>
-        
-          <p class="article-more-link">
-            <a href="/2018/03/Laravel路由是如何调用到控制器/#more">阅读全文</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2018/03/Laravel路由是如何调用到控制器/" data-id="cjfdooare000298mj0a98pre2" class="article-share-link">分享</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/laravel/">laravel</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-使用Hexo" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/03/使用Hexo/" class="article-date">
-  <time datetime="2018-03-01T02:37:19.000Z" itemprop="datePublished">2018-03-01</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/03/使用Hexo/">使用Hexo</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>中文文档：<a href="https://hexo.io/zh-cn/docs/" target="_blank" rel="noopener">https://hexo.io/zh-cn/docs/</a></p>
-<h3 id="创建新文章"><a href="#创建新文章" class="headerlink" title="创建新文章"></a>创建新文章</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>更多请看: <a href="https://hexo.io/zh-cn/docs/writing.html" target="_blank" rel="noopener">写作</a><br>
-        
-          <p class="article-more-link">
-            <a href="/2018/03/使用Hexo/#more">阅读全文</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2018/03/使用Hexo/" data-id="cjfdooas9000h98mj48xhzlvt" class="article-share-link">分享</a>
-      
-      
     </footer>
   </div>
   
@@ -574,7 +321,7 @@
 
   <nav id="page-nav">
     
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">下一页 &raquo;</a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">下一页 &raquo;</a>
   </nav>
 
 </section>
