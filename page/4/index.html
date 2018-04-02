@@ -5,12 +5,12 @@
   
 
   
-  <title>标签: ci | To be a Web Artisan</title>
+  <title>To be a Web Artisan</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="李罗奥的博客">
 <meta property="og:type" content="website">
 <meta property="og:title" content="To be a Web Artisan">
-<meta property="og:url" content="https://liluoao.github.io/tags/ci/index.html">
+<meta property="og:url" content="https://liluoao.github.io/page/4/index.html">
 <meta property="og:site_name" content="To be a Web Artisan">
 <meta property="og:description" content="李罗奥的博客">
 <meta property="og:locale" content="zh-CN">
@@ -67,38 +67,107 @@
       <div class="outer">
         <section id="main">
   
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2018" class="archive-year">2018</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2018/03/使用AppVeyor持续集成本博客/" class="archive-article-date">
-  <time datetime="2018-03-29T03:37:55.000Z" itemprop="datePublished">3月 29</time>
+    <article id="post-公历和儒略历的区别" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/02/公历和儒略历的区别/" class="article-date">
+  <time datetime="2018-02-20T07:56:43.000Z" itemprop="datePublished">2018-02-20</time>
 </a>
-      
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
   
     <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/03/使用AppVeyor持续集成本博客/">使用AppVeyor持续集成本博客</a>
+      <a class="article-title" href="/2018/02/公历和儒略历的区别/">公历和儒略历的区别</a>
     </h1>
   
 
-    </header>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>本文主要讲公历和儒略历的区别。</p>
+<p><a href="https://dev.mysql.com/doc/refman/5.7/en/mysql-calendar.html" target="_blank" rel="noopener">MySQL官方文档12.8 What Calendar Is Used By MySQL?</a>里是这样说的：</p>
+<blockquote>
+<p>MySQL uses what is known as a proleptic Gregorian calendar.</p>
+<p>Every country that has switched from the Julian to the Gregorian calendar has had to discard at least ten days during the switch. To see how this works, consider the month of October 1582, when the first Julian-to-Gregorian switch occurred.</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Monday</th>
+<th style="text-align:center">Tuesday</th>
+<th style="text-align:center">Wednesday</th>
+<th style="text-align:center">Thursday</th>
+<th style="text-align:center">Friday</th>
+<th style="text-align:center">Saturday</th>
+<th style="text-align:center">Sunday</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">1</td>
+<td style="text-align:center">2</td>
+<td style="text-align:center">3</td>
+<td style="text-align:center">4</td>
+<td style="text-align:center">15</td>
+<td style="text-align:center">16</td>
+<td style="text-align:center">17</td>
+</tr>
+<tr>
+<td style="text-align:center">18</td>
+<td style="text-align:center">19</td>
+<td style="text-align:center">20</td>
+<td style="text-align:center">21</td>
+<td style="text-align:center">22</td>
+<td style="text-align:center">23</td>
+<td style="text-align:center">24</td>
+</tr>
+<tr>
+<td style="text-align:center">25</td>
+<td style="text-align:center">26</td>
+<td style="text-align:center">27</td>
+<td style="text-align:center">28</td>
+<td style="text-align:center">29</td>
+<td style="text-align:center">30</td>
+<td style="text-align:center">31</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>There are no dates between October 4 and October 15. This discontinuity is called the cutover. Any dates before the cutover are Julian, and any dates following the cutover are Gregorian. Dates during a cutover are nonexistent.</p>
+<p>A calendar applied to dates when it was not actually in use is called proleptic. Thus, if we assume there was never a cutover and Gregorian rules always rule, we have a proleptic Gregorian calendar. This is what is used by MySQL, as is required by standard SQL. For this reason, dates prior to the cutover stored as MySQL <code>DATE</code> or <code>DATETIME</code> values must be adjusted to compensate for the difference. It is important to realize that the cutover did not occur at the same time in all countries, and that the later it happened, the more days were lost. For example, in Great Britain, it took place in 1752, when Wednesday September 2 was followed by Thursday September 14. Russia remained on the Julian calendar until 1918, losing 13 days in the process, and what is popularly referred to as its “October Revolution” occurred in November according to the Gregorian calendar.</p>
+</blockquote>
+<p>那么 <code>the Gregorian calendar</code> 和 <code>the Julian calendar</code> 分别是什么呢？<br>
+        
+          <p class="article-more-link">
+            <a href="/2018/02/公历和儒略历的区别/#more">阅读全文</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://liluoao.github.io/2018/02/公历和儒略历的区别/" data-id="cjfhvk27g000upsmj80yupbhr" class="article-share-link">分享</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/culture/">culture</a></li></ul>
+
+    </footer>
   </div>
+  
 </article>
-  
-  
-    </div></section>
+
+
   
 
+
+  <nav id="page-nav">
+    
+    <a class="extend prev" rel="prev" href="/page/3/">&laquo; 上一页</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span>
+  </nav>
 
 </section>
         

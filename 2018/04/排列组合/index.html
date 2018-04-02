@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>排列组合 | To be a Web Artisan</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="题目1 2 3 4 5 6 7 8 9 = 110 为使等式成立，在数字间填入加号或减号或不填，求出所有可能组合 示例： 输入： [1 2 3 4 5 6 7 8 9] 输出： 12 + 34 + 56 + 7 - 8 + 9">
+<meta name="keywords" content="算法">
+<meta property="og:type" content="article">
+<meta property="og:title" content="排列组合">
+<meta property="og:url" content="https://liluoao.github.io/2018/04/排列组合/index.html">
+<meta property="og:site_name" content="To be a Web Artisan">
+<meta property="og:description" content="题目1 2 3 4 5 6 7 8 9 = 110 为使等式成立，在数字间填入加号或减号或不填，求出所有可能组合 示例： 输入： [1 2 3 4 5 6 7 8 9] 输出： 12 + 34 + 56 + 7 - 8 + 9">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://liluoao.github.io/images/permutation-and-combination-1.png">
+<meta property="og:image" content="https://liluoao.github.io/images/permutation-and-combination-2.png">
+<meta property="og:updated_time" content="2018-04-02T06:48:59.837Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="排列组合">
+<meta name="twitter:description" content="题目1 2 3 4 5 6 7 8 9 = 110 为使等式成立，在数字间填入加号或减号或不填，求出所有可能组合 示例： 输入： [1 2 3 4 5 6 7 8 9] 输出： 12 + 34 + 56 + 7 - 8 + 9">
+<meta name="twitter:image" content="https://liluoao.github.io/images/permutation-and-combination-1.png">
+<meta name="twitter:creator" content="@liluoao">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">To be a Web Artisan</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">首页</a>
+        
+          <a class="main-nav-link" href="/archives">文章列表</a>
+        
+          <a class="main-nav-link" href="/categories/laravel">Laravel</a>
+        
+          <a class="main-nav-link" href="/categories/phalcon">Phalcon</a>
+        
+          <a class="main-nav-link" href="/categories/mysql">MySQL</a>
+        
+          <a class="main-nav-link" href="/me.html">关于作者</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://liluoao.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-排列组合" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/04/排列组合/" class="article-date">
+  <time datetime="2018-04-02T06:35:58.000Z" itemprop="datePublished">2018-04-02</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      排列组合
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p><code>1 2 3 4 5 6 7 8 9 = 110</code></p>
+<p>为使等式成立，在数字间填入加号或减号或不填，求出所有可能组合</p>
+<p>示例：</p>
+<p>输入：</p>
+<pre><code>[1 2 3 4 5 6 7 8 9]
+</code></pre><p>输出：</p>
+<pre><code>12 + 34 + 56 + 7 - 8 + 9
+</code></pre><a id="more"></a>
+<h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><p>该题考查点是排列组合问题，待连接的数字已经有序，所以只需要确定相邻两个数字的连接符即可。假设待连接数字的长度为 <code>n</code>，那么问题可以描述为，将<code>空格</code>、<code>+</code>、<code>-</code> 这 3 种连接符插入到 <code>n-1</code> 个相邻待连接数字之间的位置，所以共有 <code>3^n-1</code> 种情况，然后判断每种情况的计算结果是否为等式右边的数字。</p>
+<p>为了获取 3 种连接符组成的 <code>3^n-1</code> 种组合情况，这里巧妙地运用 <strong>3进制运算</strong> 来实现。</p>
+<p><img src="/images/permutation-and-combination-1.png" alt=""></p>
+<p>算法执行流程：</p>
+<p><img src="/images/permutation-and-combination-2.png" alt=""></p>
+<h2 id="编码实现"><a href="#编码实现" class="headerlink" title="编码实现"></a>编码实现</h2><p>实现类结构如下<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Rank</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> $data = <span class="keyword">array</span>();</span><br><span class="line">    <span class="keyword">public</span> $operate = <span class="keyword">array</span>(<span class="string">''</span>, <span class="string">'-'</span>, <span class="string">'+'</span>);</span><br><span class="line">    <span class="keyword">public</span> $originLen = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">public</span> $sum = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span><span class="params">(array $data, $sum)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">$this</span>-&gt;originLen = count($data);</span><br><span class="line">        <span class="keyword">$this</span>-&gt;sum = $sum;</span><br><span class="line">        <span class="keyword">foreach</span> ($data <span class="keyword">as</span> $k =&gt; $value) &#123;</span><br><span class="line">            <span class="keyword">$this</span>-&gt;data[$k*<span class="number">2</span>] = $value;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>3 进制运算的实现，注意需要对高位进行补 0 的操作，其中 number 为 <code>3^n-1</code>（组合情况）。<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">ternary</span><span class="params">($number)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    $pos = <span class="number">2</span> * <span class="keyword">$this</span>-&gt;originLen - <span class="number">3</span>;</span><br><span class="line">    <span class="keyword">do</span> &#123;</span><br><span class="line">        $mod = $number % <span class="number">3</span>;</span><br><span class="line">        $number = (int)($number / <span class="number">3</span>);</span><br><span class="line">        <span class="keyword">$this</span>-&gt;data[$pos] = <span class="keyword">$this</span>-&gt;operate[$mod];</span><br><span class="line">        $pos -= <span class="number">2</span>;</span><br><span class="line">    &#125; <span class="keyword">while</span>($number);</span><br><span class="line">    <span class="comment">//高位补0</span></span><br><span class="line">    <span class="keyword">while</span> ($pos &gt; <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">$this</span>-&gt;data[$pos] = <span class="keyword">$this</span>-&gt;operate[<span class="number">0</span>];</span><br><span class="line">        $pos -= <span class="number">2</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    ksort(<span class="keyword">$this</span>-&gt;data);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>对 3 种连接符组成 <code>3^n-1</code> 种组合，根据等式成立情况进行取舍<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">run</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    $result = <span class="keyword">array</span>();</span><br><span class="line">    $times = pow(<span class="number">3</span>, <span class="keyword">$this</span>-&gt;originLen - <span class="number">1</span>);</span><br><span class="line">    <span class="keyword">for</span> ($i = <span class="number">0</span>; $i &lt; $times; $i++) &#123;</span><br><span class="line">        <span class="comment">//模拟3进制的运算</span></span><br><span class="line">        <span class="keyword">$this</span>-&gt;ternary($i);</span><br><span class="line">        <span class="comment">//决策</span></span><br><span class="line">        $str = implode(<span class="string">''</span>, <span class="keyword">$this</span>-&gt;data);</span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">eval</span>(<span class="string">"return $str;"</span>) == <span class="keyword">$this</span>-&gt;sum) &#123;</span><br><span class="line">            $result[] = $str;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> $result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>接收标准输入并输出结果：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//输入:[1 2 3 4 5 6 7 8 9]</span></span><br><span class="line">$rank = <span class="keyword">new</span> Rank(explode(<span class="string">' '</span>, $input), <span class="number">110</span>);</span><br><span class="line">array_walk($rank-&gt;run(), <span class="function"><span class="keyword">function</span><span class="params">($value)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">echo</span> $value, PHP_EOL;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://liluoao.github.io/2018/04/排列组合/" data-id="cjfhvk27w0011psmjeh7cb3ws" class="article-share-link">分享</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/算法/">算法</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2018/03/使用AppVeyor持续集成本博客/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">使用AppVeyor持续集成本博客</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/composer/">composer</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/laravel/">laravel</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/mysql/">mysql</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/phalcon/">phalcon</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/安全/">安全</a><span class="category-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/ci/">ci</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/culture/">culture</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/laravel/">laravel</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/">mysql</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/phalcon/">phalcon</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/算法/">算法</a><span class="tag-list-count">3</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/ci/" style="font-size: 10px;">ci</a> <a href="/tags/culture/" style="font-size: 20px;">culture</a> <a href="/tags/laravel/" style="font-size: 10px;">laravel</a> <a href="/tags/mysql/" style="font-size: 10px;">mysql</a> <a href="/tags/phalcon/" style="font-size: 13.33px;">phalcon</a> <a href="/tags/算法/" style="font-size: 16.67px;">算法</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">二月 2018</a><span class="archive-list-count">5</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2018/04/排列组合/">排列组合</a>
+          </li>
+        
+          <li>
+            <a href="/2018/03/使用AppVeyor持续集成本博客/">使用AppVeyor持续集成本博客</a>
+          </li>
+        
+          <li>
+            <a href="/2018/03/求数组中非负元素组合的最大字符串/">求数组中非负元素组合的最大字符串</a>
+          </li>
+        
+          <li>
+            <a href="/2018/03/蓄水池算法题/">蓄水池算法题</a>
+          </li>
+        
+          <li>
+            <a href="/2018/03/使用依赖管理-以Composer为例/">使用依赖管理——以Composer为例</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      <div class="footer-copyright">
+        &copy; 2018 李罗奥<br>
+        Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+      </div>
+      <div class="footer-about-me">
+        关于作者<br>
+        <a href="https://github.com/liluoao" target="_blank" title="GitHub">GitHub</a><br>
+        <a href="https://segmentfault.com/u/liluoao" target="_blank" title="SegmentFault">SegmentFault</a><br>
+        <a href="https://laravel-china.org/users/7144" target="_blank" title="LaravelChina">LaravelChina</a><br>
+        <a href="https://gitee.com/liluoao" target="_blank" title="码云">码云</a><br>
+        <a href="https://juejin.im/user/5a19374cf265da4332274600" target="_blank" title="掘金">掘金</a><br>
+        <a href="https://packagist.org/users/liluoao/" target="_blank" title="Packagist">Packagist</a><br>
+        <a href="https://www.gitbook.com/@liluoao" target="_blank" title="GitBook">GitBook</a>
+      </div>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">首页</a>
+  
+    <a href="/archives" class="mobile-nav-link">文章列表</a>
+  
+    <a href="/categories/laravel" class="mobile-nav-link">Laravel</a>
+  
+    <a href="/categories/phalcon" class="mobile-nav-link">Phalcon</a>
+  
+    <a href="/categories/mysql" class="mobile-nav-link">MySQL</a>
+  
+    <a href="/me.html" class="mobile-nav-link">关于作者</a>
+  
+</nav>
+    
+
+<script src="//lib.sinaapp.com/js/jquery/3.1.0/jquery-3.1.0.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>
