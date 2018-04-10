@@ -122,86 +122,15 @@
 </tr>
 </tbody>
 </table>
-<h2 id="接口版本化的问题"><a href="#接口版本化的问题" class="headerlink" title="接口版本化的问题"></a>接口版本化的问题</h2><p>接口设计中有个算是历史上的难题 -&gt; 接口版本化。曾经也去调研了很多关于接口版本化的资料和设计，最后我得到的结论大致如下：</p>
-<p>接口的版本区分为</p>
-<ul>
-<li><p>大版本</p>
-<ul>
-<li><p>原则：大版本的数量最多控制到5个以内(我个人跟倾向于3个)，超过版本限制的版本提示升级到新版本</p>
-</li>
-<li><p>方案<br>  uri携带版本号，例如：v1/user/get<br>  请求参数，例如：user/get?v=1.0</p>
-</li>
-</ul>
-</li>
-<li><p>小版本</p>
-<ul>
-<li><p>原则：自己把控吧😄</p>
-</li>
-<li><p>方案<br>  uri携带版本号，例如：v1/user/get_01<br>  请求参数，小数点右边就是小版本，例如：user/get?v=1.1</p>
-</li>
-</ul>
-</li>
-</ul>
-<h2 id="接口的安全性"><a href="#接口的安全性" class="headerlink" title="接口的安全性"></a>接口的安全性</h2><p>接口的设计肯定绕不开安全这两个字，为了达到尽可能的安全，我们需要尽可能的增加被攻击的难度，以下是我了解和使用到的一些常见的手段去增加接口的安全性(https这里就不讨论了)：</p>
-<pre><code>过期验证／签名验证／重放攻击／限流／转义
-</code></pre><p>伪代码如下：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 过期验证</span></span><br><span class="line"><span class="keyword">if</span> (microtime(<span class="keyword">true</span>)*<span class="number">1000</span> - $_REQUEST[<span class="string">'timestamp'</span>] &gt; <span class="number">5000</span>) &#123;</span><br><span class="line">    <span class="keyword">throw</span> <span class="keyword">new</span> \<span class="keyword">Exception</span>(<span class="number">401</span>, <span class="string">'Expired request'</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 签名验证(公钥校验省略)</span></span><br><span class="line">$params = ksort($_REQUEST);</span><br><span class="line"><span class="keyword">unset</span>($params[<span class="string">'sign'</span>]);</span><br><span class="line">$sign = md5(sha1(implode(<span class="string">'-'</span>, $params) . $_REQUEST[<span class="string">'app_key'</span>]));</span><br><span class="line"><span class="keyword">if</span> ($sign !== $_REQUEST[<span class="string">'sign'</span>]) &#123;</span><br><span class="line">    <span class="keyword">throw</span> <span class="keyword">new</span> \<span class="keyword">Exception</span>(<span class="number">401</span>, <span class="string">'Invalid sign'</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 重放攻击</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@params</span> noise string 随机字符串或随机正整数，与 Timestamp 联合起来, 用于防止重放攻击 例如腾讯云是6位随机正整数</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">$key = md5(<span class="string">"&#123;$_REQUEST['REQUEST_URI']&#125;-&#123;$_REQUEST['timestamp']&#125;-&#123;$_REQUEST['noise']&#125;-&#123;$_REQUEST['did']&#125;"</span>);</span><br><span class="line"><span class="keyword">if</span> ($redisInstance-&gt;exists($key)) &#123;</span><br><span class="line">    <span class="keyword">throw</span> <span class="keyword">new</span> \<span class="keyword">Exception</span>(<span class="number">401</span>, <span class="string">'Repeated request'</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 限流</span></span><br><span class="line">$key = md5(<span class="string">"&#123;$_REQUEST['REQUEST_URI']&#125;-&#123;$_REQUEST['REMOTE_ADDR']&#125;-&#123;$_REQUEST['did']&#125;"</span>);</span><br><span class="line"><span class="keyword">if</span> ($redisInstance-&gt;get($key) &gt; <span class="number">60</span>) &#123;</span><br><span class="line">    <span class="keyword">throw</span> <span class="keyword">new</span> \<span class="keyword">Exception</span>(<span class="number">401</span>, <span class="string">'Request limit'</span>);</span><br><span class="line">&#125;</span><br><span class="line">$redisInstance-&gt;incre($key);</span><br></pre></td></tr></table></figure>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 转义</span></span><br><span class="line">$username = htmlspecialchars($_REQUEST[<span class="string">'username'</span>]);</span><br></pre></td></tr></table></figure>
-<h2 id="接口的代码设计-gt-解耦业务-即插即用"><a href="#接口的代码设计-gt-解耦业务-即插即用" class="headerlink" title="接口的代码设计 -&gt; 解耦业务 即插即用"></a>接口的代码设计 -&gt; 解耦业务 即插即用</h2><blockquote>
-<p>这个过程的关键字：抽象成类 前置中间件 注入</p>
-</blockquote>
-<p>接着就是我们代码设计的层面了，如何抽象公共的部分与业务代码解耦。</p>
-<p>一般写法, 定义个全局函数，然后每个接口开始时调用该函数：</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 全局定义一个函数</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">check</span> <span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 校验公共参数</span></span><br><span class="line">    <span class="comment"># code ...</span></span><br><span class="line">    <span class="comment">// 校验签名</span></span><br><span class="line">    <span class="comment"># code ...</span></span><br><span class="line">    <span class="comment">// 校验频率</span></span><br><span class="line">    <span class="comment"># code ...</span></span><br><span class="line">    <span class="comment">// 等等...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>二般写法, 定义个父类方法，然后每个接口类继承该接口，构造函数调用改方法，其实和上面的换汤不换药：</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 父类方法</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">father</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">$this</span>-&gt;check();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">check</span> <span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 校验公共参数</span></span><br><span class="line">        <span class="comment"># code ...</span></span><br><span class="line">        <span class="comment">// 校验签名</span></span><br><span class="line">        <span class="comment"># code ...</span></span><br><span class="line">        <span class="comment">// 校验频率</span></span><br><span class="line">        <span class="comment"># code ...</span></span><br><span class="line">        <span class="comment">// 等等...</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>重点来了，我提倡的第三般写法，对象链和前置中间件：</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 检验抽象类</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">Check</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 下一个check实体</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@var</span> object</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> $nextCheckInstance;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 校验方法</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> Request $request 请求对象</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">abstract</span> <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">operate</span><span class="params">(Request $request)</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 设置责任链上的下一个对象</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> Check $check</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">setNext</span><span class="params">(Check $check)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">$this</span>-&gt;nextCheckInstance = $check;</span><br><span class="line">        <span class="keyword">return</span> $check;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 启动</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> Request $request 请求对象</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">start</span><span class="params">(Request $request)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">$this</span>-&gt;doCheck($request);</span><br><span class="line">        <span class="comment">// 调用下一个对象</span></span><br><span class="line">        <span class="keyword">if</span> (! <span class="keyword">empty</span>(<span class="keyword">$this</span>-&gt;nextCheckInstance)) &#123;</span><br><span class="line">            <span class="keyword">$this</span>-&gt;nextCheckInstance-&gt;start($request);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 校验公共参数类</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ParamsCheck</span> <span class="keyword">extends</span> <span class="title">Check</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">operate</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">       <span class="comment">// 校验公共参数</span></span><br><span class="line">        <span class="comment"># code ... </span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 校验签名类</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SignCheck</span> <span class="keyword">extends</span> <span class="title">Check</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">operate</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">       <span class="comment">// 校验签名</span></span><br><span class="line">        <span class="comment"># code ... </span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 等等...</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 前置中间件类</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">FrontMiddleware</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">run</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="comment">// 初始化一个：必传参数校验的check</span></span><br><span class="line">        $checkParams   =  <span class="keyword">new</span> ParamsCheck();</span><br><span class="line">        <span class="comment">// 初始化一个：签名check</span></span><br><span class="line">        $checkSign     =  <span class="keyword">new</span> SignCheck();</span><br><span class="line">        <span class="comment">// 初始化一个：频率check</span></span><br><span class="line">        $checkFrequent =  <span class="keyword">new</span> FrequentCheck();</span><br><span class="line">        <span class="comment">// 等等...</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">// 构成对象链</span></span><br><span class="line">        $checkParams-&gt;setNext($checkSign)</span><br><span class="line">                    -&gt;setNext($checkFrequent)</span><br><span class="line">                    ...</span><br><span class="line">        <span class="comment">// 启动</span></span><br><span class="line">        $checkParams-&gt;start();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="接口的可读性"><a href="#接口的可读性" class="headerlink" title="接口的可读性"></a>接口的可读性</h2><p>关于可读性的不得不提到的就是RESTFUL，这里我就不讨论RESTFUL，大家可以自行补充相关知识。关于接口设计可读性的我的一些思考：</p>
-<ul>
-<li><p>url</p>
-<ul>
-<li>非RESTFUL: 资源／资源／操作(动词)， 例如 content/article/get -&gt; 获取内容资源下的一篇文章资源</li>
-<li>RESTFUL: 资源／资源／资源， 例如 get content/article/1 -&gt; 获取内容资源下文章ID为1的文章资源</li>
-</ul>
-</li>
-<li><p>method</p>
-<ul>
-<li>非RESTFUL: get便于查nginx日志，上传资源post, 没啥硬性要求</li>
-<li>RESTFUL: 符合RESTFUL的思想</li>
-</ul>
-</li>
-<li><p>request params: 个人更青睐于下划线命名，适当的单词缩写</p>
-</li>
-<li><p>response params: 响应的code要符合http status</p>
-<ul>
-<li>200 -&gt; 正常</li>
-<li>400 -&gt; 缺少公共必传参数或者业务必传参数</li>
-<li>401 -&gt; 接口校验失败 例如签名</li>
-<li>403 -&gt; 没有该接口的访问权限</li>
-<li>499 -&gt; 上游服务响应时间超过接口设置的超时时间</li>
-<li>500 -&gt; 代码错误</li>
-<li>501 -&gt; 不支持的接口method</li>
-<li>502 -&gt; 上游服务返回的数据格式不正确</li>
-<li>503 -&gt; 上游服务超时</li>
-<li>504 -&gt; 上游服务不可用</li>
-</ul>
-</li>
-</ul>
-<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">// 响应的格式</span><br><span class="line">&#123;</span><br><span class="line">    <span class="attr">"code"</span>: <span class="number">200</span>,</span><br><span class="line">    <span class="attr">"msg"</span>: <span class="string">"ok"</span>,</span><br><span class="line">    <span class="attr">"data"</span>: &#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="接口文档"><a href="#接口文档" class="headerlink" title="接口文档"></a>接口文档</h2><p>好的接口文档就是生产力， swagger + api blueprint 自行google吧😄</p>
-<h2 id="我遇到的坑"><a href="#我遇到的坑" class="headerlink" title="我遇到的坑"></a>我遇到的坑</h2><p>这里遇到的一个比较大的坑就是http协议历史遗留的bug：</p>
-<blockquote>
-<p>不区分url里的空格 和加号➕</p>
-</blockquote>
-<p>带来的问题就是urldecode会把参数里的+号转为空格，所以这种场景的就得使用rawurldecode防止+转成空格。比如做接口的参数校验的时候～</p>
-
+        
+          <p class="article-more-link">
+            <a href="/2018/04/我所理解的接口设计/#more">阅读全文</a>
+          </p>
+        
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2018/04/我所理解的接口设计/" data-id="cjft1uhs600118omjz3271x3a" class="article-share-link">分享</a>
+      <a data-url="https://liluoao.github.io/2018/04/我所理解的接口设计/" data-id="cjft2cq6i0011ckmjwailqiv7" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/restful/">restful</a></li></ul>
@@ -251,7 +180,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2018/04/排列组合/" data-id="cjft1uhs600138omj17l3q1jx" class="article-share-link">分享</a>
+      <a data-url="https://liluoao.github.io/2018/04/排列组合/" data-id="cjft2cq6i0013ckmjytogfzbx" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/算法/">算法</a></li></ul>
@@ -295,7 +224,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2018/03/使用AppVeyor持续集成本博客/" data-id="cjft1uhrb000d8omjl7q2259j" class="article-share-link">分享</a>
+      <a data-url="https://liluoao.github.io/2018/03/使用AppVeyor持续集成本博客/" data-id="cjft2cq63000dckmjmqn1d34r" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ci/">ci</a></li></ul>
@@ -348,7 +277,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2018/03/求数组中非负元素组合的最大字符串/" data-id="cjft1uhs600158omjmntdalr7" class="article-share-link">分享</a>
+      <a data-url="https://liluoao.github.io/2018/03/求数组中非负元素组合的最大字符串/" data-id="cjft2cq6i0015ckmjb59sqpgs" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/算法/">算法</a></li></ul>
@@ -397,7 +326,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2018/03/蓄水池算法题/" data-id="cjft1uhs600198omj3cf3q288" class="article-share-link">分享</a>
+      <a data-url="https://liluoao.github.io/2018/03/蓄水池算法题/" data-id="cjft2cq6i0019ckmj1g2wxppk" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/算法/">算法</a></li></ul>
