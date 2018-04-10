@@ -5,18 +5,20 @@
   
 
   
-  <title>To be a Web Artisan</title>
+  <title>我所理解的接口设计 | To be a Web Artisan</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="李罗奥的博客">
-<meta property="og:type" content="website">
-<meta property="og:title" content="To be a Web Artisan">
-<meta property="og:url" content="https://liluoao.github.io/index.html">
+  <meta name="description" content="原文链接：https://segmentfault.com/a/1190000013703264 接口参数定义接口设计中往可以抽象出一些新的公共参数，我目前能想到了一些较为常见的公共接口参数如下：    公共参数 含意 定义该参数的意义     timestamp 毫秒级时间戳 1.客户端的请求时间标示 2.后端可以做请求过期验证 3.该参数参与签名算法增加签名的唯一性   app_key 签名公">
+<meta name="keywords" content="restful">
+<meta property="og:type" content="article">
+<meta property="og:title" content="我所理解的接口设计">
+<meta property="og:url" content="https://liluoao.github.io/2018/04/我所理解的接口设计/index.html">
 <meta property="og:site_name" content="To be a Web Artisan">
-<meta property="og:description" content="李罗奥的博客">
+<meta property="og:description" content="原文链接：https://segmentfault.com/a/1190000013703264 接口参数定义接口设计中往可以抽象出一些新的公共参数，我目前能想到了一些较为常见的公共接口参数如下：    公共参数 含意 定义该参数的意义     timestamp 毫秒级时间戳 1.客户端的请求时间标示 2.后端可以做请求过期验证 3.该参数参与签名算法增加签名的唯一性   app_key 签名公">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-04-10T02:30:30.670Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="To be a Web Artisan">
-<meta name="twitter:description" content="李罗奥的博客">
+<meta name="twitter:title" content="我所理解的接口设计">
+<meta name="twitter:description" content="原文链接：https://segmentfault.com/a/1190000013703264 接口参数定义接口设计中往可以抽象出一些新的公共参数，我目前能想到了一些较为常见的公共接口参数如下：    公共参数 含意 定义该参数的意义     timestamp 毫秒级时间戳 1.客户端的请求时间标示 2.后端可以做请求过期验证 3.该参数参与签名算法增加签名的唯一性   app_key 签名公">
 <meta name="twitter:creator" content="@liluoao">
   
   
@@ -65,9 +67,7 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-    <article id="post-我所理解的接口设计" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-我所理解的接口设计" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2018/04/我所理解的接口设计/" class="article-date">
   <time datetime="2018-04-10T02:07:24.000Z" itemprop="datePublished">2018-04-10</time>
@@ -80,8 +80,8 @@
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/04/我所理解的接口设计/">我所理解的接口设计</a>
+    <h1 class="article-title" itemprop="name">
+      我所理解的接口设计
     </h1>
   
 
@@ -209,212 +209,19 @@
     </footer>
   </div>
   
-</article>
-
-
+    
+<nav id="article-nav">
   
-    <article id="post-排列组合" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/04/排列组合/" class="article-date">
-  <time datetime="2018-04-02T06:35:58.000Z" itemprop="datePublished">2018-04-02</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/04/排列组合/">排列组合</a>
-    </h1>
+    <a href="/2018/04/排列组合/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">排列组合</div>
+    </a>
   
+</nav>
 
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p><code>1 2 3 4 5 6 7 8 9 = 110</code></p>
-<p>为使等式成立，在数字间填入加号或减号或不填，求出所有可能组合</p>
-<p>示例：</p>
-<p>输入：</p>
-<pre><code>[1 2 3 4 5 6 7 8 9]
-</code></pre><p>输出：</p>
-<pre><code>12 + 34 + 56 + 7 - 8 + 9
-</code></pre>
-        
-          <p class="article-more-link">
-            <a href="/2018/04/排列组合/#more">阅读全文</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2018/04/排列组合/" data-id="cjft1uhs600138omj17l3q1jx" class="article-share-link">分享</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/算法/">算法</a></li></ul>
-
-    </footer>
-  </div>
   
 </article>
-
-
-  
-    <article id="post-使用AppVeyor持续集成本博客" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/03/使用AppVeyor持续集成本博客/" class="article-date">
-  <time datetime="2018-03-29T03:37:55.000Z" itemprop="datePublished">2018-03-29</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/03/使用AppVeyor持续集成本博客/">使用AppVeyor持续集成本博客</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="创建AppVeyor账号"><a href="#创建AppVeyor账号" class="headerlink" title="创建AppVeyor账号"></a>创建AppVeyor账号</h2><p>进入<a href="https://ci.appveyor.com" target="_blank" rel="noopener">AppVeyor官网</a>，游客会跳转到 <code>/login</code> 页，这里可以注册，也可以使用 <code>GitHub</code> 账号授权登陆。</p>
-<p><img src="/images/appveyor_login.png" alt=""><br>
-        
-          <p class="article-more-link">
-            <a href="/2018/03/使用AppVeyor持续集成本博客/#more">阅读全文</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2018/03/使用AppVeyor持续集成本博客/" data-id="cjft1uhrb000d8omjl7q2259j" class="article-share-link">分享</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ci/">ci</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-求数组中非负元素组合的最大字符串" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/03/求数组中非负元素组合的最大字符串/" class="article-date">
-  <time datetime="2018-03-28T02:17:58.000Z" itemprop="datePublished">2018-03-28</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/03/求数组中非负元素组合的最大字符串/">求数组中非负元素组合的最大字符串</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>原文链接：<a href="https://www.fanhaobai.com/2017/04/array-form-max-string.html" target="_blank" rel="noopener">https://www.fanhaobai.com/2017/04/array-form-max-string.html</a></p>
-<h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p>给定一个所有元素为非负的数组，将数组中的所有数字连接起来，求最大的那个数。</p>
-<p>示例：<br>输入：</p>
-<pre><code>4,94,9,14,1
-</code></pre><p>输出：</p>
-<pre><code>9944141
-</code></pre><p>输入：</p>
-<pre><code>121,89,98,15,4,3451
-</code></pre><p>输出：</p>
-<pre><code>98894345115121
-</code></pre>
-        
-          <p class="article-more-link">
-            <a href="/2018/03/求数组中非负元素组合的最大字符串/#more">阅读全文</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2018/03/求数组中非负元素组合的最大字符串/" data-id="cjft1uhs600158omjmntdalr7" class="article-share-link">分享</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/算法/">算法</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-蓄水池算法题" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/03/蓄水池算法题/" class="article-date">
-  <time datetime="2018-03-27T02:37:19.000Z" itemprop="datePublished">2018-03-27</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/03/蓄水池算法题/">蓄水池算法题</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>原文链接：<a href="https://www.fanhaobai.com/2017/12/2017-ziroom-king-2.html" target="_blank" rel="noopener">https://www.fanhaobai.com/2017/12/2017-ziroom-king-2.html</a></p>
-<h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p>某地准备用砖头围立一个蓄水池子，从上面看凹凸不平，凹的地方会有积水。如果用数字代表每个砖头的高度，就形成一个二维数据（如示例），请问这个池子能存储多少单位的水？</p>
-<p>例如二维数组为：</p>
-<pre><code>9 9 9 9
-3 0 0 9
-7 8 2 6
-</code></pre><p>时，答案是中间的 0,0 位置可以存储 2（因为其外面最低是 2）个单位的水，因此答案为 2 + 2 = 4。<br>
-        
-          <p class="article-more-link">
-            <a href="/2018/03/蓄水池算法题/#more">阅读全文</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2018/03/蓄水池算法题/" data-id="cjft1uhs600198omj3cf3q288" class="article-share-link">分享</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/算法/">算法</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-
-
-  <nav id="page-nav">
-    
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/">下一页 &raquo;</a>
-  </nav>
 
 </section>
         
