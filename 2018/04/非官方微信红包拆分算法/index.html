@@ -5,18 +5,20 @@
   
 
   
-  <title>To be a Web Artisan</title>
+  <title>非官方微信红包拆分算法 | To be a Web Artisan</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="李罗奥的博客">
-<meta property="og:type" content="website">
-<meta property="og:title" content="To be a Web Artisan">
-<meta property="og:url" content="https://liluoao.github.io/index.html">
+  <meta name="description" content="原文链接：http://flc.ren/2018/04/701.html12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576777879808182838485868">
+<meta name="keywords" content="算法">
+<meta property="og:type" content="article">
+<meta property="og:title" content="非官方微信红包拆分算法">
+<meta property="og:url" content="https://liluoao.github.io/2018/04/非官方微信红包拆分算法/index.html">
 <meta property="og:site_name" content="To be a Web Artisan">
-<meta property="og:description" content="李罗奥的博客">
+<meta property="og:description" content="原文链接：http://flc.ren/2018/04/701.html12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576777879808182838485868">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-04-11T03:42:17.988Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="To be a Web Artisan">
-<meta name="twitter:description" content="李罗奥的博客">
+<meta name="twitter:title" content="非官方微信红包拆分算法">
+<meta name="twitter:description" content="原文链接：http://flc.ren/2018/04/701.html12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576777879808182838485868">
 <meta name="twitter:creator" content="@liluoao">
   
   
@@ -65,9 +67,7 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-    <article id="post-非官方微信红包拆分算法" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-非官方微信红包拆分算法" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2018/04/非官方微信红包拆分算法/" class="article-date">
   <time datetime="2018-04-11T03:38:42.000Z" itemprop="datePublished">2018-04-11</time>
@@ -80,8 +80,8 @@
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/04/非官方微信红包拆分算法/">非官方微信红包拆分算法</a>
+    <h1 class="article-title" itemprop="name">
+      非官方微信红包拆分算法
     </h1>
   
 
@@ -102,238 +102,19 @@
     </footer>
   </div>
   
-</article>
-
-
+    
+<nav id="article-nav">
   
-    <article id="post-我所理解的接口设计" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/04/我所理解的接口设计/" class="article-date">
-  <time datetime="2018-04-10T02:07:24.000Z" itemprop="datePublished">2018-04-10</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/04/我所理解的接口设计/">我所理解的接口设计</a>
-    </h1>
+    <a href="/2018/04/我所理解的接口设计/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">我所理解的接口设计</div>
+    </a>
   
+</nav>
 
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>原文链接：<a href="https://segmentfault.com/a/1190000013703264" target="_blank" rel="noopener">https://segmentfault.com/a/1190000013703264</a></p>
-<h2 id="接口参数定义"><a href="#接口参数定义" class="headerlink" title="接口参数定义"></a>接口参数定义</h2><p>接口设计中往可以抽象出一些新的公共参数，我目前能想到了一些较为常见的公共接口参数如下：</p>
-<table>
-<thead>
-<tr>
-<th>公共参数</th>
-<th>含意</th>
-<th>定义该参数的意义</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>timestamp</td>
-<td>毫秒级时间戳</td>
-<td>1.客户端的请求时间标示 2.后端可以做请求过期验证 3.该参数参与签名算法增加签名的唯一性</td>
-</tr>
-<tr>
-<td>app_key</td>
-<td>签名公钥</td>
-<td>签名算法的公钥，后端通过公钥可以得到对应的私钥</td>
-</tr>
-<tr>
-<td>sign</td>
-<td>接口签名</td>
-<td>通过请求的参数和定义好的签名算法生成接口签名，作用防止中间人篡改请求参数</td>
-</tr>
-<tr>
-<td>did</td>
-<td>设备ID</td>
-<td>设备的唯一标示，生成规则例如android的mac地址的md5和ios曾今udid(目前无法获取)的md5, 1:数据收集 2.便于问题追踪 3.消息推送标示</td>
-</tr>
-</tbody>
-</table>
-        
-          <p class="article-more-link">
-            <a href="/2018/04/我所理解的接口设计/#more">阅读全文</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2018/04/我所理解的接口设计/" data-id="cjfujujgi0011o8mjjp6b4gds" class="article-share-link">分享</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/restful/">restful</a></li></ul>
-
-    </footer>
-  </div>
   
 </article>
-
-
-  
-    <article id="post-排列组合" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/04/排列组合/" class="article-date">
-  <time datetime="2018-04-02T06:35:58.000Z" itemprop="datePublished">2018-04-02</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/04/排列组合/">排列组合</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p><code>1 2 3 4 5 6 7 8 9 = 110</code></p>
-<p>为使等式成立，在数字间填入加号或减号或不填，求出所有可能组合</p>
-<p>示例：</p>
-<p>输入：</p>
-<pre><code>[1 2 3 4 5 6 7 8 9]
-</code></pre><p>输出：</p>
-<pre><code>12 + 34 + 56 + 7 - 8 + 9
-</code></pre>
-        
-          <p class="article-more-link">
-            <a href="/2018/04/排列组合/#more">阅读全文</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2018/04/排列组合/" data-id="cjfujujgi0013o8mjylj7fylk" class="article-share-link">分享</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/算法/">算法</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-使用AppVeyor持续集成本博客" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/03/使用AppVeyor持续集成本博客/" class="article-date">
-  <time datetime="2018-03-29T03:37:55.000Z" itemprop="datePublished">2018-03-29</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/03/使用AppVeyor持续集成本博客/">使用AppVeyor持续集成本博客</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="创建AppVeyor账号"><a href="#创建AppVeyor账号" class="headerlink" title="创建AppVeyor账号"></a>创建AppVeyor账号</h2><p>进入<a href="https://ci.appveyor.com" target="_blank" rel="noopener">AppVeyor官网</a>，游客会跳转到 <code>/login</code> 页，这里可以注册，也可以使用 <code>GitHub</code> 账号授权登陆。</p>
-<p><img src="/images/appveyor_login.png" alt=""><br>
-        
-          <p class="article-more-link">
-            <a href="/2018/03/使用AppVeyor持续集成本博客/#more">阅读全文</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2018/03/使用AppVeyor持续集成本博客/" data-id="cjfujujg2000do8mjxn5fs3ym" class="article-share-link">分享</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ci/">ci</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-求数组中非负元素组合的最大字符串" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/03/求数组中非负元素组合的最大字符串/" class="article-date">
-  <time datetime="2018-03-28T02:17:58.000Z" itemprop="datePublished">2018-03-28</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/03/求数组中非负元素组合的最大字符串/">求数组中非负元素组合的最大字符串</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>原文链接：<a href="https://www.fanhaobai.com/2017/04/array-form-max-string.html" target="_blank" rel="noopener">https://www.fanhaobai.com/2017/04/array-form-max-string.html</a></p>
-<h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p>给定一个所有元素为非负的数组，将数组中的所有数字连接起来，求最大的那个数。</p>
-<p>示例：<br>输入：</p>
-<pre><code>4,94,9,14,1
-</code></pre><p>输出：</p>
-<pre><code>9944141
-</code></pre><p>输入：</p>
-<pre><code>121,89,98,15,4,3451
-</code></pre><p>输出：</p>
-<pre><code>98894345115121
-</code></pre>
-        
-          <p class="article-more-link">
-            <a href="/2018/03/求数组中非负元素组合的最大字符串/#more">阅读全文</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2018/03/求数组中非负元素组合的最大字符串/" data-id="cjfujujgi0015o8mj6rygo6i6" class="article-share-link">分享</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/算法/">算法</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-
-
-  <nav id="page-nav">
-    
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/">下一页 &raquo;</a>
-  </nav>
 
 </section>
         
