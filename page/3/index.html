@@ -67,6 +67,55 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-Phalcon启动流程" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/03/Phalcon启动流程/" class="article-date">
+  <time datetime="2018-03-15T02:37:19.000Z" itemprop="datePublished">2018-03-15</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/phalcon/">phalcon</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/03/Phalcon启动流程/">Phalcon 启动流程</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>原文链接：<a href="https://avnpc.com/pages/phalcon-mvc-process" target="_blank" rel="noopener">https://avnpc.com/pages/phalcon-mvc-process</a></p>
+<p>入口文件为<code>public/index.php</code>，简化后一共5行，包含了整个Phalcon的启动流程，以下将按顺序说明</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">require</span>  <span class="keyword">__DIR__</span> . <span class="string">'/../config/services.php'</span>;</span><br><span class="line">$application = <span class="keyword">new</span> Phalcon\Mvc\Application();</span><br><span class="line">$application-&gt;setDI($di);</span><br><span class="line"><span class="keyword">require</span> <span class="keyword">__DIR__</span> . <span class="string">'/../config/modules.php'</span>;</span><br><span class="line"><span class="keyword">echo</span> $application-&gt;handle()-&gt;getContent();</span><br></pre></td></tr></table></figure>
+        
+          <p class="article-more-link">
+            <a href="/2018/03/Phalcon启动流程/#more">阅读全文</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://liluoao.github.io/2018/03/Phalcon启动流程/" data-id="cjfuuja3a00070smj7urcgi3f" class="article-share-link">分享</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/phalcon/">phalcon</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-MySQL优化那些事" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2018/03/MySQL优化那些事/" class="article-date">
@@ -111,7 +160,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2018/03/MySQL优化那些事/" data-id="cjfujujfm0003o8mj1ydyp9tq" class="article-share-link">分享</a>
+      <a data-url="https://liluoao.github.io/2018/03/MySQL优化那些事/" data-id="cjfuuja2f00030smjtd0vwaox" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mysql/">mysql</a></li></ul>
@@ -165,7 +214,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2018/03/Laravel路由是如何调用到控制器/" data-id="cjfujujf70002o8mjx1r0tan0" class="article-share-link">分享</a>
+      <a data-url="https://liluoao.github.io/2018/03/Laravel路由是如何调用到控制器/" data-id="cjfuuja2f00020smjo2jjsjro" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/laravel/">laravel</a></li></ul>
@@ -210,7 +259,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2018/03/使用Hexo/" data-id="cjfujujg2000ho8mjza4ncrlk" class="article-share-link">分享</a>
+      <a data-url="https://liluoao.github.io/2018/03/使用Hexo/" data-id="cjfuuja3q000h0smjga0cz7u9" class="article-share-link">分享</a>
       
       
     </footer>
@@ -251,52 +300,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2018/02/八卦/" data-id="cjfujujgi000po8mjczzzaulz" class="article-share-link">分享</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/culture/">culture</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-天干地支" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/02/天干地支/" class="article-date">
-  <time datetime="2018-02-22T08:08:20.000Z" itemprop="datePublished">2018-02-22</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/02/天干地支/">天干地支</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>天干地支（the 10 Heavenly Stems and the 12 Earthly Branches），简称为干支，源自中国远古时代对天象的观测。”甲、乙、丙、丁、戊、己、庚、辛、壬、癸”称为<strong>十天干</strong>（the 10 Heavenly Stems），”子、丑、寅、卯、辰、巳、午、未、申、酉、戌、亥”称为<strong>十二地支</strong>（the 12 Earthly Branches）。</p>
-<p>天干地支组成形成了古代纪年历法。十干和十二支依次相配，组成六十个基本单位，两者按固定的顺序相互配合，组成了干支纪元法。从殷墟出土的甲骨文来看，天干地支在中国古代主要用于纪日，此外还曾用来纪月、纪年、纪时等。</p>
-<h3 id="干支涵义"><a href="#干支涵义" class="headerlink" title="干支涵义"></a>干支涵义</h3><p>远古时代古人以天干地支来作为载体。天干承载的是天之道，地支承载的是地之道。在天成象，在地成形，在人成运；天道与地道决定着人道，故设天干地支以契天地人事之运。天地定位，干支以定时空，时空以定世界。干象天而支象地，万物虽长于地上，但是万物的荣盛兴衰却离不开天。十天干与十二地支的组合，形成了六十甲子，六十甲子用以阐述天地人之学。<br>
-        
-          <p class="article-more-link">
-            <a href="/2018/02/天干地支/#more">阅读全文</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2018/02/天干地支/" data-id="cjfujujgi000xo8mjjm9rf3eq" class="article-share-link">分享</a>
+      <a data-url="https://liluoao.github.io/2018/02/八卦/" data-id="cjfuuja46000p0smjwpk3k7tr" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/culture/">culture</a></li></ul>
@@ -323,7 +327,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">分类</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/composer/">composer</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/laravel/">laravel</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/mysql/">mysql</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/phalcon/">phalcon</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/安全/">安全</a><span class="category-list-count">1</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/composer/">composer</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/laravel/">laravel</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/mysql/">mysql</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/phalcon/">phalcon</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/安全/">安全</a><span class="category-list-count">2</span></li></ul>
     </div>
   </div>
 
@@ -352,7 +356,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">二月 2018</a><span class="archive-list-count">5</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">二月 2018</a><span class="archive-list-count">5</span></li></ul>
     </div>
   </div>
 
@@ -363,6 +367,10 @@
     <h3 class="widget-title">最新文章</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2018/04/危险的target-blank与opener/">危险的target=&#34;_blank&#34;与&#34;opener&#34;</a>
+          </li>
         
           <li>
             <a href="/2018/04/非官方微信红包拆分算法/">非官方微信红包拆分算法</a>
@@ -378,10 +386,6 @@
         
           <li>
             <a href="/2018/03/使用AppVeyor持续集成本博客/">使用AppVeyor持续集成本博客</a>
-          </li>
-        
-          <li>
-            <a href="/2018/03/求数组中非负元素组合的最大字符串/">求数组中非负元素组合的最大字符串</a>
           </li>
         
       </ul>

