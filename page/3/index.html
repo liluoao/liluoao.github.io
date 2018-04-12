@@ -67,6 +67,57 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-什么是JWT" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/03/什么是JWT/" class="article-date">
+  <time datetime="2018-03-16T02:37:19.000Z" itemprop="datePublished">2018-03-16</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/安全/">安全</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/03/什么是JWT/">什么是 JWT</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>原文链接：<a href="https://www.jianshu.com/p/576dbf44b2ae" target="_blank" rel="noopener">https://www.jianshu.com/p/576dbf44b2ae</a></p>
+<blockquote>
+<p>Json web token (<a href="https://jwt.io/introduction/" target="_blank" rel="noopener">JWT</a>)，是为了在网络应用环境间传递声明而执行的一种基于JSON的开放标准(<a href="https://tools.ietf.org/html/rfc7519" target="_blank" rel="noopener">RFC 7519</a>)。该token被设计为紧凑且安全的，特别适用于分布式站点的单点登录（ Single Sign On）场景。JWT的声明一般被用来在身份提供者和服务提供者间传递被认证的用户身份信息，以便于从资源服务器获取资源，也可以增加一些额外的其它业务逻辑所必须的声明信息，该token也可直接被用于认证，也可被加密。</p>
+</blockquote>
+<h2 id="起源"><a href="#起源" class="headerlink" title="起源"></a>起源</h2><p>说起JWT，我们应该来谈一谈基于token的认证和传统的session认证的区别。</p>
+<h3 id="传统的session认证"><a href="#传统的session认证" class="headerlink" title="传统的session认证"></a>传统的session认证</h3><p>我们知道，http协议本身是一种无状态的协议，而这就意味着如果用户向我们的应用提供了用户名和密码来进行用户认证，那么下一次请求时，用户还要再一次进行用户认证才行，因为根据http协议，我们并不能知道是哪个用户发出的请求，所以为了让我们的应用能识别是哪个用户发出的请求，我们只能在服务器存储一份用户登录的信息，这份登录信息会在响应时传递给浏览器，告诉其保存为cookie,以便下次请求时发送给我们的应用，这样我们的应用就能识别请求来自哪个用户了,这就是传统的基于session认证。</p>
+<p>但是这种基于session的认证使应用本身很难得到扩展，随着不同客户端用户的增加，独立的服务器已无法承载更多的用户，而这时候基于session认证应用的问题就会暴露出来.<br>
+        
+          <p class="article-more-link">
+            <a href="/2018/03/什么是JWT/#more">阅读全文</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://liluoao.github.io/2018/03/什么是JWT/" data-id="cjfw7dqp9000cncmj2s0z8xer" class="article-share-link">分享</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-Phalcon启动流程" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2018/03/Phalcon启动流程/" class="article-date">
@@ -104,7 +155,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2018/03/Phalcon启动流程/" data-id="cjfuuja3a00070smj7urcgi3f" class="article-share-link">分享</a>
+      <a data-url="https://liluoao.github.io/2018/03/Phalcon启动流程/" data-id="cjfw7dqp90006ncmjupsxuppz" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/phalcon/">phalcon</a></li></ul>
@@ -160,7 +211,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2018/03/MySQL优化那些事/" data-id="cjfuuja2f00030smjtd0vwaox" class="article-share-link">分享</a>
+      <a data-url="https://liluoao.github.io/2018/03/MySQL优化那些事/" data-id="cjfw7dqou0003ncmjeha5j1zd" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mysql/">mysql</a></li></ul>
@@ -214,7 +265,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2018/03/Laravel路由是如何调用到控制器/" data-id="cjfuuja2f00020smjo2jjsjro" class="article-share-link">分享</a>
+      <a data-url="https://liluoao.github.io/2018/03/Laravel路由是如何调用到控制器/" data-id="cjfw7dqou0002ncmjrdagv7j2" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/laravel/">laravel</a></li></ul>
@@ -259,52 +310,9 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2018/03/使用Hexo/" data-id="cjfuuja3q000h0smjga0cz7u9" class="article-share-link">分享</a>
+      <a data-url="https://liluoao.github.io/2018/03/使用Hexo/" data-id="cjfw7dqpp000hncmjxxznc3cs" class="article-share-link">分享</a>
       
       
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-八卦" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/02/八卦/" class="article-date">
-  <time datetime="2018-02-23T08:10:25.000Z" itemprop="datePublished">2018-02-23</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/02/八卦/">八卦</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>八卦（the Eight Diagrams），是《周易》中的八种具有象征意义的基本图形，每个图形用三个分别代表阳的“—”（阳爻）和代表阴的“⚋”（阴爻）组成。名称是：乾（☰）、坤（☷）、震（☳）、巽（☴）、坎（☵）、离（☲）、艮（☶）、兑（☱）。相传是伏羲所作。《易传》作者认为八卦主要象征天、地、雷、风、水、火、山、泽八种自然现象，并认为“乾”、“坤”两卦在八卦中占特别重要的地位，是自然界和人类社会一切现象的最初根源。八卦中， 乾与坤、 震与巽、 坎与离、 艮与兑是四个矛盾对立的形态。传说周文王将八卦互相组合， 又得六十四卦， 用来象征自然现象和社会现象的发展变化。八卦本是反映古代人们对现实世界的认识， 具有朴素的辩证法因素， 自被用为卜筮的符号， 逐渐带上神秘的色彩。<br>
-        
-          <p class="article-more-link">
-            <a href="/2018/02/八卦/#more">阅读全文</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2018/02/八卦/" data-id="cjfuuja46000p0smjwpk3k7tr" class="article-share-link">分享</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/culture/">culture</a></li></ul>
-
     </footer>
   </div>
   
@@ -356,7 +364,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">二月 2018</a><span class="archive-list-count">5</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">二月 2018</a><span class="archive-list-count">5</span></li></ul>
     </div>
   </div>
 
@@ -367,6 +375,10 @@
     <h3 class="widget-title">最新文章</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2018/04/给项目添加狗牌/">给项目添加狗牌</a>
+          </li>
         
           <li>
             <a href="/2018/04/危险的target-blank与opener/">危险的target=&#34;_blank&#34;与&#34;opener&#34;</a>
@@ -382,10 +394,6 @@
         
           <li>
             <a href="/2018/04/排列组合/">排列组合</a>
-          </li>
-        
-          <li>
-            <a href="/2018/03/使用AppVeyor持续集成本博客/">使用AppVeyor持续集成本博客</a>
           </li>
         
       </ul>
