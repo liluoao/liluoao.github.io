@@ -67,6 +67,81 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-我所理解的接口设计" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/04/我所理解的接口设计/" class="article-date">
+  <time datetime="2018-04-10T02:07:24.000Z" itemprop="datePublished">2018-04-10</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/04/我所理解的接口设计/">我所理解的接口设计</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>原文链接：<a href="https://segmentfault.com/a/1190000013703264" target="_blank" rel="noopener">https://segmentfault.com/a/1190000013703264</a></p>
+<h2 id="接口参数定义"><a href="#接口参数定义" class="headerlink" title="接口参数定义"></a>接口参数定义</h2><p>接口设计中往可以抽象出一些新的公共参数，我目前能想到了一些较为常见的公共接口参数如下：</p>
+<table>
+<thead>
+<tr>
+<th>公共参数</th>
+<th>含意</th>
+<th>定义该参数的意义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>timestamp</td>
+<td>毫秒级时间戳</td>
+<td>1.客户端的请求时间标示 2.后端可以做请求过期验证 3.该参数参与签名算法增加签名的唯一性</td>
+</tr>
+<tr>
+<td>app_key</td>
+<td>签名公钥</td>
+<td>签名算法的公钥，后端通过公钥可以得到对应的私钥</td>
+</tr>
+<tr>
+<td>sign</td>
+<td>接口签名</td>
+<td>通过请求的参数和定义好的签名算法生成接口签名，作用防止中间人篡改请求参数</td>
+</tr>
+<tr>
+<td>did</td>
+<td>设备ID</td>
+<td>设备的唯一标示，生成规则例如android的mac地址的md5和ios曾今udid(目前无法获取)的md5, 1:数据收集 2.便于问题追踪 3.消息推送标示</td>
+</tr>
+</tbody>
+</table>
+        
+          <p class="article-more-link">
+            <a href="/2018/04/我所理解的接口设计/#more">阅读全文</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://liluoao.github.io/2018/04/我所理解的接口设计/" data-id="cjg0y79wx0018q8mjwbg9aojy" class="article-share-link">分享</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/restful/">restful</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-排列组合" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2018/04/排列组合/" class="article-date">
@@ -105,7 +180,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2018/04/排列组合/" data-id="cjfxaz96e001920mjx7nazfhz" class="article-share-link">分享</a>
+      <a data-url="https://liluoao.github.io/2018/04/排列组合/" data-id="cjg0y79wx0016q8mjb5rv792v" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/算法/">算法</a></li></ul>
@@ -149,7 +224,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2018/03/使用AppVeyor持续集成本博客/" data-id="cjfxaz95j000h20mjh8cgrroz" class="article-share-link">分享</a>
+      <a data-url="https://liluoao.github.io/2018/03/使用AppVeyor持续集成本博客/" data-id="cjg0y79w2000jq8mjqjmx4hwa" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ci/">ci</a></li></ul>
@@ -202,7 +277,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2018/03/求数组中非负元素组合的最大字符串/" data-id="cjfxaz96e001c20mjbbk6o9qo" class="article-share-link">分享</a>
+      <a data-url="https://liluoao.github.io/2018/03/求数组中非负元素组合的最大字符串/" data-id="cjg0y79wx001jq8mj94aik7ol" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/算法/">算法</a></li></ul>
@@ -251,64 +326,11 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2018/03/蓄水池算法题/" data-id="cjfxaz96u001h20mj4smt02ha" class="article-share-link">分享</a>
+      <a data-url="https://liluoao.github.io/2018/03/蓄水池算法题/" data-id="cjg0y79wx001fq8mj3q0l4trm" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/算法/">算法</a></li></ul>
 
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-使用依赖管理-以Composer为例" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/03/使用依赖管理-以Composer为例/" class="article-date">
-  <time datetime="2018-03-18T02:37:19.000Z" itemprop="datePublished">2018-03-18</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/composer/">composer</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/03/使用依赖管理-以Composer为例/">使用依赖管理——以Composer为例</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>中文文档：<a href="http://docs.phpcomposer.com/" target="_blank" rel="noopener">http://docs.phpcomposer.com/</a></p>
-<p>英文文档：<a href="https://getcomposer.org/" target="_blank" rel="noopener">https://getcomposer.org/</a></p>
-<h2 id="依赖管理"><a href="#依赖管理" class="headerlink" title="依赖管理"></a>依赖管理</h2><p>Composer 不是一个包管理器。是的，它涉及 “packages” 和 “libraries”，但它在每个项目的基础上进行管理，在你项目的某个目录中（例如 <code>vendor</code>）进行安装。默认情况下它不会在全局安装任何东西。因此，这仅仅是一个依赖管理。</p>
-<p>这种想法并不新鲜，Composer 受到了 node’s <a href="http://npmjs.org/" target="_blank" rel="noopener">npm</a> 和 ruby’s <a href="http://gembundler.com/" target="_blank" rel="noopener">bundler</a> 的强烈启发。而当时 PHP 下并没有类似的工具。</p>
-<p>Composer 将这样为你解决问题：</p>
-<p>a) 你有一个项目依赖于若干个库。</p>
-<p>b) 其中一些库依赖于其他库。</p>
-<p>c) 你声明你所依赖的东西。</p>
-<p>d) Composer 会找出哪个版本的包需要安装，并安装它们（将它们下载到你的项目中）。<br>
-        
-          <p class="article-more-link">
-            <a href="/2018/03/使用依赖管理-以Composer为例/#more">阅读全文</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2018/03/使用依赖管理-以Composer为例/" data-id="cjfxaz95y000p20mjoc2req82" class="article-share-link">分享</a>
-      
-      
     </footer>
   </div>
   
@@ -341,7 +363,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/ci/">ci</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/culture/">culture</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/laravel/">laravel</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/">mysql</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/phalcon/">phalcon</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/restful/">restful</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/算法/">算法</a><span class="tag-list-count">4</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/ci/">ci</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/culture/">culture</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/design-patterns/">design-patterns</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/laravel/">laravel</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/">mysql</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/phalcon/">phalcon</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/restful/">restful</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/算法/">算法</a><span class="tag-list-count">4</span></li></ul>
     </div>
   </div>
 
@@ -351,7 +373,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签云</h3>
     <div class="widget tagcloud">
-      <a href="/tags/ci/" style="font-size: 10px;">ci</a> <a href="/tags/culture/" style="font-size: 20px;">culture</a> <a href="/tags/laravel/" style="font-size: 10px;">laravel</a> <a href="/tags/linux/" style="font-size: 10px;">linux</a> <a href="/tags/mysql/" style="font-size: 10px;">mysql</a> <a href="/tags/phalcon/" style="font-size: 13.33px;">phalcon</a> <a href="/tags/restful/" style="font-size: 10px;">restful</a> <a href="/tags/算法/" style="font-size: 16.67px;">算法</a>
+      <a href="/tags/ci/" style="font-size: 10px;">ci</a> <a href="/tags/culture/" style="font-size: 20px;">culture</a> <a href="/tags/design-patterns/" style="font-size: 10px;">design-patterns</a> <a href="/tags/laravel/" style="font-size: 10px;">laravel</a> <a href="/tags/linux/" style="font-size: 10px;">linux</a> <a href="/tags/mysql/" style="font-size: 10px;">mysql</a> <a href="/tags/phalcon/" style="font-size: 13.33px;">phalcon</a> <a href="/tags/restful/" style="font-size: 10px;">restful</a> <a href="/tags/算法/" style="font-size: 16.67px;">算法</a>
     </div>
   </div>
 
@@ -360,7 +382,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">二月 2018</a><span class="archive-list-count">5</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">二月 2018</a><span class="archive-list-count">5</span></li></ul>
     </div>
   </div>
 
@@ -371,6 +393,10 @@
     <h3 class="widget-title">最新文章</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2018/04/PHP设计模式/">PHP的设计模式之创建模式</a>
+          </li>
         
           <li>
             <a href="/2018/04/Linux搭建环境/">Linux搭建环境</a>
@@ -386,10 +412,6 @@
         
           <li>
             <a href="/2018/04/非官方微信红包拆分算法/">非官方微信红包拆分算法</a>
-          </li>
-        
-          <li>
-            <a href="/2018/04/我所理解的接口设计/">我所理解的接口设计</a>
           </li>
         
       </ul>
