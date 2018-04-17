@@ -67,6 +67,45 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-非官方微信红包拆分算法" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/04/非官方微信红包拆分算法/" class="article-date">
+  <time datetime="2018-04-11T03:38:42.000Z" itemprop="datePublished">2018-04-11</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/04/非官方微信红包拆分算法/">非官方微信红包拆分算法</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>原文链接：<a href="http://flc.ren/2018/04/701.html" target="_blank" rel="noopener">http://flc.ren/2018/04/701.html</a><br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 红包分配算法</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@example</span></span></span><br><span class="line"><span class="comment"> *      $coupon = new Coupon(200, 5);</span></span><br><span class="line"><span class="comment"> *      $res = $coupon-&gt;handle();</span></span><br><span class="line"><span class="comment"> *      print_r($res);</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> Flc &lt;2018-04-06 20:09:53&gt;</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@see</span> http://flc.ren | http://flc.io | https://github.com/flc1125</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Coupon</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 红包金额</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@var</span> float</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">protected</span> $amount;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 红包个数</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@var</span> int</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">protected</span> $num;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 领取的红包最小金额</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@var</span> float</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">protected</span> $coupon_min;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 红包分配结果</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@var</span> array</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">protected</span> $items = [];</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 初始化</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> float $amount     红包金额（单位：元）最多保留2位小数</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> int   $num        红包个数</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> float $coupon_min 每个至少领取的红包金额</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span><span class="params">($amount, $num = <span class="number">1</span>, $coupon_min = <span class="number">0.01</span>)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">$this</span>-&gt;amount = $amount;</span><br><span class="line">        <span class="keyword">$this</span>-&gt;num = $num;</span><br><span class="line">        <span class="keyword">$this</span>-&gt;coupon_min = $coupon_min;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 处理返回</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> array</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">handle</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="comment">// A. 验证</span></span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">$this</span>-&gt;amount &lt; $validAmount = <span class="keyword">$this</span>-&gt;coupon_min * <span class="keyword">$this</span>-&gt;num) &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> <span class="keyword">Exception</span>(<span class="string">'红包总金额必须≥'</span>.$validAmount.<span class="string">'元'</span>);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// B. 分配红包</span></span><br><span class="line">        <span class="keyword">$this</span>-&gt;apportion();</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> [</span><br><span class="line">            <span class="string">'items'</span> =&gt; <span class="keyword">$this</span>-&gt;items,</span><br><span class="line">        ];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 分配红包</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">protected</span> <span class="function"><span class="keyword">function</span> <span class="title">apportion</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        $num = <span class="keyword">$this</span>-&gt;num;  <span class="comment">// 剩余可分配的红包个数</span></span><br><span class="line">        $amount = <span class="keyword">$this</span>-&gt;amount;  <span class="comment">//剩余可领取的红包金额</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span> ($num &gt;= <span class="number">1</span>) &#123;</span><br><span class="line">            <span class="comment">// 剩余一个的时候，直接取剩余红包</span></span><br><span class="line">            <span class="keyword">if</span> ($num == <span class="number">1</span>) &#123;</span><br><span class="line">                $coupon_amount = <span class="keyword">$this</span>-&gt;decimal_number($amount);</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                $avg_amount = <span class="keyword">$this</span>-&gt;decimal_number($amount / $num);  <span class="comment">// 剩余的红包的平均金额</span></span><br><span class="line"></span><br><span class="line">                $coupon_amount = <span class="keyword">$this</span>-&gt;decimal_number(</span><br><span class="line">                    <span class="keyword">$this</span>-&gt;calcCouponAmount($avg_amount, $amount, $num)</span><br><span class="line">                );</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">$this</span>-&gt;items[] = $coupon_amount; <span class="comment">// 追加分配</span></span><br><span class="line"></span><br><span class="line">            $amount -= $coupon_amount;</span><br><span class="line">            --$num;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        shuffle(<span class="keyword">$this</span>-&gt;items);  <span class="comment">//随机打乱</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 计算分配的红包金额</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> float $avg_amount 每次计算的平均金额</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> float $amount     剩余可领取金额</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> int   $num        剩余可领取的红包个数</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> float</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">protected</span> <span class="function"><span class="keyword">function</span> <span class="title">calcCouponAmount</span><span class="params">($avg_amount, $amount, $num)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="comment">// 如果平均金额小于等于最低金额，则直接返回最低金额</span></span><br><span class="line">        <span class="keyword">if</span> ($avg_amount &lt;= <span class="keyword">$this</span>-&gt;coupon_min) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">$this</span>-&gt;coupon_min;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 浮动计算</span></span><br><span class="line">        $coupon_amount = <span class="keyword">$this</span>-&gt;decimal_number($avg_amount * (<span class="number">1</span> + <span class="keyword">$this</span>-&gt;apportionRandRatio()));</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 如果低于最低金额或超过可领取的最大金额，则重新获取</span></span><br><span class="line">        <span class="keyword">if</span> ($coupon_amount &lt; <span class="keyword">$this</span>-&gt;coupon_min</span><br><span class="line">            || $coupon_amount &gt; <span class="keyword">$this</span>-&gt;calcCouponAmountMax($amount, $num)</span><br><span class="line">        ) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">$this</span>-&gt;calcCouponAmount($avg_amount, $amount, $num);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> $coupon_amount;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 计算分配的红包金额-可领取的最大金额</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> float $amount</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> int   $num</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">protected</span> <span class="function"><span class="keyword">function</span> <span class="title">calcCouponAmountMax</span><span class="params">($amount, $num)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">$this</span>-&gt;coupon_min + $amount - $num * <span class="keyword">$this</span>-&gt;coupon_min;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 红包金额浮动比例</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">protected</span> <span class="function"><span class="keyword">function</span> <span class="title">apportionRandRatio</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="comment">// 60%机率获取剩余平均值的大幅度红包（可能正数、可能负数）</span></span><br><span class="line">        <span class="keyword">if</span> (rand(<span class="number">1</span>, <span class="number">100</span>) &lt;= <span class="number">60</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> rand(<span class="number">-70</span>, <span class="number">70</span>) / <span class="number">100</span>; <span class="comment">// 上下幅度70%</span></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> rand(<span class="number">-30</span>, <span class="number">30</span>) / <span class="number">100</span>; <span class="comment">// 其他情况，上下浮动30%；</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 格式化金额，保留2位</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> float $amount</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> float</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">protected</span> <span class="function"><span class="keyword">function</span> <span class="title">decimal_number</span><span class="params">($amount)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> sprintf(<span class="string">'%01.2f'</span>, round($amount, <span class="number">2</span>));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 例子</span></span><br><span class="line">$coupon = <span class="keyword">new</span> Coupon(<span class="number">200</span>, <span class="number">5</span>, <span class="number">30</span>);</span><br><span class="line">$res = $coupon-&gt;handle();</span><br><span class="line">print_r($res);</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://liluoao.github.io/2018/04/非官方微信红包拆分算法/" data-id="cjg31kiq5001l9cmjqk8fhpbp" class="article-share-link">分享</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/算法/">算法</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-我所理解的接口设计" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2018/04/我所理解的接口设计/" class="article-date">
@@ -130,7 +169,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2018/04/我所理解的接口设计/" data-id="cjg0y79wx0018q8mjwbg9aojy" class="article-share-link">分享</a>
+      <a data-url="https://liluoao.github.io/2018/04/我所理解的接口设计/" data-id="cjg31kipp00189cmj3gq8m8w6" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/restful/">restful</a></li></ul>
@@ -180,7 +219,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2018/04/排列组合/" data-id="cjg0y79wx0016q8mjb5rv792v" class="article-share-link">分享</a>
+      <a data-url="https://liluoao.github.io/2018/04/排列组合/" data-id="cjg31kipp001b9cmjmswgdxg9" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/算法/">算法</a></li></ul>
@@ -224,7 +263,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2018/03/使用AppVeyor持续集成本博客/" data-id="cjg0y79w2000jq8mjqjmx4hwa" class="article-share-link">分享</a>
+      <a data-url="https://liluoao.github.io/2018/03/使用AppVeyor持续集成本博客/" data-id="cjg31kipa000n9cmjn5poopxq" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ci/">ci</a></li></ul>
@@ -277,56 +316,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2018/03/求数组中非负元素组合的最大字符串/" data-id="cjg0y79wx001jq8mj94aik7ol" class="article-share-link">分享</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/算法/">算法</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-蓄水池算法题" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/03/蓄水池算法题/" class="article-date">
-  <time datetime="2018-03-27T02:37:19.000Z" itemprop="datePublished">2018-03-27</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/03/蓄水池算法题/">蓄水池算法题</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>原文链接：<a href="https://www.fanhaobai.com/2017/12/2017-ziroom-king-2.html" target="_blank" rel="noopener">https://www.fanhaobai.com/2017/12/2017-ziroom-king-2.html</a></p>
-<h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p>某地准备用砖头围立一个蓄水池子，从上面看凹凸不平，凹的地方会有积水。如果用数字代表每个砖头的高度，就形成一个二维数据（如示例），请问这个池子能存储多少单位的水？</p>
-<p>例如二维数组为：</p>
-<pre><code>9 9 9 9
-3 0 0 9
-7 8 2 6
-</code></pre><p>时，答案是中间的 0,0 位置可以存储 2（因为其外面最低是 2）个单位的水，因此答案为 2 + 2 = 4。<br>
-        
-          <p class="article-more-link">
-            <a href="/2018/03/蓄水池算法题/#more">阅读全文</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2018/03/蓄水池算法题/" data-id="cjg0y79wx001fq8mj3q0l4trm" class="article-share-link">分享</a>
+      <a data-url="https://liluoao.github.io/2018/03/求数组中非负元素组合的最大字符串/" data-id="cjg31kiq5001e9cmjbqy9ie76" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/算法/">算法</a></li></ul>
@@ -363,7 +353,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/ci/">ci</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/culture/">culture</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/design-patterns/">design-patterns</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/laravel/">laravel</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/">mysql</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/phalcon/">phalcon</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/restful/">restful</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/算法/">算法</a><span class="tag-list-count">4</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/ci/">ci</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/culture/">culture</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/design-patterns/">design-patterns</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/laravel/">laravel</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/">mysql</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/phalcon/">phalcon</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/restful/">restful</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/算法/">算法</a><span class="tag-list-count">4</span></li></ul>
     </div>
   </div>
 
@@ -373,7 +363,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签云</h3>
     <div class="widget tagcloud">
-      <a href="/tags/ci/" style="font-size: 10px;">ci</a> <a href="/tags/culture/" style="font-size: 20px;">culture</a> <a href="/tags/design-patterns/" style="font-size: 10px;">design-patterns</a> <a href="/tags/laravel/" style="font-size: 10px;">laravel</a> <a href="/tags/linux/" style="font-size: 10px;">linux</a> <a href="/tags/mysql/" style="font-size: 10px;">mysql</a> <a href="/tags/phalcon/" style="font-size: 13.33px;">phalcon</a> <a href="/tags/restful/" style="font-size: 10px;">restful</a> <a href="/tags/算法/" style="font-size: 16.67px;">算法</a>
+      <a href="/tags/ci/" style="font-size: 10px;">ci</a> <a href="/tags/culture/" style="font-size: 20px;">culture</a> <a href="/tags/design-patterns/" style="font-size: 13.33px;">design-patterns</a> <a href="/tags/laravel/" style="font-size: 10px;">laravel</a> <a href="/tags/linux/" style="font-size: 10px;">linux</a> <a href="/tags/mysql/" style="font-size: 10px;">mysql</a> <a href="/tags/phalcon/" style="font-size: 13.33px;">phalcon</a> <a href="/tags/restful/" style="font-size: 10px;">restful</a> <a href="/tags/算法/" style="font-size: 16.67px;">算法</a>
     </div>
   </div>
 
@@ -382,7 +372,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">二月 2018</a><span class="archive-list-count">5</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">二月 2018</a><span class="archive-list-count">5</span></li></ul>
     </div>
   </div>
 
@@ -395,7 +385,11 @@
       <ul>
         
           <li>
-            <a href="/2018/04/PHP设计模式/">PHP的设计模式之创建模式</a>
+            <a href="/2018/04/PHP的设计模式之架构模式/">PHP的设计模式之架构模式</a>
+          </li>
+        
+          <li>
+            <a href="/2018/04/PHP的设计模式之创建模式/">PHP的设计模式之创建模式</a>
           </li>
         
           <li>
@@ -408,10 +402,6 @@
         
           <li>
             <a href="/2018/04/危险的target-blank与opener/">危险的target=&#34;_blank&#34;与&#34;opener&#34;</a>
-          </li>
-        
-          <li>
-            <a href="/2018/04/非官方微信红包拆分算法/">非官方微信红包拆分算法</a>
           </li>
         
       </ul>
