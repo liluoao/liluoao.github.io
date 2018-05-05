@@ -67,6 +67,77 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-重构代码" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/04/重构代码/" class="article-date">
+  <time datetime="2018-04-23T08:44:52.000Z" itemprop="datePublished">2018-04-23</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/04/重构代码/">重构代码</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>原文链接：<a href="https://juejin.im/post/5adc8e18518825672b0352a8" target="_blank" rel="noopener">https://juejin.im/post/5adc8e18518825672b0352a8</a></p>
+<blockquote>
+<p>重构不是对以前代码的全盘否定，而是利用更好的方式，写出更好，更有维护性代码。不断的追求与学习，才有更多的进步。</p>
+</blockquote>
+<h2 id="什么是重构"><a href="#什么是重构" class="headerlink" title="什么是重构"></a>什么是重构</h2><p>首先，重构不是重写。重构大概的意思是在不影响项目的功能使用前提下，使用一系列的重构方式，改变项目的内部结构。提高项目内部的可读性，可维护性。</p>
+<p>无论是什么项目，都有一个从简单到复杂的一个迭代过程。在这个过程里面，在不影响项目的使用情况下，需要不断的对代码进行优化，保持或者增加代码的可读性，可维护性。这样一来，就可以避免在团队协作开发上需要大量的沟通，交流。才能加入项目的开发中。</p>
+<h2 id="为什么重构"><a href="#为什么重构" class="headerlink" title="为什么重构"></a>为什么重构</h2><p>随着业务需求的不断增加，变更，舍弃，项目的代码也难免会出现瑕疵，这就会影响代码的可读性，可维护性，甚至影响项目的性能。而重构的目的，就是为了解决这些瑕疵，保证代码质量和性能。但是前提是不能影响项目的使用。</p>
+<p>至于重构的原因，自己总结了一下，大概有以下几点</p>
+<ol>
+<li>函数逻辑结构混乱，或因为没注释原因，连原代码写作者都很难理清当中的逻辑。</li>
+<li>函数无扩展性可言，遇到新的变化，不能灵活的处理。</li>
+<li>因为对象强耦合或者业务逻辑的原因，导致业务逻辑的代码巨大，维护的时候排查困难。</li>
+<li>重复代码太多，没有复用性。</li>
+<li>随着技术的发展，代码可能也需要使用新特性进行修改。</li>
+<li>随着学习的深入，对于以前的代码，是否有着更好的一个解决方案。</li>
+<li>因为代码的写法，虽然功能正常使用，但是性能消耗较多，需要换方案进行优化</li>
+</ol>
+<h2 id="何时重构"><a href="#何时重构" class="headerlink" title="何时重构"></a>何时重构</h2><p>在我的理解中，重构可以说是贯穿整一个项目的开发和维护周期，可以当作重构就是开发的一部分。通俗讲，在开发的任何时候，只要看到代码有别扭，激发了强迫症，就可以考虑重构了。只是，重构之前先参考下面几点。</p>
+<ul>
+<li>首先，重构是需要花时间去做的一件事。花的时间可能比之前的开发时间还要多。</li>
+<li>其次，重构是为了把代码优化，前提是不能影响项目的使用。</li>
+<li>最后，重构的难度大小不一，可能只是稍微改动，可能难度比之前开发还要难。</li>
+</ul>
+<p>基于上面的几点，需要大家去评估是否要进行重构。评估的指标，可以参考下面几点</p>
+<ul>
+<li>数量: 需要重构的代码是否过多。</li>
+<li>质量: 可读性，可维护性，代码逻辑复杂度，等问题，对代码的质量影响是否到了一个难以忍受的地步。</li>
+<li>时间: 是否有充裕的时间进行重构和测试。</li>
+<li>效果: 如果重构了代码，得到哪些改善，比如代码质量提高了，性能提升了，更好的支持后续功能等。
+        
+          <p class="article-more-link">
+            <a href="/2018/04/重构代码/#more">阅读全文</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://liluoao.github.io/2018/04/重构代码/" data-id="cjgt136iw002hv8mjv1f3ns5q" class="article-share-link">分享</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/refactor/">refactor</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-依赖注入" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2018/04/依赖注入/" class="article-date">
@@ -101,7 +172,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2018/04/依赖注入/" data-id="cjgot2alf001fq0mjzwm11kji" class="article-share-link">分享</a>
+      <a data-url="https://liluoao.github.io/2018/04/依赖注入/" data-id="cjgt136i1001kv8mj4v2xxn6k" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/dependency-injection/">dependency-injection</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/design-patterns/">design-patterns</a></li></ul>
@@ -155,7 +226,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2018/04/PHP的设计模式之架构模式（二）/" data-id="cjgot2ak4000iq0mj995vhjgu" class="article-share-link">分享</a>
+      <a data-url="https://liluoao.github.io/2018/04/PHP的设计模式之架构模式（二）/" data-id="cjgt136h5000iv8mjqv0ywitq" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/design-patterns/">design-patterns</a></li></ul>
@@ -207,7 +278,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2018/04/PHP的设计模式之行为模式/" data-id="cjgot2akk000pq0mjemdghohw" class="article-share-link">分享</a>
+      <a data-url="https://liluoao.github.io/2018/04/PHP的设计模式之行为模式/" data-id="cjgt136h5000nv8mjrk0xysca" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/design-patterns/">design-patterns</a></li></ul>
@@ -262,7 +333,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2018/04/PHP的设计模式之架构模式/" data-id="cjgot2ak4000cq0mjlwfpr64c" class="article-share-link">分享</a>
+      <a data-url="https://liluoao.github.io/2018/04/PHP的设计模式之架构模式/" data-id="cjgt136h5000gv8mj9k99yvjb" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/design-patterns/">design-patterns</a></li></ul>
@@ -315,7 +386,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2018/04/PHP的设计模式之创建模式/" data-id="cjgot2ak4000gq0mjarlzi9qk" class="article-share-link">分享</a>
+      <a data-url="https://liluoao.github.io/2018/04/PHP的设计模式之创建模式/" data-id="cjgt136gq000cv8mj0z4f0neg" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/design-patterns/">design-patterns</a></li></ul>
@@ -366,7 +437,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2018/04/Linux搭建环境/" data-id="cjgot2ajo0006q0mjtjw4elsm" class="article-share-link">分享</a>
+      <a data-url="https://liluoao.github.io/2018/04/Linux搭建环境/" data-id="cjgt136ga0006v8mj4qk0sy4s" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux/">linux</a></li></ul>
@@ -411,7 +482,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2018/04/给项目添加狗牌/" data-id="cjgot2ama0027q0mj8aeluws0" class="article-share-link">分享</a>
+      <a data-url="https://liluoao.github.io/2018/04/给项目添加狗牌/" data-id="cjgt136ig002cv8mjvfwxz7ei" class="article-share-link">分享</a>
       
       
     </footer>
@@ -462,7 +533,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2018/04/危险的target-blank与opener/" data-id="cjgot2alv001qq0mj4fqg7m5d" class="article-share-link">分享</a>
+      <a data-url="https://liluoao.github.io/2018/04/危险的target-blank与opener/" data-id="cjgt136i1001uv8mjafevqtvq" class="article-share-link">分享</a>
       
       
     </footer>
@@ -499,85 +570,10 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2018/04/非官方微信红包拆分算法/" data-id="cjgot2ama002eq0mj4d8gxb4b" class="article-share-link">分享</a>
+      <a data-url="https://liluoao.github.io/2018/04/非官方微信红包拆分算法/" data-id="cjgt136iw002iv8mjqzmm9h3a" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/算法/">算法</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-我所理解的接口设计" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/04/我所理解的接口设计/" class="article-date">
-  <time datetime="2018-04-10T02:07:24.000Z" itemprop="datePublished">2018-04-10</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/04/我所理解的接口设计/">我所理解的接口设计</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>原文链接：<a href="https://segmentfault.com/a/1190000013703264" target="_blank" rel="noopener">https://segmentfault.com/a/1190000013703264</a></p>
-<h2 id="接口参数定义"><a href="#接口参数定义" class="headerlink" title="接口参数定义"></a>接口参数定义</h2><p>接口设计中往可以抽象出一些新的公共参数，我目前能想到了一些较为常见的公共接口参数如下：</p>
-<table>
-<thead>
-<tr>
-<th>公共参数</th>
-<th>含意</th>
-<th>定义该参数的意义</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>timestamp</td>
-<td>毫秒级时间戳</td>
-<td>1.客户端的请求时间标示 2.后端可以做请求过期验证 3.该参数参与签名算法增加签名的唯一性</td>
-</tr>
-<tr>
-<td>app_key</td>
-<td>签名公钥</td>
-<td>签名算法的公钥，后端通过公钥可以得到对应的私钥</td>
-</tr>
-<tr>
-<td>sign</td>
-<td>接口签名</td>
-<td>通过请求的参数和定义好的签名算法生成接口签名，作用防止中间人篡改请求参数</td>
-</tr>
-<tr>
-<td>did</td>
-<td>设备ID</td>
-<td>设备的唯一标示，生成规则例如android的mac地址的md5和ios曾今udid(目前无法获取)的md5, 1:数据收集 2.便于问题追踪 3.消息推送标示</td>
-</tr>
-</tbody>
-</table>
-        
-          <p class="article-more-link">
-            <a href="/2018/04/我所理解的接口设计/#more">阅读全文</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2018/04/我所理解的接口设计/" data-id="cjgot2alv001xq0mjjffaqzzh" class="article-share-link">分享</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/restful/">restful</a></li></ul>
 
     </footer>
   </div>
@@ -604,6 +600,10 @@
       <ul>
         
           <li>
+            <a href="/2018/05/使用Intervention-Image/">使用Intervention-Image</a>
+          </li>
+        
+          <li>
             <a href="/2018/05/Apache的SSL配置/">Apache的SSL配置</a>
           </li>
         
@@ -619,10 +619,6 @@
             <a href="/2018/04/微信消息处理/">微信消息处理</a>
           </li>
         
-          <li>
-            <a href="/2018/04/PHP运行模式/">PHP运行模式</a>
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -632,7 +628,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">分类</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/composer/">composer</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/laravel/">laravel</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/linux/">linux</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/mysql/">mysql</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/phalcon/">phalcon</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/wechat/">wechat</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/安全/">安全</a><span class="category-list-count">2</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/composer/">composer</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/laravel/">laravel</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/linux/">linux</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/mysql/">mysql</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/phalcon/">phalcon</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/wechat/">wechat</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/安全/">安全</a><span class="category-list-count">2</span></li></ul>
     </div>
   </div>
 
@@ -642,7 +638,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/apache/">apache</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ci/">ci</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/clean-code/">clean-code</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/culture/">culture</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dependency-injection/">dependency-injection</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/design-patterns/">design-patterns</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/laravel/">laravel</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/">mysql</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nginx/">nginx</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/phalcon/">phalcon</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/phpstorm/">phpstorm</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/refactor/">refactor</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/restful/">restful</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sapi/">sapi</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/solid/">solid</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/wechat/">wechat</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/算法/">算法</a><span class="tag-list-count">4</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/apache/">apache</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ci/">ci</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/clean-code/">clean-code</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/culture/">culture</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dependency-injection/">dependency-injection</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/design-patterns/">design-patterns</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/laravel/">laravel</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/">mysql</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nginx/">nginx</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/phalcon/">phalcon</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/phpstorm/">phpstorm</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/refactor/">refactor</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/restful/">restful</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sapi/">sapi</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/solid/">solid</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/wechat/">wechat</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/算法/">算法</a><span class="tag-list-count">4</span></li></ul>
     </div>
   </div>
 
@@ -652,7 +648,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">五月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a><span class="archive-list-count">20</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">二月 2018</a><span class="archive-list-count">5</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">五月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a><span class="archive-list-count">20</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">二月 2018</a><span class="archive-list-count">5</span></li></ul>
     </div>
   </div>
 

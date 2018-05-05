@@ -5,20 +5,20 @@
   
 
   
-  <title>Laravel 路由是如何调用到控制器 | To be a Web Artisan</title>
+  <title>使用Intervention-Image | To be a Web Artisan</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="原文链接：https://juejin.im/post/595f2ed76fb9a06bbe7dc4ed 概述laravel 的路由相比其他PHP框架非常灵活和优雅，它也能做的在url不变的情况下改变调用的控制器和方法。 那么这到底在 laravel 里是怎么完成的呢 路由到底是如何获取的？这没什么神秘的，回忆一下我们写一个单页过程化 PHP 脚本时我们是如何接收 HTML 页面传输的参数的？ 是">
+  <meta name="description" content="Intervention/image 是为 Laravel 定制的图片处理工具, 它提供了一套易于表达的方式来创建、编辑图片。  Composer安装1composer require intervention/image">
 <meta name="keywords" content="laravel">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Laravel 路由是如何调用到控制器">
-<meta property="og:url" content="https://liluoao.github.io/2018/03/Laravel路由是如何调用到控制器/index.html">
+<meta property="og:title" content="使用Intervention-Image">
+<meta property="og:url" content="https://liluoao.github.io/2018/05/使用Intervention-Image/index.html">
 <meta property="og:site_name" content="To be a Web Artisan">
-<meta property="og:description" content="原文链接：https://juejin.im/post/595f2ed76fb9a06bbe7dc4ed 概述laravel 的路由相比其他PHP框架非常灵活和优雅，它也能做的在url不变的情况下改变调用的控制器和方法。 那么这到底在 laravel 里是怎么完成的呢 路由到底是如何获取的？这没什么神秘的，回忆一下我们写一个单页过程化 PHP 脚本时我们是如何接收 HTML 页面传输的参数的？ 是">
+<meta property="og:description" content="Intervention/image 是为 Laravel 定制的图片处理工具, 它提供了一套易于表达的方式来创建、编辑图片。  Composer安装1composer require intervention/image">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-05-05T06:49:05.058Z">
+<meta property="og:updated_time" content="2018-05-05T06:49:05.073Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Laravel 路由是如何调用到控制器">
-<meta name="twitter:description" content="原文链接：https://juejin.im/post/595f2ed76fb9a06bbe7dc4ed 概述laravel 的路由相比其他PHP框架非常灵活和优雅，它也能做的在url不变的情况下改变调用的控制器和方法。 那么这到底在 laravel 里是怎么完成的呢 路由到底是如何获取的？这没什么神秘的，回忆一下我们写一个单页过程化 PHP 脚本时我们是如何接收 HTML 页面传输的参数的？ 是">
+<meta name="twitter:title" content="使用Intervention-Image">
+<meta name="twitter:description" content="Intervention/image 是为 Laravel 定制的图片处理工具, 它提供了一套易于表达的方式来创建、编辑图片。  Composer安装1composer require intervention/image">
 <meta name="twitter:creator" content="@liluoao">
   
   
@@ -67,10 +67,10 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-Laravel路由是如何调用到控制器" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-使用Intervention-Image" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2018/03/Laravel路由是如何调用到控制器/" class="article-date">
-  <time datetime="2018-03-13T02:37:19.000Z" itemprop="datePublished">2018-03-13</time>
+    <a href="/2018/05/使用Intervention-Image/" class="article-date">
+  <time datetime="2018-05-05T06:36:58.000Z" itemprop="datePublished">2018-05-05</time>
 </a>
     
   <div class="article-category">
@@ -85,7 +85,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      Laravel 路由是如何调用到控制器
+      使用Intervention-Image
     </h1>
   
 
@@ -93,34 +93,37 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>原文链接：<a href="https://juejin.im/post/595f2ed76fb9a06bbe7dc4ed" target="_blank" rel="noopener">https://juejin.im/post/595f2ed76fb9a06bbe7dc4ed</a></p>
-<h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3><p>laravel 的路由相比其他PHP框架非常灵活和优雅，它也能做的在url不变的情况下改变调用的控制器和方法。</p>
-<p>那么这到底在 laravel 里是怎么完成的呢</p>
-<h3 id="路由到底是如何获取的？"><a href="#路由到底是如何获取的？" class="headerlink" title="路由到底是如何获取的？"></a>路由到底是如何获取的？</h3><p>这没什么神秘的，回忆一下我们写一个单页过程化 PHP 脚本时我们是如何接收 HTML 页面传输的参数的？</p>
-<p>是的，也许你想起来了我们会使用 PHP 的超全局变量 <code>$_SERVER</code>、<code>$_GET</code>、<code>$_POST</code> 等等，是的框架的底层同样是使用它们的，只是框架进行了更详尽的封装。</p>
-<p>laravel 对 Symfony 框架提供的 HttpFoundation 组件，这个组件对 HTTP 进行了面向对象封装，laravel在其基础上又进行了封装，以适合 laravel 框架自身的需求。</p>
-<p>HttpFoundation 组件将 <code>$_GET</code>、<code>$_POST</code>、<code>$_FILES</code>、<code>$_COOKIE</code> 等一些超全局变量进行封装，不仅将超全局变量调用转变为面向对象的方式，而且也简化了操作。比如 <code>Symfony\Component\HttpFoundation\Request::createFromGlobals()</code> 的返回值就是所有超全局组成的一个集合。</p>
-<p>如果你对这个组件感兴趣可以查看其文档 <a href="https://symfony.com/doc/current/components/http_foundation.html" target="_blank" rel="noopener">HttpFoundation</a><br><a id="more"></a></p>
-<h3 id="路由是如何启动的？"><a href="#路由是如何启动的？" class="headerlink" title="路由是如何启动的？"></a>路由是如何启动的？</h3><p>路由启动我们要从原点找起，那么原点就是 laravel 框架的入口文件 <code>public/index.php</code>。</p>
-<p>index.php 里首先把 bootstrap/autoload.php 引入，这个文件引入的是 composer 的 autoload 文件，将所有的包加载到脚本里，这个脚本文件还定义了一个常量 LARAVEL_START 记录了框架启动的微秒时间戳。</p>
-<p>然后引入了 bootstrap/app.php 脚本，这个脚本加载了 laravl 框架的核心文件，返回了一个应用实例。</p>
-<p>随后就是后续步骤</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 得到应用核心实例</span></span><br><span class="line">$kernel = $app-&gt;make(Illuminate\Contracts\Http\Kernel::class);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 对请求处理后获得响应</span></span><br><span class="line">$response = $kernel-&gt;handle(</span><br><span class="line">    $request = Illuminate\Http\Request::capture() <span class="comment">// 获得请求参数</span></span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 发送响应</span></span><br><span class="line">$response-&gt;send();</span><br><span class="line"></span><br><span class="line"><span class="comment">// 终止</span></span><br><span class="line">$kernel-&gt;terminate($request, $response);</span><br></pre></td></tr></table></figure>
-<p>我们想知道路由在哪分配调用就在 <code>$kernel-&gt;handle()</code> 这里，其中调用了 <code>$this-sendRequestThroughRouter()</code>，这里就将请求发送给了中间件和路由。</p>
-<p><code>$this-&gt;dispatchToRouter()</code> 中 <code>$this-&gt;router-&gt;dispatch($request)</code> 就将请求传入到 Router 类中了。</p>
-<p>然后再 Router 类的 <code>dispatch()</code> 的方法中调用了 Router 类的 <code>dispatchToRoute()</code> 方法将请求向下传递。</p>
-<p>在<code>dispatchToRoute()</code>中你会发现 <code>$route = $this-&gt;findRoute($request);</code>的调用。<br><code>findRoute()</code> 中调用 RouteCollection 类中的 <code>match()</code> 方法去匹配在初始化框架时读取到内存中的开发者在路由定义文件里定义的路由，如果未匹配到就抛出 <code>NotFoundHttpException</code> 异常。如匹配到就返回了 Route 类的实例。</p>
-<p>然后这个实例在 Router 类的 <code>dispatchToRoute()</code> 方法中实例有被传入到 <code>runRouteWithinStack()</code> 方法。这个方法中又调用多个方法将匹配到的开发者定义的 URL 的映射的控制器实例化，去调用控制器的 <code>callAction()</code> 方法，<code>callAction()</code> 写在控制器的基类中，就是我们写一个控制器都要继承的那个 <code>Conreoller</code> 类中。</p>
-<p>方法很简单，就是讲传入的方法名和参数用 PHP 函数 <code>call_user_func_array()</code> 进行调用。</p>
-<p>以上是我们的最佳实践。但是在你初始化 laravel 框架的时候他的首页是以下这样调用的。</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Route::get(<span class="string">'/'</span>, <span class="function"><span class="keyword">function</span> <span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> view(<span class="string">'welcome'</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<p>路由中使用匿名函数，在调用控制器的实例前框架先会判断是否是一个控制器动作，如何不是就获取路由中的匿名函数进行调用。判断的依据就是开发者定义的路由的第二个参数是否是一个字符串。</p>
-<p>这是 laravel 路由的主流程，其他中间件调用，Request 验证等等都在主流程的各个步骤中附加分发调用了。</p>
-
+        <p><a href="https://github.com/Intervention/image" target="_blank" rel="noopener">Intervention/image</a> 是为 Laravel 定制的图片处理工具, 它提供了一套易于表达的方式来创建、编辑图片。</p>
+<ul>
+<li>Composer安装<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">composer require intervention/image</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<a id="more"></a>
+<ul>
+<li><p>修改 <code>app/config/app.php</code> 添加 <code>ServiceProvider</code>:</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 将下面代码添加到 providers 数组中</span></span><br><span class="line"><span class="string">'providers'</span> =&gt; [</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">    Intervention\Image\ImageServiceProvider::class,</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">  ],</span><br><span class="line"></span><br><span class="line"><span class="comment">// 将下面代码添加到 aliases 数组中</span></span><br><span class="line"><span class="string">'aliases'</span> =&gt; [</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">    <span class="string">'Image'</span> =&gt; Intervention\Image\Facades\Image::class,</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">  ],</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>配置</p>
+</li>
+</ul>
+<p>此扩展包默认使用 PHP 的 GD 库来进行图像处理, 但由于 GD 库对图像的处理效率要稍逊色于 imagemagick 库, 因此这里推荐替换为 imagemagick 库来进行图像处理.</p>
+<p>开始之前, 你得先确定本地已经安装好 GD 或 Imagick.</p>
+<p>在使用 Intervention Image 的时候, 你只需要给 ImageManager 传一个数组参数就可以完成 GD 和 Imagick 库之间的互相切换. </p>
+<p>如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">// 引入 composer autoload</span><br><span class="line">require &apos;vendor/autoload.php&apos;;</span><br><span class="line"></span><br><span class="line">// 导入 Intervention Image Manager Class</span><br><span class="line">use Intervention\Image\ImageManager;</span><br><span class="line"></span><br><span class="line">// 通过指定 driver 来创建一个 image manager 实例</span><br><span class="line">$manager = new ImageManager(array(&apos;driver&apos; =&gt; &apos;imagick&apos;));</span><br><span class="line"></span><br><span class="line">// 最后创建 image 实例</span><br><span class="line">$image = $manager-&gt;make(&apos;public/foo.jpg&apos;)-&gt;resize(300, 200);</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>生成<code>config/image.php</code>配置文件:<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">php artisan vendor:publish --provider=&quot;Intervention\Image\ImageServiceProviderLaravel5&quot;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>运行上面的命令后, 会在项目中生成 config/image.php 配置文件<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">return</span> <span class="keyword">array</span>(</span><br><span class="line">    <span class="string">'driver'</span> =&gt; <span class="string">'imagick'</span></span><br><span class="line">);</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>除上文介绍的基本用法之外, 此扩展包还支持:<br>  图片上传功能;<br>  图片缓存功能;<br>  图片过滤功能: 将图片按照统一规则进行转换;<br>  图片动态处理: 根据访问图片的 URL 参数自动调整图片大小</li>
+</ul>
+<p>更多内容请见：<a href="http://image.intervention.io/getting_started/installation" target="_blank" rel="noopener">官方文档</a></p>
+<h2 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h2><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">use</span> <span class="title">Intervention</span>\<span class="title">Image</span>\<span class="title">ImageManager</span>;</span><br><span class="line">$manager = <span class="keyword">new</span> ImageManager();</span><br><span class="line"><span class="comment">//字体路径</span></span><br><span class="line">$fontPath = storage_path(<span class="string">'font/SourceHanSansCN-Normal.ttf'</span>);</span><br><span class="line"><span class="comment">//以一张背景图开始</span></span><br><span class="line">$image = $manager-&gt;make(<span class="string">'images/invitation-bg.png'</span>);</span><br><span class="line"><span class="comment">//插入图片</span></span><br><span class="line">$image-&gt;insert(<span class="string">'images/logo.png'</span>, <span class="string">'top'</span>, <span class="number">0</span>, <span class="number">20</span>);</span><br><span class="line"><span class="comment">//插入文字</span></span><br><span class="line">$image-&gt;text(<span class="string">'欢迎光临'</span>, <span class="number">200</span>, <span class="number">80</span>, <span class="function"><span class="keyword">function</span> <span class="params">($font)</span> <span class="title">use</span> <span class="params">($fontPath)</span> </span>&#123;</span><br><span class="line">    $font-&gt;file($fontPath);<span class="comment">//字体</span></span><br><span class="line">    $font-&gt;size(<span class="number">24</span>);<span class="comment">//大小</span></span><br><span class="line">    $font-&gt;color(<span class="string">'#61B8A8'</span>);<span class="comment">//颜色</span></span><br><span class="line">    $font-&gt;align(<span class="string">'center'</span>);<span class="comment">//水平对齐</span></span><br><span class="line">    $font-&gt;valign(<span class="string">'top'</span>);<span class="comment">//垂直对齐</span></span><br><span class="line">&#125;);</span><br><span class="line"><span class="comment">//保存为文件</span></span><br><span class="line">$image-&gt;save(<span class="string">'uploads/1.jpg'</span>);</span><br></pre></td></tr></table></figure>
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2018/03/Laravel路由是如何调用到控制器/" data-id="cjgt136fv0003v8mjs9i4m9n0" class="article-share-link">分享</a>
+      <a data-url="https://liluoao.github.io/2018/05/使用Intervention-Image/" data-id="cjgt136hl001dv8mjtce28rfe" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/laravel/">laravel</a></li></ul>
@@ -131,19 +134,10 @@
     
 <nav id="article-nav">
   
-    <a href="/2018/03/MySQL优化那些事/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">上一篇</strong>
-      <div class="article-nav-title">
-        
-          MySQL优化那些事儿
-        
-      </div>
-    </a>
   
-  
-    <a href="/2018/03/使用Hexo/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2018/05/Apache的SSL配置/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">下一篇</strong>
-      <div class="article-nav-title">使用Hexo</div>
+      <div class="article-nav-title">Apache的SSL配置</div>
     </a>
   
 </nav>
