@@ -5,18 +5,20 @@
   
 
   
-  <title>归档: 2018 | To be a Web Artisan</title>
+  <title>Laravel的Config | To be a Web Artisan</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="李罗奥的博客">
-<meta property="og:type" content="website">
-<meta property="og:title" content="To be a Web Artisan">
-<meta property="og:url" content="https://liluoao.github.io/archives/2018/index.html">
+  <meta name="description" content="$_ENV 或env()可读取.env文件中的变量. 读取 config/app.php 中的数据:1$value = config(&apos;app.timezone&apos;); 新增配置文件后，如 config/aboutus.php，使用 config(&amp;#39;aboutus.xxx&amp;#39;) 读取">
+<meta name="keywords" content="laravel">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Laravel的Config">
+<meta property="og:url" content="https://liluoao.github.io/2018/05/Laravel的Config/index.html">
 <meta property="og:site_name" content="To be a Web Artisan">
-<meta property="og:description" content="李罗奥的博客">
+<meta property="og:description" content="$_ENV 或env()可读取.env文件中的变量. 读取 config/app.php 中的数据:1$value = config(&apos;app.timezone&apos;); 新增配置文件后，如 config/aboutus.php，使用 config(&amp;#39;aboutus.xxx&amp;#39;) 读取">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-05-07T08:12:41.742Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="To be a Web Artisan">
-<meta name="twitter:description" content="李罗奥的博客">
+<meta name="twitter:title" content="Laravel的Config">
+<meta name="twitter:description" content="$_ENV 或env()可读取.env文件中的变量. 读取 config/app.php 中的数据:1$value = config(&apos;app.timezone&apos;); 新增配置文件后，如 config/aboutus.php，使用 config(&amp;#39;aboutus.xxx&amp;#39;) 读取">
 <meta name="twitter:creator" content="@liluoao">
   
   
@@ -65,311 +67,69 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2018" class="archive-year">2018</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2018/05/Laravel的Config/" class="archive-article-date">
-  <time datetime="2018-05-07T08:08:10.000Z" itemprop="datePublished">5月 7</time>
+        <section id="main"><article id="post-Laravel的Config" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/05/Laravel的Config/" class="article-date">
+  <time datetime="2018-05-07T08:08:10.000Z" itemprop="datePublished">2018-05-07</time>
 </a>
-      
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/laravel/">laravel</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/05/Laravel的Config/">Laravel的Config</a>
+    <h1 class="article-title" itemprop="name">
+      Laravel的Config
     </h1>
   
 
-    </header>
-  </div>
-</article>
-  
+      </header>
     
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2018/05/ES6的Promise/" class="archive-article-date">
-  <time datetime="2018-05-07T07:51:13.000Z" itemprop="datePublished">5月 7</time>
-</a>
+    <div class="article-entry" itemprop="articleBody">
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/05/ES6的Promise/">ES6的Promise</a>
-    </h1>
-  
+        <p><code>$_ENV</code> 或<code>env()</code>可读取<code>.env</code>文件中的变量.</p>
+<p>读取 config/app.php 中的数据:<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$value = config(<span class="string">'app.timezone'</span>);</span><br></pre></td></tr></table></figure></p>
+<p>新增配置文件后，如 <code>config/aboutus.php</code>，使用 <code>config(&#39;aboutus.xxx&#39;)</code> 读取<br><a id="more"></a><br>如何合并、缓存所有配置文件？<br><figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># 生成汇总文件 bootstrap/cache/config.php</span><br><span class="line">php artisan config:cache</span><br><span class="line"></span><br><span class="line"># 生成汇总文件 bootstrap/cache/route.php</span><br><span class="line">php artisan route:cache</span><br></pre></td></tr></table></figure></p>
+<p>切记！除了<code>config</code>文件夹下的配置文件，永远不要在其它地方使用 <code>env()</code> 函数，因为一旦执行 <code>php artisan config:cache</code> 后，<code>env()</code> 所有读取都会返回 <code>NULL</code>，证据如下：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">namespace</span> <span class="title">Illuminate</span>\<span class="title">Foundation</span>\<span class="title">Bootstrap</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">LoadEnvironmentVariables</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * Bootstrap the given application.</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span>  \Illuminate\Contracts\Foundation\Application  $app</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> void</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">bootstrap</span><span class="params">(Application $app)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> ($app-&gt;configurationIsCached()) &#123;</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        ...</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>几点注意：</p>
+<ul>
+<li><p>config 文件里严禁使用 Closure 闭包，因为 config:cache 时无法被正确序列化。</p>
+</li>
+<li><p>routes 文件中尽量不使用闭包函数，统一使用控制器，因为缓存路由时 php artisan route:cache 无法缓存闭包函数。</p>
+</li>
+</ul>
 
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2018/05/部分数组函数分析/" class="archive-article-date">
-  <time datetime="2018-05-07T07:24:44.000Z" itemprop="datePublished">5月 7</time>
-</a>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/05/部分数组函数分析/">部分数组函数分析</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2018/05/使用Carbon/" class="archive-article-date">
-  <time datetime="2018-05-07T06:11:35.000Z" itemprop="datePublished">5月 7</time>
-</a>
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://liluoao.github.io/2018/05/Laravel的Config/" data-id="cjgvyz1yj00069smjzet7tnul" class="article-share-link">分享</a>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/05/使用Carbon/">使用Carbon</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2018/05/使用Laravel-Excel/" class="archive-article-date">
-  <time datetime="2018-05-05T07:42:19.000Z" itemprop="datePublished">5月 5</time>
-</a>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/05/使用Laravel-Excel/">使用Laravel-Excel</a>
-    </h1>
-  
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/laravel/">laravel</a></li></ul>
 
-    </header>
+    </footer>
   </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2018/05/ES6的Promise/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">ES6的Promise</div>
+    </a>
+  
+</nav>
+
+  
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2018/05/使用Postman-Interceptor/" class="archive-article-date">
-  <time datetime="2018-05-05T06:57:06.000Z" itemprop="datePublished">5月 5</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/05/使用Postman-Interceptor/">使用Postman-Interceptor</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2018/05/使用Intervention-Image/" class="archive-article-date">
-  <time datetime="2018-05-05T06:36:58.000Z" itemprop="datePublished">5月 5</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/05/使用Intervention-Image/">使用Intervention-Image</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2018/05/Apache的SSL配置/" class="archive-article-date">
-  <time datetime="2018-05-02T07:15:45.000Z" itemprop="datePublished">5月 2</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/05/Apache的SSL配置/">Apache的SSL配置</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2018/04/PHPStorm使用FTP/" class="archive-article-date">
-  <time datetime="2018-04-28T08:51:42.000Z" itemprop="datePublished">4月 28</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/04/PHPStorm使用FTP/">PHPStorm使用FTP</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2018/04/微信菜单/" class="archive-article-date">
-  <time datetime="2018-04-28T01:56:41.000Z" itemprop="datePublished">4月 28</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/04/微信菜单/">微信菜单</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2018/04/微信消息处理/" class="archive-article-date">
-  <time datetime="2018-04-27T07:14:51.000Z" itemprop="datePublished">4月 27</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/04/微信消息处理/">微信消息处理</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2018/04/PHP运行模式/" class="archive-article-date">
-  <time datetime="2018-04-27T03:46:52.000Z" itemprop="datePublished">4月 27</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/04/PHP运行模式/">PHP运行模式</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2018/04/Nginx和PHP的配置/" class="archive-article-date">
-  <time datetime="2018-04-27T01:59:26.000Z" itemprop="datePublished">4月 27</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/04/Nginx和PHP的配置/">Nginx和PHP的配置</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2018/04/SOLID/" class="archive-article-date">
-  <time datetime="2018-04-25T07:50:39.000Z" itemprop="datePublished">4月 25</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/04/SOLID/">SOLID</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2018/04/PHP的设计模式之行为模式（三）/" class="archive-article-date">
-  <time datetime="2018-04-25T07:27:18.000Z" itemprop="datePublished">4月 25</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/04/PHP的设计模式之行为模式（三）/">PHP的设计模式之行为模式（三）</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-
-  <nav id="page-nav">
-    
-    <span class="page-number current">1</span><a class="page-number" href="/archives/2018/page/2/">2</a><a class="page-number" href="/archives/2018/page/3/">3</a><a class="extend next" rel="next" href="/archives/2018/page/2/">下一页 &raquo;</a>
-  </nav>
 
 </section>
         
