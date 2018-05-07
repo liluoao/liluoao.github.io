@@ -67,6 +67,55 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-PHP运行模式" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/04/PHP运行模式/" class="article-date">
+  <time datetime="2018-04-27T03:46:52.000Z" itemprop="datePublished">2018-04-27</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/04/PHP运行模式/">PHP运行模式</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>原文链接：<a href="https://segmentfault.com/a/1190000014547406" target="_blank" rel="noopener">https://segmentfault.com/a/1190000014547406</a></p>
+<h2 id="SAPI"><a href="#SAPI" class="headerlink" title="SAPI"></a>SAPI</h2><p>这里所说的 PHP 运行模式， 其实指的是 SAPI （Server Application Programming Interface，服务端应用编程端口 ）。SAPI 为 PHP 提供了一个和外部通信的接口， PHP 就是通过这个接口来与其它的应用进行数据交互的。针对不同的应用场景， PHP 也提供了多种不同的 SAPI ，常见的有：apache、apache2filter、apache2handler、cli、cgi、embed 、fast-cgi、isapi 等等。 </p>
+<blockquote>
+<p><code>php_sapi_name()</code> — 返回 web 服务器和 PHP 之间的接口类型。可能返回的值包括了 aolserver、apache、 apache2filter、apache2handler、 caudium、cgi （直到 PHP 5.3）, cgi-fcgi、cli、 cli-server、 continuity、embed、fpm-fcgi、 isapi、litespeed、 milter、nsapi、 phttpd、pi3web、roxen、 thttpd、tux 和 webjames。</p>
+</blockquote>
+<p>目前 PHP 内置的很多 SAPI 实现都已不再维护或者变的有些非主流了，PHP 社区目前正在考虑将一些 SAPI 移出代码库。 社区对很多功能的考虑是除非真的非常必要，或者某些功能已近非常通用了，否则就在 PECL 库中。</p>
+<p>接下来会对其中五个比较常见的运行模式进行说明。<br>
+        
+          <p class="article-more-link">
+            <a href="/2018/04/PHP运行模式/#more">阅读全文</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://liluoao.github.io/2018/04/PHP运行模式/" data-id="cjgvygz6j000w08mjrjgxclp8" class="article-share-link">分享</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/sapi/">sapi</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-Nginx和PHP的配置" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2018/04/Nginx和PHP的配置/" class="article-date">
@@ -99,7 +148,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2018/04/Nginx和PHP的配置/" data-id="cjgvy0eem0008ykmjrk0rmjwp" class="article-share-link">分享</a>
+      <a data-url="https://liluoao.github.io/2018/04/Nginx和PHP的配置/" data-id="cjgvygz5o000c08mjrjq8fe89" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/nginx/">nginx</a></li></ul>
@@ -150,7 +199,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2018/04/SOLID/" data-id="cjgvy0efh000zykmj3f2onvj3" class="article-share-link">分享</a>
+      <a data-url="https://liluoao.github.io/2018/04/SOLID/" data-id="cjgvygz6j000z08mjikmn6980" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/clean-code/">clean-code</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/solid/">solid</a></li></ul>
@@ -206,7 +255,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2018/04/PHP的设计模式之行为模式（三）/" data-id="cjgvy0efh000sykmjy8c71rfs" class="article-share-link">分享</a>
+      <a data-url="https://liluoao.github.io/2018/04/PHP的设计模式之行为模式（三）/" data-id="cjgvygz64000s08mjuyfyiq3t" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/design-patterns/">design-patterns</a></li></ul>
@@ -258,7 +307,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2018/04/PHP的设计模式之行为模式（二）/" data-id="cjgvy0efh000pykmjwuvy71nd" class="article-share-link">分享</a>
+      <a data-url="https://liluoao.github.io/2018/04/PHP的设计模式之行为模式（二）/" data-id="cjgvygz6j000u08mjy8iuaogd" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/design-patterns/">design-patterns</a></li></ul>
@@ -329,7 +378,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2018/04/重构代码/" data-id="cjgvy0ehn002rykmjpf02hmg7" class="article-share-link">分享</a>
+      <a data-url="https://liluoao.github.io/2018/04/重构代码/" data-id="cjgvygz8a002v08mjrzlypogq" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/refactor/">refactor</a></li></ul>
@@ -375,7 +424,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2018/04/依赖注入/" data-id="cjgvy0egs001wykmjvtocgel7" class="article-share-link">分享</a>
+      <a data-url="https://liluoao.github.io/2018/04/依赖注入/" data-id="cjgvygz7f001x08mjyvcpmkv2" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/dependency-injection/">dependency-injection</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/design-patterns/">design-patterns</a></li></ul>
@@ -429,7 +478,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2018/04/PHP的设计模式之架构模式（二）/" data-id="cjgvy0efh000iykmjk2mg2hzn" class="article-share-link">分享</a>
+      <a data-url="https://liluoao.github.io/2018/04/PHP的设计模式之架构模式（二）/" data-id="cjgvygz64000n08mjzjhc3xye" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/design-patterns/">design-patterns</a></li></ul>
@@ -481,7 +530,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2018/04/PHP的设计模式之行为模式/" data-id="cjgvy0efh000nykmj2346bod1" class="article-share-link">分享</a>
+      <a data-url="https://liluoao.github.io/2018/04/PHP的设计模式之行为模式/" data-id="cjgvygz64000p08mj0sfashg3" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/design-patterns/">design-patterns</a></li></ul>
@@ -536,60 +585,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2018/04/PHP的设计模式之架构模式/" data-id="cjgvy0ef1000gykmjd0xn6g1v" class="article-share-link">分享</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/design-patterns/">design-patterns</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-PHP的设计模式之创建模式" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/04/PHP的设计模式之创建模式/" class="article-date">
-  <time datetime="2018-04-15T14:50:50.000Z" itemprop="datePublished">2018-04-15</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/04/PHP的设计模式之创建模式/">PHP的设计模式之创建模式</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>原文链接：<a href="https://www.devbattles.com/en/sand/post-1306-Design+Patterns+in+PHP" target="_blank" rel="noopener">https://www.devbattles.com/en/sand/post-1306-Design+Patterns+in+PHP</a></p>
-<p>什么是设计模式，设计模式并不是一种用来解释的模式，它们并不是像链表那样的常见的数据结构，也不是某种特殊的应用或者框架设计。事实上，设计模式的解释如下：</p>
-<blockquote>
-<p>descriptions of communicating objects and classes that are customized to solve a general design problem in a particular context.</p>
-</blockquote>
-<p>另一方面，设计模式提供了一种广泛的可重用的方式来解决我们日常编程中常常遇见的问题。设计模式并不一定就是一个类库或者第三方框架，它们更多的表现为一种思想并且广泛地应用在系统中。它们也表现为一种模式或者模板，可以在多个不同的场景下用于解决问题。设计模式可以用于加速开发，并且将很多大的想法或者设计以一种简单地方式实现。当然，虽然设计模式在开发中很有作用，但是千万要避免在不适当的场景误用它们。</p>
-<p>目前常见的设计模式主要有23种，根据使用目标的不同可以分为以下三大类：</p>
-<ul>
-<li>创建模式（Creational Patterns）：用于创建对象从而将某个对象从实现中解耦合。</li>
-<li>架构模式（Structural Patterns）：用于在不同的对象之间构造大的对象结构。</li>
-<li>行为模式（Behavioral Patterns）：用于在不同的对象之间管理算法、关系以及职责。
-        
-          <p class="article-more-link">
-            <a href="/2018/04/PHP的设计模式之创建模式/#more">阅读全文</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2018/04/PHP的设计模式之创建模式/" data-id="cjgvy0ef1000cykmjhuuksmbe" class="article-share-link">分享</a>
+      <a data-url="https://liluoao.github.io/2018/04/PHP的设计模式之架构模式/" data-id="cjgvygz64000j08mjtolxvp33" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/design-patterns/">design-patterns</a></li></ul>
@@ -619,6 +615,10 @@
       <ul>
         
           <li>
+            <a href="/2018/05/ES6的Promise/">ES6的Promise</a>
+          </li>
+        
+          <li>
             <a href="/2018/05/部分数组函数分析/">部分数组函数分析</a>
           </li>
         
@@ -632,10 +632,6 @@
         
           <li>
             <a href="/2018/05/使用Postman-Interceptor/">使用Postman-Interceptor</a>
-          </li>
-        
-          <li>
-            <a href="/2018/05/使用Intervention-Image/">使用Intervention-Image</a>
           </li>
         
       </ul>
@@ -657,7 +653,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/apache/">apache</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/array/">array</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ci/">ci</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/clean-code/">clean-code</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/culture/">culture</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dependency-injection/">dependency-injection</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/design-patterns/">design-patterns</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/laravel/">laravel</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/">mysql</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nginx/">nginx</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/phalcon/">phalcon</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/php/">php</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/phpstorm/">phpstorm</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/postman/">postman</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/refactor/">refactor</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/restful/">restful</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sapi/">sapi</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/solid/">solid</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/wechat/">wechat</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/算法/">算法</a><span class="tag-list-count">4</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/apache/">apache</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/array/">array</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ci/">ci</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/clean-code/">clean-code</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/culture/">culture</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dependency-injection/">dependency-injection</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/design-patterns/">design-patterns</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/laravel/">laravel</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/">mysql</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nginx/">nginx</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/phalcon/">phalcon</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/php/">php</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/phpstorm/">phpstorm</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/postman/">postman</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/refactor/">refactor</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/restful/">restful</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sapi/">sapi</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/solid/">solid</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/wechat/">wechat</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/算法/">算法</a><span class="tag-list-count">4</span></li></ul>
     </div>
   </div>
 
@@ -667,7 +663,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">五月 2018</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a><span class="archive-list-count">20</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">二月 2018</a><span class="archive-list-count">5</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">五月 2018</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a><span class="archive-list-count">20</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">二月 2018</a><span class="archive-list-count">5</span></li></ul>
     </div>
   </div>
 
