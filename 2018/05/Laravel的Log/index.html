@@ -5,18 +5,20 @@
   
 
   
-  <title>分类: linux | To be a Web Artisan</title>
+  <title>Laravel的Log | To be a Web Artisan</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="李罗奥的博客">
-<meta property="og:type" content="website">
-<meta property="og:title" content="To be a Web Artisan">
-<meta property="og:url" content="https://liluoao.github.io/categories/linux/index.html">
+  <meta name="description" content="错误日志级别：debug, info, notice, warning, error, critical, alert, emergency123456789101112131415161718192021use Illuminate\Support\Facades\Log;Log::emergency($message, $contextualInfo);Log::alert($message)">
+<meta name="keywords" content="laravel">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Laravel的Log">
+<meta property="og:url" content="https://liluoao.github.io/2018/05/Laravel的Log/index.html">
 <meta property="og:site_name" content="To be a Web Artisan">
-<meta property="og:description" content="李罗奥的博客">
+<meta property="og:description" content="错误日志级别：debug, info, notice, warning, error, critical, alert, emergency123456789101112131415161718192021use Illuminate\Support\Facades\Log;Log::emergency($message, $contextualInfo);Log::alert($message)">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-05-07T08:17:06.873Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="To be a Web Artisan">
-<meta name="twitter:description" content="李罗奥的博客">
+<meta name="twitter:title" content="Laravel的Log">
+<meta name="twitter:description" content="错误日志级别：debug, info, notice, warning, error, critical, alert, emergency123456789101112131415161718192021use Illuminate\Support\Facades\Log;Log::emergency($message, $contextualInfo);Log::alert($message)">
 <meta name="twitter:creator" content="@liluoao">
   
   
@@ -65,59 +67,58 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2018" class="archive-year">2018</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2018/05/Apache的SSL配置/" class="archive-article-date">
-  <time datetime="2018-05-02T07:15:45.000Z" itemprop="datePublished">5月 2</time>
+        <section id="main"><article id="post-Laravel的Log" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/05/Laravel的Log/" class="article-date">
+  <time datetime="2018-05-07T08:13:07.000Z" itemprop="datePublished">2018-05-07</time>
 </a>
-      
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/laravel/">laravel</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/05/Apache的SSL配置/">Apache的SSL配置</a>
+    <h1 class="article-title" itemprop="name">
+      Laravel的Log
     </h1>
   
 
-    </header>
-  </div>
-</article>
-  
+      </header>
     
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2018/04/Linux搭建环境/" class="archive-article-date">
-  <time datetime="2018-04-13T01:09:04.000Z" itemprop="datePublished">4月 13</time>
-</a>
+    <div class="article-entry" itemprop="articleBody">
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/04/Linux搭建环境/">Linux搭建环境</a>
-    </h1>
-  
+        <p>错误日志级别：<em>debug, info, notice, warning, error, critical, alert, emergency</em><br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">use</span> <span class="title">Illuminate</span>\<span class="title">Support</span>\<span class="title">Facades</span>\<span class="title">Log</span>;</span><br><span class="line"></span><br><span class="line">Log::emergency($message, $contextualInfo);</span><br><span class="line">Log::alert($message);</span><br><span class="line">Log::critical($message);</span><br><span class="line">Log::error($message);</span><br><span class="line">Log::warning($message);</span><br><span class="line">Log::notice($message);</span><br><span class="line">Log::info($message);</span><br><span class="line">Log::debug($message);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 或者全局助手方法</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// Log::info()</span></span><br><span class="line">info(<span class="string">'Some helpful information!'</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// Log::debug()</span></span><br><span class="line">logger(<span class="string">'Debug message'</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// Log::error()</span></span><br><span class="line">logger()-&gt;error(<span class="string">'You are not allowed here.'</span>);</span><br></pre></td></tr></table></figure></p>
 
-    </header>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://liluoao.github.io/2018/05/Laravel的Log/" data-id="cjgvz4czw00071smj76vzmtqk" class="article-share-link">分享</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/laravel/">laravel</a></li></ul>
+
+    </footer>
   </div>
-</article>
+  
+    
+<nav id="article-nav">
   
   
-    </div></section>
+    <a href="/2018/05/Laravel的Config/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">Laravel的Config</div>
+    </a>
   
+</nav>
 
+  
+</article>
 
 </section>
         
