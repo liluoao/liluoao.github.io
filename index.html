@@ -67,6 +67,54 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-Laravel的Queue" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/05/Laravel的Queue/" class="article-date">
+  <time datetime="2018-05-08T01:08:48.000Z" itemprop="datePublished">2018-05-08</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/laravel/">laravel</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/05/Laravel的Queue/">Laravel的Queue</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h3><p>首先打开 <code>config/queue.php</code> 。<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'default'</span> =&gt; env(<span class="string">'QUEUE_DRIVER'</span>, <span class="string">'sync'</span>),</span><br><span class="line"><span class="string">'connections'</span> =&gt; [</span><br><span class="line">        <span class="string">'sync'</span> =&gt; [</span><br><span class="line">            <span class="string">'driver'</span> =&gt; <span class="string">'sync'</span>,</span><br><span class="line">        ],</span><br><span class="line">        <span class="string">'database'</span> =&gt; [</span><br><span class="line">            <span class="string">'driver'</span> =&gt; <span class="string">'database'</span>,</span><br><span class="line">        ],</span><br><span class="line">        <span class="comment">//...</span></span><br><span class="line">        <span class="string">'redis'</span> =&gt; [</span><br><span class="line">            <span class="string">'driver'</span> =&gt; <span class="string">'redis'</span>,</span><br><span class="line">        ],</span><br><span class="line">    ],</span><br></pre></td></tr></table></figure></p>
+<p><code>default</code> 是队列系统默认使用的驱动，在连接时可以使用 <code>onConnection()</code> 方法将任务推到指定连接。<br><code>connections</code> 可以配置各种驱动的设置，如<strong>Redis</strong>的数据库连接等。<br><code>failed</code> 配置队列中的任务执行失败时，保存失败任务的库与表。</p>
+        
+          <p class="article-more-link">
+            <a href="/2018/05/Laravel的Queue/#more">阅读全文</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://liluoao.github.io/2018/05/Laravel的Queue/" data-id="cjgwzdc10000btgmjuvcu4zrm" class="article-share-link">分享</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/laravel/">laravel</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-Laravel的Eloquent-ORM-Relationship" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2018/05/Laravel的Eloquent-ORM-Relationship/" class="article-date">
@@ -106,7 +154,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2018/05/Laravel的Eloquent-ORM-Relationship/" data-id="cjgwz8fa7000770mje564hmol" class="article-share-link">分享</a>
+      <a data-url="https://liluoao.github.io/2018/05/Laravel的Eloquent-ORM-Relationship/" data-id="cjgwzdc100007tgmj3qal4hu9" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/laravel/">laravel</a></li></ul>
@@ -149,7 +197,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2018/05/Laravel的Log/" data-id="cjgwz8fa7000870mjm9jyqdbt" class="article-share-link">分享</a>
+      <a data-url="https://liluoao.github.io/2018/05/Laravel的Log/" data-id="cjgwzdc100008tgmjtxfp4epg" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/laravel/">laravel</a></li></ul>
@@ -198,7 +246,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2018/05/Laravel的Config/" data-id="cjgwz8fa7000670mj5ctdkgzv" class="article-share-link">分享</a>
+      <a data-url="https://liluoao.github.io/2018/05/Laravel的Config/" data-id="cjgwzdc100006tgmj3hzcvdbp" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/laravel/">laravel</a></li></ul>
@@ -243,7 +291,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2018/05/ES6的Promise/" data-id="cjgwz8f9s000370mjqyl9pmul" class="article-share-link">分享</a>
+      <a data-url="https://liluoao.github.io/2018/05/ES6的Promise/" data-id="cjgwzdc0l0003tgmjgryvroth" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li></ul>
@@ -289,7 +337,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2018/05/部分数组函数分析/" data-id="cjgwz8fct002y70mj9jegpf5w" class="article-share-link">分享</a>
+      <a data-url="https://liluoao.github.io/2018/05/部分数组函数分析/" data-id="cjgwzdc3m0031tgmjp37po8f0" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/array/">array</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/php/">php</a></li></ul>
@@ -344,7 +392,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2018/05/使用Carbon/" data-id="cjgwz8fby001m70mj2l4rydcb" class="article-share-link">分享</a>
+      <a data-url="https://liluoao.github.io/2018/05/使用Carbon/" data-id="cjgwzdc2r001ptgmjeyx1sidk" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/laravel/">laravel</a></li></ul>
@@ -396,7 +444,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2018/05/使用Laravel-Excel/" data-id="cjgwz8fby001u70mjclwo8xu9" class="article-share-link">分享</a>
+      <a data-url="https://liluoao.github.io/2018/05/使用Laravel-Excel/" data-id="cjgwzdc36001xtgmjd296ypzh" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/laravel/">laravel</a></li></ul>
@@ -448,7 +496,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2018/05/使用Postman-Interceptor/" data-id="cjgwz8fcd002070mjgpoug1r7" class="article-share-link">分享</a>
+      <a data-url="https://liluoao.github.io/2018/05/使用Postman-Interceptor/" data-id="cjgwzdc360023tgmjvateq7ys" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/postman/">postman</a></li></ul>
@@ -499,67 +547,10 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2018/05/使用Intervention-Image/" data-id="cjgwz8fby001r70mjj30t5pjq" class="article-share-link">分享</a>
+      <a data-url="https://liluoao.github.io/2018/05/使用Intervention-Image/" data-id="cjgwzdc2r001vtgmjrq6hmrf8" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/laravel/">laravel</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-Apache的SSL配置" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/05/Apache的SSL配置/" class="article-date">
-  <time datetime="2018-05-02T07:15:45.000Z" itemprop="datePublished">2018-05-02</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/linux/">linux</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/05/Apache的SSL配置/">Apache的SSL配置</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="安装Apache"><a href="#安装Apache" class="headerlink" title="安装Apache"></a>安装Apache</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install apache2</span><br></pre></td></tr></table></figure>
-<ul>
-<li>默认站点目录在 <code>/var/www/html/</code></li>
-<li>配置文件在 <code>/etc/apache2/</code></li>
-<li>日志在 <code>/var/log/apache2/</code></li>
-<li>启动脚本是 <code>/etc/init.d/apache2</code></li>
-</ul>
-<h2 id="安装OpenSSL"><a href="#安装OpenSSL" class="headerlink" title="安装OpenSSL"></a>安装OpenSSL</h2><p>Ubuntu默认已经安装了OPENSSL，如果没安装，<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install openssl</span><br></pre></td></tr></table></figure></p>
-<h2 id="开启SSL模块"><a href="#开启SSL模块" class="headerlink" title="开启SSL模块"></a>开启SSL模块</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo a2enmod ssl</span><br></pre></td></tr></table></figure>
-<p>这条命令相当于<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo ln -s /etc/apache2/mods-available/ssl.load /etc/apache2/mods-enabled</span><br><span class="line">sudo ln -s /etc/apache2/mods-available/ssl.conf /etc/apache2/mods-enabled</span><br></pre></td></tr></table></figure></p>
-<p>如果没有a2enmod指令，也可直接在apache2.conf中设置SSL模块加载：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">LoadModule ssl_module /usr/lib/apache2/modules/mod_ssl.so</span><br></pre></td></tr></table></figure></p>
-        
-          <p class="article-more-link">
-            <a href="/2018/05/Apache的SSL配置/#more">阅读全文</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2018/05/Apache的SSL配置/" data-id="cjgwz8f9s000270mjofrh1ftb" class="article-share-link">分享</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/apache/">apache</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux/">linux</a></li></ul>
 
     </footer>
   </div>
@@ -586,6 +577,10 @@
       <ul>
         
           <li>
+            <a href="/2018/05/Laravel的Queue/">Laravel的Queue</a>
+          </li>
+        
+          <li>
             <a href="/2018/05/Laravel的Eloquent-ORM-Relationship/">Laravel的Eloquent-ORM-Relationship</a>
           </li>
         
@@ -601,10 +596,6 @@
             <a href="/2018/05/ES6的Promise/">ES6的Promise</a>
           </li>
         
-          <li>
-            <a href="/2018/05/部分数组函数分析/">部分数组函数分析</a>
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -614,7 +605,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">分类</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/laravel/">laravel</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/linux/">linux</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/mysql/">mysql</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/phalcon/">phalcon</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/wechat/">wechat</a><span class="category-list-count">2</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/laravel/">laravel</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/linux/">linux</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/mysql/">mysql</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/phalcon/">phalcon</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/wechat/">wechat</a><span class="category-list-count">2</span></li></ul>
     </div>
   </div>
 
@@ -624,7 +615,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/apache/">apache</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/array/">array</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ci/">ci</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/clean-code/">clean-code</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/composer/">composer</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/culture/">culture</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dependency-injection/">dependency-injection</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/design-patterns/">design-patterns</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/laravel/">laravel</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/">mysql</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nginx/">nginx</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/phalcon/">phalcon</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/php/">php</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/phpstorm/">phpstorm</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/postman/">postman</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/refactor/">refactor</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/restful/">restful</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sapi/">sapi</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/solid/">solid</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/wechat/">wechat</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/安全/">安全</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/算法/">算法</a><span class="tag-list-count">4</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/apache/">apache</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/array/">array</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ci/">ci</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/clean-code/">clean-code</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/composer/">composer</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/culture/">culture</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dependency-injection/">dependency-injection</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/design-patterns/">design-patterns</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/laravel/">laravel</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/">mysql</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nginx/">nginx</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/phalcon/">phalcon</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/php/">php</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/phpstorm/">phpstorm</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/postman/">postman</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/refactor/">refactor</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/restful/">restful</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sapi/">sapi</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/solid/">solid</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/wechat/">wechat</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/安全/">安全</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/算法/">算法</a><span class="tag-list-count">4</span></li></ul>
     </div>
   </div>
 
@@ -634,7 +625,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">五月 2018</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a><span class="archive-list-count">20</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">二月 2018</a><span class="archive-list-count">5</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">五月 2018</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a><span class="archive-list-count">20</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">二月 2018</a><span class="archive-list-count">5</span></li></ul>
     </div>
   </div>
 

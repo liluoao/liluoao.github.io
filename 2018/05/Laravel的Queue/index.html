@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>Laravel的Queue | To be a Web Artisan</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="准备工作首先打开 config/queue.php 。12345678910111213&apos;default&apos; =&amp;gt; env(&apos;QUEUE_DRIVER&apos;, &apos;sync&apos;),&apos;connections&apos; =&amp;gt; [        &apos;sync&apos; =&amp;gt; [            &apos;driver&apos; =&amp;gt; &apos;sync&apos;,        ],        &apos;database&apos; =&amp;gt;">
+<meta name="keywords" content="laravel">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Laravel的Queue">
+<meta property="og:url" content="https://liluoao.github.io/2018/05/Laravel的Queue/index.html">
+<meta property="og:site_name" content="To be a Web Artisan">
+<meta property="og:description" content="准备工作首先打开 config/queue.php 。12345678910111213&apos;default&apos; =&amp;gt; env(&apos;QUEUE_DRIVER&apos;, &apos;sync&apos;),&apos;connections&apos; =&amp;gt; [        &apos;sync&apos; =&amp;gt; [            &apos;driver&apos; =&amp;gt; &apos;sync&apos;,        ],        &apos;database&apos; =&amp;gt;">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-05-08T01:11:53.929Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Laravel的Queue">
+<meta name="twitter:description" content="准备工作首先打开 config/queue.php 。12345678910111213&apos;default&apos; =&amp;gt; env(&apos;QUEUE_DRIVER&apos;, &apos;sync&apos;),&apos;connections&apos; =&amp;gt; [        &apos;sync&apos; =&amp;gt; [            &apos;driver&apos; =&amp;gt; &apos;sync&apos;,        ],        &apos;database&apos; =&amp;gt;">
+<meta name="twitter:creator" content="@liluoao">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">To be a Web Artisan</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">首页</a>
+        
+          <a class="main-nav-link" href="/archives">文章列表</a>
+        
+          <a class="main-nav-link" href="/categories/laravel">Laravel</a>
+        
+          <a class="main-nav-link" href="/categories/phalcon">Phalcon</a>
+        
+          <a class="main-nav-link" href="/categories/wechat">Wechat</a>
+        
+          <a class="main-nav-link" href="/me.html">关于作者</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://liluoao.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Laravel的Queue" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/05/Laravel的Queue/" class="article-date">
+  <time datetime="2018-05-08T01:08:48.000Z" itemprop="datePublished">2018-05-08</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/laravel/">laravel</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Laravel的Queue
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h3><p>首先打开 <code>config/queue.php</code> 。<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'default'</span> =&gt; env(<span class="string">'QUEUE_DRIVER'</span>, <span class="string">'sync'</span>),</span><br><span class="line"><span class="string">'connections'</span> =&gt; [</span><br><span class="line">        <span class="string">'sync'</span> =&gt; [</span><br><span class="line">            <span class="string">'driver'</span> =&gt; <span class="string">'sync'</span>,</span><br><span class="line">        ],</span><br><span class="line">        <span class="string">'database'</span> =&gt; [</span><br><span class="line">            <span class="string">'driver'</span> =&gt; <span class="string">'database'</span>,</span><br><span class="line">        ],</span><br><span class="line">        <span class="comment">//...</span></span><br><span class="line">        <span class="string">'redis'</span> =&gt; [</span><br><span class="line">            <span class="string">'driver'</span> =&gt; <span class="string">'redis'</span>,</span><br><span class="line">        ],</span><br><span class="line">    ],</span><br></pre></td></tr></table></figure></p>
+<p><code>default</code> 是队列系统默认使用的驱动，在连接时可以使用 <code>onConnection()</code> 方法将任务推到指定连接。<br><code>connections</code> 可以配置各种驱动的设置，如<strong>Redis</strong>的数据库连接等。<br><code>failed</code> 配置队列中的任务执行失败时，保存失败任务的库与表。</p>
+<a id="more"></a>
+<p>这里我以 <code>database</code> 驱动为例。<br>首先执行artisan命令：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">php artisan queue:table//生成jobs表</span><br><span class="line">php artisan queue:failed-table//生成failed_jobs表</span><br><span class="line">php artisan migrate</span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>这里有一点，Laravel生成的jobs表的migratio中，<br><code>$table-&gt;unsignedTinyInteger(&#39;attempts&#39;);</code>，<br><code>attempts</code> 字段是无符号 <code>tinyint</code> 类型的，我在一次任务重试次数过多时，会导致超出范围，个人修改成了 <code>int</code> 。 </p>
+</blockquote>
+<h3 id="创建任务"><a href="#创建任务" class="headerlink" title="创建任务"></a>创建任务</h3><p>执行artisan命令：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">php artisan make:job ReceiveMoney//你的任务的名字</span><br></pre></td></tr></table></figure></p>
+<p>同时会新建 <code>app/Jobs</code> 目录。<br>任务类的基本格式：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ReceiveMoney</span> <span class="keyword">implements</span> <span class="title">ShouldQueue</span> </span>&#123;</span><br><span class="line">    <span class="keyword">use</span> <span class="title">Dispatchable</span>, <span class="title">InteractsWithQueue</span>, <span class="title">Queueable</span>, <span class="title">SerializesModels</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span></span>&#123;&#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">handle</span></span>&#123;&#125;</span><br></pre></td></tr></table></figure></p>
+<p>其中它引用了 <code>SerializesModels</code> trait，可以优雅地序列化Eloquent。<code>hanle</code> 是主方法，任务被处理时调用。</p>
+<h3 id="分发任务"><a href="#分发任务" class="headerlink" title="分发任务"></a>分发任务</h3><p>在你的逻辑（控制器、或自定义的逻辑层等等）中，使用 <code>dispatch</code> 辅助函数分发它：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">\App\Jobs\ReceiveMoney::dispatch($updateArray, $type);</span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>需要延迟执行时可以链式调用 <code>delay()</code> 方法。当时使用时误解了文档中<em>唯一需要传递给 dispatch 的参数是这个任务类的实例</em>。</p>
+</blockquote>
+<p>适当修改我们的 <code>ReceiveMoney</code> 任务类，让它接收传递进来的两个参数，并保存一条收支记录：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">protected</span> $updateArray;</span><br><span class="line"><span class="keyword">protected</span> $type;</span><br><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span><span class="params">($updateArray, $type)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">$this</span>-&gt;updateArray= $updateArray;</span><br><span class="line">    <span class="keyword">$this</span>-&gt;type= $type;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">handle</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">$this</span>-&gt;saveReceiptRecord(<span class="keyword">$this</span>-&gt;updateArray, <span class="keyword">$this</span>-&gt;type);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">protected</span> <span class="function"><span class="keyword">function</span> <span class="title">saveReceiptRecord</span><span class="params">($updateArray, $type)</span> </span>&#123;</span><br><span class="line">    <span class="comment">//do sth...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="运行队列"><a href="#运行队列" class="headerlink" title="运行队列"></a>运行队列</h3><p>运行artisan命令，这是一个常驻命令：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">php artisan queue:work</span><br></pre></td></tr></table></figure></p>
+<p>或者运行一次：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">php artisan queue:work --once</span><br></pre></td></tr></table></figure></p>
+<p>指定驱动：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">php artisan queue:work redis</span><br></pre></td></tr></table></figure></p>
+<h3 id="处理失败"><a href="#处理失败" class="headerlink" title="处理失败"></a>处理失败</h3><p>所有失败任务会存到 <code>failed_jobs</code> 表中，可以用artisan命令表格信息展示：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">php artisan queue:failed</span><br></pre></td></tr></table></figure></p>
+<p>重试单个ID或全部all：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">php artisan queue:retry 1</span><br><span class="line">php artisan queue:retry all</span><br></pre></td></tr></table></figure></p>
+<p>删除单个或全部<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">php artisan queue:forget 2</span><br><span class="line">php artisan queue:flush</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://liluoao.github.io/2018/05/Laravel的Queue/" data-id="cjgwzdc10000btgmjuvcu4zrm" class="article-share-link">分享</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/laravel/">laravel</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2018/05/Laravel的Eloquent-ORM-Relationship/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">Laravel的Eloquent-ORM-Relationship</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2018/05/Laravel的Queue/">Laravel的Queue</a>
+          </li>
+        
+          <li>
+            <a href="/2018/05/Laravel的Eloquent-ORM-Relationship/">Laravel的Eloquent-ORM-Relationship</a>
+          </li>
+        
+          <li>
+            <a href="/2018/05/Laravel的Log/">Laravel的Log</a>
+          </li>
+        
+          <li>
+            <a href="/2018/05/Laravel的Config/">Laravel的Config</a>
+          </li>
+        
+          <li>
+            <a href="/2018/05/ES6的Promise/">ES6的Promise</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/laravel/">laravel</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/linux/">linux</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/mysql/">mysql</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/phalcon/">phalcon</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/wechat/">wechat</a><span class="category-list-count">2</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/apache/">apache</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/array/">array</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ci/">ci</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/clean-code/">clean-code</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/composer/">composer</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/culture/">culture</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dependency-injection/">dependency-injection</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/design-patterns/">design-patterns</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/laravel/">laravel</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/">mysql</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nginx/">nginx</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/phalcon/">phalcon</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/php/">php</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/phpstorm/">phpstorm</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/postman/">postman</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/refactor/">refactor</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/restful/">restful</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sapi/">sapi</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/solid/">solid</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/wechat/">wechat</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/安全/">安全</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/算法/">算法</a><span class="tag-list-count">4</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">五月 2018</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a><span class="archive-list-count">20</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">二月 2018</a><span class="archive-list-count">5</span></li></ul>
+    </div>
+  </div>
+
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      <div class="footer-about-me">
+        关于作者<br>
+        <a href="https://github.com/liluoao" target="_blank" title="GitHub">GitHub</a><br>
+        <a href="https://segmentfault.com/u/liluoao" target="_blank" title="SegmentFault">SegmentFault</a><br>
+        <a href="https://laravel-china.org/users/7144" target="_blank" title="LaravelChina">LaravelChina</a><br>
+        <a href="https://gitee.com/liluoao" target="_blank" title="码云">码云</a><br>
+        <a href="https://juejin.im/user/5a19374cf265da4332274600" target="_blank" title="掘金">掘金</a><br>
+        <a href="https://packagist.org/users/liluoao/" target="_blank" title="Packagist">Packagist</a><br>
+        <a href="https://www.gitbook.com/@liluoao" target="_blank" title="GitBook">GitBook</a>
+      </div>
+      <div style="width:300px;margin:0 auto; padding:20px 0;">
+        <div class="footer-copyright">
+          &copy; 2018 李罗奥
+          Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+        </div>
+        <a href="http://www.miitbeian.gov.cn/" target="_blank" style="display:inline-block;text-decoration:none;height:20px;line-height:20px;"><p style="float:left;height:20px;line-height:20px;margin: 0px 0px 0px 5px; color:#939393;">鄂ICP备18009105号</p></a>
+        <br>
+        <img src="css/images/beian.png"/>
+        <a target="_blank" href="https://www.beian.gov.cn/portal/registerSystemInfo?recordcode=42011102001595" style="display:inline-block;text-decoration:none;height:20px;line-height:20px;"><img src="" style="float:left;"/><p style="float:left;height:20px;line-height:20px;margin: 0px 0px 0px 5px; color:#939393;">鄂公网安备 42011102001595号</p></a>
+      </div>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">首页</a>
+  
+    <a href="/archives" class="mobile-nav-link">文章列表</a>
+  
+    <a href="/categories/laravel" class="mobile-nav-link">Laravel</a>
+  
+    <a href="/categories/phalcon" class="mobile-nav-link">Phalcon</a>
+  
+    <a href="/categories/wechat" class="mobile-nav-link">Wechat</a>
+  
+    <a href="/me.html" class="mobile-nav-link">关于作者</a>
+  
+</nav>
+    
+
+<script src="//lib.sinaapp.com/js/jquery/3.1.0/jquery-3.1.0.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>
