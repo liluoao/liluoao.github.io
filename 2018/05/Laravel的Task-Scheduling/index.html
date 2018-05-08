@@ -5,18 +5,20 @@
   
 
   
-  <title>分类: wechat | To be a Web Artisan</title>
+  <title>Laravel的Task-Scheduling | To be a Web Artisan</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="李罗奥的博客">
-<meta property="og:type" content="website">
-<meta property="og:title" content="To be a Web Artisan">
-<meta property="og:url" content="https://liluoao.github.io/categories/wechat/index.html">
+  <meta name="description" content="启动文档推荐使用Laravel Forge管理 cron 项目。示例：1* * * * * php /path-to-your-project/artisan schedule:run &amp;gt;&amp;gt; /dev/null 2&amp;gt;&amp;amp;1 定义调度在 App\Console\Kernel 中 schedule() 方法中定义所有调度任务。有如下几种可以调度：  Closure123$sch">
+<meta name="keywords" content="laravel">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Laravel的Task-Scheduling">
+<meta property="og:url" content="https://liluoao.github.io/2018/05/Laravel的Task-Scheduling/index.html">
 <meta property="og:site_name" content="To be a Web Artisan">
-<meta property="og:description" content="李罗奥的博客">
+<meta property="og:description" content="启动文档推荐使用Laravel Forge管理 cron 项目。示例：1* * * * * php /path-to-your-project/artisan schedule:run &amp;gt;&amp;gt; /dev/null 2&amp;gt;&amp;amp;1 定义调度在 App\Console\Kernel 中 schedule() 方法中定义所有调度任务。有如下几种可以调度：  Closure123$sch">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-05-08T01:43:49.927Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="To be a Web Artisan">
-<meta name="twitter:description" content="李罗奥的博客">
+<meta name="twitter:title" content="Laravel的Task-Scheduling">
+<meta name="twitter:description" content="启动文档推荐使用Laravel Forge管理 cron 项目。示例：1* * * * * php /path-to-your-project/artisan schedule:run &amp;gt;&amp;gt; /dev/null 2&amp;gt;&amp;amp;1 定义调度在 App\Console\Kernel 中 schedule() 方法中定义所有调度任务。有如下几种可以调度：  Closure123$sch">
 <meta name="twitter:creator" content="@liluoao">
   
   
@@ -65,59 +67,153 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2018" class="archive-year">2018</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2018/04/微信菜单/" class="archive-article-date">
-  <time datetime="2018-04-28T01:56:41.000Z" itemprop="datePublished">4月 28</time>
+        <section id="main"><article id="post-Laravel的Task-Scheduling" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/05/Laravel的Task-Scheduling/" class="article-date">
+  <time datetime="2018-05-08T01:37:40.000Z" itemprop="datePublished">2018-05-08</time>
 </a>
-      
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/laravel/">laravel</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/04/微信菜单/">微信菜单</a>
+    <h1 class="article-title" itemprop="name">
+      Laravel的Task-Scheduling
     </h1>
   
 
-    </header>
-  </div>
-</article>
-  
+      </header>
     
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2018/04/微信消息处理/" class="archive-article-date">
-  <time datetime="2018-04-27T07:14:51.000Z" itemprop="datePublished">4月 27</time>
-</a>
+    <div class="article-entry" itemprop="articleBody">
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/04/微信消息处理/">微信消息处理</a>
-    </h1>
-  
+        <h3 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h3><p>文档推荐使用<a href="https://forge.laravel.com/" target="_blank" rel="noopener">Laravel Forge</a>管理 <code>cron</code> 项目。示例：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">* * * * * php /path-to-your-project/artisan schedule:run &gt;&gt; /dev/null 2&gt;&amp;1</span><br></pre></td></tr></table></figure></p>
+<h3 id="定义调度"><a href="#定义调度" class="headerlink" title="定义调度"></a>定义调度</h3><p>在 <code>App\Console\Kernel</code> 中 <code>schedule()</code> 方法中定义所有调度任务。有如下几种可以调度：</p>
+<ol>
+<li><strong>Closure</strong><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$schedule-&gt;call(<span class="function"><span class="keyword">function</span> <span class="params">()</span> </span>&#123;</span><br><span class="line">    DB::table(<span class="string">'should_delete'</span>)-&gt;delete();</span><br><span class="line">&#125;)-&gt;daily();</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<a id="more"></a>
+<ol start="2">
+<li><p><strong>Artisan</strong><br>在上一篇《Laravel的Artisan》中创建好的Artisan命令，可以直接调度：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//每天2:00修改已过期的预约的状态</span></span><br><span class="line">$schedule-&gt;command(<span class="string">'reserve-expired'</span>)-&gt;dailyAt(<span class="string">'02:00'</span>);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>Job</strong><br>在上上一篇《Laravel的Queue》中创建好的Job队列任务，可以直接调度：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$schedule-&gt;job(<span class="keyword">new</span> ReceiveMoney)-&gt;everyFiveMinutes();</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>Shell</strong><br>使用 <code>exec()</code> 方法直接执行命令：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$schedule-&gt;exec(<span class="string">'node /home/forge/script.js'</span>)-&gt;daily();</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="可用的时间限制"><a href="#可用的时间限制" class="headerlink" title="可用的时间限制"></a>可用的时间限制</h3><table>
+<thead>
+<tr>
+<th>方法</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-&gt;cron(‘<em> </em> <em> </em> <em> </em>‘);</td>
+<td>在自定义的 Cron 时间表上执行该任务</td>
+</tr>
+<tr>
+<td>-&gt;everyMinute();</td>
+<td>每分钟执行一次任务</td>
+</tr>
+<tr>
+<td>-&gt;everyFiveMinutes();</td>
+<td>每五分钟执行一次任务</td>
+</tr>
+<tr>
+<td>-&gt;everyTenMinutes();</td>
+<td>每十分钟执行一次任务</td>
+</tr>
+<tr>
+<td>-&gt;everyFifteenMinutes();</td>
+<td>每十五分钟执行一次任务</td>
+</tr>
+<tr>
+<td>-&gt;everyThirtyMinutes();</td>
+<td>每半小时执行一次任务</td>
+</tr>
+<tr>
+<td>-&gt;hourly();</td>
+<td>每小时执行一次任务</td>
+</tr>
+<tr>
+<td>-&gt;hourlyAt(17);</td>
+<td>每小时的第 17 分钟执行一次任务</td>
+</tr>
+<tr>
+<td>-&gt;daily();</td>
+<td>每天午夜执行一次任务</td>
+</tr>
+<tr>
+<td>-&gt;dailyAt(‘13:00’);</td>
+<td>每天的 13:00 执行一次任务</td>
+</tr>
+<tr>
+<td>-&gt;twiceDaily(1, 13);</td>
+<td>每天的 1:00 和 13:00 分别执行一次任务</td>
+</tr>
+<tr>
+<td>-&gt;weekly();</td>
+<td>每周执行一次任务</td>
+</tr>
+<tr>
+<td>-&gt;monthly();</td>
+<td>每月执行一次任务</td>
+</tr>
+<tr>
+<td>-&gt;monthlyOn(4, ‘15:00’);</td>
+<td>在每个月的第四天的 15:00 执行一次任务</td>
+</tr>
+<tr>
+<td>-&gt;quarterly();</td>
+<td>每季度执行一次任务</td>
+</tr>
+<tr>
+<td>-&gt;yearly();</td>
+<td>每年执行一次任务</td>
+</tr>
+<tr>
+<td>-&gt;timezone(‘America/New_York’);</td>
+<td>设置时区</td>
+</tr>
+</tbody>
+</table>
 
-    </header>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://liluoao.github.io/2018/05/Laravel的Task-Scheduling/" data-id="cjgx0i7yq000gs8mjpylc0qjw" class="article-share-link">分享</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/laravel/">laravel</a></li></ul>
+
+    </footer>
   </div>
-</article>
+  
+    
+<nav id="article-nav">
   
   
-    </div></section>
+    <a href="/2018/05/Laravel的Artisan/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">Laravel的Artisan</div>
+    </a>
   
+</nav>
 
+  
+</article>
 
 </section>
         
