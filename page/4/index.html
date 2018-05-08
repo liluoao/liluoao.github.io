@@ -67,6 +67,55 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-危险的target-blank与opener" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/04/危险的target-blank与opener/" class="article-date">
+  <time datetime="2018-04-11T08:16:35.000Z" itemprop="datePublished">2018-04-11</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/04/危险的target-blank与opener/">危险的target=&#34;_blank&#34;与&#34;opener&#34;</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>原文链接：<a href="https://juejin.im/post/5a9f8425f265da239a5f57f8" target="_blank" rel="noopener">https://juejin.im/post/5a9f8425f265da239a5f57f8</a></p>
+<blockquote>
+<p>在网页中使用链接时，如果想要让浏览器自动在新的标签页打开指定的地址，通常的做法就是在 a 标签上添加 target等于”_blank” 属性。<br>然而，就是这个属性，为钓鱼攻击者带来了可乘之机。</p>
+</blockquote>
+<h2 id="起源"><a href="#起源" class="headerlink" title="起源"></a>起源</h2><h4 id="parent-与-opener"><a href="#parent-与-opener" class="headerlink" title="parent 与 opener"></a><code>parent</code> 与 <code>opener</code></h4><p>在说 <code>opener</code> 之前，可以先聊聊 <code>&lt;iframe&gt;</code> 中的 <code>parent</code>。</p>
+<p>我们知道，在 <code>&lt;iframe&gt;</code> 中提供了一个用于父子页面交互的对象，叫做 <code>window.parent</code>，我们可以通过 <code>window.parent</code> 对象来从框架中的页面访问父级页面的 <code>window</code>。</p>
+<p><code>opener</code> 与 <code>parent</code> 一样，只不过是用于 <code>&lt;a target=&quot;_blank&quot;&gt;</code> 在新标签页打开的页面的。通过 <code>&lt;a target=&quot;_blank&quot;&gt;</code> 打开的页面，可以直接使用 <code>window.opener</code> 来访问来源页面的 <code>window</code> 对象。<br>
+        
+          <p class="article-more-link">
+            <a href="/2018/04/危险的target-blank与opener/#more">阅读全文</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://liluoao.github.io/2018/04/危险的target-blank与opener/" data-id="cjgxh5za1002phcmji33k9vzg" class="article-share-link">分享</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/安全/">安全</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-非官方微信红包拆分算法" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2018/04/非官方微信红包拆分算法/" class="article-date">
@@ -94,7 +143,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2018/04/非官方微信红包拆分算法/" data-id="cjgx2yck2003958mjt32fbk55" class="article-share-link">分享</a>
+      <a data-url="https://liluoao.github.io/2018/04/非官方微信红包拆分算法/" data-id="cjgxh5zag003ehcmjhgxwdgz6" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/算法/">算法</a></li></ul>
@@ -169,7 +218,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2018/04/我所理解的接口设计/" data-id="cjgx2ycjn002w58mjxosuxagc" class="article-share-link">分享</a>
+      <a data-url="https://liluoao.github.io/2018/04/我所理解的接口设计/" data-id="cjgxh5zag002yhcmj4icrt5j9" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/restful/">restful</a></li></ul>
@@ -219,7 +268,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2018/04/排列组合/" data-id="cjgx2ycjn002y58mjls76v287" class="article-share-link">分享</a>
+      <a data-url="https://liluoao.github.io/2018/04/排列组合/" data-id="cjgxh5zag002zhcmjynq35bis" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/算法/">算法</a></li></ul>
@@ -263,7 +312,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2018/03/使用AppVeyor持续集成本博客/" data-id="cjgx2ycis001t58mjoipmz5in" class="article-share-link">分享</a>
+      <a data-url="https://liluoao.github.io/2018/03/使用AppVeyor持续集成本博客/" data-id="cjgxh5z9l001whcmjojwrpw00" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ci/">ci</a></li></ul>
@@ -316,7 +365,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2018/03/求数组中非负元素组合的最大字符串/" data-id="cjgx2ycjn003058mj9qii66b6" class="article-share-link">分享</a>
+      <a data-url="https://liluoao.github.io/2018/03/求数组中非负元素组合的最大字符串/" data-id="cjgxh5zag0032hcmjpvgxry5d" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/算法/">算法</a></li></ul>
@@ -365,7 +414,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2018/03/蓄水池算法题/" data-id="cjgx2yck2003458mjz5p73zdk" class="article-share-link">分享</a>
+      <a data-url="https://liluoao.github.io/2018/03/蓄水池算法题/" data-id="cjgxh5zag0037hcmj68alyzl9" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/算法/">算法</a></li></ul>
@@ -416,7 +465,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2018/03/使用依赖管理-以Composer为例/" data-id="cjgx2ycj7002c58mjjwaqzo19" class="article-share-link">分享</a>
+      <a data-url="https://liluoao.github.io/2018/03/使用依赖管理-以Composer为例/" data-id="cjgxh5za1002ehcmje4ebgfde" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/composer/">composer</a></li></ul>
@@ -467,7 +516,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2018/03/使用Phalcon/" data-id="cjgx2ycj7002558mj9y06x189" class="article-share-link">分享</a>
+      <a data-url="https://liluoao.github.io/2018/03/使用Phalcon/" data-id="cjgxh5za10028hcmjk5v6q5nm" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/phalcon/">phalcon</a></li></ul>
@@ -516,59 +565,10 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2018/03/什么是JWT/" data-id="cjgx2ycis001s58mjxer13tz6" class="article-share-link">分享</a>
+      <a data-url="https://liluoao.github.io/2018/03/什么是JWT/" data-id="cjgxh5z9l001thcmjo0w42x2z" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/安全/">安全</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-Phalcon启动流程" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/03/Phalcon启动流程/" class="article-date">
-  <time datetime="2018-03-15T02:37:19.000Z" itemprop="datePublished">2018-03-15</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/phalcon/">phalcon</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/03/Phalcon启动流程/">Phalcon 启动流程</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>原文链接：<a href="https://avnpc.com/pages/phalcon-mvc-process" target="_blank" rel="noopener">https://avnpc.com/pages/phalcon-mvc-process</a></p>
-<p>入口文件为<code>public/index.php</code>，简化后一共5行，包含了整个Phalcon的启动流程，以下将按顺序说明</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">require</span>  <span class="keyword">__DIR__</span> . <span class="string">'/../config/services.php'</span>;</span><br><span class="line">$application = <span class="keyword">new</span> Phalcon\Mvc\Application();</span><br><span class="line">$application-&gt;setDI($di);</span><br><span class="line"><span class="keyword">require</span> <span class="keyword">__DIR__</span> . <span class="string">'/../config/modules.php'</span>;</span><br><span class="line"><span class="keyword">echo</span> $application-&gt;handle()-&gt;getContent();</span><br></pre></td></tr></table></figure>
-        
-          <p class="article-more-link">
-            <a href="/2018/03/Phalcon启动流程/#more">阅读全文</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2018/03/Phalcon启动流程/" data-id="cjgx2ycis001j58mj7jheg7l1" class="article-share-link">分享</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/phalcon/">phalcon</a></li></ul>
 
     </footer>
   </div>
@@ -595,6 +595,10 @@
       <ul>
         
           <li>
+            <a href="/2018/05/Alipay条码支付及查询/">Alipay条码支付及查询</a>
+          </li>
+        
+          <li>
             <a href="/2018/05/Laravel的Task-Scheduling/">Laravel的Task-Scheduling</a>
           </li>
         
@@ -608,10 +612,6 @@
         
           <li>
             <a href="/2018/05/Laravel的Eloquent-ORM-Relationship/">Laravel的Eloquent-ORM-Relationship</a>
-          </li>
-        
-          <li>
-            <a href="/2018/05/Laravel的Log/">Laravel的Log</a>
           </li>
         
       </ul>
@@ -633,7 +633,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/apache/">apache</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/array/">array</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ci/">ci</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/clean-code/">clean-code</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/composer/">composer</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/culture/">culture</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dependency-injection/">dependency-injection</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/design-patterns/">design-patterns</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/laravel/">laravel</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/">mysql</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nginx/">nginx</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/phalcon/">phalcon</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/php/">php</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/phpstorm/">phpstorm</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/postman/">postman</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/refactor/">refactor</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/restful/">restful</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sapi/">sapi</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/solid/">solid</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/wechat/">wechat</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/安全/">安全</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/算法/">算法</a><span class="tag-list-count">4</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/alipay/">alipay</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/apache/">apache</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/array/">array</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ci/">ci</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/clean-code/">clean-code</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/composer/">composer</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/culture/">culture</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dependency-injection/">dependency-injection</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/design-patterns/">design-patterns</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/laravel/">laravel</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/">mysql</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nginx/">nginx</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/phalcon/">phalcon</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/php/">php</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/phpstorm/">phpstorm</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/postman/">postman</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/refactor/">refactor</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/restful/">restful</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sapi/">sapi</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/solid/">solid</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/wechat/">wechat</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/安全/">安全</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/算法/">算法</a><span class="tag-list-count">4</span></li></ul>
     </div>
   </div>
 
@@ -643,7 +643,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">五月 2018</a><span class="archive-list-count">13</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a><span class="archive-list-count">20</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">二月 2018</a><span class="archive-list-count">5</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">五月 2018</a><span class="archive-list-count">14</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a><span class="archive-list-count">20</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">二月 2018</a><span class="archive-list-count">5</span></li></ul>
     </div>
   </div>
 

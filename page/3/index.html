@@ -67,6 +67,62 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-PHP的设计模式之行为模式（三）" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/04/PHP的设计模式之行为模式（三）/" class="article-date">
+  <time datetime="2018-04-25T07:27:18.000Z" itemprop="datePublished">2018-04-25</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/04/PHP的设计模式之行为模式（三）/">PHP的设计模式之行为模式（三）</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>原文链接：<a href="https://www.imooc.com/article/17848" target="_blank" rel="noopener">https://www.imooc.com/article/17848</a></p>
+<h2 id="Behavioral-Patterns（行为模式）"><a href="#Behavioral-Patterns（行为模式）" class="headerlink" title="Behavioral Patterns（行为模式）"></a>Behavioral Patterns（行为模式）</h2><h4 id="Mediator（中介者模式）"><a href="#Mediator（中介者模式）" class="headerlink" title="Mediator（中介者模式）"></a>Mediator（中介者模式）</h4><p>用一个中介对象来封装一系列的对象交互，中介者使各对象不需要显式地相互引用，从而使其耦合松散，而且可以独立地改变它们之间的交互。中介者模式又称为调停者模式，它是一种对象行为型模式。</p>
+<p>为什么需要中介者模式</p>
+<ol>
+<li><p>中介者模式可以使对象之间的关系数量急剧减少。</p>
+</li>
+<li><p>中转作用（结构性）：通过中介者提供的中转作用，各个同事对象就不再需要显式引用其他同事，当需要和其他同事进行通信时，通过中介者即可。该中转作用属于中介者在结构上的支持。</p>
+</li>
+<li><p>协调作用（行为性）：中介者可以更进一步的对同事之间的关系进行封装，同事可以一致地和中介者进行交互，而不需要指明中介者需要具体怎么做，中介者根据封装在自身内部的协调逻辑，对同事的请求进行进一步处理，将同事成员之间的关系行为进行分离和封装。该协调作用属于中介者在行为上的支持。</p>
+</li>
+</ol>
+<p>中介者模式的思想在现实生活中也很常见，比如说交换机。没有交换机存在的时代，每个电话之间都需要电话线连接才能进行通话。如果一个台电话要和其它100台电话通话，那么它就必须要有100条电话线与其它100个电话连接。</p>
+<p>后来为了解决这种麻烦，交换机出现了。每个电话只需连入交换机，通话时。只需构建一条电话-交换机-电话的链路，就可以进行通话。所以现在我们的电话理论上可以同世界上任何一台电话通话，但是只需一条电话线。当然现在用电话的人少了，但是手机呀，计算机网络的实现也是在传统通信网的设计上进行演进的。</p>
+<p>其实交换机对应的就是中介者模式的中介者，而电话机就是中介者中的同事。下面，就让我们用代码来实现这个思想。<br>
+        
+          <p class="article-more-link">
+            <a href="/2018/04/PHP的设计模式之行为模式（三）/#more">阅读全文</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://liluoao.github.io/2018/04/PHP的设计模式之行为模式（三）/" data-id="cjgxh5z8q001fhcmj9h6w15hj" class="article-share-link">分享</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/design-patterns/">design-patterns</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-PHP的设计模式之行为模式（二）" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2018/04/PHP的设计模式之行为模式（二）/" class="article-date">
@@ -107,7 +163,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2018/04/PHP的设计模式之行为模式（二）/" data-id="cjgx2ycic001f58mje9bt85t2" class="article-share-link">分享</a>
+      <a data-url="https://liluoao.github.io/2018/04/PHP的设计模式之行为模式（二）/" data-id="cjgxh5z95001ghcmj16rcqew4" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/design-patterns/">design-patterns</a></li></ul>
@@ -178,7 +234,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2018/04/重构代码/" data-id="cjgx2yck2003c58mj6kmzrtto" class="article-share-link">分享</a>
+      <a data-url="https://liluoao.github.io/2018/04/重构代码/" data-id="cjgxh5zag003bhcmjdtx0ws2h" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/refactor/">refactor</a></li></ul>
@@ -224,7 +280,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2018/04/依赖注入/" data-id="cjgx2ycjn002f58mjcf0u41ba" class="article-share-link">分享</a>
+      <a data-url="https://liluoao.github.io/2018/04/依赖注入/" data-id="cjgxh5za1002hhcmjcdw4akvj" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/dependency-injection/">dependency-injection</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/design-patterns/">design-patterns</a></li></ul>
@@ -278,7 +334,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2018/04/PHP的设计模式之架构模式（二）/" data-id="cjgx2ycic001758mjobbgt8e0" class="article-share-link">分享</a>
+      <a data-url="https://liluoao.github.io/2018/04/PHP的设计模式之架构模式（二）/" data-id="cjgxh5z8q0019hcmjwnpmq6ij" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/design-patterns/">design-patterns</a></li></ul>
@@ -330,7 +386,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2018/04/PHP的设计模式之行为模式/" data-id="cjgx2ycic001a58mjbqvyaaxs" class="article-share-link">分享</a>
+      <a data-url="https://liluoao.github.io/2018/04/PHP的设计模式之行为模式/" data-id="cjgxh5z8q001bhcmjagebyjvo" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/design-patterns/">design-patterns</a></li></ul>
@@ -385,7 +441,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2018/04/PHP的设计模式之架构模式/" data-id="cjgx2ycic001458mjjgok54sc" class="article-share-link">分享</a>
+      <a data-url="https://liluoao.github.io/2018/04/PHP的设计模式之架构模式/" data-id="cjgxh5z8q0015hcmjp6mc9ptd" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/design-patterns/">design-patterns</a></li></ul>
@@ -438,7 +494,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2018/04/PHP的设计模式之创建模式/" data-id="cjgx2ycic001158mj51gf6mwq" class="article-share-link">分享</a>
+      <a data-url="https://liluoao.github.io/2018/04/PHP的设计模式之创建模式/" data-id="cjgxh5z8q0013hcmj7rqfhifn" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/design-patterns/">design-patterns</a></li></ul>
@@ -489,7 +545,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2018/04/Linux搭建环境/" data-id="cjgx2ychw000n58mjk6uig2cr" class="article-share-link">分享</a>
+      <a data-url="https://liluoao.github.io/2018/04/Linux搭建环境/" data-id="cjgxh5z8a000ohcmj4bkl2qxa" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux/">linux</a></li></ul>
@@ -534,58 +590,9 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2018/04/给项目添加狗牌/" data-id="cjgx2yck2003358mjstkkw0tg" class="article-share-link">分享</a>
+      <a data-url="https://liluoao.github.io/2018/04/给项目添加狗牌/" data-id="cjgxh5zag0034hcmj5naaox8y" class="article-share-link">分享</a>
       
       
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-危险的target-blank与opener" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/04/危险的target-blank与opener/" class="article-date">
-  <time datetime="2018-04-11T08:16:35.000Z" itemprop="datePublished">2018-04-11</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/04/危险的target-blank与opener/">危险的target=&#34;_blank&#34;与&#34;opener&#34;</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>原文链接：<a href="https://juejin.im/post/5a9f8425f265da239a5f57f8" target="_blank" rel="noopener">https://juejin.im/post/5a9f8425f265da239a5f57f8</a></p>
-<blockquote>
-<p>在网页中使用链接时，如果想要让浏览器自动在新的标签页打开指定的地址，通常的做法就是在 a 标签上添加 target等于”_blank” 属性。<br>然而，就是这个属性，为钓鱼攻击者带来了可乘之机。</p>
-</blockquote>
-<h2 id="起源"><a href="#起源" class="headerlink" title="起源"></a>起源</h2><h4 id="parent-与-opener"><a href="#parent-与-opener" class="headerlink" title="parent 与 opener"></a><code>parent</code> 与 <code>opener</code></h4><p>在说 <code>opener</code> 之前，可以先聊聊 <code>&lt;iframe&gt;</code> 中的 <code>parent</code>。</p>
-<p>我们知道，在 <code>&lt;iframe&gt;</code> 中提供了一个用于父子页面交互的对象，叫做 <code>window.parent</code>，我们可以通过 <code>window.parent</code> 对象来从框架中的页面访问父级页面的 <code>window</code>。</p>
-<p><code>opener</code> 与 <code>parent</code> 一样，只不过是用于 <code>&lt;a target=&quot;_blank&quot;&gt;</code> 在新标签页打开的页面的。通过 <code>&lt;a target=&quot;_blank&quot;&gt;</code> 打开的页面，可以直接使用 <code>window.opener</code> 来访问来源页面的 <code>window</code> 对象。<br>
-        
-          <p class="article-more-link">
-            <a href="/2018/04/危险的target-blank与opener/#more">阅读全文</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2018/04/危险的target-blank与opener/" data-id="cjgx2ycjn002n58mjp8201o8r" class="article-share-link">分享</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/安全/">安全</a></li></ul>
-
     </footer>
   </div>
   
@@ -611,6 +618,10 @@
       <ul>
         
           <li>
+            <a href="/2018/05/Alipay条码支付及查询/">Alipay条码支付及查询</a>
+          </li>
+        
+          <li>
             <a href="/2018/05/Laravel的Task-Scheduling/">Laravel的Task-Scheduling</a>
           </li>
         
@@ -624,10 +635,6 @@
         
           <li>
             <a href="/2018/05/Laravel的Eloquent-ORM-Relationship/">Laravel的Eloquent-ORM-Relationship</a>
-          </li>
-        
-          <li>
-            <a href="/2018/05/Laravel的Log/">Laravel的Log</a>
           </li>
         
       </ul>
@@ -649,7 +656,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/apache/">apache</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/array/">array</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ci/">ci</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/clean-code/">clean-code</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/composer/">composer</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/culture/">culture</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dependency-injection/">dependency-injection</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/design-patterns/">design-patterns</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/laravel/">laravel</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/">mysql</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nginx/">nginx</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/phalcon/">phalcon</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/php/">php</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/phpstorm/">phpstorm</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/postman/">postman</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/refactor/">refactor</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/restful/">restful</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sapi/">sapi</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/solid/">solid</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/wechat/">wechat</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/安全/">安全</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/算法/">算法</a><span class="tag-list-count">4</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/alipay/">alipay</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/apache/">apache</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/array/">array</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ci/">ci</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/clean-code/">clean-code</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/composer/">composer</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/culture/">culture</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dependency-injection/">dependency-injection</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/design-patterns/">design-patterns</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/laravel/">laravel</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/">mysql</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nginx/">nginx</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/phalcon/">phalcon</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/php/">php</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/phpstorm/">phpstorm</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/postman/">postman</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/refactor/">refactor</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/restful/">restful</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sapi/">sapi</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/solid/">solid</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/wechat/">wechat</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/安全/">安全</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/算法/">算法</a><span class="tag-list-count">4</span></li></ul>
     </div>
   </div>
 
@@ -659,7 +666,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">五月 2018</a><span class="archive-list-count">13</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a><span class="archive-list-count">20</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">二月 2018</a><span class="archive-list-count">5</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">五月 2018</a><span class="archive-list-count">14</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a><span class="archive-list-count">20</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">二月 2018</a><span class="archive-list-count">5</span></li></ul>
     </div>
   </div>
 
