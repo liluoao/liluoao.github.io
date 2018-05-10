@@ -5,20 +5,20 @@
   
 
   
-  <title>使用Postman-Interceptor | To be a Web Artisan</title>
+  <title>微信条码支付 | To be a Web Artisan</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="目前的Postman插件如果想正常使用，必须安装 Postman Interceptor 插件，这样才能直接使用Chrome浏览器的cookie等信息，否则Postman是无法完成老版本的功能的。 如果可以科学上网，直接在软件商店下载。没有条件的可以去：  https://www.crx4chrome.com/extensions/ http://chromecj.com/ http://www.">
-<meta name="keywords" content="postman">
+  <meta name="description" content="也叫刷卡支付  支付金额&amp;gt;1000元的交易需要验证用户支付密码用户账号每天最多有5笔交易可以免密，超过后需要验证密码   微信条形码规则：18位纯数字，以10、11、12、13、14、15开头 支付宝条形码规则：25~30开头的长度为16~24位的数字  💻API文档💻SDK下载 接口地址https://api.mch.weixin.qq.com/pay/micropay沙箱地址：htt">
+<meta name="keywords" content="wechat">
 <meta property="og:type" content="article">
-<meta property="og:title" content="使用Postman-Interceptor">
-<meta property="og:url" content="https://liluoao.github.io/2018/05/使用Postman-Interceptor/index.html">
+<meta property="og:title" content="微信条码支付">
+<meta property="og:url" content="https://liluoao.github.io/2018/05/微信条码支付/index.html">
 <meta property="og:site_name" content="To be a Web Artisan">
-<meta property="og:description" content="目前的Postman插件如果想正常使用，必须安装 Postman Interceptor 插件，这样才能直接使用Chrome浏览器的cookie等信息，否则Postman是无法完成老版本的功能的。 如果可以科学上网，直接在软件商店下载。没有条件的可以去：  https://www.crx4chrome.com/extensions/ http://chromecj.com/ http://www.">
+<meta property="og:description" content="也叫刷卡支付  支付金额&amp;gt;1000元的交易需要验证用户支付密码用户账号每天最多有5笔交易可以免密，超过后需要验证密码   微信条形码规则：18位纯数字，以10、11、12、13、14、15开头 支付宝条形码规则：25~30开头的长度为16~24位的数字  💻API文档💻SDK下载 接口地址https://api.mch.weixin.qq.com/pay/micropay沙箱地址：htt">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:updated_time" content="2018-05-10T02:00:55.315Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="使用Postman-Interceptor">
-<meta name="twitter:description" content="目前的Postman插件如果想正常使用，必须安装 Postman Interceptor 插件，这样才能直接使用Chrome浏览器的cookie等信息，否则Postman是无法完成老版本的功能的。 如果可以科学上网，直接在软件商店下载。没有条件的可以去：  https://www.crx4chrome.com/extensions/ http://chromecj.com/ http://www.">
+<meta name="twitter:title" content="微信条码支付">
+<meta name="twitter:description" content="也叫刷卡支付  支付金额&amp;gt;1000元的交易需要验证用户支付密码用户账号每天最多有5笔交易可以免密，超过后需要验证密码   微信条形码规则：18位纯数字，以10、11、12、13、14、15开头 支付宝条形码规则：25~30开头的长度为16~24位的数字  💻API文档💻SDK下载 接口地址https://api.mch.weixin.qq.com/pay/micropay沙箱地址：htt">
 <meta name="twitter:creator" content="@liluoao">
   
   
@@ -67,12 +67,16 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-使用Postman-Interceptor" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-微信条码支付" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2018/05/使用Postman-Interceptor/" class="article-date">
-  <time datetime="2018-05-05T06:57:06.000Z" itemprop="datePublished">2018-05-05</time>
+    <a href="/2018/05/微信条码支付/" class="article-date">
+  <time datetime="2018-05-10T01:26:24.000Z" itemprop="datePublished">2018-05-10</time>
 </a>
     
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/wechat/">wechat</a>
+  </div>
+
   </div>
   <div class="article-inner">
     
@@ -81,7 +85,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      使用Postman-Interceptor
+      微信条码支付
     </h1>
   
 
@@ -89,28 +93,40 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>目前的Postman插件如果想正常使用，必须安装 <code>Postman Interceptor</code> 插件，这样才能直接使用Chrome浏览器的<strong>cookie</strong>等信息，否则Postman是无法完成老版本的功能的。</p>
-<p>如果可以科学上网，直接在软件商店下载。<br>没有条件的可以去：</p>
+        <p>也叫刷卡支付</p>
+<blockquote>
+<p>支付金额&gt;1000元的交易需要验证用户支付密码<br>用户账号每天最多有5笔交易可以免密，超过后需要验证密码</p>
+</blockquote>
 <ul>
-<li><a href="https://www.crx4chrome.com/extensions/" target="_blank" rel="noopener">https://www.crx4chrome.com/extensions/</a></li>
-<li><a href="http://chromecj.com/" target="_blank" rel="noopener">http://chromecj.com/</a></li>
-<li><a href="http://www.cnplugins.com/" target="_blank" rel="noopener">http://www.cnplugins.com/</a></li>
+<li>微信条形码规则：18位纯数字，以10、11、12、13、14、15开头</li>
+<li>支付宝条形码规则：25~30开头的长度为16~24位的数字</li>
 </ul>
+<p>💻<a href="https://pay.weixin.qq.com/wiki/doc/api/micropay.php?chapter=9_10&amp;index=1" target="_blank" rel="noopener">API文档</a><br>💻<a href="https://pay.weixin.qq.com/wiki/doc/api/micropay.php?chapter=11_1" target="_blank" rel="noopener">SDK下载</a></p>
+<h4 id="接口地址"><a href="#接口地址" class="headerlink" title="接口地址"></a>接口地址</h4><p><a href="https://api.mch.weixin.qq.com/pay/micropay" target="_blank" rel="noopener">https://api.mch.weixin.qq.com/pay/micropay</a><br>沙箱地址：<br><a href="https://api.mch.weixin.qq.com/sandboxnew/pay/micropay" target="_blank" rel="noopener">https://api.mch.weixin.qq.com/sandboxnew/pay/micropay</a></p>
+<h4 id="随机字符串与签名"><a href="#随机字符串与签名" class="headerlink" title="随机字符串与签名"></a>随机字符串与签名</h4><p>本API需要 <code>nonce_str</code> 和 <code>sign</code>，生成算法见<a href="https://pay.weixin.qq.com/wiki/doc/api/micropay.php?chapter=4_3" target="_blank" rel="noopener">安全规范</a></p>
+<a id="more"></a>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span> string 随机字符串</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@see</span> http://php.net/manual/zh/function.uniqid.php#94959</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="function"><span class="keyword">function</span> <span class="title">v4</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> sprintf(<span class="string">'%04x%04x-%04x-%04x-%04x-%04x%04x%04x'</span>,</span><br><span class="line"></span><br><span class="line">      <span class="comment">// 32 bits for "time_low"</span></span><br><span class="line">      mt_rand(<span class="number">0</span>, <span class="number">0xffff</span>), mt_rand(<span class="number">0</span>, <span class="number">0xffff</span>),</span><br><span class="line"></span><br><span class="line">      <span class="comment">// 16 bits for "time_mid"</span></span><br><span class="line">      mt_rand(<span class="number">0</span>, <span class="number">0xffff</span>),</span><br><span class="line"></span><br><span class="line">      <span class="comment">// 16 bits for "time_hi_and_version",</span></span><br><span class="line">      <span class="comment">// four most significant bits holds version number 4</span></span><br><span class="line">      mt_rand(<span class="number">0</span>, <span class="number">0x0fff</span>) | <span class="number">0x4000</span>,</span><br><span class="line"></span><br><span class="line">      <span class="comment">// 16 bits, 8 bits for "clk_seq_hi_res",</span></span><br><span class="line">      <span class="comment">// 8 bits for "clk_seq_low",</span></span><br><span class="line">      <span class="comment">// two most significant bits holds zero and one for variant DCE1.1</span></span><br><span class="line">      mt_rand(<span class="number">0</span>, <span class="number">0x3fff</span>) | <span class="number">0x8000</span>,</span><br><span class="line"></span><br><span class="line">      <span class="comment">// 48 bits for "node"</span></span><br><span class="line">      mt_rand(<span class="number">0</span>, <span class="number">0xffff</span>), mt_rand(<span class="number">0</span>, <span class="number">0xffff</span>), mt_rand(<span class="number">0</span>, <span class="number">0xffff</span>)</span><br><span class="line">    );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>签名：</p>
 <ol>
-<li>将下载好的文件扩展名改为 <code>.zip</code> 并解压</li>
-<li>把解压后文件夹中的 <code>_metadata</code> 的下划线去掉</li>
-<li>打开Chrome，打开<code>扩展程序</code>，勾选<code>开发者模式</code>，选择<code>加载已经解压的扩展程序</code></li>
+<li>将数据内非空参数值的参数按照参数名ASCII码从小到大排序（字典序），使用URL键值对的格式（即key1=value1&amp;key2=value2…）拼接成字符串stringA</li>
+<li>在stringA最后拼接上key得到stringSignTemp字符串，并对stringSignTemp进行MD5运算，再将得到的字符串所有字符转换为大写，得到sign值signValue</li>
 </ol>
-<p>除了 <code>Postman Interceptor</code> ，好用的插件还有 <code>Vue.js devtools</code> 、<code>WEB前端助手(FeHelper)</code>等。</p>
-<p>参考网址：<br>1.<a href="http://www.jianshu.com/p/a4223bab1e73" title="离线安装Chrome Postman 和Postman Interceptor 插件" target="_blank" rel="noopener">离线安装Chrome Postman 和Postman Interceptor 插件</a><br>2.<a href="http://www.jianshu.com/p/12ca04c61fc6" title="如何在谷歌浏览器中安装.crx扩展名的离线Chrome插件" target="_blank" rel="noopener">如何在谷歌浏览器中安装.crx扩展名的离线Chrome插件</a></p>
+<blockquote>
+<p>key设置路径：微信商户平台(pay.weixin.qq.com)–&gt;账户设置–&gt;API安全–&gt;密钥设置</p>
+</blockquote>
+<h4 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h4><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">xml</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">appid</span>&gt;</span>公众账号ID<span class="tag">&lt;/<span class="name">appid</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">auth_code</span>&gt;</span>客户条码（授权码）<span class="tag">&lt;/<span class="name">auth_code</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">body</span>&gt;</span>商品描述<span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">mch_id</span>&gt;</span>商户号<span class="tag">&lt;/<span class="name">mch_id</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">nonce_str</span>&gt;</span>随机字符串<span class="tag">&lt;/<span class="name">nonce_str</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">out_trade_no</span>&gt;</span>商户订单号<span class="tag">&lt;/<span class="name">out_trade_no</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">spbill_create_ip</span>&gt;</span>终端<span class="tag">&lt;/<span class="name">spbill_create_ip</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">total_fee</span>&gt;</span>订单金额<span class="tag">&lt;/<span class="name">total_fee</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">sign</span>&gt;</span>签名<span class="tag">&lt;/<span class="name">sign</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">xml</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>交易金额默认为人民币交易，接口中参数支付金额单位为【分】，参数值不能带小数。对账单中的交易金额单位为【元】。</p>
+</blockquote>
+<p>返回的 <code>return_code</code> 为 <strong>SUCCESS</strong>时成功</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2018/05/使用Postman-Interceptor/" data-id="cjgzw105n002b6kmjkcrtafcr" class="article-share-link">分享</a>
+      <a data-url="https://liluoao.github.io/2018/05/微信条码支付/" data-id="cjgzw1062002u6kmjp2oy799u" class="article-share-link">分享</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/postman/">postman</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/wechat/">wechat</a></li></ul>
 
     </footer>
   </div>
@@ -118,19 +134,10 @@
     
 <nav id="article-nav">
   
-    <a href="/2018/05/使用Laravel-Excel/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">上一篇</strong>
-      <div class="article-nav-title">
-        
-          使用Laravel-Excel
-        
-      </div>
-    </a>
   
-  
-    <a href="/2018/05/使用Intervention-Image/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2018/05/Alipay条码支付及查询/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">下一篇</strong>
-      <div class="article-nav-title">使用Intervention-Image</div>
+      <div class="article-nav-title">Alipay条码支付及查询</div>
     </a>
   
 </nav>
