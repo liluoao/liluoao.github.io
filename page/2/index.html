@@ -67,6 +67,52 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-部分数组函数分析" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/05/部分数组函数分析/" class="article-date">
+  <time datetime="2018-05-07T07:24:44.000Z" itemprop="datePublished">2018-05-07</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/05/部分数组函数分析/">部分数组函数分析</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ul>
+<li>使用 <code>foreach</code> 和 <code>array_keys()</code> 代替 <code>array_unique()</code><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">$max = <span class="number">1000000</span>;</span><br><span class="line">$arr = range(<span class="number">1</span>,$max,<span class="number">3</span>);</span><br><span class="line">$arr2 = range(<span class="number">1</span>,$max,<span class="number">2</span>);</span><br><span class="line">$arr = array_merge($arr,$arr2);</span><br><span class="line"></span><br><span class="line">$time = -microtime(<span class="keyword">true</span>);</span><br><span class="line">$res1 = array_unique($arr);</span><br><span class="line">$time += microtime(<span class="keyword">true</span>);</span><br><span class="line"><span class="keyword">echo</span> <span class="string">"deduped to "</span>.count($res1).<span class="string">" in "</span>.$time;</span><br><span class="line"><span class="comment">// deduped to 666667 in 32.300781965256</span></span><br><span class="line"></span><br><span class="line">$time = -microtime(<span class="keyword">true</span>);</span><br><span class="line">$res2 = <span class="keyword">array</span>();</span><br><span class="line"><span class="keyword">foreach</span>($arr <span class="keyword">as</span> $key=&gt;$val) &#123;   </span><br><span class="line">    $res2[$val] = <span class="keyword">true</span>;</span><br><span class="line">&#125;</span><br><span class="line">$res2 = array_keys($res2);</span><br><span class="line">$time += microtime(<span class="keyword">true</span>);</span><br><span class="line"><span class="keyword">echo</span> <span class="string">"&lt;br /&gt;deduped to "</span>.count($res2).<span class="string">" in "</span>.$time;</span><br><span class="line"><span class="comment">// deduped to 666667 in 0.84372591972351</span></span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+        
+          <p class="article-more-link">
+            <a href="/2018/05/部分数组函数分析/#more">阅读全文</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://liluoao.github.io/2018/05/部分数组函数分析/" data-id="cjgzygozm003e30mj79dmnqp8" class="article-share-link">分享</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/array/">array</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/php/">php</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-使用Carbon" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2018/05/使用Carbon/" class="article-date">
@@ -110,7 +156,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2018/05/使用Carbon/" data-id="cjgzw105n001y6kmjpscx8r5n" class="article-share-link">分享</a>
+      <a data-url="https://liluoao.github.io/2018/05/使用Carbon/" data-id="cjgzygoyb002030mj2q78fdbn" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/laravel/">laravel</a></li></ul>
@@ -162,7 +208,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2018/05/使用Laravel-Excel/" data-id="cjgzw105n00266kmjw2aadzc8" class="article-share-link">分享</a>
+      <a data-url="https://liluoao.github.io/2018/05/使用Laravel-Excel/" data-id="cjgzygoyr002730mjtf366638" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/laravel/">laravel</a></li></ul>
@@ -214,7 +260,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2018/05/使用Postman-Interceptor/" data-id="cjgzw105n002b6kmjkcrtafcr" class="article-share-link">分享</a>
+      <a data-url="https://liluoao.github.io/2018/05/使用Postman-Interceptor/" data-id="cjgzygoyr002d30mje2ajt84k" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/postman/">postman</a></li></ul>
@@ -265,7 +311,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2018/05/使用Intervention-Image/" data-id="cjgzw105n00236kmjcuzykbfz" class="article-share-link">分享</a>
+      <a data-url="https://liluoao.github.io/2018/05/使用Intervention-Image/" data-id="cjgzygoyr002530mjb7bttus3" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/laravel/">laravel</a></li></ul>
@@ -322,7 +368,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2018/05/Apache的SSL配置/" data-id="cjgzw103100036kmjfvl64kp7" class="article-share-link">分享</a>
+      <a data-url="https://liluoao.github.io/2018/05/Apache的SSL配置/" data-id="cjgzygow5000330mjn0aheilb" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/apache/">apache</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux/">linux</a></li></ul>
@@ -365,7 +411,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2018/04/PHPStorm使用FTP/" data-id="cjgzw104c000z6kmjzw3tskqr" class="article-share-link">分享</a>
+      <a data-url="https://liluoao.github.io/2018/04/PHPStorm使用FTP/" data-id="cjgzygoxg001230mjsh66qnht" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/phpstorm/">phpstorm</a></li></ul>
@@ -416,7 +462,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2018/04/微信菜单/" data-id="cjgzw106i002z6kmj8jlmg4ln" class="article-share-link">分享</a>
+      <a data-url="https://liluoao.github.io/2018/04/微信菜单/" data-id="cjgzygoz7002z30mjeaqv81o2" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/wechat/">wechat</a></li></ul>
@@ -463,7 +509,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2018/04/微信消息处理/" data-id="cjgzw1062002v6kmj6ck1qx7w" class="article-share-link">分享</a>
+      <a data-url="https://liluoao.github.io/2018/04/微信消息处理/" data-id="cjgzygoz7002x30mjlzci7d0u" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/wechat/">wechat</a></li></ul>
@@ -512,54 +558,10 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2018/04/PHP运行模式/" data-id="cjgzw104r001k6kmjuczruonl" class="article-share-link">分享</a>
+      <a data-url="https://liluoao.github.io/2018/04/PHP运行模式/" data-id="cjgzygoxw001k30mjitrglqbb" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/sapi/">sapi</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-Nginx和PHP的配置" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/04/Nginx和PHP的配置/" class="article-date">
-  <time datetime="2018-04-27T01:59:26.000Z" itemprop="datePublished">2018-04-27</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/04/Nginx和PHP的配置/">Nginx和PHP的配置</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>原文链接：<a href="https://segmentfault.com/a/1190000014610688" target="_blank" rel="noopener">https://segmentfault.com/a/1190000014610688</a></p>
-<h2 id="Nginx配置"><a href="#Nginx配置" class="headerlink" title="Nginx配置"></a>Nginx配置</h2><p>配置文件位置：<code>/etc/nginx/nginx.conf</code><br>
-        
-          <p class="article-more-link">
-            <a href="/2018/04/Nginx和PHP的配置/#more">阅读全文</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2018/04/Nginx和PHP的配置/" data-id="cjgzw104c000v6kmjwkwh2y7s" class="article-share-link">分享</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/nginx/">nginx</a></li></ul>
 
     </footer>
   </div>
@@ -572,7 +574,7 @@
 
   <nav id="page-nav">
     
-    <a class="extend prev" rel="prev" href="/">&laquo; 上一页</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/3/">下一页 &raquo;</a>
+    <a class="extend prev" rel="prev" href="/">&laquo; 上一页</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/3/">下一页 &raquo;</a>
   </nav>
 
 </section>
@@ -584,6 +586,10 @@
     <h3 class="widget-title">最新文章</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2018/05/Alipay授权第三方应用/">Alipay授权第三方应用</a>
+          </li>
         
           <li>
             <a href="/2018/05/微信条码支付/">微信条码支付</a>
@@ -599,10 +605,6 @@
         
           <li>
             <a href="/2018/05/Laravel的Artisan/">Laravel的Artisan</a>
-          </li>
-        
-          <li>
-            <a href="/2018/05/Laravel的Queue/">Laravel的Queue</a>
           </li>
         
       </ul>
@@ -624,7 +626,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/alipay/">alipay</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/apache/">apache</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/array/">array</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ci/">ci</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/clean-code/">clean-code</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/composer/">composer</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/culture/">culture</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dependency-injection/">dependency-injection</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/design-patterns/">design-patterns</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/laravel/">laravel</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/">mysql</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nginx/">nginx</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/phalcon/">phalcon</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/php/">php</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/phpstorm/">phpstorm</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/postman/">postman</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/refactor/">refactor</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/restful/">restful</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sapi/">sapi</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/solid/">solid</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/wechat/">wechat</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/安全/">安全</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/算法/">算法</a><span class="tag-list-count">4</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/alipay/">alipay</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/apache/">apache</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/array/">array</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ci/">ci</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/clean-code/">clean-code</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/composer/">composer</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/culture/">culture</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dependency-injection/">dependency-injection</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/design-patterns/">design-patterns</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/laravel/">laravel</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/">mysql</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nginx/">nginx</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/phalcon/">phalcon</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/php/">php</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/phpstorm/">phpstorm</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/postman/">postman</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/refactor/">refactor</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/restful/">restful</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sapi/">sapi</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/solid/">solid</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/wechat/">wechat</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/安全/">安全</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/算法/">算法</a><span class="tag-list-count">4</span></li></ul>
     </div>
   </div>
 
@@ -634,7 +636,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">五月 2018</a><span class="archive-list-count">15</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a><span class="archive-list-count">20</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">二月 2018</a><span class="archive-list-count">5</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">五月 2018</a><span class="archive-list-count">16</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a><span class="archive-list-count">20</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">二月 2018</a><span class="archive-list-count">5</span></li></ul>
     </div>
   </div>
 
