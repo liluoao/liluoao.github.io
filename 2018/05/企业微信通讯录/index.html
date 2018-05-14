@@ -5,18 +5,23 @@
   
 
   
-  <title>标签: refactor | To be a Web Artisan</title>
+  <title>企业微信通讯录 | To be a Web Artisan</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="李罗奥的博客">
-<meta property="og:type" content="website">
-<meta property="og:title" content="To be a Web Artisan">
-<meta property="og:url" content="https://liluoao.github.io/tags/refactor/index.html">
+  <meta name="description" content="企业微信（原企业号）提供了通讯录管理、应用管理、消息推送、身份验证、移动端SDK、素材、OA数据接口、企业支付、电子发票等API，管理员可以使用这些API，为企业接入更多个性化的办公应用。 要使用API管理通讯录，必须打开 通讯录同步登录企业管理后台-&amp;gt;“管理工具”-&amp;gt;“通讯录同步”-&amp;gt;“开启API接口同步”">
+<meta name="keywords" content="wechat,work-wechat">
+<meta property="og:type" content="article">
+<meta property="og:title" content="企业微信通讯录">
+<meta property="og:url" content="https://liluoao.github.io/2018/05/企业微信通讯录/index.html">
 <meta property="og:site_name" content="To be a Web Artisan">
-<meta property="og:description" content="李罗奥的博客">
+<meta property="og:description" content="企业微信（原企业号）提供了通讯录管理、应用管理、消息推送、身份验证、移动端SDK、素材、OA数据接口、企业支付、电子发票等API，管理员可以使用这些API，为企业接入更多个性化的办公应用。 要使用API管理通讯录，必须打开 通讯录同步登录企业管理后台-&amp;gt;“管理工具”-&amp;gt;“通讯录同步”-&amp;gt;“开启API接口同步”">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://liluoao.github.io/images/work-wechat-config.png">
+<meta property="og:image" content="https://liluoao.github.io/images/work-wechat-app.png">
+<meta property="og:updated_time" content="2018-05-14T02:44:14.193Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="To be a Web Artisan">
-<meta name="twitter:description" content="李罗奥的博客">
+<meta name="twitter:title" content="企业微信通讯录">
+<meta name="twitter:description" content="企业微信（原企业号）提供了通讯录管理、应用管理、消息推送、身份验证、移动端SDK、素材、OA数据接口、企业支付、电子发票等API，管理员可以使用这些API，为企业接入更多个性化的办公应用。 要使用API管理通讯录，必须打开 通讯录同步登录企业管理后台-&amp;gt;“管理工具”-&amp;gt;“通讯录同步”-&amp;gt;“开启API接口同步”">
+<meta name="twitter:image" content="https://liluoao.github.io/images/work-wechat-config.png">
 <meta name="twitter:creator" content="@liluoao">
   
   
@@ -65,40 +70,84 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2018" class="archive-year">2018</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2018/04/重构代码/" class="archive-article-date">
-  <time datetime="2018-04-23T08:44:52.000Z" itemprop="datePublished">4月 23</time>
+        <section id="main"><article id="post-企业微信通讯录" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/05/企业微信通讯录/" class="article-date">
+  <time datetime="2018-05-14T02:18:48.000Z" itemprop="datePublished">2018-05-14</time>
 </a>
-      
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/wechat/">wechat</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/04/重构代码/">重构代码</a>
+    <h1 class="article-title" itemprop="name">
+      企业微信通讯录
     </h1>
   
 
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><a href="https://work.weixin.qq.com/" target="_blank" rel="noopener">企业微信</a>（原企业号）提供了通讯录管理、应用管理、消息推送、身份验证、移动端SDK、素材、OA数据接口、企业支付、电子发票等API，管理员可以使用这些API，为企业接入更多个性化的办公应用。</p>
+<p>要使用API管理通讯录，必须打开 <code>通讯录同步</code><br>登录企业管理后台-&gt;“管理工具”-&gt;“通讯录同步”-&gt;“开启API接口同步”<br><a id="more"></a><br><img src="/images/work-wechat-config.png" alt=""></p>
+<p>如果企业需要开发自定义的应用，进入“企业应用”页面，在“自建应用”栏点击“创建应用”<br><img src="/images/work-wechat-app.png" alt=""></p>
+<ul>
+<li>corpid：每个企业都拥有唯一的corpid，获取此信息可在管理后台“我的企业”－“企业信息”下查看（需要有管理员权限）</li>
+<li>userid： 每个成员都有唯一的userid，即所谓“帐号”。在管理后台-&gt;“通讯录”-&gt;点进某个成员的详情页，可以看到。</li>
+<li>部门id： 每个部门都有唯一的id，在管理后台-&gt;“通讯录”-&gt;“组织架构”-&gt;点击某个部门右边的小圆点可以看到</li>
+<li>tagid：每个标签都有唯一的标签id，在管理后台-&gt;“通讯录”-&gt;“标签”，选中某个标签，在右上角会有“标签详情”按钮，点击即可看到</li>
+<li>agentid：每个应用都有唯一的agentid。在管理后台-&gt;“企业应用”-&gt;点进应用，即可看到agentid</li>
+<li>通讯录管理secret：在“管理工具”-“通讯录同步”里面查看</li>
+<li>应用secret：在管理后台-&gt;“企业应用”-&gt;点进应用，即可看到</li>
+</ul>
+<p><strong>通讯录管理</strong> 主要为 <code>成员管理</code> 和 <code>部门管理</code><br>成员管理（都需要token）：</p>
+<ul>
+<li>创建成员：POST<br><a href="https://qyapi.weixin.qq.com/cgi-bin/user/create" target="_blank" rel="noopener">https://qyapi.weixin.qq.com/cgi-bin/user/create</a></li>
+<li>读取成员：GET<br><a href="https://qyapi.weixin.qq.com/cgi-bin/user/get" target="_blank" rel="noopener">https://qyapi.weixin.qq.com/cgi-bin/user/get</a></li>
+<li>更新成员：POST<br><a href="https://qyapi.weixin.qq.com/cgi-bin/user/update" target="_blank" rel="noopener">https://qyapi.weixin.qq.com/cgi-bin/user/update</a></li>
+<li>删除成员：GET<br><a href="https://qyapi.weixin.qq.com/cgi-bin/user/delete" target="_blank" rel="noopener">https://qyapi.weixin.qq.com/cgi-bin/user/delete</a></li>
+<li>批量删除：POST<br><a href="https://qyapi.weixin.qq.com/cgi-bin/user/batchdelete" target="_blank" rel="noopener">https://qyapi.weixin.qq.com/cgi-bin/user/batchdelete</a></li>
+</ul>
+<p>部门管理（都需要token）：</p>
+<ul>
+<li>创建部门：POST<br><a href="https://qyapi.weixin.qq.com/cgi-bin/department/create" target="_blank" rel="noopener">https://qyapi.weixin.qq.com/cgi-bin/department/create</a></li>
+<li>更新部门：POST<br><a href="https://qyapi.weixin.qq.com/cgi-bin/department/update" target="_blank" rel="noopener">https://qyapi.weixin.qq.com/cgi-bin/department/update</a></li>
+<li>删除部门：POST<br><a href="https://qyapi.weixin.qq.com/cgi-bin/department/delete" target="_blank" rel="noopener">https://qyapi.weixin.qq.com/cgi-bin/department/delete</a></li>
+</ul>
+<p>具体参数见<a href="https://work.weixin.qq.com/api/doc#10016" target="_blank" rel="noopener">开发文档-企业微信</a></p>
 
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://liluoao.github.io/2018/05/企业微信通讯录/" data-id="cjh5naydz001ybsmjjw4fgqxm" class="article-share-link">分享</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/wechat/">wechat</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/work-wechat/">work-wechat</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2018/05/微信硬件设备授权/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">微信硬件设备授权</div>
+    </a>
+  
+</nav>
+
+  
+</article>
 
 </section>
         
