@@ -10,7 +10,7 @@
   <meta name="description" content="李罗奥的博客">
 <meta property="og:type" content="website">
 <meta property="og:title" content="To be a Web Artisan">
-<meta property="og:url" content="https://liluoao.github.io/page/2/index.html">
+<meta property="og:url" content="http://www.liluoao.com/page/2/index.html">
 <meta property="og:site_name" content="To be a Web Artisan">
 <meta property="og:description" content="李罗奥的博客">
 <meta property="og:locale" content="zh-CN">
@@ -47,11 +47,7 @@
         
           <a class="main-nav-link" href="/categories/laravel">Laravel</a>
         
-          <a class="main-nav-link" href="/categories/phalcon">Phalcon</a>
-        
           <a class="main-nav-link" href="/categories/wechat">Wechat</a>
-        
-          <a class="main-nav-link" href="/me.html">关于作者</a>
         
       </nav>
       <nav id="sub-nav">
@@ -59,7 +55,7 @@
         <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
       </nav>
       <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://liluoao.github.io"></form>
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://www.liluoao.com"></form>
       </div>
     </div>
   </div>
@@ -67,10 +63,10 @@
       <div class="outer">
         <section id="main">
   
-    <article id="post-Laravel的Eloquent-ORM-Relationship" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-Laravel的Artisan" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2018/05/Laravel的Eloquent-ORM-Relationship/" class="article-date">
-  <time datetime="2018-05-08T01:04:19.000Z" itemprop="datePublished">2018-05-08</time>
+    <a href="/2018/05/Laravel的Artisan/" class="article-date">
+  <time datetime="2018-05-08T01:17:13.000Z" itemprop="datePublished">2018-05-08</time>
 </a>
     
   <div class="article-category">
@@ -85,7 +81,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2018/05/Laravel的Eloquent-ORM-Relationship/">Laravel的Eloquent-ORM-Relationship</a>
+      <a class="article-title" href="/2018/05/Laravel的Artisan/">Laravel的Artisan</a>
     </h1>
   
 
@@ -93,20 +89,65 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <ul>
-<li><strong>一对一 One To One</strong><br>场景：用户表（<code>users</code>）、用户设置表（<code>user_settings</code>）<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">User</span> <span class="keyword">extends</span> <span class="title">Model</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">settings</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">$this</span>-&gt;hasOne(<span class="string">'App\Models\Settings'</span>, <span class="string">'user_id'</span>, <span class="string">'id'</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<p>然后通过动态属性 <code>User::find(1)-&gt;settings</code> 可以读取。</p>
+        <h3 id="生成命令"><a href="#生成命令" class="headerlink" title="生成命令"></a>生成命令</h3><p>在 <code>app/Console/Commands</code> 中新建一个命令：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">php artisan make:command ReserveExpired//你的命令名</span><br></pre></td></tr></table></figure></p>
+<h3 id="命令结构"><a href="#命令结构" class="headerlink" title="命令结构"></a>命令结构</h3>
         
           <p class="article-more-link">
-            <a href="/2018/05/Laravel的Eloquent-ORM-Relationship/#more">阅读全文</a>
+            <a href="/2018/05/Laravel的Artisan/#more">阅读全文</a>
           </p>
         
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2018/05/Laravel的Eloquent-ORM-Relationship/" data-id="cjh5p72qs000d8omjr6w927wd" class="article-share-link">分享</a>
+      <a data-url="http://www.liluoao.com/2018/05/Laravel的Artisan/" data-id="cjh5wix4v000818mje0zhy7yt" class="article-share-link">分享</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/laravel/">laravel</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Laravel的Queue" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/05/Laravel的Queue/" class="article-date">
+  <time datetime="2018-05-08T01:08:48.000Z" itemprop="datePublished">2018-05-08</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/laravel/">laravel</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/05/Laravel的Queue/">Laravel的Queue</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h3><p>首先打开 <code>config/queue.php</code> 。<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'default'</span> =&gt; env(<span class="string">'QUEUE_DRIVER'</span>, <span class="string">'sync'</span>),</span><br><span class="line"><span class="string">'connections'</span> =&gt; [</span><br><span class="line">        <span class="string">'sync'</span> =&gt; [</span><br><span class="line">            <span class="string">'driver'</span> =&gt; <span class="string">'sync'</span>,</span><br><span class="line">        ],</span><br><span class="line">        <span class="string">'database'</span> =&gt; [</span><br><span class="line">            <span class="string">'driver'</span> =&gt; <span class="string">'database'</span>,</span><br><span class="line">        ],</span><br><span class="line">        <span class="comment">//...</span></span><br><span class="line">        <span class="string">'redis'</span> =&gt; [</span><br><span class="line">            <span class="string">'driver'</span> =&gt; <span class="string">'redis'</span>,</span><br><span class="line">        ],</span><br><span class="line">    ],</span><br></pre></td></tr></table></figure></p>
+<p><code>default</code> 是队列系统默认使用的驱动，在连接时可以使用 <code>onConnection()</code> 方法将任务推到指定连接。<br><code>connections</code> 可以配置各种驱动的设置，如<strong>Redis</strong>的数据库连接等。<br><code>failed</code> 配置队列中的任务执行失败时，保存失败任务的库与表。</p>
+        
+          <p class="article-more-link">
+            <a href="/2018/05/Laravel的Queue/#more">阅读全文</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.liluoao.com/2018/05/Laravel的Queue/" data-id="cjh5wix5a000h18mjeaeqxg0w" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/laravel/">laravel</a></li></ul>
@@ -149,7 +190,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2018/05/Laravel的Log/" data-id="cjh5p72qs000f8omjw9vbzsz3" class="article-share-link">分享</a>
+      <a data-url="http://www.liluoao.com/2018/05/Laravel的Log/" data-id="cjh5wix5a000g18mj9oqh3g6p" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/laravel/">laravel</a></li></ul>
@@ -164,7 +205,7 @@
     <article id="post-Laravel的Config" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2018/05/Laravel的Config/" class="article-date">
-  <time datetime="2018-05-07T08:08:10.000Z" itemprop="datePublished">2018-05-07</time>
+  <time datetime="2018-05-06T08:08:10.000Z" itemprop="datePublished">2018-05-06</time>
 </a>
     
   <div class="article-category">
@@ -198,7 +239,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2018/05/Laravel的Config/" data-id="cjh5p72qs000b8omj301uvgym" class="article-share-link">分享</a>
+      <a data-url="http://www.liluoao.com/2018/05/Laravel的Config/" data-id="cjh5wix5a000b18mj0re2l03j" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/laravel/">laravel</a></li></ul>
@@ -210,12 +251,16 @@
 
 
   
-    <article id="post-ES6的Promise" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-Laravel的Eloquent-ORM-Relationship" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2018/05/ES6的Promise/" class="article-date">
-  <time datetime="2018-05-07T07:51:13.000Z" itemprop="datePublished">2018-05-07</time>
+    <a href="/2018/05/Laravel的Eloquent-ORM-Relationship/" class="article-date">
+  <time datetime="2018-05-05T01:04:19.000Z" itemprop="datePublished">2018-05-05</time>
 </a>
     
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/laravel/">laravel</a>
+  </div>
+
   </div>
   <div class="article-inner">
     
@@ -224,52 +269,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2018/05/ES6的Promise/">ES6的Promise</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>原文链接：<a href="https://www.cnblogs.com/lvdabao/p/es6-promise-1.html" target="_blank" rel="noopener">大白话讲解Promise（一）</a><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> p = <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span>(<span class="params">resolve, reject</span>)</span>&#123;</span><br><span class="line">    <span class="comment">//做一些异步操作</span></span><br><span class="line">    setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'执行完成'</span>);</span><br><span class="line">        resolve(<span class="string">'随便什么数据'</span>);</span><br><span class="line">    &#125;, <span class="number">2000</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
-<p><strong>Promise</strong>的构造函数接收一个参数，是函数，并且传入两个参数：<code>resolve</code>，<code>reject</code>，分别表示异步操作执行成功后的回调函数和异步操作执行失败后的回调函数。其实这里用“成功”和“失败”来描述并不准确，按照标准来讲，<code>resolve</code>是将Promise的状态置为<code>fullfiled</code>，<code>reject</code>是将Promise的状态置为<code>rejected</code>。不过在我们开始阶段可以先这么理解，后面再细究概念。</p>
-<p>在上面的代码中，我们执行了一个异步操作，也就是<code>setTimeout</code>，2秒后，输出“执行完成”，并且调用<code>resolve</code>方法。<br>
-        
-          <p class="article-more-link">
-            <a href="/2018/05/ES6的Promise/#more">阅读全文</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2018/05/ES6的Promise/" data-id="cjh5p72qc00078omjjcacm472" class="article-share-link">分享</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-部分数组函数分析" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/05/部分数组函数分析/" class="article-date">
-  <time datetime="2018-05-07T07:24:44.000Z" itemprop="datePublished">2018-05-07</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/05/部分数组函数分析/">部分数组函数分析</a>
+      <a class="article-title" href="/2018/05/Laravel的Eloquent-ORM-Relationship/">Laravel的Eloquent-ORM-Relationship</a>
     </h1>
   
 
@@ -278,21 +278,177 @@
     <div class="article-entry" itemprop="articleBody">
       
         <ul>
-<li>使用 <code>foreach</code> 和 <code>array_keys()</code> 代替 <code>array_unique()</code><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">$max = <span class="number">1000000</span>;</span><br><span class="line">$arr = range(<span class="number">1</span>,$max,<span class="number">3</span>);</span><br><span class="line">$arr2 = range(<span class="number">1</span>,$max,<span class="number">2</span>);</span><br><span class="line">$arr = array_merge($arr,$arr2);</span><br><span class="line"></span><br><span class="line">$time = -microtime(<span class="keyword">true</span>);</span><br><span class="line">$res1 = array_unique($arr);</span><br><span class="line">$time += microtime(<span class="keyword">true</span>);</span><br><span class="line"><span class="keyword">echo</span> <span class="string">"deduped to "</span>.count($res1).<span class="string">" in "</span>.$time;</span><br><span class="line"><span class="comment">// deduped to 666667 in 32.300781965256</span></span><br><span class="line"></span><br><span class="line">$time = -microtime(<span class="keyword">true</span>);</span><br><span class="line">$res2 = <span class="keyword">array</span>();</span><br><span class="line"><span class="keyword">foreach</span>($arr <span class="keyword">as</span> $key=&gt;$val) &#123;   </span><br><span class="line">    $res2[$val] = <span class="keyword">true</span>;</span><br><span class="line">&#125;</span><br><span class="line">$res2 = array_keys($res2);</span><br><span class="line">$time += microtime(<span class="keyword">true</span>);</span><br><span class="line"><span class="keyword">echo</span> <span class="string">"&lt;br /&gt;deduped to "</span>.count($res2).<span class="string">" in "</span>.$time;</span><br><span class="line"><span class="comment">// deduped to 666667 in 0.84372591972351</span></span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<li><strong>一对一 One To One</strong><br>场景：用户表（<code>users</code>）、用户设置表（<code>user_settings</code>）<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">User</span> <span class="keyword">extends</span> <span class="title">Model</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">settings</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">$this</span>-&gt;hasOne(<span class="string">'App\Models\Settings'</span>, <span class="string">'user_id'</span>, <span class="string">'id'</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
+<p>然后通过动态属性 <code>User::find(1)-&gt;settings</code> 可以读取。</p>
         
           <p class="article-more-link">
-            <a href="/2018/05/部分数组函数分析/#more">阅读全文</a>
+            <a href="/2018/05/Laravel的Eloquent-ORM-Relationship/#more">阅读全文</a>
           </p>
         
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2018/05/部分数组函数分析/" data-id="cjh5p72u9003q8omjzzruo6sq" class="article-share-link">分享</a>
+      <a data-url="http://www.liluoao.com/2018/05/Laravel的Eloquent-ORM-Relationship/" data-id="cjh5wix5a000c18mjzezv41ra" class="article-share-link">分享</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/array/">array</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/php/">php</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/laravel/">laravel</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-使用Postman-Interceptor" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/05/使用Postman-Interceptor/" class="article-date">
+  <time datetime="2018-05-04T06:57:06.000Z" itemprop="datePublished">2018-05-04</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/05/使用Postman-Interceptor/">使用Postman-Interceptor</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>目前的Postman插件如果想正常使用，必须安装 <code>Postman Interceptor</code> 插件，这样才能直接使用Chrome浏览器的<strong>cookie</strong>等信息，否则Postman是无法完成老版本的功能的。</p>
+<p>如果可以科学上网，直接在软件商店下载。<br>没有条件的可以去：</p>
+<ul>
+<li><a href="https://www.crx4chrome.com/extensions/" target="_blank" rel="noopener">https://www.crx4chrome.com/extensions/</a></li>
+<li><a href="http://chromecj.com/" target="_blank" rel="noopener">http://chromecj.com/</a></li>
+<li><a href="http://www.cnplugins.com/" target="_blank" rel="noopener">http://www.cnplugins.com/</a></li>
+</ul>
+<ol>
+<li>将下载好的文件扩展名改为 <code>.zip</code> 并解压</li>
+<li>把解压后文件夹中的 <code>_metadata</code> 的下划线去掉</li>
+<li>打开Chrome，打开<code>扩展程序</code>，勾选<code>开发者模式</code>，选择<code>加载已经解压的扩展程序</code></li>
+</ol>
+<p>除了 <code>Postman Interceptor</code> ，好用的插件还有 <code>Vue.js devtools</code> 、<code>WEB前端助手(FeHelper)</code>等。</p>
+<p>参考网址：<br>1.<a href="http://www.jianshu.com/p/a4223bab1e73" title="离线安装Chrome Postman 和Postman Interceptor 插件" target="_blank" rel="noopener">离线安装Chrome Postman 和Postman Interceptor 插件</a><br>2.<a href="http://www.jianshu.com/p/12ca04c61fc6" title="如何在谷歌浏览器中安装.crx扩展名的离线Chrome插件" target="_blank" rel="noopener">如何在谷歌浏览器中安装.crx扩展名的离线Chrome插件</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.liluoao.com/2018/05/使用Postman-Interceptor/" data-id="cjh5wix7g002e18mjwwh0clq8" class="article-share-link">分享</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/tool/">tool</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-使用Intervention-Image" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/05/使用Intervention-Image/" class="article-date">
+  <time datetime="2018-05-03T06:36:58.000Z" itemprop="datePublished">2018-05-03</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/laravel/">laravel</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/05/使用Intervention-Image/">使用Intervention-Image</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><a href="https://github.com/Intervention/image" target="_blank" rel="noopener">Intervention/image</a> 是为 Laravel 定制的图片处理工具, 它提供了一套易于表达的方式来创建、编辑图片。</p>
+<ul>
+<li>Composer安装<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">composer require intervention/image</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+        
+          <p class="article-more-link">
+            <a href="/2018/05/使用Intervention-Image/#more">阅读全文</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.liluoao.com/2018/05/使用Intervention-Image/" data-id="cjh5wix71002518mjboywqo1b" class="article-share-link">分享</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/laravel/">laravel</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-使用Laravel-Excel" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/05/使用Laravel-Excel/" class="article-date">
+  <time datetime="2018-05-02T07:42:19.000Z" itemprop="datePublished">2018-05-02</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/laravel/">laravel</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/05/使用Laravel-Excel/">使用Laravel-Excel</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><strong><a href="https://laravel-excel.maatwebsite.nl/" target="_blank" rel="noopener">Laravel Excel</a></strong>  brings the power of PHPOffice’s PHPExcel to Laravel 5 with a touch of the Laravel Magic. It includes features like: importing Excel and CSV to collections, exporting models, array’s and views to Excel, importing batches of files and importing a file by a config file.</p>
+<p><a href="https://github.com/Maatwebsite/Laravel-Excel" target="_blank" rel="noopener">Github传送门</a></p>
+<ul>
+<li>Composer安装<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">composer require maatwebsite/excel</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+        
+          <p class="article-more-link">
+            <a href="/2018/05/使用Laravel-Excel/#more">阅读全文</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.liluoao.com/2018/05/使用Laravel-Excel/" data-id="cjh5wix71002718mjn8v92zak" class="article-share-link">分享</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/laravel/">laravel</a></li></ul>
 
     </footer>
   </div>
@@ -304,7 +460,7 @@
     <article id="post-使用Carbon" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2018/05/使用Carbon/" class="article-date">
-  <time datetime="2018-05-07T06:11:35.000Z" itemprop="datePublished">2018-05-07</time>
+  <time datetime="2018-05-01T06:11:35.000Z" itemprop="datePublished">2018-05-01</time>
 </a>
     
   <div class="article-category">
@@ -344,7 +500,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2018/05/使用Carbon/" data-id="cjh5p72si00238omj2puuhcls" class="article-share-link">分享</a>
+      <a data-url="http://www.liluoao.com/2018/05/使用Carbon/" data-id="cjh5wix71001z18mjbj3ac5y7" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/laravel/">laravel</a></li></ul>
@@ -356,16 +512,12 @@
 
 
   
-    <article id="post-使用Laravel-Excel" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-PHPStorm使用FTP" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2018/05/使用Laravel-Excel/" class="article-date">
-  <time datetime="2018-05-05T07:42:19.000Z" itemprop="datePublished">2018-05-05</time>
+    <a href="/2018/04/PHPStorm使用FTP/" class="article-date">
+  <time datetime="2018-04-28T08:51:42.000Z" itemprop="datePublished">2018-04-28</time>
 </a>
     
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/laravel/">laravel</a>
-  </div>
-
   </div>
   <div class="article-inner">
     
@@ -374,7 +526,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2018/05/使用Laravel-Excel/">使用Laravel-Excel</a>
+      <a class="article-title" href="/2018/04/PHPStorm使用FTP/">PHPStorm使用FTP</a>
     </h1>
   
 
@@ -382,184 +534,19 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><strong><a href="https://laravel-excel.maatwebsite.nl/" target="_blank" rel="noopener">Laravel Excel</a></strong>  brings the power of PHPOffice’s PHPExcel to Laravel 5 with a touch of the Laravel Magic. It includes features like: importing Excel and CSV to collections, exporting models, array’s and views to Excel, importing batches of files and importing a file by a config file.</p>
-<p><a href="https://github.com/Maatwebsite/Laravel-Excel" target="_blank" rel="noopener">Github传送门</a></p>
-<ul>
-<li>Composer安装<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">composer require maatwebsite/excel</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
+        <p>打开PHPStorm，点击 <code>Tools—&gt;Deployment—&gt;Cofiguration</code><br><img src="/images/phpstorm-ftp.png" alt=""><br>
         
           <p class="article-more-link">
-            <a href="/2018/05/使用Laravel-Excel/#more">阅读全文</a>
+            <a href="/2018/04/PHPStorm使用FTP/#more">阅读全文</a>
           </p>
         
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2018/05/使用Laravel-Excel/" data-id="cjh5p72sy002a8omjopthv8h8" class="article-share-link">分享</a>
+      <a data-url="http://www.liluoao.com/2018/04/PHPStorm使用FTP/" data-id="cjh5wix66001118mj8ugu0x7v" class="article-share-link">分享</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/laravel/">laravel</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-使用Postman-Interceptor" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/05/使用Postman-Interceptor/" class="article-date">
-  <time datetime="2018-05-05T06:57:06.000Z" itemprop="datePublished">2018-05-05</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/05/使用Postman-Interceptor/">使用Postman-Interceptor</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>目前的Postman插件如果想正常使用，必须安装 <code>Postman Interceptor</code> 插件，这样才能直接使用Chrome浏览器的<strong>cookie</strong>等信息，否则Postman是无法完成老版本的功能的。</p>
-<p>如果可以科学上网，直接在软件商店下载。<br>没有条件的可以去：</p>
-<ul>
-<li><a href="https://www.crx4chrome.com/extensions/" target="_blank" rel="noopener">https://www.crx4chrome.com/extensions/</a></li>
-<li><a href="http://chromecj.com/" target="_blank" rel="noopener">http://chromecj.com/</a></li>
-<li><a href="http://www.cnplugins.com/" target="_blank" rel="noopener">http://www.cnplugins.com/</a></li>
-</ul>
-<ol>
-<li>将下载好的文件扩展名改为 <code>.zip</code> 并解压</li>
-<li>把解压后文件夹中的 <code>_metadata</code> 的下划线去掉</li>
-<li>打开Chrome，打开<code>扩展程序</code>，勾选<code>开发者模式</code>，选择<code>加载已经解压的扩展程序</code></li>
-</ol>
-<p>除了 <code>Postman Interceptor</code> ，好用的插件还有 <code>Vue.js devtools</code> 、<code>WEB前端助手(FeHelper)</code>等。</p>
-<p>参考网址：<br>1.<a href="http://www.jianshu.com/p/a4223bab1e73" title="离线安装Chrome Postman 和Postman Interceptor 插件" target="_blank" rel="noopener">离线安装Chrome Postman 和Postman Interceptor 插件</a><br>2.<a href="http://www.jianshu.com/p/12ca04c61fc6" title="如何在谷歌浏览器中安装.crx扩展名的离线Chrome插件" target="_blank" rel="noopener">如何在谷歌浏览器中安装.crx扩展名的离线Chrome插件</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2018/05/使用Postman-Interceptor/" data-id="cjh5p72sy002h8omjcxmwl9q9" class="article-share-link">分享</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/postman/">postman</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-使用Intervention-Image" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/05/使用Intervention-Image/" class="article-date">
-  <time datetime="2018-05-05T06:36:58.000Z" itemprop="datePublished">2018-05-05</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/laravel/">laravel</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/05/使用Intervention-Image/">使用Intervention-Image</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><a href="https://github.com/Intervention/image" target="_blank" rel="noopener">Intervention/image</a> 是为 Laravel 定制的图片处理工具, 它提供了一套易于表达的方式来创建、编辑图片。</p>
-<ul>
-<li>Composer安装<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">composer require intervention/image</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-        
-          <p class="article-more-link">
-            <a href="/2018/05/使用Intervention-Image/#more">阅读全文</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2018/05/使用Intervention-Image/" data-id="cjh5p72si00278omjgs7gyqly" class="article-share-link">分享</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/laravel/">laravel</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-Apache的SSL配置" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/05/Apache的SSL配置/" class="article-date">
-  <time datetime="2018-05-02T07:15:45.000Z" itemprop="datePublished">2018-05-02</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/linux/">linux</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/05/Apache的SSL配置/">Apache的SSL配置</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="安装Apache"><a href="#安装Apache" class="headerlink" title="安装Apache"></a>安装Apache</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install apache2</span><br></pre></td></tr></table></figure>
-<ul>
-<li>默认站点目录在 <code>/var/www/html/</code></li>
-<li>配置文件在 <code>/etc/apache2/</code></li>
-<li>日志在 <code>/var/log/apache2/</code></li>
-<li>启动脚本是 <code>/etc/init.d/apache2</code></li>
-</ul>
-<h2 id="安装OpenSSL"><a href="#安装OpenSSL" class="headerlink" title="安装OpenSSL"></a>安装OpenSSL</h2><p>Ubuntu默认已经安装了OPENSSL，如果没安装，<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install openssl</span><br></pre></td></tr></table></figure></p>
-<h2 id="开启SSL模块"><a href="#开启SSL模块" class="headerlink" title="开启SSL模块"></a>开启SSL模块</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo a2enmod ssl</span><br></pre></td></tr></table></figure>
-<p>这条命令相当于<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo ln -s /etc/apache2/mods-available/ssl.load /etc/apache2/mods-enabled</span><br><span class="line">sudo ln -s /etc/apache2/mods-available/ssl.conf /etc/apache2/mods-enabled</span><br></pre></td></tr></table></figure></p>
-<p>如果没有a2enmod指令，也可直接在apache2.conf中设置SSL模块加载：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">LoadModule ssl_module /usr/lib/apache2/modules/mod_ssl.so</span><br></pre></td></tr></table></figure></p>
-        
-          <p class="article-more-link">
-            <a href="/2018/05/Apache的SSL配置/#more">阅读全文</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2018/05/Apache的SSL配置/" data-id="cjh5p72pw00038omjzo30xd4z" class="article-share-link">分享</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/apache/">apache</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux/">linux</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/tool/">tool</a></li></ul>
 
     </footer>
   </div>
@@ -572,7 +559,7 @@
 
   <nav id="page-nav">
     
-    <a class="extend prev" rel="prev" href="/">&laquo; 上一页</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/3/">下一页 &raquo;</a>
+    <a class="extend prev" rel="prev" href="/">&laquo; 上一页</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/3/">下一页 &raquo;</a>
   </nav>
 
 </section>
@@ -602,7 +589,27 @@
           </li>
         
           <li>
+            <a href="/2018/05/微信条码支付/">微信条码支付</a>
+          </li>
+        
+          <li>
+            <a href="/2018/05/微信消息处理/">微信消息处理</a>
+          </li>
+        
+          <li>
+            <a href="/2018/05/微信菜单/">微信菜单</a>
+          </li>
+        
+          <li>
+            <a href="/2018/05/Alipay条码支付及查询/">Alipay条码支付及查询</a>
+          </li>
+        
+          <li>
             <a href="/2018/05/Alipay授权第三方应用/">Alipay授权第三方应用</a>
+          </li>
+        
+          <li>
+            <a href="/2018/05/Laravel的Task-Scheduling/">Laravel的Task-Scheduling</a>
           </li>
         
       </ul>
@@ -612,19 +619,9 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">分类</h3>
-    <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/laravel/">laravel</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/linux/">linux</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/mysql/">mysql</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/phalcon/">phalcon</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/wechat/">wechat</a><span class="category-list-count">7</span></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
     <h3 class="widget-title">标签</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/alipay/">alipay</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/apache/">apache</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/array/">array</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ci/">ci</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/clean-code/">clean-code</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/composer/">composer</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/culture/">culture</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dependency-injection/">dependency-injection</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/design-patterns/">design-patterns</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/laravel/">laravel</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/">mysql</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nginx/">nginx</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/phalcon/">phalcon</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/php/">php</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/phpstorm/">phpstorm</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/postman/">postman</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/refactor/">refactor</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/restful/">restful</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sapi/">sapi</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/solid/">solid</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/wechat/">wechat</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/work-wechat/">work-wechat</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/安全/">安全</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/算法/">算法</a><span class="tag-list-count">4</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/algorithm/">algorithm</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/alipay/">alipay</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/apache/">apache</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/array/">array</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ci/">ci</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/clean-code/">clean-code</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/composer/">composer</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/design-patterns/">design-patterns</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jwt/">jwt</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/laravel/">laravel</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/">mysql</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/phalcon/">phalcon</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/refactor/">refactor</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/restful/">restful</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sapi/">sapi</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/solid/">solid</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tool/">tool</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/wechat/">wechat</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/work-wechat/">work-wechat</a><span class="tag-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -634,7 +631,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">五月 2018</a><span class="archive-list-count">20</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a><span class="archive-list-count">20</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">二月 2018</a><span class="archive-list-count">5</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">五月 2018</a><span class="archive-list-count">19</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a><span class="archive-list-count">15</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a><span class="archive-list-count">15</span></li></ul>
     </div>
   </div>
 
@@ -677,11 +674,7 @@
   
     <a href="/categories/laravel" class="mobile-nav-link">Laravel</a>
   
-    <a href="/categories/phalcon" class="mobile-nav-link">Phalcon</a>
-  
     <a href="/categories/wechat" class="mobile-nav-link">Wechat</a>
-  
-    <a href="/me.html" class="mobile-nav-link">关于作者</a>
   
 </nav>
     
