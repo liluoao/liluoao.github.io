@@ -5,20 +5,22 @@
   
 
   
-  <title>中国历法 | To be a Web Artisan</title>
+  <title>微信网页授权 | To be a Web Artisan</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="农历（the traditional Chinese calendar）是我国传统历法，又有阴历、华历、夏历、汉历、国历等别称。 错误但农历并不等于阴历，而是一种阴阳合历。它取月相的变化周期即朔望月为月的长度，参考太阳回归年为年的长度，通过设置二十四节气以及闰月以使平均历年与回归年相适应。 元年以华夏始祖轩辕黄帝登基为元年，今年（2017）是农历开元4715丁酉鸡年（公历2017.1.28~201">
-<meta name="keywords" content="culture">
+  <meta name="description" content="网页授权流程分为四步：  引导用户进入授权页面同意授权（一般通过扫码或绑定到菜单），获取 code 通过 code 换取网页授权 access_token（与基础支持中的 access_token 不同） 如果需要，开发者可以刷新网页授权 access_token，避免过期 通过网页授权 access_token 和 openid 获取用户基本信息（支持 UnionID 机制）  所有OAuth2">
+<meta name="keywords" content="wechat">
 <meta property="og:type" content="article">
-<meta property="og:title" content="中国历法">
-<meta property="og:url" content="https://liluoao.github.io/2018/02/中国历法/index.html">
+<meta property="og:title" content="微信网页授权">
+<meta property="og:url" content="https://liluoao.github.io/2018/05/微信网页授权/index.html">
 <meta property="og:site_name" content="To be a Web Artisan">
-<meta property="og:description" content="农历（the traditional Chinese calendar）是我国传统历法，又有阴历、华历、夏历、汉历、国历等别称。 错误但农历并不等于阴历，而是一种阴阳合历。它取月相的变化周期即朔望月为月的长度，参考太阳回归年为年的长度，通过设置二十四节气以及闰月以使平均历年与回归年相适应。 元年以华夏始祖轩辕黄帝登基为元年，今年（2017）是农历开元4715丁酉鸡年（公历2017.1.28~201">
+<meta property="og:description" content="网页授权流程分为四步：  引导用户进入授权页面同意授权（一般通过扫码或绑定到菜单），获取 code 通过 code 换取网页授权 access_token（与基础支持中的 access_token 不同） 如果需要，开发者可以刷新网页授权 access_token，避免过期 通过网页授权 access_token 和 openid 获取用户基本信息（支持 UnionID 机制）  所有OAuth2">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-05-14T03:37:13.470Z">
+<meta property="og:image" content="https://p.qpic.cn/pic_wework/4208501329/ebed29e092fda3841e56e191eba8ed7ae6775f7dffd75bed/0">
+<meta property="og:updated_time" content="2018-05-14T03:37:13.501Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="中国历法">
-<meta name="twitter:description" content="农历（the traditional Chinese calendar）是我国传统历法，又有阴历、华历、夏历、汉历、国历等别称。 错误但农历并不等于阴历，而是一种阴阳合历。它取月相的变化周期即朔望月为月的长度，参考太阳回归年为年的长度，通过设置二十四节气以及闰月以使平均历年与回归年相适应。 元年以华夏始祖轩辕黄帝登基为元年，今年（2017）是农历开元4715丁酉鸡年（公历2017.1.28~201">
+<meta name="twitter:title" content="微信网页授权">
+<meta name="twitter:description" content="网页授权流程分为四步：  引导用户进入授权页面同意授权（一般通过扫码或绑定到菜单），获取 code 通过 code 换取网页授权 access_token（与基础支持中的 access_token 不同） 如果需要，开发者可以刷新网页授权 access_token，避免过期 通过网页授权 access_token 和 openid 获取用户基本信息（支持 UnionID 机制）  所有OAuth2">
+<meta name="twitter:image" content="https://p.qpic.cn/pic_wework/4208501329/ebed29e092fda3841e56e191eba8ed7ae6775f7dffd75bed/0">
 <meta name="twitter:creator" content="@liluoao">
   
   
@@ -67,12 +69,16 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-中国历法" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-微信网页授权" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2018/02/中国历法/" class="article-date">
-  <time datetime="2018-02-20T08:04:24.000Z" itemprop="datePublished">2018-02-20</time>
+    <a href="/2018/05/微信网页授权/" class="article-date">
+  <time datetime="2018-05-14T03:02:14.000Z" itemprop="datePublished">2018-05-14</time>
 </a>
     
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/wechat/">wechat</a>
+  </div>
+
   </div>
   <div class="article-inner">
     
@@ -81,7 +87,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      中国历法
+      微信网页授权
     </h1>
   
 
@@ -89,75 +95,37 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><strong>农历</strong>（the traditional Chinese calendar）是我国传统历法，又有阴历、华历、夏历、汉历、国历等别称。</p>
-<h3 id="错误"><a href="#错误" class="headerlink" title="错误"></a>错误</h3><p><strong>但农历并不等于</strong><del><strong>阴历</strong></del><strong>，而是一种阴阳合历</strong>。它取月相的变化周期即朔望月为月的长度，参考太阳回归年为年的长度，通过设置二十四节气以及闰月以使平均历年与回归年相适应。</p>
-<h3 id="元年"><a href="#元年" class="headerlink" title="元年"></a>元年</h3><p>以华夏始祖轩辕黄帝登基为元年，今年（2017）是农历开元4715丁酉鸡年（公历2017.1.28~2018.02.15），我国传统历法比西方历法（<code>the Gregorian calendar</code>）早 <code>2698</code> 年，用西元年份 +2698 即是我国传统历法的年份。</p>
-<h3 id="起源"><a href="#起源" class="headerlink" title="起源"></a>起源</h3><p>古代典籍和甲骨文中均对农历多有记载，大量历史典籍记载农历始于黄帝时代。农历阴阳合一的历法规则一般认为产生于商代。</p>
-<p>1912年我国开始采用西元历法和我国传统历法农历并用，随着国人对传统文化的重视，历法纪年对于一个国家一个民族拥有重要意义，关于进一步提升我国传统历法的地位也得到了越来越多的国人支持，民国时期同盟会创办的《民报》就采用的农历黄帝纪年，武昌起义后，湖北军政府也采用农历纪年，各省政府也跟着使用， 孙文就任中华民国临时大总统后，发布了《改历改元通电》规定：中华民国改用阳历，以农历开元4609年即辛亥十一月十三日为中华民国元年元旦，两历并用。<br><a id="more"></a></p>
-<h3 id="历代历法"><a href="#历代历法" class="headerlink" title="历代历法"></a>历代历法</h3><ul>
-<li>古六历（《黄帝历》、《夏历》、《殷历》、《周历》、《鲁历》、《颛顼历》）（? - 公元前104年）</li>
-<li>太初历（三统历） - 西汉、新朝、东汉（公元前104年- 84年）</li>
-<li>四分历- 东汉（85年- 220年）、曹魏（220年- 236年）、东吴（222年）、蜀汉（221年- 263年）干象历 - 东吴（223年- 280年）</li>
-<li>景初历- 曹魏、西晋、东晋、刘宋（237年- 444年）、北魏（398年- 451年）</li>
-<li>元嘉历 - 刘宋、南齐、南梁（445年- 509年）</li>
-<li>大明历 - 南梁、南陈（510年- 589年）</li>
-<li>三纪历 - 后秦（384年- 517年）</li>
-<li>玄始历 - 北梁（412年- 439年）、北魏（452年- 522年）</li>
-<li>正光历 - 北魏（523年- 534年）、东魏（535年- 539年）、西魏（535年- 556年）、北周（556年- 565年）</li>
-<li>兴和历- 东魏（540年- 550年）</li>
-<li>天保历 - 北齐（551年- 577年）</li>
-<li>天和历 - 北周（566年- 578年）</li>
-<li>大象历 - 北周（579年- 581年）、隋朝（581年- 583年）</li>
-<li>开皇历- 隋（584年- 596年）</li>
-<li>大业历 - 隋（597年- 618年）</li>
-<li>皇极历</li>
-<li>戊寅元历- 唐朝（619年- 664年）</li>
-<li>麟德历 - 唐（665年- 728年）’</li>
-<li>大衍历 - 唐（729年- 761年）</li>
-<li>五纪历 - 唐（762年- 783年）</li>
-<li>正元历 - 唐（784年- 806年）</li>
-<li>观象历 - 唐（807年- 821年）</li>
-<li>宣明历 - 唐（822年- 892年）</li>
-<li>崇玄历 - 唐（893年- 907年）、后梁、后唐、后晋、后汉、后周（908年- 955年）</li>
-<li>九执历</li>
-<li>符天历</li>
-<li>调元历- 后晋（939年- 943年?）、辽朝（961年? - 993年）</li>
-<li>大明历 - 辽（994年- 1125年）</li>
-<li>钦天历 - 后周（956年- 960年）、北宋（960年- 963年）</li>
-<li>应天历- 北宋（963年- 981年）</li>
-<li>干元历 - 北宋（981年- 1001年）</li>
-<li>仪天历 - 北宋（1001年- 1023年）</li>
-<li>崇天历 - 北宋（1024年- 1065年;1068年- 1075年）</li>
-<li>明天历- 北宋（1065年- 1068年）</li>
-<li>奉元历 - 北宋（1075年- 1093年）</li>
-<li>观天历 - 北宋（1094年- 1102年）</li>
-<li>占天历 - 北宋（1103年- 1105年）</li>
-<li>纪元历 - 北宋、南宋（1106年- 1135年）</li>
-<li>统元历 - 南宋（1136年- 1167年）</li>
-<li>干道历 - 南宋（1168年- 1176年）</li>
-<li>淳熙历 - 南宋（1177年- 1190年）</li>
-<li>会元历 - 南宋（1191年- 1198年）</li>
-<li>统天历- 南宋（1199年- 1207年）</li>
-<li>开禧历 -南宋（1208年- 1251年）</li>
-<li>淳佑历 - 南宋（1252年）</li>
-<li>会天历 - 南宋（1253年- 1270年）</li>
-<li>成天历 - 南宋（1271年- 1276年）</li>
-<li>大明历 - 金朝（1137年- 1181年）</li>
-<li>重修大明历 - 金、元朝（1182年- 1280年）</li>
-<li>授时历（大统历）- 元、明朝（1281年- 1644年）</li>
-<li>时宪历- 清朝（1645年- 1723年）</li>
-<li>癸卯元历-清朝- 中华民国（1724年- 1913年）</li>
-<li>新法天文夏历 - 中华民国（1914年- 1928年）</li>
-<li>紫金历 - 中华民国、中华人民共和国（1929年- 至今）</li>
-</ul>
+        <p>网页授权流程分为四步：</p>
+<ol>
+<li>引导用户进入授权页面同意授权（一般通过扫码或绑定到菜单），获取 <code>code</code></li>
+<li>通过 <code>code</code> 换取网页授权 <code>access_token</code>（与基础支持中的 <code>access_token</code> 不同）</li>
+<li>如果需要，开发者可以刷新网页授权 <code>access_token</code>，避免过期</li>
+<li>通过网页授权 <code>access_token</code> 和 <code>openid</code> 获取用户基本信息（支持 <code>UnionID</code> 机制）</li>
+</ol>
+<p>所有OAuth2.0流程类似：<br><img src="https://p.qpic.cn/pic_wework/4208501329/ebed29e092fda3841e56e191eba8ed7ae6775f7dffd75bed/0" alt="企业微信OAuth2.0流程图"><br><a id="more"></a></p>
+<h4 id="UnionID机制"><a href="#UnionID机制" class="headerlink" title="UnionID机制"></a>UnionID机制</h4><ol>
+<li>请注意，网页授权获取用户基本信息也遵循UnionID机制。即如果开发者有在多个公众号，或在公众号、移动应用之间统一用户帐号的需求，需要前往微信开放平台（open.weixin.qq.com）绑定公众号后，才可利用UnionID机制来满足上述需求。</li>
+<li>UnionID机制的作用说明：如果开发者拥有多个移动应用、网站应用和公众帐号，可通过获取用户基本信息中的unionid来区分用户的唯一性，因为同一用户，对同一个微信开放平台下的不同应用（移动应用、网站应用和公众帐号），unionid是相同的。</li>
+</ol>
+<h4 id="scope说明与静默授权"><a href="#scope说明与静默授权" class="headerlink" title="scope说明与静默授权"></a>scope说明与静默授权</h4><ol>
+<li>以 <strong>snsapi_base</strong> 为scope发起的网页授权，是用来获取进入页面的用户的openid的，并且是静默授权并自动跳转到回调页的。用户感知的就是直接进入了回调页（往往是业务页面）</li>
+<li>以 <strong>snsapi_userinfo</strong> 为scope发起的网页授权，是用来获取用户的基本信息的。但这种授权需要用户手动同意，并且由于用户同意过，所以无须关注，就可在授权后获取该用户的基本信息。</li>
+<li>用户管理类接口中的“获取用户基本信息接口”，是在用户和公众号产生消息交互或关注后事件推送后，才能根据用户OpenID来获取用户基本信息。这个接口，包括其他微信接口，都是需要该用户（即openid）关注了公众号后，才能调用成功的。</li>
+<li>以 <strong>snsapi_base</strong> 为scope的网页授权，就静默授权的，用户无感知</li>
+<li>对于已关注公众号的用户，如果用户从公众号的会话或者自定义菜单进入本公众号的网页授权页，即使是scope为 <strong>snsapi_userinfo</strong>，也是静默授权，用户无感知</li>
+</ol>
+<h4 id="进入授权页面"><a href="#进入授权页面" class="headerlink" title="进入授权页面"></a>进入授权页面</h4><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">$urlParam = http_build_query([</span><br><span class="line">    <span class="string">'appid'</span> =&gt; config(<span class="string">'wechat.appid'</span>),</span><br><span class="line">    <span class="string">'redirect_uri'</span> =&gt; $redirectUri,</span><br><span class="line">    <span class="string">'response_type'</span> =&gt; <span class="string">'code'</span>,</span><br><span class="line">    <span class="string">'scope'</span> =&gt; <span class="string">'snsapi_base'</span>,</span><br><span class="line">]);</span><br><span class="line">$url = <span class="string">'https://open.weixin.qq.com/connect/oauth2/authorize?'</span> . $urlParam . <span class="string">'#wechat_redirect'</span>;</span><br><span class="line">header(<span class="string">"Location:&#123;$url&#125;"</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">exit</span>();</span><br></pre></td></tr></table></figure>
+<p>如果用户同意授权，页面将跳转至 <code>redirect_uri/?code=CODE&amp;state=STATE</code></p>
+<h4 id="获取OpenId"><a href="#获取OpenId" class="headerlink" title="获取OpenId"></a>获取OpenId</h4><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$params = [</span><br><span class="line">    <span class="string">'appid'</span> =&gt; config(<span class="string">'wechat.appid'</span>),</span><br><span class="line">    <span class="string">'secret'</span> =&gt; config(<span class="string">'wechat.secret'</span>),</span><br><span class="line">    <span class="string">'code'</span> =&gt; Input::get(<span class="string">'code'</span>),</span><br><span class="line">    <span class="string">'grant_type'</span> =&gt; <span class="string">'authorization_code'</span></span><br><span class="line">];</span><br><span class="line">$data = $api-&gt;callApi(<span class="string">'get'</span>, <span class="string">'sns/oauth2/access_token'</span>, $params);</span><br></pre></td></tr></table></figure>
+<p>成功返回数据：<br><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&#123; </span><br><span class="line">    <span class="attr">"access_token"</span>:<span class="string">"ACCESS_TOKEN"</span>,</span><br><span class="line">    <span class="attr">"expires_in"</span>:<span class="number">7200</span>,</span><br><span class="line">    <span class="attr">"refresh_token"</span>:<span class="string">"REFRESH_TOKEN"</span>,</span><br><span class="line">    <span class="attr">"openid"</span>:<span class="string">"OPENID"</span>,</span><br><span class="line">    <span class="attr">"scope"</span>:<span class="string">"SCOPE"</span> </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2018/02/中国历法/" data-id="cjh5p72s3001s8omje4o4qqyz" class="article-share-link">分享</a>
+      <a data-url="https://liluoao.github.io/2018/05/微信网页授权/" data-id="cjh5p72td00388omjn1zmosoj" class="article-share-link">分享</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/culture/">culture</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/wechat/">wechat</a></li></ul>
 
     </footer>
   </div>
@@ -165,19 +133,10 @@
     
 <nav id="article-nav">
   
-    <a href="/2018/02/二十四节气/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">上一篇</strong>
-      <div class="article-nav-title">
-        
-          二十四节气
-        
-      </div>
-    </a>
   
-  
-    <a href="/2018/02/公历和儒略历的区别/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2018/05/企业微信通讯录/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">下一篇</strong>
-      <div class="article-nav-title">公历和儒略历的区别</div>
+      <div class="article-nav-title">企业微信通讯录</div>
     </a>
   
 </nav>
