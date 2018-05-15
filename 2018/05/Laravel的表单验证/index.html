@@ -5,18 +5,22 @@
   
 
   
-  <title>To be a Web Artisan</title>
+  <title>Laravel的表单验证 | To be a Web Artisan</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="李罗奥的博客">
-<meta property="og:type" content="website">
-<meta property="og:title" content="To be a Web Artisan">
-<meta property="og:url" content="http://www.liluoao.com/index.html">
+  <meta name="description" content="修改密码  Confirmed如果要验证的字段是 password，输入中必须存在匹配的 password_confirmation 字段。 Different验证的字段值必须与参数字段的值不同。12345678910public function rules() &amp;#123;    return [        //...        &apos;password&apos; =&amp;gt; &apos;bail|requi">
+<meta name="keywords" content="laravel">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Laravel的表单验证">
+<meta property="og:url" content="http://www.liluoao.com/2018/05/Laravel的表单验证/index.html">
 <meta property="og:site_name" content="To be a Web Artisan">
-<meta property="og:description" content="李罗奥的博客">
+<meta property="og:description" content="修改密码  Confirmed如果要验证的字段是 password，输入中必须存在匹配的 password_confirmation 字段。 Different验证的字段值必须与参数字段的值不同。12345678910public function rules() &amp;#123;    return [        //...        &apos;password&apos; =&amp;gt; &apos;bail|requi">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://www.liluoao.com/images/form-request1.png">
+<meta property="og:updated_time" content="2018-05-15T07:13:24.252Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="To be a Web Artisan">
-<meta name="twitter:description" content="李罗奥的博客">
+<meta name="twitter:title" content="Laravel的表单验证">
+<meta name="twitter:description" content="修改密码  Confirmed如果要验证的字段是 password，输入中必须存在匹配的 password_confirmation 字段。 Different验证的字段值必须与参数字段的值不同。12345678910public function rules() &amp;#123;    return [        //...        &apos;password&apos; =&amp;gt; &apos;bail|requi">
+<meta name="twitter:image" content="http://www.liluoao.com/images/form-request1.png">
 <meta name="twitter:creator" content="@liluoao">
   
   
@@ -61,9 +65,7 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-    <article id="post-Laravel的表单验证" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-Laravel的表单验证" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2018/05/Laravel的表单验证/" class="article-date">
   <time datetime="2018-05-15T06:48:33.000Z" itemprop="datePublished">2018-05-15</time>
@@ -80,8 +82,8 @@
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/05/Laravel的表单验证/">Laravel的表单验证</a>
+    <h1 class="article-title" itemprop="name">
+      Laravel的表单验证
     </h1>
   
 
@@ -139,472 +141,19 @@
     </footer>
   </div>
   
-</article>
-
-
+    
+<nav id="article-nav">
   
-    <article id="post-微信网页授权" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/05/微信网页授权/" class="article-date">
-  <time datetime="2018-05-14T03:02:14.000Z" itemprop="datePublished">2018-05-14</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/wechat/">wechat</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/05/微信网页授权/">微信网页授权</a>
-    </h1>
+    <a href="/2018/05/微信网页授权/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">微信网页授权</div>
+    </a>
   
+</nav>
 
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>网页授权流程分为四步：</p>
-<ol>
-<li>引导用户进入授权页面同意授权（一般通过扫码或绑定到菜单），获取 <code>code</code></li>
-<li>通过 <code>code</code> 换取网页授权 <code>access_token</code>（与基础支持中的 <code>access_token</code> 不同）</li>
-<li>如果需要，开发者可以刷新网页授权 <code>access_token</code>，避免过期</li>
-<li>通过网页授权 <code>access_token</code> 和 <code>openid</code> 获取用户基本信息（支持 <code>UnionID</code> 机制）</li>
-</ol>
-<p>所有OAuth2.0流程类似：<br><img src="https://p.qpic.cn/pic_wework/4208501329/ebed29e092fda3841e56e191eba8ed7ae6775f7dffd75bed/0" alt="企业微信OAuth2.0流程图"><br>
-        
-          <p class="article-more-link">
-            <a href="/2018/05/微信网页授权/#more">阅读全文</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://www.liluoao.com/2018/05/微信网页授权/" data-id="cjh7ccwpk0036u4mj05yrh0le" class="article-share-link">分享</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/wechat/">wechat</a></li></ul>
-
-    </footer>
-  </div>
   
 </article>
-
-
-  
-    <article id="post-企业微信通讯录" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/05/企业微信通讯录/" class="article-date">
-  <time datetime="2018-05-13T02:18:48.000Z" itemprop="datePublished">2018-05-13</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/wechat/">wechat</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/05/企业微信通讯录/">企业微信通讯录</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><a href="https://work.weixin.qq.com/" target="_blank" rel="noopener">企业微信</a>（原企业号）提供了通讯录管理、应用管理、消息推送、身份验证、移动端SDK、素材、OA数据接口、企业支付、电子发票等API，管理员可以使用这些API，为企业接入更多个性化的办公应用。</p>
-<p>要使用API管理通讯录，必须打开 <code>通讯录同步</code><br>登录企业管理后台-&gt;“管理工具”-&gt;“通讯录同步”-&gt;“开启API接口同步”<br><img src="/images/work-wechat-config.png" alt=""><br>
-        
-          <p class="article-more-link">
-            <a href="/2018/05/企业微信通讯录/#more">阅读全文</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://www.liluoao.com/2018/05/企业微信通讯录/" data-id="cjh7ccwop001zu4mjbai75dx1" class="article-share-link">分享</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/wechat/">wechat</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/work-wechat/">work-wechat</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-微信硬件设备授权" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/05/微信硬件设备授权/" class="article-date">
-  <time datetime="2018-05-12T01:35:57.000Z" itemprop="datePublished">2018-05-12</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/wechat/">wechat</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/05/微信硬件设备授权/">微信硬件设备授权</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><img src="http://iot.weixin.qq.com/wiki/static/image/2_1-1.png" alt="设备授权流程"></p>
-<ol>
-<li>进入<a href="https://mp.weixin.qq.com/" target="_blank" rel="noopener">微信公众平台</a><br>在 <code>功能</code> -&gt; <code>设备管理</code> 中添加产品，填写相关信息后获取到产品ID（product_id）
-        
-          <p class="article-more-link">
-            <a href="/2018/05/微信硬件设备授权/#more">阅读全文</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://www.liluoao.com/2018/05/微信硬件设备授权/" data-id="cjh7ccwpk0033u4mji4pnb069" class="article-share-link">分享</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/wechat/">wechat</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-微信卡券" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/05/微信卡券/" class="article-date">
-  <time datetime="2018-05-11T03:16:17.000Z" itemprop="datePublished">2018-05-11</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/wechat/">wechat</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/05/微信卡券/">微信卡券</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>💻<a href="https://mp.weixin.qq.com/wiki?t=resource/res_main&amp;id=mp1451025056" target="_blank" rel="noopener">API文档</a></p>
-<p>卡券类型：</p>
-<ul>
-<li>CASH代金券</li>
-<li>DISCOUNT折扣券</li>
-<li>GIFT兑换券</li>
-<li>GENERAL_COUPON优惠券</li>
-<li>MEMBER_CARD会员卡</li>
-</ul>
-<h4 id="上传商户Logo"><a href="#上传商户Logo" class="headerlink" title="上传商户Logo"></a>上传商户Logo</h4><p>需要 <code>access_token</code><br>请求方式：<code>POST</code><br>
-        
-          <p class="article-more-link">
-            <a href="/2018/05/微信卡券/#more">阅读全文</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://www.liluoao.com/2018/05/微信卡券/" data-id="cjh7ccwp4002vu4mjlway6wm8" class="article-share-link">分享</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/wechat/">wechat</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-微信条码支付" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/05/微信条码支付/" class="article-date">
-  <time datetime="2018-05-10T01:26:24.000Z" itemprop="datePublished">2018-05-10</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/wechat/">wechat</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/05/微信条码支付/">微信条码支付</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>也叫刷卡支付</p>
-<blockquote>
-<p>支付金额&gt;1000元的交易需要验证用户支付密码<br>用户账号每天最多有5笔交易可以免密，超过后需要验证密码</p>
-</blockquote>
-<ul>
-<li>微信条形码规则：18位纯数字，以10、11、12、13、14、15开头</li>
-<li>支付宝条形码规则：25~30开头的长度为16~24位的数字</li>
-</ul>
-<p>💻<a href="https://pay.weixin.qq.com/wiki/doc/api/micropay.php?chapter=9_10&amp;index=1" target="_blank" rel="noopener">API文档</a><br>💻<a href="https://pay.weixin.qq.com/wiki/doc/api/micropay.php?chapter=11_1" target="_blank" rel="noopener">SDK下载</a></p>
-<h4 id="接口地址"><a href="#接口地址" class="headerlink" title="接口地址"></a>接口地址</h4><p><a href="https://api.mch.weixin.qq.com/pay/micropay" target="_blank" rel="noopener">https://api.mch.weixin.qq.com/pay/micropay</a><br>沙箱地址：<br><a href="https://api.mch.weixin.qq.com/sandboxnew/pay/micropay" target="_blank" rel="noopener">https://api.mch.weixin.qq.com/sandboxnew/pay/micropay</a></p>
-<h4 id="随机字符串与签名"><a href="#随机字符串与签名" class="headerlink" title="随机字符串与签名"></a>随机字符串与签名</h4><p>本API需要 <code>nonce_str</code> 和 <code>sign</code>，生成算法见<a href="https://pay.weixin.qq.com/wiki/doc/api/micropay.php?chapter=4_3" target="_blank" rel="noopener">安全规范</a></p>
-        
-          <p class="article-more-link">
-            <a href="/2018/05/微信条码支付/#more">阅读全文</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://www.liluoao.com/2018/05/微信条码支付/" data-id="cjh7ccwp4002yu4mjuywl93lk" class="article-share-link">分享</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/wechat/">wechat</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-微信消息处理" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/05/微信消息处理/" class="article-date">
-  <time datetime="2018-05-09T07:14:51.000Z" itemprop="datePublished">2018-05-09</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/wechat/">wechat</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/05/微信消息处理/">微信消息处理</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><p>首先登录微信公众平台 <code>https://mp.weixin.qq.com</code>，在<strong>开发</strong>-&gt;<strong>基本配置</strong>中填写服务器配置（接收处理微信消息的地址）<br><img src="/images/wechat-config.png" alt=""><br>保存好你的配置，在加解密时需要使用。<br>
-        
-          <p class="article-more-link">
-            <a href="/2018/05/微信消息处理/#more">阅读全文</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://www.liluoao.com/2018/05/微信消息处理/" data-id="cjh7ccwpk0030u4mjy64m24mx" class="article-share-link">分享</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/wechat/">wechat</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-微信菜单" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/05/微信菜单/" class="article-date">
-  <time datetime="2018-05-09T01:56:41.000Z" itemprop="datePublished">2018-05-09</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/wechat/">wechat</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/05/微信菜单/">微信菜单</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>自定义微信菜单时需要注意以下几点：</p>
-<ol>
-<li>自定义菜单最多包括<strong>3</strong>个一级菜单，每个一级菜单最多包含<strong>5</strong>个二级菜单。</li>
-<li>一级菜单最多<strong>4</strong>个汉字，二级菜单最多<strong>7</strong>个汉字，多出来的部分将会以<code>“...”</code>代替。</li>
-<li>创建自定义菜单后，菜单的刷新策略是，在用户进入公众号会话页或公众号profile页时，如果发现上一次拉取菜单的请求在<strong>5</strong>分钟以前，就会拉取一下菜单，如果菜单有更新，就会刷新客户端的菜单。测试时可以尝试取消关注公众账号后再次关注，则可以看到创建后的效果。
-        
-          <p class="article-more-link">
-            <a href="/2018/05/微信菜单/#more">阅读全文</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://www.liluoao.com/2018/05/微信菜单/" data-id="cjh7ccwpk0039u4mj1m4ihduz" class="article-share-link">分享</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/wechat/">wechat</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-Alipay条码支付及查询" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/05/Alipay条码支付及查询/" class="article-date">
-  <time datetime="2018-05-08T08:05:52.000Z" itemprop="datePublished">2018-05-08</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/05/Alipay条码支付及查询/">Alipay条码支付及查询</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <blockquote>
-<p>收银员使用扫码设备读取用户手机支付宝“付款码”/声波获取设备（如麦克风）读取用户手机支付宝的声波信息后，将二维码或条码信息/声波信息通过本接口上送至支付宝发起支付。</p>
-</blockquote>
-<p>💻<a href="https://docs.open.alipay.com/api_1/alipay.trade.pay" target="_blank" rel="noopener">API文档</a><br>💻<a href="https://docs.open.alipay.com/54/103419" target="_blank" rel="noopener">SDK下载</a></p>
-<p>下载SDK后，本接口需要使用 <code>AopClient</code> 与 <code>AlipayTradePayRequest</code> 类<br>先新建一个统一处理Alipay的类</p>
-        
-          <p class="article-more-link">
-            <a href="/2018/05/Alipay条码支付及查询/#more">阅读全文</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://www.liluoao.com/2018/05/Alipay条码支付及查询/" data-id="cjh7ccwm30003u4mj3lse50l7" class="article-share-link">分享</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/alipay/">alipay</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-Alipay授权第三方应用" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/05/Alipay授权第三方应用/" class="article-date">
-  <time datetime="2018-05-08T02:41:33.000Z" itemprop="datePublished">2018-05-08</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/05/Alipay授权第三方应用/">Alipay授权第三方应用</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <blockquote>
-<p>1、商户对开发者进行应用授权后，开发者可以帮助商户完成相应的业务逻辑，例如代替商户发起当面付的收单请求。<br>2、授权采用标准的OAuth 2.0流程。</p>
-</blockquote>
-<p>💻<a href="https://docs.open.alipay.com/api_9/alipay.open.auth.token.app" target="_blank" rel="noopener">API文档</a></p>
-<p><img src="https://raw.githubusercontent.com/liluoao/simple/master/images/alipay.jpg" alt="第三方应用授权"><br>
-        
-          <p class="article-more-link">
-            <a href="/2018/05/Alipay授权第三方应用/#more">阅读全文</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://www.liluoao.com/2018/05/Alipay授权第三方应用/" data-id="cjh7ccwm30002u4mjtj0jblux" class="article-share-link">分享</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/alipay/">alipay</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-
-
-  <nav id="page-nav">
-    
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/2/">下一页 &raquo;</a>
-  </nav>
 
 </section>
         
