@@ -16,7 +16,7 @@
 <meta property="og:description" content="修改密码  Confirmed如果要验证的字段是 password，输入中必须存在匹配的 password_confirmation 字段。 Different验证的字段值必须与参数字段的值不同。12345678910public function rules() &amp;#123;    return [        //...        &apos;password&apos; =&amp;gt; &apos;bail|requi">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://www.liluoao.com/images/form-request1.png">
-<meta property="og:updated_time" content="2018-05-15T07:13:24.252Z">
+<meta property="og:updated_time" content="2018-05-15T07:16:16.462Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Laravel的表单验证">
 <meta name="twitter:description" content="修改密码  Confirmed如果要验证的字段是 password，输入中必须存在匹配的 password_confirmation 字段。 Different验证的字段值必须与参数字段的值不同。12345678910public function rules() &amp;#123;    return [        //...        &apos;password&apos; =&amp;gt; &apos;bail|requi">
@@ -97,6 +97,7 @@
 <li>Different<br>验证的字段值必须与参数字段的值不同。<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">rules</span><span class="params">()</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> [</span><br><span class="line">        <span class="comment">//...</span></span><br><span class="line">        <span class="string">'password'</span> =&gt; <span class="string">'bail|required|string|between:8,20|confirmed|different:old_password'</span>,</span><br><span class="line">        <span class="string">'password_confirmation'</span> =&gt; <span class="string">'bail|required|string|between:8,20'</span></span><br><span class="line">        <span class="comment">//...</span></span><br><span class="line">    ];</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
+<a id="more"></a>
 <h4 id="验证数组"><a href="#验证数组" class="headerlink" title="验证数组"></a>验证数组</h4><p>通常我们的 <code>tags</code> 前端通常会写成这个样子：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">name</span>=<span class="string">'tags[]'</span> &gt;</span></span><br></pre></td></tr></table></figure></p>
 <p>然后在后端可以通过多对多的关联来实现这个添加标签的功能，但是其实我们仔细地想：我们添加标签的时候希望达到什么样的效果呢？我觉得有下面两个最简单的：</p>
 <ol>
@@ -133,7 +134,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.liluoao.com/2018/05/Laravel的表单验证/" data-id="cjh7ccwne000nu4mjkn3iabob" class="article-share-link">分享</a>
+      <a data-url="http://www.liluoao.com/2018/05/Laravel的表单验证/" data-id="cjh7cgs9h000jjwmj078rurgs" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/laravel/">laravel</a></li></ul>
