@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>Laravel的本地化 | To be a Web Artisan</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="i18n（其来源是英文单词 internationalization 的首末字符i和n，18为中间的字符数）是“国际化”的简称。在资讯领域，国际化(i18n)指让产品（出版物，软件，硬件等）无需做大的改变就能够适应不同的语言和地区的需要。对程序来说，在不修改内部代码的情况下，能根据不同语言及地区显示相应的界面。对应的有l10n（ localization 的缩写形式，意即在 l 和 n 之间有 1">
+<meta name="keywords" content="laravel">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Laravel的本地化">
+<meta property="og:url" content="http://www.liluoao.com/2018/laravel-localization.html">
+<meta property="og:site_name" content="To be a Web Artisan">
+<meta property="og:description" content="i18n（其来源是英文单词 internationalization 的首末字符i和n，18为中间的字符数）是“国际化”的简称。在资讯领域，国际化(i18n)指让产品（出版物，软件，硬件等）无需做大的改变就能够适应不同的语言和地区的需要。对程序来说，在不修改内部代码的情况下，能根据不同语言及地区显示相应的界面。对应的有l10n（ localization 的缩写形式，意即在 l 和 n 之间有 1">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-05-16T07:30:59.159Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Laravel的本地化">
+<meta name="twitter:description" content="i18n（其来源是英文单词 internationalization 的首末字符i和n，18为中间的字符数）是“国际化”的简称。在资讯领域，国际化(i18n)指让产品（出版物，软件，硬件等）无需做大的改变就能够适应不同的语言和地区的需要。对程序来说，在不修改内部代码的情况下，能根据不同语言及地区显示相应的界面。对应的有l10n（ localization 的缩写形式，意即在 l 和 n 之间有 1">
+<meta name="twitter:creator" content="@liluoao">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">To be a Web Artisan</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">首页</a>
+        
+          <a class="main-nav-link" href="/archives">文章列表</a>
+        
+          <a class="main-nav-link" href="/categories/laravel">Laravel</a>
+        
+          <a class="main-nav-link" href="/categories/wechat">Wechat</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://www.liluoao.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Laravel的本地化" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/laravel-localization.html" class="article-date">
+  <time datetime="2018-05-16T07:11:14.000Z" itemprop="datePublished">2018-05-16</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/laravel/">laravel</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Laravel的本地化
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><strong>i18n</strong>（其来源是英文单词 internationalization 的首末字符i和n，18为中间的字符数）是“国际化”的简称。<br>在资讯领域，国际化(i18n)指让产品（出版物，软件，硬件等）无需做大的改变就能够适应不同的语言和地区的需要。对程序来说，在不修改内部代码的情况下，能根据不同语言及地区显示相应的界面。<br>对应的有<strong>l10n</strong>（ localization 的缩写形式，意即在 l 和 n 之间有 10 个字母），本意是指软件的“本地化”。</p>
+<a id="more"></a>
+<p><code>config/app.php</code> 中的区域（语言）设置：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">|--------------------------------------------------------------------------</span></span><br><span class="line"><span class="comment">| Application Locale Configuration</span></span><br><span class="line"><span class="comment">|--------------------------------------------------------------------------</span></span><br><span class="line"><span class="comment">|</span></span><br><span class="line"><span class="comment">| The application locale determines the default locale that will be used</span></span><br><span class="line"><span class="comment">| by the translation service provider. You are free to set this value</span></span><br><span class="line"><span class="comment">| to any of the locales which will be supported by the application.</span></span><br><span class="line"><span class="comment">|</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line"><span class="string">'locale'</span> =&gt; <span class="string">'zh-CN'</span>,</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">|--------------------------------------------------------------------------</span></span><br><span class="line"><span class="comment">| Application Fallback Locale</span></span><br><span class="line"><span class="comment">|--------------------------------------------------------------------------</span></span><br><span class="line"><span class="comment">|</span></span><br><span class="line"><span class="comment">| The fallback locale determines the locale to use when the current one</span></span><br><span class="line"><span class="comment">| is not available. You may change the value to correspond to any of</span></span><br><span class="line"><span class="comment">| the language folders that are provided through your application.</span></span><br><span class="line"><span class="comment">|</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line"><span class="string">'fallback_locale'</span> =&gt; <span class="string">'en'</span>,</span><br></pre></td></tr></table></figure></p>
+<p>可以使用 <code>App Facade</code> 的 <code>setLocale()</code> 方法动态地更改当前语言：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Route::get(<span class="string">'welcome/&#123;locale&#125;'</span>, <span class="function"><span class="keyword">function</span> <span class="params">($locale)</span> </span>&#123;</span><br><span class="line">    App::setLocale($locale);</span><br><span class="line">    <span class="comment">//...</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<p>还有 <code>getLocale()</code> 及 <code>isLocale()</code> 方法确定当前的区域设置或者检查语言环境是否为给定值</p>
+<p>例如Element文档：</p>
+<ul>
+<li><a href="http://element-cn.eleme.io/#/zh-CN" target="_blank" rel="noopener">http://element-cn.eleme.io/#/zh-CN</a></li>
+<li><a href="http://element-cn.eleme.io/#/en-US" target="_blank" rel="noopener">http://element-cn.eleme.io/#/en-US</a></li>
+<li><a href="http://element-cn.eleme.io/#/es/" target="_blank" rel="noopener">http://element-cn.eleme.io/#/es/</a></li>
+</ul>
+<p><strong>zh</strong> 为中文大类，其中还分为许多小类：</p>
+<ul>
+<li>zh-CN 简体中文，中华人民共和国</li>
+<li>zh-HK 繁体中文，香港特别行政区</li>
+<li>zh-MO 繁体中文，澳门特别行政区</li>
+<li>zh-SG 简体中文，新加坡</li>
+<li>zh-TW 繁体中文，中国台湾</li>
+</ul>
+<p>语言目录为<code>resources/lang/</code>：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">/resources</span><br><span class="line">    /lang</span><br><span class="line">        /en</span><br><span class="line">            auth.php</span><br><span class="line">            pagination.php</span><br><span class="line">            passwords.php</span><br><span class="line">            validation.php</span><br><span class="line">        /zh-CN</span><br><span class="line">            messages.php</span><br><span class="line">            pagination.php</span><br><span class="line">            passwords.php</span><br><span class="line">            validation.php</span><br></pre></td></tr></table></figure></p>
+<p><code>resources/lang/zh-CN/validation.php</code> 设置语言后会翻译表单验证的规则、标签等：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="keyword">return</span> [</span><br><span class="line">    <span class="string">'accepted'</span>             =&gt; <span class="string">':attribute 必须接受。'</span>,</span><br><span class="line">    <span class="string">'active_url'</span>           =&gt; <span class="string">':attribute 不是一个有效的网址。'</span>,</span><br><span class="line">    <span class="string">'after'</span>                =&gt; <span class="string">':attribute 必须要晚于 :date。'</span>,</span><br><span class="line">    <span class="string">'after_or_equal'</span>       =&gt; <span class="string">':attribute 必须要等于 :date 或更晚。'</span>,</span><br><span class="line">    <span class="string">'alpha'</span>                =&gt; <span class="string">':attribute 只能由字母组成。'</span>,</span><br><span class="line">    <span class="comment">//more...</span></span><br><span class="line"></span><br><span class="line">    <span class="string">'attributes'</span>           =&gt; [</span><br><span class="line">        <span class="string">'name'</span>                  =&gt; <span class="string">'名称'</span>,</span><br><span class="line">        <span class="string">'username'</span>              =&gt; <span class="string">'用户名'</span>,</span><br><span class="line">        <span class="string">'email'</span>                 =&gt; <span class="string">'邮箱'</span>,</span><br><span class="line">        <span class="comment">//more...</span></span><br><span class="line">    ],</span><br><span class="line">];</span><br></pre></td></tr></table></figure></p>
+<p>在应用中还可以使用 <code>__()</code> <code>trans()</code> <code>trans_choice()</code> 辅助方法来翻译</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.liluoao.com/2018/laravel-localization.html" data-id="cjh8sfu6p000mzcmjivfojtph" class="article-share-link">分享</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/laravel/">laravel</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2018/laravel-helpers.html" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">Laravel的辅助函数</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2018/laravel-localization.html">Laravel的本地化</a>
+          </li>
+        
+          <li>
+            <a href="/2018/laravel-helpers.html">Laravel的辅助函数</a>
+          </li>
+        
+          <li>
+            <a href="/2018/laravel-custom-validation-rules.html">Laravel自定义验证规则</a>
+          </li>
+        
+          <li>
+            <a href="/2018/laravel-form-validation.html">Laravel的表单验证</a>
+          </li>
+        
+          <li>
+            <a href="/2018/wechat-authorize-web.html">微信网页授权</a>
+          </li>
+        
+          <li>
+            <a href="/2018/work-wechat-address-list.html">企业微信通讯录</a>
+          </li>
+        
+          <li>
+            <a href="/2018/wechat-authorize-hardware.html">微信硬件设备授权</a>
+          </li>
+        
+          <li>
+            <a href="/2018/wechat-card-and-coupon.html">微信卡券</a>
+          </li>
+        
+          <li>
+            <a href="/2018/wechat-barpay.html">微信条码支付</a>
+          </li>
+        
+          <li>
+            <a href="/2018/wechat-passivity-message.html">微信消息处理</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/algorithm/">algorithm</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/alipay/">alipay</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/apache/">apache</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/array/">array</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ci/">ci</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/clean-code/">clean-code</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/composer/">composer</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/design-patterns/">design-patterns</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jwt/">jwt</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/laravel/">laravel</a><span class="tag-list-count">14</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/">mysql</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/phalcon/">phalcon</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/refactor/">refactor</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/restful/">restful</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sapi/">sapi</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/solid/">solid</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tool/">tool</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/wechat/">wechat</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/work-wechat/">work-wechat</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">五月 2018</a><span class="archive-list-count">23</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a><span class="archive-list-count">15</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a><span class="archive-list-count">15</span></li></ul>
+    </div>
+  </div>
+
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      <div class="footer-about-me">
+        关于作者<br>
+        <a href="https://github.com/liluoao" target="_blank" title="GitHub">GitHub</a><br>
+        <a href="https://segmentfault.com/u/liluoao" target="_blank" title="SegmentFault">SegmentFault</a><br>
+        <a href="https://laravel-china.org/users/7144" target="_blank" title="LaravelChina">LaravelChina</a><br>
+        <a href="https://gitee.com/liluoao" target="_blank" title="码云">码云</a><br>
+        <a href="https://juejin.im/user/5a19374cf265da4332274600" target="_blank" title="掘金">掘金</a><br>
+        <a href="https://packagist.org/users/liluoao/" target="_blank" title="Packagist">Packagist</a><br>
+        <a href="https://www.gitbook.com/@liluoao" target="_blank" title="GitBook">GitBook</a>
+      </div>
+      <div style="width:300px;margin:0 auto; padding:20px 0;">
+        <div class="footer-copyright">
+          &copy; 2018 李罗奥
+          Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+        </div>
+        <a href="http://www.miitbeian.gov.cn/" target="_blank" style="display:inline-block;text-decoration:none;height:20px;line-height:20px;"><p style="float:left;height:20px;line-height:20px;margin: 0px 0px 0px 5px; color:#939393;">鄂ICP备18009105号</p></a>
+        <a target="_blank" href="https://www.beian.gov.cn/portal/registerSystemInfo?recordcode=42011102001595" style="display:inline-block;text-decoration:none;height:20px;line-height:20px;"><img src="/css/images/beian.png" style="float:left;"/><p style="float:left;height:20px;line-height:20px;margin: 0px 0px 0px 5px; color:#939393;">鄂公网安备 42011102001595号</p></a>
+      </div>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">首页</a>
+  
+    <a href="/archives" class="mobile-nav-link">文章列表</a>
+  
+    <a href="/categories/laravel" class="mobile-nav-link">Laravel</a>
+  
+    <a href="/categories/wechat" class="mobile-nav-link">Wechat</a>
+  
+</nav>
+    
+
+<script src="//lib.sinaapp.com/js/jquery/3.1.0/jquery-3.1.0.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>
