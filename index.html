@@ -63,6 +63,53 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-Laravel的辅助函数" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/laravel-helpers.html" class="article-date">
+  <time datetime="2018-05-16T06:27:09.000Z" itemprop="datePublished">2018-05-16</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/laravel/">laravel</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/laravel-helpers.html">Laravel的辅助函数</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>在 <code>composer.json</code> 中定义了自动加载的文件：<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    //...</span><br><span class="line">    "autoload": &#123;</span><br><span class="line">        //...</span><br><span class="line">        "files": [</span><br><span class="line">            <span class="string">"app/helpers.php"</span></span><br><span class="line">        ]</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>在 <code>app/helpers.php</code> 中自定义辅助函数：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (!function_exists(<span class="string">'changeShowMoneyFormat'</span>)) &#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 转换金额格式</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> float $money 金额</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> int $length 保留位数</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> string|bool 转换结果</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">changeShowMoneyFormat</span><span class="params">($money, $length = <span class="number">2</span>)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> sprintf(<span class="string">"%.&#123;$length&#125;f"</span>, $money);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>Packagist包：<a href="https://packagist.org/packages/sebastiaanluca/laravel-helpers" target="_blank" rel="noopener">https://packagist.org/packages/sebastiaanluca/laravel-helpers</a></p>
+<p>常用函数如：<code>dd()</code> <code>app()</code> <code>env()</code> <code>config()</code> <code>public_path()</code> <code>array_pluck()</code></p>
+<p>更多Laravel辅助函数见<a href="https://laravel.com/docs/5.6/helpers" target="_blank" rel="noopener">Helpers</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.liluoao.com/2018/laravel-helpers.html" data-id="cjh8qqt4h000qzomjkg9fol21" class="article-share-link">分享</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/laravel/">laravel</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-Laravel自定义验证规则" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2018/laravel-custom-validation-rules.html" class="article-date">
@@ -100,7 +147,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.liluoao.com/2018/laravel-custom-validation-rules.html" data-id="cjh8ks8ah000s7wmj7e97zdym" class="article-share-link">分享</a>
+      <a data-url="http://www.liluoao.com/2018/laravel-custom-validation-rules.html" data-id="cjh8qqt4h000tzomj4ybuv343" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/laravel/">laravel</a></li></ul>
@@ -152,7 +199,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.liluoao.com/2018/laravel-form-validation.html" data-id="cjh8ks8ah000o7wmj0lvr8sb8" class="article-share-link">分享</a>
+      <a data-url="http://www.liluoao.com/2018/laravel-form-validation.html" data-id="cjh8qqt4h000mzomj40ndmoeu" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/laravel/">laravel</a></li></ul>
@@ -206,7 +253,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.liluoao.com/2018/wechat-authorize-web.html" data-id="cjh8ks8cn00397wmj69251iym" class="article-share-link">分享</a>
+      <a data-url="http://www.liluoao.com/2018/wechat-authorize-web.html" data-id="cjh8qqt6o0039zomjtbn5wf3r" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/wechat/">wechat</a></li></ul>
@@ -254,7 +301,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.liluoao.com/2018/work-wechat-address-list.html" data-id="cjh8ks8bs00217wmjo0qp8vyv" class="article-share-link">分享</a>
+      <a data-url="http://www.liluoao.com/2018/work-wechat-address-list.html" data-id="cjh8qqt5s0024zomjsh8yhm5n" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/wechat/">wechat</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/work-wechat/">work-wechat</a></li></ul>
@@ -303,7 +350,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.liluoao.com/2018/wechat-authorize-hardware.html" data-id="cjh8ks8cn00357wmjgw9ou6yn" class="article-share-link">分享</a>
+      <a data-url="http://www.liluoao.com/2018/wechat-authorize-hardware.html" data-id="cjh8qqt6o0036zomj6h596qml" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/wechat/">wechat</a></li></ul>
@@ -359,7 +406,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.liluoao.com/2018/wechat-card-and-coupon.html" data-id="cjh8ks8cn002y7wmjxt17668s" class="article-share-link">分享</a>
+      <a data-url="http://www.liluoao.com/2018/wechat-card-and-coupon.html" data-id="cjh8qqt6o002zzomjop4fqx2b" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/wechat/">wechat</a></li></ul>
@@ -416,7 +463,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.liluoao.com/2018/wechat-barpay.html" data-id="cjh8ks8cn00307wmjiuzf7p74" class="article-share-link">分享</a>
+      <a data-url="http://www.liluoao.com/2018/wechat-barpay.html" data-id="cjh8qqt6o0032zomj6frop6zq" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/wechat/">wechat</a></li></ul>
@@ -463,7 +510,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.liluoao.com/2018/wechat-passivity-message.html" data-id="cjh8ks8cn00337wmjrfiydnml" class="article-share-link">分享</a>
+      <a data-url="http://www.liluoao.com/2018/wechat-passivity-message.html" data-id="cjh8qqt6o0034zomjw9wbiin6" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/wechat/">wechat</a></li></ul>
@@ -514,57 +561,10 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.liluoao.com/2018/wechat-menu.html" data-id="cjh8ks8cn003c7wmjopyz5gj2" class="article-share-link">分享</a>
+      <a data-url="http://www.liluoao.com/2018/wechat-menu.html" data-id="cjh8qqt6o003czomjuyfvqa1l" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/wechat/">wechat</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-Alipay条码支付及查询" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/alipay-barpay-and-query.html" class="article-date">
-  <time datetime="2018-05-08T08:05:52.000Z" itemprop="datePublished">2018-05-08</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/alipay-barpay-and-query.html">Alipay条码支付及查询</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <blockquote>
-<p>收银员使用扫码设备读取用户手机支付宝“付款码”/声波获取设备（如麦克风）读取用户手机支付宝的声波信息后，将二维码或条码信息/声波信息通过本接口上送至支付宝发起支付。</p>
-</blockquote>
-<p>💻<a href="https://docs.open.alipay.com/api_1/alipay.trade.pay" target="_blank" rel="noopener">API文档</a><br>💻<a href="https://docs.open.alipay.com/54/103419" target="_blank" rel="noopener">SDK下载</a></p>
-<p>下载SDK后，本接口需要使用 <code>AopClient</code> 与 <code>AlipayTradePayRequest</code> 类<br>先新建一个统一处理Alipay的类</p>
-        
-          <p class="article-more-link">
-            <a href="/2018/alipay-barpay-and-query.html#more">阅读全文</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://www.liluoao.com/2018/alipay-barpay-and-query.html" data-id="cjh8ks89600027wmj2m39dlxp" class="article-share-link">分享</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/alipay/">alipay</a></li></ul>
 
     </footer>
   </div>
@@ -589,6 +589,10 @@
     <h3 class="widget-title">最新文章</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2018/laravel-helpers.html">Laravel的辅助函数</a>
+          </li>
         
           <li>
             <a href="/2018/laravel-custom-validation-rules.html">Laravel自定义验证规则</a>
@@ -626,10 +630,6 @@
             <a href="/2018/wechat-menu.html">微信菜单</a>
           </li>
         
-          <li>
-            <a href="/2018/alipay-barpay-and-query.html">Alipay条码支付及查询</a>
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -639,7 +639,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/algorithm/">algorithm</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/alipay/">alipay</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/apache/">apache</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/array/">array</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ci/">ci</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/clean-code/">clean-code</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/composer/">composer</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/design-patterns/">design-patterns</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jwt/">jwt</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/laravel/">laravel</a><span class="tag-list-count">12</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/">mysql</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/phalcon/">phalcon</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/refactor/">refactor</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/restful/">restful</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sapi/">sapi</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/solid/">solid</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tool/">tool</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/wechat/">wechat</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/work-wechat/">work-wechat</a><span class="tag-list-count">1</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/algorithm/">algorithm</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/alipay/">alipay</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/apache/">apache</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/array/">array</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ci/">ci</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/clean-code/">clean-code</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/composer/">composer</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/design-patterns/">design-patterns</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jwt/">jwt</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/laravel/">laravel</a><span class="tag-list-count">13</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/">mysql</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/phalcon/">phalcon</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/refactor/">refactor</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/restful/">restful</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sapi/">sapi</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/solid/">solid</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tool/">tool</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/wechat/">wechat</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/work-wechat/">work-wechat</a><span class="tag-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -649,7 +649,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">五月 2018</a><span class="archive-list-count">21</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a><span class="archive-list-count">15</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a><span class="archive-list-count">15</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">五月 2018</a><span class="archive-list-count">22</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a><span class="archive-list-count">15</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a><span class="archive-list-count">15</span></li></ul>
     </div>
   </div>
 

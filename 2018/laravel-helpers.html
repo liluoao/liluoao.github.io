@@ -5,18 +5,20 @@
   
 
   
-  <title>标签: tool | To be a Web Artisan</title>
+  <title>Laravel的辅助函数 | To be a Web Artisan</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="李罗奥的博客">
-<meta property="og:type" content="website">
-<meta property="og:title" content="To be a Web Artisan">
-<meta property="og:url" content="http://www.liluoao.com/tags/tool/index.html">
+  <meta name="description" content="在 composer.json 中定义了自动加载的文件：123456789&amp;#123;    //...    &quot;autoload&quot;: &amp;#123;        //...        &quot;files&quot;: [            &quot;app/helpers.php&quot;        ]    &amp;#125;&amp;#125; 在 app/helpers.php 中自定义辅助函数：1234567891011">
+<meta name="keywords" content="laravel">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Laravel的辅助函数">
+<meta property="og:url" content="http://www.liluoao.com/2018/laravel-helpers.html">
 <meta property="og:site_name" content="To be a Web Artisan">
-<meta property="og:description" content="李罗奥的博客">
+<meta property="og:description" content="在 composer.json 中定义了自动加载的文件：123456789&amp;#123;    //...    &quot;autoload&quot;: &amp;#123;        //...        &quot;files&quot;: [            &quot;app/helpers.php&quot;        ]    &amp;#125;&amp;#125; 在 app/helpers.php 中自定义辅助函数：1234567891011">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-05-16T06:43:33.444Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="To be a Web Artisan">
-<meta name="twitter:description" content="李罗奥的博客">
+<meta name="twitter:title" content="Laravel的辅助函数">
+<meta name="twitter:description" content="在 composer.json 中定义了自动加载的文件：123456789&amp;#123;    //...    &quot;autoload&quot;: &amp;#123;        //...        &quot;files&quot;: [            &quot;app/helpers.php&quot;        ]    &amp;#125;&amp;#125; 在 app/helpers.php 中自定义辅助函数：1234567891011">
 <meta name="twitter:creator" content="@liluoao">
   
   
@@ -61,59 +63,62 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2018" class="archive-year">2018</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2018/use-postman-interceptor.html" class="archive-article-date">
-  <time datetime="2018-05-04T06:57:06.000Z" itemprop="datePublished">5月 4</time>
+        <section id="main"><article id="post-Laravel的辅助函数" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/laravel-helpers.html" class="article-date">
+  <time datetime="2018-05-16T06:27:09.000Z" itemprop="datePublished">2018-05-16</time>
 </a>
-      
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/laravel/">laravel</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/use-postman-interceptor.html">使用Postman-Interceptor</a>
+    <h1 class="article-title" itemprop="name">
+      Laravel的辅助函数
     </h1>
   
 
-    </header>
-  </div>
-</article>
-  
+      </header>
     
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2018/phpstorm-use-ftp.html" class="archive-article-date">
-  <time datetime="2018-04-28T08:51:42.000Z" itemprop="datePublished">4月 28</time>
-</a>
+    <div class="article-entry" itemprop="articleBody">
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/phpstorm-use-ftp.html">PHPStorm使用FTP</a>
-    </h1>
-  
+        <p>在 <code>composer.json</code> 中定义了自动加载的文件：<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    //...</span><br><span class="line">    "autoload": &#123;</span><br><span class="line">        //...</span><br><span class="line">        "files": [</span><br><span class="line">            <span class="string">"app/helpers.php"</span></span><br><span class="line">        ]</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>在 <code>app/helpers.php</code> 中自定义辅助函数：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (!function_exists(<span class="string">'changeShowMoneyFormat'</span>)) &#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 转换金额格式</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> float $money 金额</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> int $length 保留位数</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> string|bool 转换结果</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">changeShowMoneyFormat</span><span class="params">($money, $length = <span class="number">2</span>)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> sprintf(<span class="string">"%.&#123;$length&#125;f"</span>, $money);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>Packagist包：<a href="https://packagist.org/packages/sebastiaanluca/laravel-helpers" target="_blank" rel="noopener">https://packagist.org/packages/sebastiaanluca/laravel-helpers</a></p>
+<p>常用函数如：<code>dd()</code> <code>app()</code> <code>env()</code> <code>config()</code> <code>public_path()</code> <code>array_pluck()</code></p>
+<p>更多Laravel辅助函数见<a href="https://laravel.com/docs/5.6/helpers" target="_blank" rel="noopener">Helpers</a></p>
 
-    </header>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.liluoao.com/2018/laravel-helpers.html" data-id="cjh8qqt4h000qzomjkg9fol21" class="article-share-link">分享</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/laravel/">laravel</a></li></ul>
+
+    </footer>
   </div>
-</article>
+  
+    
+<nav id="article-nav">
   
   
-    </div></section>
+    <a href="/2018/laravel-custom-validation-rules.html" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">Laravel自定义验证规则</div>
+    </a>
   
+</nav>
 
+  
+</article>
 
 </section>
         
