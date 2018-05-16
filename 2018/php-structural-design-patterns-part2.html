@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>PHP的设计模式之架构模式（二） | To be a Web Artisan</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="原文链接：https://www.imooc.com/article/17276 Structural Patterns（架构模式）Bridge（桥接模式）将抽象与实现解耦，使得两者可以独立的变化 为什么需要桥接模式  如果一个系统需要在构件的抽象化角色和具体化角色之间增加更多的灵活性，避免在两个层次之间建立静态的继承联系，通过桥接模式可以使它们在抽象层建立一个关联关系。  抽象化角色和实现化角色">
+<meta name="keywords" content="design-patterns">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PHP的设计模式之架构模式（二）">
+<meta property="og:url" content="http://www.liluoao.com/2018/php-structural-design-patterns-part2.html">
+<meta property="og:site_name" content="To be a Web Artisan">
+<meta property="og:description" content="原文链接：https://www.imooc.com/article/17276 Structural Patterns（架构模式）Bridge（桥接模式）将抽象与实现解耦，使得两者可以独立的变化 为什么需要桥接模式  如果一个系统需要在构件的抽象化角色和具体化角色之间增加更多的灵活性，避免在两个层次之间建立静态的继承联系，通过桥接模式可以使它们在抽象层建立一个关联关系。  抽象化角色和实现化角色">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-05-16T02:34:18.709Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="PHP的设计模式之架构模式（二）">
+<meta name="twitter:description" content="原文链接：https://www.imooc.com/article/17276 Structural Patterns（架构模式）Bridge（桥接模式）将抽象与实现解耦，使得两者可以独立的变化 为什么需要桥接模式  如果一个系统需要在构件的抽象化角色和具体化角色之间增加更多的灵活性，避免在两个层次之间建立静态的继承联系，通过桥接模式可以使它们在抽象层建立一个关联关系。  抽象化角色和实现化角色">
+<meta name="twitter:creator" content="@liluoao">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">To be a Web Artisan</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">首页</a>
+        
+          <a class="main-nav-link" href="/archives">文章列表</a>
+        
+          <a class="main-nav-link" href="/categories/laravel">Laravel</a>
+        
+          <a class="main-nav-link" href="/categories/wechat">Wechat</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://www.liluoao.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-PHP的设计模式之架构模式（二）" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/php-structural-design-patterns-part2.html" class="article-date">
+  <time datetime="2018-04-03T08:03:46.000Z" itemprop="datePublished">2018-04-03</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      PHP的设计模式之架构模式（二）
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>原文链接：<a href="https://www.imooc.com/article/17276" target="_blank" rel="noopener">https://www.imooc.com/article/17276</a></p>
+<h2 id="Structural-Patterns（架构模式）"><a href="#Structural-Patterns（架构模式）" class="headerlink" title="Structural Patterns（架构模式）"></a>Structural Patterns（架构模式）</h2><h4 id="Bridge（桥接模式）"><a href="#Bridge（桥接模式）" class="headerlink" title="Bridge（桥接模式）"></a>Bridge（桥接模式）</h4><p>将抽象与实现解耦，使得两者可以独立的变化</p>
+<p>为什么需要桥接模式</p>
+<ol>
+<li><p>如果一个系统需要在构件的抽象化角色和具体化角色之间增加更多的灵活性，避免在两个层次之间建立静态的继承联系，通过桥接模式可以使它们在抽象层建立一个关联关系。</p>
+</li>
+<li><p>抽象化角色和实现化角色可以以继承的方式独立扩展而互不影响，在程序运行时可以动态将一个抽象化子类的对象和一个实现化子类的对象进行组合，即系统需要对抽象化角色和实现化角色进行动态耦合。</p>
+</li>
+<li><p>虽然在系统中使用继承是没有问题的，但是由于抽象化角色和具体化角色需要独立变化，设计要求需要独立管理这两者。对于那些不希望使用继承或因为多层次继承导致系统类的个数急剧增加的系统，桥接模式尤为适用。</p>
+</li>
+</ol>
+<p>例子：<br>如果我现在是小米公司的雷布斯，小米公司旗下有小米mix和小米note手机，现在有一个底层的语音输出软件，由于小米mix的全面屏设计没有开孔使用了骨传导，所以和小米note有些不同。那么我们要如何来设计这个输出功能呢？<br><a id="more"></a><br>传统的做法就应该是，一个抽象手机品牌，mix和note手机品牌继承抽象手机品牌。然后有一个mix品牌的输出软件继承自mix品牌。如果这时候有一个redmi的牌子的输出软件就应继承自redmi品牌，redmi继承抽象手机品牌。</p>
+<p>如果除了这个语音输出软件，我们还有其它的软件呢，一个手机有很多软件，那么这种继承，如果画出继承链的话，那一个品牌下得有多少子类？</p>
+<p>如果我们使用桥接模式的话，就可以把这个软件的具体实现与抽象品牌分离出来，这样也能是我们动态增减实现化角色时更为方便。<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span> </span><br><span class="line"><span class="comment">//抽象化角色 </span></span><br><span class="line"><span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">MiPhone</span></span>&#123;</span><br><span class="line">    <span class="keyword">protected</span> $_audio;</span><br><span class="line">    <span class="comment">//存放音频软件对象</span></span><br><span class="line">    <span class="keyword">abstract</span> <span class="function"><span class="keyword">function</span> <span class="title">output</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span><span class="params">(Audio $audio)</span></span>&#123;</span><br><span class="line">        <span class="keyword">$this</span>-&gt;_audio = $audio;</span><br><span class="line">    &#125;</span><br><span class="line">&#125; </span><br><span class="line"><span class="comment">//具体手机</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Mix</span> <span class="keyword">extends</span> <span class="title">MiPhone</span></span>&#123; </span><br><span class="line">    <span class="comment">//语音输出功能</span></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">output</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">$this</span>-&gt;_audio-&gt;output();</span><br><span class="line">    &#125;</span><br><span class="line">&#125; </span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Note</span> <span class="keyword">extends</span> <span class="title">MiPhone</span></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">output</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">$this</span>-&gt;_audio-&gt;output();</span><br><span class="line">    &#125;</span><br><span class="line">&#125; </span><br><span class="line"><span class="comment">//实现化角色 功能实现者</span></span><br><span class="line"><span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">Audio</span></span>&#123;</span><br><span class="line">    <span class="keyword">abstract</span> <span class="function"><span class="keyword">function</span> <span class="title">output</span><span class="params">()</span></span>;</span><br><span class="line">&#125; </span><br><span class="line"><span class="comment">//具体音频实现者 -骨传导音频输出</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Osteophony</span> <span class="keyword">extends</span> <span class="title">Audio</span></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">output</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">echo</span> <span class="string">"骨传导输出的声音-----哈哈"</span>.PHP_EOL;</span><br><span class="line">    &#125;</span><br><span class="line">&#125; </span><br><span class="line"><span class="comment">//普通音频输出---声筒输出</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Cylinder</span> <span class="keyword">extends</span> <span class="title">Audio</span></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">output</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">echo</span> <span class="string">"声筒输出的声音-----呵呵"</span>.PHP_EOL;</span><br><span class="line">    &#125;</span><br><span class="line">&#125; </span><br><span class="line"><span class="comment">//让小米mix和小米note输出声音</span></span><br><span class="line">$mix = <span class="keyword">new</span> Mix(<span class="keyword">new</span> Osteophony);</span><br><span class="line">$mix-&gt;output();</span><br><span class="line">$note = <span class="keyword">new</span> Note(<span class="keyword">new</span> Cylinder);</span><br><span class="line">$note-&gt;output();</span><br></pre></td></tr></table></figure></p>
+<p>这样写的好处是把抽象化角色手机和实现化角色手机的具体功能音频输出 分离了出来。如果现在最新的小米note系列也要用上骨传导输出，那么我们只需实例化时传入的声筒音频类改为骨传导音频类。如果我们还有一个扬声器输出，小米mix和小米note都有这个功能。我们只需要再添加一个扬声器输出类继承Audio类，然后谁使用就保存这个实例在属性中。没有桥接模式的话，我们可是要写两个，一个是小米mix的扬声器输出，一个是小米note。</p>
+<p>如果扬声器输出对小米mix和小米note不一样，那么我们确实需要写两个扬声器输出类。使用桥接模式，依然比原来直接继承好，就是因为有一天扬声器技术驱动更新了，我们要更新扬声器不用修改手机类代码，而只需传入一个更新的扬声器类。</p>
+<h4 id="Proxy（代理模式）"><a href="#Proxy（代理模式）" class="headerlink" title="Proxy（代理模式）"></a>Proxy（代理模式）</h4><p>构建了透明置于两个不同对象之内的一个对象，从而能够截取或代理这两个对象间的通信或访问。</p>
+<p>为什么需要代理模式</p>
+<ol>
+<li><p>远程代理，也就是为了一个对象在不同地址空间提供局部代表。隐藏一个对象存在于不同地址空间的事实。</p>
+</li>
+<li><p>虚拟代理，根据需要来创建开销很大的对象，通过它来存放实例化需要很长时间的真实对象。</p>
+</li>
+<li><p>安全代理，用来控制真实对象的访问对象。</p>
+</li>
+<li><p>智能指引，当调用真实对象的时候，代理处理一些事情。</p>
+</li>
+</ol>
+<h4 id="Composite（组合模式）"><a href="#Composite（组合模式）" class="headerlink" title="Composite（组合模式）"></a>Composite（组合模式）</h4><p>将对象组合成树形结构以表示“部分整体”的层次结构。组合模式使得用户对单个对象和组合对象的使用具有一致性。组合模式也叫合成模式，有时候又叫做部分-整体模式。</p>
+<p>为什么需要组合模式</p>
+<ol>
+<li><p>使我们在树型结构的问题中，模糊了简单元素和复杂元素的概念，客户程序可以像处理简单元素一样来处理复杂元素,从而使得客户程序与复杂元素的内部结构解耦。</p>
+</li>
+<li><p>组合模式让你可以优化处理递归或分级数据结构。</p>
+</li>
+</ol>
+<h4 id="Flyweight（享元模式）"><a href="#Flyweight（享元模式）" class="headerlink" title="Flyweight（享元模式）"></a>Flyweight（享元模式）</h4><p>池技术的重要实现方式，运用共享技术有效的支持大量的细粒度对象，用于减少创建对象的数量，以减少内存占用和提高性能。</p>
+<p>为什么需要享元模式</p>
+<ol>
+<li><p>在有大量对象时，有可能会造成内存溢出，我们把其中共同的部分抽象出来，如果有相同的业务请求，直接返回在内存中已有的对象，避免重新创建。</p>
+</li>
+<li><p>系统有大量相似对象。</p>
+</li>
+<li><p>需要缓冲池的场景。</p>
+</li>
+</ol>
+<p>享元模式在PHP中可能比较少遇，但在Java中常常有这种情况。就是代码产生了大量的对象，虽然使用完有释放，但是由于垃圾回收需要一定时间，导致内存被耗尽。PHP经常应用web编程，脚本执行时间很短（30秒）。所以很少遇见这种情况，甚至我们使用完变量，连unset()函数都不用调用，就等着脚步执行结束后，自动释放。但是如果你试过在cli模式下运行PHP脚本，做一些socket通信，发送邮件等长耗时或是多连接任务时，就难免会遇到这种情况。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.liluoao.com/2018/php-structural-design-patterns-part2.html" data-id="cjh8hu0vg001fe0mj48b6n1lq" class="article-share-link">分享</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/design-patterns/">design-patterns</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2018/php-behavioral-design-patterns-part1.html" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          PHP的设计模式之行为模式
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/php-structural-design-patterns-part1.html" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">PHP的设计模式之架构模式</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2018/laravel-form-validation.html">Laravel的表单验证</a>
+          </li>
+        
+          <li>
+            <a href="/2018/wechat-authorize-web.html">微信网页授权</a>
+          </li>
+        
+          <li>
+            <a href="/2018/work-wechat-address-list.html">企业微信通讯录</a>
+          </li>
+        
+          <li>
+            <a href="/2018/wechat-authorize-hardware.html">微信硬件设备授权</a>
+          </li>
+        
+          <li>
+            <a href="/2018/wechat-card-and-coupon.html">微信卡券</a>
+          </li>
+        
+          <li>
+            <a href="/2018/wechat-barpay.html">微信条码支付</a>
+          </li>
+        
+          <li>
+            <a href="/2018/wechat-passivity-message.html">微信消息处理</a>
+          </li>
+        
+          <li>
+            <a href="/2018/wechat-menu.html">微信菜单</a>
+          </li>
+        
+          <li>
+            <a href="/2018/alipay-barpay-and-query.html">Alipay条码支付及查询</a>
+          </li>
+        
+          <li>
+            <a href="/2018/alipay-authorize-3rd-app.html">Alipay授权第三方应用</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/algorithm/">algorithm</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/alipay/">alipay</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/apache/">apache</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/array/">array</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ci/">ci</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/clean-code/">clean-code</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/composer/">composer</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/design-patterns/">design-patterns</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jwt/">jwt</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/laravel/">laravel</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/">mysql</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/phalcon/">phalcon</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/refactor/">refactor</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/restful/">restful</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sapi/">sapi</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/solid/">solid</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tool/">tool</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/wechat/">wechat</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/work-wechat/">work-wechat</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">五月 2018</a><span class="archive-list-count">20</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a><span class="archive-list-count">15</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a><span class="archive-list-count">15</span></li></ul>
+    </div>
+  </div>
+
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      <div class="footer-about-me">
+        关于作者<br>
+        <a href="https://github.com/liluoao" target="_blank" title="GitHub">GitHub</a><br>
+        <a href="https://segmentfault.com/u/liluoao" target="_blank" title="SegmentFault">SegmentFault</a><br>
+        <a href="https://laravel-china.org/users/7144" target="_blank" title="LaravelChina">LaravelChina</a><br>
+        <a href="https://gitee.com/liluoao" target="_blank" title="码云">码云</a><br>
+        <a href="https://juejin.im/user/5a19374cf265da4332274600" target="_blank" title="掘金">掘金</a><br>
+        <a href="https://packagist.org/users/liluoao/" target="_blank" title="Packagist">Packagist</a><br>
+        <a href="https://www.gitbook.com/@liluoao" target="_blank" title="GitBook">GitBook</a>
+      </div>
+      <div style="width:300px;margin:0 auto; padding:20px 0;">
+        <div class="footer-copyright">
+          &copy; 2018 李罗奥
+          Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+        </div>
+        <a href="http://www.miitbeian.gov.cn/" target="_blank" style="display:inline-block;text-decoration:none;height:20px;line-height:20px;"><p style="float:left;height:20px;line-height:20px;margin: 0px 0px 0px 5px; color:#939393;">鄂ICP备18009105号</p></a>
+        <a target="_blank" href="https://www.beian.gov.cn/portal/registerSystemInfo?recordcode=42011102001595" style="display:inline-block;text-decoration:none;height:20px;line-height:20px;"><img src="/css/images/beian.png" style="float:left;"/><p style="float:left;height:20px;line-height:20px;margin: 0px 0px 0px 5px; color:#939393;">鄂公网安备 42011102001595号</p></a>
+      </div>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">首页</a>
+  
+    <a href="/archives" class="mobile-nav-link">文章列表</a>
+  
+    <a href="/categories/laravel" class="mobile-nav-link">Laravel</a>
+  
+    <a href="/categories/wechat" class="mobile-nav-link">Wechat</a>
+  
+</nav>
+    
+
+<script src="//lib.sinaapp.com/js/jquery/3.1.0/jquery-3.1.0.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

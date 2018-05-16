@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>PHP的设计模式之架构模式 | To be a Web Artisan</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="原文链接：https://www.imooc.com/article/17118 Structural Patterns（架构模式）Facade（门面模式）为子系统中的一组接口提供一个一致的界面，定义一个高层接口，这个接口使得这一子系统更加容易使用。 为什么需要外观模式  开发阶段，子系统越来越复杂，增加外观模式提供一个简单的调用接口。  维护一个大型遗留系统的时候，可能这个系统已经非常难以维护和">
+<meta name="keywords" content="design-patterns">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PHP的设计模式之架构模式">
+<meta property="og:url" content="http://www.liluoao.com/2018/php-structural-design-patterns-part1.html">
+<meta property="og:site_name" content="To be a Web Artisan">
+<meta property="og:description" content="原文链接：https://www.imooc.com/article/17118 Structural Patterns（架构模式）Facade（门面模式）为子系统中的一组接口提供一个一致的界面，定义一个高层接口，这个接口使得这一子系统更加容易使用。 为什么需要外观模式  开发阶段，子系统越来越复杂，增加外观模式提供一个简单的调用接口。  维护一个大型遗留系统的时候，可能这个系统已经非常难以维护和">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-05-16T02:34:18.709Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="PHP的设计模式之架构模式">
+<meta name="twitter:description" content="原文链接：https://www.imooc.com/article/17118 Structural Patterns（架构模式）Facade（门面模式）为子系统中的一组接口提供一个一致的界面，定义一个高层接口，这个接口使得这一子系统更加容易使用。 为什么需要外观模式  开发阶段，子系统越来越复杂，增加外观模式提供一个简单的调用接口。  维护一个大型遗留系统的时候，可能这个系统已经非常难以维护和">
+<meta name="twitter:creator" content="@liluoao">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">To be a Web Artisan</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">首页</a>
+        
+          <a class="main-nav-link" href="/archives">文章列表</a>
+        
+          <a class="main-nav-link" href="/categories/laravel">Laravel</a>
+        
+          <a class="main-nav-link" href="/categories/wechat">Wechat</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://www.liluoao.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-PHP的设计模式之架构模式" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/php-structural-design-patterns-part1.html" class="article-date">
+  <time datetime="2018-04-02T01:23:38.000Z" itemprop="datePublished">2018-04-02</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      PHP的设计模式之架构模式
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>原文链接：<a href="https://www.imooc.com/article/17118" target="_blank" rel="noopener">https://www.imooc.com/article/17118</a></p>
+<h2 id="Structural-Patterns（架构模式）"><a href="#Structural-Patterns（架构模式）" class="headerlink" title="Structural Patterns（架构模式）"></a>Structural Patterns（架构模式）</h2><h4 id="Facade（门面模式）"><a href="#Facade（门面模式）" class="headerlink" title="Facade（门面模式）"></a>Facade（门面模式）</h4><p>为子系统中的一组接口提供一个一致的界面，定义一个高层接口，这个接口使得这一子系统更加容易使用。</p>
+<p>为什么需要外观模式</p>
+<ol>
+<li><p>开发阶段，子系统越来越复杂，增加外观模式提供一个简单的调用接口。</p>
+</li>
+<li><p>维护一个大型遗留系统的时候，可能这个系统已经非常难以维护和扩展，但又包含非常重要的功能，为其开发一个外观类，以便新系统与其交互。</p>
+</li>
+<li><p>外观模式可以隐藏来自调用对象的复杂性。</p>
+</li>
+</ol>
+<p>例子：<br>比如说我们去医院就诊，医院有医生员工系统，有药品系统，有患者资料系统。但是我们只是在前台挂个号，就能在其他系统里都看到我们。外观系统就差不多这样。</p>
+<p>如果没有挂号系统的话，我们就先要去医生系统通知一下医生，<br>然后去患者系统取一下患者资料交给医生，再去药品系统登记一下，最后到药房领药。<br><a id="more"></a><br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span> </span><br><span class="line"><span class="comment">//医院医生员工系统</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">DoctorSystem</span></span>&#123; </span><br><span class="line">    <span class="comment">//通知就诊医生</span></span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">getDoctor</span><span class="params">($name)</span></span>&#123;</span><br><span class="line">        <span class="keyword">echo</span> <span class="keyword">__CLASS__</span>.<span class="string">":"</span>.$name.<span class="string">"医生，挂你号"</span>.PHP_EOL; </span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> Doctor($name); </span><br><span class="line">    &#125; </span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//医生类</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Doctor</span></span>&#123; </span><br><span class="line">    <span class="keyword">public</span> $name; </span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span><span class="params">($name)</span></span>&#123; </span><br><span class="line">        <span class="keyword">$this</span>-&gt;name = $name;</span><br><span class="line">    &#125; </span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">prescribe</span><span class="params">($data)</span></span>&#123; </span><br><span class="line">        <span class="keyword">echo</span> <span class="keyword">__CLASS__</span>.<span class="string">":"</span>.<span class="string">"开个处方给你"</span>.PHP_EOL; </span><br><span class="line">        <span class="keyword">return</span> <span class="string">"祖传秘方，药到必死"</span>; </span><br><span class="line">    &#125; </span><br><span class="line">&#125; </span><br><span class="line"><span class="comment">//患者系统</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SufferSystem</span> </span>&#123; </span><br><span class="line">    <span class="keyword">static</span> <span class="function"><span class="keyword">function</span> <span class="title">getData</span><span class="params">($suffer)</span></span>&#123; </span><br><span class="line">        $data = $suffer.<span class="string">"资料"</span>; </span><br><span class="line">        <span class="keyword">echo</span> <span class="keyword">__CLASS__</span>.<span class="string">":"</span>.$suffer.<span class="string">"的资料是这些"</span>.PHP_EOL ; </span><br><span class="line">        <span class="keyword">return</span> $data; </span><br><span class="line">    &#125; </span><br><span class="line">&#125; </span><br><span class="line"><span class="comment">//医药系统</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MedicineSystem</span> </span>&#123; </span><br><span class="line">    <span class="keyword">static</span> <span class="function"><span class="keyword">function</span> <span class="title">register</span><span class="params">($prescribe)</span></span>&#123; </span><br><span class="line">        <span class="keyword">echo</span> <span class="keyword">__CLASS__</span>.<span class="string">":"</span>.<span class="string">"拿到处方："</span>.$prescribe.<span class="string">"------------通知药房发药了"</span>.PHP_EOL; </span><br><span class="line">        Shop::setMedicine(<span class="string">"砒霜5千克"</span>); </span><br><span class="line">    &#125; </span><br><span class="line">&#125; </span><br><span class="line"><span class="comment">//药房</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">shop</span></span>&#123; </span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">public</span> $medicine; </span><br><span class="line">    <span class="keyword">static</span> <span class="function"><span class="keyword">function</span> <span class="title">setMedicine</span><span class="params">($medicine)</span></span>&#123; </span><br><span class="line">        <span class="keyword">self</span>::$medicine = $medicine; </span><br><span class="line">    &#125; </span><br><span class="line">    <span class="keyword">static</span> <span class="function"><span class="keyword">function</span> <span class="title">getMedicine</span><span class="params">()</span></span>&#123; </span><br><span class="line">        <span class="keyword">echo</span> <span class="keyword">__CLASS__</span>.<span class="string">":"</span>.<span class="keyword">self</span>::$medicine.PHP_EOL; </span><br><span class="line">    &#125; </span><br><span class="line">&#125; </span><br><span class="line"><span class="comment">//如果没有挂号系统，我们就诊的第一步</span></span><br><span class="line"><span class="comment">//通知就诊医生</span></span><br><span class="line">$doct = DoctorSystem::getDoctor(<span class="string">"顾夕衣"</span>); </span><br><span class="line"><span class="comment">//患者系统拿病历资料</span></span><br><span class="line">$data = SufferSystem::getData(<span class="string">"何在"</span>); </span><br><span class="line"><span class="comment">//医生看病历资料，开处方</span></span><br><span class="line">$prscirbe = $doct-&gt;prescribe($data); </span><br><span class="line"><span class="comment">//医药系统登记处方</span></span><br><span class="line">MedicineSystem::register($prscirbe); </span><br><span class="line"><span class="comment">//药房拿药</span></span><br><span class="line">Shop::getMedicine(); </span><br><span class="line"></span><br><span class="line"><span class="keyword">echo</span> PHP_EOL.PHP_EOL.<span class="string">"--------有了挂号系统以后--------"</span>.PHP_EOL.PHP_EOL; </span><br><span class="line"><span class="comment">//挂号系统</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Facade</span></span>&#123; </span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">regist</span><span class="params">($suffer,$doct)</span></span>&#123; </span><br><span class="line">        $doct = DoctorSystem::getDoctor($doct); </span><br><span class="line">        <span class="comment">//患者系统拿病历资料</span></span><br><span class="line">        $data = SufferSystem::getData($suffer); </span><br><span class="line">        <span class="comment">//医生看病历资料，开处方</span></span><br><span class="line">        $prscirbe = $doct-&gt;prescribe($data); </span><br><span class="line">        <span class="comment">//医药系统登记处方</span></span><br><span class="line">        MedicineSystem::register($prscirbe); </span><br><span class="line">        <span class="comment">//药房拿药</span></span><br><span class="line">        Shop::getMedicine(); </span><br><span class="line">    &#125; </span><br><span class="line">&#125; </span><br><span class="line"><span class="comment">//患者只需要挂一个号，其他的就让挂号系统去做吧。</span></span><br><span class="line">Facade::regist(<span class="string">"叶好龙"</span>,<span class="string">"贾中一"</span>);</span><br></pre></td></tr></table></figure></p>
+<h4 id="Adapter（适配器模式）"><a href="#Adapter（适配器模式）" class="headerlink" title="Adapter（适配器模式）"></a>Adapter（适配器模式）</h4><p>这种模式允许使用不同的接口重构某个类，可以允许使用不同的调用方式进行调用：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SimpleBook</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> $author;</span><br><span class="line">    <span class="keyword">private</span> $title;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">__construct</span><span class="params">($author_in, $title_in)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">$this</span>-&gt;author = $author_in;</span><br><span class="line">        <span class="keyword">$this</span>-&gt;title  = $title_in;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">getAuthor</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">$this</span>-&gt;author;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">getTitle</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">$this</span>-&gt;title;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">BookAdapter</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> $book;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">__construct</span><span class="params">(SimpleBook $book_in)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">$this</span>-&gt;book = $book_in;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">getAuthorAndTitle</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">$this</span>-&gt;book-&gt;getTitle().<span class="string">' by '</span>.<span class="keyword">$this</span>-&gt;book-&gt;getAuthor();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Usage</span></span><br><span class="line">$book = <span class="keyword">new</span> SimpleBook(<span class="string">"Gamma, Helm, Johnson, and Vlissides"</span>, <span class="string">"Design Patterns"</span>);</span><br><span class="line">$bookAdapter = <span class="keyword">new</span> BookAdapter($book);</span><br><span class="line"><span class="keyword">echo</span> <span class="string">'Author and Title: '</span>.$bookAdapter-&gt;getAuthorAndTitle();</span><br></pre></td></tr></table></figure></p>
+<h4 id="Decorator（装饰器模式）"><a href="#Decorator（装饰器模式）" class="headerlink" title="Decorator（装饰器模式）"></a>Decorator（装饰器模式）</h4><p>装饰器模式允许我们根据运行时不同的情景动态地为某个对象调用前后添加不同的行为动作。<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">HtmlTemplate</span> </span>&#123;</span><br><span class="line">    <span class="comment">// any parent class methods</span></span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Template1</span> <span class="keyword">extends</span> <span class="title">HtmlTemplate</span> </span>&#123;</span><br><span class="line">    <span class="keyword">protected</span> $_html;</span><br><span class="line">     </span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">$this</span>-&gt;_html = <span class="string">"&lt;p&gt;__text__&lt;/p&gt;"</span>;</span><br><span class="line">    &#125;</span><br><span class="line">     </span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">set</span><span class="params">($html)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">$this</span>-&gt;_html = $html;</span><br><span class="line">    &#125;</span><br><span class="line">     </span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">render</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">echo</span> <span class="keyword">$this</span>-&gt;_html;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Template2</span> <span class="keyword">extends</span> <span class="title">HtmlTemplate</span> </span>&#123;</span><br><span class="line">    <span class="keyword">protected</span> $_element;</span><br><span class="line">     </span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span><span class="params">($s)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">$this</span>-&gt;_element = $s;</span><br><span class="line">        <span class="keyword">$this</span>-&gt;set(<span class="string">"&lt;h2&gt;"</span> . <span class="keyword">$this</span>-&gt;_html . <span class="string">"&lt;/h2&gt;"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">     </span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__call</span><span class="params">($name, $args)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">$this</span>-&gt;_element-&gt;$name($args[<span class="number">0</span>]);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Template3</span> <span class="keyword">extends</span> <span class="title">HtmlTemplate</span> </span>&#123;</span><br><span class="line">    <span class="keyword">protected</span> $_element;</span><br><span class="line">     </span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span><span class="params">($s)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">$this</span>-&gt;_element = $s;</span><br><span class="line">        <span class="keyword">$this</span>-&gt;set(<span class="string">"&lt;u&gt;"</span> . <span class="keyword">$this</span>-&gt;_html . <span class="string">"&lt;/u&gt;"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">     </span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__call</span><span class="params">($name, $args)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">$this</span>-&gt;_element-&gt;$name($args[<span class="number">0</span>]);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.liluoao.com/2018/php-structural-design-patterns-part1.html" data-id="cjh8hu0vg001be0mjn3jcj8cg" class="article-share-link">分享</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/design-patterns/">design-patterns</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2018/php-structural-design-patterns-part2.html" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          PHP的设计模式之架构模式（二）
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/php-creational-design-patterns.html" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">PHP的设计模式之创建模式</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2018/laravel-form-validation.html">Laravel的表单验证</a>
+          </li>
+        
+          <li>
+            <a href="/2018/wechat-authorize-web.html">微信网页授权</a>
+          </li>
+        
+          <li>
+            <a href="/2018/work-wechat-address-list.html">企业微信通讯录</a>
+          </li>
+        
+          <li>
+            <a href="/2018/wechat-authorize-hardware.html">微信硬件设备授权</a>
+          </li>
+        
+          <li>
+            <a href="/2018/wechat-card-and-coupon.html">微信卡券</a>
+          </li>
+        
+          <li>
+            <a href="/2018/wechat-barpay.html">微信条码支付</a>
+          </li>
+        
+          <li>
+            <a href="/2018/wechat-passivity-message.html">微信消息处理</a>
+          </li>
+        
+          <li>
+            <a href="/2018/wechat-menu.html">微信菜单</a>
+          </li>
+        
+          <li>
+            <a href="/2018/alipay-barpay-and-query.html">Alipay条码支付及查询</a>
+          </li>
+        
+          <li>
+            <a href="/2018/alipay-authorize-3rd-app.html">Alipay授权第三方应用</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/algorithm/">algorithm</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/alipay/">alipay</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/apache/">apache</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/array/">array</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ci/">ci</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/clean-code/">clean-code</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/composer/">composer</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/design-patterns/">design-patterns</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jwt/">jwt</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/laravel/">laravel</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/">mysql</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/phalcon/">phalcon</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/refactor/">refactor</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/restful/">restful</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sapi/">sapi</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/solid/">solid</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tool/">tool</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/wechat/">wechat</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/work-wechat/">work-wechat</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">五月 2018</a><span class="archive-list-count">20</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a><span class="archive-list-count">15</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a><span class="archive-list-count">15</span></li></ul>
+    </div>
+  </div>
+
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      <div class="footer-about-me">
+        关于作者<br>
+        <a href="https://github.com/liluoao" target="_blank" title="GitHub">GitHub</a><br>
+        <a href="https://segmentfault.com/u/liluoao" target="_blank" title="SegmentFault">SegmentFault</a><br>
+        <a href="https://laravel-china.org/users/7144" target="_blank" title="LaravelChina">LaravelChina</a><br>
+        <a href="https://gitee.com/liluoao" target="_blank" title="码云">码云</a><br>
+        <a href="https://juejin.im/user/5a19374cf265da4332274600" target="_blank" title="掘金">掘金</a><br>
+        <a href="https://packagist.org/users/liluoao/" target="_blank" title="Packagist">Packagist</a><br>
+        <a href="https://www.gitbook.com/@liluoao" target="_blank" title="GitBook">GitBook</a>
+      </div>
+      <div style="width:300px;margin:0 auto; padding:20px 0;">
+        <div class="footer-copyright">
+          &copy; 2018 李罗奥
+          Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+        </div>
+        <a href="http://www.miitbeian.gov.cn/" target="_blank" style="display:inline-block;text-decoration:none;height:20px;line-height:20px;"><p style="float:left;height:20px;line-height:20px;margin: 0px 0px 0px 5px; color:#939393;">鄂ICP备18009105号</p></a>
+        <a target="_blank" href="https://www.beian.gov.cn/portal/registerSystemInfo?recordcode=42011102001595" style="display:inline-block;text-decoration:none;height:20px;line-height:20px;"><img src="/css/images/beian.png" style="float:left;"/><p style="float:left;height:20px;line-height:20px;margin: 0px 0px 0px 5px; color:#939393;">鄂公网安备 42011102001595号</p></a>
+      </div>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">首页</a>
+  
+    <a href="/archives" class="mobile-nav-link">文章列表</a>
+  
+    <a href="/categories/laravel" class="mobile-nav-link">Laravel</a>
+  
+    <a href="/categories/wechat" class="mobile-nav-link">Wechat</a>
+  
+</nav>
+    
+
+<script src="//lib.sinaapp.com/js/jquery/3.1.0/jquery-3.1.0.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

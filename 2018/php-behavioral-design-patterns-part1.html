@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>PHP的设计模式之行为模式 | To be a Web Artisan</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="原文链接：https://www.imooc.com/article/17840 Behavioral Patterns（行为模式）Iterator（迭代模式）迭代器模式可帮组构造特定的对象，那些对象能够提供单一的标准接口循环或迭代任何类型的可计数数据。 为什么需要迭代模式  我们想要向遍历数组那样，遍历对象，或是遍历一个容器。  迭代器模式可以隐藏遍历元素所需的操作。   现在我们把一个类当做一">
+<meta name="keywords" content="design-patterns">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PHP的设计模式之行为模式">
+<meta property="og:url" content="http://www.liluoao.com/2018/php-behavioral-design-patterns-part1.html">
+<meta property="og:site_name" content="To be a Web Artisan">
+<meta property="og:description" content="原文链接：https://www.imooc.com/article/17840 Behavioral Patterns（行为模式）Iterator（迭代模式）迭代器模式可帮组构造特定的对象，那些对象能够提供单一的标准接口循环或迭代任何类型的可计数数据。 为什么需要迭代模式  我们想要向遍历数组那样，遍历对象，或是遍历一个容器。  迭代器模式可以隐藏遍历元素所需的操作。   现在我们把一个类当做一">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-05-16T02:34:18.709Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="PHP的设计模式之行为模式">
+<meta name="twitter:description" content="原文链接：https://www.imooc.com/article/17840 Behavioral Patterns（行为模式）Iterator（迭代模式）迭代器模式可帮组构造特定的对象，那些对象能够提供单一的标准接口循环或迭代任何类型的可计数数据。 为什么需要迭代模式  我们想要向遍历数组那样，遍历对象，或是遍历一个容器。  迭代器模式可以隐藏遍历元素所需的操作。   现在我们把一个类当做一">
+<meta name="twitter:creator" content="@liluoao">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">To be a Web Artisan</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">首页</a>
+        
+          <a class="main-nav-link" href="/archives">文章列表</a>
+        
+          <a class="main-nav-link" href="/categories/laravel">Laravel</a>
+        
+          <a class="main-nav-link" href="/categories/wechat">Wechat</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://www.liluoao.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-PHP的设计模式之行为模式" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/php-behavioral-design-patterns-part1.html" class="article-date">
+  <time datetime="2018-04-04T03:06:21.000Z" itemprop="datePublished">2018-04-04</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      PHP的设计模式之行为模式
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>原文链接：<a href="https://www.imooc.com/article/17840" target="_blank" rel="noopener">https://www.imooc.com/article/17840</a></p>
+<h2 id="Behavioral-Patterns（行为模式）"><a href="#Behavioral-Patterns（行为模式）" class="headerlink" title="Behavioral Patterns（行为模式）"></a>Behavioral Patterns（行为模式）</h2><h4 id="Iterator（迭代模式）"><a href="#Iterator（迭代模式）" class="headerlink" title="Iterator（迭代模式）"></a>Iterator（迭代模式）</h4><p>迭代器模式可帮组构造特定的对象，那些对象能够提供单一的标准接口循环或迭代任何类型的可计数数据。</p>
+<p>为什么需要迭代模式</p>
+<ol>
+<li><p>我们想要向遍历数组那样，遍历对象，或是遍历一个容器。</p>
+</li>
+<li><p>迭代器模式可以隐藏遍历元素所需的操作。</p>
+</li>
+</ol>
+<p>现在我们把一个类当做一个容器，让其实现Iterator接口，使其可以被遍历。<br><a id="more"></a><br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span> </span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ArrayContainer</span> <span class="keyword">implements</span> <span class="title">Iterator</span> </span>&#123; </span><br><span class="line">    <span class="keyword">protected</span> $data = <span class="keyword">array</span>();</span><br><span class="line">    <span class="keyword">protected</span> $index ;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span><span class="params">($data)</span> </span>&#123; </span><br><span class="line">        <span class="keyword">$this</span>-&gt;data = $data; </span><br><span class="line">    &#125; </span><br><span class="line">    <span class="comment">//返回当前指针指向数据</span></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">current</span><span class="params">()</span> </span>&#123; </span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">$this</span>-&gt;data[<span class="keyword">$this</span>-&gt;index]; </span><br><span class="line">    &#125; </span><br><span class="line">    <span class="comment">//指针+1</span></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">next</span><span class="params">()</span> </span>&#123; </span><br><span class="line">        <span class="keyword">$this</span>-&gt;index ++; </span><br><span class="line">    &#125; </span><br><span class="line">    <span class="comment">//验证指针是否越界</span></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">valid</span><span class="params">()</span> </span>&#123; </span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">$this</span>-&gt;index &lt; count(<span class="keyword">$this</span>-&gt;data); </span><br><span class="line">    &#125; </span><br><span class="line">    <span class="comment">//重置指针</span></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">rewind</span><span class="params">()</span> </span>&#123; </span><br><span class="line">        <span class="keyword">$this</span>-&gt;index = <span class="number">0</span>; </span><br><span class="line">    &#125; </span><br><span class="line">    <span class="comment">//返回当前指针</span></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">key</span><span class="params">()</span> </span>&#123; </span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">$this</span>-&gt;index; </span><br><span class="line">    &#125; </span><br><span class="line">&#125; </span><br><span class="line"><span class="comment">//初始化数组容器</span></span><br><span class="line">$arr = <span class="keyword">array</span>(<span class="number">0</span>=&gt;<span class="string">'唐朝'</span>,<span class="number">1</span>=&gt;<span class="string">'宋朝'</span>,<span class="number">2</span>=&gt;<span class="string">'元朝'</span>); </span><br><span class="line">$container = <span class="keyword">new</span> ArrayContainer($arr); </span><br><span class="line"><span class="comment">//遍历数组容器</span></span><br><span class="line"><span class="keyword">foreach</span>($container <span class="keyword">as</span> $a =&gt; $dynasty)&#123; </span><br><span class="line">    <span class="keyword">echo</span> <span class="string">'如果有时光机，我想去'</span>.$dynasty.PHP_EOL; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>迭代器其实也类似于数据库的游标，可以在容器内上下翻滚，遍历它所需要查看的元素。</p>
+<p>通过实现Iterator接口，我们就可以把一个对象里的数据当一个数组一样遍历。也许你会说我把一个数组直接遍历不就行了吗，为什么你还要把数组扔给容器对象，再遍历容器对象呢？是这样的，通过容器对象，我们可以隐藏我们foreach的操作。比如说，我想遍历时，一个元素输出，一个元素不输出怎么办呢？利用迭代器模式，你只需把容器对象中的next方法中的index++语句改为index+=2即可。这点，你可以试试。</p>
+<p>为何实现一个Iterator接口就必须实现current那些方法呢？其实foreach容器对象的时候，PHP是自动帮我们依次调用了，valid，next这些方法。</p>
+<h4 id="Strategy（策略模式）"><a href="#Strategy（策略模式）" class="headerlink" title="Strategy（策略模式）"></a>Strategy（策略模式）</h4><p>定义一系列算法，将每一个算法封装起来，并让它们可以相互替换。策略模式让算法独立于使用它的客户而变化，也称为政策模式(Policy)<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span> </span><br><span class="line"><span class="comment">//抽象策略接口</span></span><br><span class="line"><span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">Strategy</span></span>&#123; </span><br><span class="line">    <span class="keyword">abstract</span> <span class="function"><span class="keyword">function</span> <span class="title">peddle</span><span class="params">()</span></span>; </span><br><span class="line">&#125; </span><br><span class="line"><span class="comment">//具体封装的策略方法</span></span><br><span class="line"><span class="comment">// 女性用户策略</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ConcreteStrategyA</span> <span class="keyword">extends</span> <span class="title">Strategy</span> </span>&#123; </span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">peddle</span><span class="params">()</span></span>&#123; </span><br><span class="line">        <span class="keyword">echo</span> <span class="string">'美女穿这件衣服肯定很好看'</span>.PHP_EOL; </span><br><span class="line">    &#125; </span><br><span class="line">&#125; </span><br><span class="line"><span class="comment">//男性用户策略</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ConcreteStrategyB</span> <span class="keyword">extends</span> <span class="title">Strategy</span> </span>&#123; </span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">peddle</span><span class="params">()</span></span>&#123; </span><br><span class="line">        <span class="keyword">echo</span> <span class="string">'每一个男人都需要一个工具箱，充实工具箱，从购买各种螺丝刀开始'</span>.PHP_EOL; </span><br><span class="line">    &#125; </span><br><span class="line">&#125; </span><br><span class="line"><span class="comment">//未知性别用户策略</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ConcreteStrategyC</span> <span class="keyword">extends</span> <span class="title">Strategy</span> </span>&#123; </span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">peddle</span><span class="params">()</span></span>&#123; </span><br><span class="line">        <span class="keyword">echo</span> <span class="string">'骨骼清奇，这本《葵花宝典》最适合你'</span>.PHP_EOL; </span><br><span class="line">    &#125; </span><br><span class="line">&#125; </span><br><span class="line"><span class="comment">//环境类</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Context</span></span>&#123; </span><br><span class="line">    <span class="keyword">protected</span> $strategy; </span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span><span class="params">(Strategy $strategy)</span> </span>&#123; </span><br><span class="line">        <span class="keyword">$this</span>-&gt;strategy = $strategy; </span><br><span class="line">    &#125; </span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">request</span><span class="params">()</span> </span>&#123; </span><br><span class="line">        <span class="keyword">$this</span>-&gt;strategy-&gt;peddle(<span class="keyword">$this</span>); </span><br><span class="line">    &#125; </span><br><span class="line">&#125; </span><br><span class="line"><span class="comment">//若处于女性用户环境</span></span><br><span class="line">$female_context = <span class="keyword">new</span> Context(<span class="keyword">new</span> ConcreteStrategyA); </span><br><span class="line">$female_context-&gt;request(); </span><br><span class="line"><span class="comment">//若处于男性用户环境</span></span><br><span class="line">$male_context = <span class="keyword">new</span> Context(<span class="keyword">new</span> ConcreteStrategyB); </span><br><span class="line">$male_context-&gt;request(); </span><br><span class="line"><span class="comment">//若处于未知性别用户环境</span></span><br><span class="line">$unknow_context = <span class="keyword">new</span> Context(<span class="keyword">new</span> ConcreteStrategyC); </span><br><span class="line">$unknow_context-&gt;request();</span><br></pre></td></tr></table></figure></p>
+<h4 id="Observer（观察者模式）"><a href="#Observer（观察者模式）" class="headerlink" title="Observer（观察者模式）"></a>Observer（观察者模式）</h4><p>某个对象可以被设置为是可观察的，只要通过某种方式允许其他对象注册为观察者。每当被观察的对象改变时，会发送信息给观察者。<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">Observer</span> </span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">onChanged</span><span class="params">($sender, $args)</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">Observable</span> </span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">addObserver</span><span class="params">($observer)</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">CustomerList</span> <span class="keyword">implements</span> <span class="title">Observable</span> </span>&#123;</span><br><span class="line">  <span class="keyword">private</span> $_observers = <span class="keyword">array</span>();</span><br><span class="line"></span><br><span class="line">  <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">addCustomer</span><span class="params">($name)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">foreach</span>(<span class="keyword">$this</span>-&gt;_observers <span class="keyword">as</span> $obs)</span><br><span class="line">      $obs-&gt;onChanged(<span class="keyword">$this</span>, $name);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">addObserver</span><span class="params">($observer)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">$this</span>-&gt;_observers []= $observer;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">CustomerListLogger</span> <span class="keyword">implements</span> <span class="title">Observer</span> </span>&#123;</span><br><span class="line">  <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">onChanged</span><span class="params">($sender, $args)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">echo</span>( <span class="string">"'$args' Customer has been added to the list \n"</span> );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">$ul = <span class="keyword">new</span> UserList();</span><br><span class="line">$ul-&gt;addObserver( <span class="keyword">new</span> CustomerListLogger() );</span><br><span class="line">$ul-&gt;addCustomer( <span class="string">"Jack"</span> );</span><br></pre></td></tr></table></figure></p>
+<h4 id="Chain-of-responsibility（责任链模式）"><a href="#Chain-of-responsibility（责任链模式）" class="headerlink" title="Chain of responsibility（责任链模式）"></a>Chain of responsibility（责任链模式）</h4><p>这种模式有另一种称呼：控制链模式。它主要由一系列对于某些命令的处理器构成，每个查询会在处理器构成的责任链中传递，在每个交汇点由处理器判断是否需要对它们进行响应与处理。每次的处理程序会在有处理器处理这些请求时暂停。<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">Command</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">onCommand</span><span class="params">($name, $args)</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">CommandChain</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> $_commands = <span class="keyword">array</span>();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">addCommand</span><span class="params">($cmd)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">$this</span>-&gt;_commands[]= $cmd;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">runCommand</span><span class="params">($name, $args)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">foreach</span>(<span class="keyword">$this</span>-&gt;_commands <span class="keyword">as</span> $cmd) &#123;</span><br><span class="line">            <span class="keyword">if</span> ($cmd-&gt;onCommand($name, $args))</span><br><span class="line">                <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">CustCommand</span> <span class="keyword">implements</span> <span class="title">Command</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">onCommand</span><span class="params">($name, $args)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> ($name != <span class="string">'addCustomer'</span>)</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        <span class="keyword">echo</span>(<span class="string">"This is CustomerCommand handling 'addCustomer'\n"</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MailCommand</span> <span class="keyword">implements</span> <span class="title">Command</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">onCommand</span><span class="params">($name, $args)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> ($name != <span class="string">'mail'</span>)</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        <span class="keyword">echo</span>(<span class="string">"This is MailCommand handling 'mail'\n"</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">$cc = <span class="keyword">new</span> CommandChain();</span><br><span class="line">$cc-&gt;addCommand( <span class="keyword">new</span> CustCommand());</span><br><span class="line">$cc-&gt;addCommand( <span class="keyword">new</span> MailCommand());</span><br><span class="line">$cc-&gt;runCommand(<span class="string">'addCustomer'</span>, <span class="keyword">null</span>);</span><br><span class="line">$cc-&gt;runCommand(<span class="string">'mail'</span>, <span class="keyword">null</span>);</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.liluoao.com/2018/php-behavioral-design-patterns-part1.html" data-id="cjh8hu0vv001he0mj4g6j43kr" class="article-share-link">分享</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/design-patterns/">design-patterns</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2018/php-behavioral-design-patterns-part2.html" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          PHP的设计模式之行为模式（二）
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/php-structural-design-patterns-part2.html" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">PHP的设计模式之架构模式（二）</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2018/laravel-form-validation.html">Laravel的表单验证</a>
+          </li>
+        
+          <li>
+            <a href="/2018/wechat-authorize-web.html">微信网页授权</a>
+          </li>
+        
+          <li>
+            <a href="/2018/work-wechat-address-list.html">企业微信通讯录</a>
+          </li>
+        
+          <li>
+            <a href="/2018/wechat-authorize-hardware.html">微信硬件设备授权</a>
+          </li>
+        
+          <li>
+            <a href="/2018/wechat-card-and-coupon.html">微信卡券</a>
+          </li>
+        
+          <li>
+            <a href="/2018/wechat-barpay.html">微信条码支付</a>
+          </li>
+        
+          <li>
+            <a href="/2018/wechat-passivity-message.html">微信消息处理</a>
+          </li>
+        
+          <li>
+            <a href="/2018/wechat-menu.html">微信菜单</a>
+          </li>
+        
+          <li>
+            <a href="/2018/alipay-barpay-and-query.html">Alipay条码支付及查询</a>
+          </li>
+        
+          <li>
+            <a href="/2018/alipay-authorize-3rd-app.html">Alipay授权第三方应用</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/algorithm/">algorithm</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/alipay/">alipay</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/apache/">apache</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/array/">array</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ci/">ci</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/clean-code/">clean-code</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/composer/">composer</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/design-patterns/">design-patterns</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jwt/">jwt</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/laravel/">laravel</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/">mysql</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/phalcon/">phalcon</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/refactor/">refactor</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/restful/">restful</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sapi/">sapi</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/solid/">solid</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tool/">tool</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/wechat/">wechat</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/work-wechat/">work-wechat</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">五月 2018</a><span class="archive-list-count">20</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a><span class="archive-list-count">15</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a><span class="archive-list-count">15</span></li></ul>
+    </div>
+  </div>
+
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      <div class="footer-about-me">
+        关于作者<br>
+        <a href="https://github.com/liluoao" target="_blank" title="GitHub">GitHub</a><br>
+        <a href="https://segmentfault.com/u/liluoao" target="_blank" title="SegmentFault">SegmentFault</a><br>
+        <a href="https://laravel-china.org/users/7144" target="_blank" title="LaravelChina">LaravelChina</a><br>
+        <a href="https://gitee.com/liluoao" target="_blank" title="码云">码云</a><br>
+        <a href="https://juejin.im/user/5a19374cf265da4332274600" target="_blank" title="掘金">掘金</a><br>
+        <a href="https://packagist.org/users/liluoao/" target="_blank" title="Packagist">Packagist</a><br>
+        <a href="https://www.gitbook.com/@liluoao" target="_blank" title="GitBook">GitBook</a>
+      </div>
+      <div style="width:300px;margin:0 auto; padding:20px 0;">
+        <div class="footer-copyright">
+          &copy; 2018 李罗奥
+          Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+        </div>
+        <a href="http://www.miitbeian.gov.cn/" target="_blank" style="display:inline-block;text-decoration:none;height:20px;line-height:20px;"><p style="float:left;height:20px;line-height:20px;margin: 0px 0px 0px 5px; color:#939393;">鄂ICP备18009105号</p></a>
+        <a target="_blank" href="https://www.beian.gov.cn/portal/registerSystemInfo?recordcode=42011102001595" style="display:inline-block;text-decoration:none;height:20px;line-height:20px;"><img src="/css/images/beian.png" style="float:left;"/><p style="float:left;height:20px;line-height:20px;margin: 0px 0px 0px 5px; color:#939393;">鄂公网安备 42011102001595号</p></a>
+      </div>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">首页</a>
+  
+    <a href="/archives" class="mobile-nav-link">文章列表</a>
+  
+    <a href="/categories/laravel" class="mobile-nav-link">Laravel</a>
+  
+    <a href="/categories/wechat" class="mobile-nav-link">Wechat</a>
+  
+</nav>
+    
+
+<script src="//lib.sinaapp.com/js/jquery/3.1.0/jquery-3.1.0.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>使用AppVeyor持续集成本博客 | To be a Web Artisan</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="创建AppVeyor账号进入AppVeyor官网，游客会跳转到 /login 页，这里可以注册，也可以使用 GitHub 账号授权登陆。">
+<meta name="keywords" content="ci">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用AppVeyor持续集成本博客">
+<meta property="og:url" content="http://www.liluoao.com/2018/use-appveyor-ci.html">
+<meta property="og:site_name" content="To be a Web Artisan">
+<meta property="og:description" content="创建AppVeyor账号进入AppVeyor官网，游客会跳转到 /login 页，这里可以注册，也可以使用 GitHub 账号授权登陆。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://www.liluoao.com/images/appveyor_login.png">
+<meta property="og:image" content="http://www.liluoao.com/images/appveyor_select_repo.png">
+<meta property="og:image" content="http://www.liluoao.com/images/appveyor_project_env.png">
+<meta property="og:image" content="http://www.liluoao.com/images/github_setting.png">
+<meta property="og:image" content="http://www.liluoao.com/images/github_token.png">
+<meta property="og:image" content="http://www.liluoao.com/images/appveyor_encrypt.png">
+<meta property="og:image" content="http://www.liluoao.com/images/appveyor_build.png">
+<meta property="og:updated_time" content="2018-05-16T02:34:18.725Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="使用AppVeyor持续集成本博客">
+<meta name="twitter:description" content="创建AppVeyor账号进入AppVeyor官网，游客会跳转到 /login 页，这里可以注册，也可以使用 GitHub 账号授权登陆。">
+<meta name="twitter:image" content="http://www.liluoao.com/images/appveyor_login.png">
+<meta name="twitter:creator" content="@liluoao">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">To be a Web Artisan</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">首页</a>
+        
+          <a class="main-nav-link" href="/archives">文章列表</a>
+        
+          <a class="main-nav-link" href="/categories/laravel">Laravel</a>
+        
+          <a class="main-nav-link" href="/categories/wechat">Wechat</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://www.liluoao.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-使用AppVeyor持续集成本博客" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/use-appveyor-ci.html" class="article-date">
+  <time datetime="2018-03-02T03:37:55.000Z" itemprop="datePublished">2018-03-02</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      使用AppVeyor持续集成本博客
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="创建AppVeyor账号"><a href="#创建AppVeyor账号" class="headerlink" title="创建AppVeyor账号"></a>创建AppVeyor账号</h2><p>进入<a href="https://ci.appveyor.com" target="_blank" rel="noopener">AppVeyor官网</a>，游客会跳转到 <code>/login</code> 页，这里可以注册，也可以使用 <code>GitHub</code> 账号授权登陆。</p>
+<p><img src="/images/appveyor_login.png" alt=""><br><a id="more"></a></p>
+<h2 id="创建CI项目"><a href="#创建CI项目" class="headerlink" title="创建CI项目"></a>创建CI项目</h2><p>在 <code>/projects</code> 页面选择你的博客源码仓库</p>
+<p><img src="/images/appveyor_select_repo.png" alt=""></p>
+<h2 id="配置CI项目"><a href="#配置CI项目" class="headerlink" title="配置CI项目"></a>配置CI项目</h2><p>点击项目中 <code>SETTINGS</code> 选项卡，如果项目分支不是默认的，修改 <code>Default branch</code> 。</p>
+<p>再点击 <code>Environment</code> 栏目，设置4个环境变量：</p>
+<table>
+<thead>
+<tr>
+<th>name</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>STATIC_SITE_REPO</td>
+<td>静态页面的仓库地址</td>
+</tr>
+<tr>
+<td>TARGET_BRANCH</td>
+<td>编译后文件存放的分支</td>
+</tr>
+<tr>
+<td>GIT_USER_EMAIL</td>
+<td>Github用户邮箱</td>
+</tr>
+<tr>
+<td>GIT_USER_NAME</td>
+<td>Github用户名</td>
+</tr>
+</tbody>
+</table>
+<p><img src="/images/appveyor_project_env.png" alt=""></p>
+<p>设置好后点击 <code>Save</code> 保存。</p>
+<h2 id="获取AccessToken"><a href="#获取AccessToken" class="headerlink" title="获取AccessToken"></a>获取AccessToken</h2><p>打开 <code>GitHub</code> 个人设置</p>
+<p><img src="/images/github_setting.png" alt=""></p>
+<p>点击 <code>Developer settings</code> 栏目，再点击 <code>Personal access tokens</code> 选项卡，可以看到已有的Token，这里点击 <code>Generate new token</code> 按钮创建一个博客专用的token。</p>
+<p><img src="/images/github_token.png" alt=""></p>
+<p>可以参考<a href="https://help.github.com/articles/creating-a-personal-access-token-for-the-command-line/" target="_blank" rel="noopener">官方文档</a></p>
+<h2 id="加密AccessToken"><a href="#加密AccessToken" class="headerlink" title="加密AccessToken"></a>加密AccessToken</h2><p>由于这个AccessToken可以直接操作你的仓库的，而且配置文件是公开的，所以这时就要求对AccessToken进行加密。可到<a href="https://ci.appveyor.com/tools/encrypt" target="_blank" rel="noopener">AppVeyor Token加密页面</a>进行加密。把加密后的字符串填入下一步中的配置文件里。</p>
+<p><img src="/images/appveyor_encrypt.png" alt=""></p>
+<h2 id="配置CI"><a href="#配置CI" class="headerlink" title="配置CI"></a>配置CI</h2><p>在项目中新建 <code>appveyor.yml</code> 文件，用于配置持续集成的命令<br><figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">clone_depth:</span> <span class="number">5</span></span><br><span class="line"></span><br><span class="line"><span class="attr">environment:</span></span><br><span class="line"><span class="attr">    access_token:</span></span><br><span class="line"><span class="attr">        secure:</span> <span class="comment"># 自己的加密token</span></span><br><span class="line"><span class="attr">install:</span></span><br><span class="line"><span class="attr">    - ps:</span> <span class="string">Install-Product</span> <span class="string">node</span> <span class="number">6.9</span> <span class="comment"># 默认node版本太老</span></span><br><span class="line"><span class="bullet">    -</span> <span class="string">node</span> <span class="bullet">--version</span></span><br><span class="line"><span class="bullet">    -</span> <span class="string">npm</span> <span class="bullet">--version</span></span><br><span class="line"><span class="bullet">    -</span> <span class="string">npm</span> <span class="string">install</span></span><br><span class="line"><span class="bullet">    -</span> <span class="string">npm</span> <span class="string">install</span> <span class="string">hexo-cli</span> <span class="bullet">-g</span></span><br><span class="line">    </span><br><span class="line"><span class="attr">build_script:</span></span><br><span class="line"><span class="bullet">    -</span> <span class="string">hexo</span> <span class="string">generate</span></span><br><span class="line">    </span><br><span class="line"><span class="attr">artifacts:</span></span><br><span class="line"><span class="attr">    - path:</span> <span class="string">public</span></span><br><span class="line">    </span><br><span class="line"><span class="attr">on_success:</span></span><br><span class="line"><span class="bullet">    -</span> <span class="string">git</span> <span class="string">config</span> <span class="bullet">--global</span> <span class="string">credential.helper</span> <span class="string">store</span></span><br><span class="line"><span class="attr">    - ps:</span> <span class="string">Add-Content</span> <span class="string">"$env:USERPROFILE\.git-credentials"</span> <span class="string">"https://$($env:access_token):x-oauth-basic@github.com`n"</span></span><br><span class="line"><span class="bullet">    -</span> <span class="string">git</span> <span class="string">config</span> <span class="bullet">--global</span> <span class="string">user.email</span> <span class="string">"%GIT_USER_EMAIL%"</span></span><br><span class="line"><span class="bullet">    -</span> <span class="string">git</span> <span class="string">config</span> <span class="bullet">--global</span> <span class="string">user.name</span> <span class="string">"%GIT_USER_NAME%"</span></span><br><span class="line"><span class="bullet">    -</span> <span class="string">git</span> <span class="string">clone</span> <span class="bullet">--depth</span> <span class="number">5</span> <span class="bullet">-q</span> <span class="bullet">--branch=%TARGET_BRANCH%</span> <span class="string">%STATIC_SITE_REPO%</span> <span class="string">%TEMP%\static-site</span></span><br><span class="line"><span class="bullet">    -</span> <span class="string">cd</span> <span class="string">%TEMP%\static-site</span></span><br><span class="line"><span class="bullet">    -</span> <span class="string">del</span> <span class="string">*</span> <span class="string">/f</span> <span class="string">/q</span></span><br><span class="line"><span class="bullet">    -</span> <span class="string">for</span> <span class="string">/d</span> <span class="string">%%p</span> <span class="string">IN</span> <span class="string">(*)</span> <span class="string">do</span> <span class="string">rmdir</span> <span class="string">"%%p"</span> <span class="string">/s</span> <span class="string">/q</span></span><br><span class="line"><span class="bullet">    -</span> <span class="string">SETLOCAL</span> <span class="string">EnableDelayedExpansion</span> <span class="string">&amp;</span> <span class="string">robocopy</span> <span class="string">"%APPVEYOR_BUILD_FOLDER%\public"</span> <span class="string">"%TEMP%\static-site"</span> <span class="string">/e</span> <span class="string">&amp;</span> <span class="string">IF</span> <span class="string">!ERRORLEVEL!</span> <span class="string">EQU</span> <span class="number">1</span> <span class="string">(exit</span> <span class="number">0</span><span class="string">)</span> <span class="string">ELSE</span> <span class="string">(IF</span> <span class="string">!ERRORLEVEL!</span> <span class="string">EQU</span> <span class="number">3</span> <span class="string">(exit</span> <span class="number">0</span><span class="string">)</span> <span class="string">ELSE</span> <span class="string">(exit</span> <span class="number">1</span><span class="string">))</span></span><br><span class="line"><span class="bullet">    -</span> <span class="string">git</span> <span class="string">add</span> <span class="bullet">-A</span></span><br><span class="line"><span class="bullet">    -</span> <span class="string">git</span> <span class="string">commit</span> <span class="bullet">-m</span> <span class="string">"Update Static Site"</span></span><br><span class="line"><span class="bullet">    -</span> <span class="string">git</span> <span class="string">push</span> <span class="string">origin</span> <span class="string">%TARGET_BRANCH%</span></span><br><span class="line"><span class="bullet">-</span> <span class="string">appveyor</span> <span class="string">AddMessage</span> <span class="string">"Static Site Updated"</span></span><br></pre></td></tr></table></figure></p>
+<p>大致的意思是从github仓库的当前分支拉取下来，编译成静态文件后，在push到目标分支。由于AppVeyor环境中是通过Access Token访问我们的仓库的，而Hexo自带的部署则在访问的过程中需要我们输入帐号密码，所以 <code>Hexo g -d</code> 的命令就不适合在这里使用。需要先编译成静态文件，再把public文件夹的静态文件push到目标分支。</p>
+<h2 id="完成"><a href="#完成" class="headerlink" title="完成"></a>完成</h2><p><img src="/images/appveyor_build.png" alt=""></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.liluoao.com/2018/use-appveyor-ci.html" data-id="cjh8hu0wb001ze0mjg1dcqyvh" class="article-share-link">分享</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ci/">ci</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2018/add-project-badge.html" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          给项目添加狗牌
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/use-hexo.html" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">使用Hexo</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2018/laravel-form-validation.html">Laravel的表单验证</a>
+          </li>
+        
+          <li>
+            <a href="/2018/wechat-authorize-web.html">微信网页授权</a>
+          </li>
+        
+          <li>
+            <a href="/2018/work-wechat-address-list.html">企业微信通讯录</a>
+          </li>
+        
+          <li>
+            <a href="/2018/wechat-authorize-hardware.html">微信硬件设备授权</a>
+          </li>
+        
+          <li>
+            <a href="/2018/wechat-card-and-coupon.html">微信卡券</a>
+          </li>
+        
+          <li>
+            <a href="/2018/wechat-barpay.html">微信条码支付</a>
+          </li>
+        
+          <li>
+            <a href="/2018/wechat-passivity-message.html">微信消息处理</a>
+          </li>
+        
+          <li>
+            <a href="/2018/wechat-menu.html">微信菜单</a>
+          </li>
+        
+          <li>
+            <a href="/2018/alipay-barpay-and-query.html">Alipay条码支付及查询</a>
+          </li>
+        
+          <li>
+            <a href="/2018/alipay-authorize-3rd-app.html">Alipay授权第三方应用</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/algorithm/">algorithm</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/alipay/">alipay</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/apache/">apache</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/array/">array</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ci/">ci</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/clean-code/">clean-code</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/composer/">composer</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/design-patterns/">design-patterns</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jwt/">jwt</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/laravel/">laravel</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/">mysql</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/phalcon/">phalcon</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/refactor/">refactor</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/restful/">restful</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sapi/">sapi</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/solid/">solid</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tool/">tool</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/wechat/">wechat</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/work-wechat/">work-wechat</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">五月 2018</a><span class="archive-list-count">20</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a><span class="archive-list-count">15</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a><span class="archive-list-count">15</span></li></ul>
+    </div>
+  </div>
+
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      <div class="footer-about-me">
+        关于作者<br>
+        <a href="https://github.com/liluoao" target="_blank" title="GitHub">GitHub</a><br>
+        <a href="https://segmentfault.com/u/liluoao" target="_blank" title="SegmentFault">SegmentFault</a><br>
+        <a href="https://laravel-china.org/users/7144" target="_blank" title="LaravelChina">LaravelChina</a><br>
+        <a href="https://gitee.com/liluoao" target="_blank" title="码云">码云</a><br>
+        <a href="https://juejin.im/user/5a19374cf265da4332274600" target="_blank" title="掘金">掘金</a><br>
+        <a href="https://packagist.org/users/liluoao/" target="_blank" title="Packagist">Packagist</a><br>
+        <a href="https://www.gitbook.com/@liluoao" target="_blank" title="GitBook">GitBook</a>
+      </div>
+      <div style="width:300px;margin:0 auto; padding:20px 0;">
+        <div class="footer-copyright">
+          &copy; 2018 李罗奥
+          Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+        </div>
+        <a href="http://www.miitbeian.gov.cn/" target="_blank" style="display:inline-block;text-decoration:none;height:20px;line-height:20px;"><p style="float:left;height:20px;line-height:20px;margin: 0px 0px 0px 5px; color:#939393;">鄂ICP备18009105号</p></a>
+        <a target="_blank" href="https://www.beian.gov.cn/portal/registerSystemInfo?recordcode=42011102001595" style="display:inline-block;text-decoration:none;height:20px;line-height:20px;"><img src="/css/images/beian.png" style="float:left;"/><p style="float:left;height:20px;line-height:20px;margin: 0px 0px 0px 5px; color:#939393;">鄂公网安备 42011102001595号</p></a>
+      </div>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">首页</a>
+  
+    <a href="/archives" class="mobile-nav-link">文章列表</a>
+  
+    <a href="/categories/laravel" class="mobile-nav-link">Laravel</a>
+  
+    <a href="/categories/wechat" class="mobile-nav-link">Wechat</a>
+  
+</nav>
+    
+
+<script src="//lib.sinaapp.com/js/jquery/3.1.0/jquery-3.1.0.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

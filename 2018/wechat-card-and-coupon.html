@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>微信卡券 | To be a Web Artisan</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="💻API文档 卡券类型：  CASH代金券 DISCOUNT折扣券 GIFT兑换券 GENERAL_COUPON优惠券 MEMBER_CARD会员卡  上传商户Logo需要 access_token请求方式：POST">
+<meta name="keywords" content="wechat">
+<meta property="og:type" content="article">
+<meta property="og:title" content="微信卡券">
+<meta property="og:url" content="http://www.liluoao.com/2018/wechat-card-and-coupon.html">
+<meta property="og:site_name" content="To be a Web Artisan">
+<meta property="og:description" content="💻API文档 卡券类型：  CASH代金券 DISCOUNT折扣券 GIFT兑换券 GENERAL_COUPON优惠券 MEMBER_CARD会员卡  上传商户Logo需要 access_token请求方式：POST">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-05-16T02:34:18.740Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="微信卡券">
+<meta name="twitter:description" content="💻API文档 卡券类型：  CASH代金券 DISCOUNT折扣券 GIFT兑换券 GENERAL_COUPON优惠券 MEMBER_CARD会员卡  上传商户Logo需要 access_token请求方式：POST">
+<meta name="twitter:creator" content="@liluoao">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">To be a Web Artisan</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">首页</a>
+        
+          <a class="main-nav-link" href="/archives">文章列表</a>
+        
+          <a class="main-nav-link" href="/categories/laravel">Laravel</a>
+        
+          <a class="main-nav-link" href="/categories/wechat">Wechat</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://www.liluoao.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-微信卡券" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/wechat-card-and-coupon.html" class="article-date">
+  <time datetime="2018-05-11T03:16:17.000Z" itemprop="datePublished">2018-05-11</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/wechat/">wechat</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      微信卡券
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>💻<a href="https://mp.weixin.qq.com/wiki?t=resource/res_main&amp;id=mp1451025056" target="_blank" rel="noopener">API文档</a></p>
+<p>卡券类型：</p>
+<ul>
+<li>CASH代金券</li>
+<li>DISCOUNT折扣券</li>
+<li>GIFT兑换券</li>
+<li>GENERAL_COUPON优惠券</li>
+<li>MEMBER_CARD会员卡</li>
+</ul>
+<h4 id="上传商户Logo"><a href="#上传商户Logo" class="headerlink" title="上传商户Logo"></a>上传商户Logo</h4><p>需要 <code>access_token</code><br>请求方式：<code>POST</code><br><a id="more"></a><br>请求地址：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//微信API</span></span><br><span class="line">config(<span class="string">'wechat.api_uri'</span>) = <span class="string">'https://api.weixin.qq.com'</span>;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 上传图片</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">const</span> API_UPLOAD_IMAGE = <span class="string">'/cgi-bin/media/uploadimg'</span>;</span><br></pre></td></tr></table></figure></p>
+<p>请求参数：文件数据流buffer</p>
+<h4 id="创建卡券"><a href="#创建卡券" class="headerlink" title="创建卡券"></a>创建卡券</h4><p>需要 <code>access_token</code><br>请求方式：<code>POST</code><br>请求地址：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 创建卡券</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">const</span> API_ADD_CARD = <span class="string">'/card/create'</span>;</span><br></pre></td></tr></table></figure></p>
+<p>参数示例：<br><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">"card"</span>: &#123;</span><br><span class="line">        <span class="attr">"card_type"</span>: <span class="string">"CASH"</span>,</span><br><span class="line">        <span class="attr">"cash"</span>: &#123;</span><br><span class="line">            <span class="attr">"base_info"</span>: &#123;</span><br><span class="line">                <span class="attr">"logo_url"</span>: <span class="string">"http://mmbiz.qpic.cn/mmbiz_jpg/EbflyuDyzFFff2rwM5euic6QScBjicOTLgQzExZJLDWaDIg5fDfkKjDI5CWZBIH75zLgFuSGkKIfetIOYz0mJaFQ/0"</span>,</span><br><span class="line">                <span class="attr">"brand_name"</span>: <span class="string">"诚信汽修"</span>,</span><br><span class="line">                <span class="attr">"code_type"</span>: <span class="string">"CODE_TYPE_NONE"</span>,</span><br><span class="line">                <span class="attr">"title"</span>: <span class="string">"标题"</span>,</span><br><span class="line">                <span class="attr">"sub_title"</span>: <span class="string">"副标题"</span>,</span><br><span class="line">                <span class="attr">"color"</span>: <span class="string">"Color010"</span>,</span><br><span class="line">                <span class="attr">"notice"</span>: <span class="string">"卡券操作提示"</span>,</span><br><span class="line">                <span class="attr">"service_phone"</span>: <span class="string">""</span>,</span><br><span class="line">                <span class="attr">"description"</span>: <span class="string">"使用须知"</span>,</span><br><span class="line">                <span class="attr">"date_info"</span>: &#123;</span><br><span class="line">                    <span class="attr">"type"</span>: <span class="string">"DATE_TYPE_FIX_TIME_RANGE"</span>,</span><br><span class="line">                    <span class="attr">"begin_timestamp"</span>: <span class="number">1508137033</span>,</span><br><span class="line">                    <span class="attr">"end_timestamp"</span>: <span class="number">1571295442</span></span><br><span class="line">                &#125;,</span><br><span class="line">                <span class="attr">"sku"</span>: &#123;</span><br><span class="line">                    <span class="attr">"quantity"</span>: <span class="string">"100"</span></span><br><span class="line">                &#125;,</span><br><span class="line">                <span class="attr">"use_limit"</span>: <span class="number">100</span>,</span><br><span class="line">                <span class="attr">"get_limit"</span>: <span class="string">"2"</span>,</span><br><span class="line">                <span class="attr">"use_custom_code"</span>: <span class="literal">false</span>,</span><br><span class="line">                <span class="attr">"bind_openid"</span>: <span class="literal">false</span>,</span><br><span class="line">                <span class="attr">"can_share"</span>: <span class="literal">false</span>,</span><br><span class="line">                <span class="attr">"can_give_friend"</span>: <span class="literal">false</span>,</span><br><span class="line">                <span class="attr">"center_title"</span>: <span class="string">"立即使用"</span></span><br><span class="line">            &#125;,</span><br><span class="line">            <span class="attr">"least_cost"</span>: <span class="string">"300"</span>,</span><br><span class="line">            <span class="attr">"reduce_cost"</span>: <span class="number">5000</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>字段含义：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">$data = [</span><br><span class="line">    <span class="string">'card'</span> =&gt; [</span><br><span class="line">        <span class="string">'card_type'</span> =&gt; <span class="string">'MEMBER_CARD'</span>,</span><br><span class="line">        <span class="string">'member_card'</span> =&gt; [</span><br><span class="line">            <span class="string">'background_pic_url'</span>=&gt; <span class="string">'http://mmbiz.qpic.cn/mmbiz_jpg/EbflyuDyzFFff2rwM5euic6QScBjicOTLgQzExZJLDWaDIg5fDfkKjDI5CWZBIH75zLgFuSGkKIfetIOYz0mJaFQ/0'</span>,</span><br><span class="line">            <span class="string">'base_info'</span> =&gt; [</span><br><span class="line">                <span class="string">"logo_url"</span> =&gt; $ticketData[<span class="string">'logo_url'</span>], <span class="comment">// 商户logo</span></span><br><span class="line">                <span class="string">"brand_name"</span> =&gt; $merchantData[<span class="string">'name'</span>], <span class="comment">// 商户名字</span></span><br><span class="line">                <span class="string">"code_type"</span> =&gt; <span class="string">"CODE_TYPE_NONE"</span>,</span><br><span class="line">                <span class="string">"title"</span> =&gt;  $ticketData[<span class="string">'card_name'</span>], <span class="comment">// 优惠券标题</span></span><br><span class="line">                <span class="string">"sub_title"</span> =&gt; $ticketData[<span class="string">'sub_title'</span>], <span class="comment">// 优惠券副标题</span></span><br><span class="line">                <span class="string">"color"</span> =&gt; $ticketData[<span class="string">'color'</span>], <span class="comment">// 卡券背景颜色</span></span><br><span class="line">                <span class="string">"notice"</span> =&gt; $ticketData[<span class="string">'notice'</span>], <span class="comment">// 卡券操作提示</span></span><br><span class="line">                <span class="string">"service_phone"</span> =&gt; $merchantData[<span class="string">'tel'</span>], <span class="comment">// 客服电话</span></span><br><span class="line">                <span class="string">"description"</span> =&gt; $ticketData[<span class="string">'description'</span>] ? $ticketData[<span class="string">'description'</span>] : <span class="string">''</span>, <span class="comment">// 使用须知</span></span><br><span class="line">                <span class="string">'date_info'</span> =&gt; [</span><br><span class="line">                    <span class="string">"type"</span> =&gt; <span class="string">"DATE_TYPE_FIX_TIME_RANGE"</span>,</span><br><span class="line">                    <span class="string">"begin_timestamp"</span> =&gt; strtotime($ticketData[<span class="string">'begin_time'</span>]),</span><br><span class="line">                    <span class="string">"end_timestamp"</span> =&gt; strtotime($ticketData[<span class="string">'end_time'</span>])</span><br><span class="line">                ],</span><br><span class="line">                <span class="string">'sku'</span> =&gt; [</span><br><span class="line">                    <span class="string">"quantity"</span> =&gt; $ticketData[<span class="string">'card_num'</span>] <span class="comment">// 卡券库存</span></span><br><span class="line">                ],</span><br><span class="line">                <span class="string">"use_limit"</span> =&gt; <span class="number">1</span>, <span class="comment">// 每人可核销的数量限制</span></span><br><span class="line">                <span class="string">"get_limit"</span> =&gt; <span class="number">1</span>, <span class="comment">// 每人可领券的数量限制</span></span><br><span class="line">                <span class="string">"use_custom_code"</span> =&gt; <span class="keyword">false</span>, <span class="comment">// 是否自定义code码</span></span><br><span class="line">                <span class="string">"bind_openid"</span> =&gt; <span class="keyword">false</span>, <span class="comment">// 是否指定用户领取</span></span><br><span class="line">                <span class="string">"can_share"</span> =&gt; <span class="keyword">false</span>, <span class="comment">// 卡券领取页面是否可分享</span></span><br><span class="line">                <span class="string">"can_give_friend"</span> =&gt; <span class="keyword">false</span>, <span class="comment">// 卡券是否可转赠</span></span><br><span class="line">                <span class="string">"center_title"</span> =&gt; <span class="string">"立即使用"</span>, <span class="comment">// 卡券顶部居中的按钮</span></span><br><span class="line">            ],</span><br><span class="line">            <span class="string">"prerogative"</span> =&gt; $ticketData[<span class="string">'description'</span>],<span class="comment">// 会员卡特权说明</span></span><br><span class="line">            <span class="string">"auto_activate"</span> =&gt; <span class="keyword">true</span>,<span class="comment">// 设置为true时用户领取会员卡后系统自动将其激活，无需调用激活接口</span></span><br><span class="line">            <span class="string">"supply_bonus"</span> =&gt; <span class="keyword">false</span>,<span class="comment">// 显示积分</span></span><br><span class="line">            <span class="string">"supply_balance"</span> =&gt; <span class="keyword">false</span>,<span class="comment">// 是否支持储值</span></span><br><span class="line">            <span class="string">"discount"</span> =&gt; <span class="number">10</span></span><br><span class="line">        ]</span><br><span class="line">    ]</span><br><span class="line">];</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.liluoao.com/2018/wechat-card-and-coupon.html" data-id="cjh8hu0x6002ue0mj19pvlona" class="article-share-link">分享</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/wechat/">wechat</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2018/wechat-authorize-hardware.html" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          微信硬件设备授权
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/wechat-barpay.html" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">微信条码支付</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2018/laravel-form-validation.html">Laravel的表单验证</a>
+          </li>
+        
+          <li>
+            <a href="/2018/wechat-authorize-web.html">微信网页授权</a>
+          </li>
+        
+          <li>
+            <a href="/2018/work-wechat-address-list.html">企业微信通讯录</a>
+          </li>
+        
+          <li>
+            <a href="/2018/wechat-authorize-hardware.html">微信硬件设备授权</a>
+          </li>
+        
+          <li>
+            <a href="/2018/wechat-card-and-coupon.html">微信卡券</a>
+          </li>
+        
+          <li>
+            <a href="/2018/wechat-barpay.html">微信条码支付</a>
+          </li>
+        
+          <li>
+            <a href="/2018/wechat-passivity-message.html">微信消息处理</a>
+          </li>
+        
+          <li>
+            <a href="/2018/wechat-menu.html">微信菜单</a>
+          </li>
+        
+          <li>
+            <a href="/2018/alipay-barpay-and-query.html">Alipay条码支付及查询</a>
+          </li>
+        
+          <li>
+            <a href="/2018/alipay-authorize-3rd-app.html">Alipay授权第三方应用</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/algorithm/">algorithm</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/alipay/">alipay</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/apache/">apache</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/array/">array</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ci/">ci</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/clean-code/">clean-code</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/composer/">composer</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/design-patterns/">design-patterns</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jwt/">jwt</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/laravel/">laravel</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/">mysql</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/phalcon/">phalcon</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/refactor/">refactor</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/restful/">restful</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sapi/">sapi</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/solid/">solid</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tool/">tool</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/wechat/">wechat</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/work-wechat/">work-wechat</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">五月 2018</a><span class="archive-list-count">20</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a><span class="archive-list-count">15</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a><span class="archive-list-count">15</span></li></ul>
+    </div>
+  </div>
+
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      <div class="footer-about-me">
+        关于作者<br>
+        <a href="https://github.com/liluoao" target="_blank" title="GitHub">GitHub</a><br>
+        <a href="https://segmentfault.com/u/liluoao" target="_blank" title="SegmentFault">SegmentFault</a><br>
+        <a href="https://laravel-china.org/users/7144" target="_blank" title="LaravelChina">LaravelChina</a><br>
+        <a href="https://gitee.com/liluoao" target="_blank" title="码云">码云</a><br>
+        <a href="https://juejin.im/user/5a19374cf265da4332274600" target="_blank" title="掘金">掘金</a><br>
+        <a href="https://packagist.org/users/liluoao/" target="_blank" title="Packagist">Packagist</a><br>
+        <a href="https://www.gitbook.com/@liluoao" target="_blank" title="GitBook">GitBook</a>
+      </div>
+      <div style="width:300px;margin:0 auto; padding:20px 0;">
+        <div class="footer-copyright">
+          &copy; 2018 李罗奥
+          Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+        </div>
+        <a href="http://www.miitbeian.gov.cn/" target="_blank" style="display:inline-block;text-decoration:none;height:20px;line-height:20px;"><p style="float:left;height:20px;line-height:20px;margin: 0px 0px 0px 5px; color:#939393;">鄂ICP备18009105号</p></a>
+        <a target="_blank" href="https://www.beian.gov.cn/portal/registerSystemInfo?recordcode=42011102001595" style="display:inline-block;text-decoration:none;height:20px;line-height:20px;"><img src="/css/images/beian.png" style="float:left;"/><p style="float:left;height:20px;line-height:20px;margin: 0px 0px 0px 5px; color:#939393;">鄂公网安备 42011102001595号</p></a>
+      </div>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">首页</a>
+  
+    <a href="/archives" class="mobile-nav-link">文章列表</a>
+  
+    <a href="/categories/laravel" class="mobile-nav-link">Laravel</a>
+  
+    <a href="/categories/wechat" class="mobile-nav-link">Wechat</a>
+  
+</nav>
+    
+
+<script src="//lib.sinaapp.com/js/jquery/3.1.0/jquery-3.1.0.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>
