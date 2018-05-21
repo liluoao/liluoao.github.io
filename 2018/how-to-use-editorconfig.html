@@ -7,18 +7,18 @@
   
   <title>统一代码风格-editorConfig | To be a Web Artisan</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="在团队开发中，统一的代码格式是必要的。但是不同开发人员的代码风格不同，代码编辑工具的默认格式也不相同，这样就造成代码的 differ。而 editorConfig 可以帮助开发人员在不同的编辑器和 IDE 中定义和维护一致的编码风格。本文将详细介绍统一代码风格工具 editorConfig 概述editorConfig 不是什么软件，而是一个名称为 .editorconfig 的自定义文件。该文件">
+  <meta name="description" content="EditorConfig官网在团队开发中，统一的代码格式是必要的。但是不同开发人员的代码风格不同，代码编辑工具的默认格式也不相同，这样就造成代码的 differ。而 editorConfig 可以帮助开发人员在不同的编辑器和 IDE 中定义和维护一致的编码风格。本文将详细介绍统一代码风格工具 editorConfig 概述editorConfig 不是什么软件，而是一个名称为 .editorcon">
 <meta name="keywords" content="editor-config">
 <meta property="og:type" content="article">
 <meta property="og:title" content="统一代码风格-editorConfig">
 <meta property="og:url" content="http://www.liluoao.com/2018/how-to-use-editorconfig.html">
 <meta property="og:site_name" content="To be a Web Artisan">
-<meta property="og:description" content="在团队开发中，统一的代码格式是必要的。但是不同开发人员的代码风格不同，代码编辑工具的默认格式也不相同，这样就造成代码的 differ。而 editorConfig 可以帮助开发人员在不同的编辑器和 IDE 中定义和维护一致的编码风格。本文将详细介绍统一代码风格工具 editorConfig 概述editorConfig 不是什么软件，而是一个名称为 .editorconfig 的自定义文件。该文件">
+<meta property="og:description" content="EditorConfig官网在团队开发中，统一的代码格式是必要的。但是不同开发人员的代码风格不同，代码编辑工具的默认格式也不相同，这样就造成代码的 differ。而 editorConfig 可以帮助开发人员在不同的编辑器和 IDE 中定义和维护一致的编码风格。本文将详细介绍统一代码风格工具 editorConfig 概述editorConfig 不是什么软件，而是一个名称为 .editorcon">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-05-21T03:20:59.392Z">
+<meta property="og:updated_time" content="2018-05-21T03:46:17.115Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="统一代码风格-editorConfig">
-<meta name="twitter:description" content="在团队开发中，统一的代码格式是必要的。但是不同开发人员的代码风格不同，代码编辑工具的默认格式也不相同，这样就造成代码的 differ。而 editorConfig 可以帮助开发人员在不同的编辑器和 IDE 中定义和维护一致的编码风格。本文将详细介绍统一代码风格工具 editorConfig 概述editorConfig 不是什么软件，而是一个名称为 .editorconfig 的自定义文件。该文件">
+<meta name="twitter:description" content="EditorConfig官网在团队开发中，统一的代码格式是必要的。但是不同开发人员的代码风格不同，代码编辑工具的默认格式也不相同，这样就造成代码的 differ。而 editorConfig 可以帮助开发人员在不同的编辑器和 IDE 中定义和维护一致的编码风格。本文将详细介绍统一代码风格工具 editorConfig 概述editorConfig 不是什么软件，而是一个名称为 .editorcon">
 <meta name="twitter:creator" content="@liluoao">
   
   
@@ -85,7 +85,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>在团队开发中，统一的代码格式是必要的。但是不同开发人员的代码风格不同，代码编辑工具的默认格式也不相同，这样就造成代码的 differ。而 <strong>editorConfig</strong> 可以帮助开发人员在不同的编辑器和 IDE 中定义和维护一致的编码风格。本文将详细介绍统一代码风格工具 <strong>editorConfig</strong></p>
+        <p><a href="http://editorconfig.org/" target="_blank" rel="noopener">EditorConfig官网</a><br>在团队开发中，统一的代码格式是必要的。但是不同开发人员的代码风格不同，代码编辑工具的默认格式也不相同，这样就造成代码的 differ。而 <strong>editorConfig</strong> 可以帮助开发人员在不同的编辑器和 IDE 中定义和维护一致的编码风格。本文将详细介绍统一代码风格工具 <strong>editorConfig</strong></p>
 <h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p><strong>editorConfig</strong> 不是什么软件，而是一个名称为 <code>.editorconfig</code> 的自定义文件。该文件用来定义项目的编码规范，编辑器的行为会与 <code>.editorconfig</code> 文件中定义的一致，并且其优先级比编辑器自身的设置要高，这在多人合作开发项目时十分有用而且必要</p>
 <p>有些编辑器默认支持 <strong>editorConfig</strong>，如 <strong>webstorm</strong> ；而有些编辑器则需要安装 <strong>editorConfig</strong> 插件，如<strong>ATOM</strong>、<strong>Sublime</strong>、<strong>VS Code</strong> 等</p>
 <p>当打开一个文件时，<strong>EditorConfig</strong> 插件会在打开文件的目录和其每一级父目录查找 <code>.editorconfig</code> 文件，直到有一个配置文件 <code>root=true</code></p>
@@ -99,7 +99,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.liluoao.com/2018/how-to-use-editorconfig.html" data-id="cjhfopcb2003woomj0usduxsz" class="article-share-link">分享</a>
+      <a data-url="http://www.liluoao.com/2018/how-to-use-editorconfig.html" data-id="cjhfplyi1003kj8mjnkh8q5ve" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/editor-config/">editor-config</a></li></ul>
@@ -109,6 +109,15 @@
   
     
 <nav id="article-nav">
+  
+    <a href="/2018/some-php-functions.html" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          整理的一些PHP方法
+        
+      </div>
+    </a>
   
   
     <a href="/2018/rewrite-http-to-https.html" id="article-nav-older" class="article-nav-link-wrap">
@@ -130,6 +139,10 @@
     <h3 class="widget-title">最新文章</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2018/some-php-functions.html">整理的一些PHP方法</a>
+          </li>
         
           <li>
             <a href="/2018/how-to-use-editorconfig.html">统一代码风格-editorConfig</a>
@@ -167,10 +180,6 @@
             <a href="/2018/wechat-authorize-hardware.html">微信硬件设备授权</a>
           </li>
         
-          <li>
-            <a href="/2018/wechat-card-and-coupon.html">微信卡券</a>
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -180,7 +189,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/algorithm/">algorithm</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/alipay/">alipay</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/apache/">apache</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/array/">array</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ci/">ci</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/clean-code/">clean-code</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/composer/">composer</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/design-patterns/">design-patterns</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/editor-config/">editor-config</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jwt/">jwt</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/laravel/">laravel</a><span class="tag-list-count">14</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/">mysql</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/phalcon/">phalcon</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/refactor/">refactor</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/restful/">restful</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sapi/">sapi</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/solid/">solid</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tool/">tool</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/wechat/">wechat</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/work-wechat/">work-wechat</a><span class="tag-list-count">1</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/algorithm/">algorithm</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/alipay/">alipay</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/apache/">apache</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/array/">array</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ci/">ci</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/clean-code/">clean-code</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/composer/">composer</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/design-patterns/">design-patterns</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/editor-config/">editor-config</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jwt/">jwt</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/laravel/">laravel</a><span class="tag-list-count">14</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/">mysql</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/phalcon/">phalcon</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/php/">php</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/refactor/">refactor</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/restful/">restful</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sapi/">sapi</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/solid/">solid</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tool/">tool</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/wechat/">wechat</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/work-wechat/">work-wechat</a><span class="tag-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -190,7 +199,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">五月 2018</a><span class="archive-list-count">25</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a><span class="archive-list-count">15</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a><span class="archive-list-count">15</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">五月 2018</a><span class="archive-list-count">26</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a><span class="archive-list-count">15</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a><span class="archive-list-count">15</span></li></ul>
     </div>
   </div>
 
