@@ -5,20 +5,18 @@
   
 
   
-  <title>Laravel的Config | To be a Web Artisan</title>
+  <title>标签: editor-config | To be a Web Artisan</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="$_ENV 或env()可读取.env文件中的变量. 读取 config/app.php 中的数据:1$value = config(&apos;app.timezone&apos;); 新增配置文件后，如 config/aboutus.php，使用 config(&amp;#39;aboutus.xxx&amp;#39;) 读取">
-<meta name="keywords" content="laravel">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Laravel的Config">
-<meta property="og:url" content="http://www.liluoao.com/2018/laravel-config.html">
+  <meta name="description" content="李罗奥的博客">
+<meta property="og:type" content="website">
+<meta property="og:title" content="To be a Web Artisan">
+<meta property="og:url" content="http://www.liluoao.com/tags/editor-config/index.html">
 <meta property="og:site_name" content="To be a Web Artisan">
-<meta property="og:description" content="$_ENV 或env()可读取.env文件中的变量. 读取 config/app.php 中的数据:1$value = config(&apos;app.timezone&apos;); 新增配置文件后，如 config/aboutus.php，使用 config(&amp;#39;aboutus.xxx&amp;#39;) 读取">
+<meta property="og:description" content="李罗奥的博客">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-05-21T03:20:59.361Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Laravel的Config">
-<meta name="twitter:description" content="$_ENV 或env()可读取.env文件中的变量. 读取 config/app.php 中的数据:1$value = config(&apos;app.timezone&apos;); 新增配置文件后，如 config/aboutus.php，使用 config(&amp;#39;aboutus.xxx&amp;#39;) 读取">
+<meta name="twitter:title" content="To be a Web Artisan">
+<meta name="twitter:description" content="李罗奥的博客">
 <meta name="twitter:creator" content="@liluoao">
   
   
@@ -63,78 +61,40 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-Laravel的Config" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/laravel-config.html" class="article-date">
-  <time datetime="2018-05-06T08:08:10.000Z" itemprop="datePublished">2018-05-06</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/laravel/">laravel</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
+        <section id="main">
   
-    <h1 class="article-title" itemprop="name">
-      Laravel的Config
+  
+    
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2018" class="archive-year">2018</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      <a href="/2018/how-to-use-editorconfig.html" class="archive-article-date">
+  <time datetime="2018-05-18T03:10:22.000Z" itemprop="datePublished">5月 18</time>
+</a>
+      
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2018/how-to-use-editorconfig.html">统一代码风格-editorConfig</a>
     </h1>
   
 
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><code>$_ENV</code> 或<code>env()</code>可读取<code>.env</code>文件中的变量.</p>
-<p>读取 config/app.php 中的数据:<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$value = config(<span class="string">'app.timezone'</span>);</span><br></pre></td></tr></table></figure></p>
-<p>新增配置文件后，如 <code>config/aboutus.php</code>，使用 <code>config(&#39;aboutus.xxx&#39;)</code> 读取<br><a id="more"></a><br>如何合并、缓存所有配置文件？<br><figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># 生成汇总文件 bootstrap/cache/config.php</span><br><span class="line">php artisan config:cache</span><br><span class="line"></span><br><span class="line"># 生成汇总文件 bootstrap/cache/route.php</span><br><span class="line">php artisan route:cache</span><br></pre></td></tr></table></figure></p>
-<p>切记！除了<code>config</code>文件夹下的配置文件，永远不要在其它地方使用 <code>env()</code> 函数，因为一旦执行 <code>php artisan config:cache</code> 后，<code>env()</code> 所有读取都会返回 <code>NULL</code>，证据如下：</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">namespace</span> <span class="title">Illuminate</span>\<span class="title">Foundation</span>\<span class="title">Bootstrap</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">LoadEnvironmentVariables</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * Bootstrap the given application.</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span>  \Illuminate\Contracts\Foundation\Application  $app</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> void</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">bootstrap</span><span class="params">(Application $app)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> ($app-&gt;configurationIsCached()) &#123;</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        ...</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>几点注意：</p>
-<ul>
-<li><p>config 文件里严禁使用 Closure 闭包，因为 config:cache 时无法被正确序列化。</p>
-</li>
-<li><p>routes 文件中尽量不使用闭包函数，统一使用控制器，因为缓存路由时 php artisan route:cache 无法缓存闭包函数。</p>
-</li>
-</ul>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://www.liluoao.com/2018/laravel-config.html" data-id="cjhfopc7l000boomjav8tus10" class="article-share-link">分享</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/laravel/">laravel</a></li></ul>
-
-    </footer>
+    </header>
   </div>
-  
-    
-<nav id="article-nav">
-  
-    <a href="/2018/laravel-log.html" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">上一篇</strong>
-      <div class="article-nav-title">
-        
-          Laravel的Log
-        
-      </div>
-    </a>
-  
-  
-    <a href="/2018/laravel-eloquent-orm-relationship.html" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">下一篇</strong>
-      <div class="article-nav-title">Laravel的Eloquent-ORM-Relationship</div>
-    </a>
-  
-</nav>
-
-  
 </article>
+  
+  
+    </div></section>
+  
+
 
 </section>
         
