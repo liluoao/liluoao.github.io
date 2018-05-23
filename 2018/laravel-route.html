@@ -5,18 +5,20 @@
   
 
   
-  <title>归档 | To be a Web Artisan</title>
+  <title>Laravel的Route | To be a Web Artisan</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="李罗奥的博客">
-<meta property="og:type" content="website">
-<meta property="og:title" content="To be a Web Artisan">
-<meta property="og:url" content="http://www.liluoao.com/archives/page/4/index.html">
+  <meta name="description" content="新增路由文件在 app/Providers/RouteServiceProvider 中：12345678910protected function mapWebRoutes()&amp;#123;    Route::group([        &apos;middleware&apos; =&amp;gt; &apos;web&apos;,         &apos;namespace&apos; =&amp;gt; $this-&amp;gt;namespace">
+<meta name="keywords" content="laravel">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Laravel的Route">
+<meta property="og:url" content="http://www.liluoao.com/2018/laravel-route.html">
 <meta property="og:site_name" content="To be a Web Artisan">
-<meta property="og:description" content="李罗奥的博客">
+<meta property="og:description" content="新增路由文件在 app/Providers/RouteServiceProvider 中：12345678910protected function mapWebRoutes()&amp;#123;    Route::group([        &apos;middleware&apos; =&amp;gt; &apos;web&apos;,         &apos;namespace&apos; =&amp;gt; $this-&amp;gt;namespace">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-05-23T03:12:52.003Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="To be a Web Artisan">
-<meta name="twitter:description" content="李罗奥的博客">
+<meta name="twitter:title" content="Laravel的Route">
+<meta name="twitter:description" content="新增路由文件在 app/Providers/RouteServiceProvider 中：12345678910protected function mapWebRoutes()&amp;#123;    Route::group([        &apos;middleware&apos; =&amp;gt; &apos;web&apos;,         &apos;namespace&apos; =&amp;gt; $this-&amp;gt;namespace">
 <meta name="twitter:creator" content="@liluoao">
   
   
@@ -61,273 +63,60 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2018" class="archive-year">2018</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2018/pool-algorithm-question.html" class="archive-article-date">
-  <time datetime="2018-03-27T02:37:19.000Z" itemprop="datePublished">3月 27</time>
+        <section id="main"><article id="post-Laravel的Route" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/laravel-route.html" class="article-date">
+  <time datetime="2018-05-23T02:55:55.000Z" itemprop="datePublished">2018-05-23</time>
 </a>
-      
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/laravel/">laravel</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/pool-algorithm-question.html">蓄水池算法题（转）</a>
+    <h1 class="article-title" itemprop="name">
+      Laravel的Route
     </h1>
   
 
-    </header>
-  </div>
-</article>
-  
+      </header>
     
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2018/use-composer.html" class="archive-article-date">
-  <time datetime="2018-03-18T02:37:19.000Z" itemprop="datePublished">3月 18</time>
-</a>
+    <div class="article-entry" itemprop="articleBody">
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/use-composer.html">使用Composer管理依赖</a>
-    </h1>
-  
+        <h4 id="新增路由文件"><a href="#新增路由文件" class="headerlink" title="新增路由文件"></a>新增路由文件</h4><p>在 <code>app/Providers/RouteServiceProvider</code> 中：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">protected</span> <span class="function"><span class="keyword">function</span> <span class="title">mapWebRoutes</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    Route::group([</span><br><span class="line">        <span class="string">'middleware'</span> =&gt; <span class="string">'web'</span>, </span><br><span class="line">        <span class="string">'namespace'</span> =&gt; <span class="keyword">$this</span>-&gt;namespace</span><br><span class="line">        ], <span class="function"><span class="keyword">function</span> <span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">require</span> base_path(<span class="string">'routes/web.php'</span>);</span><br><span class="line">        <span class="keyword">require</span> base_path(<span class="string">'routes/test.php'</span>);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h4 id="分配其他中间件组"><a href="#分配其他中间件组" class="headerlink" title="分配其他中间件组"></a>分配其他中间件组</h4><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">protected</span> <span class="function"><span class="keyword">function</span> <span class="title">mapApiRoutes</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    Route::prefix(<span class="string">'api'</span>)</span><br><span class="line">         -&gt;middleware(<span class="string">'restful-api'</span>)</span><br><span class="line">         -&gt;namespace(<span class="keyword">$this</span>-&gt;namespace)</span><br><span class="line">         -&gt;group(base_path(<span class="string">'routes/api.php'</span>));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="当前路由"><a href="#当前路由" class="headerlink" title="当前路由"></a>当前路由</h4><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$route = Route::current();</span><br><span class="line"></span><br><span class="line">$name = Route::currentRouteName();</span><br><span class="line"></span><br><span class="line">$action = Route::currentRouteAction();</span><br></pre></td></tr></table></figure>
 
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2018/use-phalcon.html" class="archive-article-date">
-  <time datetime="2018-03-17T02:37:19.000Z" itemprop="datePublished">3月 17</time>
-</a>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/use-phalcon.html">使用Phalcon框架</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2018/what-is-jwt.html" class="archive-article-date">
-  <time datetime="2018-03-16T02:37:19.000Z" itemprop="datePublished">3月 16</time>
-</a>
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.liluoao.com/2018/laravel-route.html" data-id="cjhijbfkm000ntkmj4bz28ybk" class="article-share-link">分享</a>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/what-is-jwt.html">什么是 JWT（转）</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2018/phalcon-start-process.html" class="archive-article-date">
-  <time datetime="2018-03-15T02:37:19.000Z" itemprop="datePublished">3月 15</time>
-</a>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/phalcon-start-process.html">Phalcon 启动流程（转）</a>
-    </h1>
-  
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/laravel/">laravel</a></li></ul>
 
-    </header>
+    </footer>
   </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2018/laravel-middleware.html" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">Laravel的Middleware</div>
+    </a>
+  
+</nav>
+
+  
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2018/mysql-optimize.html" class="archive-article-date">
-  <time datetime="2018-03-14T02:37:19.000Z" itemprop="datePublished">3月 14</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/mysql-optimize.html">MySQL优化那些事儿（转）</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2018/laravel-route-to-controller.html" class="archive-article-date">
-  <time datetime="2018-03-13T02:37:19.000Z" itemprop="datePublished">3月 13</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/laravel-route-to-controller.html">Laravel 路由调用控制器（转）</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2018/nginx-and-php-config.html" class="archive-article-date">
-  <time datetime="2018-03-06T01:59:26.000Z" itemprop="datePublished">3月 6</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/nginx-and-php-config.html">Nginx和PHP的配置（转）</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2018/apache-ssl-config.html" class="archive-article-date">
-  <time datetime="2018-03-05T07:15:45.000Z" itemprop="datePublished">3月 5</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/apache-ssl-config.html">Apache的SSL配置</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2018/linux-environment.html" class="archive-article-date">
-  <time datetime="2018-03-04T01:09:04.000Z" itemprop="datePublished">3月 4</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/linux-environment.html">Linux搭建环境</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2018/add-project-badge.html" class="archive-article-date">
-  <time datetime="2018-03-03T06:47:05.000Z" itemprop="datePublished">3月 3</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/add-project-badge.html">给项目添加狗牌</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2018/use-appveyor-ci.html" class="archive-article-date">
-  <time datetime="2018-03-02T03:37:55.000Z" itemprop="datePublished">3月 2</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/use-appveyor-ci.html">使用AppVeyor持续集成本博客</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2018/use-hexo.html" class="archive-article-date">
-  <time datetime="2018-03-01T02:37:19.000Z" itemprop="datePublished">3月 1</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/use-hexo.html">使用Hexo</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-
-  <nav id="page-nav">
-    
-    <a class="extend prev" rel="prev" href="/archives/page/3/">&laquo; 上一页</a><a class="page-number" href="/archives/">1</a><a class="page-number" href="/archives/page/2/">2</a><a class="page-number" href="/archives/page/3/">3</a><span class="page-number current">4</span>
-  </nav>
 
 </section>
         
