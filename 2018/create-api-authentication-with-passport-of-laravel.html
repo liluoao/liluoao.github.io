@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>Laravel的Passport-Authentication | To be a Web Artisan</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Install Laravel 1laravel new auth  Install Laravel Passport Package 1composer require laravel/passport  Run Migration 1php artisan migrate  Generate keys 1php artisan passport:install">
+<meta name="keywords" content="laravel">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Laravel的Passport-Authentication">
+<meta property="og:url" content="http://www.liluoao.com/2018/create-api-authentication-with-passport-of-laravel.html">
+<meta property="og:site_name" content="To be a Web Artisan">
+<meta property="og:description" content="Install Laravel 1laravel new auth  Install Laravel Passport Package 1composer require laravel/passport  Run Migration 1php artisan migrate  Generate keys 1php artisan passport:install">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://www.liluoao.com/images/laravel-passport-1.png">
+<meta property="og:image" content="http://www.liluoao.com/images/laravel-passport-2.png">
+<meta property="og:image" content="http://www.liluoao.com/images/laravel-passport-3.png">
+<meta property="og:image" content="http://www.liluoao.com/images/laravel-passport-4.png">
+<meta property="og:updated_time" content="2018-05-23T06:53:45.377Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Laravel的Passport-Authentication">
+<meta name="twitter:description" content="Install Laravel 1laravel new auth  Install Laravel Passport Package 1composer require laravel/passport  Run Migration 1php artisan migrate  Generate keys 1php artisan passport:install">
+<meta name="twitter:image" content="http://www.liluoao.com/images/laravel-passport-1.png">
+<meta name="twitter:creator" content="@liluoao">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">To be a Web Artisan</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">首页</a>
+        
+          <a class="main-nav-link" href="/archives">文章列表</a>
+        
+          <a class="main-nav-link" href="/categories/laravel">Laravel</a>
+        
+          <a class="main-nav-link" href="/categories/wechat">Wechat</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://www.liluoao.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Laravel的Passport-Authentication" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/create-api-authentication-with-passport-of-laravel.html" class="article-date">
+  <time datetime="2018-05-23T06:33:42.000Z" itemprop="datePublished">2018-05-23</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/laravel/">laravel</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Laravel的Passport-Authentication
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ol>
+<li><p>Install Laravel</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">laravel new auth</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Install Laravel Passport Package</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">composer require laravel/passport</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Run Migration</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">php artisan migrate</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Generate keys</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">php artisan passport:install</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<a id="more"></a>
+<p>运行这个命令会在 <code>App\User</code> 模型中加入 <code>Laravel\Passport\HasApiTokens</code> trait<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">namespace</span> <span class="title">App</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">use</span> <span class="title">Laravel</span>\<span class="title">Passport</span>\<span class="title">HasApiTokens</span>;</span><br><span class="line"><span class="keyword">use</span> <span class="title">Illuminate</span>\<span class="title">Notifications</span>\<span class="title">Notifiable</span>;</span><br><span class="line"><span class="keyword">use</span> <span class="title">Illuminate</span>\<span class="title">Foundation</span>\<span class="title">Auth</span>\<span class="title">User</span> <span class="title">as</span> <span class="title">Authenticatable</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">User</span> <span class="keyword">extends</span> <span class="title">Authenticatable</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="keyword">use</span> <span class="title">HasApiTokens</span>, <span class="title">Notifiable</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<ol start="5">
+<li>Passport Config<br>在 <code>AuthServiceProvider</code> 的 <code>boot()</code> 方法中加入：<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">use</span> <span class="title">Laravel</span>\<span class="title">Passport</span>\<span class="title">Passport</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">boot</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">$this</span>-&gt;registerPolicies();</span><br><span class="line"></span><br><span class="line">    Passport::routes();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>在 <code>config/auth.php</code> 配置中设置：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'guards'</span> =&gt; [</span><br><span class="line">    <span class="string">'web'</span> =&gt; [</span><br><span class="line">        <span class="string">'driver'</span> =&gt; <span class="string">'session'</span>,</span><br><span class="line">        <span class="string">'provider'</span> =&gt; <span class="string">'users'</span>,</span><br><span class="line">    ],</span><br><span class="line">    <span class="string">'api'</span> =&gt; [</span><br><span class="line">        <span class="string">'driver'</span> =&gt; <span class="string">'passport'</span>,</span><br><span class="line">        <span class="string">'provider'</span> =&gt; <span class="string">'users'</span>,</span><br><span class="line">    ],</span><br><span class="line">],</span><br></pre></td></tr></table></figure></p>
+<ol start="6">
+<li><p>Create API Routes<br>在 <code>routes/api.php</code> 路由中新增：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">Route::group([</span><br><span class="line">    <span class="string">'prefix'</span> =&gt; <span class="string">'auth'</span></span><br><span class="line">], <span class="function"><span class="keyword">function</span> <span class="params">()</span> </span>&#123;</span><br><span class="line">    Route::post(<span class="string">'login'</span>, <span class="string">'AuthController@login'</span>);</span><br><span class="line">    Route::post(<span class="string">'signup'</span>, <span class="string">'AuthController@signup'</span>);</span><br><span class="line">  </span><br><span class="line">    Route::group([</span><br><span class="line">      <span class="string">'middleware'</span> =&gt; <span class="string">'auth:api'</span></span><br><span class="line">    ], <span class="function"><span class="keyword">function</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        Route::get(<span class="string">'logout'</span>, <span class="string">'AuthController@logout'</span>);</span><br><span class="line">        Route::get(<span class="string">'user'</span>, <span class="string">'AuthController@user'</span>);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Create Controller</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">namespace</span> <span class="title">App</span>\<span class="title">Http</span>\<span class="title">Controllers</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">use</span> <span class="title">Illuminate</span>\<span class="title">Http</span>\<span class="title">Request</span>;</span><br><span class="line"><span class="keyword">use</span> <span class="title">Illuminate</span>\<span class="title">Support</span>\<span class="title">Facades</span>\<span class="title">Auth</span>;</span><br><span class="line"><span class="keyword">use</span> <span class="title">Carbon</span>\<span class="title">Carbon</span>;</span><br><span class="line"><span class="keyword">use</span> <span class="title">App</span>\<span class="title">User</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">AuthController</span> <span class="keyword">extends</span> <span class="title">Controller</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * Create user</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span>  [string] name</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span>  [string] email</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span>  [string] password</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span>  [string] password_confirmation</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> [string] message</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">signup</span><span class="params">(Request $request)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        $request-&gt;validate([</span><br><span class="line">            <span class="string">'name'</span> =&gt; <span class="string">'required|string'</span>,</span><br><span class="line">            <span class="string">'email'</span> =&gt; <span class="string">'required|string|email|unique:users'</span>,</span><br><span class="line">            <span class="string">'password'</span> =&gt; <span class="string">'required|string|confirmed'</span></span><br><span class="line">        ]);</span><br><span class="line"></span><br><span class="line">        $user = <span class="keyword">new</span> User([</span><br><span class="line">            <span class="string">'name'</span> =&gt; $request-&gt;name,</span><br><span class="line">            <span class="string">'email'</span> =&gt; $request-&gt;email,</span><br><span class="line">            <span class="string">'password'</span> =&gt; bcrypt($request-&gt;password)</span><br><span class="line">        ]);</span><br><span class="line"></span><br><span class="line">        $user-&gt;save();</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> response()-&gt;json([</span><br><span class="line">            <span class="string">'message'</span> =&gt; <span class="string">'Successfully created user!'</span></span><br><span class="line">        ], <span class="number">201</span>);</span><br><span class="line">    &#125;</span><br><span class="line">  </span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * Login user and create token</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span>  [string] email</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span>  [string] password</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span>  [boolean] remember_me</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> [string] access_token</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> [string] token_type</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> [string] expires_at</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">login</span><span class="params">(Request $request)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        $request-&gt;validate([</span><br><span class="line">            <span class="string">'email'</span> =&gt; <span class="string">'required|string|email'</span>,</span><br><span class="line">            <span class="string">'password'</span> =&gt; <span class="string">'required|string'</span>,</span><br><span class="line">            <span class="string">'remember_me'</span> =&gt; <span class="string">'boolean'</span></span><br><span class="line">        ]);</span><br><span class="line"></span><br><span class="line">        $credentials = request([<span class="string">'email'</span>, <span class="string">'password'</span>]);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span>(!Auth::attempt($credentials))</span><br><span class="line">            <span class="keyword">return</span> response()-&gt;json([</span><br><span class="line">                <span class="string">'message'</span> =&gt; <span class="string">'Unauthorized'</span></span><br><span class="line">            ], <span class="number">401</span>);</span><br><span class="line"></span><br><span class="line">        $user = $request-&gt;user();</span><br><span class="line"></span><br><span class="line">        $tokenResult = $user-&gt;createToken(<span class="string">'Personal Access Token'</span>);</span><br><span class="line">        $token = $tokenResult-&gt;token;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> ($request-&gt;remember_me)</span><br><span class="line">            $token-&gt;expires_at = Carbon::now()-&gt;addWeeks(<span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">        $token-&gt;save();</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> response()-&gt;json([</span><br><span class="line">            <span class="string">'access_token'</span> =&gt; $tokenResult-&gt;accessToken,</span><br><span class="line">            <span class="string">'token_type'</span> =&gt; <span class="string">'Bearer'</span>,</span><br><span class="line">            <span class="string">'expires_at'</span> =&gt; Carbon::parse(</span><br><span class="line">                $tokenResult-&gt;token-&gt;expires_at</span><br><span class="line">            )-&gt;toDateTimeString()</span><br><span class="line">        ]);</span><br><span class="line">    &#125;</span><br><span class="line">  </span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * Logout user (Revoke the token)</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> [string] message</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">logout</span><span class="params">(Request $request)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        $request-&gt;user()-&gt;token()-&gt;revoke();</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> response()-&gt;json([</span><br><span class="line">            <span class="string">'message'</span> =&gt; <span class="string">'Successfully logged out'</span></span><br><span class="line">        ]);</span><br><span class="line">    &#125;</span><br><span class="line">  </span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * Get the authenticated User</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> [json] user object</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">user</span><span class="params">(Request $request)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> response()-&gt;json($request-&gt;user());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h4 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">php artisan serve</span><br></pre></td></tr></table></figure>
+<p>需要设置Http Header：<br><code>Content-Type: application/json</code><br><code>X-Requested-With: XMLHttpRequest</code></p>
+<p><strong>Signup</strong><br><img src="/images/laravel-passport-1.png" alt=""><br><strong>Login</strong><br><img src="/images/laravel-passport-2.png" alt=""><br><strong>Logout</strong><br><img src="/images/laravel-passport-3.png" alt=""><br><strong>User</strong><br><img src="/images/laravel-passport-4.png" alt=""></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.liluoao.com/2018/create-api-authentication-with-passport-of-laravel.html" data-id="cjhir6voo000l30mjmz9x15y6" class="article-share-link">分享</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/laravel/">laravel</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2018/laravel-route.html" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">Laravel的Route</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2018/create-api-authentication-with-passport-of-laravel.html">Laravel的Passport-Authentication</a>
+          </li>
+        
+          <li>
+            <a href="/2018/laravel-route.html">Laravel的Route</a>
+          </li>
+        
+          <li>
+            <a href="/2018/laravel-middleware.html">Laravel的Middleware</a>
+          </li>
+        
+          <li>
+            <a href="/2018/some-php-functions.html">整理的一些PHP方法</a>
+          </li>
+        
+          <li>
+            <a href="/2018/how-to-use-editorconfig.html">统一代码风格-editorConfig</a>
+          </li>
+        
+          <li>
+            <a href="/2018/rewrite-http-to-https.html">重定向HTTP到HTTPS</a>
+          </li>
+        
+          <li>
+            <a href="/2018/laravel-localization.html">Laravel的本地化</a>
+          </li>
+        
+          <li>
+            <a href="/2018/laravel-helpers.html">Laravel的辅助函数</a>
+          </li>
+        
+          <li>
+            <a href="/2018/laravel-custom-validation-rules.html">Laravel自定义验证规则</a>
+          </li>
+        
+          <li>
+            <a href="/2018/laravel-form-validation.html">Laravel的表单验证</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/algorithm/">algorithm</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/alipay/">alipay</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/apache/">apache</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ci/">ci</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/clean-code/">clean-code</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/composer/">composer</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/design-patterns/">design-patterns</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jwt/">jwt</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/laravel/">laravel</a><span class="tag-list-count">17</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/">mysql</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/phalcon/">phalcon</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/php/">php</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/refactor/">refactor</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/restful/">restful</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sapi/">sapi</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/solid/">solid</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tool/">tool</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/wechat/">wechat</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/work-wechat/">work-wechat</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">五月 2018</a><span class="archive-list-count">29</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a><span class="archive-list-count">15</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a><span class="archive-list-count">15</span></li></ul>
+    </div>
+  </div>
+
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      <div class="footer-about-me">
+        关于作者<br>
+        <a href="https://github.com/liluoao" target="_blank" title="GitHub">GitHub</a><br>
+        <a href="https://segmentfault.com/u/liluoao" target="_blank" title="SegmentFault">SegmentFault</a><br>
+        <a href="https://laravel-china.org/users/7144" target="_blank" title="LaravelChina">LaravelChina</a><br>
+        <a href="https://gitee.com/liluoao" target="_blank" title="码云">码云</a><br>
+        <a href="https://juejin.im/user/5a19374cf265da4332274600" target="_blank" title="掘金">掘金</a><br>
+        <a href="https://packagist.org/users/liluoao/" target="_blank" title="Packagist">Packagist</a><br>
+        <a href="https://www.gitbook.com/@liluoao" target="_blank" title="GitBook">GitBook</a>
+      </div>
+      <div style="width:300px;margin:0 auto; padding:20px 0;">
+        <div class="footer-copyright">
+          &copy; 2018 李罗奥
+          Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+        </div>
+        <a href="http://www.miitbeian.gov.cn/" target="_blank" style="display:inline-block;text-decoration:none;height:20px;line-height:20px;"><p style="float:left;height:20px;line-height:20px;margin: 0px 0px 0px 5px; color:#939393;">鄂ICP备18009105号</p></a>
+        <a target="_blank" href="https://www.beian.gov.cn/portal/registerSystemInfo?recordcode=42011102001595" style="display:inline-block;text-decoration:none;height:20px;line-height:20px;"><img src="/css/images/beian.png" style="float:left;"/><p style="float:left;height:20px;line-height:20px;margin: 0px 0px 0px 5px; color:#939393;">鄂公网安备 42011102001595号</p></a>
+      </div>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">首页</a>
+  
+    <a href="/archives" class="mobile-nav-link">文章列表</a>
+  
+    <a href="/categories/laravel" class="mobile-nav-link">Laravel</a>
+  
+    <a href="/categories/wechat" class="mobile-nav-link">Wechat</a>
+  
+</nav>
+    
+
+<script src="//lib.sinaapp.com/js/jquery/3.1.0/jquery-3.1.0.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>
