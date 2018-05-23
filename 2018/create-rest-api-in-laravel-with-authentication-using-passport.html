@@ -7,22 +7,22 @@
   
   <title>Laravel的Passport-Authentication | To be a Web Artisan</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Install Laravel 1laravel new auth  Install Laravel Passport Package 1composer require laravel/passport  Run Migration 1php artisan migrate  Generate keys 1php artisan passport:install">
+  <meta name="description" content="Create REST API in Laravel with authentication using Passport Install Laravel 1laravel new auth  Install Laravel Passport Package 1composer require laravel/passport  Run Migration 1php artisan migrate">
 <meta name="keywords" content="laravel">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Laravel的Passport-Authentication">
-<meta property="og:url" content="http://www.liluoao.com/2018/create-api-authentication-with-passport-of-laravel.html">
+<meta property="og:url" content="http://www.liluoao.com/2018/create-rest-api-in-laravel-with-authentication-using-passport.html">
 <meta property="og:site_name" content="To be a Web Artisan">
-<meta property="og:description" content="Install Laravel 1laravel new auth  Install Laravel Passport Package 1composer require laravel/passport  Run Migration 1php artisan migrate  Generate keys 1php artisan passport:install">
+<meta property="og:description" content="Create REST API in Laravel with authentication using Passport Install Laravel 1laravel new auth  Install Laravel Passport Package 1composer require laravel/passport  Run Migration 1php artisan migrate">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://www.liluoao.com/images/laravel-passport-1.png">
 <meta property="og:image" content="http://www.liluoao.com/images/laravel-passport-2.png">
 <meta property="og:image" content="http://www.liluoao.com/images/laravel-passport-3.png">
 <meta property="og:image" content="http://www.liluoao.com/images/laravel-passport-4.png">
-<meta property="og:updated_time" content="2018-05-23T06:53:45.377Z">
+<meta property="og:updated_time" content="2018-05-23T07:34:38.775Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Laravel的Passport-Authentication">
-<meta name="twitter:description" content="Install Laravel 1laravel new auth  Install Laravel Passport Package 1composer require laravel/passport  Run Migration 1php artisan migrate  Generate keys 1php artisan passport:install">
+<meta name="twitter:description" content="Create REST API in Laravel with authentication using Passport Install Laravel 1laravel new auth  Install Laravel Passport Package 1composer require laravel/passport  Run Migration 1php artisan migrate">
 <meta name="twitter:image" content="http://www.liluoao.com/images/laravel-passport-1.png">
 <meta name="twitter:creator" content="@liluoao">
   
@@ -70,7 +70,7 @@
       <div class="outer">
         <section id="main"><article id="post-Laravel的Passport-Authentication" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2018/create-api-authentication-with-passport-of-laravel.html" class="article-date">
+    <a href="/2018/create-rest-api-in-laravel-with-authentication-using-passport.html" class="article-date">
   <time datetime="2018-05-23T06:33:42.000Z" itemprop="datePublished">2018-05-23</time>
 </a>
     
@@ -94,7 +94,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <ol>
+        <h2 id="Create-REST-API-in-Laravel-with-authentication-using-Passport"><a href="#Create-REST-API-in-Laravel-with-authentication-using-Passport" class="headerlink" title="Create REST API in Laravel with authentication using Passport"></a>Create REST API in Laravel with authentication using Passport</h2><ol>
 <li><p>Install Laravel</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">laravel new auth</span><br></pre></td></tr></table></figure>
 </li>
@@ -109,12 +109,12 @@
 </li>
 </ol>
 <a id="more"></a>
-<p>运行这个命令会在 <code>App\User</code> 模型中加入 <code>Laravel\Passport\HasApiTokens</code> trait<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">namespace</span> <span class="title">App</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">use</span> <span class="title">Laravel</span>\<span class="title">Passport</span>\<span class="title">HasApiTokens</span>;</span><br><span class="line"><span class="keyword">use</span> <span class="title">Illuminate</span>\<span class="title">Notifications</span>\<span class="title">Notifiable</span>;</span><br><span class="line"><span class="keyword">use</span> <span class="title">Illuminate</span>\<span class="title">Foundation</span>\<span class="title">Auth</span>\<span class="title">User</span> <span class="title">as</span> <span class="title">Authenticatable</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">User</span> <span class="keyword">extends</span> <span class="title">Authenticatable</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="keyword">use</span> <span class="title">HasApiTokens</span>, <span class="title">Notifiable</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>运行这个命令后需要在 <code>App\User</code> 模型中加入 <code>Laravel\Passport\HasApiTokens</code> Trait<br>这个 Trait 会给你的模型提供一些辅助函数，用于检查已认证用户的令牌和使用范围：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">namespace</span> <span class="title">App</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">use</span> <span class="title">Laravel</span>\<span class="title">Passport</span>\<span class="title">HasApiTokens</span>;</span><br><span class="line"><span class="keyword">use</span> <span class="title">Illuminate</span>\<span class="title">Notifications</span>\<span class="title">Notifiable</span>;</span><br><span class="line"><span class="keyword">use</span> <span class="title">Illuminate</span>\<span class="title">Foundation</span>\<span class="title">Auth</span>\<span class="title">User</span> <span class="title">as</span> <span class="title">Authenticatable</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">User</span> <span class="keyword">extends</span> <span class="title">Authenticatable</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="keyword">use</span> <span class="title">HasApiTokens</span>, <span class="title">Notifiable</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <ol start="5">
-<li>Passport Config<br>在 <code>AuthServiceProvider</code> 的 <code>boot()</code> 方法中加入：<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">use</span> <span class="title">Laravel</span>\<span class="title">Passport</span>\<span class="title">Passport</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">boot</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">$this</span>-&gt;registerPolicies();</span><br><span class="line"></span><br><span class="line">    Passport::routes();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<li>Passport Config<br>在 <code>AuthServiceProvider</code> 的 <code>boot()</code> 方法中加入 <code>Passport::routes</code><br>这个函数会注册发出访问令牌并撤销访问令牌、客户端和个人访问令牌所必需的路由：<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">use</span> <span class="title">Laravel</span>\<span class="title">Passport</span>\<span class="title">Passport</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">boot</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">$this</span>-&gt;registerPolicies();</span><br><span class="line"></span><br><span class="line">    Passport::routes();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
 </ol>
-<p>在 <code>config/auth.php</code> 配置中设置：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'guards'</span> =&gt; [</span><br><span class="line">    <span class="string">'web'</span> =&gt; [</span><br><span class="line">        <span class="string">'driver'</span> =&gt; <span class="string">'session'</span>,</span><br><span class="line">        <span class="string">'provider'</span> =&gt; <span class="string">'users'</span>,</span><br><span class="line">    ],</span><br><span class="line">    <span class="string">'api'</span> =&gt; [</span><br><span class="line">        <span class="string">'driver'</span> =&gt; <span class="string">'passport'</span>,</span><br><span class="line">        <span class="string">'provider'</span> =&gt; <span class="string">'users'</span>,</span><br><span class="line">    ],</span><br><span class="line">],</span><br></pre></td></tr></table></figure></p>
+<p>在 <code>config/auth.php</code> 配置中<br>授权看守器 <code>guards</code> 的 <code>api</code> 的 <code>driver</code> 选项改为 <code>passport</code><br>此调整会让你的应用程序在在验证传入的 API 的请求时使用 Passport 的 <code>TokenGuard</code> 来处理：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'guards'</span> =&gt; [</span><br><span class="line">    <span class="comment">//...</span></span><br><span class="line">    <span class="string">'api'</span> =&gt; [</span><br><span class="line">        <span class="string">'driver'</span> =&gt; <span class="string">'passport'</span>,</span><br><span class="line">        <span class="string">'provider'</span> =&gt; <span class="string">'users'</span>,</span><br><span class="line">    ],</span><br><span class="line">],</span><br></pre></td></tr></table></figure></p>
 <ol start="6">
 <li><p>Create API Routes<br>在 <code>routes/api.php</code> 路由中新增：</p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">Route::group([</span><br><span class="line">    <span class="string">'prefix'</span> =&gt; <span class="string">'auth'</span></span><br><span class="line">], <span class="function"><span class="keyword">function</span> <span class="params">()</span> </span>&#123;</span><br><span class="line">    Route::post(<span class="string">'login'</span>, <span class="string">'AuthController@login'</span>);</span><br><span class="line">    Route::post(<span class="string">'signup'</span>, <span class="string">'AuthController@signup'</span>);</span><br><span class="line">  </span><br><span class="line">    Route::group([</span><br><span class="line">      <span class="string">'middleware'</span> =&gt; <span class="string">'auth:api'</span></span><br><span class="line">    ], <span class="function"><span class="keyword">function</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        Route::get(<span class="string">'logout'</span>, <span class="string">'AuthController@logout'</span>);</span><br><span class="line">        Route::get(<span class="string">'user'</span>, <span class="string">'AuthController@user'</span>);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
@@ -130,7 +130,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.liluoao.com/2018/create-api-authentication-with-passport-of-laravel.html" data-id="cjhir6voo000l30mjmz9x15y6" class="article-share-link">分享</a>
+      <a data-url="http://www.liluoao.com/2018/create-rest-api-in-laravel-with-authentication-using-passport.html" data-id="cjhisnjc6000jv4mju7eddtgq" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/laravel/">laravel</a></li></ul>
@@ -163,7 +163,7 @@
       <ul>
         
           <li>
-            <a href="/2018/create-api-authentication-with-passport-of-laravel.html">Laravel的Passport-Authentication</a>
+            <a href="/2018/create-rest-api-in-laravel-with-authentication-using-passport.html">Laravel的Passport-Authentication</a>
           </li>
         
           <li>
