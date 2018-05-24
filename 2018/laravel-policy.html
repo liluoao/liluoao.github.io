@@ -5,20 +5,20 @@
   
 
   
-  <title>Laravel的Route | To be a Web Artisan</title>
+  <title>Laravel的Policy | To be a Web Artisan</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="新增路由文件在 app/Providers/RouteServiceProvider 中：12345678910protected function mapWebRoutes()&amp;#123;    Route::group([        &apos;middleware&apos; =&amp;gt; &apos;web&apos;,         &apos;namespace&apos; =&amp;gt; $this-&amp;gt;namespace">
+  <meta name="description" content="策略是在特定模型或者资源中组织授权逻辑的类，一个模型类对应一个策略类。 在 AuthServiceProvider 中：123protected $policies = [    &apos;App\Model&apos; =&amp;gt; &apos;App\Policies\ModelPolicy&apos;,]; 创建策略在 app/Policies 中生成类：1php artisan make:policy PostPolicy 注册">
 <meta name="keywords" content="laravel">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Laravel的Route">
-<meta property="og:url" content="http://www.liluoao.com/2018/laravel-route.html">
+<meta property="og:title" content="Laravel的Policy">
+<meta property="og:url" content="http://www.liluoao.com/2018/laravel-policy.html">
 <meta property="og:site_name" content="To be a Web Artisan">
-<meta property="og:description" content="新增路由文件在 app/Providers/RouteServiceProvider 中：12345678910protected function mapWebRoutes()&amp;#123;    Route::group([        &apos;middleware&apos; =&amp;gt; &apos;web&apos;,         &apos;namespace&apos; =&amp;gt; $this-&amp;gt;namespace">
+<meta property="og:description" content="策略是在特定模型或者资源中组织授权逻辑的类，一个模型类对应一个策略类。 在 AuthServiceProvider 中：123protected $policies = [    &apos;App\Model&apos; =&amp;gt; &apos;App\Policies\ModelPolicy&apos;,]; 创建策略在 app/Policies 中生成类：1php artisan make:policy PostPolicy 注册">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:updated_time" content="2018-05-24T03:46:09.916Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Laravel的Route">
-<meta name="twitter:description" content="新增路由文件在 app/Providers/RouteServiceProvider 中：12345678910protected function mapWebRoutes()&amp;#123;    Route::group([        &apos;middleware&apos; =&amp;gt; &apos;web&apos;,         &apos;namespace&apos; =&amp;gt; $this-&amp;gt;namespace">
+<meta name="twitter:title" content="Laravel的Policy">
+<meta name="twitter:description" content="策略是在特定模型或者资源中组织授权逻辑的类，一个模型类对应一个策略类。 在 AuthServiceProvider 中：123protected $policies = [    &apos;App\Model&apos; =&amp;gt; &apos;App\Policies\ModelPolicy&apos;,]; 创建策略在 app/Policies 中生成类：1php artisan make:policy PostPolicy 注册">
 <meta name="twitter:creator" content="@liluoao">
   
   
@@ -63,10 +63,10 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-Laravel的Route" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-Laravel的Policy" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2018/laravel-route.html" class="article-date">
-  <time datetime="2018-05-23T02:55:55.000Z" itemprop="datePublished">2018-05-23</time>
+    <a href="/2018/laravel-policy.html" class="article-date">
+  <time datetime="2018-05-24T03:25:43.000Z" itemprop="datePublished">2018-05-24</time>
 </a>
     
   <div class="article-category">
@@ -81,7 +81,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      Laravel的Route
+      Laravel的Policy
     </h1>
   
 
@@ -89,14 +89,30 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h4 id="新增路由文件"><a href="#新增路由文件" class="headerlink" title="新增路由文件"></a>新增路由文件</h4><p>在 <code>app/Providers/RouteServiceProvider</code> 中：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">protected</span> <span class="function"><span class="keyword">function</span> <span class="title">mapWebRoutes</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    Route::group([</span><br><span class="line">        <span class="string">'middleware'</span> =&gt; <span class="string">'web'</span>, </span><br><span class="line">        <span class="string">'namespace'</span> =&gt; <span class="keyword">$this</span>-&gt;namespace</span><br><span class="line">        ], <span class="function"><span class="keyword">function</span> <span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">require</span> base_path(<span class="string">'routes/web.php'</span>);</span><br><span class="line">        <span class="keyword">require</span> base_path(<span class="string">'routes/test.php'</span>);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h4 id="分配其他中间件组"><a href="#分配其他中间件组" class="headerlink" title="分配其他中间件组"></a>分配其他中间件组</h4><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">protected</span> <span class="function"><span class="keyword">function</span> <span class="title">mapApiRoutes</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    Route::prefix(<span class="string">'api'</span>)</span><br><span class="line">         -&gt;middleware(<span class="string">'restful-api'</span>)</span><br><span class="line">         -&gt;namespace(<span class="keyword">$this</span>-&gt;namespace)</span><br><span class="line">         -&gt;group(base_path(<span class="string">'routes/api.php'</span>));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="当前路由"><a href="#当前路由" class="headerlink" title="当前路由"></a>当前路由</h4><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$route = Route::current();</span><br><span class="line"></span><br><span class="line">$name = Route::currentRouteName();</span><br><span class="line"></span><br><span class="line">$action = Route::currentRouteAction();</span><br></pre></td></tr></table></figure>
+        <p>策略是在特定模型或者资源中组织授权逻辑的类，一个模型类对应一个策略类。</p>
+<p>在 <code>AuthServiceProvider</code> 中：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">protected</span> $policies = [</span><br><span class="line">    <span class="string">'App\Model'</span> =&gt; <span class="string">'App\Policies\ModelPolicy'</span>,</span><br><span class="line">];</span><br></pre></td></tr></table></figure></p>
+<h4 id="创建策略"><a href="#创建策略" class="headerlink" title="创建策略"></a>创建策略</h4><p>在 <code>app/Policies</code> 中生成类：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">php artisan make:policy PostPolicy</span><br></pre></td></tr></table></figure></p>
+<h4 id="注册策略"><a href="#注册策略" class="headerlink" title="注册策略"></a>注册策略</h4><p>修改 <code>$policies</code> 属性：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">protected</span> $policies = [</span><br><span class="line">    Post::class =&gt; PostPolicy::class,</span><br><span class="line">];</span><br></pre></td></tr></table></figure></p>
+<a id="more"></a>
+<h4 id="编写策略"><a href="#编写策略" class="headerlink" title="编写策略"></a>编写策略</h4><p>例子：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">namespace</span> <span class="title">App</span>\<span class="title">Policies</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">use</span> <span class="title">App</span>\<span class="title">User</span>;</span><br><span class="line"><span class="keyword">use</span> <span class="title">App</span>\<span class="title">Post</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">PostPolicy</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 判断该方法能否被用户操作。</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span>  \App\User  $user</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span>  \App\Post  $post</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> bool</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">update</span><span class="params">(User $user, Post $post)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> $user-&gt;id === $post-&gt;user_id;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h4 id="授权动作"><a href="#授权动作" class="headerlink" title="授权动作"></a>授权动作</h4><ol>
+<li><p>内置的User模型</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> ($user-&gt;can(<span class="string">'update'</span>, $post)) &#123;</span><br><span class="line">    <span class="comment">//</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>通过中间件</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">use</span> <span class="title">App</span>\<span class="title">Post</span>;</span><br><span class="line"></span><br><span class="line">Route::put(<span class="string">'/post/&#123;post&#125;'</span>, <span class="function"><span class="keyword">function</span> <span class="params">(Post $post)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 当前用户可以进行更新操作</span></span><br><span class="line">&#125;)-&gt;middleware(<span class="string">'can:update,post'</span>);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在控制器</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">update</span><span class="params">(Request $request, Post $post)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">$this</span>-&gt;authorize(<span class="string">'update'</span>, $post);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 当前用户可以更新博客...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在Blade</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">@can(<span class="string">'update'</span>, $post)</span><br></pre></td></tr></table></figure></li>
+</ol>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.liluoao.com/2018/laravel-route.html" data-id="cjhjzxtpv000t10mje1w520cq" class="article-share-link">分享</a>
+      <a data-url="http://www.liluoao.com/2018/laravel-policy.html" data-id="cjhjzxtpv000m10mjdhpta52w" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/laravel/">laravel</a></li></ul>
@@ -107,19 +123,10 @@
     
 <nav id="article-nav">
   
-    <a href="/2018/create-rest-api-in-laravel-with-authentication-using-passport.html" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">上一篇</strong>
-      <div class="article-nav-title">
-        
-          Laravel的Passport-Authentication
-        
-      </div>
-    </a>
   
-  
-    <a href="/2018/laravel-middleware.html" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2018/create-rest-api-in-laravel-with-authentication-using-passport.html" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">下一篇</strong>
-      <div class="article-nav-title">Laravel的Middleware</div>
+      <div class="article-nav-title">Laravel的Passport-Authentication</div>
     </a>
   
 </nav>
