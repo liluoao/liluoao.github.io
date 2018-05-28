@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>Laravel使用DingoAPI | To be a Web Artisan</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="通过 Composer 安装：123&quot;require&quot;: &amp;#123;    &quot;dingo/api&quot;: &quot;2.0.0-alpha1&quot;&amp;#125; 发布配置文件：1php artisan vendor:publish --provider=&quot;Dingo\Api\Provider\LaravelServiceProvider&quot; 端点（路由）12345678$api = app(&apos;Dingo\Api\R">
+<meta name="keywords" content="laravel">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Laravel使用DingoAPI">
+<meta property="og:url" content="http://www.liluoao.com/2018/laravel-use-dingo-api.html">
+<meta property="og:site_name" content="To be a Web Artisan">
+<meta property="og:description" content="通过 Composer 安装：123&quot;require&quot;: &amp;#123;    &quot;dingo/api&quot;: &quot;2.0.0-alpha1&quot;&amp;#125; 发布配置文件：1php artisan vendor:publish --provider=&quot;Dingo\Api\Provider\LaravelServiceProvider&quot; 端点（路由）12345678$api = app(&apos;Dingo\Api\R">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-05-28T07:53:08.291Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Laravel使用DingoAPI">
+<meta name="twitter:description" content="通过 Composer 安装：123&quot;require&quot;: &amp;#123;    &quot;dingo/api&quot;: &quot;2.0.0-alpha1&quot;&amp;#125; 发布配置文件：1php artisan vendor:publish --provider=&quot;Dingo\Api\Provider\LaravelServiceProvider&quot; 端点（路由）12345678$api = app(&apos;Dingo\Api\R">
+<meta name="twitter:creator" content="@liluoao">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">To be a Web Artisan</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">首页</a>
+        
+          <a class="main-nav-link" href="/archives">文章列表</a>
+        
+          <a class="main-nav-link" href="/categories/laravel">Laravel</a>
+        
+          <a class="main-nav-link" href="/categories/wechat">Wechat</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://www.liluoao.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Laravel使用DingoAPI" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/laravel-use-dingo-api.html" class="article-date">
+  <time datetime="2018-05-28T03:52:27.000Z" itemprop="datePublished">2018-05-28</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/laravel/">laravel</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Laravel使用DingoAPI
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>通过 Composer 安装：<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">"require": &#123;</span><br><span class="line">    "dingo/api": "2.0.0-alpha1"</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>发布配置文件：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">php artisan vendor:publish --provider=<span class="string">"Dingo\Api\Provider\LaravelServiceProvider"</span></span><br></pre></td></tr></table></figure></p>
+<h4 id="端点（路由）"><a href="#端点（路由）" class="headerlink" title="端点（路由）"></a>端点（路由）</h4><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">$api = app(<span class="string">'Dingo\Api\Routing\Router'</span>);</span><br><span class="line">$api-&gt;version(<span class="string">'v1'</span>, <span class="function"><span class="keyword">function</span> <span class="params">($api)</span> </span>&#123;</span><br><span class="line">    $api-&gt;get(<span class="string">'users/&#123;id&#125;'</span>, <span class="string">'App\Api\V1\Controllers\UserController@show'</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">$api-&gt;version(<span class="string">'v2'</span>, <span class="function"><span class="keyword">function</span> <span class="params">($api)</span> </span>&#123;</span><br><span class="line">    $api-&gt;get(<span class="string">'users/&#123;id&#125;'</span>, <span class="string">'App\Api\V2\Controllers\UserController@show'</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>提醒，你需要为控制器添加说明完整的命名空间，比如， <code>App\Http\Controllers</code>.</p>
+</blockquote>
+<a id="more"></a>
+<p>分组：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$api-&gt;version(<span class="string">'v1'</span>, <span class="function"><span class="keyword">function</span> <span class="params">($api)</span> </span>&#123;</span><br><span class="line">    $api-&gt;group([<span class="string">'middleware'</span> =&gt; <span class="string">'foo'</span>], <span class="function"><span class="keyword">function</span> <span class="params">($api)</span> </span>&#123;</span><br><span class="line">        $api-&gt;get(<span class="string">'users/&#123;id&#125;'</span>, <span class="string">'App\Api\Controllers\UserController@show'</span>);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<h4 id="响应"><a href="#响应" class="headerlink" title="响应"></a>响应</h4><p>控制器需要使用 <code>Dingo\Api\Routing\Helpers</code> Trait：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">use</span> <span class="title">Dingo</span>\<span class="title">Api</span>\<span class="title">Routing</span>\<span class="title">Helpers</span>;</span><br><span class="line"><span class="keyword">use</span> <span class="title">Illuminate</span>\<span class="title">Routing</span>\<span class="title">Controller</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">BaseController</span> <span class="keyword">extends</span> <span class="title">Controller</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="keyword">use</span> <span class="title">Helpers</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li><p>响应一个数组</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">show</span><span class="params">($id)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    $user = User::findOrFail($id);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">$this</span>-&gt;response-&gt;array($user-&gt;toArray());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>响应一个元素</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$user = User::findOrFail($id);</span><br><span class="line"></span><br><span class="line"><span class="keyword">return</span> <span class="keyword">$this</span>-&gt;response-&gt;item($user, <span class="keyword">new</span> UserTransformer);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>分页响应</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$users = User::paginate(<span class="number">25</span>);</span><br><span class="line"><span class="keyword">return</span> <span class="keyword">$this</span>-&gt;response-&gt;paginator($users, <span class="keyword">new</span> UserTransformer);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>空响应</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">return</span> <span class="keyword">$this</span>-&gt;response-&gt;noContent();</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>错误响应</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 一个自定义消息和状态码的普通错误。</span></span><br><span class="line"><span class="keyword">return</span> <span class="keyword">$this</span>-&gt;response-&gt;error(<span class="string">'This is an error.'</span>, <span class="number">404</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 一个没有找到资源的错误，第一个参数可以传递自定义消息。</span></span><br><span class="line"><span class="keyword">return</span> <span class="keyword">$this</span>-&gt;response-&gt;errorNotFound();</span><br><span class="line"></span><br><span class="line"><span class="comment">// 一个 bad request 错误，第一个参数可以传递自定义消息。</span></span><br><span class="line"><span class="keyword">return</span> <span class="keyword">$this</span>-&gt;response-&gt;errorBadRequest();</span><br><span class="line"></span><br><span class="line"><span class="comment">// 一个服务器拒绝错误，第一个参数可以传递自定义消息。</span></span><br><span class="line"><span class="keyword">return</span> <span class="keyword">$this</span>-&gt;response-&gt;errorForbidden();</span><br><span class="line"></span><br><span class="line"><span class="comment">// 一个内部错误，第一个参数可以传递自定义消息。</span></span><br><span class="line"><span class="keyword">return</span> <span class="keyword">$this</span>-&gt;response-&gt;errorInternal();</span><br><span class="line"></span><br><span class="line"><span class="comment">// 一个未认证错误，第一个参数可以传递自定义消息。</span></span><br><span class="line"><span class="keyword">return</span> <span class="keyword">$this</span>-&gt;response-&gt;errorUnauthorized();</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>设置响应状态码</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">return</span> <span class="keyword">$this</span>-&gt;response-&gt;item($user, <span class="keyword">new</span> UserTransformer)-&gt;setStatusCode(<span class="number">200</span>);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>添加额外的头信息</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">return</span> <span class="keyword">$this</span>-&gt;response-&gt;item($user, <span class="keyword">new</span> UserTransformer)-&gt;withHeader(<span class="string">'X-Foo'</span>, <span class="string">'Bar'</span>);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>添加 Meta 信息</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">return</span> <span class="keyword">$this</span>-&gt;response-&gt;item($user, <span class="keyword">new</span> UserTransformer)-&gt;addMeta(<span class="string">'foo'</span>, <span class="string">'bar'</span>);</span><br><span class="line"><span class="keyword">return</span> <span class="keyword">$this</span>-&gt;response-&gt;item($user, <span class="keyword">new</span> UserTransformer)-&gt;setMeta($meta);</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h4 id="自定义转换层"><a href="#自定义转换层" class="headerlink" title="自定义转换层"></a>自定义转换层</h4><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">use</span> <span class="title">Dingo</span>\<span class="title">Api</span>\<span class="title">Http</span>\<span class="title">Request</span>;</span><br><span class="line"><span class="keyword">use</span> <span class="title">Dingo</span>\<span class="title">Api</span>\<span class="title">Transformer</span>\<span class="title">Binding</span>;</span><br><span class="line"><span class="keyword">use</span> <span class="title">Dingo</span>\<span class="title">Api</span>\<span class="title">Contract</span>\<span class="title">Transformer</span>\<span class="title">Adapter</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyCustomTransformer</span> <span class="keyword">implements</span> <span class="title">Adapter</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">transform</span><span class="params">($response, $transformer, Binding $binding, Request $request)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="comment">// 在这里可以使用你的转换层转换给出的响应</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>transform</code> 方法是唯一必需的，除此之外你可以随意添加其他方法。<code>transform</code> 方法的目的就是获取 <code>$response</code> ，然后把它和 <code>$transformer</code> 一起发到转换层。转换层这里应该由 <code>transform</code> 方法返回一个数组。当然，如果转换非常简单，可直接在类内部实现转换。</p>
+<p><code>$binding</code> 参数可以让转换层具有更高级的特性，比方，增加元数据或者允许其他开发者通过回调方法和你的转换层进行交互。</p>
+<p><code>$request</code> 参数是指当前正在进行的 HTTP 请求，当你需要请求中的相关数据，这个可以派上用场。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.liluoao.com/2018/laravel-use-dingo-api.html" data-id="cjhpyimqm0008s0mjjooe8no8" class="article-share-link">分享</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/laravel/">laravel</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2018/laravel-phpunit.html" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">Laravel使用PHPUnit</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2018/laravel-use-dingo-api.html">Laravel使用DingoAPI</a>
+          </li>
+        
+          <li>
+            <a href="/2018/laravel-phpunit.html">Laravel使用PHPUnit</a>
+          </li>
+        
+          <li>
+            <a href="/2018/restful-api-in-laravel-56-using-jwt-authentication.html">Laravel使用JWT-Authentication</a>
+          </li>
+        
+          <li>
+            <a href="/2018/laravel-policy.html">Laravel的Policy</a>
+          </li>
+        
+          <li>
+            <a href="/2018/create-rest-api-in-laravel-with-authentication-using-passport.html">Laravel的Passport-Authentication</a>
+          </li>
+        
+          <li>
+            <a href="/2018/laravel-route.html">Laravel的Route</a>
+          </li>
+        
+          <li>
+            <a href="/2018/laravel-middleware.html">Laravel的Middleware</a>
+          </li>
+        
+          <li>
+            <a href="/2018/some-php-functions.html">整理的一些PHP方法</a>
+          </li>
+        
+          <li>
+            <a href="/2018/how-to-use-editorconfig.html">统一代码风格-editorConfig</a>
+          </li>
+        
+          <li>
+            <a href="/2018/rewrite-http-to-https.html">重定向HTTP到HTTPS</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/algorithm/">algorithm</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/alipay/">alipay</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/apache/">apache</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ci/">ci</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/clean-code/">clean-code</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/composer/">composer</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/design-patterns/">design-patterns</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jwt/">jwt</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/laravel/">laravel</a><span class="tag-list-count">21</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/">mysql</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/phalcon/">phalcon</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/php/">php</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/refactor/">refactor</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/restful/">restful</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sapi/">sapi</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/solid/">solid</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tool/">tool</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/wechat/">wechat</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/work-wechat/">work-wechat</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">五月 2018</a><span class="archive-list-count">33</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a><span class="archive-list-count">15</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a><span class="archive-list-count">15</span></li></ul>
+    </div>
+  </div>
+
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      <div class="footer-about-me">
+        关于作者<br>
+        <a href="https://github.com/liluoao" target="_blank" title="GitHub">GitHub</a><br>
+        <a href="https://segmentfault.com/u/liluoao" target="_blank" title="SegmentFault">SegmentFault</a><br>
+        <a href="https://laravel-china.org/users/7144" target="_blank" title="LaravelChina">LaravelChina</a><br>
+        <a href="https://gitee.com/liluoao" target="_blank" title="码云">码云</a><br>
+        <a href="https://juejin.im/user/5a19374cf265da4332274600" target="_blank" title="掘金">掘金</a><br>
+        <a href="https://packagist.org/users/liluoao/" target="_blank" title="Packagist">Packagist</a><br>
+        <a href="https://www.gitbook.com/@liluoao" target="_blank" title="GitBook">GitBook</a>
+      </div>
+      <div style="width:300px;margin:0 auto; padding:20px 0;">
+        <div class="footer-copyright">
+          &copy; 2018 李罗奥
+          Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+        </div>
+        <a href="http://www.miitbeian.gov.cn/" target="_blank" style="display:inline-block;text-decoration:none;height:20px;line-height:20px;"><p style="float:left;height:20px;line-height:20px;margin: 0px 0px 0px 5px; color:#939393;">鄂ICP备18009105号</p></a>
+        <a target="_blank" href="https://www.beian.gov.cn/portal/registerSystemInfo?recordcode=42011102001595" style="display:inline-block;text-decoration:none;height:20px;line-height:20px;"><img src="/css/images/beian.png" style="float:left;"/><p style="float:left;height:20px;line-height:20px;margin: 0px 0px 0px 5px; color:#939393;">鄂公网安备 42011102001595号</p></a>
+      </div>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">首页</a>
+  
+    <a href="/archives" class="mobile-nav-link">文章列表</a>
+  
+    <a href="/categories/laravel" class="mobile-nav-link">Laravel</a>
+  
+    <a href="/categories/wechat" class="mobile-nav-link">Wechat</a>
+  
+</nav>
+    
+
+<script src="//lib.sinaapp.com/js/jquery/3.1.0/jquery-3.1.0.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>
