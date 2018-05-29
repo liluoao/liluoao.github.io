@@ -63,10 +63,10 @@
       <div class="outer">
         <section id="main">
   
-    <article id="post-Laravel的本地化" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-Laravel的Task-Scheduling" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2018/laravel-localization.html" class="article-date">
-  <time datetime="2018-05-16T07:11:14.000Z" itemprop="datePublished">2018-05-16</time>
+    <a href="/2018/laravel-task-scheduling.html" class="article-date">
+  <time datetime="2018-05-10T01:37:40.000Z" itemprop="datePublished">2018-05-10</time>
 </a>
     
   <div class="article-category">
@@ -81,7 +81,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2018/laravel-localization.html">Laravel的本地化</a>
+      <a class="article-title" href="/2018/laravel-task-scheduling.html">Laravel的Task-Scheduling</a>
     </h1>
   
 
@@ -89,16 +89,21 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><strong>i18n</strong>（其来源是英文单词 internationalization 的首末字符i和n，18为中间的字符数）是“国际化”的简称。<br>在资讯领域，国际化(i18n)指让产品（出版物，软件，硬件等）无需做大的改变就能够适应不同的语言和地区的需要。对程序来说，在不修改内部代码的情况下，能根据不同语言及地区显示相应的界面。<br>对应的有<strong>l10n</strong>（ localization 的缩写形式，意即在 l 和 n 之间有 10 个字母），本意是指软件的“本地化”。</p>
+        <h3 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h3><p>文档推荐使用<a href="https://forge.laravel.com/" target="_blank" rel="noopener">Laravel Forge</a>管理 <code>cron</code> 项目。示例：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">* * * * * php /path-to-your-project/artisan schedule:run &gt;&gt; /dev/null 2&gt;&amp;1</span><br></pre></td></tr></table></figure></p>
+<h3 id="定义调度"><a href="#定义调度" class="headerlink" title="定义调度"></a>定义调度</h3><p>在 <code>App\Console\Kernel</code> 中 <code>schedule()</code> 方法中定义所有调度任务。有如下几种可以调度：</p>
+<ol>
+<li><strong>Closure</strong><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$schedule-&gt;call(<span class="function"><span class="keyword">function</span> <span class="params">()</span> </span>&#123;</span><br><span class="line">    DB::table(<span class="string">'should_delete'</span>)-&gt;delete();</span><br><span class="line">&#125;)-&gt;daily();</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
         
           <p class="article-more-link">
-            <a href="/2018/laravel-localization.html#more">阅读全文</a>
+            <a href="/2018/laravel-task-scheduling.html#more">阅读全文</a>
           </p>
         
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.liluoao.com/2018/laravel-localization.html" data-id="cjhpyimrg0019s0mjmg7v35tb" class="article-share-link">分享</a>
+      <a data-url="http://www.liluoao.com/2018/laravel-task-scheduling.html" data-id="cjhr4auxd00193omjet1bxr86" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/laravel/">laravel</a></li></ul>
@@ -110,10 +115,10 @@
 
 
   
-    <article id="post-Laravel的辅助函数" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-Laravel的Artisan" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2018/laravel-helpers.html" class="article-date">
-  <time datetime="2018-05-16T06:27:09.000Z" itemprop="datePublished">2018-05-16</time>
+    <a href="/2018/laravel-artisan.html" class="article-date">
+  <time datetime="2018-05-09T01:17:13.000Z" itemprop="datePublished">2018-05-09</time>
 </a>
     
   <div class="article-category">
@@ -128,7 +133,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2018/laravel-helpers.html">Laravel的辅助函数</a>
+      <a class="article-title" href="/2018/laravel-artisan.html">Laravel的Artisan</a>
     </h1>
   
 
@@ -136,65 +141,17 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>在 <code>composer.json</code> 中定义了自动加载的文件：<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    //...</span><br><span class="line">    "autoload": &#123;</span><br><span class="line">        //...</span><br><span class="line">        "files": [</span><br><span class="line">            <span class="string">"app/helpers.php"</span></span><br><span class="line">        ]</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>在 <code>app/helpers.php</code> 中自定义辅助函数：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (!function_exists(<span class="string">'changeShowMoneyFormat'</span>)) &#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 转换金额格式</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> float $money 金额</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> int $length 保留位数</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> string|bool 转换结果</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">changeShowMoneyFormat</span><span class="params">($money, $length = <span class="number">2</span>)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> sprintf(<span class="string">"%.&#123;$length&#125;f"</span>, $money);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>Packagist包：<a href="https://packagist.org/packages/sebastiaanluca/laravel-helpers" target="_blank" rel="noopener">https://packagist.org/packages/sebastiaanluca/laravel-helpers</a></p>
-<p>常用函数如：<code>dd()</code> <code>app()</code> <code>env()</code> <code>config()</code> <code>public_path()</code> <code>array_pluck()</code></p>
-<p>更多Laravel辅助函数见<a href="https://laravel.com/docs/5.6/helpers" target="_blank" rel="noopener">Helpers</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://www.liluoao.com/2018/laravel-helpers.html" data-id="cjhpyimrg001gs0mj9tsglbg5" class="article-share-link">分享</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/laravel/">laravel</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-Laravel自定义验证规则" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/laravel-custom-validation-rules.html" class="article-date">
-  <time datetime="2018-05-16T03:24:10.000Z" itemprop="datePublished">2018-05-16</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/laravel/">laravel</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/laravel-custom-validation-rules.html">Laravel自定义验证规则</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="创建规则"><a href="#创建规则" class="headerlink" title="创建规则"></a>创建规则</h2><p>使用Artisan命令创建规则：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">php artisan make:rule CheckPhoneNumber</span><br></pre></td></tr></table></figure></p>
-<p>规则放在 <code>app/Rules</code> 目录</p>
-<p>规则对象包括 <code>passes()</code> 和 <code>message()</code> 方法<br><code>passes</code> 方法接收属性值和名称，并根据属性值是否符合规则而返回 <code>true</code> 或者 <code>false</code>：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">passes</span><span class="params">($attribute, $value)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> preg_match(<span class="string">'/^1[3456789]\d&#123;9&#125;$/'</span>,$value);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">message</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">'电话号码格式不正确'</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+        <h3 id="生成命令"><a href="#生成命令" class="headerlink" title="生成命令"></a>生成命令</h3><p>在 <code>app/Console/Commands</code> 中新建一个命令：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">php artisan make:command ReserveExpired//你的命令名</span><br></pre></td></tr></table></figure></p>
+<h3 id="命令结构"><a href="#命令结构" class="headerlink" title="命令结构"></a>命令结构</h3>
         
           <p class="article-more-link">
-            <a href="/2018/laravel-custom-validation-rules.html#more">阅读全文</a>
+            <a href="/2018/laravel-artisan.html#more">阅读全文</a>
           </p>
         
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.liluoao.com/2018/laravel-custom-validation-rules.html" data-id="cjhpyimrg001ks0mj8245nsyt" class="article-share-link">分享</a>
+      <a data-url="http://www.liluoao.com/2018/laravel-artisan.html" data-id="cjhr4auwy000f3omjvj4wttto" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/laravel/">laravel</a></li></ul>
@@ -206,10 +163,10 @@
 
 
   
-    <article id="post-Laravel的表单验证" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-Laravel的Queue" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2018/laravel-form-validation.html" class="article-date">
-  <time datetime="2018-05-15T06:48:33.000Z" itemprop="datePublished">2018-05-15</time>
+    <a href="/2018/laravel-queue.html" class="article-date">
+  <time datetime="2018-05-08T01:08:48.000Z" itemprop="datePublished">2018-05-08</time>
 </a>
     
   <div class="article-category">
@@ -224,7 +181,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2018/laravel-form-validation.html">Laravel的表单验证</a>
+      <a class="article-title" href="/2018/laravel-queue.html">Laravel的Queue</a>
     </h1>
   
 
@@ -232,21 +189,258 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h4 id="修改密码"><a href="#修改密码" class="headerlink" title="修改密码"></a>修改密码</h4><p><img src="/images/form-request1.png" alt=""></p>
+        <h3 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h3><p>首先打开 <code>config/queue.php</code> 。<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'default'</span> =&gt; env(<span class="string">'QUEUE_DRIVER'</span>, <span class="string">'sync'</span>),</span><br><span class="line"><span class="string">'connections'</span> =&gt; [</span><br><span class="line">        <span class="string">'sync'</span> =&gt; [</span><br><span class="line">            <span class="string">'driver'</span> =&gt; <span class="string">'sync'</span>,</span><br><span class="line">        ],</span><br><span class="line">        <span class="string">'database'</span> =&gt; [</span><br><span class="line">            <span class="string">'driver'</span> =&gt; <span class="string">'database'</span>,</span><br><span class="line">        ],</span><br><span class="line">        <span class="comment">//...</span></span><br><span class="line">        <span class="string">'redis'</span> =&gt; [</span><br><span class="line">            <span class="string">'driver'</span> =&gt; <span class="string">'redis'</span>,</span><br><span class="line">        ],</span><br><span class="line">    ],</span><br></pre></td></tr></table></figure></p>
+<p><code>default</code> 是队列系统默认使用的驱动，在连接时可以使用 <code>onConnection()</code> 方法将任务推到指定连接。<br><code>connections</code> 可以配置各种驱动的设置，如<strong>Redis</strong>的数据库连接等。<br><code>failed</code> 配置队列中的任务执行失败时，保存失败任务的库与表。</p>
+        
+          <p class="article-more-link">
+            <a href="/2018/laravel-queue.html#more">阅读全文</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.liluoao.com/2018/laravel-queue.html" data-id="cjhr4auxd00123omje89nfhby" class="article-share-link">分享</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/laravel/">laravel</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Laravel的Log" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/laravel-log.html" class="article-date">
+  <time datetime="2018-05-07T08:13:07.000Z" itemprop="datePublished">2018-05-07</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/laravel/">laravel</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/laravel-log.html">Laravel的Log</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Laravel 的日志系统基于 <a href="https://github.com/Seldaek/monolog" target="_blank" rel="noopener">Monolog</a> 库</p>
+<p>错误日志级别（<a href="https://tools.ietf.org/html/rfc5424" target="_blank" rel="noopener">RFC5424</a>定义）：<em>debug, info, notice, warning, error, critical, alert, emergency</em></p>
+<p>Laravel的日志默认保存在 <code>storage/logs/laravel.log</code><br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">use</span> <span class="title">Illuminate</span>\<span class="title">Support</span>\<span class="title">Facades</span>\<span class="title">Log</span>;</span><br><span class="line"></span><br><span class="line">Log::emergency($message, $contextualInfo);</span><br><span class="line">Log::alert($message);</span><br><span class="line">Log::critical($message);</span><br><span class="line">Log::error($message);</span><br><span class="line">Log::warning($message);</span><br><span class="line">Log::notice($message);</span><br><span class="line">Log::info($message);</span><br><span class="line">Log::debug($message);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 或者全局助手方法</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// Log::info()</span></span><br><span class="line">info(<span class="string">'Some helpful information!'</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// Log::debug()</span></span><br><span class="line">logger(<span class="string">'Debug message'</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// Log::error()</span></span><br><span class="line">logger()-&gt;error(<span class="string">'You are not allowed here.'</span>);</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.liluoao.com/2018/laravel-log.html" data-id="cjhr4auxd000p3omj7qx2sa0a" class="article-share-link">分享</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/laravel/">laravel</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Laravel的Config" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/laravel-config.html" class="article-date">
+  <time datetime="2018-05-06T08:08:10.000Z" itemprop="datePublished">2018-05-06</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/laravel/">laravel</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/laravel-config.html">Laravel的Config</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><code>$_ENV</code> 或<code>env()</code>可读取<code>.env</code>文件中的变量.</p>
+<p>读取 config/app.php 中的数据:<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$value = config(<span class="string">'app.timezone'</span>);</span><br></pre></td></tr></table></figure></p>
+<p>新增配置文件后，如 <code>config/aboutus.php</code>，使用 <code>config(&#39;aboutus.xxx&#39;)</code> 读取<br>
+        
+          <p class="article-more-link">
+            <a href="/2018/laravel-config.html#more">阅读全文</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.liluoao.com/2018/laravel-config.html" data-id="cjhr4auwy000l3omjrvc3sa7n" class="article-share-link">分享</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/laravel/">laravel</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Laravel的Eloquent-ORM-Relationship" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/laravel-eloquent-orm-relationship.html" class="article-date">
+  <time datetime="2018-05-05T01:04:19.000Z" itemprop="datePublished">2018-05-05</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/laravel/">laravel</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/laravel-eloquent-orm-relationship.html">Laravel的Eloquent-ORM-Relationship</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ul>
+<li><strong>一对一 One To One</strong><br>场景：用户表（<code>users</code>）、用户设置表（<code>user_settings</code>）<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">User</span> <span class="keyword">extends</span> <span class="title">Model</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">settings</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">$this</span>-&gt;hasOne(<span class="string">'App\Models\Settings'</span>, <span class="string">'user_id'</span>, <span class="string">'id'</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>然后通过动态属性 <code>User::find(1)-&gt;settings</code> 可以读取。</p>
+        
+          <p class="article-more-link">
+            <a href="/2018/laravel-eloquent-orm-relationship.html#more">阅读全文</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.liluoao.com/2018/laravel-eloquent-orm-relationship.html" data-id="cjhr4auwy000i3omj1kubhflm" class="article-share-link">分享</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/laravel/">laravel</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Laravel的Route" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/laravel-route.html" class="article-date">
+  <time datetime="2018-05-04T02:55:55.000Z" itemprop="datePublished">2018-05-04</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/laravel/">laravel</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/laravel-route.html">Laravel的Route</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="新增路由文件"><a href="#新增路由文件" class="headerlink" title="新增路由文件"></a>新增路由文件</h4><p>在 <code>app/Providers/RouteServiceProvider</code> 中：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">protected</span> <span class="function"><span class="keyword">function</span> <span class="title">mapWebRoutes</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    Route::group([</span><br><span class="line">        <span class="string">'middleware'</span> =&gt; <span class="string">'web'</span>, </span><br><span class="line">        <span class="string">'namespace'</span> =&gt; <span class="keyword">$this</span>-&gt;namespace</span><br><span class="line">        ], <span class="function"><span class="keyword">function</span> <span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">require</span> base_path(<span class="string">'routes/web.php'</span>);</span><br><span class="line">        <span class="keyword">require</span> base_path(<span class="string">'routes/test.php'</span>);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h4 id="分配其他中间件组"><a href="#分配其他中间件组" class="headerlink" title="分配其他中间件组"></a>分配其他中间件组</h4><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">protected</span> <span class="function"><span class="keyword">function</span> <span class="title">mapApiRoutes</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    Route::prefix(<span class="string">'api'</span>)</span><br><span class="line">         -&gt;middleware(<span class="string">'restful-api'</span>)</span><br><span class="line">         -&gt;namespace(<span class="keyword">$this</span>-&gt;namespace)</span><br><span class="line">         -&gt;group(base_path(<span class="string">'routes/api.php'</span>));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="当前路由"><a href="#当前路由" class="headerlink" title="当前路由"></a>当前路由</h4><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$route = Route::current();</span><br><span class="line"></span><br><span class="line">$name = Route::currentRouteName();</span><br><span class="line"></span><br><span class="line">$action = Route::currentRouteAction();</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.liluoao.com/2018/laravel-route.html" data-id="cjhr4auxd00163omj9rr33xjh" class="article-share-link">分享</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/laravel/">laravel</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-使用Intervention-Image" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/use-intervention-image.html" class="article-date">
+  <time datetime="2018-05-03T06:36:58.000Z" itemprop="datePublished">2018-05-03</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/laravel/">laravel</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/use-intervention-image.html">使用Intervention-Image</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><a href="https://github.com/Intervention/image" target="_blank" rel="noopener">Intervention/image</a> 是为 Laravel 定制的图片处理工具, 它提供了一套易于表达的方式来创建、编辑图片。</p>
 <ul>
-<li>Confirmed<br>如果要验证的字段是 <code>password</code>，输入中必须存在匹配的 <code>password_confirmation</code> 字段。</li>
-<li>Different<br>验证的字段值必须与参数字段的值不同。<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">rules</span><span class="params">()</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> [</span><br><span class="line">        <span class="comment">//...</span></span><br><span class="line">        <span class="string">'password'</span> =&gt; <span class="string">'bail|required|string|between:8,20|confirmed|different:old_password'</span>,</span><br><span class="line">        <span class="string">'password_confirmation'</span> =&gt; <span class="string">'bail|required|string|between:8,20'</span></span><br><span class="line">        <span class="comment">//...</span></span><br><span class="line">    ];</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<li>Composer安装<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">composer require intervention/image</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
         
           <p class="article-more-link">
-            <a href="/2018/laravel-form-validation.html#more">阅读全文</a>
+            <a href="/2018/use-intervention-image.html#more">阅读全文</a>
           </p>
         
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.liluoao.com/2018/laravel-form-validation.html" data-id="cjhpyimrg001ds0mj14u6u3lw" class="article-share-link">分享</a>
+      <a data-url="http://www.liluoao.com/2018/use-intervention-image.html" data-id="cjhr4auyo003d3omj3sk7k7kp" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/laravel/">laravel</a></li></ul>
@@ -258,14 +452,14 @@
 
 
   
-    <article id="post-微信网页授权" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-使用Laravel-Excel" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2018/wechat-authorize-web.html" class="article-date">
-  <time datetime="2018-05-14T03:02:14.000Z" itemprop="datePublished">2018-05-14</time>
+    <a href="/2018/use-laravel-excel.html" class="article-date">
+  <time datetime="2018-05-02T07:42:19.000Z" itemprop="datePublished">2018-05-02</time>
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/categories/wechat/">wechat</a>
+    <a class="article-category-link" href="/categories/laravel/">laravel</a>
   </div>
 
   </div>
@@ -276,7 +470,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2018/wechat-authorize-web.html">微信网页授权</a>
+      <a class="article-title" href="/2018/use-laravel-excel.html">使用Laravel-Excel</a>
     </h1>
   
 
@@ -284,179 +478,24 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>网页授权流程分为四步：</p>
-<ol>
-<li>引导用户进入授权页面同意授权（一般通过扫码或绑定到菜单），获取 <code>code</code></li>
-<li>通过 <code>code</code> 换取网页授权 <code>access_token</code>（与基础支持中的 <code>access_token</code> 不同）</li>
-<li>如果需要，开发者可以刷新网页授权 <code>access_token</code>，避免过期</li>
-<li>通过网页授权 <code>access_token</code> 和 <code>openid</code> 获取用户基本信息（支持 <code>UnionID</code> 机制）</li>
-</ol>
-<p>所有OAuth2.0流程类似：<br><img src="https://p.qpic.cn/pic_wework/4208501329/ebed29e092fda3841e56e191eba8ed7ae6775f7dffd75bed/0" alt="企业微信OAuth2.0流程图"><br>
-        
-          <p class="article-more-link">
-            <a href="/2018/wechat-authorize-web.html#more">阅读全文</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://www.liluoao.com/2018/wechat-authorize-web.html" data-id="cjhpyimt60047s0mj19cl8oww" class="article-share-link">分享</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/wechat/">wechat</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-企业微信通讯录" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/work-wechat-address-list.html" class="article-date">
-  <time datetime="2018-05-13T02:18:48.000Z" itemprop="datePublished">2018-05-13</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/wechat/">wechat</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/work-wechat-address-list.html">企业微信通讯录</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><a href="https://work.weixin.qq.com/" target="_blank" rel="noopener">企业微信</a>（原企业号）提供了通讯录管理、应用管理、消息推送、身份验证、移动端SDK、素材、OA数据接口、企业支付、电子发票等API，管理员可以使用这些API，为企业接入更多个性化的办公应用。</p>
-<p>要使用API管理通讯录，必须打开 <code>通讯录同步</code><br>登录企业管理后台-&gt;“管理工具”-&gt;“通讯录同步”-&gt;“开启API接口同步”<br><img src="/images/work-wechat-config.png" alt=""><br>
-        
-          <p class="article-more-link">
-            <a href="/2018/work-wechat-address-list.html#more">阅读全文</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://www.liluoao.com/2018/work-wechat-address-list.html" data-id="cjhpyimsb002zs0mjm5ikjdpv" class="article-share-link">分享</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/wechat/">wechat</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/work-wechat/">work-wechat</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-微信硬件设备授权" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/wechat-authorize-hardware.html" class="article-date">
-  <time datetime="2018-05-12T01:35:57.000Z" itemprop="datePublished">2018-05-12</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/wechat/">wechat</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/wechat-authorize-hardware.html">微信硬件设备授权</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><img src="/images/wechat-hardware.png" alt="设备授权流程"></p>
-<ol>
-<li>进入<a href="https://mp.weixin.qq.com/" target="_blank" rel="noopener">微信公众平台</a><br>在 <code>功能</code> -&gt; <code>设备管理</code> 中添加产品，填写相关信息后获取到产品ID（product_id）
-        
-          <p class="article-more-link">
-            <a href="/2018/wechat-authorize-hardware.html#more">阅读全文</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://www.liluoao.com/2018/wechat-authorize-hardware.html" data-id="cjhpyimt60043s0mjyknm86bc" class="article-share-link">分享</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/wechat/">wechat</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-微信卡券" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/wechat-card-and-coupon.html" class="article-date">
-  <time datetime="2018-05-11T03:16:17.000Z" itemprop="datePublished">2018-05-11</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/wechat/">wechat</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/wechat-card-and-coupon.html">微信卡券</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>💻<a href="https://mp.weixin.qq.com/wiki?t=resource/res_main&amp;id=mp1451025056" target="_blank" rel="noopener">API文档</a></p>
-<p>卡券类型：</p>
+        <p><strong><a href="https://laravel-excel.maatwebsite.nl/" target="_blank" rel="noopener">Laravel Excel</a></strong>  brings the power of PHPOffice’s PHPExcel to Laravel 5 with a touch of the Laravel Magic. It includes features like: importing Excel and CSV to collections, exporting models, array’s and views to Excel, importing batches of files and importing a file by a config file.</p>
+<p><a href="https://github.com/Maatwebsite/Laravel-Excel" target="_blank" rel="noopener">Github传送门</a></p>
 <ul>
-<li>CASH代金券</li>
-<li>DISCOUNT折扣券</li>
-<li>GIFT兑换券</li>
-<li>GENERAL_COUPON优惠券</li>
-<li>MEMBER_CARD会员卡</li>
+<li>Composer安装<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">composer require maatwebsite/excel</span><br></pre></td></tr></table></figure>
+</li>
 </ul>
-<h4 id="上传商户Logo"><a href="#上传商户Logo" class="headerlink" title="上传商户Logo"></a>上传商户Logo</h4><p>需要 <code>access_token</code><br>请求方式：<code>POST</code><br>
         
           <p class="article-more-link">
-            <a href="/2018/wechat-card-and-coupon.html#more">阅读全文</a>
+            <a href="/2018/use-laravel-excel.html#more">阅读全文</a>
           </p>
         
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.liluoao.com/2018/wechat-card-and-coupon.html" data-id="cjhpyimt6003ws0mjauzv7ip6" class="article-share-link">分享</a>
+      <a data-url="http://www.liluoao.com/2018/use-laravel-excel.html" data-id="cjhr4auyo003f3omjdcmveajp" class="article-share-link">分享</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/wechat/">wechat</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/laravel/">laravel</a></li></ul>
 
     </footer>
   </div>
@@ -465,14 +504,14 @@
 
 
   
-    <article id="post-微信条码支付" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-使用Carbon" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2018/wechat-barpay.html" class="article-date">
-  <time datetime="2018-05-10T01:26:24.000Z" itemprop="datePublished">2018-05-10</time>
+    <a href="/2018/use-carbon.html" class="article-date">
+  <time datetime="2018-05-01T06:11:35.000Z" itemprop="datePublished">2018-05-01</time>
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/categories/wechat/">wechat</a>
+    <a class="article-category-link" href="/categories/laravel/">laravel</a>
   </div>
 
   </div>
@@ -483,7 +522,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2018/wechat-barpay.html">微信条码支付</a>
+      <a class="article-title" href="/2018/use-carbon.html">使用Carbon</a>
     </h1>
   
 
@@ -491,76 +530,27 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>也叫刷卡支付</p>
-<blockquote>
-<p>支付金额&gt;1000元的交易需要验证用户支付密码<br>用户账号每天最多有5笔交易可以免密，超过后需要验证密码</p>
-</blockquote>
+        <p><strong><a href="http://carbon.nesbot.com/" target="_blank" rel="noopener">Carbon</a></strong>  继承自 PHP DateTime 类的 API 扩展，它使得处理日期和时间更加简单。</p>
+<p><a href="https://github.com/briannesbitt/carbon" target="_blank" rel="noopener">Github传送门</a></p>
 <ul>
-<li>微信条形码规则：18位纯数字，以10、11、12、13、14、15开头</li>
-<li>支付宝条形码规则：25~30开头的长度为16~24位的数字</li>
+<li>Composer安装<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">composer require nesbot/carbon</span><br></pre></td></tr></table></figure>
+</li>
 </ul>
-<p>💻<a href="https://pay.weixin.qq.com/wiki/doc/api/micropay.php?chapter=9_10&amp;index=1" target="_blank" rel="noopener">API文档</a><br>💻<a href="https://pay.weixin.qq.com/wiki/doc/api/micropay.php?chapter=11_1" target="_blank" rel="noopener">SDK下载</a></p>
-<h4 id="接口地址"><a href="#接口地址" class="headerlink" title="接口地址"></a>接口地址</h4><p><a href="https://api.mch.weixin.qq.com/pay/micropay" target="_blank" rel="noopener">https://api.mch.weixin.qq.com/pay/micropay</a><br>沙箱地址：<br><a href="https://api.mch.weixin.qq.com/sandboxnew/pay/micropay" target="_blank" rel="noopener">https://api.mch.weixin.qq.com/sandboxnew/pay/micropay</a></p>
-<h4 id="随机字符串与签名"><a href="#随机字符串与签名" class="headerlink" title="随机字符串与签名"></a>随机字符串与签名</h4><p>本API需要 <code>nonce_str</code> 和 <code>sign</code>，生成算法见<a href="https://pay.weixin.qq.com/wiki/doc/api/micropay.php?chapter=4_3" target="_blank" rel="noopener">安全规范</a></p>
+<p>PS：由于 Laravel 项目已默认安装了此包，所以不需要再次执行上面的命令。</p>
+<h2 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h2><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//常规项目</span></span><br><span class="line"><span class="keyword">use</span> <span class="title">Carbon</span>\<span class="title">Carbon</span>;</span><br><span class="line"><span class="comment">//Laravel项目</span></span><br><span class="line"><span class="keyword">use</span> <span class="title">Illuminate</span>\<span class="title">Support</span>\<span class="title">Carbon</span>;</span><br></pre></td></tr></table></figure>
+<p>后者除了继承于前者，还实现了 <code>JsonSerializable</code> interface 和 <code>Macroable</code> trait<br>
         
           <p class="article-more-link">
-            <a href="/2018/wechat-barpay.html#more">阅读全文</a>
+            <a href="/2018/use-carbon.html#more">阅读全文</a>
           </p>
         
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.liluoao.com/2018/wechat-barpay.html" data-id="cjhpyimt60041s0mjwmb9zvns" class="article-share-link">分享</a>
+      <a data-url="http://www.liluoao.com/2018/use-carbon.html" data-id="cjhr4auyo00373omj9362st7p" class="article-share-link">分享</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/wechat/">wechat</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-微信消息处理" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/wechat-passivity-message.html" class="article-date">
-  <time datetime="2018-05-09T07:14:51.000Z" itemprop="datePublished">2018-05-09</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/wechat/">wechat</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/wechat-passivity-message.html">微信消息处理</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><p>首先登录微信公众平台 <code>https://mp.weixin.qq.com</code>，在<strong>开发</strong>-&gt;<strong>基本配置</strong>中填写服务器配置（接收处理微信消息的地址）<br><img src="/images/wechat-config.png" alt=""><br>保存好你的配置，在加解密时需要使用。<br>
-        
-          <p class="article-more-link">
-            <a href="/2018/wechat-passivity-message.html#more">阅读全文</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://www.liluoao.com/2018/wechat-passivity-message.html" data-id="cjhpyimt6003zs0mjysf91qou" class="article-share-link">分享</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/wechat/">wechat</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/laravel/">laravel</a></li></ul>
 
     </footer>
   </div>
@@ -607,23 +597,23 @@
           </li>
         
           <li>
-            <a href="/2018/laravel-route.html">Laravel的Route</a>
-          </li>
-        
-          <li>
             <a href="/2018/laravel-middleware.html">Laravel的Middleware</a>
           </li>
         
           <li>
-            <a href="/2018/some-php-functions.html">整理的一些PHP方法</a>
+            <a href="/2018/laravel-custom-validation-rules.html">Laravel自定义验证规则</a>
           </li>
         
           <li>
-            <a href="/2018/how-to-use-editorconfig.html">统一代码风格-editorConfig</a>
+            <a href="/2018/laravel-form-validation.html">Laravel的表单验证</a>
           </li>
         
           <li>
-            <a href="/2018/rewrite-http-to-https.html">重定向HTTP到HTTPS</a>
+            <a href="/2018/laravel-localization.html">Laravel的本地化</a>
+          </li>
+        
+          <li>
+            <a href="/2018/laravel-helpers.html">Laravel的辅助函数</a>
           </li>
         
       </ul>
@@ -645,7 +635,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">五月 2018</a><span class="archive-list-count">33</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a><span class="archive-list-count">15</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a><span class="archive-list-count">15</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">五月 2018</a><span class="archive-list-count">20</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a><span class="archive-list-count">15</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">二月 2018</a><span class="archive-list-count">20</span></li></ul>
     </div>
   </div>
 

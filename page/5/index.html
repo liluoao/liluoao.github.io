@@ -63,10 +63,10 @@
       <div class="outer">
         <section id="main">
   
-    <article id="post-我所理解的接口设计" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-Nginx和PHP的配置" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2018/how-i-understand-restful-api.html" class="article-date">
-  <time datetime="2018-04-10T02:07:24.000Z" itemprop="datePublished">2018-04-10</time>
+    <a href="/2018/nginx-and-php-config.html" class="article-date">
+  <time datetime="2018-03-06T01:59:26.000Z" itemprop="datePublished">2018-03-06</time>
 </a>
     
   </div>
@@ -77,7 +77,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2018/how-i-understand-restful-api.html">我所理解的接口设计（转）</a>
+      <a class="article-title" href="/2018/nginx-and-php-config.html">Nginx和PHP的配置（转）</a>
     </h1>
   
 
@@ -85,51 +85,20 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>原文链接：<a href="https://segmentfault.com/a/1190000013703264" target="_blank" rel="noopener">https://segmentfault.com/a/1190000013703264</a></p>
-<h2 id="接口参数定义"><a href="#接口参数定义" class="headerlink" title="接口参数定义"></a>接口参数定义</h2><p>接口设计中往可以抽象出一些新的公共参数，我目前能想到了一些较为常见的公共接口参数如下：</p>
-<table>
-<thead>
-<tr>
-<th>公共参数</th>
-<th>含意</th>
-<th>定义该参数的意义</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>timestamp</td>
-<td>毫秒级时间戳</td>
-<td>1.客户端的请求时间标示 2.后端可以做请求过期验证 3.该参数参与签名算法增加签名的唯一性</td>
-</tr>
-<tr>
-<td>app_key</td>
-<td>签名公钥</td>
-<td>签名算法的公钥，后端通过公钥可以得到对应的私钥</td>
-</tr>
-<tr>
-<td>sign</td>
-<td>接口签名</td>
-<td>通过请求的参数和定义好的签名算法生成接口签名，作用防止中间人篡改请求参数</td>
-</tr>
-<tr>
-<td>did</td>
-<td>设备ID</td>
-<td>设备的唯一标示，生成规则例如android的mac地址的md5和ios曾今udid(目前无法获取)的md5, 1:数据收集 2.便于问题追踪 3.消息推送标示</td>
-</tr>
-</tbody>
-</table>
+        <p>原文链接：<a href="https://segmentfault.com/a/1190000014610688" target="_blank" rel="noopener">https://segmentfault.com/a/1190000014610688</a></p>
+<h2 id="Nginx配置"><a href="#Nginx配置" class="headerlink" title="Nginx配置"></a>Nginx配置</h2><p>配置文件位置：<code>/etc/nginx/nginx.conf</code><br>
         
           <p class="article-more-link">
-            <a href="/2018/how-i-understand-restful-api.html#more">阅读全文</a>
+            <a href="/2018/nginx-and-php-config.html#more">阅读全文</a>
           </p>
         
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.liluoao.com/2018/how-i-understand-restful-api.html" data-id="cjhpyimt6004ds0mj1o9h7byr" class="article-share-link">分享</a>
+      <a data-url="http://www.liluoao.com/2018/nginx-and-php-config.html" data-id="cjhr4auxt001x3omjg9yk1zyq" class="article-share-link">分享</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/restful/">restful</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux/">linux</a></li></ul>
 
     </footer>
   </div>
@@ -138,12 +107,16 @@
 
 
   
-    <article id="post-排列组合" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-Apache的SSL配置" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2018/permutation-and-combination-question.html" class="article-date">
-  <time datetime="2018-04-07T06:35:58.000Z" itemprop="datePublished">2018-04-07</time>
+    <a href="/2018/apache-ssl-config.html" class="article-date">
+  <time datetime="2018-03-05T07:15:45.000Z" itemprop="datePublished">2018-03-05</time>
 </a>
     
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/linux/">linux</a>
+  </div>
+
   </div>
   <div class="article-inner">
     
@@ -152,7 +125,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2018/permutation-and-combination-question.html">一道排列组合题</a>
+      <a class="article-title" href="/2018/apache-ssl-config.html">Apache的SSL配置</a>
     </h1>
   
 
@@ -160,348 +133,272 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p><code>1 2 3 4 5 6 7 8 9 = 110</code></p>
-<p>为使等式成立，在数字间填入加号或减号或不填，求出所有可能组合</p>
-<p>示例：</p>
-<p>输入：</p>
-<pre><code>[1 2 3 4 5 6 7 8 9]
-</code></pre><p>输出：</p>
-<pre><code>12 + 34 + 56 + 7 - 8 + 9
-</code></pre>
-        
-          <p class="article-more-link">
-            <a href="/2018/permutation-and-combination-question.html#more">阅读全文</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://www.liluoao.com/2018/permutation-and-combination-question.html" data-id="cjhpyimt6004fs0mj5bs1cjv7" class="article-share-link">分享</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/algorithm/">algorithm</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-PHP的设计模式之行为模式（三）" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/php-behavioral-design-patterns-part3.html" class="article-date">
-  <time datetime="2018-04-06T07:27:18.000Z" itemprop="datePublished">2018-04-06</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/php-behavioral-design-patterns-part3.html">PHP的设计模式之行为模式（三）</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>原文链接：<a href="https://www.imooc.com/article/17848" target="_blank" rel="noopener">https://www.imooc.com/article/17848</a></p>
-<h2 id="Behavioral-Patterns（行为模式）"><a href="#Behavioral-Patterns（行为模式）" class="headerlink" title="Behavioral Patterns（行为模式）"></a>Behavioral Patterns（行为模式）</h2><h4 id="Mediator（中介者模式）"><a href="#Mediator（中介者模式）" class="headerlink" title="Mediator（中介者模式）"></a>Mediator（中介者模式）</h4><p>用一个中介对象来封装一系列的对象交互，中介者使各对象不需要显式地相互引用，从而使其耦合松散，而且可以独立地改变它们之间的交互。中介者模式又称为调停者模式，它是一种对象行为型模式。</p>
-<p>为什么需要中介者模式</p>
-<ol>
-<li><p>中介者模式可以使对象之间的关系数量急剧减少。</p>
-</li>
-<li><p>中转作用（结构性）：通过中介者提供的中转作用，各个同事对象就不再需要显式引用其他同事，当需要和其他同事进行通信时，通过中介者即可。该中转作用属于中介者在结构上的支持。</p>
-</li>
-<li><p>协调作用（行为性）：中介者可以更进一步的对同事之间的关系进行封装，同事可以一致地和中介者进行交互，而不需要指明中介者需要具体怎么做，中介者根据封装在自身内部的协调逻辑，对同事的请求进行进一步处理，将同事成员之间的关系行为进行分离和封装。该协调作用属于中介者在行为上的支持。</p>
-</li>
-</ol>
-<p>中介者模式的思想在现实生活中也很常见，比如说交换机。没有交换机存在的时代，每个电话之间都需要电话线连接才能进行通话。如果一个台电话要和其它100台电话通话，那么它就必须要有100条电话线与其它100个电话连接。</p>
-<p>后来为了解决这种麻烦，交换机出现了。每个电话只需连入交换机，通话时。只需构建一条电话-交换机-电话的链路，就可以进行通话。所以现在我们的电话理论上可以同世界上任何一台电话通话，但是只需一条电话线。当然现在用电话的人少了，但是手机呀，计算机网络的实现也是在传统通信网的设计上进行演进的。</p>
-<p>其实交换机对应的就是中介者模式的中介者，而电话机就是中介者中的同事。下面，就让我们用代码来实现这个思想。<br>
-        
-          <p class="article-more-link">
-            <a href="/2018/php-behavioral-design-patterns-part3.html#more">阅读全文</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://www.liluoao.com/2018/php-behavioral-design-patterns-part3.html" data-id="cjhpyimsb002ps0mj7jlb8s0l" class="article-share-link">分享</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/design-patterns/">design-patterns</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-PHP的设计模式之行为模式（二）" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/php-behavioral-design-patterns-part2.html" class="article-date">
-  <time datetime="2018-04-05T06:52:10.000Z" itemprop="datePublished">2018-04-05</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/php-behavioral-design-patterns-part2.html">PHP的设计模式之行为模式（二）</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>原文链接：<a href="https://www.imooc.com/article/17844" target="_blank" rel="noopener">https://www.imooc.com/article/17844</a></p>
-<h2 id="Behavioral-Patterns（行为模式）"><a href="#Behavioral-Patterns（行为模式）" class="headerlink" title="Behavioral Patterns（行为模式）"></a>Behavioral Patterns（行为模式）</h2><h4 id="Command（命令模式）"><a href="#Command（命令模式）" class="headerlink" title="Command（命令模式）"></a>Command（命令模式）</h4><p>将一个请求封装为一个对象，从而使我们可用不同的请求对客户进行参数化；对请求排队或者记录请求日志，以及支持可撤销的操作。命令模式是一种对象行为型模式，其别名为动作(<code>Action</code>)模式或事务(<code>Transaction</code>)模式。</p>
-<p>为什么需要命令模式</p>
-<ol>
-<li><p>使用命令模式，能够让请求发送者与请求接收者消除彼此之间的耦合，让对象之间的调用关系更加灵活。</p>
-</li>
-<li><p>使用命令模式可以比较容易地设计一个命令队列和宏命令（组合命令），而且新的命令可以很容易地加入系统</p>
-</li>
-</ol>
-<p>有关命令模式的一个经典的例子，就是电视机与遥控器。有这样的对应关系：电视机是请求的接收者，遥控器是请求的发送者。遥控器上有一些按钮，不同的按钮对应电视机的不同操作。这些按钮就是对应的具体命令类。抽象命令角色由一个命令接口来扮演，有三个具体的命令类实现了抽象命令接口，这三个具体命令类分别代表三种操作：打开电视机、关闭电视机和切换频道。<br>
-        
-          <p class="article-more-link">
-            <a href="/2018/php-behavioral-design-patterns-part2.html#more">阅读全文</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://www.liluoao.com/2018/php-behavioral-design-patterns-part2.html" data-id="cjhpyimrw002ks0mjohmimeyt" class="article-share-link">分享</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/design-patterns/">design-patterns</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-PHP的设计模式之行为模式" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/php-behavioral-design-patterns-part1.html" class="article-date">
-  <time datetime="2018-04-04T03:06:21.000Z" itemprop="datePublished">2018-04-04</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/php-behavioral-design-patterns-part1.html">PHP的设计模式之行为模式</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>原文链接：<a href="https://www.imooc.com/article/17840" target="_blank" rel="noopener">https://www.imooc.com/article/17840</a></p>
-<h2 id="Behavioral-Patterns（行为模式）"><a href="#Behavioral-Patterns（行为模式）" class="headerlink" title="Behavioral Patterns（行为模式）"></a>Behavioral Patterns（行为模式）</h2><h4 id="Iterator（迭代模式）"><a href="#Iterator（迭代模式）" class="headerlink" title="Iterator（迭代模式）"></a>Iterator（迭代模式）</h4><p>迭代器模式可帮组构造特定的对象，那些对象能够提供单一的标准接口循环或迭代任何类型的可计数数据。</p>
-<p>为什么需要迭代模式</p>
-<ol>
-<li><p>我们想要向遍历数组那样，遍历对象，或是遍历一个容器。</p>
-</li>
-<li><p>迭代器模式可以隐藏遍历元素所需的操作。</p>
-</li>
-</ol>
-<p>现在我们把一个类当做一个容器，让其实现Iterator接口，使其可以被遍历。<br>
-        
-          <p class="article-more-link">
-            <a href="/2018/php-behavioral-design-patterns-part1.html#more">阅读全文</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://www.liluoao.com/2018/php-behavioral-design-patterns-part1.html" data-id="cjhpyimrw002gs0mjg00if6qa" class="article-share-link">分享</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/design-patterns/">design-patterns</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-PHP的设计模式之架构模式（二）" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/php-structural-design-patterns-part2.html" class="article-date">
-  <time datetime="2018-04-03T08:03:46.000Z" itemprop="datePublished">2018-04-03</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/php-structural-design-patterns-part2.html">PHP的设计模式之架构模式（二）</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>原文链接：<a href="https://www.imooc.com/article/17276" target="_blank" rel="noopener">https://www.imooc.com/article/17276</a></p>
-<h2 id="Structural-Patterns（架构模式）"><a href="#Structural-Patterns（架构模式）" class="headerlink" title="Structural Patterns（架构模式）"></a>Structural Patterns（架构模式）</h2><h4 id="Bridge（桥接模式）"><a href="#Bridge（桥接模式）" class="headerlink" title="Bridge（桥接模式）"></a>Bridge（桥接模式）</h4><p>将抽象与实现解耦，使得两者可以独立的变化</p>
-<p>为什么需要桥接模式</p>
-<ol>
-<li><p>如果一个系统需要在构件的抽象化角色和具体化角色之间增加更多的灵活性，避免在两个层次之间建立静态的继承联系，通过桥接模式可以使它们在抽象层建立一个关联关系。</p>
-</li>
-<li><p>抽象化角色和实现化角色可以以继承的方式独立扩展而互不影响，在程序运行时可以动态将一个抽象化子类的对象和一个实现化子类的对象进行组合，即系统需要对抽象化角色和实现化角色进行动态耦合。</p>
-</li>
-<li><p>虽然在系统中使用继承是没有问题的，但是由于抽象化角色和具体化角色需要独立变化，设计要求需要独立管理这两者。对于那些不希望使用继承或因为多层次继承导致系统类的个数急剧增加的系统，桥接模式尤为适用。</p>
-</li>
-</ol>
-<p>例子：<br>如果我现在是小米公司的雷布斯，小米公司旗下有小米mix和小米note手机，现在有一个底层的语音输出软件，由于小米mix的全面屏设计没有开孔使用了骨传导，所以和小米note有些不同。那么我们要如何来设计这个输出功能呢？<br>
-        
-          <p class="article-more-link">
-            <a href="/2018/php-structural-design-patterns-part2.html#more">阅读全文</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://www.liluoao.com/2018/php-structural-design-patterns-part2.html" data-id="cjhpyimrw0029s0mjxtkqwjsx" class="article-share-link">分享</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/design-patterns/">design-patterns</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-PHP的设计模式之架构模式" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/php-structural-design-patterns-part1.html" class="article-date">
-  <time datetime="2018-04-02T01:23:38.000Z" itemprop="datePublished">2018-04-02</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/php-structural-design-patterns-part1.html">PHP的设计模式之架构模式</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>原文链接：<a href="https://www.imooc.com/article/17118" target="_blank" rel="noopener">https://www.imooc.com/article/17118</a></p>
-<h2 id="Structural-Patterns（架构模式）"><a href="#Structural-Patterns（架构模式）" class="headerlink" title="Structural Patterns（架构模式）"></a>Structural Patterns（架构模式）</h2><h4 id="Facade（门面模式）"><a href="#Facade（门面模式）" class="headerlink" title="Facade（门面模式）"></a>Facade（门面模式）</h4><p>为子系统中的一组接口提供一个一致的界面，定义一个高层接口，这个接口使得这一子系统更加容易使用。</p>
-<p>为什么需要外观模式</p>
-<ol>
-<li><p>开发阶段，子系统越来越复杂，增加外观模式提供一个简单的调用接口。</p>
-</li>
-<li><p>维护一个大型遗留系统的时候，可能这个系统已经非常难以维护和扩展，但又包含非常重要的功能，为其开发一个外观类，以便新系统与其交互。</p>
-</li>
-<li><p>外观模式可以隐藏来自调用对象的复杂性。</p>
-</li>
-</ol>
-<p>例子：<br>比如说我们去医院就诊，医院有医生员工系统，有药品系统，有患者资料系统。但是我们只是在前台挂个号，就能在其他系统里都看到我们。外观系统就差不多这样。</p>
-<p>如果没有挂号系统的话，我们就先要去医生系统通知一下医生，<br>然后去患者系统取一下患者资料交给医生，再去药品系统登记一下，最后到药房领药。<br>
-        
-          <p class="article-more-link">
-            <a href="/2018/php-structural-design-patterns-part1.html#more">阅读全文</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://www.liluoao.com/2018/php-structural-design-patterns-part1.html" data-id="cjhpyimrw002ds0mjnq8z268i" class="article-share-link">分享</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/design-patterns/">design-patterns</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-PHP的设计模式之创建模式" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/php-creational-design-patterns.html" class="article-date">
-  <time datetime="2018-04-01T14:50:50.000Z" itemprop="datePublished">2018-04-01</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/php-creational-design-patterns.html">PHP的设计模式之创建模式</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>原文链接：<a href="https://www.devbattles.com/en/sand/post-1306-Design+Patterns+in+PHP" target="_blank" rel="noopener">https://www.devbattles.com/en/sand/post-1306-Design+Patterns+in+PHP</a></p>
-<p>什么是设计模式，设计模式并不是一种用来解释的模式，它们并不是像链表那样的常见的数据结构，也不是某种特殊的应用或者框架设计。事实上，设计模式的解释如下：</p>
-<blockquote>
-<p>descriptions of communicating objects and classes that are customized to solve a general design problem in a particular context.</p>
-</blockquote>
-<p>另一方面，设计模式提供了一种广泛的可重用的方式来解决我们日常编程中常常遇见的问题。设计模式并不一定就是一个类库或者第三方框架，它们更多的表现为一种思想并且广泛地应用在系统中。它们也表现为一种模式或者模板，可以在多个不同的场景下用于解决问题。设计模式可以用于加速开发，并且将很多大的想法或者设计以一种简单地方式实现。当然，虽然设计模式在开发中很有作用，但是千万要避免在不适当的场景误用它们。</p>
-<p>目前常见的设计模式主要有23种，根据使用目标的不同可以分为以下三大类：</p>
+        <h2 id="安装Apache"><a href="#安装Apache" class="headerlink" title="安装Apache"></a>安装Apache</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install apache2</span><br></pre></td></tr></table></figure>
 <ul>
-<li>创建模式（Creational Patterns）：用于创建对象从而将某个对象从实现中解耦合。</li>
-<li>架构模式（Structural Patterns）：用于在不同的对象之间构造大的对象结构。</li>
-<li>行为模式（Behavioral Patterns）：用于在不同的对象之间管理算法、关系以及职责。
+<li>默认站点目录在 <code>/var/www/html/</code></li>
+<li>配置文件在 <code>/etc/apache2/</code></li>
+<li>日志在 <code>/var/log/apache2/</code></li>
+<li>启动脚本是 <code>/etc/init.d/apache2</code></li>
+</ul>
+<h2 id="安装OpenSSL"><a href="#安装OpenSSL" class="headerlink" title="安装OpenSSL"></a>安装OpenSSL</h2><p>Ubuntu默认已经安装了OPENSSL，如果没安装，<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install openssl</span><br></pre></td></tr></table></figure></p>
+<h2 id="开启SSL模块"><a href="#开启SSL模块" class="headerlink" title="开启SSL模块"></a>开启SSL模块</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo a2enmod ssl</span><br></pre></td></tr></table></figure>
+<p>这条命令相当于<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo ln -s /etc/apache2/mods-available/ssl.load /etc/apache2/mods-enabled</span><br><span class="line">sudo ln -s /etc/apache2/mods-available/ssl.conf /etc/apache2/mods-enabled</span><br></pre></td></tr></table></figure></p>
+<p>如果没有a2enmod指令，也可直接在apache2.conf中设置SSL模块加载：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">LoadModule ssl_module /usr/lib/apache2/modules/mod_ssl.so</span><br></pre></td></tr></table></figure></p>
         
           <p class="article-more-link">
-            <a href="/2018/php-creational-design-patterns.html#more">阅读全文</a>
+            <a href="/2018/apache-ssl-config.html#more">阅读全文</a>
           </p>
         
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.liluoao.com/2018/php-creational-design-patterns.html" data-id="cjhpyimrw0026s0mjo80ju3zt" class="article-share-link">分享</a>
+      <a data-url="http://www.liluoao.com/2018/apache-ssl-config.html" data-id="cjhr4auvn00023omjc0vvil6z" class="article-share-link">分享</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/design-patterns/">design-patterns</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/apache/">apache</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux/">linux</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Linux搭建环境" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/linux-environment.html" class="article-date">
+  <time datetime="2018-03-04T01:09:04.000Z" itemprop="datePublished">2018-03-04</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/linux/">linux</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/linux-environment.html">Linux搭建环境</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>在阿里云买了个低配云服务器，系统为Ubuntu 16.4，需要安装基础环境。</p>
+<h2 id="更新源"><a href="#更新源" class="headerlink" title="更新源"></a>更新源</h2><p>阿里云已配置好了源，直接更新就行。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get update</span><br></pre></td></tr></table></figure></p>
+<h2 id="安装Nginx-Apache"><a href="#安装Nginx-Apache" class="headerlink" title="安装Nginx/Apache"></a>安装Nginx/Apache</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install nginx</span><br><span class="line">sudo apt-get install apache2</span><br></pre></td></tr></table></figure>
+<p>根据提示符，输入“Y” 确认后，开始安装软件，直至软件安装完成。</p>
+<p>软件安装完成后，通过通过 <code>dpkg -L</code> 列出软件包所在的目录，及该软件包中的所有文件：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dpkg -L nginx</span><br></pre></td></tr></table></figure></p>
+        
+          <p class="article-more-link">
+            <a href="/2018/linux-environment.html#more">阅读全文</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.liluoao.com/2018/linux-environment.html" data-id="cjhr4auxt001q3omjsilzweht" class="article-share-link">分享</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux/">linux</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-使用Postman-Interceptor" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/use-postman-interceptor.html" class="article-date">
+  <time datetime="2018-02-20T06:57:06.000Z" itemprop="datePublished">2018-02-20</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/use-postman-interceptor.html">使用Postman-Interceptor</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>目前的Postman插件如果想正常使用，必须安装 <code>Postman Interceptor</code> 插件，这样才能直接使用Chrome浏览器的<strong>cookie</strong>等信息，否则Postman是无法完成老版本的功能的。</p>
+<p>如果可以科学上网，直接在软件商店下载。<br>没有条件的可以去：</p>
+<ul>
+<li><a href="https://www.crx4chrome.com/extensions/" target="_blank" rel="noopener">https://www.crx4chrome.com/extensions/</a></li>
+<li><a href="http://chromecj.com/" target="_blank" rel="noopener">http://chromecj.com/</a></li>
+<li><a href="http://www.cnplugins.com/" target="_blank" rel="noopener">http://www.cnplugins.com/</a></li>
+</ul>
+<ol>
+<li>将下载好的文件扩展名改为 <code>.zip</code> 并解压</li>
+<li>把解压后文件夹中的 <code>_metadata</code> 的下划线去掉</li>
+<li>打开Chrome，打开<code>扩展程序</code>，勾选<code>开发者模式</code>，选择<code>加载已经解压的扩展程序</code></li>
+</ol>
+<p>除了 <code>Postman Interceptor</code> ，好用的插件还有 <code>Vue.js devtools</code> 、<code>WEB前端助手(FeHelper)</code>等。</p>
+<p>参考网址：<br>1.<a href="http://www.jianshu.com/p/a4223bab1e73" title="离线安装Chrome Postman 和Postman Interceptor 插件" target="_blank" rel="noopener">离线安装Chrome Postman 和Postman Interceptor 插件</a><br>2.<a href="http://www.jianshu.com/p/12ca04c61fc6" title="如何在谷歌浏览器中安装.crx扩展名的离线Chrome插件" target="_blank" rel="noopener">如何在谷歌浏览器中安装.crx扩展名的离线Chrome插件</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.liluoao.com/2018/use-postman-interceptor.html" data-id="cjhr4auyo003j3omjpze34e7w" class="article-share-link">分享</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/tool/">tool</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-统一代码风格-editorConfig" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/how-to-use-editorconfig.html" class="article-date">
+  <time datetime="2018-02-19T03:10:22.000Z" itemprop="datePublished">2018-02-19</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/how-to-use-editorconfig.html">统一代码风格-editorConfig</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><a href="http://editorconfig.org/" target="_blank" rel="noopener">EditorConfig官网</a><br>在团队开发中，统一的代码格式是必要的。但是不同开发人员的代码风格不同，代码编辑工具的默认格式也不相同，这样就造成代码的 differ。而 <strong>editorConfig</strong> 可以帮助开发人员在不同的编辑器和 IDE 中定义和维护一致的编码风格。本文将详细介绍统一代码风格工具 <strong>editorConfig</strong></p>
+<h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p><strong>editorConfig</strong> 不是什么软件，而是一个名称为 <code>.editorconfig</code> 的自定义文件。该文件用来定义项目的编码规范，编辑器的行为会与 <code>.editorconfig</code> 文件中定义的一致，并且其优先级比编辑器自身的设置要高，这在多人合作开发项目时十分有用而且必要</p>
+<p>有些编辑器默认支持 <strong>editorConfig</strong>，如 <strong>webstorm</strong> ；而有些编辑器则需要安装 <strong>editorConfig</strong> 插件，如<strong>ATOM</strong>、<strong>Sublime</strong>、<strong>VS Code</strong> 等</p>
+<p>当打开一个文件时，<strong>EditorConfig</strong> 插件会在打开文件的目录和其每一级父目录查找 <code>.editorconfig</code> 文件，直到有一个配置文件 <code>root=true</code></p>
+<p><strong>EditorConfig</strong> 的配置文件是从上往下读取的并且最近的 <strong>EditorConfig</strong> 配置文件会被最先读取. 匹配 <strong>EditorConfig</strong> 配置文件中的配置项会按照读取顺序被应用, 所以最近的配置文件中的配置项拥有优先权</p>
+<p>如果 <code>.editorconfig</code> 文件没有进行某些配置，则使用编辑器默认的设置<br>
+        
+          <p class="article-more-link">
+            <a href="/2018/how-to-use-editorconfig.html#more">阅读全文</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.liluoao.com/2018/how-to-use-editorconfig.html" data-id="cjhr4auzj004r3omj0yyup0j2" class="article-share-link">分享</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/tool/">tool</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-PHP运行模式" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/php-sapi.html" class="article-date">
+  <time datetime="2018-02-18T03:46:52.000Z" itemprop="datePublished">2018-02-18</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/php-sapi.html">PHP的运行模式（转）</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>原文链接：<a href="https://segmentfault.com/a/1190000014547406" target="_blank" rel="noopener">https://segmentfault.com/a/1190000014547406</a></p>
+<h2 id="SAPI"><a href="#SAPI" class="headerlink" title="SAPI"></a>SAPI</h2><p>这里所说的 PHP 运行模式， 其实指的是 SAPI （Server Application Programming Interface，服务端应用编程端口 ）。SAPI 为 PHP 提供了一个和外部通信的接口， PHP 就是通过这个接口来与其它的应用进行数据交互的。针对不同的应用场景， PHP 也提供了多种不同的 SAPI ，常见的有：apache、apache2filter、apache2handler、cli、cgi、embed 、fast-cgi、isapi 等等。 </p>
+<blockquote>
+<p><code>php_sapi_name()</code> — 返回 web 服务器和 PHP 之间的接口类型。可能返回的值包括了 aolserver、apache、 apache2filter、apache2handler、 caudium、cgi （直到 PHP 5.3）, cgi-fcgi、cli、 cli-server、 continuity、embed、fpm-fcgi、 isapi、litespeed、 milter、nsapi、 phttpd、pi3web、roxen、 thttpd、tux 和 webjames。</p>
+</blockquote>
+<p>目前 PHP 内置的很多 SAPI 实现都已不再维护或者变的有些非主流了，PHP 社区目前正在考虑将一些 SAPI 移出代码库。 社区对很多功能的考虑是除非真的非常必要，或者某些功能已近非常通用了，否则就在 PECL 库中。</p>
+<p>接下来会对其中五个比较常见的运行模式进行说明。<br>
+        
+          <p class="article-more-link">
+            <a href="/2018/php-sapi.html#more">阅读全文</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.liluoao.com/2018/php-sapi.html" data-id="cjhr4auy8002r3omjeio03xqv" class="article-share-link">分享</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/sapi/">sapi</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-整理的一些PHP方法" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/some-php-functions.html" class="article-date">
+  <time datetime="2018-02-17T03:32:25.000Z" itemprop="datePublished">2018-02-17</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/some-php-functions.html">整理的一些PHP方法</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="获取文件扩展名"><a href="#获取文件扩展名" class="headerlink" title="获取文件扩展名"></a>获取文件扩展名</h2><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getFileExtension1</span><span class="params">($fileName)</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> strrchr($fileName, <span class="string">'.'</span>);</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getFileExtension2</span><span class="params">($fileName)</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> substr($fileName, strrpos($fileName, <span class="string">'.'</span>));</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getFileExtension3</span><span class="params">($fileName)</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> array_pop(explode(<span class="string">'.'</span>, $fileName));</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getFileExtension4</span><span class="params">($fileName)</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    $p = pathinfo($fileName);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> $p[<span class="string">'extension'</span>];</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getFileExtension5</span><span class="params">($fileName)</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> strrev(substr(strrev($fileName), <span class="number">0</span>, strpos(strrev($fileName), <span class="string">'.'</span>)));</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        
+          <p class="article-more-link">
+            <a href="/2018/some-php-functions.html#more">阅读全文</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.liluoao.com/2018/some-php-functions.html" data-id="cjhr4auzj004k3omjpjabeq1e" class="article-share-link">分享</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/php/">php</a></li></ul>
 
     </footer>
   </div>
@@ -513,7 +410,7 @@
     <article id="post-SOLID" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2018/php-solid.html" class="article-date">
-  <time datetime="2018-03-29T07:50:39.000Z" itemprop="datePublished">2018-03-29</time>
+  <time datetime="2018-02-16T07:50:39.000Z" itemprop="datePublished">2018-02-16</time>
 </a>
     
   </div>
@@ -549,7 +446,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.liluoao.com/2018/php-solid.html" data-id="cjhpyimsb002ss0mjm24y7pcl" class="article-share-link">分享</a>
+      <a data-url="http://www.liluoao.com/2018/php-solid.html" data-id="cjhr4auyo002w3omjhw04cvcw" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/clean-code/">clean-code</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/solid/">solid</a></li></ul>
@@ -561,10 +458,10 @@
 
 
   
-    <article id="post-求数组中非负元素组合的最大字符串" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-危险的target-blank与opener" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2018/find-the-maximum-string-of-elements-in-the-array.html" class="article-date">
-  <time datetime="2018-03-28T02:17:58.000Z" itemprop="datePublished">2018-03-28</time>
+    <a href="/2018/target-blank-should-be-used-with-caution.html" class="article-date">
+  <time datetime="2018-02-15T08:16:35.000Z" itemprop="datePublished">2018-02-15</time>
 </a>
     
   </div>
@@ -575,7 +472,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2018/find-the-maximum-string-of-elements-in-the-array.html">求数组中元素组合的最大字符串（转）</a>
+      <a class="article-title" href="/2018/target-blank-should-be-used-with-caution.html">危险的target=&#34;_blank&#34;与&#34;opener&#34;</a>
     </h1>
   
 
@@ -583,26 +480,72 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>原文链接：<a href="https://www.fanhaobai.com/2017/04/array-form-max-string.html" target="_blank" rel="noopener">https://www.fanhaobai.com/2017/04/array-form-max-string.html</a></p>
-<h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p>给定一个所有元素为非负的数组，将数组中的所有数字连接起来，求最大的那个数。</p>
-<p>示例：<br>输入：</p>
-<pre><code>4,94,9,14,1
-</code></pre><p>输出：</p>
-<pre><code>9944141
-</code></pre><p>输入：</p>
-<pre><code>121,89,98,15,4,3451
-</code></pre><p>输出：</p>
-<pre><code>98894345115121
-</code></pre>
+        <p>原文链接：<a href="https://juejin.im/post/5a9f8425f265da239a5f57f8" target="_blank" rel="noopener">https://juejin.im/post/5a9f8425f265da239a5f57f8</a></p>
+<blockquote>
+<p>在网页中使用链接时，如果想要让浏览器自动在新的标签页打开指定的地址，通常的做法就是在 a 标签上添加 target等于”_blank” 属性。<br>然而，就是这个属性，为钓鱼攻击者带来了可乘之机。</p>
+</blockquote>
+<h2 id="起源"><a href="#起源" class="headerlink" title="起源"></a>起源</h2><h4 id="parent-与-opener"><a href="#parent-与-opener" class="headerlink" title="parent 与 opener"></a><code>parent</code> 与 <code>opener</code></h4><p>在说 <code>opener</code> 之前，可以先聊聊 <code>&lt;iframe&gt;</code> 中的 <code>parent</code>。</p>
+<p>我们知道，在 <code>&lt;iframe&gt;</code> 中提供了一个用于父子页面交互的对象，叫做 <code>window.parent</code>，我们可以通过 <code>window.parent</code> 对象来从框架中的页面访问父级页面的 <code>window</code>。</p>
+<p><code>opener</code> 与 <code>parent</code> 一样，只不过是用于 <code>&lt;a target=&quot;_blank&quot;&gt;</code> 在新标签页打开的页面的。通过 <code>&lt;a target=&quot;_blank&quot;&gt;</code> 打开的页面，可以直接使用 <code>window.opener</code> 来访问来源页面的 <code>window</code> 对象。<br>
         
           <p class="article-more-link">
-            <a href="/2018/find-the-maximum-string-of-elements-in-the-array.html#more">阅读全文</a>
+            <a href="/2018/target-blank-should-be-used-with-caution.html#more">阅读全文</a>
           </p>
         
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.liluoao.com/2018/find-the-maximum-string-of-elements-in-the-array.html" data-id="cjhpyimt6004ks0mjdib7xdsc" class="article-share-link">分享</a>
+      <a data-url="http://www.liluoao.com/2018/target-blank-should-be-used-with-caution.html" data-id="cjhr4auz4003v3omjg6552y5a" class="article-share-link">分享</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-排列组合" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/permutation-and-combination-question.html" class="article-date">
+  <time datetime="2018-02-14T06:35:58.000Z" itemprop="datePublished">2018-02-14</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/permutation-and-combination-question.html">一道排列组合题</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p><code>1 2 3 4 5 6 7 8 9 = 110</code></p>
+<p>为使等式成立，在数字间填入加号或减号或不填，求出所有可能组合</p>
+<p>示例：</p>
+<p>输入：</p>
+<pre><code>[1 2 3 4 5 6 7 8 9]
+</code></pre><p>输出：</p>
+<pre><code>12 + 34 + 56 + 7 - 8 + 9
+</code></pre>
+        
+          <p class="article-more-link">
+            <a href="/2018/permutation-and-combination-question.html#more">阅读全文</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.liluoao.com/2018/permutation-and-combination-question.html" data-id="cjhr4auzj004h3omjvyqlm17r" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/algorithm/">algorithm</a></li></ul>
@@ -652,23 +595,23 @@
           </li>
         
           <li>
-            <a href="/2018/laravel-route.html">Laravel的Route</a>
-          </li>
-        
-          <li>
             <a href="/2018/laravel-middleware.html">Laravel的Middleware</a>
           </li>
         
           <li>
-            <a href="/2018/some-php-functions.html">整理的一些PHP方法</a>
+            <a href="/2018/laravel-custom-validation-rules.html">Laravel自定义验证规则</a>
           </li>
         
           <li>
-            <a href="/2018/how-to-use-editorconfig.html">统一代码风格-editorConfig</a>
+            <a href="/2018/laravel-form-validation.html">Laravel的表单验证</a>
           </li>
         
           <li>
-            <a href="/2018/rewrite-http-to-https.html">重定向HTTP到HTTPS</a>
+            <a href="/2018/laravel-localization.html">Laravel的本地化</a>
+          </li>
+        
+          <li>
+            <a href="/2018/laravel-helpers.html">Laravel的辅助函数</a>
           </li>
         
       </ul>
@@ -690,7 +633,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">五月 2018</a><span class="archive-list-count">33</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a><span class="archive-list-count">15</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a><span class="archive-list-count">15</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">五月 2018</a><span class="archive-list-count">20</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a><span class="archive-list-count">15</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">二月 2018</a><span class="archive-list-count">20</span></li></ul>
     </div>
   </div>
 

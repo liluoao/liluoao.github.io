@@ -103,7 +103,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.liluoao.com/2018/laravel-use-dingo-api.html" data-id="cjhpyimqm0008s0mjjooe8no8" class="article-share-link">分享</a>
+      <a data-url="http://www.liluoao.com/2018/laravel-use-dingo-api.html" data-id="cjhr4auwi00083omj9qgbkz00" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/laravel/">laravel</a></li></ul>
@@ -118,7 +118,7 @@
     <article id="post-Laravel使用PHPUnit" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2018/laravel-phpunit.html" class="article-date">
-  <time datetime="2018-05-28T02:44:40.000Z" itemprop="datePublished">2018-05-28</time>
+  <time datetime="2018-05-27T02:44:40.000Z" itemprop="datePublished">2018-05-27</time>
 </a>
     
   <div class="article-category">
@@ -153,7 +153,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.liluoao.com/2018/laravel-phpunit.html" data-id="cjhpyimqm000cs0mj1qywb7qs" class="article-share-link">分享</a>
+      <a data-url="http://www.liluoao.com/2018/laravel-phpunit.html" data-id="cjhr4auwy000b3omjehernimi" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/laravel/">laravel</a></li></ul>
@@ -203,7 +203,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.liluoao.com/2018/restful-api-in-laravel-56-using-jwt-authentication.html" data-id="cjhpyimqm000bs0mjik1dnteh" class="article-share-link">分享</a>
+      <a data-url="http://www.liluoao.com/2018/restful-api-in-laravel-56-using-jwt-authentication.html" data-id="cjhr4auwi00073omj6okcb5w0" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/laravel/">laravel</a></li></ul>
@@ -253,7 +253,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.liluoao.com/2018/laravel-policy.html" data-id="cjhpyimr1000xs0mj27ed5znw" class="article-share-link">分享</a>
+      <a data-url="http://www.liluoao.com/2018/laravel-policy.html" data-id="cjhr4auxd000v3omj6xnpsaea" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/laravel/">laravel</a></li></ul>
@@ -313,52 +313,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.liluoao.com/2018/create-rest-api-in-laravel-with-authentication-using-passport.html" data-id="cjhpyimr1000ts0mjrajla4lb" class="article-share-link">分享</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/laravel/">laravel</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-Laravel的Route" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/laravel-route.html" class="article-date">
-  <time datetime="2018-05-23T02:55:55.000Z" itemprop="datePublished">2018-05-23</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/laravel/">laravel</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/laravel-route.html">Laravel的Route</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h4 id="新增路由文件"><a href="#新增路由文件" class="headerlink" title="新增路由文件"></a>新增路由文件</h4><p>在 <code>app/Providers/RouteServiceProvider</code> 中：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">protected</span> <span class="function"><span class="keyword">function</span> <span class="title">mapWebRoutes</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    Route::group([</span><br><span class="line">        <span class="string">'middleware'</span> =&gt; <span class="string">'web'</span>, </span><br><span class="line">        <span class="string">'namespace'</span> =&gt; <span class="keyword">$this</span>-&gt;namespace</span><br><span class="line">        ], <span class="function"><span class="keyword">function</span> <span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">require</span> base_path(<span class="string">'routes/web.php'</span>);</span><br><span class="line">        <span class="keyword">require</span> base_path(<span class="string">'routes/test.php'</span>);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h4 id="分配其他中间件组"><a href="#分配其他中间件组" class="headerlink" title="分配其他中间件组"></a>分配其他中间件组</h4><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">protected</span> <span class="function"><span class="keyword">function</span> <span class="title">mapApiRoutes</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    Route::prefix(<span class="string">'api'</span>)</span><br><span class="line">         -&gt;middleware(<span class="string">'restful-api'</span>)</span><br><span class="line">         -&gt;namespace(<span class="keyword">$this</span>-&gt;namespace)</span><br><span class="line">         -&gt;group(base_path(<span class="string">'routes/api.php'</span>));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="当前路由"><a href="#当前路由" class="headerlink" title="当前路由"></a>当前路由</h4><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$route = Route::current();</span><br><span class="line"></span><br><span class="line">$name = Route::currentRouteName();</span><br><span class="line"></span><br><span class="line">$action = Route::currentRouteAction();</span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://www.liluoao.com/2018/laravel-route.html" data-id="cjhpyimrg0012s0mj8cvzui5g" class="article-share-link">分享</a>
+      <a data-url="http://www.liluoao.com/2018/create-rest-api-in-laravel-with-authentication-using-passport.html" data-id="cjhr4auxd000z3omjrj9403rt" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/laravel/">laravel</a></li></ul>
@@ -406,7 +361,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.liluoao.com/2018/laravel-middleware.html" data-id="cjhpyimr1000qs0mje8m16deq" class="article-share-link">分享</a>
+      <a data-url="http://www.liluoao.com/2018/laravel-middleware.html" data-id="cjhr4auxd000s3omjn4uev99y" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/laravel/">laravel</a></li></ul>
@@ -418,12 +373,16 @@
 
 
   
-    <article id="post-整理的一些PHP方法" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-Laravel自定义验证规则" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2018/some-php-functions.html" class="article-date">
-  <time datetime="2018-05-19T03:32:25.000Z" itemprop="datePublished">2018-05-19</time>
+    <a href="/2018/laravel-custom-validation-rules.html" class="article-date">
+  <time datetime="2018-05-16T03:24:10.000Z" itemprop="datePublished">2018-05-16</time>
 </a>
     
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/laravel/">laravel</a>
+  </div>
+
   </div>
   <div class="article-inner">
     
@@ -432,7 +391,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2018/some-php-functions.html">整理的一些PHP方法</a>
+      <a class="article-title" href="/2018/laravel-custom-validation-rules.html">Laravel自定义验证规则</a>
     </h1>
   
 
@@ -440,19 +399,21 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="获取文件扩展名"><a href="#获取文件扩展名" class="headerlink" title="获取文件扩展名"></a>获取文件扩展名</h2><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getFileExtension1</span><span class="params">($fileName)</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> strrchr($fileName, <span class="string">'.'</span>);</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getFileExtension2</span><span class="params">($fileName)</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> substr($fileName, strrpos($fileName, <span class="string">'.'</span>));</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getFileExtension3</span><span class="params">($fileName)</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> array_pop(explode(<span class="string">'.'</span>, $fileName));</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getFileExtension4</span><span class="params">($fileName)</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    $p = pathinfo($fileName);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> $p[<span class="string">'extension'</span>];</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getFileExtension5</span><span class="params">($fileName)</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> strrev(substr(strrev($fileName), <span class="number">0</span>, strpos(strrev($fileName), <span class="string">'.'</span>)));</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        <h2 id="创建规则"><a href="#创建规则" class="headerlink" title="创建规则"></a>创建规则</h2><p>使用Artisan命令创建规则：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">php artisan make:rule CheckPhoneNumber</span><br></pre></td></tr></table></figure></p>
+<p>规则放在 <code>app/Rules</code> 目录</p>
+<p>规则对象包括 <code>passes()</code> 和 <code>message()</code> 方法<br><code>passes</code> 方法接收属性值和名称，并根据属性值是否符合规则而返回 <code>true</code> 或者 <code>false</code>：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">passes</span><span class="params">($attribute, $value)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> preg_match(<span class="string">'/^1[3456789]\d&#123;9&#125;$/'</span>,$value);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">message</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">'电话号码格式不正确'</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
         
           <p class="article-more-link">
-            <a href="/2018/some-php-functions.html#more">阅读全文</a>
+            <a href="/2018/laravel-custom-validation-rules.html#more">阅读全文</a>
           </p>
         
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.liluoao.com/2018/some-php-functions.html" data-id="cjhpyimt6004is0mjxfjpk9f0" class="article-share-link">分享</a>
+      <a data-url="http://www.liluoao.com/2018/laravel-custom-validation-rules.html" data-id="cjhr4auxt001n3omjawiwo6nv" class="article-share-link">分享</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/php/">php</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/laravel/">laravel</a></li></ul>
 
     </footer>
   </div>
@@ -461,12 +422,16 @@
 
 
   
-    <article id="post-统一代码风格-editorConfig" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-Laravel的表单验证" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2018/how-to-use-editorconfig.html" class="article-date">
-  <time datetime="2018-05-18T03:10:22.000Z" itemprop="datePublished">2018-05-18</time>
+    <a href="/2018/laravel-form-validation.html" class="article-date">
+  <time datetime="2018-05-15T06:48:33.000Z" itemprop="datePublished">2018-05-15</time>
 </a>
     
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/laravel/">laravel</a>
+  </div>
+
   </div>
   <div class="article-inner">
     
@@ -475,7 +440,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2018/how-to-use-editorconfig.html">统一代码风格-editorConfig</a>
+      <a class="article-title" href="/2018/laravel-form-validation.html">Laravel的表单验证</a>
     </h1>
   
 
@@ -483,24 +448,24 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><a href="http://editorconfig.org/" target="_blank" rel="noopener">EditorConfig官网</a><br>在团队开发中，统一的代码格式是必要的。但是不同开发人员的代码风格不同，代码编辑工具的默认格式也不相同，这样就造成代码的 differ。而 <strong>editorConfig</strong> 可以帮助开发人员在不同的编辑器和 IDE 中定义和维护一致的编码风格。本文将详细介绍统一代码风格工具 <strong>editorConfig</strong></p>
-<h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p><strong>editorConfig</strong> 不是什么软件，而是一个名称为 <code>.editorconfig</code> 的自定义文件。该文件用来定义项目的编码规范，编辑器的行为会与 <code>.editorconfig</code> 文件中定义的一致，并且其优先级比编辑器自身的设置要高，这在多人合作开发项目时十分有用而且必要</p>
-<p>有些编辑器默认支持 <strong>editorConfig</strong>，如 <strong>webstorm</strong> ；而有些编辑器则需要安装 <strong>editorConfig</strong> 插件，如<strong>ATOM</strong>、<strong>Sublime</strong>、<strong>VS Code</strong> 等</p>
-<p>当打开一个文件时，<strong>EditorConfig</strong> 插件会在打开文件的目录和其每一级父目录查找 <code>.editorconfig</code> 文件，直到有一个配置文件 <code>root=true</code></p>
-<p><strong>EditorConfig</strong> 的配置文件是从上往下读取的并且最近的 <strong>EditorConfig</strong> 配置文件会被最先读取. 匹配 <strong>EditorConfig</strong> 配置文件中的配置项会按照读取顺序被应用, 所以最近的配置文件中的配置项拥有优先权</p>
-<p>如果 <code>.editorconfig</code> 文件没有进行某些配置，则使用编辑器默认的设置<br>
+        <h4 id="修改密码"><a href="#修改密码" class="headerlink" title="修改密码"></a>修改密码</h4><p><img src="/images/form-request1.png" alt=""></p>
+<ul>
+<li>Confirmed<br>如果要验证的字段是 <code>password</code>，输入中必须存在匹配的 <code>password_confirmation</code> 字段。</li>
+<li>Different<br>验证的字段值必须与参数字段的值不同。<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">rules</span><span class="params">()</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> [</span><br><span class="line">        <span class="comment">//...</span></span><br><span class="line">        <span class="string">'password'</span> =&gt; <span class="string">'bail|required|string|between:8,20|confirmed|different:old_password'</span>,</span><br><span class="line">        <span class="string">'password_confirmation'</span> =&gt; <span class="string">'bail|required|string|between:8,20'</span></span><br><span class="line">        <span class="comment">//...</span></span><br><span class="line">    ];</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
         
           <p class="article-more-link">
-            <a href="/2018/how-to-use-editorconfig.html#more">阅读全文</a>
+            <a href="/2018/laravel-form-validation.html#more">阅读全文</a>
           </p>
         
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.liluoao.com/2018/how-to-use-editorconfig.html" data-id="cjhpyimtm004os0mjxkj71qvv" class="article-share-link">分享</a>
+      <a data-url="http://www.liluoao.com/2018/laravel-form-validation.html" data-id="cjhr4auxt001g3omjhldg0lld" class="article-share-link">分享</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/tool/">tool</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/laravel/">laravel</a></li></ul>
 
     </footer>
   </div>
@@ -509,12 +474,16 @@
 
 
   
-    <article id="post-重定向HTTP到HTTPS" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-Laravel的本地化" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2018/rewrite-http-to-https.html" class="article-date">
-  <time datetime="2018-05-17T06:29:41.000Z" itemprop="datePublished">2018-05-17</time>
+    <a href="/2018/laravel-localization.html" class="article-date">
+  <time datetime="2018-05-12T07:11:14.000Z" itemprop="datePublished">2018-05-12</time>
 </a>
     
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/laravel/">laravel</a>
+  </div>
+
   </div>
   <div class="article-inner">
     
@@ -523,7 +492,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2018/rewrite-http-to-https.html">重定向HTTP到HTTPS</a>
+      <a class="article-title" href="/2018/laravel-localization.html">Laravel的本地化</a>
     </h1>
   
 
@@ -531,20 +500,66 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>使用阿里云提供的证书：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">etc</span><br><span class="line">    apache2</span><br><span class="line">        cert</span><br><span class="line">            xxx.key</span><br><span class="line">            xxx.pem</span><br><span class="line">            chain.pem</span><br><span class="line">            public.pem</span><br></pre></td></tr></table></figure></p>
-<p>编辑 <code>default-ssl.conf</code><br>
+        <p><strong>i18n</strong>（其来源是英文单词 internationalization 的首末字符i和n，18为中间的字符数）是“国际化”的简称。<br>在资讯领域，国际化(i18n)指让产品（出版物，软件，硬件等）无需做大的改变就能够适应不同的语言和地区的需要。对程序来说，在不修改内部代码的情况下，能根据不同语言及地区显示相应的界面。<br>对应的有<strong>l10n</strong>（ localization 的缩写形式，意即在 l 和 n 之间有 10 个字母），本意是指软件的“本地化”。</p>
         
           <p class="article-more-link">
-            <a href="/2018/rewrite-http-to-https.html#more">阅读全文</a>
+            <a href="/2018/laravel-localization.html#more">阅读全文</a>
           </p>
         
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.liluoao.com/2018/rewrite-http-to-https.html" data-id="cjhpyimtm004vs0mjrn5bprnf" class="article-share-link">分享</a>
+      <a data-url="http://www.liluoao.com/2018/laravel-localization.html" data-id="cjhr4auxd001d3omjsdznxvy4" class="article-share-link">分享</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/apache/">apache</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux/">linux</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/laravel/">laravel</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Laravel的辅助函数" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/laravel-helpers.html" class="article-date">
+  <time datetime="2018-05-11T06:27:09.000Z" itemprop="datePublished">2018-05-11</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/laravel/">laravel</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/laravel-helpers.html">Laravel的辅助函数</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>在 <code>composer.json</code> 中定义了自动加载的文件：<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    //...</span><br><span class="line">    "autoload": &#123;</span><br><span class="line">        //...</span><br><span class="line">        "files": [</span><br><span class="line">            <span class="string">"app/helpers.php"</span></span><br><span class="line">        ]</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>在 <code>app/helpers.php</code> 中自定义辅助函数：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (!function_exists(<span class="string">'changeShowMoneyFormat'</span>)) &#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 转换金额格式</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> float $money 金额</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> int $length 保留位数</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> string|bool 转换结果</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">changeShowMoneyFormat</span><span class="params">($money, $length = <span class="number">2</span>)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> sprintf(<span class="string">"%.&#123;$length&#125;f"</span>, $money);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>Packagist包：<a href="https://packagist.org/packages/sebastiaanluca/laravel-helpers" target="_blank" rel="noopener">https://packagist.org/packages/sebastiaanluca/laravel-helpers</a></p>
+<p>常用函数如：<code>dd()</code> <code>app()</code> <code>env()</code> <code>config()</code> <code>public_path()</code> <code>array_pluck()</code></p>
+<p>更多Laravel辅助函数见<a href="https://laravel.com/docs/5.6/helpers" target="_blank" rel="noopener">Helpers</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.liluoao.com/2018/laravel-helpers.html" data-id="cjhr4auxt001j3omjfa21zn8n" class="article-share-link">分享</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/laravel/">laravel</a></li></ul>
 
     </footer>
   </div>
@@ -591,23 +606,23 @@
           </li>
         
           <li>
-            <a href="/2018/laravel-route.html">Laravel的Route</a>
-          </li>
-        
-          <li>
             <a href="/2018/laravel-middleware.html">Laravel的Middleware</a>
           </li>
         
           <li>
-            <a href="/2018/some-php-functions.html">整理的一些PHP方法</a>
+            <a href="/2018/laravel-custom-validation-rules.html">Laravel自定义验证规则</a>
           </li>
         
           <li>
-            <a href="/2018/how-to-use-editorconfig.html">统一代码风格-editorConfig</a>
+            <a href="/2018/laravel-form-validation.html">Laravel的表单验证</a>
           </li>
         
           <li>
-            <a href="/2018/rewrite-http-to-https.html">重定向HTTP到HTTPS</a>
+            <a href="/2018/laravel-localization.html">Laravel的本地化</a>
+          </li>
+        
+          <li>
+            <a href="/2018/laravel-helpers.html">Laravel的辅助函数</a>
           </li>
         
       </ul>
@@ -629,7 +644,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">五月 2018</a><span class="archive-list-count">33</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a><span class="archive-list-count">15</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a><span class="archive-list-count">15</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">五月 2018</a><span class="archive-list-count">20</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a><span class="archive-list-count">15</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">二月 2018</a><span class="archive-list-count">20</span></li></ul>
     </div>
   </div>
 
