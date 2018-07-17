@@ -5,18 +5,20 @@
   
 
   
-  <title>归档: 2018/2 | To be a Web Artisan</title>
+  <title>编译PHP扩展 | To be a Web Artisan</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="李罗奥的博客">
-<meta property="og:type" content="website">
-<meta property="og:title" content="To be a Web Artisan">
-<meta property="og:url" content="http://www.liluoao.com/archives/2018/02/index.html">
+  <meta name="description" content="在 Windows 下我们需要开启某个扩展，很容易。一般情况下，dll 文件都已经安静地躺在 extension 目录下，只等待你在 php.ini 里将它前面的 ; 去掉。 而在 Linux，你 cd 到 PHP 的 extensions 目录往往发现里面空空的。或许只有几个 so 文件落寞地待着。 这里以编译 fileinfo 扩展为例（注意这是 PHP 内置的扩展，如果你编译的是第三方扩展请">
+<meta name="keywords" content="linux,php">
+<meta property="og:type" content="article">
+<meta property="og:title" content="编译PHP扩展">
+<meta property="og:url" content="http://www.liluoao.com/2018/compile-php-extension.html">
 <meta property="og:site_name" content="To be a Web Artisan">
-<meta property="og:description" content="李罗奥的博客">
+<meta property="og:description" content="在 Windows 下我们需要开启某个扩展，很容易。一般情况下，dll 文件都已经安静地躺在 extension 目录下，只等待你在 php.ini 里将它前面的 ; 去掉。 而在 Linux，你 cd 到 PHP 的 extensions 目录往往发现里面空空的。或许只有几个 so 文件落寞地待着。 这里以编译 fileinfo 扩展为例（注意这是 PHP 内置的扩展，如果你编译的是第三方扩展请">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-07-17T07:06:06.669Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="To be a Web Artisan">
-<meta name="twitter:description" content="李罗奥的博客">
+<meta name="twitter:title" content="编译PHP扩展">
+<meta name="twitter:description" content="在 Windows 下我们需要开启某个扩展，很容易。一般情况下，dll 文件都已经安静地躺在 extension 目录下，只等待你在 php.ini 里将它前面的 ; 去掉。 而在 Linux，你 cd 到 PHP 的 extensions 目录往往发现里面空空的。或许只有几个 so 文件落寞地待着。 这里以编译 fileinfo 扩展为例（注意这是 PHP 内置的扩展，如果你编译的是第三方扩展请">
 <meta name="twitter:creator" content="@liluoao">
   
   
@@ -61,311 +63,65 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2018" class="archive-year">2018</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2018/use-postman-interceptor.html" class="archive-article-date">
-  <time datetime="2018-02-20T06:57:06.000Z" itemprop="datePublished">2月 20</time>
+        <section id="main"><article id="post-编译PHP扩展" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/compile-php-extension.html" class="article-date">
+  <time datetime="2018-07-17T06:52:19.000Z" itemprop="datePublished">2018-07-17</time>
 </a>
-      
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/use-postman-interceptor.html">使用Postman-Interceptor</a>
+    <h1 class="article-title" itemprop="name">
+      编译PHP扩展
     </h1>
   
 
-    </header>
-  </div>
-</article>
-  
+      </header>
     
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2018/how-to-use-editorconfig.html" class="archive-article-date">
-  <time datetime="2018-02-19T03:10:22.000Z" itemprop="datePublished">2月 19</time>
-</a>
+    <div class="article-entry" itemprop="articleBody">
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/how-to-use-editorconfig.html">统一代码风格-editorConfig</a>
-    </h1>
-  
+        <p>在 <strong>Windows</strong> 下我们需要开启某个扩展，很容易。一般情况下，<em>dll</em> 文件都已经安静地躺在 <em>extension</em> 目录下，只等待你在 <em>php.ini</em> 里将它前面的 <strong>;</strong> 去掉。</p>
+<p>而在 <strong>Linux</strong>，你 <em>cd</em> 到 PHP 的 <em>extensions</em> 目录往往发现里面空空的。或许只有几个 <em>so</em> 文件落寞地待着。</p>
+<p>这里以编译 <em>fileinfo</em> 扩展为例（注意这是 PHP 内置的扩展，如果你编译的是第三方扩展请自行到官网下载源码）</p>
+<h2 id="一、找到扩展包"><a href="#一、找到扩展包" class="headerlink" title="一、找到扩展包"></a>一、找到扩展包</h2><p>你需要到 PHP 源码包里寻找，希望源码包没被你删除。</p>
+<p><strong>cd</strong> 到 <code>php-7.x.x/ext/</code> 目录，你会发现里面有很多内置的扩展</p>
+<p>我们 <strong>cd</strong> 到 <em>fileinfo</em> 目录</p>
+<h2 id="二、编译"><a href="#二、编译" class="headerlink" title="二、编译"></a>二、编译</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">phpize</span><br><span class="line">./configure --with-php-config=/usr/local/php/bin/php-config</span><br><span class="line">make &amp;&amp; make install</span><br></pre></td></tr></table></figure>
+<p>上面的命令很好理解，首先是执行 <code>phpize</code>，它是用来安装php扩展的工具，如果你的系统无法识别，请使用完整路径。比如 <code>/usr/local/php/bin/phpize</code> 。这个工具会在当前目录下生成 <em>configure</em> 文件。</p>
+<p>接着就是编译的三板斧啦~其中 <code>with-php-config</code> 参数请按照你实际情况填写</p>
+<p>没有意外的话，经过上面的编译，你会在 <code>php/lib/php/extensions/</code>(在 <em>php.ini</em> 的 <em>extension_dir</em> 可找到)目录下找到生成的 <em>fileinfo.so</em> 文件</p>
+<h2 id="三、添加配置"><a href="#三、添加配置" class="headerlink" title="三、添加配置"></a>三、添加配置</h2><p>最后只需要在php.ini里把扩展添加进去就好了<br><figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">extension</span> = <span class="string">"fileinfo.so"</span></span><br></pre></td></tr></table></figure></p>
+<p>最后别忘了重启web服务器</p>
 
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2018/php-sapi.html" class="archive-article-date">
-  <time datetime="2018-02-18T03:46:52.000Z" itemprop="datePublished">2月 18</time>
-</a>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/php-sapi.html">PHP的运行模式（转）</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2018/some-php-functions.html" class="archive-article-date">
-  <time datetime="2018-02-17T03:32:25.000Z" itemprop="datePublished">2月 17</time>
-</a>
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.liluoao.com/2018/compile-php-extension.html" data-id="cjjpcuaj7004rw4mjccs49dc0" class="article-share-link">分享</a>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/some-php-functions.html">整理的一些PHP方法</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2018/php-solid.html" class="archive-article-date">
-  <time datetime="2018-02-16T07:50:39.000Z" itemprop="datePublished">2月 16</time>
-</a>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/php-solid.html">SOLID</a>
-    </h1>
-  
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux/">linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/php/">php</a></li></ul>
 
-    </header>
+    </footer>
   </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2018/laravel-use-dingo-api.html" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">Laravel使用DingoAPI</div>
+    </a>
+  
+</nav>
+
+  
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2018/target-blank-should-be-used-with-caution.html" class="archive-article-date">
-  <time datetime="2018-02-15T08:16:35.000Z" itemprop="datePublished">2月 15</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/target-blank-should-be-used-with-caution.html">危险的target=&#34;_blank&#34;与&#34;opener&#34;</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2018/permutation-and-combination-question.html" class="archive-article-date">
-  <time datetime="2018-02-14T06:35:58.000Z" itemprop="datePublished">2月 14</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/permutation-and-combination-question.html">一道排列组合题</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2018/find-the-maximum-string-of-elements-in-the-array.html" class="archive-article-date">
-  <time datetime="2018-02-13T02:17:58.000Z" itemprop="datePublished">2月 13</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/find-the-maximum-string-of-elements-in-the-array.html">求数组中元素组合的最大字符串（转）</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2018/pool-algorithm-question.html" class="archive-article-date">
-  <time datetime="2018-02-12T02:37:19.000Z" itemprop="datePublished">2月 12</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/pool-algorithm-question.html">蓄水池算法题（转）</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2018/mysql-optimize.html" class="archive-article-date">
-  <time datetime="2018-02-11T02:37:19.000Z" itemprop="datePublished">2月 11</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/mysql-optimize.html">MySQL优化那些事儿（转）</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2018/a-dependency-injection-example.html" class="archive-article-date">
-  <time datetime="2018-02-10T02:49:27.000Z" itemprop="datePublished">2月 10</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/a-dependency-injection-example.html">举例实现依赖注入（转）</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2018/what-is-jwt.html" class="archive-article-date">
-  <time datetime="2018-02-09T02:37:19.000Z" itemprop="datePublished">2月 9</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/what-is-jwt.html">什么是 JWT（转）</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2018/es6-promise.html" class="archive-article-date">
-  <time datetime="2018-02-08T07:51:13.000Z" itemprop="datePublished">2月 8</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/es6-promise.html">ES6的Promise（转）</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2018/how-to-refactor.html" class="archive-article-date">
-  <time datetime="2018-02-07T08:44:52.000Z" itemprop="datePublished">2月 7</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/how-to-refactor.html">如何重构代码（转）</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2018/analyze-some-array-function.html" class="archive-article-date">
-  <time datetime="2018-02-06T07:24:44.000Z" itemprop="datePublished">2月 6</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/analyze-some-array-function.html">部分数组函数分析</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-
-  <nav id="page-nav">
-    
-    <span class="page-number current">1</span><a class="page-number" href="/archives/2018/02/page/2/">2</a><a class="extend next" rel="next" href="/archives/2018/02/page/2/">下一页 &raquo;</a>
-  </nav>
 
 </section>
         
