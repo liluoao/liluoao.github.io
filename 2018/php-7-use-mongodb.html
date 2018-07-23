@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>PHP7操作MongoDB | To be a Web Artisan</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="前言使用 PHP+MongoDB 的用户很多，因为 MongoDB 对非结构化数据的存储很方便。在 PHP5 及以前，官方提供了两个扩展，Mongo 和 MongoDB，其中 Mongo 是对以 MongoClient 等几个核心类为基础的类群进行操作，封装得很方便，所以基本上都会选择 Mongo 扩展。 详情请见官方手册：http://php.net/manual/zh/book.mongo.p">
+<meta name="keywords" content="php,mongo">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PHP7操作MongoDB">
+<meta property="og:url" content="http://www.liluoao.com/2018/php-7-use-mongodb.html">
+<meta property="og:site_name" content="To be a Web Artisan">
+<meta property="og:description" content="前言使用 PHP+MongoDB 的用户很多，因为 MongoDB 对非结构化数据的存储很方便。在 PHP5 及以前，官方提供了两个扩展，Mongo 和 MongoDB，其中 Mongo 是对以 MongoClient 等几个核心类为基础的类群进行操作，封装得很方便，所以基本上都会选择 Mongo 扩展。 详情请见官方手册：http://php.net/manual/zh/book.mongo.p">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-07-23T11:47:56.670Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="PHP7操作MongoDB">
+<meta name="twitter:description" content="前言使用 PHP+MongoDB 的用户很多，因为 MongoDB 对非结构化数据的存储很方便。在 PHP5 及以前，官方提供了两个扩展，Mongo 和 MongoDB，其中 Mongo 是对以 MongoClient 等几个核心类为基础的类群进行操作，封装得很方便，所以基本上都会选择 Mongo 扩展。 详情请见官方手册：http://php.net/manual/zh/book.mongo.p">
+<meta name="twitter:creator" content="@liluoao">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">To be a Web Artisan</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">首页</a>
+        
+          <a class="main-nav-link" href="/archives">文章列表</a>
+        
+          <a class="main-nav-link" href="/categories/laravel">Laravel</a>
+        
+          <a class="main-nav-link" href="/categories/wechat">Wechat</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://www.liluoao.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-PHP7操作MongoDB" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/php-7-use-mongodb.html" class="article-date">
+  <time datetime="2018-07-23T10:54:24.000Z" itemprop="datePublished">2018-07-23</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      PHP7操作MongoDB
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>使用 <strong>PHP+MongoDB</strong> 的用户很多，因为 <strong>MongoDB</strong> 对非结构化数据的存储很方便。在 <strong>PHP5</strong> 及以前，官方提供了两个扩展，<code>Mongo</code> 和 <code>MongoDB</code>，其中 <code>Mongo</code> 是对以 <code>MongoClient</code> 等几个核心类为基础的类群进行操作，封装得很方便，所以基本上都会选择 <code>Mongo</code> 扩展。</p>
+<p>详情请见官方手册：<a href="http://php.net/manual/zh/book.mongo.php" target="_blank" rel="noopener">http://php.net/manual/zh/book.mongo.php</a></p>
+<p>但是随着 <strong>PHP5</strong> 升级到 <strong>PHP7</strong>，官方不再支持 <strong>Mongo</strong> 扩展，只支持 <strong>MongoDB</strong>，而 <strong>PHP7</strong> 的性能提升巨大，让人无法割舍，所以怎么把 <strong>Mongo</strong> 替换成 <strong>MongoDB</strong> 成为了一个亟待解决的问题。<strong>MongoDB</strong> 引入了命名空间，但是功能封装非常差，如果非要用原生的扩展，几乎意味着写原生的 <em>Mongo</em> 语句。这种想法很违背 <em>ORM</em> 简化 DB <code>IO</code> 操作带来的语法问题而专注逻辑优化的思路。</p>
+<p>详情也可参见官方手册：<a href="http://php.net/manual/zh/set.mongodb.php" target="_blank" rel="noopener">http://php.net/manual/zh/set.mongodb.php</a></p>
+<p>在这种情况之下，MongoDB 官方忍不住了，为了方便使用，增加市场占有率，推出了基于MongoDB 扩展的库：<a href="https://github.com/mongodb/mongo-php-library" target="_blank" rel="noopener">https://github.com/mongodb/mongo-php-library</a></p>
+<p>该库的详细文档见：<a href="https://docs.mongodb.com/php-library/current/reference/" target="_blank" rel="noopener">https://docs.mongodb.com/php-library/current/reference/</a></p>
+<h2 id="MongoDB-驱动"><a href="#MongoDB-驱动" class="headerlink" title="MongoDB 驱动"></a>MongoDB 驱动</h2><p>如果使用原驱动的话，大致语法如下：<br><a id="more"></a><br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">use</span> <span class="title">MongoDB</span>\<span class="title">Driver</span>\<span class="title">Manager</span>;</span><br><span class="line"><span class="keyword">use</span> <span class="title">MongoDB</span>\<span class="title">Driver</span>\<span class="title">BulkWrite</span>;</span><br><span class="line"><span class="keyword">use</span> <span class="title">MongoDB</span>\<span class="title">Driver</span>\<span class="title">WriteConcern</span>;</span><br><span class="line"><span class="keyword">use</span> <span class="title">MongoDB</span>\<span class="title">Driver</span>\<span class="title">Query</span>;</span><br><span class="line"><span class="keyword">use</span> <span class="title">MongoDB</span>\<span class="title">Driver</span>\<span class="title">Command</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MongoDb</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">protected</span> $mongodb;</span><br><span class="line">    <span class="keyword">protected</span> $database;</span><br><span class="line">    <span class="keyword">protected</span> $collection;</span><br><span class="line">    <span class="keyword">protected</span> $bulk;</span><br><span class="line">    <span class="keyword">protected</span> $writeConcern;</span><br><span class="line">    <span class="keyword">protected</span> $defaultConfig</span><br><span class="line">        = [</span><br><span class="line">            <span class="string">'hostname'</span> =&gt; <span class="string">'localhost'</span>,</span><br><span class="line">            <span class="string">'port'</span> =&gt; <span class="string">'27017'</span>,</span><br><span class="line">            <span class="string">'username'</span> =&gt; <span class="string">''</span>,</span><br><span class="line">            <span class="string">'password'</span> =&gt; <span class="string">''</span>,</span><br><span class="line">            <span class="string">'database'</span> =&gt; <span class="string">'test'</span></span><br><span class="line">        ];</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span><span class="params">($config)</span> </span>&#123;</span><br><span class="line">        $config = array_merge(<span class="keyword">$this</span>-&gt;defaultConfig, $config);</span><br><span class="line">        $mongoServer = <span class="string">"mongodb://"</span>;</span><br><span class="line">        <span class="keyword">if</span> ($config[<span class="string">'username'</span>]) &#123;</span><br><span class="line">            $mongoServer .= $config[<span class="string">'username'</span>] . <span class="string">':'</span> . $config[<span class="string">'password'</span>] . <span class="string">'@'</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        $mongoServer .= $config[<span class="string">'hostname'</span>];</span><br><span class="line">        <span class="keyword">if</span> ($config[<span class="string">'port'</span>]) &#123;</span><br><span class="line">            $mongoServer .= <span class="string">':'</span> . $config[<span class="string">'port'</span>];</span><br><span class="line">        &#125;</span><br><span class="line">        $mongoServer .= <span class="string">'/'</span> . $config[<span class="string">'database'</span>];</span><br><span class="line"></span><br><span class="line">        <span class="keyword">$this</span>-&gt;mongodb = <span class="keyword">new</span> Manager($mongoServer);</span><br><span class="line">        <span class="keyword">$this</span>-&gt;database = $config[<span class="string">'database'</span>];</span><br><span class="line">        <span class="keyword">$this</span>-&gt;collection = $config[<span class="string">'collection'</span>];</span><br><span class="line">        <span class="keyword">$this</span>-&gt;bulk = <span class="keyword">new</span> BulkWrite();</span><br><span class="line">        <span class="keyword">$this</span>-&gt;writeConcern = <span class="keyword">new</span> WriteConcern(WriteConcern::MAJORITY, <span class="number">100</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">query</span><span class="params">($where = [], $option = [])</span> </span>&#123;</span><br><span class="line">        $query = <span class="keyword">new</span> Query($where, $option);</span><br><span class="line">        $result = <span class="keyword">$this</span>-&gt;mongodb-&gt;executeQuery(<span class="string">"$this-&gt;database.$this-&gt;collection"</span>, $query);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> json_encode($result);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">count</span><span class="params">($where = [])</span> </span>&#123;</span><br><span class="line">        $command = <span class="keyword">new</span> Command([<span class="string">'count'</span> =&gt; <span class="keyword">$this</span>-&gt;collection, <span class="string">'query'</span> =&gt; $where]);</span><br><span class="line">        $result = <span class="keyword">$this</span>-&gt;mongodb-&gt;executeCommand(<span class="keyword">$this</span>-&gt;database, $command);</span><br><span class="line">        $res = $result-&gt;toArray();</span><br><span class="line">        $count = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">if</span> ($res) &#123;</span><br><span class="line">            $count = $res[<span class="number">0</span>]-&gt;n;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> $count;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">update</span><span class="params">($where = [], $update = [], $upsert = false)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">$this</span>-&gt;bulk-&gt;update($where, [<span class="string">'$set'</span> =&gt; $update], [<span class="string">'multi'</span> =&gt; <span class="keyword">true</span>, <span class="string">'upsert'</span> =&gt; $upsert]);</span><br><span class="line">        $result = <span class="keyword">$this</span>-&gt;mongodb-&gt;executeBulkWrite(<span class="string">"$this-&gt;database.$this-&gt;collection"</span>, <span class="keyword">$this</span>-&gt;bulk, <span class="keyword">$this</span>-&gt;writeConcern);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> $result-&gt;getModifiedCount();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">insert</span><span class="params">($data = [])</span> </span>&#123;</span><br><span class="line">        <span class="keyword">$this</span>-&gt;bulk-&gt;insert($data);</span><br><span class="line">        $result = <span class="keyword">$this</span>-&gt;mongodb-&gt;executeBulkWrite(<span class="string">"$this-&gt;database.$this-&gt;collection"</span>, <span class="keyword">$this</span>-&gt;bulk, <span class="keyword">$this</span>-&gt;writeConcern);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> $result-&gt;getInsertedCount();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">delete</span><span class="params">($where = [], $limit = <span class="number">1</span>)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">$this</span>-&gt;bulk-&gt;delete($where, [<span class="string">'limit'</span> =&gt; $limit]);</span><br><span class="line">        $result = <span class="keyword">$this</span>-&gt;mongodb-&gt;executeBulkWrite(<span class="string">"$this-&gt;database.$this-&gt;collection"</span>, <span class="keyword">$this</span>-&gt;bulk, <span class="keyword">$this</span>-&gt;writeConcern);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> $result-&gt;getDeletedCount();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>这样的语法和之前差异太大，改动不方便，换 <em>PHP MongoDB</em> 库</p>
+<h2 id="MongoDB-库"><a href="#MongoDB-库" class="headerlink" title="MongoDB 库"></a>MongoDB 库</h2><h4 id="1-连接"><a href="#1-连接" class="headerlink" title="1.连接"></a>1.连接</h4><ul>
+<li><p>原</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> MongoClient();</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>新</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> MongoDB\Client();</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h4 id="2-新增"><a href="#2-新增" class="headerlink" title="2.新增"></a>2.新增</h4><ul>
+<li><p>原</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$collention-&gt;insert($array, $options);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>新</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$resultOne = $collention-&gt;insertOne($array, $options);<span class="comment">//单</span></span><br><span class="line">$lastId = $resultOne-&gt;getInsertedId();</span><br><span class="line">$resultMany = $collention-&gt;insertMany($array, $options);<span class="comment">//多</span></span><br><span class="line">$count = $resultMany-&gt;getInsertedCount();</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h4 id="3-修改"><a href="#3-修改" class="headerlink" title="3.修改"></a>3.修改</h4><ul>
+<li><p>原</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$collention-&gt;update($condition, [</span><br><span class="line">    <span class="string">'$set'</span> =&gt; $values</span><br><span class="line">,[</span><br><span class="line">    <span class="string">'multiple'</span> =&gt; <span class="keyword">true</span><span class="comment">//多条，单条false</span></span><br><span class="line">]);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>新</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">$collection-&gt;updateOne(</span><br><span class="line">    [<span class="string">'state'</span> =&gt; <span class="string">'ny'</span>],</span><br><span class="line">    [<span class="string">'$set'</span> =&gt; [<span class="string">'country'</span> =&gt; <span class="string">'us'</span>]]</span><br><span class="line">);</span><br><span class="line">$updateResult = $collection-&gt;updateMany(</span><br><span class="line">    [<span class="string">'state'</span> =&gt; <span class="string">'ny'</span>],</span><br><span class="line">    [<span class="string">'$set'</span> =&gt; [<span class="string">'country'</span> =&gt; <span class="string">'us'</span>]]</span><br><span class="line">);</span><br><span class="line">$count = $updateResult-&gt;getModifiedCount();</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h4 id="4-查询"><a href="#4-查询" class="headerlink" title="4.查询"></a>4.查询</h4><ul>
+<li><p>原</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">$cursor = $collection-&gt;find($condition, [</span><br><span class="line">    <span class="string">'name'</span> =&gt; <span class="keyword">true</span><span class="comment">//指定字段</span></span><br><span class="line">]);</span><br><span class="line">$cursor-&gt;skip(<span class="number">5</span>);</span><br><span class="line">$cursor-&gt;limit(<span class="number">5</span>);</span><br><span class="line">$cursor-&gt;sort([</span><br><span class="line">    <span class="string">'time'</span> =&gt; <span class="number">-1</span></span><br><span class="line">]);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>新</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">$cursor = $collection-&gt;find($condition, [</span><br><span class="line">    <span class="string">'skip'</span> =&gt; <span class="number">5</span>,</span><br><span class="line">    <span class="string">'limit'</span> =&gt; <span class="number">5</span>,</span><br><span class="line">    <span class="string">'sort'</span> =&gt; [</span><br><span class="line">        <span class="string">'time'</span> =&gt; <span class="number">-1</span></span><br><span class="line">    ],<span class="comment">//排序</span></span><br><span class="line">    <span class="string">'projection'</span> =&gt; [</span><br><span class="line">        <span class="string">'name'</span> =&gt; <span class="number">1</span><span class="comment">//指定字段</span></span><br><span class="line">    ]</span><br><span class="line">]);</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h4 id="5-删除"><a href="#5-删除" class="headerlink" title="5.删除"></a>5.删除</h4><ul>
+<li><p>原</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$collention-&gt;remove($condition, [</span><br><span class="line">    <span class="string">'justOne'</span> =&gt; <span class="keyword">false</span><span class="comment">//删单条</span></span><br><span class="line">]);</span><br><span class="line">$collention-&gt;remove([]);<span class="comment">//删所有</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>新</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$result = $collention-&gt;deleteOne($condition, $options);</span><br><span class="line">$collention-&gt;deleteMany($condition, $options);</span><br><span class="line"></span><br><span class="line">$result-&gt;getDeletedCount();</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.liluoao.com/2018/php-7-use-mongodb.html" data-id="cjjy7jv6l00221omjz9mopxtl" class="article-share-link">分享</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mongo/">mongo</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/php/">php</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2018/compile-php-extension.html" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">编译PHP扩展</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2018/php-7-use-mongodb.html">PHP7操作MongoDB</a>
+          </li>
+        
+          <li>
+            <a href="/2018/compile-php-extension.html">编译PHP扩展</a>
+          </li>
+        
+          <li>
+            <a href="/2018/laravel-use-dingo-api.html">Laravel使用DingoAPI</a>
+          </li>
+        
+          <li>
+            <a href="/2018/laravel-phpunit.html">Laravel使用PHPUnit</a>
+          </li>
+        
+          <li>
+            <a href="/2018/restful-api-in-laravel-56-using-jwt-authentication.html">Laravel使用JWT-Authentication</a>
+          </li>
+        
+          <li>
+            <a href="/2018/laravel-policy.html">Laravel的Policy</a>
+          </li>
+        
+          <li>
+            <a href="/2018/create-rest-api-in-laravel-with-authentication-using-passport.html">Laravel的Passport-Authentication</a>
+          </li>
+        
+          <li>
+            <a href="/2018/laravel-middleware.html">Laravel的Middleware</a>
+          </li>
+        
+          <li>
+            <a href="/2018/laravel-custom-validation-rules.html">Laravel自定义验证规则</a>
+          </li>
+        
+          <li>
+            <a href="/2018/laravel-form-validation.html">Laravel的表单验证</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/algorithm/">algorithm</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/alipay/">alipay</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/apache/">apache</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ci/">ci</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/clean-code/">clean-code</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/composer/">composer</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/design-patterns/">design-patterns</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jwt/">jwt</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/laravel/">laravel</a><span class="tag-list-count">21</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mongo/">mongo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/">mysql</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/phalcon/">phalcon</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/php/">php</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/refactor/">refactor</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/restful/">restful</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sapi/">sapi</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/solid/">solid</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tool/">tool</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/wechat/">wechat</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/work-wechat/">work-wechat</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">七月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">五月 2018</a><span class="archive-list-count">20</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a><span class="archive-list-count">15</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">二月 2018</a><span class="archive-list-count">20</span></li></ul>
+    </div>
+  </div>
+
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      <div class="footer-about-me">
+        关于作者<br>
+        <a href="https://github.com/liluoao" target="_blank" title="GitHub">GitHub</a><br>
+        <a href="https://segmentfault.com/u/liluoao" target="_blank" title="SegmentFault">SegmentFault</a><br>
+        <a href="https://laravel-china.org/users/7144" target="_blank" title="LaravelChina">LaravelChina</a><br>
+        <a href="https://gitee.com/liluoao" target="_blank" title="码云">码云</a><br>
+        <a href="https://juejin.im/user/5a19374cf265da4332274600" target="_blank" title="掘金">掘金</a><br>
+        <a href="https://packagist.org/users/liluoao/" target="_blank" title="Packagist">Packagist</a><br>
+        <a href="https://www.gitbook.com/@liluoao" target="_blank" title="GitBook">GitBook</a>
+      </div>
+      <div style="width:300px;margin:0 auto; padding:20px 0;">
+        <div class="footer-copyright">
+          &copy; 2018 李罗奥
+          Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+        </div>
+        <a href="http://www.miitbeian.gov.cn/" target="_blank" style="display:inline-block;text-decoration:none;height:20px;line-height:20px;"><p style="float:left;height:20px;line-height:20px;margin: 0px 0px 0px 5px; color:#939393;">鄂ICP备18009105号</p></a>
+        <a target="_blank" href="https://www.beian.gov.cn/portal/registerSystemInfo?recordcode=42011102001595" style="display:inline-block;text-decoration:none;height:20px;line-height:20px;"><img src="/css/images/beian.png" style="float:left;"/><p style="float:left;height:20px;line-height:20px;margin: 0px 0px 0px 5px; color:#939393;">鄂公网安备 42011102001595号</p></a>
+      </div>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">首页</a>
+  
+    <a href="/archives" class="mobile-nav-link">文章列表</a>
+  
+    <a href="/categories/laravel" class="mobile-nav-link">Laravel</a>
+  
+    <a href="/categories/wechat" class="mobile-nav-link">Wechat</a>
+  
+</nav>
+    
+
+<script src="//lib.sinaapp.com/js/jquery/3.1.0/jquery-3.1.0.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>
