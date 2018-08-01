@@ -88,9 +88,10 @@
         <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>使用 <strong>PHP+MongoDB</strong> 的用户很多，因为 <strong>MongoDB</strong> 对非结构化数据的存储很方便。在 <strong>PHP5</strong> 及以前，官方提供了两个扩展，<code>Mongo</code> 和 <code>MongoDB</code>，其中 <code>Mongo</code> 是对以 <code>MongoClient</code> 等几个核心类为基础的类群进行操作，封装得很方便，所以基本上都会选择 <code>Mongo</code> 扩展。</p>
 <p>详情请见官方手册：<a href="http://php.net/manual/zh/book.mongo.php" target="_blank" rel="noopener">http://php.net/manual/zh/book.mongo.php</a></p>
 <p>但是随着 <strong>PHP5</strong> 升级到 <strong>PHP7</strong>，官方不再支持 <strong>Mongo</strong> 扩展，只支持 <strong>MongoDB</strong>，而 <strong>PHP7</strong> 的性能提升巨大，让人无法割舍，所以怎么把 <strong>Mongo</strong> 替换成 <strong>MongoDB</strong> 成为了一个亟待解决的问题。<strong>MongoDB</strong> 引入了命名空间，但是功能封装非常差，如果非要用原生的扩展，几乎意味着写原生的 <em>Mongo</em> 语句。这种想法很违背 <em>ORM</em> 简化 DB <code>IO</code> 操作带来的语法问题而专注逻辑优化的思路。</p>
-<p>详情也可参见官方手册：<a href="http://php.net/manual/zh/set.mongodb.php" target="_blank" rel="noopener">http://php.net/manual/zh/set.mongodb.php</a></p>
-<p>在这种情况之下，MongoDB 官方忍不住了，为了方便使用，增加市场占有率，推出了基于MongoDB 扩展的库：<a href="https://github.com/mongodb/mongo-php-library" target="_blank" rel="noopener">https://github.com/mongodb/mongo-php-library</a></p>
-<p>该库的详细文档见：<a href="https://docs.mongodb.com/php-library/current/reference/" target="_blank" rel="noopener">https://docs.mongodb.com/php-library/current/reference/</a></p>
+<p>详情也可参见官方手册：<a href="http://php.net/manual/zh/set.mongodb.php" target="_blank" rel="noopener">mongodb.php</a></p>
+<p>在这种情况之下，MongoDB 官方忍不住了，为了方便使用，增加市场占有率，推出了基于MongoDB 扩展的库：<a href="https://github.com/mongodb/mongo-php-library" target="_blank" rel="noopener">mongo-php-library</a></p>
+<p>该库的详细文档见：<a href="https://docs.mongodb.com/php-library/current/reference/" target="_blank" rel="noopener">docs.mongodb.com</a></p>
+<p>composer 下载：<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">composer require mongodb/mongodb</span><br></pre></td></tr></table></figure></p>
 <h2 id="MongoDB-驱动"><a href="#MongoDB-驱动" class="headerlink" title="MongoDB 驱动"></a>MongoDB 驱动</h2><p>如果使用原驱动的话，大致语法如下：<br>
         
           <p class="article-more-link">
@@ -100,7 +101,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.liluoao.com/2018/php-7-use-mongodb.html" data-id="cjjy7jv6l00221omjz9mopxtl" class="article-share-link">分享</a>
+      <a data-url="http://www.liluoao.com/2018/php-7-use-mongodb.html" data-id="cjkaq0pe20022h4mj09alpy9q" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mongo/">mongo</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/php/">php</a></li></ul>
@@ -150,7 +151,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.liluoao.com/2018/compile-php-extension.html" data-id="cjjy7jv8r005e1omjxi5n1hsy" class="article-share-link">分享</a>
+      <a data-url="http://www.liluoao.com/2018/compile-php-extension.html" data-id="cjkaq0pg9004uh4mj3zeu3chz" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux/">linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/php/">php</a></li></ul>
@@ -202,7 +203,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.liluoao.com/2018/laravel-use-dingo-api.html" data-id="cjjy7jv5a00081omjs63tkr2g" class="article-share-link">分享</a>
+      <a data-url="http://www.liluoao.com/2018/laravel-use-dingo-api.html" data-id="cjkaq0pcs0008h4mj0ueozs8z" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/laravel/">laravel</a></li></ul>
@@ -252,7 +253,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.liluoao.com/2018/laravel-phpunit.html" data-id="cjjy7jv5q000c1omjnglyx9qm" class="article-share-link">分享</a>
+      <a data-url="http://www.liluoao.com/2018/laravel-phpunit.html" data-id="cjkaq0pcs000ch4mjqb6hu86w" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/laravel/">laravel</a></li></ul>
@@ -302,7 +303,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.liluoao.com/2018/restful-api-in-laravel-56-using-jwt-authentication.html" data-id="cjjy7jv5q000b1omjmqk58d23" class="article-share-link">分享</a>
+      <a data-url="http://www.liluoao.com/2018/restful-api-in-laravel-56-using-jwt-authentication.html" data-id="cjkaq0pcs000bh4mjru3j5o1s" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/laravel/">laravel</a></li></ul>
@@ -352,7 +353,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.liluoao.com/2018/laravel-policy.html" data-id="cjjy7jv66000t1omj22sji3st" class="article-share-link">分享</a>
+      <a data-url="http://www.liluoao.com/2018/laravel-policy.html" data-id="cjkaq0pd8000xh4mj04delfl8" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/laravel/">laravel</a></li></ul>
@@ -412,7 +413,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.liluoao.com/2018/create-rest-api-in-laravel-with-authentication-using-passport.html" data-id="cjjy7jv66000x1omjwet5amr7" class="article-share-link">分享</a>
+      <a data-url="http://www.liluoao.com/2018/create-rest-api-in-laravel-with-authentication-using-passport.html" data-id="cjkaq0pd8000th4mj4dcnnm2a" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/laravel/">laravel</a></li></ul>
@@ -460,7 +461,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.liluoao.com/2018/laravel-middleware.html" data-id="cjjy7jv5q000q1omjpxuxyga6" class="article-share-link">分享</a>
+      <a data-url="http://www.liluoao.com/2018/laravel-middleware.html" data-id="cjkaq0pd8000qh4mjeud597tu" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/laravel/">laravel</a></li></ul>
@@ -509,7 +510,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.liluoao.com/2018/laravel-custom-validation-rules.html" data-id="cjjy7jv66001k1omjf0h7sqk5" class="article-share-link">分享</a>
+      <a data-url="http://www.liluoao.com/2018/laravel-custom-validation-rules.html" data-id="cjkaq0pdn001kh4mj8lkhbtkn" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/laravel/">laravel</a></li></ul>
@@ -561,7 +562,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.liluoao.com/2018/laravel-form-validation.html" data-id="cjjy7jv66001d1omjir929q63" class="article-share-link">分享</a>
+      <a data-url="http://www.liluoao.com/2018/laravel-form-validation.html" data-id="cjkaq0pdn001gh4mjtlwugoi8" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/laravel/">laravel</a></li></ul>
