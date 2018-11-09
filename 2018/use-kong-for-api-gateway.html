@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>使用Kong作为APIGateway | To be a Web Artisan</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="为什么需要 API 网关">
+<meta name="keywords" content="lua,nginx,kong,openresty">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用Kong作为APIGateway">
+<meta property="og:url" content="http://www.liluoao.com/2018/use-kong-for-api-gateway.html">
+<meta property="og:site_name" content="To be a Web Artisan">
+<meta property="og:description" content="为什么需要 API 网关">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://www.liluoao.com/images/different-of-kong.png">
+<meta property="og:image" content="http://www.liluoao.com/images/openresty_phases.png">
+<meta property="og:updated_time" content="2018-11-09T12:47:48.016Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="使用Kong作为APIGateway">
+<meta name="twitter:description" content="为什么需要 API 网关">
+<meta name="twitter:image" content="http://www.liluoao.com/images/different-of-kong.png">
+<meta name="twitter:creator" content="@liluoao">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">To be a Web Artisan</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">首页</a>
+        
+          <a class="main-nav-link" href="/archives">文章列表</a>
+        
+          <a class="main-nav-link" href="/categories/laravel">Laravel</a>
+        
+          <a class="main-nav-link" href="/categories/wechat">Wechat</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://www.liluoao.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-使用Kong作为APIGateway" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/use-kong-for-api-gateway.html" class="article-date">
+  <time datetime="2018-11-09T12:17:07.000Z" itemprop="datePublished">2018-11-09</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      使用Kong作为APIGateway
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="为什么需要-API-网关"><a href="#为什么需要-API-网关" class="headerlink" title="为什么需要 API 网关"></a>为什么需要 API 网关</h2><p><img src="/images/different-of-kong.png" alt=""></p>
+<a id="more"></a>
+<p>在微服务架构之下，服务被拆的非常零散，降低了耦合度的同时也给服务的统一管理增加了难度。如上图左所示，在旧的服务治理体系之下，鉴权，限流，日志，监控等通用功能需要在每个服务中单独实现，这使得系统维护者没有一个全局的视图来统一管理这些功能。API 网关致力于解决的问题便是为微服务纳管这些通用的功能，在此基础上提高系统的可扩展性。如右图所示，微服务搭配上 API 网关，可以使得服务本身更专注于自己的领域，很好地对服务调用者和服务提供者做了隔离。</p>
+<h2 id="为什么是-Kong"><a href="#为什么是-Kong" class="headerlink" title="为什么是 Kong"></a>为什么是 Kong</h2><p>Kong 的插件机制是其高可扩展性的根源，Kong 可以很方便地为路由和服务提供各种插件，网关所需要的基本特性，Kong 都如数支持：</p>
+<ul>
+<li>Cloud-Native 云原生: 与平台无关，Kong可以从裸机运行到Kubernetes</li>
+<li>Dynamic Load Balancing 动态路由：Kong 的背后是 OpenResty+Lua，所以从 OpenResty 继承了动态路由的特性</li>
+<li>Circuit-Breaker 熔断</li>
+<li>Health Checks 健康检查</li>
+<li>Logging 日志: 可以记录通过 Kong 的 HTTP，TCP，UDP 请求和响应。</li>
+<li>Security 鉴权: 权限控制，IP 黑白名单，同样是 OpenResty 的特性</li>
+<li>SSL: Setup a Specific SSL Certificate for an underlying service or API.</li>
+<li>监控: Kong 提供了实时监控插件</li>
+<li>认证: 如数支持 HMAC, JWT, Basic, OAuth2.0 等常用协议</li>
+<li>Rate-limiting限流：Block and throttle requests based on many variables. </li>
+<li>REST API: 通过 Rest API 进行配置管理，从繁琐的配置文件中解放</li>
+<li>可用性: 天然支持分布式</li>
+<li>高性能: 背靠非阻塞通信的 nginx，性能自不用说</li>
+<li>Plugins 插件机制: 提供众多开箱即用的插件，且有易于扩展的自定义插件接口，用户可以使用 Lua 自行开发插件</li>
+</ul>
+<p>上面这些特性中，反复提及了 Kong 背后的 OpenResty，实际上，使用 Kong 之后，Nginx 可以完全摒弃，Kong 的功能是 Nginx 的父集。</p>
+<h2 id="Kong-的架构"><a href="#Kong-的架构" class="headerlink" title="Kong 的架构"></a>Kong 的架构</h2><p>|– kong<br>  |– api [admin管理接口的代码]<br>    |– …<br>  |– cluster_events [集群事件的数据访问层代码]<br>    |– …<br>  |– cmd [kong命令行的代码]<br>    |– …<br>  |– dao [数据库访问层代码]<br>    |– …<br>  |– plugins [插件的代码]<br>    |– …<br>  |– templates [nginx配置文件模板]<br>    |– …<br>  |– tools [工具类代码]<br>    |– …<br>  |– vendor [这里提供了用于lua面向对象编程的基类]<br>    |– …<br>  |– cache.lua [缓存实现类，封装了mlcache]<br>  |– cluster_events.lua [集群事件同步代码]<br>  |– conf_loader.lua [配置加载]<br>  |– constants.lua [常量定义]<br>  |– init.lua [kong的入口，可以从这里开始阅读代码]<br>  |– meta.lua [定义版本号之类]<br>  |– singletons.lua [单例模式，存放公共对象]</p>
+<h2 id="执行入口"><a href="#执行入口" class="headerlink" title="执行入口"></a>执行入口</h2><p>在 <code>/templates/nginx_kong.lua</code> 中提供了一份示例配置：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line">init_by_lua_block &#123;</span><br><span class="line">    Kong = require &apos;kong&apos;</span><br><span class="line">    Kong.init()</span><br><span class="line">&#125;</span><br><span class="line">init_worker_by_lua_block &#123;</span><br><span class="line">    Kong.init_worker()</span><br><span class="line">&#125;</span><br><span class="line">upstream kong_upstream &#123;</span><br><span class="line">    server 0.0.0.1;</span><br><span class="line">    balancer_by_lua_block &#123;</span><br><span class="line">        Kong.balancer()</span><br><span class="line">    &#125;</span><br><span class="line">    keepalive 60;</span><br><span class="line">&#125;</span><br><span class="line">server &#123;</span><br><span class="line">    server_name kong;</span><br><span class="line">    listen 0.0.0.0:8000;</span><br><span class="line">    error_page 400 404 408 411 412 413 414 417 494 /kong_error_handler;</span><br><span class="line">    error_page 500 502 503 504 /kong_error_handler;</span><br><span class="line">    ssl_certificate_by_lua_block &#123;</span><br><span class="line">        Kong.ssl_certificate()</span><br><span class="line">    &#125;</span><br><span class="line">    location / &#123;     </span><br><span class="line">        rewrite_by_lua_block &#123;</span><br><span class="line">            kong.rewrite()</span><br><span class="line">        &#125;</span><br><span class="line">        access_by_lua_block &#123;</span><br><span class="line">            kong.access()</span><br><span class="line">        &#125;</span><br><span class="line">        header_filter_by_lua_block &#123;</span><br><span class="line">            kong.header_filter()</span><br><span class="line">        &#125;</span><br><span class="line">        body_filter_by_lua_block &#123;</span><br><span class="line">            kong.body_filter()</span><br><span class="line">        &#125;</span><br><span class="line">        log_by_lua_block &#123;</span><br><span class="line">            kong.log()</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    location = /kong_error_handler &#123;</span><br><span class="line">        content_by_lua_block &#123;</span><br><span class="line">            Kong.handle_error()</span><br><span class="line">        &#125;</span><br><span class="line">        header_filter_by_lua_block &#123;</span><br><span class="line">            Kong.header_filter()</span><br><span class="line">        &#125;</span><br><span class="line">        body_filter_by_lua_block &#123;</span><br><span class="line">            Kong.body_filter()</span><br><span class="line">        &#125;</span><br><span class="line">        log_by_lua_block &#123;</span><br><span class="line">            Kong.log()</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h4 id="ngx-lua-的-11-个用户可介入阶段"><a href="#ngx-lua-的-11-个用户可介入阶段" class="headerlink" title="ngx_lua 的 11 个用户可介入阶段"></a>ngx_lua 的 11 个用户可介入阶段</h4><p><img src="/images/openresty_phases.png" alt=""></p>
+<h4 id="Kong-入口"><a href="#Kong-入口" class="headerlink" title="Kong 入口"></a>Kong 入口</h4><p><code>init.lua</code><br><figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">local</span> Kong = &#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- init_by_lua_block</span></span><br><span class="line"><span class="comment">-- 用来完成耗时长的模块加载</span></span><br><span class="line"><span class="comment">-- 或者初始化一些全局常量</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Kong.init</span><span class="params">()</span></span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="comment">-- init_worker_by_lua_block</span></span><br><span class="line"><span class="comment">-- 用于定时拉取配置/数据（启动一些定时任务）</span></span><br><span class="line"><span class="comment">-- 有几个Nginx工作进程就有几个定时任务</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Kong.init_worker</span><span class="params">()</span></span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="comment">-- ssl_certificate_by_lua_block</span></span><br><span class="line"><span class="comment">-- 在Nginx和下游服务开始一个SSL握手时处理</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Kong.ssl_certificate</span><span class="params">()</span></span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="comment">-- balancer_by_lua_block</span></span><br><span class="line"><span class="comment">-- 上游服务器中的负载均衡器</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Kong.balancer</span><span class="params">()</span></span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="comment">-- rewrite_by_lua_block</span></span><br><span class="line"><span class="comment">-- 内部URL重写或者外部重定向</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Kong.rewrite</span><span class="params">()</span></span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="comment">-- access_by_lua_block</span></span><br><span class="line"><span class="comment">-- 访问控制</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Kong.access</span><span class="params">()</span></span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="comment">-- header_filter_by_lua_block</span></span><br><span class="line"><span class="comment">-- 设置响应头</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Kong.header_filter</span><span class="params">()</span></span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="comment">-- body_filter_by_lua_block</span></span><br><span class="line"><span class="comment">-- 对响应数据进行过滤</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Kong.body_filter</span><span class="params">()</span></span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="comment">-- log_by_lua_block</span></span><br><span class="line"><span class="comment">-- 使用Lua处理日志</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Kong.log</span><span class="params">()</span></span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="comment">-- content_by_lua_block</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Kong.handle_error</span><span class="params">()</span></span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="comment">-- content_by_lua_block</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Kong.serve_admin_api</span><span class="params">(options)</span></span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">return</span> Kong</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.liluoao.com/2018/use-kong-for-api-gateway.html" data-id="cjoa0pays003fxsmjuzuqwjqy" class="article-share-link">分享</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/kong/">kong</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/lua/">lua</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/nginx/">nginx</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/openresty/">openresty</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2018/a-php-developer-roadmap.html" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">PHP开发者的路线</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2018/use-kong-for-api-gateway.html">使用Kong作为APIGateway</a>
+          </li>
+        
+          <li>
+            <a href="/2018/a-php-developer-roadmap.html">PHP开发者的路线</a>
+          </li>
+        
+          <li>
+            <a href="/2018/php-7-use-mongodb.html">PHP7操作MongoDB</a>
+          </li>
+        
+          <li>
+            <a href="/2018/compile-php-extension.html">编译PHP扩展</a>
+          </li>
+        
+          <li>
+            <a href="/2018/laravel-use-dingo-api.html">Laravel使用DingoAPI</a>
+          </li>
+        
+          <li>
+            <a href="/2018/laravel-phpunit.html">Laravel使用PHPUnit</a>
+          </li>
+        
+          <li>
+            <a href="/2018/restful-api-in-laravel-56-using-jwt-authentication.html">Laravel使用JWT-Authentication</a>
+          </li>
+        
+          <li>
+            <a href="/2018/laravel-policy.html">Laravel的Policy</a>
+          </li>
+        
+          <li>
+            <a href="/2018/create-rest-api-in-laravel-with-authentication-using-passport.html">Laravel的Passport-Authentication</a>
+          </li>
+        
+          <li>
+            <a href="/2018/laravel-middleware.html">Laravel的Middleware</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/algorithm/">algorithm</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/alipay/">alipay</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/apache/">apache</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ci/">ci</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/clean-code/">clean-code</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/composer/">composer</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/design-patterns/">design-patterns</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jwt/">jwt</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/kong/">kong</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/laravel/">laravel</a><span class="tag-list-count">21</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/lua/">lua</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mongo/">mongo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/">mysql</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nginx/">nginx</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/openresty/">openresty</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/phalcon/">phalcon</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/php/">php</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/refactor/">refactor</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/restful/">restful</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sapi/">sapi</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/solid/">solid</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tool/">tool</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/wechat/">wechat</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/work-wechat/">work-wechat</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">十一月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">八月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">七月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">五月 2018</a><span class="archive-list-count">20</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a><span class="archive-list-count">15</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">二月 2018</a><span class="archive-list-count">20</span></li></ul>
+    </div>
+  </div>
+
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      <div class="footer-about-me">
+        关于作者<br>
+        <a href="https://github.com/liluoao" target="_blank" title="GitHub">GitHub</a><br>
+        <a href="https://segmentfault.com/u/liluoao" target="_blank" title="SegmentFault">SegmentFault</a><br>
+        <a href="https://laravel-china.org/users/7144" target="_blank" title="LaravelChina">LaravelChina</a><br>
+        <a href="https://gitee.com/liluoao" target="_blank" title="码云">码云</a><br>
+        <a href="https://juejin.im/user/5a19374cf265da4332274600" target="_blank" title="掘金">掘金</a><br>
+        <a href="https://packagist.org/users/liluoao/" target="_blank" title="Packagist">Packagist</a><br>
+        <a href="https://www.gitbook.com/@liluoao" target="_blank" title="GitBook">GitBook</a>
+      </div>
+      <div style="width:300px;margin:0 auto; padding:20px 0;">
+        <div class="footer-copyright">
+          &copy; 2018 李罗奥
+          Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+        </div>
+        <a href="http://www.miitbeian.gov.cn/" target="_blank" style="display:inline-block;text-decoration:none;height:20px;line-height:20px;"><p style="float:left;height:20px;line-height:20px;margin: 0px 0px 0px 5px; color:#939393;">鄂ICP备18009105号</p></a>
+        <a target="_blank" href="https://www.beian.gov.cn/portal/registerSystemInfo?recordcode=42011102001595" style="display:inline-block;text-decoration:none;height:20px;line-height:20px;"><img src="/css/images/beian.png" style="float:left;"/><p style="float:left;height:20px;line-height:20px;margin: 0px 0px 0px 5px; color:#939393;">鄂公网安备 42011102001595号</p></a>
+      </div>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">首页</a>
+  
+    <a href="/archives" class="mobile-nav-link">文章列表</a>
+  
+    <a href="/categories/laravel" class="mobile-nav-link">Laravel</a>
+  
+    <a href="/categories/wechat" class="mobile-nav-link">Wechat</a>
+  
+</nav>
+    
+
+<script src="//lib.sinaapp.com/js/jquery/3.1.0/jquery-3.1.0.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>
