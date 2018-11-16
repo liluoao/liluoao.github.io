@@ -94,7 +94,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.liluoao.com/2018/use-kong-for-api-gateway.html" data-id="cjoa0pays003fxsmjuzuqwjqy" class="article-share-link">分享</a>
+      <a data-url="http://www.liluoao.com/2018/use-kong-for-api-gateway.html" data-id="cjojlte55003fmgmj5sycrg2k" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/kong/">kong</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/lua/">lua</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/nginx/">nginx</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/openresty/">openresty</a></li></ul>
@@ -120,7 +120,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2018/a-php-developer-roadmap.html">PHP开发者的路线</a>
+      <a class="article-title" href="/2018/a-php-developer-roadmap.html">PHP新手开发者的路线</a>
     </h1>
   
 
@@ -130,22 +130,15 @@
       
         <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>在昨天（<code>2018-08-02</code>）已经发布了<a href="http://php.net/archive/2018.php#id2018-08-02-1" target="_blank" rel="noopener">PHP 7.3.0.beta1 Released</a></p>
 <p>如果你还没有使用 <strong>PHP7</strong> ，那真的很遗憾。2018年PHP开发者应该熟练使用 PHP7，并且知道版本更新内容。</p>
-<h2 id="使用Composer"><a href="#使用Composer" class="headerlink" title="使用Composer"></a>使用Composer</h2><p>如果你在想使用一个扩展包时，还在下载源码，并尝试修改命名空间来嵌入你的项目中，你应该改变了。<br>至少应该使用 <strong>Composer</strong> 进行依赖管理，可以看看我以前写的 <a href="/2018/use-composer.html">《使用Composer管理依赖》</a></p>
-<h2 id="使用Guzzle"><a href="#使用Guzzle" class="headerlink" title="使用Guzzle"></a>使用Guzzle</h2><p><strong>Guzzle</strong> 是一个 PHP 的 HTTP 客户端，用来轻而易举地发送请求，并集成到我们的 WEB 服务上。<br>它的优点有构建查询语句、<code>POST</code> 请求、分流上传下载大文件、使用 <code>HTTP cookies</code>、上传 <code>JSON</code> 数据等等。<br><a href="http://guzzle-cn.readthedocs.io/zh_CN/latest/index.html" target="_blank" rel="noopener">《Guzzle中文文档》</a></p>
-<h2 id="使用Carbon"><a href="#使用Carbon" class="headerlink" title="使用Carbon"></a>使用Carbon</h2><p><strong>Carbon</strong> 是一个继承于 PHP 的 <code>DateTime</code> 类的时间类，让用法更加人性化<br>可以让你在处理时间时事半功倍，可以看看我以前写的 <a href="/2018/use-carbon.html">《使用Carbon》</a></p>
-<h2 id="使用MongoDB"><a href="#使用MongoDB" class="headerlink" title="使用MongoDB"></a>使用MongoDB</h2><p><strong>MongoDB</strong> 是一个基于分布式文件存储的数据库。由 C++ 语言编写。旨在为 WEB 应用提供可扩展的高性能数据存储解决方案。<br><strong>MongoDB</strong> 是一个介于关系数据库和非关系数据库之间的产品，是非关系数据库当中功能最丰富，最像关系数据库的。<br>以 MongoDB 作为非关系型数据库的开始非常好，可以看 <a href="/2018/php-7-use-mongodb.html">《PHP7操作MongoDB》</a></p>
-<h2 id="使用Redis"><a href="#使用Redis" class="headerlink" title="使用Redis"></a>使用Redis</h2><p><strong>Redis</strong> 是一个可基于内存亦可持久化的日志型、<code>Key-Value</code> 数据库，常用于需求不高的队列</p>
-<h2 id="使用Docker"><a href="#使用Docker" class="headerlink" title="使用Docker"></a>使用Docker</h2><p><strong>Docker</strong> 是一个开源的引擎，可以轻松的为任何应用创建一个轻量级的、可移植的、自给自足的容器。<br><strong>Docker</strong> 入门可以从这里开始 <a href="http://www.docker.org.cn/book/docker/what-is-docker-16.html" target="_blank" rel="noopener">《什么是Docker》</a></p>
-<h2 id="持续集成"><a href="#持续集成" class="headerlink" title="持续集成"></a>持续集成</h2><p>持续集成（Continuous integration）是一种软件开发实践，即团队开发成员经常集成他们的工作，通过每个成员每天至少集成一次，也就意味着每天可能会发生多次集成。每次集成都通过自动化的构建（包括编译，发布，自动化测试）来验证，从而尽早地发现集成错误。<br>集成工具很多，流行的有 <strong><a href="https://jenkins.io/doc/" target="_blank" rel="noopener">Jenkins</a></strong>，<strong><a href="https://www.travis-ci.org/" target="_blank" rel="noopener">Travis CI</a></strong><br>我博客用的 <a href="/2018/use-appveyor-ci.html">《使用AppVeyor持续集成本博客》</a></p>
-<h2 id="代码风格"><a href="#代码风格" class="headerlink" title="代码风格"></a>代码风格</h2><p>良好的代码规范可以提高代码可读性，降低团队沟通维护成本。<br><strong>PSR</strong>（PHP Standard Recommendations）是 <a href="http://psr.phphub.org/" target="_blank" rel="noopener">PHP 标准规范</a> ，是 PHP 开发的实践标准。<br>其中 <a href="https://laravel-china.org/topics/2078/psr-specification-psr-1-basic-coding-specification" target="_blank" rel="noopener">PSR-1</a> 和 <a href="https://laravel-china.org/topics/2079/psr-specification-psr-2-coding-style-specification" target="_blank" rel="noopener">PSR-2</a> 是编码风格规范。<br><strong><a href="https://docs.styleci.io/" target="_blank" rel="noopener">StyleCI</a></strong> 提供 PHP 代码风格持续集成服务</p>
-<h2 id="单元测试"><a href="#单元测试" class="headerlink" title="单元测试"></a>单元测试</h2><p>测试对于程序员的重要性不言而喻<br><strong><a href="http://www.phpunit.cn/manual/6.5/zh_cn/index.html" target="_blank" rel="noopener">PHPUnit</a></strong> 是 PHP 单元测试包，由 <a href="https://github.com/sebastianbergmann" target="_blank" rel="noopener">Sebastian Bergmann</a> 开发<br>Laravel 有开箱即用的测试： <a href="https://www.jianshu.com/p/d8b3ac2c4623" target="_blank" rel="noopener">《在Laravel中测试》</a></p>
-<h2 id="微信开发"><a href="#微信开发" class="headerlink" title="微信开发"></a>微信开发</h2><p>PHP 由于它的特点，在开发微信上非常方便，也被作为开发首选。<br>对于未接触过 <strong>OAuth2.0</strong> 或者是不理解 <strong>RESTful API</strong> 的开发者，这是一个很好的学习机会，可以看看<a href="/2018/wechat-authorize-web.html">《微信网页授权》</a><br><a href="https://mp.weixin.qq.com/wiki?t=resource/res_main&amp;id=mp1445241432" target="_blank" rel="noopener">《微信公众平台文档》</a><br><a href="https://pay.weixin.qq.com/wiki/doc/api/micropay.php?chapter=5_1" target="_blank" rel="noopener">《微信支付文档》</a><br><a href="https://work.weixin.qq.com/api/doc" target="_blank" rel="noopener">《企业微信开发文档》</a><br>也可以看看<a href="/2018/how-i-understand-restful-api.html">《我所理解的接口设计（转）》</a></p>
-<h2 id="其它"><a href="#其它" class="headerlink" title="其它"></a>其它</h2><p>开发中应该遵循的<a href="/2018/php-solid.html">《SOLID原则》</a><br>通过分库、分表等方式来<a href="http://blog.51cto.com/lizhenliang/2095526" target="_blank" rel="noopener">《MySQL优化》</a><br>需要了解的<a href="/2018/what-is-jwt.html">《什么是 JWT（转）》</a><br>设计模式，包括<a href="/2018/php-creational-design-patterns.html">创建模式</a>（Creational Patterns）、<a href="/2018/php-structural-design-patterns-part1.html">架构模式</a>（Structural Patterns）、<a href="/2018/php-behavioral-design-patterns-part1.html">行为模式</a>（Behavioral Patterns）</p>
-
+        
+          <p class="article-more-link">
+            <a href="/2018/a-php-developer-roadmap.html#more">阅读全文</a>
+          </p>
+        
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.liluoao.com/2018/a-php-developer-roadmap.html" data-id="cjoa0paxx0029xsmjikuy8o7g" class="article-share-link">分享</a>
+      <a data-url="http://www.liluoao.com/2018/a-php-developer-roadmap.html" data-id="cjojlte4p0029mgmjb71nyhlw" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/php/">php</a></li></ul>
@@ -182,11 +175,6 @@
         <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>使用 <strong>PHP+MongoDB</strong> 的用户很多，因为 <strong>MongoDB</strong> 对非结构化数据的存储很方便。在 <strong>PHP5</strong> 及以前，官方提供了两个扩展，<code>Mongo</code> 和 <code>MongoDB</code>，其中 <code>Mongo</code> 是对以 <code>MongoClient</code> 等几个核心类为基础的类群进行操作，封装得很方便，所以基本上都会选择 <code>Mongo</code> 扩展。</p>
 <p>详情请见官方手册：<a href="http://php.net/manual/zh/book.mongo.php" target="_blank" rel="noopener">http://php.net/manual/zh/book.mongo.php</a></p>
 <p>但是随着 <strong>PHP5</strong> 升级到 <strong>PHP7</strong>，官方不再支持 <strong>Mongo</strong> 扩展，只支持 <strong>MongoDB</strong>，而 <strong>PHP7</strong> 的性能提升巨大，让人无法割舍，所以怎么把 <strong>Mongo</strong> 替换成 <strong>MongoDB</strong> 成为了一个亟待解决的问题。<strong>MongoDB</strong> 引入了命名空间，但是功能封装非常差，如果非要用原生的扩展，几乎意味着写原生的 <em>Mongo</em> 语句。这种想法很违背 <em>ORM</em> 简化 DB <code>IO</code> 操作带来的语法问题而专注逻辑优化的思路。</p>
-<p>详情也可参见官方手册：<a href="http://php.net/manual/zh/set.mongodb.php" target="_blank" rel="noopener">mongodb.php</a></p>
-<p>在这种情况之下，MongoDB 官方忍不住了，为了方便使用，增加市场占有率，推出了基于MongoDB 扩展的库：<a href="https://github.com/mongodb/mongo-php-library" target="_blank" rel="noopener">mongo-php-library</a></p>
-<p>该库的详细文档见：<a href="https://docs.mongodb.com/php-library/current/reference/" target="_blank" rel="noopener">docs.mongodb.com</a></p>
-<p>composer 下载：<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">composer require mongodb/mongodb</span><br></pre></td></tr></table></figure></p>
-<h2 id="MongoDB-驱动"><a href="#MongoDB-驱动" class="headerlink" title="MongoDB 驱动"></a>MongoDB 驱动</h2><p>如果使用原驱动的话，大致语法如下：<br>
         
           <p class="article-more-link">
             <a href="/2018/php-7-use-mongodb.html#more">阅读全文</a>
@@ -195,7 +183,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.liluoao.com/2018/php-7-use-mongodb.html" data-id="cjoa0paxx0026xsmjn7vsu98a" class="article-share-link">分享</a>
+      <a data-url="http://www.liluoao.com/2018/php-7-use-mongodb.html" data-id="cjojlte4a0022mgmji9xcnehu" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mongo/">mongo</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/php/">php</a></li></ul>
@@ -232,20 +220,15 @@
         <p>在 <strong>Windows</strong> 下我们需要开启某个扩展，很容易。一般情况下，<em>dll</em> 文件都已经安静地躺在 <em>extension</em> 目录下，只等待你在 <em>php.ini</em> 里将它前面的 <strong>;</strong> 去掉。</p>
 <p>而在 <strong>Linux</strong>，你 <em>cd</em> 到 PHP 的 <em>extensions</em> 目录往往发现里面空空的。或许只有几个 <em>so</em> 文件落寞地待着。</p>
 <p>这里以编译 <em>fileinfo</em> 扩展为例（注意这是 PHP 内置的扩展，如果你编译的是第三方扩展请自行到官网下载源码）</p>
-<h2 id="一、找到扩展包"><a href="#一、找到扩展包" class="headerlink" title="一、找到扩展包"></a>一、找到扩展包</h2><p>你需要到 PHP 源码包里寻找，希望源码包没被你删除。</p>
-<p><strong>cd</strong> 到 <code>php-7.x.x/ext/</code> 目录，你会发现里面有很多内置的扩展</p>
-<p>我们 <strong>cd</strong> 到 <em>fileinfo</em> 目录</p>
-<h2 id="二、编译"><a href="#二、编译" class="headerlink" title="二、编译"></a>二、编译</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">phpize</span><br><span class="line">./configure --with-php-config=/usr/local/php/bin/php-config</span><br><span class="line">make &amp;&amp; make install</span><br></pre></td></tr></table></figure>
-<p>上面的命令很好理解，首先是执行 <code>phpize</code>，它是用来安装php扩展的工具，如果你的系统无法识别，请使用完整路径。比如 <code>/usr/local/php/bin/phpize</code> 。这个工具会在当前目录下生成 <em>configure</em> 文件。</p>
-<p>接着就是编译的三板斧啦~其中 <code>with-php-config</code> 参数请按照你实际情况填写</p>
-<p>没有意外的话，经过上面的编译，你会在 <code>php/lib/php/extensions/</code>(在 <em>php.ini</em> 的 <em>extension_dir</em> 可找到)目录下找到生成的 <em>fileinfo.so</em> 文件</p>
-<h2 id="三、添加配置"><a href="#三、添加配置" class="headerlink" title="三、添加配置"></a>三、添加配置</h2><p>最后只需要在php.ini里把扩展添加进去就好了<br><figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">extension</span> = <span class="string">"fileinfo.so"</span></span><br></pre></td></tr></table></figure></p>
-<p>最后别忘了重启web服务器</p>
-
+        
+          <p class="article-more-link">
+            <a href="/2018/compile-php-extension.html#more">阅读全文</a>
+          </p>
+        
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.liluoao.com/2018/compile-php-extension.html" data-id="cjoa0pazn004yxsmjux4l5kky" class="article-share-link">分享</a>
+      <a data-url="http://www.liluoao.com/2018/compile-php-extension.html" data-id="cjojlte6g004ymgmj5lpne1kx" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux/">linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/php/">php</a></li></ul>
@@ -297,7 +280,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.liluoao.com/2018/laravel-use-dingo-api.html" data-id="cjoa0paw60008xsmjhgc02wb6" class="article-share-link">分享</a>
+      <a data-url="http://www.liluoao.com/2018/laravel-use-dingo-api.html" data-id="cjojlte3f0008mgmjwt3zzhbq" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/laravel/">laravel</a></li></ul>
@@ -347,7 +330,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.liluoao.com/2018/laravel-phpunit.html" data-id="cjoa0pawm000bxsmj1fcocnjh" class="article-share-link">分享</a>
+      <a data-url="http://www.liluoao.com/2018/laravel-phpunit.html" data-id="cjojlte3f000cmgmj8tqr7w98" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/laravel/">laravel</a></li></ul>
@@ -397,7 +380,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.liluoao.com/2018/restful-api-in-laravel-56-using-jwt-authentication.html" data-id="cjoa0pawm000cxsmj72q3byop" class="article-share-link">分享</a>
+      <a data-url="http://www.liluoao.com/2018/restful-api-in-laravel-56-using-jwt-authentication.html" data-id="cjojlte3f000bmgmjp60xmllu" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/laravel/">laravel</a></li></ul>
@@ -447,7 +430,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.liluoao.com/2018/laravel-policy.html" data-id="cjoa0pax2000xxsmj90ltf1hg" class="article-share-link">分享</a>
+      <a data-url="http://www.liluoao.com/2018/laravel-policy.html" data-id="cjojlte3u000xmgmjhm15wn4u" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/laravel/">laravel</a></li></ul>
@@ -507,7 +490,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.liluoao.com/2018/create-rest-api-in-laravel-with-authentication-using-passport.html" data-id="cjoa0pax2000txsmjxu6kkg5y" class="article-share-link">分享</a>
+      <a data-url="http://www.liluoao.com/2018/create-rest-api-in-laravel-with-authentication-using-passport.html" data-id="cjojlte3u000tmgmjf6qg7lpo" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/laravel/">laravel</a></li></ul>
@@ -555,7 +538,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.liluoao.com/2018/laravel-middleware.html" data-id="cjoa0pawm000mxsmja8bng7lf" class="article-share-link">分享</a>
+      <a data-url="http://www.liluoao.com/2018/laravel-middleware.html" data-id="cjojlte3u000qmgmjtw3dmia0" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/laravel/">laravel</a></li></ul>
@@ -589,7 +572,7 @@
           </li>
         
           <li>
-            <a href="/2018/a-php-developer-roadmap.html">PHP开发者的路线</a>
+            <a href="/2018/a-php-developer-roadmap.html">PHP新手开发者的路线</a>
           </li>
         
           <li>
