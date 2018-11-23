@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>Kong集群间数据同步 | To be a Web Artisan</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="概览  kong 的代码运行于 nginx 的 worker 进程中。kong 对数据的修改会在一个 worker 中进行，数据被修改后需要通知给本地的其他 worker 进程和其他机器上的 worker 进程。kong 使用的进程间通信主要方式有：  本机间通信-共享内存 跨机器通信-数据库">
+<meta name="keywords" content="lua,kong,openresty">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Kong集群间数据同步">
+<meta property="og:url" content="http://www.liluoao.com/2018/kong-cluster-event.html">
+<meta property="og:site_name" content="To be a Web Artisan">
+<meta property="og:description" content="概览  kong 的代码运行于 nginx 的 worker 进程中。kong 对数据的修改会在一个 worker 中进行，数据被修改后需要通知给本地的其他 worker 进程和其他机器上的 worker 进程。kong 使用的进程间通信主要方式有：  本机间通信-共享内存 跨机器通信-数据库">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-11-23T07:00:27.848Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Kong集群间数据同步">
+<meta name="twitter:description" content="概览  kong 的代码运行于 nginx 的 worker 进程中。kong 对数据的修改会在一个 worker 中进行，数据被修改后需要通知给本地的其他 worker 进程和其他机器上的 worker 进程。kong 使用的进程间通信主要方式有：  本机间通信-共享内存 跨机器通信-数据库">
+<meta name="twitter:creator" content="@liluoao">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">To be a Web Artisan</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">首页</a>
+        
+          <a class="main-nav-link" href="/archives">文章列表</a>
+        
+          <a class="main-nav-link" href="/categories/laravel">Laravel</a>
+        
+          <a class="main-nav-link" href="/categories/wechat">Wechat</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://www.liluoao.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Kong集群间数据同步" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/kong-cluster-event.html" class="article-date">
+  <time datetime="2018-11-23T06:45:28.000Z" itemprop="datePublished">2018-11-23</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Kong集群间数据同步
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="概览"><a href="#概览" class="headerlink" title="概览"></a>概览</h2><p>  kong 的代码运行于 nginx 的 worker 进程中。kong 对数据的修改会在一个 worker 中进行，数据被修改后需要通知给本地的其他 worker 进程和其他机器上的 worker 进程。kong 使用的进程间通信主要方式有：</p>
+<ol>
+<li>本机间通信-共享内存</li>
+<li>跨机器通信-数据库</li>
+</ol>
+<a id="more"></a>
+<h2 id="数据共享"><a href="#数据共享" class="headerlink" title="数据共享"></a>数据共享</h2><p>  kong 的数据存储在数据库中，同时在缓存中保留一份。当数据库的中的数据被修改时，需要发出相应的事件通知其他 worker。其他 worker 接收事件后，删除缓存中对应的数据。下次从缓存读数据时发现没有的话，就从数据库加载出来。<br>  事件分为本地事件和集群事件。本地事件用于通知在一台机器上的 worker，集群事件用于通知在多台机器上的 worker。</p>
+<h2 id="共享内存"><a href="#共享内存" class="headerlink" title="共享内存"></a>共享内存</h2><p>  本地事件通过共享内存实现。kong 实现了一套基于 nginx 共享内存的事件发布-订阅机制，源码见仓库 lua-resty-worker-events。该包提供 post_local 方法在 worker 进程内进行事件发布，提供 post 方法在同属于一台机器上的 worker 进程间进行事件发布。这2个方法需要指定 source 和 event 来确定事件源。<br>  kong 的数据访问层 dao.lua 封装了 insert、update 和 delete 三个对数据操作的方法。这三个方法分别会使用 post_local 发出 source 为 dao:crud，event为insert、delete、update 的数据增、删、改的事件。</p>
+<p>事件的数据格式如下:</p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">   schema    = self.schema, <span class="comment">--表名</span></span><br><span class="line">   operation = <span class="string">"create"</span>, <span class="comment">--操作类型</span></span><br><span class="line">   entity    = res, <span class="comment">--数据</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>  worker 进程启动的时候会在 init_worker 阶段注册这些事件的订阅方法。订阅方法中把所有的 dao:crud 事件按表名称使用 post_local 再进行分发。所以从 dao:crud 分发的事件如下:</p>
+<ul>
+<li>source=crud, event=apis</li>
+</ul>
+<p>这个事件会通知所有的 worker(包含不同机器)apis数据的修改。这里对缓存中对 key 为 router:version 进行 invalidate 操作会发送一条 channel=invalidations 集群事件。</p>
+<ul>
+<li>source=crud, event=targets</li>
+</ul>
+<p>这个事件会通知所有的 worker(包含不同机器)targets数据的修改。使用 <code>cluster_events:broadcast</code> 方法发送一条 channel=balancer:targets 集群事件。</p>
+<ul>
+<li>source=crud, event=upstreams</li>
+</ul>
+<p>这个事件会通知所有的 worker(包含不同机器)upstreams数据的修改。使用 <code>cluster_events:broadcast</code> 方法发送一条 channel=balancer:upstreams 集群事件。</p>
+<h2 id="数据库"><a href="#数据库" class="headerlink" title="数据库"></a>数据库</h2><p>  集群事件通过数据库实现。数据库表 cluster_events 存放用于集群间分发的事件。cluster_events 表结构如下:</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> cluster_events (</span><br><span class="line">  <span class="keyword">id</span> <span class="built_in">varchar</span>(<span class="number">64</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span>,</span><br><span class="line">  <span class="comment">-- 标识生成事件的节点id</span></span><br><span class="line">  node_id <span class="built_in">varchar</span>(<span class="number">64</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span>,</span><br><span class="line">  <span class="comment">-- 事件产生时间，精确到毫秒 </span></span><br><span class="line">  <span class="keyword">at</span> <span class="keyword">timestamp</span>(<span class="number">3</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span>,</span><br><span class="line">  <span class="comment">-- 事件生效时间，精确到毫秒</span></span><br><span class="line">  nbf <span class="keyword">timestamp</span>(<span class="number">3</span>) <span class="literal">NULL</span> <span class="keyword">DEFAULT</span> <span class="literal">NULL</span>,</span><br><span class="line">  <span class="comment">-- 事件过期时间，精确到毫秒</span></span><br><span class="line">  expire_at <span class="keyword">timestamp</span>(<span class="number">3</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span>,</span><br><span class="line">  <span class="comment">-- 事件类型</span></span><br><span class="line">  channel <span class="built_in">varchar</span>(<span class="number">1023</span>) <span class="keyword">DEFAULT</span> <span class="literal">NULL</span>,</span><br><span class="line">  <span class="comment">-- 事件数据</span></span><br><span class="line">  <span class="keyword">data</span> <span class="built_in">varchar</span>(<span class="number">10000</span>) <span class="keyword">DEFAULT</span> <span class="literal">NULL</span>,</span><br><span class="line">  </span><br><span class="line">  PRIMARY <span class="keyword">KEY</span> (<span class="keyword">id</span>),</span><br><span class="line">  <span class="keyword">KEY</span> cluster_events_at_idx (<span class="keyword">at</span>),</span><br><span class="line">  <span class="keyword">KEY</span> cluster_events_channelt_idx (channel)</span><br><span class="line">) <span class="keyword">ENGINE</span>=<span class="keyword">InnoDB</span> <span class="keyword">DEFAULT</span> <span class="keyword">CHARSET</span>=utf8 ROW_FORMAT=DYNAMIC;</span><br></pre></td></tr></table></figure>
+<p><code>channel</code> 的类型有:</p>
+<ul>
+<li><code>invalidations</code></li>
+</ul>
+<p>表示路由规则、插件配置的变更</p>
+<ul>
+<li><code>balancer:targets</code></li>
+</ul>
+<p>表示负载均衡的 targets 列表发生变更</p>
+<ul>
+<li><code>balancer:upstreams</code></li>
+</ul>
+<p>表示 upstream 对象发生变更</p>
+<ul>
+<li><code>balancer:post_health</code></li>
+</ul>
+<p>表示 target 的健康状态发生变更。由于被动健康检查拉出实例后，kong 不会在对该实例进行自动拉入，需要通过该事件来拉入实例。<br>  <br>调用 <code>cluster_events:broadcast</code> 方法会往 cluster_events 表中新增一条记录。在 init_worker 阶段通过调用 <code>cluster_events:subscribe</code> 会开启一个定时器，定时查询出 cluster_events 表中新增的记录。这里要注意的是同一台机器上只会有一个 worker 进程会对数据库进行查询(通过加锁实现)，查询出来后再通过共享内存的方式通知给这台机器上的其他 worker。<br>  <br>配置参数 <code>db_update_frequency</code> 确定查询数据库的间隔，默认为 <strong>5</strong> 秒。数据范围根据 at 字段是否落在(起始时间, 结束时间]确定。起始时间第一次设置在 init_worker 阶段，调用 <code>ngx.now()</code> 获取当前时间(精确到毫秒)并放入 key 为 <code>cluster_events:at</code> 的共享内存中。之后抢到锁的 worker 会从共享内存中取出该时间，该时间需要减去 <code>db_update_propagation + 0.001</code> 来确定起始时间，以防止事件丢失。配置参数 <code>db_update_propagation</code> 默认为 0。结束时间取 <code>ngx.now()</code> 的值。查询成功后会把结束时间覆盖之前的起始时间，并把该事件分发到本机的其他 worker。对于设置了 nbf 的事件，kong 如果发现还没到生效时间，就会通过 <code>ngx.timer</code> 设置一个定时器延后分发该事件。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.liluoao.com/2018/kong-cluster-event.html" data-id="cjotofyd10008xgmjjqrynbqa" class="article-share-link">分享</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/kong/">kong</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/lua/">lua</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/openresty/">openresty</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2018/lua-metatable.html" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">Lua的元表</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2018/kong-cluster-event.html">Kong集群间数据同步</a>
+          </li>
+        
+          <li>
+            <a href="/2018/lua-metatable.html">Lua的元表</a>
+          </li>
+        
+          <li>
+            <a href="/2018/use-kong-for-api-gateway.html">使用Kong作为APIGateway</a>
+          </li>
+        
+          <li>
+            <a href="/2018/a-php-developer-roadmap.html">PHP新手开发者的路线</a>
+          </li>
+        
+          <li>
+            <a href="/2018/php-7-use-mongodb.html">PHP7操作MongoDB</a>
+          </li>
+        
+          <li>
+            <a href="/2018/compile-php-extension.html">编译PHP扩展</a>
+          </li>
+        
+          <li>
+            <a href="/2018/laravel-use-dingo-api.html">Laravel使用DingoAPI</a>
+          </li>
+        
+          <li>
+            <a href="/2018/laravel-phpunit.html">Laravel使用PHPUnit</a>
+          </li>
+        
+          <li>
+            <a href="/2018/restful-api-in-laravel-56-using-jwt-authentication.html">Laravel使用JWT-Authentication</a>
+          </li>
+        
+          <li>
+            <a href="/2018/laravel-policy.html">Laravel的Policy</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/algorithm/">algorithm</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/alipay/">alipay</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/apache/">apache</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/design-patterns/">design-patterns</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/kong/">kong</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/laravel/">laravel</a><span class="tag-list-count">21</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/lua/">lua</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mongo/">mongo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/">mysql</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/openresty/">openresty</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/phalcon/">phalcon</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/php/">php</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tool/">tool</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/wechat/">wechat</a><span class="tag-list-count">7</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">十一月 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">八月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">七月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">五月 2018</a><span class="archive-list-count">20</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a><span class="archive-list-count">15</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">二月 2018</a><span class="archive-list-count">20</span></li></ul>
+    </div>
+  </div>
+
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      <div class="footer-about-me">
+        关于作者<br>
+        <a href="https://github.com/liluoao" target="_blank" title="GitHub">GitHub</a><br>
+        <a href="https://segmentfault.com/u/liluoao" target="_blank" title="SegmentFault">SegmentFault</a><br>
+        <a href="https://laravel-china.org/users/7144" target="_blank" title="LaravelChina">LaravelChina</a><br>
+        <a href="https://gitee.com/liluoao" target="_blank" title="码云">码云</a><br>
+        <a href="https://juejin.im/user/5a19374cf265da4332274600" target="_blank" title="掘金">掘金</a><br>
+        <a href="https://packagist.org/users/liluoao/" target="_blank" title="Packagist">Packagist</a><br>
+        <a href="https://www.gitbook.com/@liluoao" target="_blank" title="GitBook">GitBook</a>
+      </div>
+      <div style="width:300px;margin:0 auto; padding:20px 0;">
+        <div class="footer-copyright">
+          &copy; 2018 李罗奥
+          Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+        </div>
+        <a href="http://www.miitbeian.gov.cn/" target="_blank" style="display:inline-block;text-decoration:none;height:20px;line-height:20px;"><p style="float:left;height:20px;line-height:20px;margin: 0px 0px 0px 5px; color:#939393;">鄂ICP备18009105号</p></a>
+        <a target="_blank" href="https://www.beian.gov.cn/portal/registerSystemInfo?recordcode=42011102001595" style="display:inline-block;text-decoration:none;height:20px;line-height:20px;"><img src="/css/images/beian.png" style="float:left;"/><p style="float:left;height:20px;line-height:20px;margin: 0px 0px 0px 5px; color:#939393;">鄂公网安备 42011102001595号</p></a>
+      </div>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">首页</a>
+  
+    <a href="/archives" class="mobile-nav-link">文章列表</a>
+  
+    <a href="/categories/laravel" class="mobile-nav-link">Laravel</a>
+  
+    <a href="/categories/wechat" class="mobile-nav-link">Wechat</a>
+  
+</nav>
+    
+
+<script src="//lib.sinaapp.com/js/jquery/3.1.0/jquery-3.1.0.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>
