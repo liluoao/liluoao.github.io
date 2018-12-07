@@ -5,18 +5,20 @@
   
 
   
-  <title>To be a Web Artisan</title>
+  <title>使用Kong的AdminAPI | To be a Web Artisan</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="李罗奥的博客">
-<meta property="og:type" content="website">
-<meta property="og:title" content="To be a Web Artisan">
-<meta property="og:url" content="http://www.liluoao.com/index.html">
+  <meta name="description" content="介绍Kong附带了一个用于管理的内部 RESTful Admin API。可以将对 Admin API 的请求发送到集群中的任何节点，并且 Kong 将使所有节点上的配置保持一致。admin_listen 默认端口配置  8001 是 Admin API 侦听的默认端口。 8444 是 Admin API 的 HTTPS 流量的默认端口。  此 API 专为内部使用而设置，在设置 Kong 环境时">
+<meta name="keywords" content="lua,kong,openresty">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用Kong的AdminAPI">
+<meta property="og:url" content="http://www.liluoao.com/2018/use-kong-admin-api.html">
 <meta property="og:site_name" content="To be a Web Artisan">
-<meta property="og:description" content="李罗奥的博客">
+<meta property="og:description" content="介绍Kong附带了一个用于管理的内部 RESTful Admin API。可以将对 Admin API 的请求发送到集群中的任何节点，并且 Kong 将使所有节点上的配置保持一致。admin_listen 默认端口配置  8001 是 Admin API 侦听的默认端口。 8444 是 Admin API 的 HTTPS 流量的默认端口。  此 API 专为内部使用而设置，在设置 Kong 环境时">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-12-07T05:41:57.458Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="To be a Web Artisan">
-<meta name="twitter:description" content="李罗奥的博客">
+<meta name="twitter:title" content="使用Kong的AdminAPI">
+<meta name="twitter:description" content="介绍Kong附带了一个用于管理的内部 RESTful Admin API。可以将对 Admin API 的请求发送到集群中的任何节点，并且 Kong 将使所有节点上的配置保持一致。admin_listen 默认端口配置  8001 是 Admin API 侦听的默认端口。 8444 是 Admin API 的 HTTPS 流量的默认端口。  此 API 专为内部使用而设置，在设置 Kong 环境时">
 <meta name="twitter:creator" content="@liluoao">
   
   
@@ -61,9 +63,7 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-    <article id="post-使用Kong的AdminAPI" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-使用Kong的AdminAPI" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2018/use-kong-admin-api.html" class="article-date">
   <time datetime="2018-12-07T03:24:33.000Z" itemprop="datePublished">2018-12-07</time>
@@ -76,8 +76,8 @@
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/use-kong-admin-api.html">使用Kong的AdminAPI</a>
+    <h1 class="article-title" itemprop="name">
+      使用Kong的AdminAPI
     </h1>
   
 
@@ -176,439 +176,19 @@
     </footer>
   </div>
   
-</article>
-
-
+    
+<nav id="article-nav">
   
-    <article id="post-Kong集群间数据同步" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/kong-cluster-event.html" class="article-date">
-  <time datetime="2018-11-23T06:45:28.000Z" itemprop="datePublished">2018-11-23</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/kong-cluster-event.html">Kong集群间数据同步</a>
-    </h1>
+    <a href="/2018/kong-cluster-event.html" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">Kong集群间数据同步</div>
+    </a>
   
+</nav>
 
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="概览"><a href="#概览" class="headerlink" title="概览"></a>概览</h2><p>  kong 的代码运行于 nginx 的 worker 进程中。kong 对数据的修改会在一个 worker 中进行，数据被修改后需要通知给本地的其他 worker 进程和其他机器上的 worker 进程。kong 使用的进程间通信主要方式有：</p>
-<ol>
-<li>本机间通信-共享内存</li>
-<li>跨机器通信-数据库</li>
-</ol>
-        
-          <p class="article-more-link">
-            <a href="/2018/kong-cluster-event.html#more">阅读全文</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://www.liluoao.com/2018/kong-cluster-event.html" data-id="cjpdlte6m00084omjh7o00x2c" class="article-share-link">分享</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/kong/">kong</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/lua/">lua</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/openresty/">openresty</a></li></ul>
-
-    </footer>
-  </div>
   
 </article>
-
-
-  
-    <article id="post-Lua的元表" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/lua-metatable.html" class="article-date">
-  <time datetime="2018-11-19T05:51:56.000Z" itemprop="datePublished">2018-11-19</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/lua-metatable.html">Lua的元表</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>在 Lua 5.1 语言中，元表 <em>(metatable)</em> 的表现行为类似于 C++ 语言中的操作符重载，例如我们可以重载 “__add” 元方法 <em>(metamethod)</em>，来计算两个 Lua 数组的并集；或者重载 “__index” 方法，来定义我们自己的 Hash 函数。Lua 提供了两个十分重要的用来处理元表的方法，如下：</p>
-<ul>
-<li>setmetatable(table, metatable)：此方法用于为一个表设置元表。</li>
-<li>getmetatable(table)：此方法用于获取表的元表对象。</li>
-</ul>
-        
-          <p class="article-more-link">
-            <a href="/2018/lua-metatable.html#more">阅读全文</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://www.liluoao.com/2018/lua-metatable.html" data-id="cjpdlte8s001s4omjguu5n5yt" class="article-share-link">分享</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/lua/">lua</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-使用Kong作为APIGateway" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/use-kong-for-api-gateway.html" class="article-date">
-  <time datetime="2018-11-09T12:17:07.000Z" itemprop="datePublished">2018-11-09</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/use-kong-for-api-gateway.html">使用Kong作为APIGateway</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="为什么需要-API-网关"><a href="#为什么需要-API-网关" class="headerlink" title="为什么需要 API 网关"></a>为什么需要 API 网关</h2><p><img src="/images/different-of-kong.png" alt=""></p>
-        
-          <p class="article-more-link">
-            <a href="/2018/use-kong-for-api-gateway.html#more">阅读全文</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://www.liluoao.com/2018/use-kong-for-api-gateway.html" data-id="cjpdlteay003g4omjah0y3ifm" class="article-share-link">分享</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/kong/">kong</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/lua/">lua</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/openresty/">openresty</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-PHP开发者的路线" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/a-php-developer-roadmap.html" class="article-date">
-  <time datetime="2018-08-03T08:29:51.000Z" itemprop="datePublished">2018-08-03</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/a-php-developer-roadmap.html">PHP新手开发者的路线</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>在昨天（<code>2018-08-02</code>）已经发布了<a href="http://php.net/archive/2018.php#id2018-08-02-1" target="_blank" rel="noopener">PHP 7.3.0.beta1 Released</a></p>
-<p>如果你还没有使用 <strong>PHP7</strong> ，那真的很遗憾。2018年PHP开发者应该熟练使用 PHP7，并且知道版本更新内容。</p>
-        
-          <p class="article-more-link">
-            <a href="/2018/a-php-developer-roadmap.html#more">阅读全文</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://www.liluoao.com/2018/a-php-developer-roadmap.html" data-id="cjpdlte9n002a4omjcgdsdoeq" class="article-share-link">分享</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/php/">php</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-PHP7操作MongoDB" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/php-7-use-mongodb.html" class="article-date">
-  <time datetime="2018-07-23T10:54:24.000Z" itemprop="datePublished">2018-07-23</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/php-7-use-mongodb.html">PHP7操作MongoDB</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>使用 <strong>PHP+MongoDB</strong> 的用户很多，因为 <strong>MongoDB</strong> 对非结构化数据的存储很方便。在 <strong>PHP5</strong> 及以前，官方提供了两个扩展，<code>Mongo</code> 和 <code>MongoDB</code>，其中 <code>Mongo</code> 是对以 <code>MongoClient</code> 等几个核心类为基础的类群进行操作，封装得很方便，所以基本上都会选择 <code>Mongo</code> 扩展。</p>
-<p>详情请见官方手册：<a href="http://php.net/manual/zh/book.mongo.php" target="_blank" rel="noopener">http://php.net/manual/zh/book.mongo.php</a></p>
-<p>但是随着 <strong>PHP5</strong> 升级到 <strong>PHP7</strong>，官方不再支持 <strong>Mongo</strong> 扩展，只支持 <strong>MongoDB</strong>，而 <strong>PHP7</strong> 的性能提升巨大，让人无法割舍，所以怎么把 <strong>Mongo</strong> 替换成 <strong>MongoDB</strong> 成为了一个亟待解决的问题。<strong>MongoDB</strong> 引入了命名空间，但是功能封装非常差，如果非要用原生的扩展，几乎意味着写原生的 <em>Mongo</em> 语句。这种想法很违背 <em>ORM</em> 简化 DB <code>IO</code> 操作带来的语法问题而专注逻辑优化的思路。</p>
-        
-          <p class="article-more-link">
-            <a href="/2018/php-7-use-mongodb.html#more">阅读全文</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://www.liluoao.com/2018/php-7-use-mongodb.html" data-id="cjpdlte9800234omj10frdb35" class="article-share-link">分享</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mongo/">mongo</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/php/">php</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-编译PHP扩展" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/compile-php-extension.html" class="article-date">
-  <time datetime="2018-07-17T06:52:19.000Z" itemprop="datePublished">2018-07-17</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/compile-php-extension.html">编译PHP扩展</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>在 <strong>Windows</strong> 下我们需要开启某个扩展，很容易。一般情况下，<em>dll</em> 文件都已经安静地躺在 <em>extension</em> 目录下，只等待你在 <em>php.ini</em> 里将它前面的 <strong>;</strong> 去掉。</p>
-<p>而在 <strong>Linux</strong>，你 <em>cd</em> 到 PHP 的 <em>extensions</em> 目录往往发现里面空空的。或许只有几个 <em>so</em> 文件落寞地待着。</p>
-<p>这里以编译 <em>fileinfo</em> 扩展为例（注意这是 PHP 内置的扩展，如果你编译的是第三方扩展请自行到官网下载源码）</p>
-        
-          <p class="article-more-link">
-            <a href="/2018/compile-php-extension.html#more">阅读全文</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://www.liluoao.com/2018/compile-php-extension.html" data-id="cjpdltecp00544omjh26owyyg" class="article-share-link">分享</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux/">linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/php/">php</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-Laravel使用DingoAPI" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/laravel-use-dingo-api.html" class="article-date">
-  <time datetime="2018-05-28T03:52:27.000Z" itemprop="datePublished">2018-05-28</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/laravel/">laravel</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/laravel-use-dingo-api.html">Laravel使用DingoAPI</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>通过 Composer 安装：<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">"require": &#123;</span><br><span class="line">    "dingo/api": "2.0.0-alpha1"</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>发布配置文件：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">php artisan vendor:publish --provider=<span class="string">"Dingo\Api\Provider\LaravelServiceProvider"</span></span><br></pre></td></tr></table></figure></p>
-<h4 id="端点（路由）"><a href="#端点（路由）" class="headerlink" title="端点（路由）"></a>端点（路由）</h4><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">$api = app(<span class="string">'Dingo\Api\Routing\Router'</span>);</span><br><span class="line">$api-&gt;version(<span class="string">'v1'</span>, <span class="function"><span class="keyword">function</span> <span class="params">($api)</span> </span>&#123;</span><br><span class="line">    $api-&gt;get(<span class="string">'users/&#123;id&#125;'</span>, <span class="string">'App\Api\V1\Controllers\UserController@show'</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">$api-&gt;version(<span class="string">'v2'</span>, <span class="function"><span class="keyword">function</span> <span class="params">($api)</span> </span>&#123;</span><br><span class="line">    $api-&gt;get(<span class="string">'users/&#123;id&#125;'</span>, <span class="string">'App\Api\V2\Controllers\UserController@show'</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>提醒，你需要为控制器添加说明完整的命名空间，比如， <code>App\Http\Controllers</code>.</p>
-</blockquote>
-        
-          <p class="article-more-link">
-            <a href="/2018/laravel-use-dingo-api.html#more">阅读全文</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://www.liluoao.com/2018/laravel-use-dingo-api.html" data-id="cjpdlte6m000b4omjpu1ddqcu" class="article-share-link">分享</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/laravel/">laravel</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-Laravel使用PHPUnit" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/laravel-phpunit.html" class="article-date">
-  <time datetime="2018-05-27T02:44:40.000Z" itemprop="datePublished">2018-05-27</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/laravel/">laravel</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/laravel-phpunit.html">Laravel使用PHPUnit</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>如果是使用 Laravel 安装器创建的项目，则已经安装好了 PHPUnit<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">"require-dev": &#123;</span><br><span class="line">    //...</span><br><span class="line">    "phpunit/phpunit": "^7.0"</span><br><span class="line">&#125;,</span><br><span class="line">"autoload-dev": &#123;</span><br><span class="line">    "psr-4": &#123;</span><br><span class="line">        "Tests\\": "tests/"</span><br><span class="line">    &#125;</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure></p>
-<p>根目录有 <code>phpunit.xml</code> 配置文件</p>
-<h4 id="创建用例"><a href="#创建用例" class="headerlink" title="创建用例"></a>创建用例</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">php artisan make:<span class="built_in">test</span> UserTest</span><br></pre></td></tr></table></figure>
-<p>该命令会在 <code>tests/Feature</code> 目录中创建一个新的 <code>UserTest</code> 类<br>
-        
-          <p class="article-more-link">
-            <a href="/2018/laravel-phpunit.html#more">阅读全文</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://www.liluoao.com/2018/laravel-phpunit.html" data-id="cjpdlte72000f4omjwzqs4cm1" class="article-share-link">分享</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/laravel/">laravel</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-Laravel使用JWT-Authentication" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/restful-api-in-laravel-56-using-jwt-authentication.html" class="article-date">
-  <time datetime="2018-05-25T03:35:27.000Z" itemprop="datePublished">2018-05-25</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/laravel/">laravel</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/restful-api-in-laravel-56-using-jwt-authentication.html">Laravel使用JWT-Authentication</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="Restful-API-In-Laravel-5-6-Using-jwt-Authentication"><a href="#Restful-API-In-Laravel-5-6-Using-jwt-Authentication" class="headerlink" title="Restful API In Laravel 5.6 Using jwt Authentication"></a>Restful API In Laravel 5.6 Using jwt Authentication</h2><h4 id="Installing-tymon-jwt-auth-package"><a href="#Installing-tymon-jwt-auth-package" class="headerlink" title="Installing tymon/jwt-auth package"></a>Installing tymon/jwt-auth package</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">composer require tymon/jwt-auth:dev-develop --prefer-source</span><br></pre></td></tr></table></figure>
-<h4 id="Publishing-Configuration-File"><a href="#Publishing-Configuration-File" class="headerlink" title="Publishing Configuration File"></a>Publishing Configuration File</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">php artisan vendor:publish --provider=<span class="string">"Tymon\JWTAuth\Providers\JWTAuthServiceProvider"</span></span><br></pre></td></tr></table></figure>
-<h4 id="Generate-JWT-Key"><a href="#Generate-JWT-Key" class="headerlink" title="Generate JWT Key"></a>Generate JWT Key</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">php artisan jwt:secret</span><br></pre></td></tr></table></figure>
-<h4 id="Registering-Middleware"><a href="#Registering-Middleware" class="headerlink" title="Registering Middleware"></a>Registering Middleware</h4><p>在 <code>app\Http\Kernel</code> 中加入：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">protected</span> $routeMiddleware = [</span><br><span class="line">    <span class="comment">//...</span></span><br><span class="line">    <span class="string">'auth.jwt'</span> =&gt; \Tymon\JWTAuth\Http\Middleware\Authenticate::class,</span><br><span class="line">];</span><br></pre></td></tr></table></figure></p>
-        
-          <p class="article-more-link">
-            <a href="/2018/restful-api-in-laravel-56-using-jwt-authentication.html#more">阅读全文</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://www.liluoao.com/2018/restful-api-in-laravel-56-using-jwt-authentication.html" data-id="cjpdlte6m000c4omjnvszh19z" class="article-share-link">分享</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/laravel/">laravel</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-
-
-  <nav id="page-nav">
-    
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/2/">下一页 &raquo;</a>
-  </nav>
 
 </section>
         
