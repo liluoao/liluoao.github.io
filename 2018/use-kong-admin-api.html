@@ -15,7 +15,7 @@
 <meta property="og:site_name" content="To be a Web Artisan">
 <meta property="og:description" content="介绍Kong附带了一个用于管理的内部 RESTful Admin API。可以将对 Admin API 的请求发送到集群中的任何节点，并且 Kong 将使所有节点上的配置保持一致。admin_listen 默认端口配置  8001 是 Admin API 侦听的默认端口。 8444 是 Admin API 的 HTTPS 流量的默认端口。  此 API 专为内部使用而设置，在设置 Kong 环境时">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-12-07T05:41:57.458Z">
+<meta property="og:updated_time" content="2018-12-08T02:36:41.517Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="使用Kong的AdminAPI">
 <meta name="twitter:description" content="介绍Kong附带了一个用于管理的内部 RESTful Admin API。可以将对 Admin API 的请求发送到集群中的任何节点，并且 Kong 将使所有节点上的配置保持一致。admin_listen 默认端口配置  8001 是 Admin API 侦听的默认端口。 8444 是 Admin API 的 HTTPS 流量的默认端口。  此 API 专为内部使用而设置，在设置 Kong 环境时">
@@ -154,11 +154,37 @@
 <p>响应：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">HTTP 201 Created</span><br></pre></td></tr></table></figure></p>
 <figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">"id"</span>: <span class="string">"4e13f54a-bbf1-47a8-8777-255fed7116f2"</span>,</span><br><span class="line">    <span class="attr">"created_at"</span>: <span class="number">1488869076800</span>,</span><br><span class="line">    <span class="attr">"updated_at"</span>: <span class="number">1488869076800</span>,</span><br><span class="line">    <span class="attr">"connect_timeout"</span>: <span class="number">60000</span>,</span><br><span class="line">    <span class="attr">"protocol"</span>: <span class="string">"http"</span>,</span><br><span class="line">    <span class="attr">"host"</span>: <span class="string">"example.org"</span>,</span><br><span class="line">    <span class="attr">"port"</span>: <span class="number">80</span>,</span><br><span class="line">    <span class="attr">"path"</span>: <span class="string">"/api"</span>,</span><br><span class="line">    <span class="attr">"name"</span>: <span class="string">"example-service"</span>,</span><br><span class="line">    <span class="attr">"retries"</span>: <span class="number">5</span>,</span><br><span class="line">    <span class="attr">"read_timeout"</span>: <span class="number">60000</span>,</span><br><span class="line">    <span class="attr">"write_timeout"</span>: <span class="number">60000</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h3 id="修改"><a href="#修改" class="headerlink" title="修改"></a>修改</h3><p>地址：<code>PATCH /services/{name or id}</code></p>
-<p>|字段|说明|<br>|name or id（必需）|The id or the name attribute of the Service to update.|</p>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>name or id（必需）</td>
+<td>The id or the name attribute of the Service to update.</td>
+</tr>
+</tbody>
+</table>
 <p>响应：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">HTTP 200 OK</span><br></pre></td></tr></table></figure></p>
 <figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">"id"</span>: <span class="string">"4e13f54a-bbf1-47a8-8777-255fed7116f2"</span>,</span><br><span class="line">    <span class="attr">"created_at"</span>: <span class="number">1488869076800</span>,</span><br><span class="line">    <span class="attr">"updated_at"</span>: <span class="number">1488869076800</span>,</span><br><span class="line">    <span class="attr">"connect_timeout"</span>: <span class="number">60000</span>,</span><br><span class="line">    <span class="attr">"protocol"</span>: <span class="string">"http"</span>,</span><br><span class="line">    <span class="attr">"host"</span>: <span class="string">"example.org"</span>,</span><br><span class="line">    <span class="attr">"port"</span>: <span class="number">80</span>,</span><br><span class="line">    <span class="attr">"path"</span>: <span class="string">"/api"</span>,</span><br><span class="line">    <span class="attr">"name"</span>: <span class="string">"example-service"</span>,</span><br><span class="line">    <span class="attr">"retries"</span>: <span class="number">5</span>,</span><br><span class="line">    <span class="attr">"read_timeout"</span>: <span class="number">60000</span>,</span><br><span class="line">    <span class="attr">"write_timeout"</span>: <span class="number">60000</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h3 id="删除"><a href="#删除" class="headerlink" title="删除"></a>删除</h3><p>地址：<code>DELETE /services/{name or id}</code></p>
-<p>|字段|说明|<br>|name or id（必需）|The id or the name attribute of the Service to update.|</p>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>name or id（必需）</td>
+<td>The id or the name attribute of the Service to update.</td>
+</tr>
+</tbody>
+</table>
 <p>响应：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">HTTP 204 No Content</span><br></pre></td></tr></table></figure></p>
 <p>路由、消费者、Upstream 与服务类似，除了参数不同</p>
 <p>推荐阅读：</p>
@@ -168,7 +194,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.liluoao.com/2018/use-kong-admin-api.html" data-id="cjpdlteay003k4omj5ioyb1op" class="article-share-link">分享</a>
+      <a data-url="http://www.liluoao.com/2018/use-kong-admin-api.html" data-id="cjpeummp1003k60mjhivkpgng" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/kong/">kong</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/lua/">lua</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/openresty/">openresty</a></li></ul>

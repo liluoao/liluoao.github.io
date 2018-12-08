@@ -154,11 +154,37 @@
 <p>响应：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">HTTP 201 Created</span><br></pre></td></tr></table></figure></p>
 <figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">"id"</span>: <span class="string">"4e13f54a-bbf1-47a8-8777-255fed7116f2"</span>,</span><br><span class="line">    <span class="attr">"created_at"</span>: <span class="number">1488869076800</span>,</span><br><span class="line">    <span class="attr">"updated_at"</span>: <span class="number">1488869076800</span>,</span><br><span class="line">    <span class="attr">"connect_timeout"</span>: <span class="number">60000</span>,</span><br><span class="line">    <span class="attr">"protocol"</span>: <span class="string">"http"</span>,</span><br><span class="line">    <span class="attr">"host"</span>: <span class="string">"example.org"</span>,</span><br><span class="line">    <span class="attr">"port"</span>: <span class="number">80</span>,</span><br><span class="line">    <span class="attr">"path"</span>: <span class="string">"/api"</span>,</span><br><span class="line">    <span class="attr">"name"</span>: <span class="string">"example-service"</span>,</span><br><span class="line">    <span class="attr">"retries"</span>: <span class="number">5</span>,</span><br><span class="line">    <span class="attr">"read_timeout"</span>: <span class="number">60000</span>,</span><br><span class="line">    <span class="attr">"write_timeout"</span>: <span class="number">60000</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h3 id="修改"><a href="#修改" class="headerlink" title="修改"></a>修改</h3><p>地址：<code>PATCH /services/{name or id}</code></p>
-<p>|字段|说明|<br>|name or id（必需）|The id or the name attribute of the Service to update.|</p>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>name or id（必需）</td>
+<td>The id or the name attribute of the Service to update.</td>
+</tr>
+</tbody>
+</table>
 <p>响应：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">HTTP 200 OK</span><br></pre></td></tr></table></figure></p>
 <figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">"id"</span>: <span class="string">"4e13f54a-bbf1-47a8-8777-255fed7116f2"</span>,</span><br><span class="line">    <span class="attr">"created_at"</span>: <span class="number">1488869076800</span>,</span><br><span class="line">    <span class="attr">"updated_at"</span>: <span class="number">1488869076800</span>,</span><br><span class="line">    <span class="attr">"connect_timeout"</span>: <span class="number">60000</span>,</span><br><span class="line">    <span class="attr">"protocol"</span>: <span class="string">"http"</span>,</span><br><span class="line">    <span class="attr">"host"</span>: <span class="string">"example.org"</span>,</span><br><span class="line">    <span class="attr">"port"</span>: <span class="number">80</span>,</span><br><span class="line">    <span class="attr">"path"</span>: <span class="string">"/api"</span>,</span><br><span class="line">    <span class="attr">"name"</span>: <span class="string">"example-service"</span>,</span><br><span class="line">    <span class="attr">"retries"</span>: <span class="number">5</span>,</span><br><span class="line">    <span class="attr">"read_timeout"</span>: <span class="number">60000</span>,</span><br><span class="line">    <span class="attr">"write_timeout"</span>: <span class="number">60000</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h3 id="删除"><a href="#删除" class="headerlink" title="删除"></a>删除</h3><p>地址：<code>DELETE /services/{name or id}</code></p>
-<p>|字段|说明|<br>|name or id（必需）|The id or the name attribute of the Service to update.|</p>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>name or id（必需）</td>
+<td>The id or the name attribute of the Service to update.</td>
+</tr>
+</tbody>
+</table>
 <p>响应：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">HTTP 204 No Content</span><br></pre></td></tr></table></figure></p>
 <p>路由、消费者、Upstream 与服务类似，除了参数不同</p>
 <p>推荐阅读：</p>
@@ -168,7 +194,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.liluoao.com/2018/use-kong-admin-api.html" data-id="cjpdlteay003k4omj5ioyb1op" class="article-share-link">分享</a>
+      <a data-url="http://www.liluoao.com/2018/use-kong-admin-api.html" data-id="cjpeummp1003k60mjhivkpgng" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/kong/">kong</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/lua/">lua</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/openresty/">openresty</a></li></ul>
@@ -215,7 +241,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.liluoao.com/2018/kong-cluster-event.html" data-id="cjpdlte6m00084omjh7o00x2c" class="article-share-link">分享</a>
+      <a data-url="http://www.liluoao.com/2018/kong-cluster-event.html" data-id="cjpeummnb000860mj657oxf2r" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/kong/">kong</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/lua/">lua</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/openresty/">openresty</a></li></ul>
@@ -262,7 +288,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.liluoao.com/2018/lua-metatable.html" data-id="cjpdlte8s001s4omjguu5n5yt" class="article-share-link">分享</a>
+      <a data-url="http://www.liluoao.com/2018/lua-metatable.html" data-id="cjpeummo6001s60mjk8hbi72m" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/lua/">lua</a></li></ul>
@@ -305,7 +331,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.liluoao.com/2018/use-kong-for-api-gateway.html" data-id="cjpdlteay003g4omjah0y3ifm" class="article-share-link">分享</a>
+      <a data-url="http://www.liluoao.com/2018/use-kong-for-api-gateway.html" data-id="cjpeummp1003g60mj8gz6lhv2" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/kong/">kong</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/lua/">lua</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/openresty/">openresty</a></li></ul>
@@ -349,7 +375,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.liluoao.com/2018/a-php-developer-roadmap.html" data-id="cjpdlte9n002a4omjcgdsdoeq" class="article-share-link">分享</a>
+      <a data-url="http://www.liluoao.com/2018/a-php-developer-roadmap.html" data-id="cjpeummo6002a60mjustimcxi" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/php/">php</a></li></ul>
@@ -394,7 +420,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.liluoao.com/2018/php-7-use-mongodb.html" data-id="cjpdlte9800234omj10frdb35" class="article-share-link">分享</a>
+      <a data-url="http://www.liluoao.com/2018/php-7-use-mongodb.html" data-id="cjpeummo6002360mjvcl9pecg" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mongo/">mongo</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/php/">php</a></li></ul>
@@ -439,7 +465,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.liluoao.com/2018/compile-php-extension.html" data-id="cjpdltecp00544omjh26owyyg" class="article-share-link">分享</a>
+      <a data-url="http://www.liluoao.com/2018/compile-php-extension.html" data-id="cjpeummqc005460mjg6ygjzsq" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux/">linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/php/">php</a></li></ul>
@@ -491,7 +517,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.liluoao.com/2018/laravel-use-dingo-api.html" data-id="cjpdlte6m000b4omjpu1ddqcu" class="article-share-link">分享</a>
+      <a data-url="http://www.liluoao.com/2018/laravel-use-dingo-api.html" data-id="cjpeummnb000b60mj1u3u6z55" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/laravel/">laravel</a></li></ul>
@@ -541,7 +567,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.liluoao.com/2018/laravel-phpunit.html" data-id="cjpdlte72000f4omjwzqs4cm1" class="article-share-link">分享</a>
+      <a data-url="http://www.liluoao.com/2018/laravel-phpunit.html" data-id="cjpeummnb000g60mjv8qvhhm7" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/laravel/">laravel</a></li></ul>
@@ -591,7 +617,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.liluoao.com/2018/restful-api-in-laravel-56-using-jwt-authentication.html" data-id="cjpdlte6m000c4omjnvszh19z" class="article-share-link">分享</a>
+      <a data-url="http://www.liluoao.com/2018/restful-api-in-laravel-56-using-jwt-authentication.html" data-id="cjpeummnb000c60mj9fsovotc" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/laravel/">laravel</a></li></ul>
