@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>使用SonarQube管理代码质量 | To be a Web Artisan</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="SonarQube®是一种自动代码审查工具，用于检测代码中的错误，漏洞和代码异味。它可以与您现有的工作流程集成，以便在项目分支和拉取请求之间进行连续的代码检查。官方提供了2种方式，一种是下载后本地搭建，另一种是在线运行。">
+<meta name="keywords" content="tool">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用SonarQube管理代码质量">
+<meta property="og:url" content="http://www.liluoao.com/2018/use-sonarqube-continuous-code-quality.html">
+<meta property="og:site_name" content="To be a Web Artisan">
+<meta property="og:description" content="SonarQube®是一种自动代码审查工具，用于检测代码中的错误，漏洞和代码异味。它可以与您现有的工作流程集成，以便在项目分支和拉取请求之间进行连续的代码检查。官方提供了2种方式，一种是下载后本地搭建，另一种是在线运行。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://www.liluoao.com/images/sonar-add-project.png">
+<meta property="og:image" content="http://www.liluoao.com/images/sonar-result.png">
+<meta property="og:updated_time" content="2018-12-25T10:47:02.482Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="使用SonarQube管理代码质量">
+<meta name="twitter:description" content="SonarQube®是一种自动代码审查工具，用于检测代码中的错误，漏洞和代码异味。它可以与您现有的工作流程集成，以便在项目分支和拉取请求之间进行连续的代码检查。官方提供了2种方式，一种是下载后本地搭建，另一种是在线运行。">
+<meta name="twitter:image" content="http://www.liluoao.com/images/sonar-add-project.png">
+<meta name="twitter:creator" content="@liluoao">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">To be a Web Artisan</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">首页</a>
+        
+          <a class="main-nav-link" href="/archives">文章列表</a>
+        
+          <a class="main-nav-link" href="/categories/laravel">Laravel</a>
+        
+          <a class="main-nav-link" href="/categories/wechat">Wechat</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://www.liluoao.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-使用SonarQube管理代码质量" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/use-sonarqube-continuous-code-quality.html" class="article-date">
+  <time datetime="2018-12-25T08:21:24.000Z" itemprop="datePublished">2018-12-25</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      使用SonarQube管理代码质量
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><a href="https://www.sonarqube.org/" target="_blank" rel="noopener">SonarQube®</a>是一种自动代码审查工具，用于检测代码中的错误，漏洞和代码异味。它可以与您现有的工作流程集成，以便在项目分支和拉取请求之间进行连续的代码检查。官方提供了2种方式，一种是下载后本地搭建，另一种是在线运行。</p>
+<a id="more"></a>
+<p>这里以在线运行为例，进入<a href="https://sonarcloud.io/about/sq" target="_blank" rel="noopener">SonarCloud</a>，使用 GitHub 账号登录。在 <code>Create Organization</code> 创建组织后，可以开始 <code>Analyze projects</code> 分析你的项目了。</p>
+<p><img src="/images/sonar-add-project.png" alt=""></p>
+<p>这里由于是测试项目，我选择 <em>Free plan</em>，上传后所有人都可以看到源码与分析结果。开始分析后，SonarCloud 会 <code>Provide a token</code> 创建一个 Token，在分析时填写。创建完后，下面要选择项目主要使用的语言，使用的操作系统，还需要下载一个<a href="https://docs.sonarqube.org/display/SCAN/Analyzing+with+SonarQube+Scanner" target="_blank" rel="noopener">SonarQube Scanner</a></p>
+<p>以 Windows 为例，下载解压后将其中的 <code>/bin</code> 目录加入环境变量，进入你的项目根目录执行如下命令（也可以复制页面自动生成的命令）：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">D:\WWW\Sm&gt;sonar-scanner.bat </span><br><span class="line">-D<span class="string">"sonar.projectKey=&#123;你的Project Key&#125;"</span> </span><br><span class="line">-D<span class="string">"sonar.organization=&#123;你的Organization Key&#125;"</span> </span><br><span class="line">-D<span class="string">"sonar.sources=."</span> </span><br><span class="line">-D<span class="string">"sonar.host.url=https://sonarcloud.io"</span> </span><br><span class="line">-D<span class="string">"sonar.login=&#123;你的Token&#125;"</span></span><br></pre></td></tr></table></figure>
+<p>输出结果如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br></pre></td><td class="code"><pre><span class="line">INFO: Scanner configuration file: D:\sonar-scanner-3.2.0.1227-windows\bin\..\con</span><br><span class="line">f\sonar-scanner.properties</span><br><span class="line">INFO: Project root configuration file: NONE</span><br><span class="line">INFO: SonarQube Scanner 3.2.0.1227</span><br><span class="line">INFO: Java 1.8.0_121 Oracle Corporation (64-bit)</span><br><span class="line">INFO: Windows 7 6.1 amd64</span><br><span class="line">INFO: User cache: C:\Users\viruser.v-desktop\.sonar\cache</span><br><span class="line">INFO: SonarQube server 7.6.0</span><br><span class="line">INFO: Default locale: &quot;zh_CN&quot;, source code encoding: &quot;GBK&quot; (analysis is platform</span><br><span class="line"> dependent)</span><br><span class="line">INFO: Publish mode</span><br><span class="line">INFO: Load global settings</span><br><span class="line">INFO: Load global settings (done) | time=1567ms</span><br><span class="line">INFO: Server id: BD367519-AWHW8ct9-T_TB3XqouNu</span><br><span class="line">INFO: User cache: C:\Users\viruser.v-desktop\.sonar\cache</span><br><span class="line">INFO: Load/download plugins</span><br><span class="line">INFO: Load plugins index</span><br><span class="line">INFO: Load plugins index (done) | time=331ms</span><br><span class="line">INFO: Load/download plugins (done) | time=868ms</span><br><span class="line">INFO: Loaded core extensions: branch-scanner</span><br><span class="line">INFO: Process project properties</span><br><span class="line">INFO: Execute project builders</span><br><span class="line">INFO: Execute project builders (done) | time=12ms</span><br><span class="line">INFO: Load project branches</span><br><span class="line">INFO: Load project branches (done) | time=301ms</span><br><span class="line">INFO: Load project pull requests</span><br><span class="line">INFO: Load project pull requests (done) | time=286ms</span><br><span class="line">INFO: Load branch configuration</span><br><span class="line">INFO: Load branch configuration (done) | time=5ms</span><br><span class="line">INFO: Load project repositories</span><br><span class="line">INFO: Load project repositories (done) | time=359ms</span><br><span class="line">INFO: Load quality profiles</span><br><span class="line">INFO: Load quality profiles (done) | time=2319ms</span><br><span class="line">INFO: Load active rules</span><br><span class="line">INFO: Load active rules (done) | time=12946ms</span><br><span class="line">INFO: Load metrics repository</span><br><span class="line">INFO: Load metrics repository (done) | time=288ms</span><br><span class="line">INFO: Project key: royal-flush-crm_mei-crm</span><br><span class="line">INFO: Project base dir: D:\WWW\Sm</span><br><span class="line">INFO: Organization key: royal-flush-crm</span><br><span class="line">INFO: -------------  Scan royal-flush-crm_mei-crm</span><br><span class="line">INFO: Base dir: D:\WWW\Sm</span><br><span class="line">INFO: Working dir: D:\WWW\Sm\.scannerwork</span><br><span class="line">INFO: Source paths: .</span><br><span class="line">INFO: Source encoding: GBK, default locale: zh_CN</span><br><span class="line">WARN: Property &apos;sonar.abap.file.suffixes&apos; is not declared as multi-values/proper</span><br><span class="line">ty set but was read using &apos;getStringArray&apos; method. The SonarQube plugin declarin</span><br><span class="line">g this property should be updated.</span><br><span class="line">INFO: Index files</span><br><span class="line">INFO: 15 files indexed</span><br><span class="line">INFO: Quality profile for php: Sonar way</span><br><span class="line">INFO: Quality profile for web: Sonar way</span><br><span class="line">INFO: Sensor SonarJavaXmlFileSensor [java]</span><br><span class="line">INFO: Sensor SonarJavaXmlFileSensor [java] (done) | time=2ms</span><br><span class="line">INFO: Sensor HTML [web]</span><br><span class="line">INFO: Sensor HTML [web] (done) | time=347ms</span><br><span class="line">INFO: Sensor JaCoCo XML Report Importer [jacoco]</span><br><span class="line">INFO: Sensor JaCoCo XML Report Importer [jacoco] (done) | time=6ms</span><br><span class="line">INFO: Sensor PHP sensor [php]</span><br><span class="line">INFO: 11 source files to be analyzed</span><br><span class="line">INFO: No PHPUnit test report provided (see &apos;sonar.php.tests.reportPath&apos; property</span><br><span class="line">)</span><br><span class="line">INFO: No PHPUnit coverage reports provided (see &apos;sonar.php.coverage.reportPaths&apos;</span><br><span class="line"> property)</span><br><span class="line">INFO: Sensor PHP sensor [php] (done) | time=2136ms</span><br><span class="line">INFO: Sensor Analyzer for &quot;php.ini&quot; files [php]</span><br><span class="line">INFO: Sensor Analyzer for &quot;php.ini&quot; files [php] (done) | time=14ms</span><br><span class="line">INFO: Sensor Zero Coverage Sensor</span><br><span class="line">INFO: 11/11 source files have been analyzed</span><br><span class="line">INFO: Sensor Zero Coverage Sensor (done) | time=100ms</span><br><span class="line">INFO: Sensor JavaSecuritySensor [security]</span><br><span class="line">INFO: Reading UCFGs from: D:\WWW\Sm\.scannerwork\ucfg2\java</span><br><span class="line">INFO: UCFGs: 0, excluded: 0, source entrypoints: 0</span><br><span class="line">INFO: No UCFGs have been included for analysis.</span><br><span class="line">INFO: Sensor JavaSecuritySensor [security] (done) | time=23ms</span><br><span class="line">INFO: Sensor CSharpSecuritySensor [security]</span><br><span class="line">INFO: Reading UCFGs from: D:\WWW\Sm\ucfg_cs2</span><br><span class="line">INFO: UCFGs: 0, excluded: 0, source entrypoints: 0</span><br><span class="line">INFO: No UCFGs have been included for analysis.</span><br><span class="line">INFO: Sensor CSharpSecuritySensor [security] (done) | time=1ms</span><br><span class="line">INFO: SCM provider for this project is: git</span><br><span class="line">INFO: 12 files to be analyzed</span><br><span class="line">INFO: 12/12 files analyzed</span><br><span class="line">INFO: 2 files had no CPD blocks</span><br><span class="line">INFO: Calculating CPD for 10 files</span><br><span class="line">INFO: CPD calculation finished</span><br><span class="line">INFO: Analysis report generated in 316ms, dir size=158 KB</span><br><span class="line">INFO: Analysis reports compressed in 89ms, zip size=52 KB</span><br><span class="line">INFO: Analysis report uploaded in 2002ms</span><br><span class="line">INFO: ANALYSIS SUCCESSFUL, you can browse https://sonarcloud.io/dashboard?id=roy</span><br><span class="line">al-flush-crm_mei-crm</span><br><span class="line">INFO: Note that you will be able to access the updated dashboard once the server</span><br><span class="line"> has processed the submitted analysis report</span><br><span class="line">INFO: More about the report processing at https://sonarcloud.io/api/ce/task?id=A</span><br><span class="line">WfkWnRDqDdpA2vNWgTj</span><br><span class="line">INFO: Task total time: 31.581 s</span><br><span class="line">INFO: ------------------------------------------------------------------------</span><br><span class="line">INFO: EXECUTION SUCCESS</span><br><span class="line">INFO: ------------------------------------------------------------------------</span><br><span class="line">INFO: Total time: 38.578s</span><br><span class="line">INFO: Final Memory: 34M/293M</span><br><span class="line">INFO: ------------------------------------------------------------------------</span><br></pre></td></tr></table></figure></p>
+<p>分析结果如下：</p>
+<p><img src="/images/sonar-result.png" alt=""></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.liluoao.com/2018/use-sonarqube-continuous-code-quality.html" data-id="cjq3mmote003wx4mj9cg01zv0" class="article-share-link">分享</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/tool/">tool</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2018/use-kong-admin-api.html" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">使用Kong的AdminAPI</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2018/use-sonarqube-continuous-code-quality.html">使用SonarQube管理代码质量</a>
+          </li>
+        
+          <li>
+            <a href="/2018/use-kong-admin-api.html">使用Kong的AdminAPI</a>
+          </li>
+        
+          <li>
+            <a href="/2018/kong-cluster-event.html">Kong集群间数据同步</a>
+          </li>
+        
+          <li>
+            <a href="/2018/lua-metatable.html">Lua的元表</a>
+          </li>
+        
+          <li>
+            <a href="/2018/use-kong-for-api-gateway.html">使用Kong作为APIGateway</a>
+          </li>
+        
+          <li>
+            <a href="/2018/a-php-developer-roadmap.html">PHP新手开发者的路线</a>
+          </li>
+        
+          <li>
+            <a href="/2018/php-7-use-mongodb.html">PHP7操作MongoDB</a>
+          </li>
+        
+          <li>
+            <a href="/2018/compile-php-extension.html">编译PHP扩展</a>
+          </li>
+        
+          <li>
+            <a href="/2018/laravel-use-dingo-api.html">Laravel使用DingoAPI</a>
+          </li>
+        
+          <li>
+            <a href="/2018/laravel-phpunit.html">Laravel使用PHPUnit</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/algorithm/">algorithm</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/alipay/">alipay</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/apache/">apache</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/design-patterns/">design-patterns</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/kong/">kong</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/laravel/">laravel</a><span class="tag-list-count">21</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/lua/">lua</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mongo/">mongo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/">mysql</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/openresty/">openresty</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/phalcon/">phalcon</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/php/">php</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tool/">tool</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/wechat/">wechat</a><span class="tag-list-count">7</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">十二月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">十一月 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">八月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">七月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">五月 2018</a><span class="archive-list-count">20</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a><span class="archive-list-count">15</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">二月 2018</a><span class="archive-list-count">20</span></li></ul>
+    </div>
+  </div>
+
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      <div class="footer-about-me">
+        关于作者<br>
+        <a href="https://github.com/liluoao" target="_blank" title="GitHub">GitHub</a><br>
+        <a href="https://segmentfault.com/u/liluoao" target="_blank" title="SegmentFault">SegmentFault</a><br>
+        <a href="https://laravel-china.org/users/7144" target="_blank" title="LaravelChina">LaravelChina</a><br>
+        <a href="https://gitee.com/liluoao" target="_blank" title="码云">码云</a><br>
+        <a href="https://juejin.im/user/5a19374cf265da4332274600" target="_blank" title="掘金">掘金</a><br>
+        <a href="https://packagist.org/users/liluoao/" target="_blank" title="Packagist">Packagist</a><br>
+        <a href="https://www.gitbook.com/@liluoao" target="_blank" title="GitBook">GitBook</a>
+      </div>
+      <div style="width:300px;margin:0 auto; padding:20px 0;">
+        <div class="footer-copyright">
+          &copy; 2018 李罗奥
+          Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+        </div>
+        <a href="http://www.miitbeian.gov.cn/" target="_blank" style="display:inline-block;text-decoration:none;height:20px;line-height:20px;"><p style="float:left;height:20px;line-height:20px;margin: 0px 0px 0px 5px; color:#939393;">鄂ICP备18009105号</p></a>
+        <a target="_blank" href="https://www.beian.gov.cn/portal/registerSystemInfo?recordcode=42011102001595" style="display:inline-block;text-decoration:none;height:20px;line-height:20px;"><img src="/css/images/beian.png" style="float:left;"/><p style="float:left;height:20px;line-height:20px;margin: 0px 0px 0px 5px; color:#939393;">鄂公网安备 42011102001595号</p></a>
+      </div>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">首页</a>
+  
+    <a href="/archives" class="mobile-nav-link">文章列表</a>
+  
+    <a href="/categories/laravel" class="mobile-nav-link">Laravel</a>
+  
+    <a href="/categories/wechat" class="mobile-nav-link">Wechat</a>
+  
+</nav>
+    
+
+<script src="//lib.sinaapp.com/js/jquery/3.1.0/jquery-3.1.0.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

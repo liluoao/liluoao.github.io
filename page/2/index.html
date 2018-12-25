@@ -63,6 +63,56 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-Laravel使用JWT-Authentication" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/restful-api-in-laravel-56-using-jwt-authentication.html" class="article-date">
+  <time datetime="2018-05-25T03:35:27.000Z" itemprop="datePublished">2018-05-25</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/laravel/">laravel</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/restful-api-in-laravel-56-using-jwt-authentication.html">Laravel使用JWT-Authentication</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="Restful-API-In-Laravel-5-6-Using-jwt-Authentication"><a href="#Restful-API-In-Laravel-5-6-Using-jwt-Authentication" class="headerlink" title="Restful API In Laravel 5.6 Using jwt Authentication"></a>Restful API In Laravel 5.6 Using jwt Authentication</h2><h4 id="Installing-tymon-jwt-auth-package"><a href="#Installing-tymon-jwt-auth-package" class="headerlink" title="Installing tymon/jwt-auth package"></a>Installing tymon/jwt-auth package</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">composer require tymon/jwt-auth:dev-develop --prefer-source</span><br></pre></td></tr></table></figure>
+<h4 id="Publishing-Configuration-File"><a href="#Publishing-Configuration-File" class="headerlink" title="Publishing Configuration File"></a>Publishing Configuration File</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">php artisan vendor:publish --provider=<span class="string">"Tymon\JWTAuth\Providers\JWTAuthServiceProvider"</span></span><br></pre></td></tr></table></figure>
+<h4 id="Generate-JWT-Key"><a href="#Generate-JWT-Key" class="headerlink" title="Generate JWT Key"></a>Generate JWT Key</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">php artisan jwt:secret</span><br></pre></td></tr></table></figure>
+<h4 id="Registering-Middleware"><a href="#Registering-Middleware" class="headerlink" title="Registering Middleware"></a>Registering Middleware</h4><p>在 <code>app\Http\Kernel</code> 中加入：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">protected</span> $routeMiddleware = [</span><br><span class="line">    <span class="comment">//...</span></span><br><span class="line">    <span class="string">'auth.jwt'</span> =&gt; \Tymon\JWTAuth\Http\Middleware\Authenticate::class,</span><br><span class="line">];</span><br></pre></td></tr></table></figure></p>
+        
+          <p class="article-more-link">
+            <a href="/2018/restful-api-in-laravel-56-using-jwt-authentication.html#more">阅读全文</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.liluoao.com/2018/restful-api-in-laravel-56-using-jwt-authentication.html" data-id="cjq3mmor7000cx4mj0zm0qbgk" class="article-share-link">分享</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/laravel/">laravel</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-Laravel的Policy" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2018/laravel-policy.html" class="article-date">
@@ -101,7 +151,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.liluoao.com/2018/laravel-policy.html" data-id="cjphondps000y24mjoby0tfw3" class="article-share-link">分享</a>
+      <a data-url="http://www.liluoao.com/2018/laravel-policy.html" data-id="cjq3mmos2000yx4mj1w2625kw" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/laravel/">laravel</a></li></ul>
@@ -161,7 +211,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.liluoao.com/2018/create-rest-api-in-laravel-with-authentication-using-passport.html" data-id="cjphondps000w24mjhro4qdc6" class="article-share-link">分享</a>
+      <a data-url="http://www.liluoao.com/2018/create-rest-api-in-laravel-with-authentication-using-passport.html" data-id="cjq3mmorm000vx4mj1zjhssly" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/laravel/">laravel</a></li></ul>
@@ -209,7 +259,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.liluoao.com/2018/laravel-middleware.html" data-id="cjphondps000s24mjbaim300x" class="article-share-link">分享</a>
+      <a data-url="http://www.liluoao.com/2018/laravel-middleware.html" data-id="cjq3mmorm000sx4mjbnz8i9hh" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/laravel/">laravel</a></li></ul>
@@ -258,7 +308,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.liluoao.com/2018/laravel-custom-validation-rules.html" data-id="cjphondq7001i24mjrc0jc6jo" class="article-share-link">分享</a>
+      <a data-url="http://www.liluoao.com/2018/laravel-custom-validation-rules.html" data-id="cjq3mmos2001hx4mjj65z8ak4" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/laravel/">laravel</a></li></ul>
@@ -310,7 +360,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.liluoao.com/2018/laravel-form-validation.html" data-id="cjphondq7001b24mjjy4quenv" class="article-share-link">分享</a>
+      <a data-url="http://www.liluoao.com/2018/laravel-form-validation.html" data-id="cjq3mmos2001bx4mj3xrgk7y4" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/laravel/">laravel</a></li></ul>
@@ -357,7 +407,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.liluoao.com/2018/laravel-localization.html" data-id="cjphondps001824mjquhaw85w" class="article-share-link">分享</a>
+      <a data-url="http://www.liluoao.com/2018/laravel-localization.html" data-id="cjq3mmos20019x4mjemddvzjq" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/laravel/">laravel</a></li></ul>
@@ -404,7 +454,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.liluoao.com/2018/laravel-helpers.html" data-id="cjphondq7001f24mjou1tqyc8" class="article-share-link">分享</a>
+      <a data-url="http://www.liluoao.com/2018/laravel-helpers.html" data-id="cjq3mmos2001ex4mj33h9q50o" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/laravel/">laravel</a></li></ul>
@@ -456,7 +506,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.liluoao.com/2018/laravel-task-scheduling.html" data-id="cjphondps001524mjqiucdf83" class="article-share-link">分享</a>
+      <a data-url="http://www.liluoao.com/2018/laravel-task-scheduling.html" data-id="cjq3mmos20016x4mjieax3p7s" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/laravel/">laravel</a></li></ul>
@@ -504,55 +554,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.liluoao.com/2018/laravel-artisan.html" data-id="cjphondpc000h24mj3w8vck1d" class="article-share-link">分享</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/laravel/">laravel</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-Laravel的Queue" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/laravel-queue.html" class="article-date">
-  <time datetime="2018-05-08T01:08:48.000Z" itemprop="datePublished">2018-05-08</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/laravel/">laravel</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/laravel-queue.html">Laravel的Queue</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h3><p>首先打开 <code>config/queue.php</code> 。<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'default'</span> =&gt; env(<span class="string">'QUEUE_DRIVER'</span>, <span class="string">'sync'</span>),</span><br><span class="line"><span class="string">'connections'</span> =&gt; [</span><br><span class="line">        <span class="string">'sync'</span> =&gt; [</span><br><span class="line">            <span class="string">'driver'</span> =&gt; <span class="string">'sync'</span>,</span><br><span class="line">        ],</span><br><span class="line">        <span class="string">'database'</span> =&gt; [</span><br><span class="line">            <span class="string">'driver'</span> =&gt; <span class="string">'database'</span>,</span><br><span class="line">        ],</span><br><span class="line">        <span class="comment">//...</span></span><br><span class="line">        <span class="string">'redis'</span> =&gt; [</span><br><span class="line">            <span class="string">'driver'</span> =&gt; <span class="string">'redis'</span>,</span><br><span class="line">        ],</span><br><span class="line">    ],</span><br></pre></td></tr></table></figure></p>
-<p><code>default</code> 是队列系统默认使用的驱动，在连接时可以使用 <code>onConnection()</code> 方法将任务推到指定连接。<br><code>connections</code> 可以配置各种驱动的设置，如<strong>Redis</strong>的数据库连接等。<br><code>failed</code> 配置队列中的任务执行失败时，保存失败任务的库与表。</p>
-        
-          <p class="article-more-link">
-            <a href="/2018/laravel-queue.html#more">阅读全文</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://www.liluoao.com/2018/laravel-queue.html" data-id="cjphondps001024mj2qv9f0mw" class="article-share-link">分享</a>
+      <a data-url="http://www.liluoao.com/2018/laravel-artisan.html" data-id="cjq3mmorm000hx4mjna1v82sr" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/laravel/">laravel</a></li></ul>
@@ -568,7 +570,7 @@
 
   <nav id="page-nav">
     
-    <a class="extend prev" rel="prev" href="/">&laquo; 上一页</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/3/">下一页 &raquo;</a>
+    <a class="extend prev" rel="prev" href="/">&laquo; 上一页</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/3/">下一页 &raquo;</a>
   </nav>
 
 </section>
@@ -580,6 +582,10 @@
     <h3 class="widget-title">最新文章</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2018/use-sonarqube-continuous-code-quality.html">使用SonarQube管理代码质量</a>
+          </li>
         
           <li>
             <a href="/2018/use-kong-admin-api.html">使用Kong的AdminAPI</a>
@@ -617,10 +623,6 @@
             <a href="/2018/laravel-phpunit.html">Laravel使用PHPUnit</a>
           </li>
         
-          <li>
-            <a href="/2018/restful-api-in-laravel-56-using-jwt-authentication.html">Laravel使用JWT-Authentication</a>
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -630,7 +632,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/algorithm/">algorithm</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/alipay/">alipay</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/apache/">apache</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/design-patterns/">design-patterns</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/kong/">kong</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/laravel/">laravel</a><span class="tag-list-count">21</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/lua/">lua</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mongo/">mongo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/">mysql</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/openresty/">openresty</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/phalcon/">phalcon</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/php/">php</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tool/">tool</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/wechat/">wechat</a><span class="tag-list-count">7</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/algorithm/">algorithm</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/alipay/">alipay</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/apache/">apache</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/design-patterns/">design-patterns</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/kong/">kong</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/laravel/">laravel</a><span class="tag-list-count">21</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/lua/">lua</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mongo/">mongo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/">mysql</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/openresty/">openresty</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/phalcon/">phalcon</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/php/">php</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tool/">tool</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/wechat/">wechat</a><span class="tag-list-count">7</span></li></ul>
     </div>
   </div>
 
@@ -640,7 +642,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">十二月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">十一月 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">八月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">七月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">五月 2018</a><span class="archive-list-count">20</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a><span class="archive-list-count">15</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">二月 2018</a><span class="archive-list-count">20</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">十二月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">十一月 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">八月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">七月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">五月 2018</a><span class="archive-list-count">20</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a><span class="archive-list-count">15</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">二月 2018</a><span class="archive-list-count">20</span></li></ul>
     </div>
   </div>
 
