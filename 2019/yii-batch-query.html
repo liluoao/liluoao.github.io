@@ -5,20 +5,20 @@
   
 
   
-  <title>重定向HTTP到HTTPS | To be a Web Artisan</title>
+  <title>Yii批处理查询 | To be a Web Artisan</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="使用阿里云提供的证书：1234567etc    apache2        cert            xxx.key            xxx.pem            chain.pem            public.pem 编辑 default-ssl.conf">
-<meta name="keywords" content="apache,linux">
+  <meta name="description" content="Yii2 官方文档中对于大数据处理是这样说的：  当需要处理大数据的时候，像 yii\db\Query::all() 这样的方法就不太合适了， 因为它们会把所有查询的数据都读取到客户端内存上。为了解决这个问题， Yii 提供了批处理查询的支持。服务端先保存查询结果，然后客户端使用游标（cursor） 每次迭代出固定的一批结果集回来。  但是，下面有非常显眼的 WARNING ：MySQL 批处理查">
+<meta name="keywords" content="php,yii">
 <meta property="og:type" content="article">
-<meta property="og:title" content="重定向HTTP到HTTPS">
-<meta property="og:url" content="http://www.liluoao.com/2018/rewrite-http-to-https.html">
+<meta property="og:title" content="Yii批处理查询">
+<meta property="og:url" content="http://www.liluoao.com/2019/yii-batch-query.html">
 <meta property="og:site_name" content="To be a Web Artisan">
-<meta property="og:description" content="使用阿里云提供的证书：1234567etc    apache2        cert            xxx.key            xxx.pem            chain.pem            public.pem 编辑 default-ssl.conf">
+<meta property="og:description" content="Yii2 官方文档中对于大数据处理是这样说的：  当需要处理大数据的时候，像 yii\db\Query::all() 这样的方法就不太合适了， 因为它们会把所有查询的数据都读取到客户端内存上。为了解决这个问题， Yii 提供了批处理查询的支持。服务端先保存查询结果，然后客户端使用游标（cursor） 每次迭代出固定的一批结果集回来。  但是，下面有非常显眼的 WARNING ：MySQL 批处理查">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-02-19T09:07:36.240Z">
+<meta property="og:updated_time" content="2019-02-19T09:07:36.208Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="重定向HTTP到HTTPS">
-<meta name="twitter:description" content="使用阿里云提供的证书：1234567etc    apache2        cert            xxx.key            xxx.pem            chain.pem            public.pem 编辑 default-ssl.conf">
+<meta name="twitter:title" content="Yii批处理查询">
+<meta name="twitter:description" content="Yii2 官方文档中对于大数据处理是这样说的：  当需要处理大数据的时候，像 yii\db\Query::all() 这样的方法就不太合适了， 因为它们会把所有查询的数据都读取到客户端内存上。为了解决这个问题， Yii 提供了批处理查询的支持。服务端先保存查询结果，然后客户端使用游标（cursor） 每次迭代出固定的一批结果集回来。  但是，下面有非常显眼的 WARNING ：MySQL 批处理查">
 <meta name="twitter:creator" content="@liluoao">
   
   
@@ -63,10 +63,10 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-重定向HTTP到HTTPS" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-Yii批处理查询" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2018/rewrite-http-to-https.html" class="article-date">
-  <time datetime="2018-03-07T06:29:41.000Z" itemprop="datePublished">2018-03-07</time>
+    <a href="/2019/yii-batch-query.html" class="article-date">
+  <time datetime="2019-02-19T07:39:11.000Z" itemprop="datePublished">2019-02-19</time>
 </a>
     
   </div>
@@ -77,7 +77,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      重定向HTTP到HTTPS
+      Yii批处理查询
     </h1>
   
 
@@ -85,20 +85,34 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>使用阿里云提供的证书：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">etc</span><br><span class="line">    apache2</span><br><span class="line">        cert</span><br><span class="line">            xxx.key</span><br><span class="line">            xxx.pem</span><br><span class="line">            chain.pem</span><br><span class="line">            public.pem</span><br></pre></td></tr></table></figure></p>
-<p>编辑 <code>default-ssl.conf</code><br><a id="more"></a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;VirtualHost *:443&gt;</span><br><span class="line">    ServerAdmin liluoao@qq.com</span><br><span class="line">    ServerName liluoao.com</span><br><span class="line">    DocumentRoot /var/www/html</span><br><span class="line">    SSLEngine on</span><br><span class="line">    SSLProtocol all -SSLv2 -SSLv3</span><br><span class="line">    SSLCipherSuite HIGH:!RC4:!MD5:!aNULL:!eNULL:!NULL:!DH:!EDH:!EXP:+MEDIUM</span><br><span class="line">    SSLHonorCipherOrder on</span><br><span class="line">    SSLCertificateFile /etc/apache2/cert/public.pem</span><br><span class="line">    SSLCertificateKeyFile /etc/apache2/cert/1523613072453.key</span><br><span class="line">    SSLCertificateChainFile /etc/apache2/cert/chain.pem</span><br><span class="line">&lt;/VirtualHost&gt;</span><br></pre></td></tr></table></figure></p>
-<p>开启重定向需要加载 <code>rewrite</code> 模块<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">a2enmod rewrite</span><br></pre></td></tr></table></figure></p>
-<p>或者<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ln -s /etc/apache2/mods-available/rewrite.load  /etc/apache2/mods-enabled/rewrite.load</span><br></pre></td></tr></table></figure></p>
-<p>编辑 <code>000-default.conf</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;VirtualHost *:80&gt;</span><br><span class="line">    ServerName www.liluoao.com</span><br><span class="line">    ServerAdmin liluoao@qq.com</span><br><span class="line">    DocumentRoot /var/www/html</span><br><span class="line">    ErrorLog $&#123;APACHE_LOG_DIR&#125;/error.log</span><br><span class="line">    CustomLog $&#123;APACHE_LOG_DIR&#125;/access.log combined</span><br><span class="line">    RewriteEngine on</span><br><span class="line">    RewriteCond   %&#123;HTTPS&#125; !=on</span><br><span class="line">    RewriteRule   ^(.*)  https://%&#123;SERVER_NAME&#125;$1 [L,R]</span><br><span class="line">&lt;/VirtualHost&gt;</span><br></pre></td></tr></table></figure></p>
-<p>或者是在根目录编辑 <code>.htaccess</code> 文件：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">RewriteEngine on</span><br><span class="line">RewriteBase / </span><br><span class="line">RewriteCond %&#123;SERVER_PORT&#125; !^443$</span><br><span class="line">RewriteRule ^.* https://%&#123;SERVER_NAME&#125;%&#123;REQUEST_URI&#125; [L,R]</span><br></pre></td></tr></table></figure></p>
+        <p>Yii2 官方文档中对于<a href="https://www.yiiframework.com/doc/guide/2.0/en/db-query-builder#batch-query" target="_blank" rel="noopener">大数据处理</a>是这样说的：</p>
+<blockquote>
+<p>当需要处理大数据的时候，像 yii\db\Query::all() 这样的方法就不太合适了， 因为它们会把所有查询的数据都读取到客户端内存上。为了解决这个问题， Yii 提供了批处理查询的支持。服务端先保存查询结果，然后客户端使用游标（cursor） 每次迭代出固定的一批结果集回来。</p>
+</blockquote>
+<p>但是，下面有非常显眼的 <strong>WARNING</strong> ：<code>MySQL 批处理查询的实现存在已知的局限性</code></p>
+<p>以为批量查一次 5000 条可能就这么简单：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">use</span> <span class="title">yii</span>\<span class="title">db</span>\<span class="title">Query</span>;</span><br><span class="line"></span><br><span class="line">$query = (<span class="keyword">new</span> Query())</span><br><span class="line">    -&gt;from(<span class="string">'user'</span>)</span><br><span class="line">    -&gt;orderBy(<span class="string">'id'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">foreach</span> ($query-&gt;each(<span class="number">5000</span>) <span class="keyword">as</span> $user) &#123;</span><br><span class="line">    <span class="comment">// $user 代表 user 表里的一行数据</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>但是在 <a href="https://secure.php.net/manual/en/mysqlinfo.concepts.buffering.php" target="_blank" rel="noopener">MySQL PHP驱动程序概述</a> 中说到 <strong>查询默认使用缓冲模式</strong><br>也就是说你以为是每次去取了 5000 条执行，其实之前的查询结果一直占用着内存。<br>要禁用缓存并减少客户端内存的需求量，PDO 连接属性 <code>PDO::MYSQL_ATTR_USE_BUFFERED_QUERY</code> 必须设置为 <code>false</code>。<br>这样，直到整个数据集被处理完毕前，通过此连接是无法创建其他查询的。<br>我们可以通过切换原本的连接到非缓存模式，然后在批量查询完成后再切换回来。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Yii::$app-&gt;db-&gt;pdo-&gt;setAttribute(\PDO::MYSQL_ATTR_USE_BUFFERED_QUERY, <span class="keyword">false</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// Do batch query</span></span><br><span class="line"></span><br><span class="line">Yii::$app-&gt;db-&gt;pdo-&gt;setAttribute(\PDO::MYSQL_ATTR_USE_BUFFERED_QUERY, <span class="keyword">true</span>);</span><br></pre></td></tr></table></figure>
+<p>非缓存查询在 PHP 端使用更少的缓存，但会增加 MySQL 服务器端的负载。</p>
+<blockquote>
+<p>对于 MyISAM 引擎，在执行批量查询的过程中，表可能会被锁， 导致延迟或拒绝其他连接的写入操作。</p>
+</blockquote>
+<p>我在使用非缓存查询时是保证瞬间只有这一个查询的脚本，如果在批量查询处理过程中需要执行其他查询， 你可以创建一个单独的非缓存链接到数据库：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">$unbufferedDb = <span class="keyword">new</span> \yii\db\Connection([</span><br><span class="line">    <span class="string">'dsn'</span> =&gt; Yii::$app-&gt;db-&gt;dsn,</span><br><span class="line">    <span class="string">'username'</span> =&gt; Yii::$app-&gt;db-&gt;username,</span><br><span class="line">    <span class="string">'password'</span> =&gt; Yii::$app-&gt;db-&gt;password,</span><br><span class="line">    <span class="string">'charset'</span> =&gt; Yii::$app-&gt;db-&gt;charset,</span><br><span class="line">]);</span><br><span class="line">$unbufferedDb-&gt;open();</span><br><span class="line">$unbufferedDb-&gt;pdo-&gt;setAttribute(\PDO::MYSQL_ATTR_USE_BUFFERED_QUERY, <span class="keyword">false</span>);</span><br></pre></td></tr></table></figure>
+<p>然后在调用 <code>batch()</code> 或 <code>each()</code> 时作为参数传递：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">foreach</span> ($query-&gt;batch(<span class="number">5000</span>, $unbufferedDb) <span class="keyword">as</span> $users) &#123;</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>非缓存查询的链接使用后及时关闭：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$unbufferedDb-&gt;close();</span><br></pre></td></tr></table></figure>
+<p>在项目的 <a href="https://github.com/yiisoft/yii2/issues/8420#issuecomment-296109257" target="_blank" rel="noopener">Issue</a> 中举了个很常见的例子，<strong>使用数字类型的主键或索引循环取</strong>，这也是脱离框架的最常用的方法。</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.liluoao.com/2018/rewrite-http-to-https.html" data-id="cjsbjqto4005g1kmj82qsnmfq" class="article-share-link">分享</a>
+      <a data-url="http://www.liluoao.com/2019/yii-batch-query.html" data-id="cjsbjqtly002w1kmj8cn9mkmu" class="article-share-link">分享</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/apache/">apache</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux/">linux</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/php/">php</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/yii/">yii</a></li></ul>
 
     </footer>
   </div>
@@ -106,19 +120,10 @@
     
 <nav id="article-nav">
   
-    <a href="/2018/laravel-route-to-controller.html" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">上一篇</strong>
-      <div class="article-nav-title">
-        
-          Laravel 路由调用控制器（转）
-        
-      </div>
-    </a>
   
-  
-    <a href="/2018/nginx-and-php-config.html" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2018/use-sonarqube-continuous-code-quality.html" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">下一篇</strong>
-      <div class="article-nav-title">Nginx和PHP的配置（转）</div>
+      <div class="article-nav-title">使用SonarQube管理代码质量</div>
     </a>
   
 </nav>

@@ -63,6 +63,64 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-Yii批处理查询" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/yii-batch-query.html" class="article-date">
+  <time datetime="2019-02-19T07:39:11.000Z" itemprop="datePublished">2019-02-19</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/yii-batch-query.html">Yii批处理查询</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Yii2 官方文档中对于<a href="https://www.yiiframework.com/doc/guide/2.0/en/db-query-builder#batch-query" target="_blank" rel="noopener">大数据处理</a>是这样说的：</p>
+<blockquote>
+<p>当需要处理大数据的时候，像 yii\db\Query::all() 这样的方法就不太合适了， 因为它们会把所有查询的数据都读取到客户端内存上。为了解决这个问题， Yii 提供了批处理查询的支持。服务端先保存查询结果，然后客户端使用游标（cursor） 每次迭代出固定的一批结果集回来。</p>
+</blockquote>
+<p>但是，下面有非常显眼的 <strong>WARNING</strong> ：<code>MySQL 批处理查询的实现存在已知的局限性</code></p>
+<p>以为批量查一次 5000 条可能就这么简单：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">use</span> <span class="title">yii</span>\<span class="title">db</span>\<span class="title">Query</span>;</span><br><span class="line"></span><br><span class="line">$query = (<span class="keyword">new</span> Query())</span><br><span class="line">    -&gt;from(<span class="string">'user'</span>)</span><br><span class="line">    -&gt;orderBy(<span class="string">'id'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">foreach</span> ($query-&gt;each(<span class="number">5000</span>) <span class="keyword">as</span> $user) &#123;</span><br><span class="line">    <span class="comment">// $user 代表 user 表里的一行数据</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>但是在 <a href="https://secure.php.net/manual/en/mysqlinfo.concepts.buffering.php" target="_blank" rel="noopener">MySQL PHP驱动程序概述</a> 中说到 <strong>查询默认使用缓冲模式</strong><br>也就是说你以为是每次去取了 5000 条执行，其实之前的查询结果一直占用着内存。<br>要禁用缓存并减少客户端内存的需求量，PDO 连接属性 <code>PDO::MYSQL_ATTR_USE_BUFFERED_QUERY</code> 必须设置为 <code>false</code>。<br>这样，直到整个数据集被处理完毕前，通过此连接是无法创建其他查询的。<br>我们可以通过切换原本的连接到非缓存模式，然后在批量查询完成后再切换回来。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Yii::$app-&gt;db-&gt;pdo-&gt;setAttribute(\PDO::MYSQL_ATTR_USE_BUFFERED_QUERY, <span class="keyword">false</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// Do batch query</span></span><br><span class="line"></span><br><span class="line">Yii::$app-&gt;db-&gt;pdo-&gt;setAttribute(\PDO::MYSQL_ATTR_USE_BUFFERED_QUERY, <span class="keyword">true</span>);</span><br></pre></td></tr></table></figure>
+<p>非缓存查询在 PHP 端使用更少的缓存，但会增加 MySQL 服务器端的负载。</p>
+<blockquote>
+<p>对于 MyISAM 引擎，在执行批量查询的过程中，表可能会被锁， 导致延迟或拒绝其他连接的写入操作。</p>
+</blockquote>
+<p>我在使用非缓存查询时是保证瞬间只有这一个查询的脚本，如果在批量查询处理过程中需要执行其他查询， 你可以创建一个单独的非缓存链接到数据库：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">$unbufferedDb = <span class="keyword">new</span> \yii\db\Connection([</span><br><span class="line">    <span class="string">'dsn'</span> =&gt; Yii::$app-&gt;db-&gt;dsn,</span><br><span class="line">    <span class="string">'username'</span> =&gt; Yii::$app-&gt;db-&gt;username,</span><br><span class="line">    <span class="string">'password'</span> =&gt; Yii::$app-&gt;db-&gt;password,</span><br><span class="line">    <span class="string">'charset'</span> =&gt; Yii::$app-&gt;db-&gt;charset,</span><br><span class="line">]);</span><br><span class="line">$unbufferedDb-&gt;open();</span><br><span class="line">$unbufferedDb-&gt;pdo-&gt;setAttribute(\PDO::MYSQL_ATTR_USE_BUFFERED_QUERY, <span class="keyword">false</span>);</span><br></pre></td></tr></table></figure>
+<p>然后在调用 <code>batch()</code> 或 <code>each()</code> 时作为参数传递：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">foreach</span> ($query-&gt;batch(<span class="number">5000</span>, $unbufferedDb) <span class="keyword">as</span> $users) &#123;</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>非缓存查询的链接使用后及时关闭：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$unbufferedDb-&gt;close();</span><br></pre></td></tr></table></figure>
+<p>在项目的 <a href="https://github.com/yiisoft/yii2/issues/8420#issuecomment-296109257" target="_blank" rel="noopener">Issue</a> 中举了个很常见的例子，<strong>使用数字类型的主键或索引循环取</strong>，这也是脱离框架的最常用的方法。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.liluoao.com/2019/yii-batch-query.html" data-id="cjsbjqtly002w1kmj8cn9mkmu" class="article-share-link">分享</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/php/">php</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/yii/">yii</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-使用SonarQube管理代码质量" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2018/use-sonarqube-continuous-code-quality.html" class="article-date">
@@ -94,7 +152,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.liluoao.com/2018/use-sonarqube-continuous-code-quality.html" data-id="cjq3mmote003wx4mj9cg01zv0" class="article-share-link">分享</a>
+      <a data-url="http://www.liluoao.com/2018/use-sonarqube-continuous-code-quality.html" data-id="cjsbjqtmt003x1kmjc1jmihld" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/tool/">tool</a></li></ul>
@@ -142,7 +200,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.liluoao.com/2018/use-kong-admin-api.html" data-id="cjq3mmote003kx4mjbol26dtl" class="article-share-link">分享</a>
+      <a data-url="http://www.liluoao.com/2018/use-kong-admin-api.html" data-id="cjsbjqtme003l1kmjuw9o7n5r" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/kong/">kong</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/lua/">lua</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/openresty/">openresty</a></li></ul>
@@ -189,7 +247,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.liluoao.com/2018/kong-cluster-event.html" data-id="cjq3mmor70007x4mjqodw5gi4" class="article-share-link">分享</a>
+      <a data-url="http://www.liluoao.com/2018/kong-cluster-event.html" data-id="cjsbjqtix00081kmj6h3q5qf9" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/kong/">kong</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/lua/">lua</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/openresty/">openresty</a></li></ul>
@@ -236,7 +294,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.liluoao.com/2018/lua-metatable.html" data-id="cjq3mmosi001vx4mjrwahnyy7" class="article-share-link">分享</a>
+      <a data-url="http://www.liluoao.com/2018/lua-metatable.html" data-id="cjsbjqtl4001s1kmjcosje4eb" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/lua/">lua</a></li></ul>
@@ -279,7 +337,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.liluoao.com/2018/use-kong-for-api-gateway.html" data-id="cjq3mmote003gx4mj91vdzn0g" class="article-share-link">分享</a>
+      <a data-url="http://www.liluoao.com/2018/use-kong-for-api-gateway.html" data-id="cjsbjqtme003i1kmjr3xfkmqe" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/kong/">kong</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/lua/">lua</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/openresty/">openresty</a></li></ul>
@@ -323,7 +381,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.liluoao.com/2018/a-php-developer-roadmap.html" data-id="cjq3mmosi002ax4mj5t5dk5t6" class="article-share-link">分享</a>
+      <a data-url="http://www.liluoao.com/2018/a-php-developer-roadmap.html" data-id="cjsbjqtlj002g1kmjqg9jcoeu" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/php/">php</a></li></ul>
@@ -368,7 +426,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.liluoao.com/2018/php-7-use-mongodb.html" data-id="cjq3mmosi0023x4mjae210j2j" class="article-share-link">分享</a>
+      <a data-url="http://www.liluoao.com/2018/php-7-use-mongodb.html" data-id="cjsbjqtl400231kmj6hskt4ut" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mongo/">mongo</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/php/">php</a></li></ul>
@@ -413,7 +471,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.liluoao.com/2018/compile-php-extension.html" data-id="cjq3mmou80056x4mjpw8uc663" class="article-share-link">分享</a>
+      <a data-url="http://www.liluoao.com/2018/compile-php-extension.html" data-id="cjsbjqto400581kmjasd07i5p" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux/">linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/php/">php</a></li></ul>
@@ -465,57 +523,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.liluoao.com/2018/laravel-use-dingo-api.html" data-id="cjq3mmor7000bx4mjaaeodo8s" class="article-share-link">分享</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/laravel/">laravel</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-Laravel使用PHPUnit" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/laravel-phpunit.html" class="article-date">
-  <time datetime="2018-05-27T02:44:40.000Z" itemprop="datePublished">2018-05-27</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/laravel/">laravel</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/laravel-phpunit.html">Laravel使用PHPUnit</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>如果是使用 Laravel 安装器创建的项目，则已经安装好了 PHPUnit<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">"require-dev": &#123;</span><br><span class="line">    //...</span><br><span class="line">    "phpunit/phpunit": "^7.0"</span><br><span class="line">&#125;,</span><br><span class="line">"autoload-dev": &#123;</span><br><span class="line">    "psr-4": &#123;</span><br><span class="line">        "Tests\\": "tests/"</span><br><span class="line">    &#125;</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure></p>
-<p>根目录有 <code>phpunit.xml</code> 配置文件</p>
-<h4 id="创建用例"><a href="#创建用例" class="headerlink" title="创建用例"></a>创建用例</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">php artisan make:<span class="built_in">test</span> UserTest</span><br></pre></td></tr></table></figure>
-<p>该命令会在 <code>tests/Feature</code> 目录中创建一个新的 <code>UserTest</code> 类<br>
-        
-          <p class="article-more-link">
-            <a href="/2018/laravel-phpunit.html#more">阅读全文</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://www.liluoao.com/2018/laravel-phpunit.html" data-id="cjq3mmorm000ex4mj7gtcx6lo" class="article-share-link">分享</a>
+      <a data-url="http://www.liluoao.com/2018/laravel-use-dingo-api.html" data-id="cjsbjqtix000b1kmj6s205p56" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/laravel/">laravel</a></li></ul>
@@ -543,6 +551,10 @@
     <h3 class="widget-title">最新文章</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2019/yii-batch-query.html">Yii批处理查询</a>
+          </li>
         
           <li>
             <a href="/2018/use-sonarqube-continuous-code-quality.html">使用SonarQube管理代码质量</a>
@@ -580,10 +592,6 @@
             <a href="/2018/laravel-use-dingo-api.html">Laravel使用DingoAPI</a>
           </li>
         
-          <li>
-            <a href="/2018/laravel-phpunit.html">Laravel使用PHPUnit</a>
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -593,7 +601,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/algorithm/">algorithm</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/alipay/">alipay</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/apache/">apache</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/design-patterns/">design-patterns</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/kong/">kong</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/laravel/">laravel</a><span class="tag-list-count">21</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/lua/">lua</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mongo/">mongo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/">mysql</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/openresty/">openresty</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/phalcon/">phalcon</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/php/">php</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tool/">tool</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/wechat/">wechat</a><span class="tag-list-count">7</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/algorithm/">algorithm</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/alipay/">alipay</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/apache/">apache</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/design-patterns/">design-patterns</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/kong/">kong</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/laravel/">laravel</a><span class="tag-list-count">21</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/lua/">lua</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mongo/">mongo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/">mysql</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/openresty/">openresty</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/phalcon/">phalcon</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/php/">php</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tool/">tool</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/wechat/">wechat</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/yii/">yii</a><span class="tag-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -603,7 +611,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">十二月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">十一月 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">八月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">七月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">五月 2018</a><span class="archive-list-count">20</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a><span class="archive-list-count">15</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">二月 2018</a><span class="archive-list-count">20</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">二月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">十二月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">十一月 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">八月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">七月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">五月 2018</a><span class="archive-list-count">20</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a><span class="archive-list-count">15</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">二月 2018</a><span class="archive-list-count">20</span></li></ul>
     </div>
   </div>
 
@@ -621,14 +629,10 @@
         <a href="https://github.com/liluoao" target="_blank" title="GitHub">GitHub</a><br>
         <a href="https://segmentfault.com/u/liluoao" target="_blank" title="SegmentFault">SegmentFault</a><br>
         <a href="https://laravel-china.org/users/7144" target="_blank" title="LaravelChina">LaravelChina</a><br>
-        <a href="https://gitee.com/liluoao" target="_blank" title="码云">码云</a><br>
-        <a href="https://juejin.im/user/5a19374cf265da4332274600" target="_blank" title="掘金">掘金</a><br>
-        <a href="https://packagist.org/users/liluoao/" target="_blank" title="Packagist">Packagist</a><br>
-        <a href="https://www.gitbook.com/@liluoao" target="_blank" title="GitBook">GitBook</a>
       </div>
       <div style="width:300px;margin:0 auto; padding:20px 0;">
         <div class="footer-copyright">
-          &copy; 2018 李罗奥
+          &copy; 2019 李罗奥
           Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
         </div>
         <a href="http://www.miitbeian.gov.cn/" target="_blank" style="display:inline-block;text-decoration:none;height:20px;line-height:20px;"><p style="float:left;height:20px;line-height:20px;margin: 0px 0px 0px 5px; color:#939393;">鄂ICP备18009105号</p></a>

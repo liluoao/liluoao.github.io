@@ -5,20 +5,18 @@
   
 
   
-  <title>重定向HTTP到HTTPS | To be a Web Artisan</title>
+  <title>标签: yii | To be a Web Artisan</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="使用阿里云提供的证书：1234567etc    apache2        cert            xxx.key            xxx.pem            chain.pem            public.pem 编辑 default-ssl.conf">
-<meta name="keywords" content="apache,linux">
-<meta property="og:type" content="article">
-<meta property="og:title" content="重定向HTTP到HTTPS">
-<meta property="og:url" content="http://www.liluoao.com/2018/rewrite-http-to-https.html">
+  <meta name="description" content="李罗奥的博客">
+<meta property="og:type" content="website">
+<meta property="og:title" content="To be a Web Artisan">
+<meta property="og:url" content="http://www.liluoao.com/tags/yii/index.html">
 <meta property="og:site_name" content="To be a Web Artisan">
-<meta property="og:description" content="使用阿里云提供的证书：1234567etc    apache2        cert            xxx.key            xxx.pem            chain.pem            public.pem 编辑 default-ssl.conf">
+<meta property="og:description" content="李罗奥的博客">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-02-19T09:07:36.240Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="重定向HTTP到HTTPS">
-<meta name="twitter:description" content="使用阿里云提供的证书：1234567etc    apache2        cert            xxx.key            xxx.pem            chain.pem            public.pem 编辑 default-ssl.conf">
+<meta name="twitter:title" content="To be a Web Artisan">
+<meta name="twitter:description" content="李罗奥的博客">
 <meta name="twitter:creator" content="@liluoao">
   
   
@@ -63,68 +61,40 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-重定向HTTP到HTTPS" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/rewrite-http-to-https.html" class="article-date">
-  <time datetime="2018-03-07T06:29:41.000Z" itemprop="datePublished">2018-03-07</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
+        <section id="main">
   
-    <h1 class="article-title" itemprop="name">
-      重定向HTTP到HTTPS
+  
+    
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2019" class="archive-year">2019</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      <a href="/2019/yii-batch-query.html" class="archive-article-date">
+  <time datetime="2019-02-19T07:39:11.000Z" itemprop="datePublished">2月 19</time>
+</a>
+      
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2019/yii-batch-query.html">Yii批处理查询</a>
     </h1>
   
 
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>使用阿里云提供的证书：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">etc</span><br><span class="line">    apache2</span><br><span class="line">        cert</span><br><span class="line">            xxx.key</span><br><span class="line">            xxx.pem</span><br><span class="line">            chain.pem</span><br><span class="line">            public.pem</span><br></pre></td></tr></table></figure></p>
-<p>编辑 <code>default-ssl.conf</code><br><a id="more"></a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;VirtualHost *:443&gt;</span><br><span class="line">    ServerAdmin liluoao@qq.com</span><br><span class="line">    ServerName liluoao.com</span><br><span class="line">    DocumentRoot /var/www/html</span><br><span class="line">    SSLEngine on</span><br><span class="line">    SSLProtocol all -SSLv2 -SSLv3</span><br><span class="line">    SSLCipherSuite HIGH:!RC4:!MD5:!aNULL:!eNULL:!NULL:!DH:!EDH:!EXP:+MEDIUM</span><br><span class="line">    SSLHonorCipherOrder on</span><br><span class="line">    SSLCertificateFile /etc/apache2/cert/public.pem</span><br><span class="line">    SSLCertificateKeyFile /etc/apache2/cert/1523613072453.key</span><br><span class="line">    SSLCertificateChainFile /etc/apache2/cert/chain.pem</span><br><span class="line">&lt;/VirtualHost&gt;</span><br></pre></td></tr></table></figure></p>
-<p>开启重定向需要加载 <code>rewrite</code> 模块<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">a2enmod rewrite</span><br></pre></td></tr></table></figure></p>
-<p>或者<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ln -s /etc/apache2/mods-available/rewrite.load  /etc/apache2/mods-enabled/rewrite.load</span><br></pre></td></tr></table></figure></p>
-<p>编辑 <code>000-default.conf</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;VirtualHost *:80&gt;</span><br><span class="line">    ServerName www.liluoao.com</span><br><span class="line">    ServerAdmin liluoao@qq.com</span><br><span class="line">    DocumentRoot /var/www/html</span><br><span class="line">    ErrorLog $&#123;APACHE_LOG_DIR&#125;/error.log</span><br><span class="line">    CustomLog $&#123;APACHE_LOG_DIR&#125;/access.log combined</span><br><span class="line">    RewriteEngine on</span><br><span class="line">    RewriteCond   %&#123;HTTPS&#125; !=on</span><br><span class="line">    RewriteRule   ^(.*)  https://%&#123;SERVER_NAME&#125;$1 [L,R]</span><br><span class="line">&lt;/VirtualHost&gt;</span><br></pre></td></tr></table></figure></p>
-<p>或者是在根目录编辑 <code>.htaccess</code> 文件：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">RewriteEngine on</span><br><span class="line">RewriteBase / </span><br><span class="line">RewriteCond %&#123;SERVER_PORT&#125; !^443$</span><br><span class="line">RewriteRule ^.* https://%&#123;SERVER_NAME&#125;%&#123;REQUEST_URI&#125; [L,R]</span><br></pre></td></tr></table></figure></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://www.liluoao.com/2018/rewrite-http-to-https.html" data-id="cjsbjqto4005g1kmj82qsnmfq" class="article-share-link">分享</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/apache/">apache</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux/">linux</a></li></ul>
-
-    </footer>
+    </header>
   </div>
-  
-    
-<nav id="article-nav">
-  
-    <a href="/2018/laravel-route-to-controller.html" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">上一篇</strong>
-      <div class="article-nav-title">
-        
-          Laravel 路由调用控制器（转）
-        
-      </div>
-    </a>
-  
-  
-    <a href="/2018/nginx-and-php-config.html" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">下一篇</strong>
-      <div class="article-nav-title">Nginx和PHP的配置（转）</div>
-    </a>
-  
-</nav>
-
-  
 </article>
+  
+  
+    </div></section>
+  
+
 
 </section>
         
