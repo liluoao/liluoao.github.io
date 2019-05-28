@@ -63,6 +63,58 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-Laravel的Task-Scheduling" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/laravel-task-scheduling.html" class="article-date">
+  <time datetime="2018-05-10T01:37:40.000Z" itemprop="datePublished">2018-05-10</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/laravel/">laravel</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/laravel-task-scheduling.html">Laravel的任务调度</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h3><p>文档推荐使用<a href="https://forge.laravel.com/" target="_blank" rel="noopener">Laravel Forge</a>管理 <code>cron</code> 项目。示例：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">* * * * * php /path-to-your-project/artisan schedule:run &gt;&gt; /dev/null 2&gt;&amp;1</span><br></pre></td></tr></table></figure></p>
+<h3 id="定义调度"><a href="#定义调度" class="headerlink" title="定义调度"></a>定义调度</h3><p>在 <code>App\Console\Kernel</code> 中 <code>schedule()</code> 方法中定义所有调度任务。有如下几种可以调度：</p>
+<ol>
+<li><strong>Closure</strong><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$schedule-&gt;call(<span class="function"><span class="keyword">function</span> <span class="params">()</span> </span>&#123;</span><br><span class="line">    DB::table(<span class="string">'should_delete'</span>)-&gt;delete();</span><br><span class="line">&#125;)-&gt;daily();</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+        
+          <p class="article-more-link">
+            <a href="/2018/laravel-task-scheduling.html#more">阅读全文</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.liluoao.com/2018/laravel-task-scheduling.html" data-id="cjw78zgwn00168omju6i9uuyv" class="article-share-link">分享</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/laravel/">laravel</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-Laravel的Artisan" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2018/laravel-artisan.html" class="article-date">
@@ -81,7 +133,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2018/laravel-artisan.html">Laravel的Artisan</a>
+      <a class="article-title" href="/2018/laravel-artisan.html">Laravel的命令行</a>
     </h1>
   
 
@@ -99,7 +151,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.liluoao.com/2018/laravel-artisan.html" data-id="cjub3uqhe000h4kmj09iq74fj" class="article-share-link">分享</a>
+      <a data-url="http://www.liluoao.com/2018/laravel-artisan.html" data-id="cjw78zgw7000g8omj513cfy26" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/laravel/">laravel</a></li></ul>
@@ -129,7 +181,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2018/laravel-queue.html">Laravel的Queue</a>
+      <a class="article-title" href="/2018/laravel-queue.html">Laravel的队列</a>
     </h1>
   
 
@@ -147,7 +199,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.liluoao.com/2018/laravel-queue.html" data-id="cjub3uqhu00114kmjb7iyuzrv" class="article-share-link">分享</a>
+      <a data-url="http://www.liluoao.com/2018/laravel-queue.html" data-id="cjw78zgwn00118omjprsxpz02" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/laravel/">laravel</a></li></ul>
@@ -177,7 +229,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2018/laravel-log.html">Laravel的Log</a>
+      <a class="article-title" href="/2018/laravel-log.html">Laravel的日志</a>
     </h1>
   
 
@@ -192,7 +244,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.liluoao.com/2018/laravel-log.html" data-id="cjub3uqhu000o4kmjh42j5z9p" class="article-share-link">分享</a>
+      <a data-url="http://www.liluoao.com/2018/laravel-log.html" data-id="cjw78zgw7000o8omjenug8wul" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/laravel/">laravel</a></li></ul>
@@ -222,7 +274,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2018/laravel-config.html">Laravel的Config</a>
+      <a class="article-title" href="/2018/laravel-config.html">Laravel的配置</a>
     </h1>
   
 
@@ -232,7 +284,7 @@
       
         <p><code>$_ENV</code> 或<code>env()</code>可读取<code>.env</code>文件中的变量.</p>
 <p>读取 config/app.php 中的数据:<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$value = config(<span class="string">'app.timezone'</span>);</span><br></pre></td></tr></table></figure></p>
-<p>新增配置文件后，如 <code>config/aboutus.php</code>，使用 <code>config(&#39;aboutus.xxx&#39;)</code> 读取<br>
+<p>新增配置文件后，如 <code>config/wechat.php</code>，使用 <code>config(&#39;wechat.xxx&#39;)</code> 读取<br>
         
           <p class="article-more-link">
             <a href="/2018/laravel-config.html#more">阅读全文</a>
@@ -241,7 +293,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.liluoao.com/2018/laravel-config.html" data-id="cjub3uqhe000k4kmjvd1bc1es" class="article-share-link">分享</a>
+      <a data-url="http://www.liluoao.com/2018/laravel-config.html" data-id="cjw78zgw7000k8omj6zlflzgm" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/laravel/">laravel</a></li></ul>
@@ -271,7 +323,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2018/laravel-eloquent-orm-relationship.html">Laravel的Eloquent-ORM-Relationship</a>
+      <a class="article-title" href="/2018/laravel-eloquent-orm-relationship.html">Eloquent-ORM-Relationship</a>
     </h1>
   
 
@@ -292,7 +344,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.liluoao.com/2018/laravel-eloquent-orm-relationship.html" data-id="cjub3uqhe000m4kmjxhk6hd3r" class="article-share-link">分享</a>
+      <a data-url="http://www.liluoao.com/2018/laravel-eloquent-orm-relationship.html" data-id="cjw78zgw7000m8omj9ivt8bum" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/laravel/">laravel</a></li></ul>
@@ -322,7 +374,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2018/laravel-route.html">Laravel的Route</a>
+      <a class="article-title" href="/2018/laravel-route.html">Laravel的路由</a>
     </h1>
   
 
@@ -337,7 +389,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.liluoao.com/2018/laravel-route.html" data-id="cjub3uqhu00144kmjskk68xz5" class="article-share-link">分享</a>
+      <a data-url="http://www.liluoao.com/2018/laravel-route.html" data-id="cjw78zgwn00148omjtnx8iyiw" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/laravel/">laravel</a></li></ul>
@@ -367,7 +419,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2018/use-intervention-image.html">使用Intervention-Image</a>
+      <a class="article-title" href="/2018/use-intervention-image.html">使用Intervention-Image处理图像</a>
     </h1>
   
 
@@ -388,7 +440,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.liluoao.com/2018/use-intervention-image.html" data-id="cjub3uqjl003f4kmjc0y904i0" class="article-share-link">分享</a>
+      <a data-url="http://www.liluoao.com/2018/use-intervention-image.html" data-id="cjw78zgxy003i8omjc88ph585" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/laravel/">laravel</a></li></ul>
@@ -440,7 +492,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.liluoao.com/2018/use-laravel-excel.html" data-id="cjub3uqjl003p4kmjhqxnc471" class="article-share-link">分享</a>
+      <a data-url="http://www.liluoao.com/2018/use-laravel-excel.html" data-id="cjw78zgxy003q8omjkidgzx09" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/laravel/">laravel</a></li></ul>
@@ -470,7 +522,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2018/use-carbon.html">使用Carbon</a>
+      <a class="article-title" href="/2018/use-carbon.html">使用Carbon时间类</a>
     </h1>
   
 
@@ -495,58 +547,10 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.liluoao.com/2018/use-carbon.html" data-id="cjub3uqj5003a4kmjwad33z8j" class="article-share-link">分享</a>
+      <a data-url="http://www.liluoao.com/2018/use-carbon.html" data-id="cjw78zgxy003b8omj81fkrciq" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/laravel/">laravel</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-企业微信通讯录" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/work-wechat-address-list.html" class="article-date">
-  <time datetime="2018-04-15T02:18:48.000Z" itemprop="datePublished">2018-04-15</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/wechat/">wechat</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/work-wechat-address-list.html">企业微信通讯录</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><a href="https://work.weixin.qq.com/" target="_blank" rel="noopener">企业微信</a>（原企业号）提供了通讯录管理、应用管理、消息推送、身份验证、移动端SDK、素材、OA数据接口、企业支付、电子发票等API，管理员可以使用这些API，为企业接入更多个性化的办公应用。</p>
-<p>要使用API管理通讯录，必须打开 <code>通讯录同步</code><br>登录企业管理后台-&gt;“管理工具”-&gt;“通讯录同步”-&gt;“开启API接口同步”<br><img src="/images/work-wechat-config.png" alt=""><br>
-        
-          <p class="article-more-link">
-            <a href="/2018/work-wechat-address-list.html#more">阅读全文</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://www.liluoao.com/2018/work-wechat-address-list.html" data-id="cjub3uqj500354kmjbpgi32ii" class="article-share-link">分享</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/wechat/">wechat</a></li></ul>
 
     </footer>
   </div>
@@ -571,6 +575,10 @@
     <h3 class="widget-title">最新文章</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2019/undefined.html">MongoDB的聚合Aggregation</a>
+          </li>
         
           <li>
             <a href="/2019/yii-batch-query.html">Yii批处理查询</a>
@@ -608,10 +616,6 @@
             <a href="/2018/compile-php-extension.html">编译PHP扩展</a>
           </li>
         
-          <li>
-            <a href="/2018/laravel-use-dingo-api.html">Laravel使用DingoAPI</a>
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -621,7 +625,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/algorithm/">algorithm</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/alipay/">alipay</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/apache/">apache</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/design-patterns/">design-patterns</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/kong/">kong</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/laravel/">laravel</a><span class="tag-list-count">21</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/lua/">lua</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mongo/">mongo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/">mysql</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/openresty/">openresty</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/phalcon/">phalcon</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/php/">php</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tool/">tool</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/wechat/">wechat</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/yii/">yii</a><span class="tag-list-count">1</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/algorithm/">algorithm</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/alipay/">alipay</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/apache/">apache</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/design-patterns/">design-patterns</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/kong/">kong</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/laravel/">laravel</a><span class="tag-list-count">21</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/lua/">lua</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mongo/">mongo</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/">mysql</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/openresty/">openresty</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/phalcon/">phalcon</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/php/">php</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tool/">tool</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/wechat/">wechat</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/yii/">yii</a><span class="tag-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -631,7 +635,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">二月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">十二月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">十一月 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">八月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">七月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">五月 2018</a><span class="archive-list-count">20</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a><span class="archive-list-count">15</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">二月 2018</a><span class="archive-list-count">20</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">五月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">二月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">十二月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">十一月 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">八月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">七月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">五月 2018</a><span class="archive-list-count">20</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a><span class="archive-list-count">15</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">二月 2018</a><span class="archive-list-count">20</span></li></ul>
     </div>
   </div>
 

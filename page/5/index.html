@@ -63,6 +63,58 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-PHP的设计模式之行为模式（二）" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/php-behavioral-design-patterns-part2.html" class="article-date">
+  <time datetime="2018-04-05T06:52:10.000Z" itemprop="datePublished">2018-04-05</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/php-behavioral-design-patterns-part2.html">PHP的设计模式之行为模式（二）</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>原文链接：<a href="https://www.imooc.com/article/17844" target="_blank" rel="noopener">https://www.imooc.com/article/17844</a></p>
+<h2 id="Behavioral-Patterns（行为模式）"><a href="#Behavioral-Patterns（行为模式）" class="headerlink" title="Behavioral Patterns（行为模式）"></a>Behavioral Patterns（行为模式）</h2><h4 id="Command（命令模式）"><a href="#Command（命令模式）" class="headerlink" title="Command（命令模式）"></a>Command（命令模式）</h4><p>将一个请求封装为一个对象，从而使我们可用不同的请求对客户进行参数化；对请求排队或者记录请求日志，以及支持可撤销的操作。命令模式是一种对象行为型模式，其别名为动作(<code>Action</code>)模式或事务(<code>Transaction</code>)模式。</p>
+<p>为什么需要命令模式</p>
+<ol>
+<li><p>使用命令模式，能够让请求发送者与请求接收者消除彼此之间的耦合，让对象之间的调用关系更加灵活。</p>
+</li>
+<li><p>使用命令模式可以比较容易地设计一个命令队列和宏命令（组合命令），而且新的命令可以很容易地加入系统</p>
+</li>
+</ol>
+<p>有关命令模式的一个经典的例子，就是电视机与遥控器。有这样的对应关系：电视机是请求的接收者，遥控器是请求的发送者。遥控器上有一些按钮，不同的按钮对应电视机的不同操作。这些按钮就是对应的具体命令类。抽象命令角色由一个命令接口来扮演，有三个具体的命令类实现了抽象命令接口，这三个具体命令类分别代表三种操作：打开电视机、关闭电视机和切换频道。<br>
+        
+          <p class="article-more-link">
+            <a href="/2018/php-behavioral-design-patterns-part2.html#more">阅读全文</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.liluoao.com/2018/php-behavioral-design-patterns-part2.html" data-id="cjw78zgxi002u8omj0t2o3jug" class="article-share-link">分享</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/design-patterns/">design-patterns</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-PHP的设计模式之行为模式" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2018/php-behavioral-design-patterns-part1.html" class="article-date">
@@ -103,7 +155,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.liluoao.com/2018/php-behavioral-design-patterns-part1.html" data-id="cjub3uqip002m4kmjt4b4kp1n" class="article-share-link">分享</a>
+      <a data-url="http://www.liluoao.com/2018/php-behavioral-design-patterns-part1.html" data-id="cjw78zgxi002p8omjp7sfltaj" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/design-patterns/">design-patterns</a></li></ul>
@@ -157,7 +209,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.liluoao.com/2018/php-structural-design-patterns-part2.html" data-id="cjub3uqip002k4kmjfqueh82j" class="article-share-link">分享</a>
+      <a data-url="http://www.liluoao.com/2018/php-structural-design-patterns-part2.html" data-id="cjw78zgxi002m8omjoxibvoj6" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/design-patterns/">design-patterns</a></li></ul>
@@ -212,7 +264,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.liluoao.com/2018/php-structural-design-patterns-part1.html" data-id="cjub3uqip002g4kmjs04ngitl" class="article-share-link">分享</a>
+      <a data-url="http://www.liluoao.com/2018/php-structural-design-patterns-part1.html" data-id="cjw78zgxi002j8omjsetp6v4v" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/design-patterns/">design-patterns</a></li></ul>
@@ -265,7 +317,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.liluoao.com/2018/php-creational-design-patterns.html" data-id="cjub3uqip002e4kmjvokywgn0" class="article-share-link">分享</a>
+      <a data-url="http://www.liluoao.com/2018/php-creational-design-patterns.html" data-id="cjw78zgx2002g8omj8wppldd7" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/design-patterns/">design-patterns</a></li></ul>
@@ -316,7 +368,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.liluoao.com/2018/use-composer.html" data-id="cjub3uqk000404kmjzaq2b2gd" class="article-share-link">分享</a>
+      <a data-url="http://www.liluoao.com/2018/use-composer.html" data-id="cjw78zgyd00438omjwl33hkks" class="article-share-link">分享</a>
       
       
     </footer>
@@ -344,7 +396,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2018/use-phalcon.html">使用Phalcon框架</a>
+      <a class="article-title" href="/2018/use-phalcon.html">Phalcon框架入门</a>
     </h1>
   
 
@@ -365,7 +417,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.liluoao.com/2018/use-phalcon.html" data-id="cjub3uqjl003s4kmjes0drl1r" class="article-share-link">分享</a>
+      <a data-url="http://www.liluoao.com/2018/use-phalcon.html" data-id="cjw78zgxy003u8omjurun10jr" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/phalcon/">phalcon</a></li></ul>
@@ -395,7 +447,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2018/phalcon-start-process.html">Phalcon 启动流程（转）</a>
+      <a class="article-title" href="/2018/phalcon-start-process.html">Phalcon 启动流程</a>
     </h1>
   
 
@@ -414,7 +466,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.liluoao.com/2018/phalcon-start-process.html" data-id="cjub3uqip002w4kmjbr36tize" class="article-share-link">分享</a>
+      <a data-url="http://www.liluoao.com/2018/phalcon-start-process.html" data-id="cjw78zgxi002y8omj8r0hkt85" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/phalcon/">phalcon</a></li></ul>
@@ -444,7 +496,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2018/laravel-route-to-controller.html">Laravel 路由调用控制器（转）</a>
+      <a class="article-title" href="/2018/laravel-route-to-controller.html">路由如何调用到控制器</a>
     </h1>
   
 
@@ -468,7 +520,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.liluoao.com/2018/laravel-route-to-controller.html" data-id="cjub3uqia001l4kmja419010f" class="article-share-link">分享</a>
+      <a data-url="http://www.liluoao.com/2018/laravel-route-to-controller.html" data-id="cjw78zgwn001l8omjnuf5e9wh" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/laravel/">laravel</a></li></ul>
@@ -512,54 +564,10 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.liluoao.com/2018/rewrite-http-to-https.html" data-id="cjub3uqkx005g4kmjox1shc5z" class="article-share-link">分享</a>
+      <a data-url="http://www.liluoao.com/2018/rewrite-http-to-https.html" data-id="cjw78zgz9005h8omjndqva442" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/apache/">apache</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux/">linux</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-Nginx和PHP的配置" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/nginx-and-php-config.html" class="article-date">
-  <time datetime="2018-03-06T01:59:26.000Z" itemprop="datePublished">2018-03-06</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/nginx-and-php-config.html">Nginx和PHP的配置（转）</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>原文链接：<a href="https://segmentfault.com/a/1190000014610688" target="_blank" rel="noopener">https://segmentfault.com/a/1190000014610688</a></p>
-<h2 id="Nginx配置"><a href="#Nginx配置" class="headerlink" title="Nginx配置"></a>Nginx配置</h2><p>配置文件位置：<code>/etc/nginx/nginx.conf</code><br>
-        
-          <p class="article-more-link">
-            <a href="/2018/nginx-and-php-config.html#more">阅读全文</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://www.liluoao.com/2018/nginx-and-php-config.html" data-id="cjub3uqia001z4kmjkm36y3he" class="article-share-link">分享</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux/">linux</a></li></ul>
 
     </footer>
   </div>
@@ -584,6 +592,10 @@
     <h3 class="widget-title">最新文章</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2019/undefined.html">MongoDB的聚合Aggregation</a>
+          </li>
         
           <li>
             <a href="/2019/yii-batch-query.html">Yii批处理查询</a>
@@ -621,10 +633,6 @@
             <a href="/2018/compile-php-extension.html">编译PHP扩展</a>
           </li>
         
-          <li>
-            <a href="/2018/laravel-use-dingo-api.html">Laravel使用DingoAPI</a>
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -634,7 +642,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/algorithm/">algorithm</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/alipay/">alipay</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/apache/">apache</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/design-patterns/">design-patterns</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/kong/">kong</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/laravel/">laravel</a><span class="tag-list-count">21</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/lua/">lua</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mongo/">mongo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/">mysql</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/openresty/">openresty</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/phalcon/">phalcon</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/php/">php</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tool/">tool</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/wechat/">wechat</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/yii/">yii</a><span class="tag-list-count">1</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/algorithm/">algorithm</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/alipay/">alipay</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/apache/">apache</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/design-patterns/">design-patterns</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/kong/">kong</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/laravel/">laravel</a><span class="tag-list-count">21</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/lua/">lua</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mongo/">mongo</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/">mysql</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/openresty/">openresty</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/phalcon/">phalcon</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/php/">php</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tool/">tool</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/wechat/">wechat</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/yii/">yii</a><span class="tag-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -644,7 +652,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">二月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">十二月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">十一月 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">八月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">七月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">五月 2018</a><span class="archive-list-count">20</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a><span class="archive-list-count">15</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">二月 2018</a><span class="archive-list-count">20</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">五月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">二月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">十二月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">十一月 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">八月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">七月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">五月 2018</a><span class="archive-list-count">20</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a><span class="archive-list-count">15</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">二月 2018</a><span class="archive-list-count">20</span></li></ul>
     </div>
   </div>
 

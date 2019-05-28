@@ -5,18 +5,18 @@
   
 
   
-  <title>如何重构代码（转） | To be a Web Artisan</title>
+  <title>如何重构代码 | To be a Web Artisan</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="原文链接：https://juejin.im/post/5adc8e18518825672b0352a8  重构不是对以前代码的全盘否定，而是利用更好的方式，写出更好，更有维护性代码。不断的追求与学习，才有更多的进步。  什么是重构首先，重构不是重写。重构大概的意思是在不影响项目的功能使用前提下，使用一系列的重构方式，改变项目的内部结构。提高项目内部的可读性，可维护性。 无论是什么项目，都有一个从">
 <meta property="og:type" content="article">
-<meta property="og:title" content="如何重构代码（转）">
+<meta property="og:title" content="如何重构代码">
 <meta property="og:url" content="http://www.liluoao.com/2018/how-to-refactor.html">
 <meta property="og:site_name" content="To be a Web Artisan">
 <meta property="og:description" content="原文链接：https://juejin.im/post/5adc8e18518825672b0352a8  重构不是对以前代码的全盘否定，而是利用更好的方式，写出更好，更有维护性代码。不断的追求与学习，才有更多的进步。  什么是重构首先，重构不是重写。重构大概的意思是在不影响项目的功能使用前提下，使用一系列的重构方式，改变项目的内部结构。提高项目内部的可读性，可维护性。 无论是什么项目，都有一个从">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-04-10T11:02:31.487Z">
+<meta property="og:updated_time" content="2019-05-28T03:34:34.055Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="如何重构代码（转）">
+<meta name="twitter:title" content="如何重构代码">
 <meta name="twitter:description" content="原文链接：https://juejin.im/post/5adc8e18518825672b0352a8  重构不是对以前代码的全盘否定，而是利用更好的方式，写出更好，更有维护性代码。不断的追求与学习，才有更多的进步。  什么是重构首先，重构不是重写。重构大概的意思是在不影响项目的功能使用前提下，使用一系列的重构方式，改变项目的内部结构。提高项目内部的可读性，可维护性。 无论是什么项目，都有一个从">
 <meta name="twitter:creator" content="@liluoao">
   
@@ -76,7 +76,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      如何重构代码（转）
+      如何重构代码
     </h1>
   
 
@@ -133,11 +133,14 @@
 <p>运行结果没有问题，但是大家想一下，如果以后，如果改了需求，比如，学生信息不会再有重复的记录，要求把去重的函数去掉。这样一来，就是整个函数都要改了。还影响到下面的操作流程。相当于了改了需求，整个方法全跪。城门失火殃及池鱼。</p>
 <p>下面使用单一原则构造一下<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> handle=&#123;</span><br><span class="line">    removeRepeat(arr)&#123;</span><br><span class="line">        <span class="comment">//数组去重</span></span><br><span class="line">        <span class="keyword">let</span> _arr=[],_arrIds=[];</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">let</span> i=<span class="number">0</span>;i&lt;arr.length;i++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(_arrIds.indexOf(arr[i].id)===<span class="number">-1</span>)&#123;</span><br><span class="line">                _arrIds.push(arr[i].id);</span><br><span class="line">                _arr.push(arr[i]);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> _arr;</span><br><span class="line">    &#125;,</span><br><span class="line">    setInfo(arr)&#123;</span><br><span class="line">        arr.map(<span class="function"><span class="params">item</span>=&gt;</span>&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">let</span> key <span class="keyword">in</span> item)&#123;</span><br><span class="line">                <span class="keyword">if</span>(item[key]===<span class="string">''</span>)&#123;</span><br><span class="line">                    item[key]=<span class="string">'保密'</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">        <span class="keyword">return</span> arr;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line">students=handle.removeRepeat(students);</span><br><span class="line">students=handle.setInfo(students);</span><br><span class="line"><span class="built_in">console</span>.log(students);</span><br></pre></td></tr></table></figure></p>
 <p>结果一样，但是需求改下，比如不需要去重，把代码注释或者直接删除就好。这样相当于把函数的职责分离了，而且职责之前互不影响。中间去除那个步骤不会影响下一步。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//students=handle.removeRepeat(students);</span></span><br><span class="line">students=handle.setInfo(students);</span><br><span class="line"><span class="built_in">console</span>.log(students);</span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>推荐阅读《重构 改善既有代码的设计》</p>
+</blockquote>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.liluoao.com/2018/how-to-refactor.html" data-id="cjub3uqkx005i4kmj5gmyyt0a" class="article-share-link">分享</a>
+      <a data-url="http://www.liluoao.com/2018/how-to-refactor.html" data-id="cjw78zgz9005k8omjjk355xls" class="article-share-link">分享</a>
       
       
     </footer>
@@ -177,6 +180,10 @@
       <ul>
         
           <li>
+            <a href="/2019/undefined.html">MongoDB的聚合Aggregation</a>
+          </li>
+        
+          <li>
             <a href="/2019/yii-batch-query.html">Yii批处理查询</a>
           </li>
         
@@ -212,10 +219,6 @@
             <a href="/2018/compile-php-extension.html">编译PHP扩展</a>
           </li>
         
-          <li>
-            <a href="/2018/laravel-use-dingo-api.html">Laravel使用DingoAPI</a>
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -225,7 +228,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/algorithm/">algorithm</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/alipay/">alipay</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/apache/">apache</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/design-patterns/">design-patterns</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/kong/">kong</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/laravel/">laravel</a><span class="tag-list-count">21</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/lua/">lua</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mongo/">mongo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/">mysql</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/openresty/">openresty</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/phalcon/">phalcon</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/php/">php</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tool/">tool</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/wechat/">wechat</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/yii/">yii</a><span class="tag-list-count">1</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/algorithm/">algorithm</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/alipay/">alipay</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/apache/">apache</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/design-patterns/">design-patterns</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/kong/">kong</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/laravel/">laravel</a><span class="tag-list-count">21</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/lua/">lua</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mongo/">mongo</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/">mysql</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/openresty/">openresty</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/phalcon/">phalcon</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/php/">php</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tool/">tool</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/wechat/">wechat</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/yii/">yii</a><span class="tag-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -235,7 +238,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">二月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">十二月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">十一月 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">八月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">七月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">五月 2018</a><span class="archive-list-count">20</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a><span class="archive-list-count">15</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">二月 2018</a><span class="archive-list-count">20</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">五月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">二月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">十二月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">十一月 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">八月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">七月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">五月 2018</a><span class="archive-list-count">20</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a><span class="archive-list-count">15</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">二月 2018</a><span class="archive-list-count">20</span></li></ul>
     </div>
   </div>
 

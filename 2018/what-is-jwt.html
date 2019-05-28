@@ -5,20 +5,20 @@
   
 
   
-  <title>什么是 JWT（转） | To be a Web Artisan</title>
+  <title>什么是 JWT | To be a Web Artisan</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="原文链接：https://www.jianshu.com/p/576dbf44b2ae  Json web token (JWT)，是为了在网络应用环境间传递声明而执行的一种基于JSON的开放标准(RFC 7519)。该token被设计为紧凑且安全的，特别适用于分布式站点的单点登录（ Single Sign On）场景。JWT的声明一般被用来在身份提供者和服务提供者间传递被认证的用户身份信息，以便">
 <meta property="og:type" content="article">
-<meta property="og:title" content="什么是 JWT（转）">
+<meta property="og:title" content="什么是 JWT">
 <meta property="og:url" content="http://www.liluoao.com/2018/what-is-jwt.html">
 <meta property="og:site_name" content="To be a Web Artisan">
 <meta property="og:description" content="原文链接：https://www.jianshu.com/p/576dbf44b2ae  Json web token (JWT)，是为了在网络应用环境间传递声明而执行的一种基于JSON的开放标准(RFC 7519)。该token被设计为紧凑且安全的，特别适用于分布式站点的单点登录（ Single Sign On）场景。JWT的声明一般被用来在身份提供者和服务提供者间传递被认证的用户身份信息，以便">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://www.liluoao.com/images/jwt.png">
 <meta property="og:image" content="http://www.liluoao.com/images/jwt-http.png">
-<meta property="og:updated_time" content="2019-04-10T11:02:31.472Z">
+<meta property="og:updated_time" content="2019-05-28T03:34:34.055Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="什么是 JWT（转）">
+<meta name="twitter:title" content="什么是 JWT">
 <meta name="twitter:description" content="原文链接：https://www.jianshu.com/p/576dbf44b2ae  Json web token (JWT)，是为了在网络应用环境间传递声明而执行的一种基于JSON的开放标准(RFC 7519)。该token被设计为紧凑且安全的，特别适用于分布式站点的单点登录（ Single Sign On）场景。JWT的声明一般被用来在身份提供者和服务提供者间传递被认证的用户身份信息，以便">
 <meta name="twitter:image" content="http://www.liluoao.com/images/jwt.png">
 <meta name="twitter:creator" content="@liluoao">
@@ -79,7 +79,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      什么是 JWT（转）
+      什么是 JWT
     </h1>
   
 
@@ -91,20 +91,20 @@
 <blockquote>
 <p>Json web token (<a href="https://jwt.io/introduction/" target="_blank" rel="noopener">JWT</a>)，是为了在网络应用环境间传递声明而执行的一种基于JSON的开放标准(<a href="https://tools.ietf.org/html/rfc7519" target="_blank" rel="noopener">RFC 7519</a>)。该token被设计为紧凑且安全的，特别适用于分布式站点的单点登录（ Single Sign On）场景。JWT的声明一般被用来在身份提供者和服务提供者间传递被认证的用户身份信息，以便于从资源服务器获取资源，也可以增加一些额外的其它业务逻辑所必须的声明信息，该token也可直接被用于认证，也可被加密。</p>
 </blockquote>
-<h2 id="起源"><a href="#起源" class="headerlink" title="起源"></a>起源</h2><p>说起JWT，我们应该来谈一谈基于token的认证和传统的session认证的区别。</p>
-<h3 id="传统的session认证"><a href="#传统的session认证" class="headerlink" title="传统的session认证"></a>传统的session认证</h3><p>我们知道，http协议本身是一种无状态的协议，而这就意味着如果用户向我们的应用提供了用户名和密码来进行用户认证，那么下一次请求时，用户还要再一次进行用户认证才行，因为根据http协议，我们并不能知道是哪个用户发出的请求，所以为了让我们的应用能识别是哪个用户发出的请求，我们只能在服务器存储一份用户登录的信息，这份登录信息会在响应时传递给浏览器，告诉其保存为cookie,以便下次请求时发送给我们的应用，这样我们的应用就能识别请求来自哪个用户了,这就是传统的基于session认证。</p>
-<p>但是这种基于session的认证使应用本身很难得到扩展，随着不同客户端用户的增加，独立的服务器已无法承载更多的用户，而这时候基于session认证应用的问题就会暴露出来.<br><a id="more"></a></p>
-<h4 id="基于session认证所显露的问题"><a href="#基于session认证所显露的问题" class="headerlink" title="基于session认证所显露的问题"></a>基于session认证所显露的问题</h4><p><strong>Session</strong>: 每个用户经过我们的应用认证之后，我们的应用都要在服务端做一次记录，以方便用户下次请求的鉴别，通常而言session都是保存在内存中，而随着认证用户的增多，服务端的开销会明显增大。</p>
+<h2 id="起源"><a href="#起源" class="headerlink" title="起源"></a>起源</h2><p>说起JWT，我们应该来谈一谈基于 TOKEN 的认证和传统的 SESSION 认证的区别。</p>
+<h3 id="传统的SESSION认证"><a href="#传统的SESSION认证" class="headerlink" title="传统的SESSION认证"></a>传统的SESSION认证</h3><p>我们知道，HTTP 协议本身是一种无状态的协议，而这就意味着如果用户向我们的应用提供了用户名和密码来进行用户认证，那么下一次请求时，用户还要再一次进行用户认证才行，因为根据http协议，我们并不能知道是哪个用户发出的请求，所以为了让我们的应用能识别是哪个用户发出的请求，我们只能在服务器存储一份用户登录的信息，这份登录信息会在响应时传递给浏览器，告诉其保存为cookie,以便下次请求时发送给我们的应用，这样我们的应用就能识别请求来自哪个用户了,这就是传统的基于session认证。</p>
+<p>但是这种基于 SESSION 的认证使应用本身很难得到扩展，随着不同客户端用户的增加，独立的服务器已无法承载更多的用户，而这时候基于 SESSION 认证应用的问题就会暴露出来.<br><a id="more"></a></p>
+<h4 id="基于session认证所显露的问题"><a href="#基于session认证所显露的问题" class="headerlink" title="基于session认证所显露的问题"></a>基于session认证所显露的问题</h4><p><strong>Session</strong>: 每个用户经过我们的应用认证之后，我们的应用都要在服务端做一次记录，以方便用户下次请求的鉴别，通常而言 SESSION 都是保存在内存中，而随着认证用户的增多，服务端的开销会明显增大。</p>
 <p><strong>扩展性</strong>: 用户认证之后，服务端做认证记录，如果认证的记录被保存在内存中的话，这意味着用户下次请求还必须要请求在这台服务器上,这样才能拿到授权的资源，这样在分布式的应用上，相应的限制了负载均衡器的能力。这也意味着限制了应用的扩展能力。</p>
-<p><strong>CSRF</strong>: 因为是基于cookie来进行用户识别的, cookie如果被截获，用户就会很容易受到跨站请求伪造的攻击。</p>
-<h2 id="基于token的鉴权机制"><a href="#基于token的鉴权机制" class="headerlink" title="基于token的鉴权机制"></a>基于token的鉴权机制</h2><p>基于token的鉴权机制类似于http协议也是无状态的，它不需要在服务端去保留用户的认证信息或者会话信息。这就意味着基于token认证机制的应用不需要去考虑用户在哪一台服务器登录了，这就为应用的扩展提供了便利。</p>
+<p><strong>CSRF</strong>: 因为是基于 COOKIE 来进行用户识别的, COOKIE 如果被截获，用户就会很容易受到跨站请求伪造的攻击。</p>
+<h2 id="基于TOKEN的鉴权机制"><a href="#基于TOKEN的鉴权机制" class="headerlink" title="基于TOKEN的鉴权机制"></a>基于TOKEN的鉴权机制</h2><p>基于TOKEN的鉴权机制类似于HTTP协议也是无状态的，它不需要在服务端去保留用户的认证信息或者会话信息。这就意味着基于TOKEN认证机制的应用不需要去考虑用户在哪一台服务器登录了，这就为应用的扩展提供了便利。</p>
 <p>流程上是这样的：</p>
 <ul>
 <li>用户使用用户名密码来请求服务器</li>
 <li>服务器进行验证用户的信息</li>
-<li>服务器通过验证发送给用户一个token</li>
-<li>客户端存储token，并在每次请求时附送上这个token值</li>
-<li>服务端验证token值，并返回数据</li>
+<li>服务器通过验证发送给用户一个TOKEN</li>
+<li>客户端存储TOKEN，并在每次请求时附送上这个TOKEN值</li>
+<li>服务端验证TOKEN值，并返回数据</li>
 </ul>
 <p>这个token必须要在每次请求时传递给服务端，它应该保存在请求头里， 另外，服务端要支持<code>CORS(跨来源资源共享)</code>策略，一般我们在服务端这么做就可以了<code>Access-Control-Allow-Origin: *</code>。</p>
 <p>那么我们现在回到JWT的主题上。</p>
@@ -160,7 +160,7 @@
 <p>服务端会验证token，如果验证通过就会返回相应的资源。整个流程就是这样的:</p>
 <p><img src="/images/jwt-http.png" alt=""></p>
 <h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><h3 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h3><ul>
-<li>因为json的通用性，所以JWT是可以进行跨语言支持的，像JAVA、JavaScript、NodeJS、PHP等很多语言都可以使用。</li>
+<li>因为JSON的通用性，所以JWT是可以进行跨语言支持的，像JAVA、JavaScript、NodeJS、PHP等很多语言都可以使用。</li>
 <li>因为有了payload部分，所以JWT可以在自身存储一些其他业务逻辑所必要的非敏感信息。</li>
 <li>便于传输，jwt的构成非常简单，字节占用很小，所以它是非常便于传输的。</li>
 <li>它不需要在服务端保存会话信息, 所以它易于应用的扩展</li>
@@ -168,13 +168,13 @@
 <h3 id="安全相关"><a href="#安全相关" class="headerlink" title="安全相关"></a>安全相关</h3><ul>
 <li>不应该在jwt的payload部分存放敏感信息，因为该部分是客户端可解密的部分。</li>
 <li>保护好secret私钥，该私钥非常重要。</li>
-<li>如果可以，请使用https协议</li>
+<li>如果可以，请使用HTTPS协议</li>
 </ul>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.liluoao.com/2018/what-is-jwt.html" data-id="cjub3uqj500334kmjn0ignyb4" class="article-share-link">分享</a>
+      <a data-url="http://www.liluoao.com/2018/what-is-jwt.html" data-id="cjw78zgxi00358omjrttvtjnw" class="article-share-link">分享</a>
       
       
     </footer>
@@ -187,7 +187,7 @@
       <strong class="article-nav-caption">上一篇</strong>
       <div class="article-nav-title">
         
-          举例实现依赖注入（转）
+          举例实现依赖注入
         
       </div>
     </a>
@@ -212,6 +212,10 @@
     <h3 class="widget-title">最新文章</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2019/undefined.html">MongoDB的聚合Aggregation</a>
+          </li>
         
           <li>
             <a href="/2019/yii-batch-query.html">Yii批处理查询</a>
@@ -249,10 +253,6 @@
             <a href="/2018/compile-php-extension.html">编译PHP扩展</a>
           </li>
         
-          <li>
-            <a href="/2018/laravel-use-dingo-api.html">Laravel使用DingoAPI</a>
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -262,7 +262,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/algorithm/">algorithm</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/alipay/">alipay</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/apache/">apache</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/design-patterns/">design-patterns</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/kong/">kong</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/laravel/">laravel</a><span class="tag-list-count">21</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/lua/">lua</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mongo/">mongo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/">mysql</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/openresty/">openresty</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/phalcon/">phalcon</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/php/">php</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tool/">tool</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/wechat/">wechat</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/yii/">yii</a><span class="tag-list-count">1</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/algorithm/">algorithm</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/alipay/">alipay</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/apache/">apache</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/design-patterns/">design-patterns</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/kong/">kong</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/laravel/">laravel</a><span class="tag-list-count">21</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/lua/">lua</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mongo/">mongo</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/">mysql</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/openresty/">openresty</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/phalcon/">phalcon</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/php/">php</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tool/">tool</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/wechat/">wechat</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/yii/">yii</a><span class="tag-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -272,7 +272,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">二月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">十二月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">十一月 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">八月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">七月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">五月 2018</a><span class="archive-list-count">20</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a><span class="archive-list-count">15</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">二月 2018</a><span class="archive-list-count">20</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">五月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">二月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">十二月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">十一月 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">八月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">七月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">五月 2018</a><span class="archive-list-count">20</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a><span class="archive-list-count">15</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">二月 2018</a><span class="archive-list-count">20</span></li></ul>
     </div>
   </div>
 
