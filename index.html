@@ -94,7 +94,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.liluoao.com/2019/big-or-small-size-company.html" data-id="ck3b7qmeg004fi4mjvqgi356j" class="article-share-link">分享</a>
+      <a data-url="http://www.liluoao.com/2019/big-or-small-size-company.html" data-id="ck3v7f95p004i2kmjmqt3flqd" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/other/">other</a></li></ul>
@@ -138,7 +138,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.liluoao.com/2019/vcs-commit-rule.html" data-id="ck3b7qmew005bi4mjwa071rr2" class="article-share-link">分享</a>
+      <a data-url="http://www.liluoao.com/2019/vcs-commit-rule.html" data-id="ck3v7f965005d2kmjo9us0whq" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/tool/">tool</a></li></ul>
@@ -182,7 +182,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.liluoao.com/2019/yaf-individualization.html" data-id="ck3b7qmdl0033i4mjw4a3qksr" class="article-share-link">分享</a>
+      <a data-url="http://www.liluoao.com/2019/yaf-individualization.html" data-id="ck3v7f94e00352kmjlupba7ne" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/php/">php</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/yaf/">yaf</a></li></ul>
@@ -229,7 +229,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.liluoao.com/2019/use-code-sniffer-in-phpstorm.html" data-id="ck3b7qmeg004di4mj77g75yd3" class="article-share-link">分享</a>
+      <a data-url="http://www.liluoao.com/2019/use-code-sniffer-in-phpstorm.html" data-id="ck3v7f95p004f2kmj9uazo5i7" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/tool/">tool</a></li></ul>
@@ -273,7 +273,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.liluoao.com/2019/mongodb-aggregation.html" data-id="ck3b7qmcq001vi4mj87qzzwm0" class="article-share-link">分享</a>
+      <a data-url="http://www.liluoao.com/2019/mongodb-aggregation.html" data-id="ck3v7f93j001v2kmjhkk4xi83" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mongo/">mongo</a></li></ul>
@@ -320,10 +320,86 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.liluoao.com/2019/yii-batch-query.html" data-id="ck3b7qmdl0035i4mjhlcedxlx" class="article-share-link">分享</a>
+      <a data-url="http://www.liluoao.com/2019/yii-batch-query.html" data-id="ck3v7f94e00372kmj65u7f6n4" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/php/">php</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/yii/">yii</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-XHProf与PHP7的问题" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/problem-about-xhprof-in-php7.html" class="article-date">
+  <time datetime="2019-01-18T05:35:48.000Z" itemprop="datePublished">2019-01-18</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/problem-about-xhprof-in-php7.html">XHProf与PHP7的问题</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>XHProf 是 <strong>Facebook</strong> 开源的一个轻量级的 PHP 性能分析工具，跟 Xdebug 类似，但性能开销更低。可以用在生产环境中，也可以由程序开关来控制是否进行 profile 。</p>
+<h2 id="问题排查"><a href="#问题排查" class="headerlink" title="问题排查"></a>问题排查</h2><p>最近我们认证中心部门将定时脚本切换为 <code>PHP7</code> 命令执行时，发现过一段时间脚本就内存泄漏，且该释放内存的地方都做了处理。</p>
+<p>经过一段时间排查后发现是 XHProf 造成的，关闭后就可以了。</p>
+<h2 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h2><p><strong>Facebook</strong> 推出这个工具时 PHP 还是他们技术栈重要的一份子。因为 PHP 7 与 PHP 5 存在很大的兼容性问题，Facebook 的 HHVM 团队决定改用 Hack 开发 HHVM。通过减少使用 PHP，HHVM 团队希望 HHVM 和 Hack 能给开发者提供一个更好、更高性能的体验。所以 XHProf 在 PHP7 上有问题也是意料之中的，这个扩展在 <a href="https://pecl.php.net/package/xhprof" target="_blank" rel="noopener">https://pecl.php.net/package/xhprof</a> 上处于年久失修的状态。</p>
+<p>我们需要找一个处于维护状态且质量高的版本替代，网络上大部分的解决方案是 <a href="https://github.com/longxinH/xhprof" target="_blank" rel="noopener">https://github.com/longxinH/xhprof</a> 。</p>
+<h2 id="安装步骤"><a href="#安装步骤" class="headerlink" title="安装步骤"></a>安装步骤</h2><p>回顾一下 XHProf 的安装步骤</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> xhprof/extension/</span><br><span class="line">/usr/<span class="built_in">local</span>/php/bin/phpize</span><br><span class="line">./configure -prefix=/usr/<span class="built_in">local</span>/related/xhprof --with-php-config=/usr/<span class="built_in">local</span>/php/bin/php-config</span><br><span class="line">make &amp;&amp; make install</span><br></pre></td></tr></table></figure>
+<p>在 <em>php.ini</em> 中加入配置，这个日志目录自己定</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">[xhprof]</span></span><br><span class="line"><span class="attr">extension</span> = xhprof.so</span><br><span class="line">xhprof.output_dir = /data/log_xhprof</span><br></pre></td></tr></table></figure>
+<p>用 <code>phpinfo()</code> 查看一下是否成功</p>
+<table>
+<thead>
+<tr>
+<th>Directive</th>
+<th>Local Value</th>
+<th>Master Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>xhprof.output_dir</td>
+<td>/data/log_xhprof</td>
+<td>/data/log_xhprof</td>
+</tr>
+<tr>
+<td>xhprof.sampling_depth</td>
+<td>2147483647</td>
+<td>2147483647</td>
+</tr>
+<tr>
+<td>xhprof.sampling_interval</td>
+<td>100000</td>
+<td>100000</td>
+</tr>
+</tbody>
+</table>
+<p>使用方式见文档：<a href="https://www.php.net/xhprof" target="_blank" rel="noopener">https://www.php.net/xhprof</a></p>
+<p>GUI 分析界面我们使用的：<a href="https://github.com/gajus/xhprof.io" target="_blank" rel="noopener">https://github.com/gajus/xhprof.io</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.liluoao.com/2019/problem-about-xhprof-in-php7.html" data-id="ck3v7f94e00332kmjl33u1qmn" class="article-share-link">分享</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/tool/">tool</a></li></ul>
 
     </footer>
   </div>
@@ -363,7 +439,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.liluoao.com/2018/use-sonarqube-continuous-code-quality.html" data-id="ck3b7qmeg0041i4mjwjlmhyic" class="article-share-link">分享</a>
+      <a data-url="http://www.liluoao.com/2018/use-sonarqube-continuous-code-quality.html" data-id="ck3v7f95900432kmj2k7cshbu" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/tool/">tool</a></li></ul>
@@ -411,7 +487,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.liluoao.com/2018/use-kong-admin-api.html" data-id="ck3b7qme1003pi4mjdhnf5gm1" class="article-share-link">分享</a>
+      <a data-url="http://www.liluoao.com/2018/use-kong-admin-api.html" data-id="ck3v7f959003s2kmjqzuu2z2u" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/kong/">kong</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/lua/">lua</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/openresty/">openresty</a></li></ul>
@@ -458,57 +534,10 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.liluoao.com/2018/kong-cluster-event.html" data-id="ck3b7qmbv0008i4mjf6p78i7z" class="article-share-link">分享</a>
+      <a data-url="http://www.liluoao.com/2018/kong-cluster-event.html" data-id="ck3v7f92800072kmj2godhidk" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/kong/">kong</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/lua/">lua</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/openresty/">openresty</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-Lua的元表" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/lua-metatable.html" class="article-date">
-  <time datetime="2018-11-19T05:51:56.000Z" itemprop="datePublished">2018-11-19</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/lua-metatable.html">Lua的元表</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>在 Lua 5.1 语言中，元表 <em>(metatable)</em> 的表现行为类似于 C++ 语言中的操作符重载，例如我们可以重载 “__add” 元方法 <em>(metamethod)</em>，来计算两个 Lua 数组的并集；或者重载 “__index” 方法，来定义我们自己的 Hash 函数。Lua 提供了两个十分重要的用来处理元表的方法，如下：</p>
-<ul>
-<li>setmetatable(table, metatable)：此方法用于为一个表设置元表。</li>
-<li>getmetatable(table)：此方法用于获取表的元表对象。</li>
-</ul>
-        
-          <p class="article-more-link">
-            <a href="/2018/lua-metatable.html#more">阅读全文</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://www.liluoao.com/2018/lua-metatable.html" data-id="ck3b7qmcq001si4mj8i29qk78" class="article-share-link">分享</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/lua/">lua</a></li></ul>
 
     </footer>
   </div>
@@ -559,6 +588,10 @@
           </li>
         
           <li>
+            <a href="/2019/problem-about-xhprof-in-php7.html">XHProf与PHP7的问题</a>
+          </li>
+        
+          <li>
             <a href="/2018/use-sonarqube-continuous-code-quality.html">使用SonarQube管理代码质量</a>
           </li>
         
@@ -570,10 +603,6 @@
             <a href="/2018/kong-cluster-event.html">Kong集群间数据同步</a>
           </li>
         
-          <li>
-            <a href="/2018/lua-metatable.html">Lua的元表</a>
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -583,7 +612,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/algorithm/">algorithm</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/alipay/">alipay</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/apache/">apache</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/design-patterns/">design-patterns</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/kong/">kong</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/laravel/">laravel</a><span class="tag-list-count">21</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/lua/">lua</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mongo/">mongo</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/">mysql</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/openresty/">openresty</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/other/">other</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/phalcon/">phalcon</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/php/">php</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tool/">tool</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/wechat/">wechat</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/yaf/">yaf</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/yii/">yii</a><span class="tag-list-count">1</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/algorithm/">algorithm</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/alipay/">alipay</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/apache/">apache</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/design-patterns/">design-patterns</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/kong/">kong</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/laravel/">laravel</a><span class="tag-list-count">21</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/lua/">lua</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mongo/">mongo</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/">mysql</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/openresty/">openresty</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/other/">other</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/phalcon/">phalcon</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/php/">php</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tool/">tool</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/wechat/">wechat</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/yaf/">yaf</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/yii/">yii</a><span class="tag-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -593,7 +622,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">十一月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">十月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">九月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">七月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">五月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">二月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">十二月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">十一月 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">八月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">七月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">五月 2018</a><span class="archive-list-count">20</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a><span class="archive-list-count">15</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">二月 2018</a><span class="archive-list-count">20</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">十一月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">十月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">九月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">七月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">五月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">二月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">一月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">十二月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">十一月 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">八月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">七月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">五月 2018</a><span class="archive-list-count">20</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a><span class="archive-list-count">15</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">二月 2018</a><span class="archive-list-count">20</span></li></ul>
     </div>
   </div>
 
