@@ -5,18 +5,23 @@
   
 
   
-  <title>分类: wechat | To be a Web Artisan</title>
+  <title>大中台的思考 | To be a Web Artisan</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="李罗奥的博客">
-<meta property="og:type" content="website">
-<meta property="og:title" content="To be a Web Artisan">
-<meta property="og:url" content="http://www.liluoao.com/categories/wechat/index.html">
+  <meta name="description" content="前言最近朋友给我分享了一篇文章—— 《叹！中台的末路》 ，问我的公司是否也是这样的。文中是这么说的：从 15 年开始，到 19 年现在为止，各大公司都在吹捧中台理念。仿佛中台是业务复杂性的救世主，是某些架构师和 PM 的新出路，各种割韭菜的讲中台的课程层出不穷。 简单介绍下我们公司的中台：同花顺大中台项目，成立于2018年12月21日，项目代码：Arsenal（武器库）。Arsenal旨在实现 “">
+<meta name="keywords" content="other">
+<meta property="og:type" content="article">
+<meta property="og:title" content="大中台的思考">
+<meta property="og:url" content="http://www.liluoao.com/2019/about-middle-end.html">
 <meta property="og:site_name" content="To be a Web Artisan">
-<meta property="og:description" content="李罗奥的博客">
+<meta property="og:description" content="前言最近朋友给我分享了一篇文章—— 《叹！中台的末路》 ，问我的公司是否也是这样的。文中是这么说的：从 15 年开始，到 19 年现在为止，各大公司都在吹捧中台理念。仿佛中台是业务复杂性的救世主，是某些架构师和 PM 的新出路，各种割韭菜的讲中台的课程层出不穷。 简单介绍下我们公司的中台：同花顺大中台项目，成立于2018年12月21日，项目代码：Arsenal（武器库）。Arsenal旨在实现 “">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://www.liluoao.com/images/arsenal-structure.png">
+<meta property="og:image" content="http://www.liluoao.com/images/aip-sip-structure.png">
+<meta property="og:updated_time" content="2019-12-10T06:15:05.734Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="To be a Web Artisan">
-<meta name="twitter:description" content="李罗奥的博客">
+<meta name="twitter:title" content="大中台的思考">
+<meta name="twitter:description" content="前言最近朋友给我分享了一篇文章—— 《叹！中台的末路》 ，问我的公司是否也是这样的。文中是这么说的：从 15 年开始，到 19 年现在为止，各大公司都在吹捧中台理念。仿佛中台是业务复杂性的救世主，是某些架构师和 PM 的新出路，各种割韭菜的讲中台的课程层出不穷。 简单介绍下我们公司的中台：同花顺大中台项目，成立于2018年12月21日，项目代码：Arsenal（武器库）。Arsenal旨在实现 “">
+<meta name="twitter:image" content="http://www.liluoao.com/images/arsenal-structure.png">
 <meta name="twitter:creator" content="@liluoao">
   
   
@@ -61,154 +66,80 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2018" class="archive-year">2018</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2018/work-wechat-address-list.html" class="archive-article-date">
-  <time datetime="2018-04-15T02:18:48.000Z" itemprop="datePublished">4月 15</time>
+        <section id="main"><article id="post-大中台的思考" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/about-middle-end.html" class="article-date">
+  <time datetime="2019-12-07T08:20:59.000Z" itemprop="datePublished">2019-12-07</time>
 </a>
-      
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/work-wechat-address-list.html">企业微信通讯录</a>
+    <h1 class="article-title" itemprop="name">
+      大中台的思考
     </h1>
   
 
-    </header>
-  </div>
-</article>
-  
+      </header>
     
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2018/wechat-authorize-hardware.html" class="archive-article-date">
-  <time datetime="2018-04-14T01:35:57.000Z" itemprop="datePublished">4月 14</time>
-</a>
+    <div class="article-entry" itemprop="articleBody">
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/wechat-authorize-hardware.html">微信硬件设备授权</a>
-    </h1>
-  
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>最近朋友给我分享了一篇文章—— <a href="https://mp.weixin.qq.com/s/Pge_G3bVk40b70YpwCOx3Q" target="_blank" rel="noopener">《叹！中台的末路》</a> ，问我的公司是否也是这样的。文中是这么说的：从 15 年开始，到 19 年现在为止，各大公司都在吹捧中台理念。仿佛中台是业务复杂性的救世主，是某些架构师和 PM 的新出路，各种割韭菜的讲中台的课程层出不穷。</p>
+<p>简单介绍下我们公司的中台：同花顺大中台项目，成立于2018年12月21日，项目代码：Arsenal（武器库）。Arsenal旨在实现 “大中台+小前台” 的技术架构和组织架构，解决目前普遍存在的新产品开发速度慢、老产品维护困难、大量的低效重复劳动等问题，打造一个整合公司核心业务的高内聚、低耦合、高可用的共享平台，为前台业务拓展提供强有力的支持。</p>
+<a id="more"></a>
+<h2 id="技术架构"><a href="#技术架构" class="headerlink" title="技术架构"></a>技术架构</h2><p><img src="/images/arsenal-structure.png" alt="Arsenal架构"></p>
+<p>术语解释：</p>
+<ul>
+<li>OpenAPI：提供服务调用的统一入口网关，所有的服务调用都通过这个网关转发。</li>
+<li>AIP：Agent Interface Process。微服务架构中的代理接口进程。提供请求调用的接口，把请求发给相应的 SIP 或者 SIK。具有均衡的功能。</li>
+<li>AIK：Agent Interface SDK。微服务架构中的代理接口 SDK，提供给服务使用者程序开发函数库。功能和 AIP 保持一致，但性能更好，没有进程间的通讯。</li>
+<li>SIP：Service Interface Process。微服务架构中的服务接口进程。接收请求，调用相应的服务进程处理并返回处理结果。类似 Nginx 的作用。</li>
+<li>SIK：Service Interface SDK。微服务架构中的服务接口 SDK。提供给服务开发者使用的函数库。功能和 SIP 保持一致，但性能更好，没有进程间的通讯。</li>
+<li>MSA：MicroService Application。微服务架构中的应用程序，实现业务逻辑。对外的表现就是服务。</li>
+<li>SRRP：Standard Request Response Protocol。标准请求应答协议。定义 MSA 和 AIP（SIP）之间的数据交换协议。</li>
+<li>控制面：Control Plane。微服务架构中的配置中心，管理服务的注册和服务（应用）之间的调用关系，实现服务注册、发现、健康检查等功能。</li>
+</ul>
+<p><img src="/images/aip-sip-structure.png" alt="AIP-SIP微服务架构"></p>
+<h2 id="公用业务下沉"><a href="#公用业务下沉" class="headerlink" title="公用业务下沉"></a>公用业务下沉</h2><p>公用业务下沉，这个理念其实很朴素。所有程序员都知道我们公用的逻辑要进行封装、抽象，变成 Library，而我们中台的本质其实就是把这种朴素的思想进行了一定程度的推广。每个部门都需要在中台上注册一个自己的 <code>应用</code>，这个 <code>应用</code> 可以提供 <code>服务</code> 给别人，也可以使用别人的 <code>服务</code>。简单来说，使用外部门的接口时需要在控制台中为自己的应用关联这个服务，提供接口给别人时需要在控制台中发布这个服务。</p>
+<p>老流程需要在服务器里 CURL 请求 <code>微服务控制面</code> 来注册应用，开发非常麻烦。后来换成网关模式，只需要在请求接口时在 HTTP Header 里附上自己的应用名，并在服务器里添加好网关服务域名的本地 Host。</p>
+<h2 id="未完待续"><a href="#未完待续" class="headerlink" title="未完待续"></a>未完待续</h2><p>目前中台还处于完善阶段，除了接口，还添加了 UI组件、ELK日志及图表、Mock工具，但对于整个目标的实现还有差距：</p>
+<ul>
+<li><p>工程方面<br>有效减少了重复造轮子、重复建系统的现象。有相对统一的业务收敛位置，并在公共服务上快速高效迭代出新的业务。</p>
+</li>
+<li><p>数据方面<br>有了统一的用户、订单系统，就不会再有各种恶心的数据打通问题，不会有跨部门的数据墙。有了统一的中台，也就有了统一的数据规范。对于大数据相关的需求，可以从相对唯一的数据出口进行业务迭代，不需要为每一个部门进行定制开发，浪费人力。</p>
+</li>
+<li><p>创新方面<br>有了公共的中台，意味着有了相对全局的视角，更能发现单点观察难以发现的问题。在更大的业务层面进行一定的创新。听着很有道理。</p>
+</li>
+</ul>
 
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2018/wechat-card-and-coupon.html" class="archive-article-date">
-  <time datetime="2018-04-13T03:16:17.000Z" itemprop="datePublished">4月 13</time>
-</a>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/wechat-card-and-coupon.html">微信卡券</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2018/wechat-barpay.html" class="archive-article-date">
-  <time datetime="2018-04-12T01:26:24.000Z" itemprop="datePublished">4月 12</time>
-</a>
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.liluoao.com/2019/about-middle-end.html" data-id="ck3zh0sr2004i9cmj8vv8lfp9" class="article-share-link">分享</a>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/wechat-barpay.html">微信条码支付</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2018/wechat-passivity-message.html" class="archive-article-date">
-  <time datetime="2018-04-11T07:14:51.000Z" itemprop="datePublished">4月 11</time>
-</a>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/wechat-passivity-message.html">微信消息处理</a>
-    </h1>
-  
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/other/">other</a></li></ul>
 
-    </header>
+    </footer>
   </div>
-</article>
   
     
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2018/wechat-menu.html" class="archive-article-date">
-  <time datetime="2018-04-10T01:56:41.000Z" itemprop="datePublished">4月 10</time>
-</a>
-      
+<nav id="article-nav">
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/wechat-menu.html">微信菜单</a>
-    </h1>
   
+    <a href="/2019/big-or-small-size-company.html" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">大小规模公司思考</div>
+    </a>
+  
+</nav>
 
-    </header>
-  </div>
+  
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2018/wechat-authorize-web.html" class="archive-article-date">
-  <time datetime="2018-04-09T03:02:14.000Z" itemprop="datePublished">4月 9</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/wechat-authorize-web.html">微信网页授权</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
 
 </section>
         
