@@ -7,20 +7,20 @@
   
   <title>大中台的思考 | To be a Web Artisan</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="前言最近朋友给我分享了一篇文章—— 《叹！中台的末路》 ，问我的公司是否也是这样的。文中是这么说的：从 15 年开始，到 19 年现在为止，各大公司都在吹捧中台理念。仿佛中台是业务复杂性的救世主，是某些架构师和 PM 的新出路，各种割韭菜的讲中台的课程层出不穷。 简单介绍下我们公司的中台：同花顺大中台项目，成立于2018年12月21日，项目代码：Arsenal（武器库）。Arsenal旨在实现 “">
+  <meta name="description" content="前言最近朋友给我分享了一篇文章—— 《叹！中台的末路》 ，问我的公司是否也是这样的。文中是这么说的：从 15 年开始，到 19 年现在为止，各大公司都在吹捧中台理念。仿佛中台是业务复杂性的救世主，是某些架构师和 PM 的新出路，各种割韭菜的讲中台的课程层出不穷。 简单介绍下我们公司的中台：同花顺大中台项目，成立于2018年12月21日，项目代码：Arsenal（武器库）。Arsenal 旨在实现">
 <meta name="keywords" content="other">
 <meta property="og:type" content="article">
 <meta property="og:title" content="大中台的思考">
 <meta property="og:url" content="http://www.liluoao.com/2019/about-middle-end.html">
 <meta property="og:site_name" content="To be a Web Artisan">
-<meta property="og:description" content="前言最近朋友给我分享了一篇文章—— 《叹！中台的末路》 ，问我的公司是否也是这样的。文中是这么说的：从 15 年开始，到 19 年现在为止，各大公司都在吹捧中台理念。仿佛中台是业务复杂性的救世主，是某些架构师和 PM 的新出路，各种割韭菜的讲中台的课程层出不穷。 简单介绍下我们公司的中台：同花顺大中台项目，成立于2018年12月21日，项目代码：Arsenal（武器库）。Arsenal旨在实现 “">
+<meta property="og:description" content="前言最近朋友给我分享了一篇文章—— 《叹！中台的末路》 ，问我的公司是否也是这样的。文中是这么说的：从 15 年开始，到 19 年现在为止，各大公司都在吹捧中台理念。仿佛中台是业务复杂性的救世主，是某些架构师和 PM 的新出路，各种割韭菜的讲中台的课程层出不穷。 简单介绍下我们公司的中台：同花顺大中台项目，成立于2018年12月21日，项目代码：Arsenal（武器库）。Arsenal 旨在实现">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://www.liluoao.com/images/arsenal-structure.png">
 <meta property="og:image" content="http://www.liluoao.com/images/aip-sip-structure.png">
-<meta property="og:updated_time" content="2019-12-10T06:15:05.734Z">
+<meta property="og:updated_time" content="2019-12-10T06:29:07.986Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="大中台的思考">
-<meta name="twitter:description" content="前言最近朋友给我分享了一篇文章—— 《叹！中台的末路》 ，问我的公司是否也是这样的。文中是这么说的：从 15 年开始，到 19 年现在为止，各大公司都在吹捧中台理念。仿佛中台是业务复杂性的救世主，是某些架构师和 PM 的新出路，各种割韭菜的讲中台的课程层出不穷。 简单介绍下我们公司的中台：同花顺大中台项目，成立于2018年12月21日，项目代码：Arsenal（武器库）。Arsenal旨在实现 “">
+<meta name="twitter:description" content="前言最近朋友给我分享了一篇文章—— 《叹！中台的末路》 ，问我的公司是否也是这样的。文中是这么说的：从 15 年开始，到 19 年现在为止，各大公司都在吹捧中台理念。仿佛中台是业务复杂性的救世主，是某些架构师和 PM 的新出路，各种割韭菜的讲中台的课程层出不穷。 简单介绍下我们公司的中台：同花顺大中台项目，成立于2018年12月21日，项目代码：Arsenal（武器库）。Arsenal 旨在实现">
 <meta name="twitter:image" content="http://www.liluoao.com/images/arsenal-structure.png">
 <meta name="twitter:creator" content="@liluoao">
   
@@ -89,7 +89,7 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>最近朋友给我分享了一篇文章—— <a href="https://mp.weixin.qq.com/s/Pge_G3bVk40b70YpwCOx3Q" target="_blank" rel="noopener">《叹！中台的末路》</a> ，问我的公司是否也是这样的。文中是这么说的：从 15 年开始，到 19 年现在为止，各大公司都在吹捧中台理念。仿佛中台是业务复杂性的救世主，是某些架构师和 PM 的新出路，各种割韭菜的讲中台的课程层出不穷。</p>
-<p>简单介绍下我们公司的中台：同花顺大中台项目，成立于2018年12月21日，项目代码：Arsenal（武器库）。Arsenal旨在实现 “大中台+小前台” 的技术架构和组织架构，解决目前普遍存在的新产品开发速度慢、老产品维护困难、大量的低效重复劳动等问题，打造一个整合公司核心业务的高内聚、低耦合、高可用的共享平台，为前台业务拓展提供强有力的支持。</p>
+<p>简单介绍下我们公司的中台：同花顺大中台项目，成立于2018年12月21日，项目代码：Arsenal（武器库）。Arsenal 旨在实现 “<strong>大中台 + 小前台</strong>” 的技术架构和组织架构，解决目前普遍存在的新产品开发速度慢、老产品维护困难、大量的低效重复劳动等问题，打造一个整合公司核心业务的高内聚、低耦合、高可用的共享平台，为前台业务拓展提供强有力的支持。</p>
 <a id="more"></a>
 <h2 id="技术架构"><a href="#技术架构" class="headerlink" title="技术架构"></a>技术架构</h2><p><img src="/images/arsenal-structure.png" alt="Arsenal架构"></p>
 <p>术语解释：</p>
@@ -110,16 +110,16 @@
 <ul>
 <li><p>工程方面<br>有效减少了重复造轮子、重复建系统的现象。有相对统一的业务收敛位置，并在公共服务上快速高效迭代出新的业务。</p>
 </li>
-<li><p>数据方面<br>有了统一的用户、订单系统，就不会再有各种恶心的数据打通问题，不会有跨部门的数据墙。有了统一的中台，也就有了统一的数据规范。对于大数据相关的需求，可以从相对唯一的数据出口进行业务迭代，不需要为每一个部门进行定制开发，浪费人力。</p>
+<li><p>数据方面<br>有了统一的用户、订单系统，就不会再有各种数据打通问题，不会有跨部门的数据墙。有了统一的中台，也就有了统一的数据规范。对于大数据相关的需求，可以从相对唯一的数据出口进行业务迭代，不需要为每一个部门进行定制开发，浪费人力。</p>
 </li>
-<li><p>创新方面<br>有了公共的中台，意味着有了相对全局的视角，更能发现单点观察难以发现的问题。在更大的业务层面进行一定的创新。听着很有道理。</p>
+<li><p>创新方面<br>有了公共的中台，意味着有了相对全局的视角，更能发现单点观察难以发现的问题，在更大的业务层面进行一定的创新</p>
 </li>
 </ul>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.liluoao.com/2019/about-middle-end.html" data-id="ck3zh0sr2004i9cmj8vv8lfp9" class="article-share-link">分享</a>
+      <a data-url="http://www.liluoao.com/2019/about-middle-end.html" data-id="ck3zhiw1o004i18mj6qqcli83" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/other/">other</a></li></ul>
