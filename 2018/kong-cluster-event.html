@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<head>
+<head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="utf-8">
   
 
@@ -15,7 +15,7 @@
 <meta property="og:site_name" content="To be a Web Artisan">
 <meta property="og:description" content="概览  kong 的代码运行于 nginx 的 worker 进程中。kong 对数据的修改会在一个 worker 中进行，数据被修改后需要通知给本地的其他 worker 进程和其他机器上的 worker 进程。kong 使用的进程间通信主要方式有：  本机间通信-共享内存 跨机器通信-数据库">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-12-17T08:28:13.645Z">
+<meta property="og:updated_time" content="2019-12-17T08:31:06.390Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Kong集群间数据同步">
 <meta name="twitter:description" content="概览  kong 的代码运行于 nginx 的 worker 进程中。kong 对数据的修改会在一个 worker 中进行，数据被修改后需要通知给本地的其他 worker 进程和其他机器上的 worker 进程。kong 使用的进程间通信主要方式有：  本机间通信-共享内存 跨机器通信-数据库">
@@ -26,7 +26,7 @@
   
   <link rel="stylesheet" href="/css/style.css">
 </head>
-
+</html>
 <body>
   <div id="container">
     <div id="wrap">
@@ -122,7 +122,7 @@
 </ul>
 <p>这个事件会通知所有的 worker(包含不同机器)upstreams数据的修改。使用 <code>cluster_events:broadcast</code> 方法发送一条 channel=balancer:upstreams 集群事件。</p>
 <h3 id="数据库"><a href="#数据库" class="headerlink" title="数据库"></a>数据库</h3><p>  集群事件通过数据库实现。数据库表 <strong>cluster_events</strong> 存放用于集群间分发的事件。<strong>cluster_events</strong> 表结构如下:</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> cluster_events (</span><br><span class="line">  <span class="keyword">id</span> <span class="built_in">varchar</span>(<span class="number">64</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span>,</span><br><span class="line">  <span class="comment">-- 标识生成事件的节点id</span></span><br><span class="line">  node_id <span class="built_in">varchar</span>(<span class="number">64</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span>,</span><br><span class="line">  <span class="comment">-- 事件产生时间，精确到毫秒</span></span><br><span class="line">  <span class="keyword">at</span> <span class="keyword">timestamp</span>(<span class="number">3</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span>,</span><br><span class="line">  <span class="comment">-- 事件生效时间，精确到毫秒</span></span><br><span class="line">  nbf <span class="keyword">timestamp</span>(<span class="number">3</span>) <span class="literal">NULL</span> <span class="keyword">DEFAULT</span> <span class="literal">NULL</span>,</span><br><span class="line">  <span class="comment">-- 事件过期时间，精确到毫秒</span></span><br><span class="line">  expire_at <span class="keyword">timestamp</span>(<span class="number">3</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span>,</span><br><span class="line">  <span class="comment">-- 事件类型</span></span><br><span class="line">  channel <span class="built_in">varchar</span>(<span class="number">1023</span>) <span class="keyword">DEFAULT</span> <span class="literal">NULL</span>,</span><br><span class="line">  <span class="comment">-- 事件数据</span></span><br><span class="line">  <span class="keyword">data</span> <span class="built_in">varchar</span>(<span class="number">10000</span>) <span class="keyword">DEFAULT</span> <span class="literal">NULL</span>,</span><br><span class="line">  </span><br><span class="line">  PRIMARY <span class="keyword">KEY</span> (<span class="keyword">id</span>),</span><br><span class="line">  <span class="keyword">KEY</span> cluster_events_at_idx (<span class="keyword">at</span>),</span><br><span class="line">  <span class="keyword">KEY</span> cluster_events_channelt_idx (channel)</span><br><span class="line">) <span class="keyword">ENGINE</span>=<span class="keyword">InnoDB</span> <span class="keyword">DEFAULT</span> <span class="keyword">CHARSET</span>=utf8 ROW_FORMAT=DYNAMIC;</span><br></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> cluster_events (</span><br><span class="line">  <span class="keyword">id</span> <span class="built_in">varchar</span>(<span class="number">64</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span>,</span><br><span class="line">  <span class="comment">-- 标识生成事件的节点id</span></span><br><span class="line">  node_id <span class="built_in">varchar</span>(<span class="number">64</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span>,</span><br><span class="line">  <span class="comment">-- 事件产生时间，精确到毫秒</span></span><br><span class="line">  <span class="keyword">at</span> <span class="built_in">timestamp</span>(<span class="number">3</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span>,</span><br><span class="line">  <span class="comment">-- 事件生效时间，精确到毫秒</span></span><br><span class="line">  nbf <span class="built_in">timestamp</span>(<span class="number">3</span>) <span class="literal">NULL</span> <span class="keyword">DEFAULT</span> <span class="literal">NULL</span>,</span><br><span class="line">  <span class="comment">-- 事件过期时间，精确到毫秒</span></span><br><span class="line">  expire_at <span class="built_in">timestamp</span>(<span class="number">3</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span>,</span><br><span class="line">  <span class="comment">-- 事件类型</span></span><br><span class="line">  channel <span class="built_in">varchar</span>(<span class="number">1023</span>) <span class="keyword">DEFAULT</span> <span class="literal">NULL</span>,</span><br><span class="line">  <span class="comment">-- 事件数据</span></span><br><span class="line">  <span class="keyword">data</span> <span class="built_in">varchar</span>(<span class="number">10000</span>) <span class="keyword">DEFAULT</span> <span class="literal">NULL</span>,</span><br><span class="line">  </span><br><span class="line">  PRIMARY <span class="keyword">KEY</span> (<span class="keyword">id</span>),</span><br><span class="line">  <span class="keyword">KEY</span> cluster_events_at_idx (<span class="keyword">at</span>),</span><br><span class="line">  <span class="keyword">KEY</span> cluster_events_channelt_idx (channel)</span><br><span class="line">) <span class="keyword">ENGINE</span>=<span class="keyword">InnoDB</span> <span class="keyword">DEFAULT</span> <span class="keyword">CHARSET</span>=utf8 ROW_FORMAT=DYNAMIC;</span><br></pre></td></tr></table></figure>
 <p><code>channel</code> 的类型有:</p>
 <ul>
 <li><code>invalidations</code></li>
@@ -144,7 +144,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.liluoao.com/2018/kong-cluster-event.html" data-id="ck49luyiw0008swmjtsegolrd" class="article-share-link">分享</a>
+      <a data-url="http://www.liluoao.com/2018/kong-cluster-event.html" data-id="ck49lysd30008k4mjh06tfl6a" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/kong/">kong</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/lua/">lua</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/openresty/">openresty</a></li></ul>

@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<head>
+<head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="utf-8">
   
 
@@ -15,7 +15,7 @@
 <meta property="og:site_name" content="To be a Web Artisan">
 <meta property="og:description" content="如果是使用 Laravel 安装器创建的项目，则已经安装好了 PHPUnit123456789&quot;require-dev&quot;: &amp;#123;    //...    &quot;phpunit/phpunit&quot;: &quot;^7.0&quot;&amp;#125;,&quot;autoload-dev&quot;: &amp;#123;    &quot;psr-4&quot;: &amp;#123;        &quot;Tests\\&quot;: &quot;tests/&quot;    &amp;#125;&amp;#125;, 根">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-12-17T08:28:13.645Z">
+<meta property="og:updated_time" content="2019-12-17T08:31:06.390Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="使用PHPUnit">
 <meta name="twitter:description" content="如果是使用 Laravel 安装器创建的项目，则已经安装好了 PHPUnit123456789&quot;require-dev&quot;: &amp;#123;    //...    &quot;phpunit/phpunit&quot;: &quot;^7.0&quot;&amp;#125;,&quot;autoload-dev&quot;: &amp;#123;    &quot;psr-4&quot;: &amp;#123;        &quot;Tests\\&quot;: &quot;tests/&quot;    &amp;#125;&amp;#125;, 根">
@@ -26,7 +26,7 @@
   
   <link rel="stylesheet" href="/css/style.css">
 </head>
-
+</html>
 <body>
   <div id="container">
     <div id="wrap">
@@ -89,7 +89,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>如果是使用 Laravel 安装器创建的项目，则已经安装好了 PHPUnit<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">"require-dev": &#123;</span><br><span class="line">    //...</span><br><span class="line">    "phpunit/phpunit": "^7.0"</span><br><span class="line">&#125;,</span><br><span class="line">"autoload-dev": &#123;</span><br><span class="line">    "psr-4": &#123;</span><br><span class="line">        "Tests\\": "tests/"</span><br><span class="line">    &#125;</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure></p>
+        <p>如果是使用 Laravel 安装器创建的项目，则已经安装好了 PHPUnit<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">"require-dev": &#123;</span><br><span class="line">    <span class="comment">//...</span></span><br><span class="line">    "phpunit/phpunit": "^7.0"</span><br><span class="line">&#125;,</span><br><span class="line">"autoload-dev": &#123;</span><br><span class="line">    "psr-4": &#123;</span><br><span class="line">        "Tests\\": "tests/"</span><br><span class="line">    &#125;</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure></p>
 <p>根目录有 <code>phpunit.xml</code> 配置文件</p>
 <h4 id="创建用例"><a href="#创建用例" class="headerlink" title="创建用例"></a>创建用例</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">php artisan make:<span class="built_in">test</span> UserTest</span><br></pre></td></tr></table></figure>
 <p>该命令会在 <code>tests/Feature</code> 目录中创建一个新的 <code>UserTest</code> 类<br><a id="more"></a><br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">namespace</span> <span class="title">Tests</span>\<span class="title">Feature</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">use</span> <span class="title">Tests</span>\<span class="title">TestCase</span>;</span><br><span class="line"><span class="keyword">use</span> <span class="title">Illuminate</span>\<span class="title">Foundation</span>\<span class="title">Testing</span>\<span class="title">WithFaker</span>;</span><br><span class="line"><span class="keyword">use</span> <span class="title">Illuminate</span>\<span class="title">Foundation</span>\<span class="title">Testing</span>\<span class="title">RefreshDatabase</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">UserTest</span> <span class="keyword">extends</span> <span class="title">TestCase</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * A basic test example.</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> void</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">testExample</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">$this</span>-&gt;assertTrue(<span class="keyword">true</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
@@ -112,7 +112,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.liluoao.com/2018/laravel-phpunit.html" data-id="ck49luyjc000cswmj05mwcnlj" class="article-share-link">分享</a>
+      <a data-url="http://www.liluoao.com/2018/laravel-phpunit.html" data-id="ck49lysd3000gk4mjozr7qvzt" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/laravel/">laravel</a></li></ul>

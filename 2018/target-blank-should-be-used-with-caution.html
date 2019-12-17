@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<head>
+<head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="utf-8">
   
 
@@ -16,7 +16,7 @@
 <meta property="og:description" content="原文链接：https://juejin.im/post/5a9f8425f265da239a5f57f8  在网页中使用链接时，如果想要让浏览器自动在新的标签页打开指定的地址，通常的做法就是在 a 标签上添加 target等于”_blank” 属性。然而，就是这个属性，为钓鱼攻击者带来了可乘之机。  起源parent 与 opener在说 opener 之前，可以先聊聊 &amp;lt;iframe&amp;gt">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://www.liluoao.com/images/noopener-version.png">
-<meta property="og:updated_time" content="2019-12-17T08:28:13.661Z">
+<meta property="og:updated_time" content="2019-12-17T08:31:06.390Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="危险的target=&quot;_blank&quot;与&quot;opener&quot;">
 <meta name="twitter:description" content="原文链接：https://juejin.im/post/5a9f8425f265da239a5f57f8  在网页中使用链接时，如果想要让浏览器自动在新的标签页打开指定的地址，通常的做法就是在 a 标签上添加 target等于”_blank” 属性。然而，就是这个属性，为钓鱼攻击者带来了可乘之机。  起源parent 与 opener在说 opener 之前，可以先聊聊 &amp;lt;iframe&amp;gt">
@@ -28,7 +28,7 @@
   
   <link rel="stylesheet" href="/css/style.css">
 </head>
-
+</html>
 <body>
   <div id="container">
     <div id="wrap">
@@ -120,7 +120,7 @@
 <p>但是要注意的是：即使限制了 <code>referer</code> 的传递，仍然不能阻止原标签被恶意跳转。</p>
 </blockquote>
 <h4 id="2-noopener"><a href="#2-noopener" class="headerlink" title="2. noopener"></a>2. noopener</h4><p>为了安全，现代浏览器都支持在 <code>&lt;a&gt;</code> 标签的 <code>rel</code> 属性中指定 <code>rel=&quot;noopener&quot;</code>，这样，在打开的新标签页中，将无法再使用 <code>opener</code> 对象了，它为设置为了 <code>null</code>。<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"https://an.evil.site"</span> <span class="attr">target</span>=<span class="string">"_blank"</span> <span class="attr">rel</span>=<span class="string">"noopener"</span>&gt;</span>进入一个“邪恶”的网站<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
-<h4 id="3-JavaScript"><a href="#3-JavaScript" class="headerlink" title="3. JavaScript"></a>3. JavaScript</h4><p><code>noopener</code> 属性看似是解决了所有问题，但是…浏览器的兼容性问题…<br><img src="/images/noopener-version.png" alt=""><br>可以看到，现在绝大多数浏览器都已经兼容了 <code>rel=&quot;noopener&quot;</code> 属性了。但是，为了保护稍旧的“近代”浏览器或是很旧的“古代”浏览器甚至是“远古”浏览器，只有 <code>noopener</code> 属性还是远远不够的。</p>
+<h4 id="3-JavaScript"><a href="#3-JavaScript" class="headerlink" title="3. JavaScript"></a>3. JavaScript</h4><p><code>noopener</code> 属性看似是解决了所有问题，但是…浏览器的兼容性问题…<br><img src="/images/noopener-version.png" alt><br>可以看到，现在绝大多数浏览器都已经兼容了 <code>rel=&quot;noopener&quot;</code> 属性了。但是，为了保护稍旧的“近代”浏览器或是很旧的“古代”浏览器甚至是“远古”浏览器，只有 <code>noopener</code> 属性还是远远不够的。</p>
 <p>这时，就只能请出下面这段原生 JavaScript 来帮忙了。<br><figure class="highlight javascript"><figcaption><span>1.8</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">"use strict"</span>;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">openUrl</span>(<span class="params">url</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> newTab = <span class="built_in">window</span>.open();</span><br><span class="line">  newTab.opener = <span class="literal">null</span>;</span><br><span class="line">  newTab.location = url;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <h2 id="推荐"><a href="#推荐" class="headerlink" title="推荐"></a>推荐</h2><p>首先，在网站中的链接上，如果使用了 <code>target=&quot;_blank&quot;</code>，就要带上 <code>rel=&quot;noopener&quot;</code>，并且建议带上 <code>rel=&quot;noreferrer&quot;</code>。类似于这样：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"https://an.evil.site"</span> <span class="attr">target</span>=<span class="string">"_blank"</span> <span class="attr">rel</span>=<span class="string">"noopener noreferrer"</span>&gt;</span>进入一个“邪恶”的网站<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
 <p>当然，在跳转到第三方网站的时候，为了 SEO 权重，还建议带上 <code>rel=&quot;nofollow&quot;</code>，所以最终类似于这样：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"https://an.evil.site"</span> <span class="attr">target</span>=<span class="string">"_blank"</span> <span class="attr">rel</span>=<span class="string">"noopener noreferrer nofollow"</span>&gt;</span>进入一个“邪恶”的网站<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
@@ -131,7 +131,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.liluoao.com/2018/target-blank-should-be-used-with-caution.html" data-id="ck49luylx004dswmjpielma1h" class="article-share-link">分享</a>
+      <a data-url="http://www.liluoao.com/2018/target-blank-should-be-used-with-caution.html" data-id="ck49lysfa004dk4mj94hgg8zq" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li></ul>

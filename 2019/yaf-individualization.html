@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<head>
+<head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="utf-8">
   
 
@@ -16,7 +16,7 @@
 <meta property="og:description" content="执行流程由于 Yaf 只提供一个 MVC 的基本骨架，所以我们有很大的开发自由度，来实现一个最适合自己的项目。">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://www.liluoao.com/images/yaf-life-cycle.png">
-<meta property="og:updated_time" content="2019-12-17T08:28:13.661Z">
+<meta property="og:updated_time" content="2019-12-17T08:31:06.390Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Yaf个性化">
 <meta name="twitter:description" content="执行流程由于 Yaf 只提供一个 MVC 的基本骨架，所以我们有很大的开发自由度，来实现一个最适合自己的项目。">
@@ -28,7 +28,7 @@
   
   <link rel="stylesheet" href="/css/style.css">
 </head>
-
+</html>
 <body>
   <div id="container">
     <div id="wrap">
@@ -93,7 +93,7 @@
 <h2 id="实现Laravel结构"><a href="#实现Laravel结构" class="headerlink" title="实现Laravel结构"></a>实现Laravel结构</h2><p>可以通过修改配置来变更代码结构，例如在 <code>public/index.php</code> 入口修改配置文件夹</p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">define(<span class="string">'APP_ROOT'</span>, dirname(<span class="keyword">__DIR__</span>));</span><br><span class="line"></span><br><span class="line">$app = <span class="keyword">new</span> Yaf\Application(APP_ROOT.<span class="string">'/config/application.ini'</span>);</span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">    $app-&gt;bootstrap()-&gt;run();</span><br><span class="line">&#125; <span class="keyword">catch</span> (Yaf\<span class="keyword">Exception</span>\LoadFailed\Action $e) &#123;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">'方法输入错误'</span>;</span><br><span class="line">    <span class="keyword">exit</span>();</span><br><span class="line">&#125; <span class="keyword">catch</span> (Yaf\<span class="keyword">Exception</span>\LoadFailed\Controller $e) &#123;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">'控制器输入错误'</span>;</span><br><span class="line">    <span class="keyword">exit</span>();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>在 <code>application.ini</code> 中修改应用目录和启动文件位置</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">application.directory = APP_ROOT "/app/"</span><br><span class="line">application.bootstrap = APP_ROOT "/bootstrap/app.php"</span><br><span class="line">application.library = APP_ROOT "/app/Library"</span><br></pre></td></tr></table></figure>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">application.directory</span> = APP_ROOT <span class="string">"/app/"</span></span><br><span class="line"><span class="attr">application.bootstrap</span> = APP_ROOT <span class="string">"/bootstrap/app.php"</span></span><br><span class="line"><span class="attr">application.library</span> = APP_ROOT <span class="string">"/app/Library"</span></span><br></pre></td></tr></table></figure>
 <p>这样就有了基础的结构，你可以加入 <code>Laravel Mix</code> 支持前端，或者是引入 <code>Symfony 命令行</code></p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">use</span> <span class="title">Symfony</span>\<span class="title">Component</span>\<span class="title">Console</span>\<span class="title">Application</span>;</span><br><span class="line">$application = <span class="keyword">new</span> Application();</span><br><span class="line"><span class="comment">// ... register commands</span></span><br><span class="line">$application-&gt;run();</span><br></pre></td></tr></table></figure>
 <h2 id="启动文件"><a href="#启动文件" class="headerlink" title="启动文件"></a>启动文件</h2><p>启动文件经常实现的方法有几个，例如</p>
@@ -121,7 +121,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.liluoao.com/2019/yaf-individualization.html" data-id="ck49luyl20035swmj43khlo0e" class="article-share-link">分享</a>
+      <a data-url="http://www.liluoao.com/2019/yaf-individualization.html" data-id="ck49lyseu0035k4mjfv4u8bcv" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/php/">php</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/yaf/">yaf</a></li></ul>

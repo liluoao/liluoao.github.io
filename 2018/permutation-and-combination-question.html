@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<head>
+<head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="utf-8">
   
 
@@ -17,7 +17,7 @@
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://www.liluoao.com/images/permutation-and-combination-1.png">
 <meta property="og:image" content="http://www.liluoao.com/images/permutation-and-combination-2.png">
-<meta property="og:updated_time" content="2019-12-17T08:28:13.661Z">
+<meta property="og:updated_time" content="2019-12-17T08:31:06.406Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="一道排列组合题">
 <meta name="twitter:description" content="题目1 2 3 4 5 6 7 8 9 = 110 为使等式成立，在数字间填入加号或减号或不填，求出所有可能组合 示例： 输入： [1 2 3 4 5 6 7 8 9] 输出： 12 + 34 + 56 + 7 - 8 + 9">
@@ -29,7 +29,7 @@
   
   <link rel="stylesheet" href="/css/style.css">
 </head>
-
+</html>
 <body>
   <div id="container">
     <div id="wrap">
@@ -98,9 +98,9 @@
 </code></pre><a id="more"></a>
 <h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><p>该题考查点是排列组合问题，待连接的数字已经有序，所以只需要确定相邻两个数字的连接符即可。假设待连接数字的长度为 <code>n</code>，那么问题可以描述为，将<code>空格</code>、<code>+</code>、<code>-</code> 这 3 种连接符插入到 <code>n-1</code> 个相邻待连接数字之间的位置，所以共有 <code>3^n-1</code> 种情况，然后判断每种情况的计算结果是否为等式右边的数字。</p>
 <p>为了获取 3 种连接符组成的 <code>3^n-1</code> 种组合情况，这里巧妙地运用 <strong>3进制运算</strong> 来实现。</p>
-<p><img src="/images/permutation-and-combination-1.png" alt=""></p>
+<p><img src="/images/permutation-and-combination-1.png" alt></p>
 <p>算法执行流程：</p>
-<p><img src="/images/permutation-and-combination-2.png" alt=""></p>
+<p><img src="/images/permutation-and-combination-2.png" alt></p>
 <h2 id="编码实现"><a href="#编码实现" class="headerlink" title="编码实现"></a>编码实现</h2><p>实现类结构如下<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Rank</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> $data = <span class="keyword">array</span>();</span><br><span class="line">    <span class="keyword">public</span> $operate = <span class="keyword">array</span>(<span class="string">''</span>, <span class="string">'-'</span>, <span class="string">'+'</span>);</span><br><span class="line">    <span class="keyword">public</span> $originLen = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">public</span> $sum = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span><span class="params">(array $data, $sum)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">$this</span>-&gt;originLen = count($data);</span><br><span class="line">        <span class="keyword">$this</span>-&gt;sum = $sum;</span><br><span class="line">        <span class="keyword">foreach</span> ($data <span class="keyword">as</span> $k =&gt; $value) &#123;</span><br><span class="line">            <span class="keyword">$this</span>-&gt;data[$k*<span class="number">2</span>] = $value;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>3 进制运算的实现，注意需要对高位进行补 0 的操作，其中 number 为 <code>3^n-1</code>（组合情况）。<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">ternary</span><span class="params">($number)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    $pos = <span class="number">2</span> * <span class="keyword">$this</span>-&gt;originLen - <span class="number">3</span>;</span><br><span class="line">    <span class="keyword">do</span> &#123;</span><br><span class="line">        $mod = $number % <span class="number">3</span>;</span><br><span class="line">        $number = (int)($number / <span class="number">3</span>);</span><br><span class="line">        <span class="keyword">$this</span>-&gt;data[$pos] = <span class="keyword">$this</span>-&gt;operate[$mod];</span><br><span class="line">        $pos -= <span class="number">2</span>;</span><br><span class="line">    &#125; <span class="keyword">while</span>($number);</span><br><span class="line">    <span class="comment">//高位补0</span></span><br><span class="line">    <span class="keyword">while</span> ($pos &gt; <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">$this</span>-&gt;data[$pos] = <span class="keyword">$this</span>-&gt;operate[<span class="number">0</span>];</span><br><span class="line">        $pos -= <span class="number">2</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    ksort(<span class="keyword">$this</span>-&gt;data);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>对 3 种连接符组成 <code>3^n-1</code> 种组合，根据等式成立情况进行取舍<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">run</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    $result = <span class="keyword">array</span>();</span><br><span class="line">    $times = pow(<span class="number">3</span>, <span class="keyword">$this</span>-&gt;originLen - <span class="number">1</span>);</span><br><span class="line">    <span class="keyword">for</span> ($i = <span class="number">0</span>; $i &lt; $times; $i++) &#123;</span><br><span class="line">        <span class="comment">//模拟3进制的运算</span></span><br><span class="line">        <span class="keyword">$this</span>-&gt;ternary($i);</span><br><span class="line">        <span class="comment">//决策</span></span><br><span class="line">        $str = implode(<span class="string">''</span>, <span class="keyword">$this</span>-&gt;data);</span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">eval</span>(<span class="string">"return $str;"</span>) == <span class="keyword">$this</span>-&gt;sum) &#123;</span><br><span class="line">            $result[] = $str;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> $result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
@@ -109,7 +109,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.liluoao.com/2018/permutation-and-combination-question.html" data-id="ck49luymd0057swmjplr7qa41" class="article-share-link">分享</a>
+      <a data-url="http://www.liluoao.com/2018/permutation-and-combination-question.html" data-id="ck49lysfp0057k4mjoo5im89n" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/algorithm/">algorithm</a></li></ul>

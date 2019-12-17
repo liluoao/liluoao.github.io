@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<head>
+<head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="utf-8">
   
 
@@ -15,7 +15,7 @@
 <meta property="og:site_name" content="To be a Web Artisan">
 <meta property="og:description" content="在 composer.json 中定义了自动加载的文件：123456789&amp;#123;    //...    &quot;autoload&quot;: &amp;#123;        //...        &quot;files&quot;: [            &quot;app/helpers.php&quot;        ]    &amp;#125;&amp;#125; 在 app/helpers.php 中自定义辅助函数：1234567891011">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-12-17T08:28:13.645Z">
+<meta property="og:updated_time" content="2019-12-17T08:31:06.390Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Laravel的辅助函数">
 <meta name="twitter:description" content="在 composer.json 中定义了自动加载的文件：123456789&amp;#123;    //...    &quot;autoload&quot;: &amp;#123;        //...        &quot;files&quot;: [            &quot;app/helpers.php&quot;        ]    &amp;#125;&amp;#125; 在 app/helpers.php 中自定义辅助函数：1234567891011">
@@ -26,7 +26,7 @@
   
   <link rel="stylesheet" href="/css/style.css">
 </head>
-
+</html>
 <body>
   <div id="container">
     <div id="wrap">
@@ -89,7 +89,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>在 <code>composer.json</code> 中定义了自动加载的文件：<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    //...</span><br><span class="line">    "autoload": &#123;</span><br><span class="line">        //...</span><br><span class="line">        "files": [</span><br><span class="line">            <span class="string">"app/helpers.php"</span></span><br><span class="line">        ]</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+        <p>在 <code>composer.json</code> 中定义了自动加载的文件：<br><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="comment">//...</span></span><br><span class="line">    <span class="attr">"autoload"</span>: &#123;</span><br><span class="line">        <span class="comment">//...</span></span><br><span class="line">        <span class="attr">"files"</span>: [</span><br><span class="line">            <span class="string">"app/helpers.php"</span></span><br><span class="line">        ]</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>在 <code>app/helpers.php</code> 中自定义辅助函数：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (!function_exists(<span class="string">'changeShowMoneyFormat'</span>)) &#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 转换金额格式</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> float $money 金额</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> int $length 保留位数</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> string|bool 转换结果</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">changeShowMoneyFormat</span><span class="params">($money, $length = <span class="number">2</span>)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> sprintf(<span class="string">"%.&#123;$length&#125;f"</span>, $money);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>Packagist包：<a href="https://packagist.org/packages/sebastiaanluca/laravel-helpers" target="_blank" rel="noopener">https://packagist.org/packages/sebastiaanluca/laravel-helpers</a></p>
 <p>常用函数如：<code>dd()</code> <code>app()</code> <code>env()</code> <code>config()</code> <code>public_path()</code> <code>array_pluck()</code></p>
@@ -98,7 +98,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.liluoao.com/2018/laravel-helpers.html" data-id="ck49luyk7001eswmjjy5rh126" class="article-share-link">分享</a>
+      <a data-url="http://www.liluoao.com/2018/laravel-helpers.html" data-id="ck49lysdj001ek4mj5p32r72o" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/laravel/">laravel</a></li></ul>
