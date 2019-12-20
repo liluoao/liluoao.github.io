@@ -5,21 +5,22 @@
   
 
   
-  <title>MongoDB的聚合Aggregation | To be a Web Artisan</title>
+  <title>使用MongoDB的聚合 | To be a Web Artisan</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="这里分享的是管道方式，Map-Reduce和单用途聚合可以查看官方文档 引子在做一个统计功能的时候，需要对Mongo里的集合进行求和。在查出来想循环求和时，数据量太大导致内存溢出，需要换一种实现方式。">
+  <meta name="description" content="引子最近需要做个统计，计算一个销售或部门（n 个销售），在一段时间内（n 天）的成交数据。数据在 Mongo，大致结构如下： 1234567891011121314151617[    &apos;si_id&apos; =&amp;gt; 1,//销售ID    &apos;date&apos; =&amp;gt; &apos;2019-05-28&apos;,//Y-m-d时间    &apos;data&apos; =&amp;gt; [        0 =&amp;gt; [">
 <meta name="keywords" content="mongo">
 <meta property="og:type" content="article">
-<meta property="og:title" content="MongoDB的聚合Aggregation">
+<meta property="og:title" content="使用MongoDB的聚合">
 <meta property="og:url" content="http://www.liluoao.com/2019/mongodb-aggregation.html">
 <meta property="og:site_name" content="To be a Web Artisan">
-<meta property="og:description" content="这里分享的是管道方式，Map-Reduce和单用途聚合可以查看官方文档 引子在做一个统计功能的时候，需要对Mongo里的集合进行求和。在查出来想循环求和时，数据量太大导致内存溢出，需要换一种实现方式。">
+<meta property="og:description" content="引子最近需要做个统计，计算一个销售或部门（n 个销售），在一段时间内（n 天）的成交数据。数据在 Mongo，大致结构如下： 1234567891011121314151617[    &apos;si_id&apos; =&amp;gt; 1,//销售ID    &apos;date&apos; =&amp;gt; &apos;2019-05-28&apos;,//Y-m-d时间    &apos;data&apos; =&amp;gt; [        0 =&amp;gt; [">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://docs.mongodb.com/manual/_images/map-reduce.bakedsvg.svg">
-<meta property="og:updated_time" content="2019-12-20T07:13:18.051Z">
+<meta property="og:image" content="http://www.liluoao.com/images/mongo-aggregation.jpg">
+<meta property="og:updated_time" content="2019-12-20T08:51:52.974Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="MongoDB的聚合Aggregation">
-<meta name="twitter:description" content="这里分享的是管道方式，Map-Reduce和单用途聚合可以查看官方文档 引子在做一个统计功能的时候，需要对Mongo里的集合进行求和。在查出来想循环求和时，数据量太大导致内存溢出，需要换一种实现方式。">
+<meta name="twitter:title" content="使用MongoDB的聚合">
+<meta name="twitter:description" content="引子最近需要做个统计，计算一个销售或部门（n 个销售），在一段时间内（n 天）的成交数据。数据在 Mongo，大致结构如下： 1234567891011121314151617[    &apos;si_id&apos; =&amp;gt; 1,//销售ID    &apos;date&apos; =&amp;gt; &apos;2019-05-28&apos;,//Y-m-d时间    &apos;data&apos; =&amp;gt; [        0 =&amp;gt; [">
 <meta name="twitter:image" content="https://docs.mongodb.com/manual/_images/map-reduce.bakedsvg.svg">
 <meta name="twitter:creator" content="@liluoao">
   
@@ -79,7 +80,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      MongoDB的聚合Aggregation
+      使用MongoDB的聚合
     </h1>
   
 
@@ -87,33 +88,76 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>这里分享的是管道方式，Map-Reduce和单用途聚合可以查看<a href="https://docs.mongodb.com/manual/aggregation/" target="_blank" rel="noopener">官方文档</a><br><img src="https://docs.mongodb.com/manual/_images/map-reduce.bakedsvg.svg" alt="Map-Reduce方式"></p>
-<h2 id="引子"><a href="#引子" class="headerlink" title="引子"></a>引子</h2><p>在做一个统计功能的时候，需要对Mongo里的集合进行求和。在查出来想循环求和时，数据量太大导致内存溢出，需要换一种实现方式。</p>
+        <h2 id="引子"><a href="#引子" class="headerlink" title="引子"></a>引子</h2><p>最近需要做个统计，计算一个销售或部门（n 个销售），在一段时间内（n 天）的成交数据。数据在 Mongo，大致结构如下：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">[</span><br><span class="line">    <span class="string">'si_id'</span> =&gt; <span class="number">1</span>,<span class="comment">//销售ID</span></span><br><span class="line">    <span class="string">'date'</span> =&gt; <span class="string">'2019-05-28'</span>,<span class="comment">//Y-m-d时间</span></span><br><span class="line">    <span class="string">'data'</span> =&gt; [</span><br><span class="line">        <span class="number">0</span> =&gt; [</span><br><span class="line">            <span class="string">'product_name'</span> =&gt; <span class="string">'产品A'</span>,</span><br><span class="line">            <span class="string">'product_id'</span> =&gt; <span class="number">1</span>,</span><br><span class="line">            <span class="string">'num'</span> =&gt; <span class="number">123</span></span><br><span class="line">        ],</span><br><span class="line">        <span class="number">1</span> =&gt; [</span><br><span class="line">            <span class="string">'product_name'</span> =&gt; <span class="string">'产品B'</span>,</span><br><span class="line">            <span class="string">'product_id'</span> =&gt; <span class="number">2</span>,</span><br><span class="line">            <span class="string">'num'</span> =&gt; <span class="number">123</span></span><br><span class="line">        ],</span><br><span class="line">        <span class="comment">//more..</span></span><br><span class="line">    ],</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+
+<p>每个销售每天一条记录（<em>si_id</em> 和 <em>date</em> 组合索引），<em>data</em> 数组存放了每个产品的成交数量。简单分析后，我们需要得到的就是每个 <em>product_id</em> 的 <em>num</em> 之和。</p>
+<p>在查询出来后，进行循环处理，结果由于数据量太大导致<strong>内存溢出</strong>。能不能像 MySQL 中直接进行 <code>GROUP BY</code> + <code>SUM()</code> 呢？</p>
 <a id="more"></a>
 
-<h2 id="数据格式"><a href="#数据格式" class="headerlink" title="数据格式"></a>数据格式</h2><p>每个销售每天一条记录，有个大数组存放了每个产品的成交数量，暂时忽略其中数据</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">[</span><br><span class="line">    <span class="string">'si_id'</span> =&gt; xxx,</span><br><span class="line">    <span class="string">'date'</span> =&gt; <span class="string">'2019-05-28'</span>,</span><br><span class="line">    <span class="string">'data'</span> =&gt; [</span><br><span class="line">        <span class="number">0</span> =&gt; [</span><br><span class="line">            <span class="string">'product_name'</span> =&gt; <span class="string">'产品A'</span>,</span><br><span class="line">            <span class="string">'product_id'</span> =&gt; <span class="number">1</span>,</span><br><span class="line">            <span class="string">'num'</span> =&gt; <span class="number">123</span></span><br><span class="line">        ],</span><br><span class="line">        <span class="comment">//...</span></span><br><span class="line">    ]</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
-
-<p>需要统计一个销售或部门（包含很多销售），在一段时间内（包含很多天）的成交数据</p>
-<h2 id="第一阶段"><a href="#第一阶段" class="headerlink" title="第一阶段"></a>第一阶段</h2><p>首先使用 <code>$match</code> 查询条件内的记录</p>
+<h2 id="管道模式"><a href="#管道模式" class="headerlink" title="管道模式"></a>管道模式</h2><p>查看文档后发现了 Mongo 的聚合 Aggregation，其中有几种实现方式。这里分享的是管道方式，Map-Reduce和单用途聚合可以查看<a href="https://docs.mongodb.com/manual/aggregation/" target="_blank" rel="noopener">官方文档</a></p>
+<p><img src="https://docs.mongodb.com/manual/_images/map-reduce.bakedsvg.svg" alt="Map-Reduce方式"></p>
+<p>管道模式顾名思义就是像个 <code>pipeline</code> 一样，经过层层筛选，最终得到你想要的结果。下面看下具体如何使用。</p>
+<h2 id="第一阶段"><a href="#第一阶段" class="headerlink" title="第一阶段"></a>第一阶段</h2><p>首先使用 <code>$match</code> 添加查询条件，把销售 ID 条件和 时间条件写上：</p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">[</span><br><span class="line">    <span class="string">'$match'</span> =&gt; [</span><br><span class="line">        <span class="string">'si_id'</span> =&gt; [</span><br><span class="line">            <span class="string">'$in'</span> =&gt; [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>]</span><br><span class="line">        ],</span><br><span class="line">        <span class="string">'date'</span> =&gt; [</span><br><span class="line">            <span class="string">'$gte'</span> =&gt; <span class="string">'2019-05-01'</span>,</span><br><span class="line">            <span class="string">'$lte'</span> =&gt; <span class="string">'2019-05-30'</span></span><br><span class="line">        ]</span><br><span class="line">    ]</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
 
-<h2 id="第二阶段"><a href="#第二阶段" class="headerlink" title="第二阶段"></a>第二阶段</h2><p>如果需要，使用 <code>$project</code> 指定查询列</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">[</span><br><span class="line">    <span class="string">'$project'</span> =&gt; [</span><br><span class="line">        <span class="string">'data'</span> =&gt; [</span><br><span class="line">            <span class="string">'$filter'</span> =&gt; [</span><br><span class="line">                <span class="string">'input'</span> =&gt; <span class="string">'$data'</span>,</span><br><span class="line">                <span class="string">'as'</span> =&gt; <span class="string">'temp'</span>,</span><br><span class="line">                <span class="string">'cond'</span> =&gt; [</span><br><span class="line">                    <span class="string">'$eq'</span> =&gt; [</span><br><span class="line">                        <span class="string">'$$temp.product_id'</span>, <span class="number">1</span></span><br><span class="line">                    ]<span class="comment">//只查询产品ID为1的记录</span></span><br><span class="line">                ]</span><br><span class="line">            ]</span><br><span class="line">        ]</span><br><span class="line">    ]</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+<h2 id="第二阶段"><a href="#第二阶段" class="headerlink" title="第二阶段"></a>第二阶段</h2><p>如果需要，使用 <code>$project</code> 指定查询列，例如我们想分次查，一次求一个产品的和：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">[</span><br><span class="line">    <span class="string">'$project'</span> =&gt; [</span><br><span class="line">        <span class="string">'data'</span> =&gt; [</span><br><span class="line">            <span class="string">'$filter'</span> =&gt; [</span><br><span class="line">                <span class="string">'input'</span> =&gt; <span class="string">'$data'</span>,</span><br><span class="line">                <span class="string">'as'</span> =&gt; <span class="string">'temp'</span>,</span><br><span class="line">                <span class="string">'cond'</span> =&gt; [</span><br><span class="line">                    <span class="string">'$eq'</span> =&gt; [</span><br><span class="line">                        <span class="string">'$$temp.product_id'</span>, <span class="number">1</span> <span class="comment">//只查询产品ID为1的记录</span></span><br><span class="line">                    ]</span><br><span class="line">                ]</span><br><span class="line">            ]</span><br><span class="line">        ]</span><br><span class="line">    ]</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
 
-<p>由于需要处理数组，所以要加上 <code>$unwind</code></p>
+<p>由于我们的数据结构特殊，需要处理数组，所以要加上 <code>$unwind</code></p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[</span><br><span class="line">    <span class="string">'$unwind'</span> =&gt; <span class="string">'$data'</span></span><br><span class="line">]</span><br></pre></td></tr></table></figure>
 
-<h2 id="第三阶段"><a href="#第三阶段" class="headerlink" title="第三阶段"></a>第三阶段</h2><p>使用 <code>$group</code> 进行求和</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">[</span><br><span class="line">    <span class="string">'$group'</span> =&gt; [</span><br><span class="line">        <span class="string">'_id'</span> =&gt; <span class="string">'$data.product_id'</span>,</span><br><span class="line">        <span class="string">'num'</span> =&gt; [</span><br><span class="line">            <span class="string">'$sum'</span> =&gt; <span class="string">'$data.num'</span></span><br><span class="line">        ]<span class="comment">//对num字段进行求和</span></span><br><span class="line">    ]</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+<h2 id="第三阶段"><a href="#第三阶段" class="headerlink" title="第三阶段"></a>第三阶段</h2><p>使用 <code>$group</code> 进行求和，也就是我们需要的结果：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">[</span><br><span class="line">    <span class="string">'$group'</span> =&gt; [</span><br><span class="line">        <span class="string">'_id'</span> =&gt; <span class="string">'$data.product_id'</span>,</span><br><span class="line">        <span class="string">'num'</span> =&gt; [</span><br><span class="line">            <span class="string">'$sum'</span> =&gt; <span class="string">'$data.num'</span> <span class="comment">//对num字段进行求和</span></span><br><span class="line">        ]</span><br><span class="line">    ]</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
 
-<h2 id="结束"><a href="#结束" class="headerlink" title="结束"></a>结束</h2><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">see MongoDB\Collection::aggregate()</span><br></pre></td></tr></table></figure>
+<p>意犹未尽的你可以再去看看文档，是否能进一步优化你的日常开发。</p>
+<p><img src="/images/mongo-aggregation.jpg" alt="聚合介绍"></p>
+<table>
+<thead>
+<tr>
+<th>步骤</th>
+<th>作用</th>
+<th>SQL等价运算符</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>$match</td>
+<td>过滤</td>
+<td>WHERE</td>
+</tr>
+<tr>
+<td>$project</td>
+<td>投影</td>
+<td>AS</td>
+</tr>
+<tr>
+<td>$sort</td>
+<td>排序</td>
+<td>ORDER BY</td>
+</tr>
+<tr>
+<td>$group</td>
+<td>分组</td>
+<td>GROUP BY</td>
+</tr>
+<tr>
+<td>$skip/$limit</td>
+<td>结果限制</td>
+<td>SKIP/LIMIT</td>
+</tr>
+<tr>
+<td>$lookup</td>
+<td>左外连接</td>
+<td>LEFT OUTER JOIN</td>
+</tr>
+</tbody></table>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">see MongoDB\Collection::aggregate()</span><br></pre></td></tr></table></figure>
 
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.liluoao.com/2019/mongodb-aggregation.html" data-id="ck4dti79c001v4gmjtm8md4q2" class="article-share-link">分享</a>
+      <a data-url="http://www.liluoao.com/2019/mongodb-aggregation.html" data-id="ck4dx10j3001x18mji6s3s5qk" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mongo/">mongo</a></li></ul>
@@ -128,7 +172,7 @@
       <strong class="article-nav-caption">上一篇</strong>
       <div class="article-nav-title">
         
-          在PHPStorm中添加CodeSniffer
+          如何用工具保证代码风格
         
       </div>
     </a>
@@ -171,15 +215,15 @@
           </li>
         
           <li>
-            <a href="/2019/yaf-individualization.html">Yaf个性化</a>
+            <a href="/2019/yaf-individualization.html">Yaf框架结构个性化</a>
           </li>
         
           <li>
-            <a href="/2019/use-code-sniffer-in-phpstorm.html">在PHPStorm中添加CodeSniffer</a>
+            <a href="/2019/use-code-sniffer-in-phpstorm.html">如何用工具保证代码风格</a>
           </li>
         
           <li>
-            <a href="/2019/mongodb-aggregation.html">MongoDB的聚合Aggregation</a>
+            <a href="/2019/mongodb-aggregation.html">使用MongoDB的聚合</a>
           </li>
         
           <li>

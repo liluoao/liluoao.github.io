@@ -7,18 +7,18 @@
   
   <title>XHProf与PHP7的问题 | To be a Web Artisan</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="前言XHProf 是 Facebook 开源的一个轻量级的 PHP 性能分析工具，跟 Xdebug 类似，但性能开销更低。可以用在生产环境中，也可以由程序开关来控制是否进行 profile 。 问题排查最近我们认证中心部门将定时脚本切换为 PHP7 命令执行时，发现过一段时间脚本就内存泄漏，且该释放内存的地方都做了处理。 经过一段时间排查后发现是 XHProf 造成的，关闭后就可以了。 解决方法F">
+  <meta name="description" content="前言XHProf 是 Facebook 开源的一个轻量级的 PHP 性能分析工具，跟 Xdebug 类似，但性能开销更低。可以用在生产环境中，也可以由程序开关来控制是否进行 profile 。 问题排查最近我们认证中心部门将定时脚本切换为 PHP7 命令执行时，发现过一段时间脚本就内存泄漏，且该释放内存的地方都做了处理。 经过一段时间排查后发现是 XHProf 造成的，关闭后就可以了。">
 <meta name="keywords" content="tool">
 <meta property="og:type" content="article">
 <meta property="og:title" content="XHProf与PHP7的问题">
 <meta property="og:url" content="http://www.liluoao.com/2019/problem-about-xhprof-in-php7.html">
 <meta property="og:site_name" content="To be a Web Artisan">
-<meta property="og:description" content="前言XHProf 是 Facebook 开源的一个轻量级的 PHP 性能分析工具，跟 Xdebug 类似，但性能开销更低。可以用在生产环境中，也可以由程序开关来控制是否进行 profile 。 问题排查最近我们认证中心部门将定时脚本切换为 PHP7 命令执行时，发现过一段时间脚本就内存泄漏，且该释放内存的地方都做了处理。 经过一段时间排查后发现是 XHProf 造成的，关闭后就可以了。 解决方法F">
+<meta property="og:description" content="前言XHProf 是 Facebook 开源的一个轻量级的 PHP 性能分析工具，跟 Xdebug 类似，但性能开销更低。可以用在生产环境中，也可以由程序开关来控制是否进行 profile 。 问题排查最近我们认证中心部门将定时脚本切换为 PHP7 命令执行时，发现过一段时间脚本就内存泄漏，且该释放内存的地方都做了处理。 经过一段时间排查后发现是 XHProf 造成的，关闭后就可以了。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-12-20T07:13:18.055Z">
+<meta property="og:updated_time" content="2019-12-20T08:51:52.989Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="XHProf与PHP7的问题">
-<meta name="twitter:description" content="前言XHProf 是 Facebook 开源的一个轻量级的 PHP 性能分析工具，跟 Xdebug 类似，但性能开销更低。可以用在生产环境中，也可以由程序开关来控制是否进行 profile 。 问题排查最近我们认证中心部门将定时脚本切换为 PHP7 命令执行时，发现过一段时间脚本就内存泄漏，且该释放内存的地方都做了处理。 经过一段时间排查后发现是 XHProf 造成的，关闭后就可以了。 解决方法F">
+<meta name="twitter:description" content="前言XHProf 是 Facebook 开源的一个轻量级的 PHP 性能分析工具，跟 Xdebug 类似，但性能开销更低。可以用在生产环境中，也可以由程序开关来控制是否进行 profile 。 问题排查最近我们认证中心部门将定时脚本切换为 PHP7 命令执行时，发现过一段时间脚本就内存泄漏，且该释放内存的地方都做了处理。 经过一段时间排查后发现是 XHProf 造成的，关闭后就可以了。">
 <meta name="twitter:creator" content="@liluoao">
   
   
@@ -88,6 +88,8 @@
         <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>XHProf 是 <strong>Facebook</strong> 开源的一个轻量级的 PHP 性能分析工具，跟 Xdebug 类似，但性能开销更低。可以用在生产环境中，也可以由程序开关来控制是否进行 profile 。</p>
 <h2 id="问题排查"><a href="#问题排查" class="headerlink" title="问题排查"></a>问题排查</h2><p>最近我们认证中心部门将定时脚本切换为 <code>PHP7</code> 命令执行时，发现过一段时间脚本就内存泄漏，且该释放内存的地方都做了处理。</p>
 <p>经过一段时间排查后发现是 XHProf 造成的，关闭后就可以了。</p>
+<a id="more"></a>
+
 <h2 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h2><p><strong>Facebook</strong> 推出这个工具时 PHP 还是他们技术栈重要的一份子。因为 PHP 7 与 PHP 5 存在很大的兼容性问题，Facebook 的 HHVM 团队决定改用 Hack 开发 HHVM。通过减少使用 PHP，HHVM 团队希望 HHVM 和 Hack 能给开发者提供一个更好、更高性能的体验。所以 XHProf 在 PHP7 上有问题也是意料之中的，这个扩展在 <a href="https://pecl.php.net/package/xhprof" target="_blank" rel="noopener">https://pecl.php.net/package/xhprof</a> 上处于年久失修的状态。</p>
 <p>我们需要找一个处于维护状态且质量高的版本替代，网络上大部分的解决方案是 <a href="https://github.com/longxinH/xhprof" target="_blank" rel="noopener">https://github.com/longxinH/xhprof</a> 。</p>
 <h2 id="安装步骤"><a href="#安装步骤" class="headerlink" title="安装步骤"></a>安装步骤</h2><p>回顾一下 XHProf 的安装步骤</p>
@@ -127,7 +129,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.liluoao.com/2019/problem-about-xhprof-in-php7.html" data-id="ck4dti79s00334gmjmndvwvlq" class="article-share-link">分享</a>
+      <a data-url="http://www.liluoao.com/2019/problem-about-xhprof-in-php7.html" data-id="ck4dx10jy003618mjcy9sqd2c" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/tool/">tool</a></li></ul>
@@ -185,15 +187,15 @@
           </li>
         
           <li>
-            <a href="/2019/yaf-individualization.html">Yaf个性化</a>
+            <a href="/2019/yaf-individualization.html">Yaf框架结构个性化</a>
           </li>
         
           <li>
-            <a href="/2019/use-code-sniffer-in-phpstorm.html">在PHPStorm中添加CodeSniffer</a>
+            <a href="/2019/use-code-sniffer-in-phpstorm.html">如何用工具保证代码风格</a>
           </li>
         
           <li>
-            <a href="/2019/mongodb-aggregation.html">MongoDB的聚合Aggregation</a>
+            <a href="/2019/mongodb-aggregation.html">使用MongoDB的聚合</a>
           </li>
         
           <li>

@@ -5,21 +5,21 @@
   
 
   
-  <title>Yaf个性化 | To be a Web Artisan</title>
+  <title>Yaf框架结构个性化 | To be a Web Artisan</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="执行流程由于 Yaf 只提供一个 MVC 的基本骨架，所以我们有很大的开发自由度，来实现一个最适合自己的项目。">
+  <meta name="description" content="执行流程由于 Yaf 只提供一个 MVC 的基本骨架，所以我们有很大的开发自由度，可以实现一个自己最习惯的项目。">
 <meta name="keywords" content="php,yaf">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Yaf个性化">
+<meta property="og:title" content="Yaf框架结构个性化">
 <meta property="og:url" content="http://www.liluoao.com/2019/yaf-individualization.html">
 <meta property="og:site_name" content="To be a Web Artisan">
-<meta property="og:description" content="执行流程由于 Yaf 只提供一个 MVC 的基本骨架，所以我们有很大的开发自由度，来实现一个最适合自己的项目。">
+<meta property="og:description" content="执行流程由于 Yaf 只提供一个 MVC 的基本骨架，所以我们有很大的开发自由度，可以实现一个自己最习惯的项目。">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://www.liluoao.com/images/yaf-life-cycle.png">
-<meta property="og:updated_time" content="2019-12-20T07:13:18.055Z">
+<meta property="og:updated_time" content="2019-12-20T08:51:52.989Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Yaf个性化">
-<meta name="twitter:description" content="执行流程由于 Yaf 只提供一个 MVC 的基本骨架，所以我们有很大的开发自由度，来实现一个最适合自己的项目。">
+<meta name="twitter:title" content="Yaf框架结构个性化">
+<meta name="twitter:description" content="执行流程由于 Yaf 只提供一个 MVC 的基本骨架，所以我们有很大的开发自由度，可以实现一个自己最习惯的项目。">
 <meta name="twitter:image" content="http://www.liluoao.com/images/yaf-life-cycle.png">
 <meta name="twitter:creator" content="@liluoao">
   
@@ -79,7 +79,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      Yaf个性化
+      Yaf框架结构个性化
     </h1>
   
 
@@ -87,10 +87,10 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="执行流程"><a href="#执行流程" class="headerlink" title="执行流程"></a>执行流程</h2><p>由于 Yaf 只提供一个 MVC 的基本骨架，所以我们有很大的开发自由度，来实现一个最适合自己的项目。</p>
-<p><img src="/images/yaf-life-cycle.png" alt="Yaf执行流程"></p>
+        <h2 id="执行流程"><a href="#执行流程" class="headerlink" title="执行流程"></a>执行流程</h2><p>由于 Yaf 只提供一个 MVC 的基本骨架，所以我们有很大的开发自由度，可以实现一个自己最习惯的项目。</p>
 <a id="more"></a>
 
+<p><img src="/images/yaf-life-cycle.png" alt="Yaf执行流程"></p>
 <h2 id="实现Laravel结构"><a href="#实现Laravel结构" class="headerlink" title="实现Laravel结构"></a>实现Laravel结构</h2><p>可以通过修改配置来变更代码结构，例如在 <code>public/index.php</code> 入口修改配置文件夹</p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">define(<span class="string">'APP_ROOT'</span>, dirname(<span class="keyword">__DIR__</span>));</span><br><span class="line"></span><br><span class="line">$app = <span class="keyword">new</span> Yaf\Application(APP_ROOT.<span class="string">'/config/application.ini'</span>);</span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">    $app-&gt;bootstrap()-&gt;run();</span><br><span class="line">&#125; <span class="keyword">catch</span> (Yaf\<span class="keyword">Exception</span>\LoadFailed\Action $e) &#123;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">'方法输入错误'</span>;</span><br><span class="line">    <span class="keyword">exit</span>();</span><br><span class="line">&#125; <span class="keyword">catch</span> (Yaf\<span class="keyword">Exception</span>\LoadFailed\Controller $e) &#123;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">'控制器输入错误'</span>;</span><br><span class="line">    <span class="keyword">exit</span>();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
@@ -134,7 +134,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.liluoao.com/2019/yaf-individualization.html" data-id="ck4dti79s00354gmj7brlkczv" class="article-share-link">分享</a>
+      <a data-url="http://www.liluoao.com/2019/yaf-individualization.html" data-id="ck4dx10jy003818mjcgthmj2f" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/php/">php</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/yaf/">yaf</a></li></ul>
@@ -157,7 +157,7 @@
   
     <a href="/2019/use-code-sniffer-in-phpstorm.html" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">下一篇</strong>
-      <div class="article-nav-title">在PHPStorm中添加CodeSniffer</div>
+      <div class="article-nav-title">如何用工具保证代码风格</div>
     </a>
   
 </nav>
@@ -192,15 +192,15 @@
           </li>
         
           <li>
-            <a href="/2019/yaf-individualization.html">Yaf个性化</a>
+            <a href="/2019/yaf-individualization.html">Yaf框架结构个性化</a>
           </li>
         
           <li>
-            <a href="/2019/use-code-sniffer-in-phpstorm.html">在PHPStorm中添加CodeSniffer</a>
+            <a href="/2019/use-code-sniffer-in-phpstorm.html">如何用工具保证代码风格</a>
           </li>
         
           <li>
-            <a href="/2019/mongodb-aggregation.html">MongoDB的聚合Aggregation</a>
+            <a href="/2019/mongodb-aggregation.html">使用MongoDB的聚合</a>
           </li>
         
           <li>

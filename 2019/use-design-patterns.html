@@ -15,7 +15,7 @@
 <meta property="og:site_name" content="To be a Web Artisan">
 <meta property="og:description" content="前言PHP 的设计模式有 23 种之多，平时开发中使用比较多的可能是 单例 Singleton 适配器 Adapter 工厂 Factory 策略 Strategy 等模式。下面讲一些平时自己碰到的模式。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-12-20T07:13:18.055Z">
+<meta property="og:updated_time" content="2019-12-20T08:51:52.989Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="设计模式的应用">
 <meta name="twitter:description" content="前言PHP 的设计模式有 23 种之多，平时开发中使用比较多的可能是 单例 Singleton 适配器 Adapter 工厂 Factory 策略 Strategy 等模式。下面讲一些平时自己碰到的模式。">
@@ -88,7 +88,7 @@
         <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>PHP 的设计模式有 23 种之多，平时开发中使用比较多的可能是 <code>单例 Singleton</code> <code>适配器 Adapter</code> <code>工厂 Factory</code> <code>策略 Strategy</code> 等模式。下面讲一些平时自己碰到的模式。</p>
 <a id="more"></a>
 
-<h2 id="模板方法-TemplateMethod"><a href="#模板方法-TemplateMethod" class="headerlink" title="模板方法 TemplateMethod"></a>模板方法 TemplateMethod</h2><p>半年前有个任务是为认证中心部门制作一个 <strong>API 统一框架</strong>，技术选型是 Yaf 框架，原因是它的轻量级和速度快。但是正因为太过简略，开发拥有很大的自主性，需要实现一个统一的流程。</p>
+<h2 id="模板方法-TemplateMethod"><a href="#模板方法-TemplateMethod" class="headerlink" title="模板方法 TemplateMethod"></a>模板方法 TemplateMethod</h2><p>半年前有个任务是为认证中心部门制作一个 <strong>API 统一框架</strong>，技术选型是 Yaf 框架，原因是它的轻量级和速度快。但是正因为太过简略，开发拥有很大的自主性，需要制定一个统一的开发流程。</p>
 <p>一般思路是需要一个控制器抽象基类直接继承 <code>Yaf\Controller_Abstract</code>，普通的控制器再继承基类。我们是用 <code>trait</code> 来把流程的模板脱离出控制器。</p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">use</span> <span class="title">ApiTemplate</span>;</span><br></pre></td></tr></table></figure>
 
@@ -115,7 +115,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.liluoao.com/2019/use-design-patterns.html" data-id="ck4dti7bi005s4gmj31nkch40" class="article-share-link">分享</a>
+      <a data-url="http://www.liluoao.com/2019/use-design-patterns.html" data-id="ck4dx10l9005w18mjn4tplcou" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/design-patterns/">design-patterns</a></li></ul>
@@ -164,15 +164,15 @@
           </li>
         
           <li>
-            <a href="/2019/yaf-individualization.html">Yaf个性化</a>
+            <a href="/2019/yaf-individualization.html">Yaf框架结构个性化</a>
           </li>
         
           <li>
-            <a href="/2019/use-code-sniffer-in-phpstorm.html">在PHPStorm中添加CodeSniffer</a>
+            <a href="/2019/use-code-sniffer-in-phpstorm.html">如何用工具保证代码风格</a>
           </li>
         
           <li>
-            <a href="/2019/mongodb-aggregation.html">MongoDB的聚合Aggregation</a>
+            <a href="/2019/mongodb-aggregation.html">使用MongoDB的聚合</a>
           </li>
         
           <li>
