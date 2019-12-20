@@ -15,7 +15,7 @@
 <meta property="og:site_name" content="To be a Web Artisan">
 <meta property="og:description" content="原文链接：https://juejin.im/post/5a9b6342f265da23a2289281 一、优化库表结构（1）字符串类型 在MySQL中表示字符串的类型有多种,其中常见的有Char和VarChar,BLOB和TEXT以及可以实现某些优化的ENUM。我们要认识到不同的数据类型在存储和使用的区别,然后合理的使用就能实现优化。  关于MySQL中数据类型的介绍，可以参看我的另一篇博文：">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-12-17T08:32:06.705Z">
+<meta property="og:updated_time" content="2019-12-20T07:13:18.051Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="MySQL优化那些事儿（转）">
 <meta name="twitter:description" content="原文链接：https://juejin.im/post/5a9b6342f265da23a2289281 一、优化库表结构（1）字符串类型 在MySQL中表示字符串的类型有多种,其中常见的有Char和VarChar,BLOB和TEXT以及可以实现某些优化的ENUM。我们要认识到不同的数据类型在存储和使用的区别,然后合理的使用就能实现优化。  关于MySQL中数据类型的介绍，可以参看我的另一篇博文：">
@@ -98,16 +98,18 @@
 <li><strong>Char和VarChar</strong></li>
 </ol>
 <p><code>Char</code>是定长类型，MySQL会根据定义的字符串的长度分配足够的空间，并且MySQL在存储CHAR值的时候会删除末尾所有的空格。对于经常变更的数据，一般采用CHAR来进行存储,因为CHAR类型在变化的时候不容易产生碎片。</p>
-<p>VARCHAR是变长类型，它比CHAR更加节省空间，但是VARCHAR在数据变化的时候容易产生碎片，所以一般用于作为不经常变化的数据的数据类型。VARCHAR需要多使用一个或者两个额外字节来记录字符串的长度，如果列的最大长度小于等于255字节就用一个额外的字节来存储长度，否则使用两个字节。例如<code>VARCHAR(10)</code>的列需要11个字节的存储空间，<code>VARCHAR(1000)</code>的列需要1002个字节。<br><a id="more"></a></p>
+<p>VARCHAR是变长类型，它比CHAR更加节省空间，但是VARCHAR在数据变化的时候容易产生碎片，所以一般用于作为不经常变化的数据的数据类型。VARCHAR需要多使用一个或者两个额外字节来记录字符串的长度，如果列的最大长度小于等于255字节就用一个额外的字节来存储长度，否则使用两个字节。例如<code>VARCHAR(10)</code>的列需要11个字节的存储空间，<code>VARCHAR(1000)</code>的列需要1002个字节。</p>
+<a id="more"></a>
 <blockquote>
 <p>注意，在5.0或者更高的版本中，MySQL在存储或者检索VARCHAR数据类型时保留末尾空格，但是在4.1或者更老的版本中，MySQL在存储或者检索VARCHAR数据类型时和CHAR一样都是删除末尾的空格</p>
 </blockquote>
 <p>   <strong>2.BLOB和TEXT</strong></p>
 <p>BLOB即SMALLBLOB，TEXT即SMALLTEXT。BLOB和TEXT都是为了存储很大的数据而设计的字符串数据类型，分别采用二进制和字符串的方式来存储。</p>
-<p>  <strong> 3.使用ENUM来代替字符串类型</strong></p>
+<p>  ** 3.使用ENUM来代替字符串类型**</p>
 <p>MySQL在存储枚举的时候非常的紧凑，会根据列表值的数量压缩到一个或者两个字节中。MySQL在内部会将每个值在列表中的位置保存为整数，并且在表的.frm文件中保存”数字-字符串”映射关系的”查找表”。</p>
 <p>例如:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">create table enum_test(e enum(&apos;apple&apos;,&apos;banana&apos;,&apos;pear&apos;));</span><br><span class="line">insert into enum_test(e) values(&apos;apple&apos;),(&apos;banana&apos;),(&apos;pear&apos;);</span><br></pre></td></tr></table></figure>
+
 <p>然后我们所插入的数据在表中其实是存储为整数的。</p>
 <h3 id="（2）数字类型"><a href="#（2）数字类型" class="headerlink" title="（2）数字类型"></a>（2）数字类型</h3><p>MySQL可以为整数类型指定宽度，如INT(1)，INT(20)，但是这对大多数应用是没有意义的。MySQL所指定的整数类型的宽度只是用于设置一些MySQL客户端用于显示字符的个数，对于存储和计算而言，INT(1)和INT(20)不会限制值的合法范围，这两种类型都是相同的。</p>
 <h3 id="（3）日期和时间类型"><a href="#（3）日期和时间类型" class="headerlink" title="（3）日期和时间类型"></a>（3）日期和时间类型</h3><p><strong>DateTime和TimeStamp</strong></p>
@@ -121,25 +123,32 @@
 <ol>
 <li><p>普通索引：最基本的索引、没有任何限制。MyIASM中默认的BTREE类型的索引。如</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ALTER TABLE article ADD INDEX index_title_name ON title(100);</span><br></pre></td></tr></table></figure>
+
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">CREATE INDEX index_name ON table(column(100))</span><br></pre></td></tr></table></figure>
+
 <p>或者直接在创建表的时候定义索引：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">index index_title_name(title(100))</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>唯一索引：索引列的值可以为空。与普通索引类似,不同之处在于索引列的值必须唯一。如</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ALTER TABLE article ADD UNIQU index_title_name ON title(100);</span><br></pre></td></tr></table></figure>
+
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">CREATE UNIQUE INDEX index_name ON table(column(100))</span><br></pre></td></tr></table></figure>
+
 <p>或者直接在创建表的时候定义索引：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">UNIQUE index_title_name(title(100))</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>全文索引：主要用来查找文本中的关键字，而不是直接与索引中的值相比较。仅可用于 MyISAM 表，针对较大的数据，生成全文索引很耗时耗空间。如：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ALTER TABLE article ADD FULLTEXT index_content(content)</span><br></pre></td></tr></table></figure>
+
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">CREATE FULLTEXT INDEX index_content ON article(content)</span><br></pre></td></tr></table></figure>
+
 <p>和</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">FULLTEXT (content)</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>主键索引：它是一种特殊的唯一索引，不允许有空值。</p>
 </li>
-<li>最左索引(组合索引)：组合索引可以更好的提高MySQL效率，最左索引遵循”最左索引”原则。创建复合索引时应该将最常用（频率）作限制条件的列放在最左边，依次递减。</li>
+<li><p>最左索引(组合索引)：组合索引可以更好的提高MySQL效率，最左索引遵循”最左索引”原则。创建复合索引时应该将最常用（频率）作限制条件的列放在最左边，依次递减。</p>
+</li>
 </ol>
 <h4 id="索引方法："><a href="#索引方法：" class="headerlink" title="索引方法："></a><strong>索引方法：</strong></h4><p>可以使用B树索引的查询：</p>
 <ol>
@@ -180,11 +189,15 @@
 <h3 id="（3）索引使用的注意事项"><a href="#（3）索引使用的注意事项" class="headerlink" title="（3）索引使用的注意事项"></a>（3）索引使用的注意事项</h3><ol>
 <li><p>保证在MySQL中查找数据时，表中对应的列数独立的。独立的列在于索引列不能是表达式中的一部分,也不能是函数的参数。即不允许</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select id from article where id+1=5</span><br></pre></td></tr></table></figure>
+
 <p>等情况的出现,否则索引将不能使用。</p>
 </li>
-<li>索引很长的字符列，会让索引变得大且慢。这个时候就要采用前缀索引，就是选取列开始的部分字符作为索引，前缀索引的选择也要保证合理的索引选择性(越接近1越好)。</li>
-<li>如果不需要考虑排序和分组的需要,在联合索引中，应该将选择性最高的索引放到索引的最前列、将经常会被使用的列放到索引的最前列、宽度较小的列放到索引的最前列。</li>
-<li>使用<code>pt-duplicate-key-checker h=127.0.0.1</code>查找重复和冗余的索引,然后将重复冗余的索引删除。</li>
+<li><p>索引很长的字符列，会让索引变得大且慢。这个时候就要采用前缀索引，就是选取列开始的部分字符作为索引，前缀索引的选择也要保证合理的索引选择性(越接近1越好)。</p>
+</li>
+<li><p>如果不需要考虑排序和分组的需要,在联合索引中，应该将选择性最高的索引放到索引的最前列、将经常会被使用的列放到索引的最前列、宽度较小的列放到索引的最前列。</p>
+</li>
+<li><p>使用<code>pt-duplicate-key-checker h=127.0.0.1</code>查找重复和冗余的索引,然后将重复冗余的索引删除。</p>
+</li>
 </ol>
 <h1 id="三、改造SQL查询语句"><a href="#三、改造SQL查询语句" class="headerlink" title="三、改造SQL查询语句"></a>三、改造SQL查询语句</h1><h3 id="（1）MySQL连接状态"><a href="#（1）MySQL连接状态" class="headerlink" title="（1）MySQL连接状态"></a>（1）<strong>MySQL连接状态</strong></h3><p>MySQL客户端和服务器之间的通信协议是”半双工”的，在任何一个时刻，要么是由服务器向客户端发送数据，要么是由客户端向服务器端发送数据，两个动作不能同时发生。对于每一个时刻，可以通过命令<code>show full processlist</code>来查看当前连接的状态(Command列就代表当前的状态)。</p>
 <p>MySQL的状态如下：</p>
@@ -234,7 +247,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.liluoao.com/2018/mysql-optimize.html" data-id="ck49m02c3001z8smje26viuwy" class="article-share-link">分享</a>
+      <a data-url="http://www.liluoao.com/2018/mysql-optimize.html" data-id="ck4dti79c001z4gmj10gavf3r" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mysql/">mysql</a></li></ul>

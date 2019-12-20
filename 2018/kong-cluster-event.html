@@ -15,7 +15,7 @@
 <meta property="og:site_name" content="To be a Web Artisan">
 <meta property="og:description" content="概览  kong 的代码运行于 nginx 的 worker 进程中。kong 对数据的修改会在一个 worker 中进行，数据被修改后需要通知给本地的其他 worker 进程和其他机器上的 worker 进程。kong 使用的进程间通信主要方式有：  本机间通信-共享内存 跨机器通信-数据库">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-12-17T08:32:06.705Z">
+<meta property="og:updated_time" content="2019-12-20T07:13:18.048Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Kong集群间数据同步">
 <meta name="twitter:description" content="概览  kong 的代码运行于 nginx 的 worker 进程中。kong 对数据的修改会在一个 worker 中进行，数据被修改后需要通知给本地的其他 worker 进程和其他机器上的 worker 进程。kong 使用的进程间通信主要方式有：  本机间通信-共享内存 跨机器通信-数据库">
@@ -91,10 +91,12 @@
 <li>跨机器通信-数据库</li>
 </ol>
 <a id="more"></a>
+
 <h2 id="数据共享"><a href="#数据共享" class="headerlink" title="数据共享"></a>数据共享</h2><p>  kong 的数据存储在数据库中，同时在缓存中保留一份。当数据库的中的数据被修改时，需要发出相应的事件通知其他 worker。其他 worker 接收事件后，删除缓存中对应的数据。下次从缓存读数据时发现没有的话，就从数据库加载出来。<br>  事件分为本地事件和集群事件。本地事件用于通知在一台机器上的 worker，集群事件用于通知在多台机器上的 worker。</p>
 <h3 id="共享内存"><a href="#共享内存" class="headerlink" title="共享内存"></a>共享内存</h3><p>  本地事件通过共享内存实现。kong 实现了一套基于 nginx 共享内存的 <strong>事件发布-订阅</strong> 机制，源码见仓库 <a href="https://github.com/Kong/lua-resty-worker-events" target="_blank" rel="noopener">lua-resty-worker-events</a>。该包提供 <code>post_local</code> 方法在 worker 进程内进行事件发布，提供 <code>post</code> 方法在同属于一台机器上的 worker 进程间进行事件发布。这2个方法需要指定 source 和 event 来确定事件源。<br>  kong 的数据访问层 <a href="https://github.com/Kong/kong/blob/master/kong/dao/dao.lua" target="_blank" rel="noopener">dao.lua</a> 封装了 <code>insert、update 和 delete</code> 三个对数据操作的方法。这三个方法分别会使用 <code>post_local</code> 发出 <strong>source 为 dao:crud，event 为 <code>insert、delete、update</code></strong> 的数据增、删、改的事件。</p>
 <p>事件的数据格式如下:</p>
 <figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">   schema    = self.schema, <span class="comment">--表名</span></span><br><span class="line">   operation = <span class="string">"create"</span>, <span class="comment">--操作类型</span></span><br><span class="line">   entity    = res, <span class="comment">--数据</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <p>  worker 进程启动的时候会在 init_worker 阶段注册这些事件的订阅方法，见 <a href="https://github.com/Kong/kong/blob/master/kong/runloop/handler.lua#L172" target="_blank" rel="noopener">worker_events.register()</a>。订阅方法中把所有的 dao:crud 事件按表名称使用 post_local 再进行分发。所以从 dao:crud 分发的事件如下:</p>
 <ul>
 <li><code>source=crud, event=apis</code></li>
@@ -123,6 +125,7 @@
 <p>这个事件会通知所有的 worker(包含不同机器)upstreams数据的修改。使用 <code>cluster_events:broadcast</code> 方法发送一条 channel=balancer:upstreams 集群事件。</p>
 <h3 id="数据库"><a href="#数据库" class="headerlink" title="数据库"></a>数据库</h3><p>  集群事件通过数据库实现。数据库表 <strong>cluster_events</strong> 存放用于集群间分发的事件。<strong>cluster_events</strong> 表结构如下:</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> cluster_events (</span><br><span class="line">  <span class="keyword">id</span> <span class="built_in">varchar</span>(<span class="number">64</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span>,</span><br><span class="line">  <span class="comment">-- 标识生成事件的节点id</span></span><br><span class="line">  node_id <span class="built_in">varchar</span>(<span class="number">64</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span>,</span><br><span class="line">  <span class="comment">-- 事件产生时间，精确到毫秒</span></span><br><span class="line">  <span class="keyword">at</span> <span class="built_in">timestamp</span>(<span class="number">3</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span>,</span><br><span class="line">  <span class="comment">-- 事件生效时间，精确到毫秒</span></span><br><span class="line">  nbf <span class="built_in">timestamp</span>(<span class="number">3</span>) <span class="literal">NULL</span> <span class="keyword">DEFAULT</span> <span class="literal">NULL</span>,</span><br><span class="line">  <span class="comment">-- 事件过期时间，精确到毫秒</span></span><br><span class="line">  expire_at <span class="built_in">timestamp</span>(<span class="number">3</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span>,</span><br><span class="line">  <span class="comment">-- 事件类型</span></span><br><span class="line">  channel <span class="built_in">varchar</span>(<span class="number">1023</span>) <span class="keyword">DEFAULT</span> <span class="literal">NULL</span>,</span><br><span class="line">  <span class="comment">-- 事件数据</span></span><br><span class="line">  <span class="keyword">data</span> <span class="built_in">varchar</span>(<span class="number">10000</span>) <span class="keyword">DEFAULT</span> <span class="literal">NULL</span>,</span><br><span class="line">  </span><br><span class="line">  PRIMARY <span class="keyword">KEY</span> (<span class="keyword">id</span>),</span><br><span class="line">  <span class="keyword">KEY</span> cluster_events_at_idx (<span class="keyword">at</span>),</span><br><span class="line">  <span class="keyword">KEY</span> cluster_events_channelt_idx (channel)</span><br><span class="line">) <span class="keyword">ENGINE</span>=<span class="keyword">InnoDB</span> <span class="keyword">DEFAULT</span> <span class="keyword">CHARSET</span>=utf8 ROW_FORMAT=DYNAMIC;</span><br></pre></td></tr></table></figure>
+
 <p><code>channel</code> 的类型有:</p>
 <ul>
 <li><code>invalidations</code></li>
@@ -144,7 +147,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.liluoao.com/2018/kong-cluster-event.html" data-id="ck49m02b700088smj925wshan" class="article-share-link">分享</a>
+      <a data-url="http://www.liluoao.com/2018/kong-cluster-event.html" data-id="ck4dti78100084gmj83m06yex" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/kong/">kong</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/lua/">lua</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/openresty/">openresty</a></li></ul>

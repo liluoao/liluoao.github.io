@@ -16,7 +16,7 @@
 <meta property="og:description" content="网页授权流程分为四步：  引导用户进入授权页面同意授权（一般通过扫码或绑定到菜单），获取 code 通过 code 换取网页授权 access_token（与基础支持中的 access_token 不同） 如果需要，开发者可以刷新网页授权 access_token，避免过期 通过网页授权 access_token 和 openid 获取用户基本信息（支持 UnionID 机制）  所有OAuth2">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://p.qpic.cn/pic_wework/4208501329/ebed29e092fda3841e56e191eba8ed7ae6775f7dffd75bed/0">
-<meta property="og:updated_time" content="2019-12-17T08:32:06.721Z">
+<meta property="og:updated_time" content="2019-12-20T07:13:18.055Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="微信网页授权">
 <meta name="twitter:description" content="网页授权流程分为四步：  引导用户进入授权页面同意授权（一般通过扫码或绑定到菜单），获取 code 通过 code 换取网页授权 access_token（与基础支持中的 access_token 不同） 如果需要，开发者可以刷新网页授权 access_token，避免过期 通过网页授权 access_token 和 openid 获取用户基本信息（支持 UnionID 机制）  所有OAuth2">
@@ -98,7 +98,8 @@
 <li>如果需要，开发者可以刷新网页授权 <code>access_token</code>，避免过期</li>
 <li>通过网页授权 <code>access_token</code> 和 <code>openid</code> 获取用户基本信息（支持 <code>UnionID</code> 机制）</li>
 </ol>
-<p>所有OAuth2.0流程类似：<br><img src="https://p.qpic.cn/pic_wework/4208501329/ebed29e092fda3841e56e191eba8ed7ae6775f7dffd75bed/0" alt="企业微信OAuth2.0流程图"><br><a id="more"></a></p>
+<p>所有OAuth2.0流程类似：<br><img src="https://p.qpic.cn/pic_wework/4208501329/ebed29e092fda3841e56e191eba8ed7ae6775f7dffd75bed/0" alt="企业微信OAuth2.0流程图"></p>
+<a id="more"></a>
 <h4 id="UnionID机制"><a href="#UnionID机制" class="headerlink" title="UnionID机制"></a>UnionID机制</h4><ol>
 <li>请注意，网页授权获取用户基本信息也遵循UnionID机制。即如果开发者有在多个公众号，或在公众号、移动应用之间统一用户帐号的需求，需要前往微信开放平台（open.weixin.qq.com）绑定公众号后，才可利用UnionID机制来满足上述需求。</li>
 <li>UnionID机制的作用说明：如果开发者拥有多个移动应用、网站应用和公众帐号，可通过获取用户基本信息中的unionid来区分用户的唯一性，因为同一用户，对同一个微信开放平台下的不同应用（移动应用、网站应用和公众帐号），unionid是相同的。</li>
@@ -111,14 +112,16 @@
 <li>对于已关注公众号的用户，如果用户从公众号的会话或者自定义菜单进入本公众号的网页授权页，即使是scope为 <strong>snsapi_userinfo</strong>，也是静默授权，用户无感知</li>
 </ol>
 <h4 id="进入授权页面"><a href="#进入授权页面" class="headerlink" title="进入授权页面"></a>进入授权页面</h4><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">$urlParam = http_build_query([</span><br><span class="line">    <span class="string">'appid'</span> =&gt; config(<span class="string">'wechat.appid'</span>),</span><br><span class="line">    <span class="string">'redirect_uri'</span> =&gt; $redirectUri,</span><br><span class="line">    <span class="string">'response_type'</span> =&gt; <span class="string">'code'</span>,</span><br><span class="line">    <span class="string">'scope'</span> =&gt; <span class="string">'snsapi_base'</span>,</span><br><span class="line">]);</span><br><span class="line">$url = <span class="string">'https://open.weixin.qq.com/connect/oauth2/authorize?'</span> . $urlParam . <span class="string">'#wechat_redirect'</span>;</span><br><span class="line">header(<span class="string">"Location:&#123;$url&#125;"</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">exit</span>();</span><br></pre></td></tr></table></figure>
+
 <p>如果用户同意授权，页面将跳转至 <code>redirect_uri/?code=CODE&amp;state=STATE</code></p>
 <h4 id="获取OpenId"><a href="#获取OpenId" class="headerlink" title="获取OpenId"></a>获取OpenId</h4><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$params = [</span><br><span class="line">    <span class="string">'appid'</span> =&gt; config(<span class="string">'wechat.appid'</span>),</span><br><span class="line">    <span class="string">'secret'</span> =&gt; config(<span class="string">'wechat.secret'</span>),</span><br><span class="line">    <span class="string">'code'</span> =&gt; Input::get(<span class="string">'code'</span>),</span><br><span class="line">    <span class="string">'grant_type'</span> =&gt; <span class="string">'authorization_code'</span></span><br><span class="line">];</span><br><span class="line">$data = $api-&gt;callApi(<span class="string">'get'</span>, <span class="string">'sns/oauth2/access_token'</span>, $params);</span><br></pre></td></tr></table></figure>
-<p>成功返回数据：<br><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&#123; </span><br><span class="line">    <span class="attr">"access_token"</span>:<span class="string">"ACCESS_TOKEN"</span>,</span><br><span class="line">    <span class="attr">"expires_in"</span>:<span class="number">7200</span>,</span><br><span class="line">    <span class="attr">"refresh_token"</span>:<span class="string">"REFRESH_TOKEN"</span>,</span><br><span class="line">    <span class="attr">"openid"</span>:<span class="string">"OPENID"</span>,</span><br><span class="line">    <span class="attr">"scope"</span>:<span class="string">"SCOPE"</span> </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 
+<p>成功返回数据：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&#123; </span><br><span class="line">    <span class="attr">"access_token"</span>:<span class="string">"ACCESS_TOKEN"</span>,</span><br><span class="line">    <span class="attr">"expires_in"</span>:<span class="number">7200</span>,</span><br><span class="line">    <span class="attr">"refresh_token"</span>:<span class="string">"REFRESH_TOKEN"</span>,</span><br><span class="line">    <span class="attr">"openid"</span>:<span class="string">"OPENID"</span>,</span><br><span class="line">    <span class="attr">"scope"</span>:<span class="string">"SCOPE"</span> </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.liluoao.com/2018/wechat-authorize-web.html" data-id="ck49m02e9004x8smjpfmr30ej" class="article-share-link">分享</a>
+      <a data-url="http://www.liluoao.com/2018/wechat-authorize-web.html" data-id="ck4dti7b3004x4gmjrv5b10jf" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/wechat/">wechat</a></li></ul>

@@ -97,7 +97,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.liluoao.com/2018/a-dependency-injection-example.html" data-id="ck49m02dt004a8smj8xdc3nmz" class="article-share-link">分享</a>
+      <a data-url="http://www.liluoao.com/2018/a-dependency-injection-example.html" data-id="ck4dti7an004a4gmjs4islfyx" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/design-patterns/">design-patterns</a></li></ul>
@@ -137,7 +137,7 @@
 </blockquote>
 <h2 id="起源"><a href="#起源" class="headerlink" title="起源"></a>起源</h2><p>说起JWT，我们应该来谈一谈基于 TOKEN 的认证和传统的 SESSION 认证的区别。</p>
 <h3 id="传统的SESSION认证"><a href="#传统的SESSION认证" class="headerlink" title="传统的SESSION认证"></a>传统的SESSION认证</h3><p>我们知道，HTTP 协议本身是一种无状态的协议，而这就意味着如果用户向我们的应用提供了用户名和密码来进行用户认证，那么下一次请求时，用户还要再一次进行用户认证才行，因为根据http协议，我们并不能知道是哪个用户发出的请求，所以为了让我们的应用能识别是哪个用户发出的请求，我们只能在服务器存储一份用户登录的信息，这份登录信息会在响应时传递给浏览器，告诉其保存为cookie,以便下次请求时发送给我们的应用，这样我们的应用就能识别请求来自哪个用户了,这就是传统的基于session认证。</p>
-<p>但是这种基于 SESSION 的认证使应用本身很难得到扩展，随着不同客户端用户的增加，独立的服务器已无法承载更多的用户，而这时候基于 SESSION 认证应用的问题就会暴露出来.<br>
+<p>但是这种基于 SESSION 的认证使应用本身很难得到扩展，随着不同客户端用户的增加，独立的服务器已无法承载更多的用户，而这时候基于 SESSION 认证应用的问题就会暴露出来.</p>
         
           <p class="article-more-link">
             <a href="/2018/what-is-jwt.html#more">阅读全文</a>
@@ -146,7 +146,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.liluoao.com/2018/what-is-jwt.html" data-id="ck49m02cy00398smj2me9zjrw" class="article-share-link">分享</a>
+      <a data-url="http://www.liluoao.com/2018/what-is-jwt.html" data-id="ck4dti79s00394gmj674c9hk1" class="article-share-link">分享</a>
       
       
     </footer>
@@ -178,9 +178,11 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>原文链接：<a href="https://www.cnblogs.com/lvdabao/p/es6-promise-1.html" target="_blank" rel="noopener">大白话讲解Promise（一）</a><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> p = <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span>(<span class="params">resolve, reject</span>)</span>&#123;</span><br><span class="line">    <span class="comment">//做一些异步操作</span></span><br><span class="line">    setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'执行完成'</span>);</span><br><span class="line">        resolve(<span class="string">'随便什么数据'</span>);</span><br><span class="line">    &#125;, <span class="number">2000</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+        <p>原文链接：<a href="https://www.cnblogs.com/lvdabao/p/es6-promise-1.html" target="_blank" rel="noopener">大白话讲解Promise（一）</a></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> p = <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span>(<span class="params">resolve, reject</span>)</span>&#123;</span><br><span class="line">    <span class="comment">//做一些异步操作</span></span><br><span class="line">    setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'执行完成'</span>);</span><br><span class="line">        resolve(<span class="string">'随便什么数据'</span>);</span><br><span class="line">    &#125;, <span class="number">2000</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
 <p><strong>Promise</strong>的构造函数接收一个参数，是函数，并且传入两个参数：<code>resolve</code>，<code>reject</code>，分别表示异步操作执行成功后的回调函数和异步操作执行失败后的回调函数。其实这里用“成功”和“失败”来描述并不准确，按照标准来讲，<code>resolve</code>是将Promise的状态置为<code>fullfiled</code>，<code>reject</code>是将Promise的状态置为<code>rejected</code>。不过在我们开始阶段可以先这么理解，后面再细究概念。</p>
-<p>在上面的代码中，我们执行了一个异步操作，也就是<code>setTimeout</code>，2秒后，输出“执行完成”，并且调用<code>resolve</code>方法。<br>
+<p>在上面的代码中，我们执行了一个异步操作，也就是<code>setTimeout</code>，2秒后，输出“执行完成”，并且调用<code>resolve</code>方法。</p>
         
           <p class="article-more-link">
             <a href="/2018/es6-promise.html#more">阅读全文</a>
@@ -189,7 +191,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.liluoao.com/2018/es6-promise.html" data-id="ck49m02as00068smjlbvgkwai" class="article-share-link">分享</a>
+      <a data-url="http://www.liluoao.com/2018/es6-promise.html" data-id="ck4dti78100064gmj8er92foo" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li></ul>
@@ -260,7 +262,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.liluoao.com/2018/how-to-refactor.html" data-id="ck49m02eo00608smja78i536j" class="article-share-link">分享</a>
+      <a data-url="http://www.liluoao.com/2018/how-to-refactor.html" data-id="ck4dti7bi005z4gmjr48bji6z" class="article-share-link">分享</a>
       
       
     </footer>
@@ -294,6 +296,7 @@
       
         <ul>
 <li>使用 <code>foreach</code> 和 <code>array_keys()</code> 代替 <code>array_unique()</code><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">$max = <span class="number">1000000</span>;</span><br><span class="line">$arr = range(<span class="number">1</span>,$max,<span class="number">3</span>);</span><br><span class="line">$arr2 = range(<span class="number">1</span>,$max,<span class="number">2</span>);</span><br><span class="line">$arr = array_merge($arr,$arr2);</span><br><span class="line"></span><br><span class="line">$time = -microtime(<span class="keyword">true</span>);</span><br><span class="line">$res1 = array_unique($arr);</span><br><span class="line">$time += microtime(<span class="keyword">true</span>);</span><br><span class="line"><span class="keyword">echo</span> <span class="string">"deduped to "</span>.count($res1).<span class="string">" in "</span>.$time;</span><br><span class="line"><span class="comment">// deduped to 666667 in 32.300781965256</span></span><br><span class="line"></span><br><span class="line">$time = -microtime(<span class="keyword">true</span>);</span><br><span class="line">$res2 = <span class="keyword">array</span>();</span><br><span class="line"><span class="keyword">foreach</span>($arr <span class="keyword">as</span> $key=&gt;$val) &#123;   </span><br><span class="line">    $res2[$val] = <span class="keyword">true</span>;</span><br><span class="line">&#125;</span><br><span class="line">$res2 = array_keys($res2);</span><br><span class="line">$time += microtime(<span class="keyword">true</span>);</span><br><span class="line"><span class="keyword">echo</span> <span class="string">"&lt;br /&gt;deduped to "</span>.count($res2).<span class="string">" in "</span>.$time;</span><br><span class="line"><span class="comment">// deduped to 666667 in 0.84372591972351</span></span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
 </li>
 </ul>
         
@@ -304,7 +307,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.liluoao.com/2018/analyze-some-array-function.html" data-id="ck49m02eo005v8smjvy7sqm49" class="article-share-link">分享</a>
+      <a data-url="http://www.liluoao.com/2018/analyze-some-array-function.html" data-id="ck4dti7bi005u4gmjv5bon5sn" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/php/">php</a></li></ul>
@@ -340,37 +343,7 @@
       
         <p>原文链接：<a href="https://segmentfault.com/a/1190000013703264" target="_blank" rel="noopener">https://segmentfault.com/a/1190000013703264</a></p>
 <h2 id="接口参数定义"><a href="#接口参数定义" class="headerlink" title="接口参数定义"></a>接口参数定义</h2><p>接口设计中往可以抽象出一些新的公共参数，我目前能想到了一些较为常见的公共接口参数如下：</p>
-<table>
-<thead>
-<tr>
-<th>公共参数</th>
-<th>含意</th>
-<th>定义该参数的意义</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>timestamp</td>
-<td>毫秒级时间戳</td>
-<td>1.客户端的请求时间标示 2.后端可以做请求过期验证 3.该参数参与签名算法增加签名的唯一性</td>
-</tr>
-<tr>
-<td>app_key</td>
-<td>签名公钥</td>
-<td>签名算法的公钥，后端通过公钥可以得到对应的私钥</td>
-</tr>
-<tr>
-<td>sign</td>
-<td>接口签名</td>
-<td>通过请求的参数和定义好的签名算法生成接口签名，作用防止中间人篡改请求参数</td>
-</tr>
-<tr>
-<td>did</td>
-<td>设备ID</td>
-<td>设备的唯一标示，生成规则例如android的mac地址的md5和ios曾今udid(目前无法获取)的md5, 1:数据收集 2.便于问题追踪 3.消息推送标示</td>
-</tr>
-</tbody>
-</table>
+<p>|公共参数|含意|定义该参数的意义|<br>|-|<br>|timestamp|毫秒级时间戳|1.客户端的请求时间标示 2.后端可以做请求过期验证 3.该参数参与签名算法增加签名的唯一性|<br>|app_key|签名公钥|签名算法的公钥，后端通过公钥可以得到对应的私钥|<br>|sign|接口签名|通过请求的参数和定义好的签名算法生成接口签名，作用防止中间人篡改请求参数|<br>|did|设备ID|设备的唯一标示，生成规则例如android的mac地址的md5和ios曾今udid(目前无法获取)的md5, 1:数据收集 2.便于问题追踪 3.消息推送标示|</p>
         
           <p class="article-more-link">
             <a href="/2018/how-i-understand-restful-api.html#more">阅读全文</a>
@@ -379,7 +352,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.liluoao.com/2018/how-i-understand-restful-api.html" data-id="ck49m02e900548smjku6cb7vl" class="article-share-link">分享</a>
+      <a data-url="http://www.liluoao.com/2018/how-i-understand-restful-api.html" data-id="ck4dti7b300534gmjfl37nda4" class="article-share-link">分享</a>
       
       
     </footer>
@@ -411,7 +384,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>打开PHPStorm，点击 <code>Tools—&gt;Deployment—&gt;Cofiguration</code><br><img src="/images/phpstorm-ftp.png" alt><br>
+        <p>打开PHPStorm，点击 <code>Tools—&gt;Deployment—&gt;Cofiguration</code><br><img src="/images/phpstorm-ftp.png" alt></p>
         
           <p class="article-more-link">
             <a href="/2018/phpstorm-use-ftp.html#more">阅读全文</a>
@@ -420,7 +393,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.liluoao.com/2018/phpstorm-use-ftp.html" data-id="ck49m02c300228smjjd6k79e6" class="article-share-link">分享</a>
+      <a data-url="http://www.liluoao.com/2018/phpstorm-use-ftp.html" data-id="ck4dti79c002a4gmjt67cmxav" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/tool/">tool</a></li></ul>
@@ -455,8 +428,8 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>在许多项目的 <code>README</code> 中，我们经常会看到下面这种 <code>Badge</code>，这是如何制作的呢？</p>
-<p><a href="mailto:liluoao@qq.com" target="_blank" rel="noopener"><img src="https://img.shields.io/badge/%E9%82%AE%E7%AE%B1-liluoao%40qq.com-orange.svg?longCache=true&amp;style=flat-square" alt="Email"></a><br><a href="https://segmentfault.com/u/liluoao" target="_blank" rel="noopener"><img src="https://img.shields.io/badge/SegmentFault-李罗奥-brightgreen.svg?longCache=true&amp;style=flat-square" alt="SegmentFault"></a><br><a href="https://juejin.im/user/5a19374cf265da4332274600" target="_blank" rel="noopener"><img src="https://img.shields.io/badge/掘金-李罗奥-blue.svg?longCache=true&amp;style=flat-square" alt="Juejin"></a></p>
-<p>进入 <a href="https://shields.io/" target="_blank" rel="noopener">https://shields.io/</a> ，我们可以看到里面有各种各样的狗牌。这个网站通过调用接口，将结果以 <strong>SVG</strong> 格式返回。<br>
+<p><a href="mailto:liluoao@qq.com" target="_blank" rel="noopener"><img src="https://img.shields.io/badge/%E9%82%AE%E7%AE%B1-liluoao%40qq.com-orange.svg?longCache=true&style=flat-square" alt="Email"></a><br><a href="https://segmentfault.com/u/liluoao" target="_blank" rel="noopener"><img src="https://img.shields.io/badge/SegmentFault-%E6%9D%8E%E7%BD%97%E5%A5%A5-brightgreen.svg?longCache=true&style=flat-square" alt="SegmentFault"></a><br><a href="https://juejin.im/user/5a19374cf265da4332274600" target="_blank" rel="noopener"><img src="https://img.shields.io/badge/%E6%8E%98%E9%87%91-%E6%9D%8E%E7%BD%97%E5%A5%A5-blue.svg?longCache=true&style=flat-square" alt="Juejin"></a></p>
+<p>进入 <a href="https://shields.io/" target="_blank" rel="noopener">https://shields.io/</a> ，我们可以看到里面有各种各样的狗牌。这个网站通过调用接口，将结果以 <strong>SVG</strong> 格式返回。</p>
         
           <p class="article-more-link">
             <a href="/2018/add-project-badge.html#more">阅读全文</a>
@@ -465,7 +438,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.liluoao.com/2018/add-project-badge.html" data-id="ck49m02e9005j8smjqkrgib4x" class="article-share-link">分享</a>
+      <a data-url="http://www.liluoao.com/2018/add-project-badge.html" data-id="ck4dti7bi005i4gmjzethrgxy" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/tool/">tool</a></li></ul>
@@ -500,7 +473,7 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h2 id="创建AppVeyor账号"><a href="#创建AppVeyor账号" class="headerlink" title="创建AppVeyor账号"></a>创建AppVeyor账号</h2><p>进入<a href="https://ci.appveyor.com" target="_blank" rel="noopener">AppVeyor官网</a>，游客会跳转到 <code>/login</code> 页，这里可以注册，也可以使用 <code>GitHub</code> 账号授权登陆。</p>
-<p><img src="/images/appveyor_login.png" alt><br>
+<p><img src="/images/appveyor_login.png" alt></p>
         
           <p class="article-more-link">
             <a href="/2018/use-appveyor-ci.html#more">阅读全文</a>
@@ -509,7 +482,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.liluoao.com/2018/use-appveyor-ci.html" data-id="ck49m02cy003e8smjnidhdhdz" class="article-share-link">分享</a>
+      <a data-url="http://www.liluoao.com/2018/use-appveyor-ci.html" data-id="ck4dti7a7003e4gmj1ba9fais" class="article-share-link">分享</a>
       
       
     </footer>
@@ -543,7 +516,8 @@
       
         <p>中文文档：<a href="https://hexo.io/zh-cn/docs/" target="_blank" rel="noopener">https://hexo.io/zh-cn/docs/</a></p>
 <h3 id="创建新文章"><a href="#创建新文章" class="headerlink" title="创建新文章"></a>创建新文章</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>更多请看: <a href="https://hexo.io/zh-cn/docs/writing.html" target="_blank" rel="noopener">写作</a><br>
+
+<p>更多请看: <a href="https://hexo.io/zh-cn/docs/writing.html" target="_blank" rel="noopener">写作</a></p>
         
           <p class="article-more-link">
             <a href="/2018/use-hexo.html#more">阅读全文</a>
@@ -552,7 +526,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.liluoao.com/2018/use-hexo.html" data-id="ck49m02cy003j8smj6idt33u7" class="article-share-link">分享</a>
+      <a data-url="http://www.liluoao.com/2018/use-hexo.html" data-id="ck4dti7a7003j4gmjzk239h4d" class="article-share-link">分享</a>
       
       
     </footer>

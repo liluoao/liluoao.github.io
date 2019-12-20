@@ -16,7 +16,7 @@
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://www.liluoao.com/images/composer-setting.png">
 <meta property="og:image" content="http://www.liluoao.com/images/packagist-final.png">
-<meta property="og:updated_time" content="2019-12-17T08:32:06.721Z">
+<meta property="og:updated_time" content="2019-12-20T07:13:18.055Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="使用Composer管理依赖">
 <meta name="twitter:description" content="中文文档：http://docs.phpcomposer.com/ 英文文档：https://getcomposer.org/ 依赖管理Composer 不是一个包管理器。是的，它涉及 “packages” 和 “libraries”，但它在每个项目的基础上进行管理，在你项目的某个目录中（例如 vendor）进行安装。默认情况下它不会在全局安装任何东西。因此，这仅仅是一个依赖管理。 这种想法并不新">
@@ -95,15 +95,19 @@
 <p>a) 你有一个项目依赖于若干个库。</p>
 <p>b) 其中一些库依赖于其他库。</p>
 <p>c) 你声明你所依赖的东西。</p>
-<p>d) Composer 会找出哪个版本的包需要安装，并安装它们（将它们下载到你的项目中）。<br><a id="more"></a></p>
+<p>d) Composer 会找出哪个版本的包需要安装，并安装它们（将它们下载到你的项目中）。</p>
+<a id="more"></a>
 <h2 id="安装Composer"><a href="#安装Composer" class="headerlink" title="安装Composer"></a>安装Composer</h2><p>原文链接：<a href="https://pkg.phpcomposer.com/#how-to-install-composer" target="_blank" rel="noopener">https://pkg.phpcomposer.com/#how-to-install-composer</a></p>
 <h5 id="下载-Composer"><a href="#下载-Composer" class="headerlink" title="下载 Composer"></a>下载 Composer</h5><blockquote>
 <p>安装前请务必确保已经正确安装了 <a href="http://php.net/" target="_blank" rel="noopener">PHP</a>。打开命令行窗口并执行 <code>php -v</code> 查看是否正确输出版本号。</p>
 </blockquote>
 <p>打开命令行并依次执行下列命令安装最新版本的 Composer：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">php -r <span class="string">"copy('https://install.phpcomposer.com/installer', 'composer-setup.php');"</span></span><br></pre></td></tr></table></figure>
+
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">php composer-setup.php</span><br></pre></td></tr></table></figure>
+
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">php -r &quot;unlink(&apos;composer-setup.php&apos;);&quot;</span><br></pre></td></tr></table></figure>
+
 <p>执行第一条命令下载下来的 <code>composer-setup.php</code> 脚本将简单地检测 <code>php.ini</code> 中的参数设置，如果某些参数未正确设置则会给出警告；然后下载最新版本的 <code>composer.phar</code> 文件到当前目录。</p>
 <p>上述 3 条命令的作用依次是：</p>
 <ol>
@@ -111,28 +115,29 @@
 <li>执行安装过程。</li>
 <li>删除安装脚本。</li>
 </ol>
-<p>##### </p>
-<h5 id="局部安装"><a href="#局部安装" class="headerlink" title="局部安装"></a>局部安装</h5><p>上述下载 Composer 的过程正确执行完毕后，可以将 <code>composer.phar</code> 文件复制到任意目录（比如项目根目录下），然后通过 <code>php composer.phar</code> 指令即可使用 Composer 了！</p>
-<p>##### </p>
-<h5 id="全局安装"><a href="#全局安装" class="headerlink" title="全局安装"></a>全局安装</h5><p>全局安装是将 Composer 安装到系统环境变量 <code>PATH</code> 所包含的路径下面，然后就能够在命令行窗口中直接执行 <code>composer</code> 命令了。</p>
+<h5 id><a href="#" class="headerlink" title></a></h5><h5 id="局部安装"><a href="#局部安装" class="headerlink" title="局部安装"></a>局部安装</h5><p>上述下载 Composer 的过程正确执行完毕后，可以将 <code>composer.phar</code> 文件复制到任意目录（比如项目根目录下），然后通过 <code>php composer.phar</code> 指令即可使用 Composer 了！</p>
+<h5 id="-1"><a href="#-1" class="headerlink" title></a></h5><h5 id="全局安装"><a href="#全局安装" class="headerlink" title="全局安装"></a>全局安装</h5><p>全局安装是将 Composer 安装到系统环境变量 <code>PATH</code> 所包含的路径下面，然后就能够在命令行窗口中直接执行 <code>composer</code> 命令了。</p>
 <h6 id="Mac-或-Linux-系统："><a href="#Mac-或-Linux-系统：" class="headerlink" title="Mac 或 Linux 系统："></a>Mac 或 Linux 系统：</h6><p>打开命令行窗口并执行如下命令将前面下载的 <code>composer.phar</code> 文件移动到 <code>/usr/local/bin/</code> 目录下面：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo mv composer.phar /usr/<span class="built_in">local</span>/bin/composer</span><br></pre></td></tr></table></figure>
+
 <h6 id="Windows-系统："><a href="#Windows-系统：" class="headerlink" title="Windows 系统："></a>Windows 系统：</h6><ol>
 <li>找到并进入 PHP 的安装目录（和你在命令行中执行的 <code>php</code>指令应该是同一套 PHP）。</li>
 <li>将 <code>composer.phar</code> 复制到 PHP 的安装目录下面，也就是和 <code>php.exe</code> 在同一级目录。</li>
 <li>在 PHP 安装目录下新建一个 <code>composer.bat</code>文件，并将下列代码保存到此文件中。</li>
 </ol>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">@php <span class="string">"%~dp0composer.phar"</span> %*</span><br></pre></td></tr></table></figure>
+
 <p>最后重新打开一个命令行窗口试一试执行 <code>composer --version</code> 看看是否正确输出版本号。</p>
 <blockquote>
 <p>提示：不要忘了经常执行 <code>composer selfupdate</code> 以保持 Composer 一直是最新版本哦！</p>
 </blockquote>
 <h2 id="使用镜像"><a href="#使用镜像" class="headerlink" title="使用镜像"></a>使用镜像</h2><p>文档：<a href="https://pkg.phpcomposer.com/#how-to-use-packagist-mirror" target="_blank" rel="noopener">https://pkg.phpcomposer.com/#how-to-use-packagist-mirror</a> 不再赘述</p>
 <h2 id="Packagist"><a href="#Packagist" class="headerlink" title="Packagist"></a>Packagist</h2><p><a href="https://packagist.org/" target="_blank" rel="noopener">https://packagist.org/</a> 是PHP的包存储库，也是Composer 的主要资源库。进入官网注册一个自己的账号（可使用GitHub登录），准备发布自己的包。</p>
-<h2 id="创建Composer-json"><a href="#创建Composer-json" class="headerlink" title="创建Composer.json"></a>创建Composer.json</h2><p>在自己的项目中创建<code>composer.json</code>文件，选择将此项目发布为 <strong>library </strong>或是 <strong> project。</strong></p>
+<h2 id="创建Composer-json"><a href="#创建Composer-json" class="headerlink" title="创建Composer.json"></a>创建Composer.json</h2><p>在自己的项目中创建<code>composer.json</code>文件，选择将此项目发布为 <strong>library *<em>或是 *</em> project。</strong></p>
 <p>更多架构可见文档：<a href="http://docs.phpcomposer.com/04-schema.html" target="_blank" rel="noopener">http://docs.phpcomposer.com/04-schema.html</a></p>
-<p>我的一个 <strong> library </strong> 配置：</p>
+<p>我的一个 ** library ** 配置：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    &quot;name&quot;: &quot;liluoao/api-doc&quot;,</span><br><span class="line">    &quot;description&quot;: &quot;Generate API doc from PHPDoc.&quot;,</span><br><span class="line">    &quot;keywords&quot;: [</span><br><span class="line">        &quot;api-documentation&quot;,</span><br><span class="line">        &quot;phpdoc&quot;</span><br><span class="line">    ],</span><br><span class="line">    &quot;homepage&quot;: &quot;https://github.com/liluoao/api-doc&quot;,</span><br><span class="line">    &quot;time&quot;: &quot;2018-02-11&quot;,</span><br><span class="line">    &quot;license&quot;: &quot;MIT&quot;,</span><br><span class="line">    &quot;type&quot;: &quot;library&quot;,</span><br><span class="line">    &quot;require&quot;: &#123;</span><br><span class="line">        &quot;php&quot;: &quot;&gt;=5.4.0&quot;</span><br><span class="line">    &#125;,</span><br><span class="line">    &quot;authors&quot;: [</span><br><span class="line">        &#123;</span><br><span class="line">            &quot;name&quot;: &quot;Li Luoao&quot;,</span><br><span class="line">            &quot;email&quot;: &quot;liluoao@qq.com&quot;,</span><br><span class="line">            &quot;homepage&quot;: &quot;https://github.com/liluoao&quot;,</span><br><span class="line">            &quot;role&quot;: &quot;Developer&quot;</span><br><span class="line">        &#125;</span><br><span class="line">    ],</span><br><span class="line">    &quot;autoload&quot;: &#123;</span><br><span class="line">        &quot;psr-4&quot;: &#123;</span><br><span class="line">            &quot;Liluoao\\ApiDoc\\&quot;: &quot;src&quot;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    &quot;repositories&quot;: &#123;</span><br><span class="line">        &quot;packagist&quot;: &#123;</span><br><span class="line">            &quot;type&quot;: &quot;composer&quot;,</span><br><span class="line">            &quot;url&quot;: &quot;https://packagist.phpcomposer.com&quot;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <h2 id="发布到Packagist"><a href="#发布到Packagist" class="headerlink" title="发布到Packagist"></a>发布到Packagist</h2><p>进入 <a href="https://packagist.org/packages/submit" target="_blank" rel="noopener">https://packagist.org/packages/submit</a> ，填写你的项目地址。</p>
 <p>在你的项目设置中开启packagist服务，让每一次代码更新都自动发布到packagist上：</p>
 <p><img src="/images/composer-setting.png" alt>最终可以在Packagist上看到如下界面：</p>
@@ -141,7 +146,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.liluoao.com/2018/use-composer.html" data-id="ck49m02dd00478smjn94x27pb" class="article-share-link">分享</a>
+      <a data-url="http://www.liluoao.com/2018/use-composer.html" data-id="ck4dti7an00474gmj8juhn6hr" class="article-share-link">分享</a>
       
       
     </footer>

@@ -7,18 +7,18 @@
   
   <title>Linux搭建环境 | To be a Web Artisan</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="在阿里云买了个低配云服务器，系统为Ubuntu 16.4，需要安装基础环境。 更新源阿里云已配置好了源，直接更新就行。1sudo apt-get update 安装Nginx/Apache12sudo apt-get install nginxsudo apt-get install apache2 根据提示符，输入“Y” 确认后，开始安装软件，直至软件安装完成。 软件安装完成后，通过通过 dpk">
+  <meta name="description" content="在阿里云买了个低配云服务器，系统为Ubuntu 16.4，需要安装基础环境。 更新源阿里云已配置好了源，直接更新就行。 1sudo apt-get update  安装Nginx/Apache12sudo apt-get install nginxsudo apt-get install apache2  根据提示符，输入“Y” 确认后，开始安装软件，直至软件安装完成。 软件安装完成后，通过通过">
 <meta name="keywords" content="linux">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Linux搭建环境">
 <meta property="og:url" content="http://www.liluoao.com/2018/linux-environment.html">
 <meta property="og:site_name" content="To be a Web Artisan">
-<meta property="og:description" content="在阿里云买了个低配云服务器，系统为Ubuntu 16.4，需要安装基础环境。 更新源阿里云已配置好了源，直接更新就行。1sudo apt-get update 安装Nginx/Apache12sudo apt-get install nginxsudo apt-get install apache2 根据提示符，输入“Y” 确认后，开始安装软件，直至软件安装完成。 软件安装完成后，通过通过 dpk">
+<meta property="og:description" content="在阿里云买了个低配云服务器，系统为Ubuntu 16.4，需要安装基础环境。 更新源阿里云已配置好了源，直接更新就行。 1sudo apt-get update  安装Nginx/Apache12sudo apt-get install nginxsudo apt-get install apache2  根据提示符，输入“Y” 确认后，开始安装软件，直至软件安装完成。 软件安装完成后，通过通过">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-12-17T08:32:06.705Z">
+<meta property="og:updated_time" content="2019-12-20T07:13:18.051Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Linux搭建环境">
-<meta name="twitter:description" content="在阿里云买了个低配云服务器，系统为Ubuntu 16.4，需要安装基础环境。 更新源阿里云已配置好了源，直接更新就行。1sudo apt-get update 安装Nginx/Apache12sudo apt-get install nginxsudo apt-get install apache2 根据提示符，输入“Y” 确认后，开始安装软件，直至软件安装完成。 软件安装完成后，通过通过 dpk">
+<meta name="twitter:description" content="在阿里云买了个低配云服务器，系统为Ubuntu 16.4，需要安装基础环境。 更新源阿里云已配置好了源，直接更新就行。 1sudo apt-get update  安装Nginx/Apache12sudo apt-get install nginxsudo apt-get install apache2  根据提示符，输入“Y” 确认后，开始安装软件，直至软件安装完成。 软件安装完成后，通过通过">
 <meta name="twitter:creator" content="@liluoao">
   
   
@@ -90,30 +90,49 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>在阿里云买了个低配云服务器，系统为Ubuntu 16.4，需要安装基础环境。</p>
-<h2 id="更新源"><a href="#更新源" class="headerlink" title="更新源"></a>更新源</h2><p>阿里云已配置好了源，直接更新就行。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get update</span><br></pre></td></tr></table></figure></p>
+<h2 id="更新源"><a href="#更新源" class="headerlink" title="更新源"></a>更新源</h2><p>阿里云已配置好了源，直接更新就行。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get update</span><br></pre></td></tr></table></figure>
+
 <h2 id="安装Nginx-Apache"><a href="#安装Nginx-Apache" class="headerlink" title="安装Nginx/Apache"></a>安装Nginx/Apache</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install nginx</span><br><span class="line">sudo apt-get install apache2</span><br></pre></td></tr></table></figure>
+
 <p>根据提示符，输入“Y” 确认后，开始安装软件，直至软件安装完成。</p>
-<p>软件安装完成后，通过通过 <code>dpkg -L</code> 列出软件包所在的目录，及该软件包中的所有文件：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dpkg -L nginx</span><br></pre></td></tr></table></figure></p>
+<p>软件安装完成后，通过通过 <code>dpkg -L</code> 列出软件包所在的目录，及该软件包中的所有文件：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dpkg -L nginx</span><br></pre></td></tr></table></figure>
+
 <a id="more"></a>
 <h2 id="启动Apache"><a href="#启动Apache" class="headerlink" title="启动Apache"></a>启动Apache</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo /etc/init.d/apache2 start</span><br></pre></td></tr></table></figure>
+
 <p>重启 <code>restart</code>，停止 <code>stop</code>。</p>
 <h2 id="安装Git"><a href="#安装Git" class="headerlink" title="安装Git"></a>安装Git</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install git</span><br></pre></td></tr></table></figure>
-<p>生成 <strong>SSH key</strong><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t rsa -C <span class="string">"你的用户名"</span></span><br></pre></td></tr></table></figure></p>
+
+<p>生成 <strong>SSH key</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t rsa -C <span class="string">"你的用户名"</span></span><br></pre></td></tr></table></figure>
+
 <p>第一次提示你想将 <code>key</code> 保存到哪里，直接回车代表使用默认的 <code>/.ssh/id_rsa</code></p>
 <p>第二次提示你设置一个口令密码，直接回车代表设为空</p>
 <p>第三次重复第二次的密码</p>
-<p>进入 <code>key</code> 保存位置，打开 <code>id_rsa.pub</code><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi id_rsa.pub</span><br></pre></td></tr></table></figure></p>
+<p>进入 <code>key</code> 保存位置，打开 <code>id_rsa.pub</code> </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi id_rsa.pub</span><br></pre></td></tr></table></figure>
+
 <p>全部复制后大写模式2下Z退出编辑。</p>
 <p>进入 <strong>GitHub</strong> ，打开个人 <code>Settings</code>，点击 <code>SSH and GPG keys</code> 选项卡，点击 <code>New SSH key</code> 按钮，将复制的 <code>key</code> 粘贴进去，取个能识别平台的标题，保存。</p>
-<p>回到命令行，测试 <strong>SSH key</strong> 是否配置成功：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh -T git@github.com</span><br></pre></td></tr></table></figure></p>
-<p>出现如下信息则说明成功与 <strong>GitHub</strong> 连接：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Hi username! You&apos;ve successfully authenticated, but GitHub does not provide shell access</span><br></pre></td></tr></table></figure></p>
-<p>配置 <strong>Git</strong> 的用户名和邮箱：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --global user.name <span class="string">"用户名"</span></span><br><span class="line">git config --global user.email <span class="string">"邮箱"</span></span><br></pre></td></tr></table></figure></p>
-<p>查看配置信息：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config user.name</span><br><span class="line">git config user.email</span><br></pre></td></tr></table></figure></p>
+<p>回到命令行，测试 <strong>SSH key</strong> 是否配置成功：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh -T git@github.com</span><br></pre></td></tr></table></figure>
+
+<p>出现如下信息则说明成功与 <strong>GitHub</strong> 连接：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Hi username! You&apos;ve successfully authenticated, but GitHub does not provide shell access</span><br></pre></td></tr></table></figure>
+
+<p>配置 <strong>Git</strong> 的用户名和邮箱：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --global user.name <span class="string">"用户名"</span></span><br><span class="line">git config --global user.email <span class="string">"邮箱"</span></span><br></pre></td></tr></table></figure>
+
+<p>查看配置信息：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config user.name</span><br><span class="line">git config user.email</span><br></pre></td></tr></table></figure>
+
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.liluoao.com/2018/linux-environment.html" data-id="ck49m02c3001o8smj73371pn7" class="article-share-link">分享</a>
+      <a data-url="http://www.liluoao.com/2018/linux-environment.html" data-id="ck4dti79c001s4gmjq4zkfs94" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux/">linux</a></li></ul>

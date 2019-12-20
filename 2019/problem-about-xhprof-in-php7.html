@@ -15,7 +15,7 @@
 <meta property="og:site_name" content="To be a Web Artisan">
 <meta property="og:description" content="前言XHProf 是 Facebook 开源的一个轻量级的 PHP 性能分析工具，跟 Xdebug 类似，但性能开销更低。可以用在生产环境中，也可以由程序开关来控制是否进行 profile 。 问题排查最近我们认证中心部门将定时脚本切换为 PHP7 命令执行时，发现过一段时间脚本就内存泄漏，且该释放内存的地方都做了处理。 经过一段时间排查后发现是 XHProf 造成的，关闭后就可以了。 解决方法F">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-12-17T08:32:06.721Z">
+<meta property="og:updated_time" content="2019-12-20T07:13:18.055Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="XHProf与PHP7的问题">
 <meta name="twitter:description" content="前言XHProf 是 Facebook 开源的一个轻量级的 PHP 性能分析工具，跟 Xdebug 类似，但性能开销更低。可以用在生产环境中，也可以由程序开关来控制是否进行 profile 。 问题排查最近我们认证中心部门将定时脚本切换为 PHP7 命令执行时，发现过一段时间脚本就内存泄漏，且该释放内存的地方都做了处理。 经过一段时间排查后发现是 XHProf 造成的，关闭后就可以了。 解决方法F">
@@ -92,8 +92,10 @@
 <p>我们需要找一个处于维护状态且质量高的版本替代，网络上大部分的解决方案是 <a href="https://github.com/longxinH/xhprof" target="_blank" rel="noopener">https://github.com/longxinH/xhprof</a> 。</p>
 <h2 id="安装步骤"><a href="#安装步骤" class="headerlink" title="安装步骤"></a>安装步骤</h2><p>回顾一下 XHProf 的安装步骤</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> xhprof/extension/</span><br><span class="line">/usr/<span class="built_in">local</span>/php/bin/phpize</span><br><span class="line">./configure -prefix=/usr/<span class="built_in">local</span>/related/xhprof --with-php-config=/usr/<span class="built_in">local</span>/php/bin/php-config</span><br><span class="line">make &amp;&amp; make install</span><br></pre></td></tr></table></figure>
+
 <p>在 <em>php.ini</em> 中加入配置，这个日志目录自己定</p>
 <figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">[xhprof]</span></span><br><span class="line"><span class="attr">extension</span> = xhprof.so</span><br><span class="line"><span class="attr">xhprof.output_dir</span> = /data/log_xhprof</span><br></pre></td></tr></table></figure>
+
 <p>用 <code>phpinfo()</code> 查看一下是否成功</p>
 <table>
 <thead>
@@ -103,8 +105,7 @@
 <th>Master Value</th>
 </tr>
 </thead>
-<tbody>
-<tr>
+<tbody><tr>
 <td>xhprof.output_dir</td>
 <td>/data/log_xhprof</td>
 <td>/data/log_xhprof</td>
@@ -119,15 +120,14 @@
 <td>100000</td>
 <td>100000</td>
 </tr>
-</tbody>
-</table>
+</tbody></table>
 <p>使用方式见文档：<a href="https://www.php.net/xhprof" target="_blank" rel="noopener">https://www.php.net/xhprof</a></p>
 <p>GUI 分析界面我们使用的：<a href="https://github.com/gajus/xhprof.io" target="_blank" rel="noopener">https://github.com/gajus/xhprof.io</a></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.liluoao.com/2019/problem-about-xhprof-in-php7.html" data-id="ck49m02cy00338smj2smhp36z" class="article-share-link">分享</a>
+      <a data-url="http://www.liluoao.com/2019/problem-about-xhprof-in-php7.html" data-id="ck4dti79s00334gmjmndvwvlq" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/tool/">tool</a></li></ul>

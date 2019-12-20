@@ -7,18 +7,18 @@
   
   <title>自定义验证规则 | To be a Web Artisan</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="创建规则使用Artisan命令创建规则：1php artisan make:rule CheckPhoneNumber 规则放在 app/Rules 目录 规则对象包括 passes() 和 message() 方法passes 方法接收属性值和名称，并根据属性值是否符合规则而返回 true 或者 false：123456789public function passes($attribute,">
+  <meta name="description" content="创建规则使用Artisan命令创建规则： 1php artisan make:rule CheckPhoneNumber  规则放在 app/Rules 目录 规则对象包括 passes() 和 message() 方法passes 方法接收属性值和名称，并根据属性值是否符合规则而返回 true 或者 false： 123456789public function passes($attribut">
 <meta name="keywords" content="laravel">
 <meta property="og:type" content="article">
 <meta property="og:title" content="自定义验证规则">
 <meta property="og:url" content="http://www.liluoao.com/2018/laravel-custom-validation-rules.html">
 <meta property="og:site_name" content="To be a Web Artisan">
-<meta property="og:description" content="创建规则使用Artisan命令创建规则：1php artisan make:rule CheckPhoneNumber 规则放在 app/Rules 目录 规则对象包括 passes() 和 message() 方法passes 方法接收属性值和名称，并根据属性值是否符合规则而返回 true 或者 false：123456789public function passes($attribute,">
+<meta property="og:description" content="创建规则使用Artisan命令创建规则： 1php artisan make:rule CheckPhoneNumber  规则放在 app/Rules 目录 规则对象包括 passes() 和 message() 方法passes 方法接收属性值和名称，并根据属性值是否符合规则而返回 true 或者 false： 123456789public function passes($attribut">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-12-17T08:32:06.705Z">
+<meta property="og:updated_time" content="2019-12-20T07:13:18.051Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="自定义验证规则">
-<meta name="twitter:description" content="创建规则使用Artisan命令创建规则：1php artisan make:rule CheckPhoneNumber 规则放在 app/Rules 目录 规则对象包括 passes() 和 message() 方法passes 方法接收属性值和名称，并根据属性值是否符合规则而返回 true 或者 false：123456789public function passes($attribute,">
+<meta name="twitter:description" content="创建规则使用Artisan命令创建规则： 1php artisan make:rule CheckPhoneNumber  规则放在 app/Rules 目录 规则对象包括 passes() 和 message() 方法passes 方法接收属性值和名称，并根据属性值是否符合规则而返回 true 或者 false： 123456789public function passes($attribut">
 <meta name="twitter:creator" content="@liluoao">
   
   
@@ -89,20 +89,29 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="创建规则"><a href="#创建规则" class="headerlink" title="创建规则"></a>创建规则</h2><p>使用Artisan命令创建规则：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">php artisan make:rule CheckPhoneNumber</span><br></pre></td></tr></table></figure></p>
+        <h2 id="创建规则"><a href="#创建规则" class="headerlink" title="创建规则"></a>创建规则</h2><p>使用Artisan命令创建规则：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">php artisan make:rule CheckPhoneNumber</span><br></pre></td></tr></table></figure>
+
 <p>规则放在 <code>app/Rules</code> 目录</p>
-<p>规则对象包括 <code>passes()</code> 和 <code>message()</code> 方法<br><code>passes</code> 方法接收属性值和名称，并根据属性值是否符合规则而返回 <code>true</code> 或者 <code>false</code>：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">passes</span><span class="params">($attribute, $value)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> preg_match(<span class="string">'/^1[3456789]\d&#123;9&#125;$/'</span>,$value);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">message</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">'电话号码格式不正确'</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>规则对象包括 <code>passes()</code> 和 <code>message()</code> 方法<br><code>passes</code> 方法接收属性值和名称，并根据属性值是否符合规则而返回 <code>true</code> 或者 <code>false</code>：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">passes</span><span class="params">($attribute, $value)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> preg_match(<span class="string">'/^1[3456789]\d&#123;9&#125;$/'</span>,$value);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">message</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">'电话号码格式不正确'</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <a id="more"></a>
-<h2 id="创建表单请求"><a href="#创建表单请求" class="headerlink" title="创建表单请求"></a>创建表单请求</h2><p>使用Artisan命令创建表单请求类：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">php artisan make:request Auth\LoginRequest</span><br></pre></td></tr></table></figure></p>
+<h2 id="创建表单请求"><a href="#创建表单请求" class="headerlink" title="创建表单请求"></a>创建表单请求</h2><p>使用Artisan命令创建表单请求类：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">php artisan make:request Auth\LoginRequest</span><br></pre></td></tr></table></figure>
+
 <p>请求类放在 <code>app/Http/Requests</code> 目录</p>
 <h2 id="在表单请求中使用规则"><a href="#在表单请求中使用规则" class="headerlink" title="在表单请求中使用规则"></a>在表单请求中使用规则</h2><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">rules</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> [</span><br><span class="line">        <span class="comment">//...</span></span><br><span class="line">        <span class="string">'mobile'</span> =&gt; [</span><br><span class="line">            <span class="string">'required'</span>,</span><br><span class="line">            <span class="keyword">new</span> CheckPhoneNumber()</span><br><span class="line">        ],</span><br><span class="line">    ];</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="在控制器使用"><a href="#在控制器使用" class="headerlink" title="在控制器使用"></a>在控制器使用</h2><p>在控制器方法中类型提示传入的请求<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 登录</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> LoginRequest $request</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> funtion login(LoginRequest $request) &#123;</span><br><span class="line">    <span class="comment">//...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+
+<h2 id="在控制器使用"><a href="#在控制器使用" class="headerlink" title="在控制器使用"></a>在控制器使用</h2><p>在控制器方法中类型提示传入的请求</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 登录</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> LoginRequest $request</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> funtion login(LoginRequest $request) &#123;</span><br><span class="line">    <span class="comment">//...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <h4 id="关于可选字段"><a href="#关于可选字段" class="headerlink" title="关于可选字段"></a>关于可选字段</h4><p>默认情况下，Laravel 在你应用的全局中间件堆栈中包含在 <code>App\Http\Kernel</code> 类中的 <code>TrimStrings</code> 和 <code>ConvertEmptyStringsToNull</code> 中间件。因此，如果你不希望验证程序将 <code>null</code> 值视为无效的，那就将「可选」的请求字段标记为 <code>nullable</code>。</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.liluoao.com/2018/laravel-custom-validation-rules.html" data-id="ck49m02c3001h8smj9or61q1a" class="article-share-link">分享</a>
+      <a data-url="http://www.liluoao.com/2018/laravel-custom-validation-rules.html" data-id="ck4dti78w001h4gmjkrhaegqk" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/laravel/">laravel</a></li></ul>

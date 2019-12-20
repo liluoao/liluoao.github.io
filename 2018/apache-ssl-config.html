@@ -7,18 +7,18 @@
   
   <title>Apache的SSL配置 | To be a Web Artisan</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="安装Apache1sudo apt-get install apache2  默认站点目录在 /var/www/html/ 配置文件在 /etc/apache2/ 日志在 /var/log/apache2/ 启动脚本是 /etc/init.d/apache2  安装OpenSSLUbuntu默认已经安装了OPENSSL，如果没安装，1sudo apt-get install openssl 开启S">
+  <meta name="description" content="安装Apache1sudo apt-get install apache2   默认站点目录在 /var/www/html/ 配置文件在 /etc/apache2/ 日志在 /var/log/apache2/ 启动脚本是 /etc/init.d/apache2  安装OpenSSLUbuntu默认已经安装了OPENSSL，如果没安装， 1sudo apt-get install openssl">
 <meta name="keywords" content="apache,linux">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Apache的SSL配置">
 <meta property="og:url" content="http://www.liluoao.com/2018/apache-ssl-config.html">
 <meta property="og:site_name" content="To be a Web Artisan">
-<meta property="og:description" content="安装Apache1sudo apt-get install apache2  默认站点目录在 /var/www/html/ 配置文件在 /etc/apache2/ 日志在 /var/log/apache2/ 启动脚本是 /etc/init.d/apache2  安装OpenSSLUbuntu默认已经安装了OPENSSL，如果没安装，1sudo apt-get install openssl 开启S">
+<meta property="og:description" content="安装Apache1sudo apt-get install apache2   默认站点目录在 /var/www/html/ 配置文件在 /etc/apache2/ 日志在 /var/log/apache2/ 启动脚本是 /etc/init.d/apache2  安装OpenSSLUbuntu默认已经安装了OPENSSL，如果没安装， 1sudo apt-get install openssl">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-12-17T08:32:06.705Z">
+<meta property="og:updated_time" content="2019-12-20T07:13:18.044Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Apache的SSL配置">
-<meta name="twitter:description" content="安装Apache1sudo apt-get install apache2  默认站点目录在 /var/www/html/ 配置文件在 /etc/apache2/ 日志在 /var/log/apache2/ 启动脚本是 /etc/init.d/apache2  安装OpenSSLUbuntu默认已经安装了OPENSSL，如果没安装，1sudo apt-get install openssl 开启S">
+<meta name="twitter:description" content="安装Apache1sudo apt-get install apache2   默认站点目录在 /var/www/html/ 配置文件在 /etc/apache2/ 日志在 /var/log/apache2/ 启动脚本是 /etc/init.d/apache2  安装OpenSSLUbuntu默认已经安装了OPENSSL，如果没安装， 1sudo apt-get install openssl">
 <meta name="twitter:creator" content="@liluoao">
   
   
@@ -90,42 +90,66 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h2 id="安装Apache"><a href="#安装Apache" class="headerlink" title="安装Apache"></a>安装Apache</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install apache2</span><br></pre></td></tr></table></figure>
+
 <ul>
 <li>默认站点目录在 <code>/var/www/html/</code></li>
 <li>配置文件在 <code>/etc/apache2/</code></li>
 <li>日志在 <code>/var/log/apache2/</code></li>
 <li>启动脚本是 <code>/etc/init.d/apache2</code></li>
 </ul>
-<h2 id="安装OpenSSL"><a href="#安装OpenSSL" class="headerlink" title="安装OpenSSL"></a>安装OpenSSL</h2><p>Ubuntu默认已经安装了OPENSSL，如果没安装，<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install openssl</span><br></pre></td></tr></table></figure></p>
+<h2 id="安装OpenSSL"><a href="#安装OpenSSL" class="headerlink" title="安装OpenSSL"></a>安装OpenSSL</h2><p>Ubuntu默认已经安装了OPENSSL，如果没安装，</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install openssl</span><br></pre></td></tr></table></figure>
+
 <h2 id="开启SSL模块"><a href="#开启SSL模块" class="headerlink" title="开启SSL模块"></a>开启SSL模块</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo a2enmod ssl</span><br></pre></td></tr></table></figure>
-<p>这条命令相当于<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo ln -s /etc/apache2/mods-available/ssl.load /etc/apache2/mods-enabled</span><br><span class="line">sudo ln -s /etc/apache2/mods-available/ssl.conf /etc/apache2/mods-enabled</span><br></pre></td></tr></table></figure></p>
-<p>如果没有a2enmod指令，也可直接在apache2.conf中设置SSL模块加载：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">LoadModule ssl_module /usr/lib/apache2/modules/mod_ssl.so</span><br></pre></td></tr></table></figure></p>
+
+<p>这条命令相当于</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo ln -s /etc/apache2/mods-available/ssl.load /etc/apache2/mods-enabled</span><br><span class="line">sudo ln -s /etc/apache2/mods-available/ssl.conf /etc/apache2/mods-enabled</span><br></pre></td></tr></table></figure>
+
+<p>如果没有a2enmod指令，也可直接在apache2.conf中设置SSL模块加载：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">LoadModule ssl_module /usr/lib/apache2/modules/mod_ssl.so</span><br></pre></td></tr></table></figure>
+
 <a id="more"></a>
 <h2 id="创建证书"><a href="#创建证书" class="headerlink" title="创建证书"></a>创建证书</h2><p>创建证书有两种：一种是自签名证书，另外一种是第三方CA机构签名证书。第一种随便使用，只是没有经过官方认可的机构认证而已，后一种则是正规的签名证 书，有发证机构签名。其实很多所谓的大网站上使用的SSL证书，一样都是自签名的，主要是因为这个证书只做为在线验证使用，保证传输数据安全即可，不过使 用这种证书，对常规浏览器和一些软件而言，一般均会弹出警告，让你确认这个签名证书的有效性。正规签名证书也不过只是多了一重保障而已，而且浏览器、软件 等可以自己鉴别。</p>
 <p>阿里云提供了免费的自签名证书，也可以自己创建自签名证书。</p>
-<h4 id="创建自签名证书"><a href="#创建自签名证书" class="headerlink" title="创建自签名证书"></a>创建自签名证书</h4><p>可使用apache内置的工具创建默认的自签名证书，通过-days参数指定有效期。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apache2-ssl-certificate</span><br></pre></td></tr></table></figure></p>
+<h4 id="创建自签名证书"><a href="#创建自签名证书" class="headerlink" title="创建自签名证书"></a>创建自签名证书</h4><p>可使用apache内置的工具创建默认的自签名证书，通过-days参数指定有效期。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apache2-ssl-certificate</span><br></pre></td></tr></table></figure>
+
 <p>创建完成后，当前目录下有个apache.pem文件，已经包含密钥和证书。可以把这个证书拷贝到/etc/apache2/下。</p>
 <h4 id="第三方CA机构签署证书"><a href="#第三方CA机构签署证书" class="headerlink" title="第三方CA机构签署证书"></a>第三方CA机构签署证书</h4><p>生成此证书，需要向第三方提交一个“生成证书请求文件(CSR)”，生成这个CSR需要两步：</p>
 <ol>
 <li>生成私钥KEY</li>
 <li>生成请求CSR</li>
 </ol>
-<p>运行如下命令生成私钥：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">openssl genrsa -des3 1024 -out server.key</span><br></pre></td></tr></table></figure></p>
+<p>运行如下命令生成私钥：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">openssl genrsa -des3 1024 -out server.key</span><br></pre></td></tr></table></figure>
+
 <p>这里使用了-des3参数，将会需要输入一个密码对私钥进行加密，每次使用此私钥也需要输入此密码，如不需对私钥加密请不要使用-des3选项。输入两次密码后，将会生成server.key私钥文件。</p>
-<p>生成请求文件:<br>运行如下命令生成证书请求文件（CSR）<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">openssl req -new -key server.key –out server.csr</span><br></pre></td></tr></table></figure></p>
+<p>生成请求文件:<br>运行如下命令生成证书请求文件（CSR）</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">openssl req -new -key server.key –out server.csr</span><br></pre></td></tr></table></figure>
+
 <p>把这个CSR文件传给CA机构，然后他们会使用此请求文件生成证书。</p>
-<h2 id="编辑HTTPS（SSL）配置"><a href="#编辑HTTPS（SSL）配置" class="headerlink" title="编辑HTTPS（SSL）配置"></a>编辑HTTPS（SSL）配置</h2><h4 id="添加监听端口"><a href="#添加监听端口" class="headerlink" title="添加监听端口"></a>添加监听端口</h4><p>编辑Apache端口配置（/etc/apache2/ports.conf），加入443端口（SSL缺省使用）：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Listen 80</span><br><span class="line">Listen 443</span><br></pre></td></tr></table></figure></p>
-<h4 id="设置site-enabled"><a href="#设置site-enabled" class="headerlink" title="设置site-enabled"></a>设置<strong>site-enabled</strong></h4><p>上文安装完后，会在 <code>/etc/apache2/sites-available/</code> 目录下生成一个缺省的 <code>default-ssl</code> 文件。缺省的网页目录仍然是 <code>/var/www/html</code> 。我们可以创建一个链接到 <code>site-enabled</code> 目录。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ln -s /etc/apache2/sites-available/default-ssl /etc/apache2/sites-enabled/001-ssl</span><br></pre></td></tr></table></figure></p>
-<h4 id="修改配置"><a href="#修改配置" class="headerlink" title="修改配置"></a>修改配置</h4><p>确认HTTP监听端口改为80<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi /etc/apache2/sites-enabled/000-default</span><br></pre></td></tr></table></figure></p>
+<h2 id="编辑HTTPS（SSL）配置"><a href="#编辑HTTPS（SSL）配置" class="headerlink" title="编辑HTTPS（SSL）配置"></a>编辑HTTPS（SSL）配置</h2><h4 id="添加监听端口"><a href="#添加监听端口" class="headerlink" title="添加监听端口"></a>添加监听端口</h4><p>编辑Apache端口配置（/etc/apache2/ports.conf），加入443端口（SSL缺省使用）：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Listen 80</span><br><span class="line">Listen 443</span><br></pre></td></tr></table></figure>
+
+<h4 id="设置site-enabled"><a href="#设置site-enabled" class="headerlink" title="设置site-enabled"></a>设置<strong>site-enabled</strong></h4><p>上文安装完后，会在 <code>/etc/apache2/sites-available/</code> 目录下生成一个缺省的 <code>default-ssl</code> 文件。缺省的网页目录仍然是 <code>/var/www/html</code> 。我们可以创建一个链接到 <code>site-enabled</code> 目录。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ln -s /etc/apache2/sites-available/default-ssl /etc/apache2/sites-enabled/001-ssl</span><br></pre></td></tr></table></figure>
+
+<h4 id="修改配置"><a href="#修改配置" class="headerlink" title="修改配置"></a>修改配置</h4><p>确认HTTP监听端口改为80</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi /etc/apache2/sites-enabled/000-default</span><br></pre></td></tr></table></figure>
+
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;VirtualHost *:80&gt;</span><br></pre></td></tr></table></figure>
+
 <p>HTTPS监听端口缺省443：</p>
-<p>把端口改为443，在 <code>&lt;Virtualhost&gt;</code> 下加入SSL认证配置，其它的根据需要自己定制 与普通配置无异：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi /etc/apache2/sites-enabled/001-ssl</span><br></pre></td></tr></table></figure></p>
+<p>把端口改为443，在 <code>&lt;Virtualhost&gt;</code> 下加入SSL认证配置，其它的根据需要自己定制 与普通配置无异：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi /etc/apache2/sites-enabled/001-ssl</span><br></pre></td></tr></table></figure>
+
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&lt;VirtualHost *:443&gt;</span><br><span class="line">SSLEngine on</span><br><span class="line"># 添加 SSL 协议支持协议，去掉不安全的协议</span><br><span class="line">SSLProtocol all -SSLv2 -SSLv3</span><br><span class="line"># 修改加密套件如下</span><br><span class="line">SSLCipherSuite HIGH:!RC4:!MD5:!aNULL:!eNULL:!NULL:!DH:!EDH:!EXP:+MEDIUM</span><br><span class="line">SSLHonorCipherOrder on</span><br><span class="line"># 证书公钥配置</span><br><span class="line">SSLCertificateFile cert/public.pem</span><br><span class="line"># 证书私钥配置</span><br><span class="line">SSLCertificateKeyFile cert/1523613072453.key</span><br><span class="line"># 证书链配置，如果该属性开头有 &apos;#&apos;字符，请删除掉</span><br><span class="line">SSLCertificateChainFile cert/chain.pem</span><br><span class="line">ServerAdmin webmaster@localhost</span><br><span class="line">DocumentRoot /var/www/html</span><br><span class="line">&lt;/VirtualHost&gt;</span><br></pre></td></tr></table></figure>
+
 <h2 id="重启Apache"><a href="#重启Apache" class="headerlink" title="重启Apache"></a>重启Apache</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">service apache2 restart</span><br></pre></td></tr></table></figure>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.liluoao.com/2018/apache-ssl-config.html" data-id="ck49m02as00058smjjdifluot" class="article-share-link">分享</a>
+      <a data-url="http://www.liluoao.com/2018/apache-ssl-config.html" data-id="ck4dti78100054gmj2wjupk96" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/apache/">apache</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux/">linux</a></li></ul>

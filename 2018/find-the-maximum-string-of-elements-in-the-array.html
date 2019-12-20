@@ -7,21 +7,21 @@
   
   <title>求数组中元素组合的最大字符串（转） | To be a Web Artisan</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="原文链接：https://www.fanhaobai.com/2017/04/array-form-max-string.html 题目给定一个所有元素为非负的数组，将数组中的所有数字连接起来，求最大的那个数。 示例：输入： 4,94,9,14,1 输出： 9944141 输入： 121,89,98,15,4,3451 输出： 98894345115121">
+  <meta name="description" content="原文链接：https://www.fanhaobai.com/2017/04/array-form-max-string.html 题目给定一个所有元素为非负的数组，将数组中的所有数字连接起来，求最大的那个数。 示例：输入： 4,94,9,14,1输出： 9944141输入： 121,89,98,15,4,3451输出： 98894345115121">
 <meta name="keywords" content="algorithm">
 <meta property="og:type" content="article">
 <meta property="og:title" content="求数组中元素组合的最大字符串（转）">
 <meta property="og:url" content="http://www.liluoao.com/2018/find-the-maximum-string-of-elements-in-the-array.html">
 <meta property="og:site_name" content="To be a Web Artisan">
-<meta property="og:description" content="原文链接：https://www.fanhaobai.com/2017/04/array-form-max-string.html 题目给定一个所有元素为非负的数组，将数组中的所有数字连接起来，求最大的那个数。 示例：输入： 4,94,9,14,1 输出： 9944141 输入： 121,89,98,15,4,3451 输出： 98894345115121">
+<meta property="og:description" content="原文链接：https://www.fanhaobai.com/2017/04/array-form-max-string.html 题目给定一个所有元素为非负的数组，将数组中的所有数字连接起来，求最大的那个数。 示例：输入： 4,94,9,14,1输出： 9944141输入： 121,89,98,15,4,3451输出： 98894345115121">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://www.liluoao.com/images/sort_maximum_string_1.png">
 <meta property="og:image" content="http://www.liluoao.com/images/sort_maximum_string_2.png">
 <meta property="og:image" content="http://www.liluoao.com/images/sort_maximum_string_3.png">
-<meta property="og:updated_time" content="2019-12-17T08:32:06.721Z">
+<meta property="og:updated_time" content="2019-12-20T07:13:18.055Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="求数组中元素组合的最大字符串（转）">
-<meta name="twitter:description" content="原文链接：https://www.fanhaobai.com/2017/04/array-form-max-string.html 题目给定一个所有元素为非负的数组，将数组中的所有数字连接起来，求最大的那个数。 示例：输入： 4,94,9,14,1 输出： 9944141 输入： 121,89,98,15,4,3451 输出： 98894345115121">
+<meta name="twitter:description" content="原文链接：https://www.fanhaobai.com/2017/04/array-form-max-string.html 题目给定一个所有元素为非负的数组，将数组中的所有数字连接起来，求最大的那个数。 示例：输入： 4,94,9,14,1输出： 9944141输入： 121,89,98,15,4,3451输出： 98894345115121">
 <meta name="twitter:image" content="http://www.liluoao.com/images/sort_maximum_string_1.png">
 <meta name="twitter:creator" content="@liluoao">
   
@@ -92,27 +92,26 @@
         <p>原文链接：<a href="https://www.fanhaobai.com/2017/04/array-form-max-string.html" target="_blank" rel="noopener">https://www.fanhaobai.com/2017/04/array-form-max-string.html</a></p>
 <h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p>给定一个所有元素为非负的数组，将数组中的所有数字连接起来，求最大的那个数。</p>
 <p>示例：<br>输入：</p>
-<pre><code>4,94,9,14,1
-</code></pre><p>输出：</p>
-<pre><code>9944141
-</code></pre><p>输入：</p>
-<pre><code>121,89,98,15,4,3451
-</code></pre><p>输出：</p>
-<pre><code>98894345115121
-</code></pre><a id="more"></a>
+<pre><code>4,94,9,14,1</code></pre><p>输出：</p>
+<pre><code>9944141</code></pre><p>输入：</p>
+<pre><code>121,89,98,15,4,3451</code></pre><p>输出：</p>
+<pre><code>98894345115121</code></pre><a id="more"></a>
+
 <h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><ul>
 <li>比较规则：分析 a 和 b 的排列，因为这 2 个数存在 2 种排列情况，既 <code>a_b</code> 和 <code>b_a</code>，若 <code>a_b</code> 组合值大于 <code>b_a</code> 组合，那么认为 a “大于” b，则 a 需要排列在 b 前面，反之则需要交换 a 和 b 的位置。同我们熟悉的排序算法唯一不同的是，这里不是直接通过比较 2 个元素值大小，而是需要通过排列后的 2 个新值进行大小比较。</li>
 <li>排序算法：由于只是比较规则的不同，所以常用的排序算法（冒泡、快速、堆）一样适用。</li>
 </ul>
 <p>这里使用冒泡排序来进行说明，每一趟找出待排序元素的最小值，算法执行流程如下：</p>
 <p><img src="/images/sort_maximum_string_1.png" alt><br><img src="/images/sort_maximum_string_2.png" alt><br><img src="/images/sort_maximum_string_3.png" alt></p>
-<h2 id="编码实现"><a href="#编码实现" class="headerlink" title="编码实现"></a>编码实现</h2><p>定义比较规则，ab 和 ba 组合后的数字进行值大小的比较：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">cmp</span><span class="params">($a, $b)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> ($a == $b) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> $a . $b &gt; $b . $a ? <span class="number">-1</span> : <span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>接收输入并输出结果：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">array_form_max_str</span><span class="params">(array $Arr)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">foreach</span> ($Arr <span class="keyword">as</span> $value) &#123;</span><br><span class="line">        <span class="keyword">if</span> ($value &lt; <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="string">''</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    usort($Arr, <span class="string">"cmp"</span>);</span><br><span class="line">    <span class="comment">//拼接</span></span><br><span class="line">    <span class="keyword">return</span> implode(<span class="string">''</span>, $Arr);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//输入:4,94,9,14,1</span></span><br><span class="line"><span class="keyword">echo</span> array_form_max_str(explode(<span class="string">','</span>, $input)), PHP_EOL;</span><br></pre></td></tr></table></figure></p>
+<h2 id="编码实现"><a href="#编码实现" class="headerlink" title="编码实现"></a>编码实现</h2><p>定义比较规则，ab 和 ba 组合后的数字进行值大小的比较：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">cmp</span><span class="params">($a, $b)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> ($a == $b) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> $a . $b &gt; $b . $a ? <span class="number">-1</span> : <span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
+<p>接收输入并输出结果：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">array_form_max_str</span><span class="params">(array $Arr)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">foreach</span> ($Arr <span class="keyword">as</span> $value) &#123;</span><br><span class="line">        <span class="keyword">if</span> ($value &lt; <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="string">''</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    usort($Arr, <span class="string">"cmp"</span>);</span><br><span class="line">    <span class="comment">//拼接</span></span><br><span class="line">    <span class="keyword">return</span> implode(<span class="string">''</span>, $Arr);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//输入:4,94,9,14,1</span></span><br><span class="line"><span class="keyword">echo</span> array_form_max_str(explode(<span class="string">','</span>, $input)), PHP_EOL;</span><br></pre></td></tr></table></figure>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.liluoao.com/2018/find-the-maximum-string-of-elements-in-the-array.html" data-id="ck49m02e9005e8smj900mfjne" class="article-share-link">分享</a>
+      <a data-url="http://www.liluoao.com/2018/find-the-maximum-string-of-elements-in-the-array.html" data-id="ck4dti7b3005d4gmj6zz02x6f" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/algorithm/">algorithm</a></li></ul>

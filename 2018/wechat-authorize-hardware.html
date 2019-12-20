@@ -16,7 +16,7 @@
 <meta property="og:description" content="进入微信公众平台在 功能 -&amp;gt; 设备管理 中添加产品，填写相关信息后获取到产品ID（product_id）">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://www.liluoao.com/images/wechat-hardware.png">
-<meta property="og:updated_time" content="2019-12-17T08:32:06.721Z">
+<meta property="og:updated_time" content="2019-12-20T07:13:18.055Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="微信硬件设备授权">
 <meta name="twitter:description" content="进入微信公众平台在 功能 -&amp;gt; 设备管理 中添加产品，填写相关信息后获取到产品ID（product_id）">
@@ -105,22 +105,23 @@
 <th>说明</th>
 </tr>
 </thead>
-<tbody>
-<tr>
+<tbody><tr>
 <td>product_id</td>
 <td>否</td>
 <td>string</td>
 <td>设备的产品编号（由微信硬件平台分配）</td>
 </tr>
-</tbody>
-</table>
+</tbody></table>
 <blockquote>
 <p>当product_id 为‘1’时，不要填写product_id 字段（会引起不必要错误）；<br>当product_id 不为‘1’时，必须填写 product_id 字段；</p>
 </blockquote>
-<p>成功返回结果：<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"resp_msg"</span>:&#123;</span><br><span class="line">      <span class="attr">"ret_code"</span>:<span class="number">0</span>,</span><br><span class="line">      <span class="attr">"error_info"</span>:<span class="string">"ok"</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">"deviceid"</span>:<span class="string">"XXX"</span>,</span><br><span class="line">  <span class="attr">"qrticket"</span>:<span class="string">"XXX"</span>&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>成功返回结果：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"resp_msg"</span>:&#123;</span><br><span class="line">      <span class="attr">"ret_code"</span>:<span class="number">0</span>,</span><br><span class="line">      <span class="attr">"error_info"</span>:<span class="string">"ok"</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">"deviceid"</span>:<span class="string">"XXX"</span>,</span><br><span class="line">  <span class="attr">"qrticket"</span>:<span class="string">"XXX"</span>&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <p><code>qrticket</code> 需要生成二维码，用微信扫描后会提示你绑定设备，绑定后可使用。</p>
 <ol start="3">
 <li>更新设备属性<br>接口地址：<a href="https://api.weixin.qq.com/device/authorize_device" target="_blank" rel="noopener">https://api.weixin.qq.com/device/authorize_device</a><br>请求方式：<code>POST</code><br>需要token<br>参数说明：<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">$data = [</span><br><span class="line">    <span class="string">'device_num'</span> =&gt; <span class="number">1</span>,<span class="comment">//个数</span></span><br><span class="line">    <span class="string">'device_list'</span> =&gt; [</span><br><span class="line">        <span class="string">'id'</span> =&gt; <span class="string">'dev1'</span>,<span class="comment">//deviceid</span></span><br><span class="line">        <span class="string">'mac'</span> =&gt; <span class="string">''</span>,<span class="comment">//mac地址，16进制串，不需要0X前缀</span></span><br><span class="line">        <span class="string">'connect_protocol'</span> =&gt; <span class="string">'1'</span>,<span class="comment">//连接协议</span></span><br><span class="line">        <span class="string">'auth_key'</span> =&gt; <span class="string">''</span>,</span><br><span class="line">        <span class="string">'close_strategy'</span> =&gt; <span class="string">'1'</span>,<span class="comment">//断开策略</span></span><br><span class="line">        <span class="string">'conn_strategy'</span> =&gt; <span class="string">'1'</span>,<span class="comment">//连接策略</span></span><br><span class="line">        <span class="string">'crypt_method'</span> =&gt; <span class="string">'0'</span>,<span class="comment">//加密方法，0不加密，1AES加密（CBC模式，PKCS7填充方式） </span></span><br><span class="line">        <span class="string">'auth_ver'</span> =&gt; <span class="string">'1'</span>,<span class="comment">//版本号</span></span><br><span class="line">        <span class="string">'manu_mac_pos'</span> =&gt; <span class="string">'-1'</span>,<span class="comment">//mac在manufature data偏移</span></span><br><span class="line">        <span class="string">'ser_mac_pos'</span> =&gt; <span class="string">'-2'</span><span class="comment">//mac在serial number偏移</span></span><br><span class="line">    ]</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+
 </li>
 </ol>
 <p><code>connect_protocol</code> 支持以下四种连接协议：</p>
@@ -151,7 +152,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.liluoao.com/2018/wechat-authorize-hardware.html" data-id="ck49m02e9004u8smjheyxpdec" class="article-share-link">分享</a>
+      <a data-url="http://www.liluoao.com/2018/wechat-authorize-hardware.html" data-id="ck4dti7b3004u4gmjxpu1kxt8" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/wechat/">wechat</a></li></ul>

@@ -15,7 +15,7 @@
 <meta property="og:site_name" content="To be a Web Artisan">
 <meta property="og:description" content="原文链接：https://avnpc.com/pages/phalcon-mvc-process 入口文件为public/index.php，简化后一共5行，包含了整个Phalcon的启动流程，以下将按顺序说明 12345require  __DIR__ . &apos;/../config/services.php&apos;;$application = new Phalcon\Mvc\Application()">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-12-17T08:32:06.705Z">
+<meta property="og:updated_time" content="2019-12-20T07:13:18.055Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Phalcon 启动流程">
 <meta name="twitter:description" content="原文链接：https://avnpc.com/pages/phalcon-mvc-process 入口文件为public/index.php，简化后一共5行，包含了整个Phalcon的启动流程，以下将按顺序说明 12345require  __DIR__ . &apos;/../config/services.php&apos;;$application = new Phalcon\Mvc\Application()">
@@ -92,11 +92,14 @@
         <p>原文链接：<a href="https://avnpc.com/pages/phalcon-mvc-process" target="_blank" rel="noopener">https://avnpc.com/pages/phalcon-mvc-process</a></p>
 <p>入口文件为<code>public/index.php</code>，简化后一共5行，包含了整个Phalcon的启动流程，以下将按顺序说明</p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">require</span>  <span class="keyword">__DIR__</span> . <span class="string">'/../config/services.php'</span>;</span><br><span class="line">$application = <span class="keyword">new</span> Phalcon\Mvc\Application();</span><br><span class="line">$application-&gt;setDI($di);</span><br><span class="line"><span class="keyword">require</span> <span class="keyword">__DIR__</span> . <span class="string">'/../config/modules.php'</span>;</span><br><span class="line"><span class="keyword">echo</span> $application-&gt;handle()-&gt;getContent();</span><br></pre></td></tr></table></figure>
+
 <a id="more"></a>
 <h2 id="DI注册阶段"><a href="#DI注册阶段" class="headerlink" title="DI注册阶段"></a>DI注册阶段</h2><p>Phalcon的所有组件服务都是通过<a href="http://docs.phalconphp.com/en/latest/api/Phalcon_DI.html" target="_blank" rel="noopener">DI（依赖注入）</a>进行组织的，这也是目前大部分主流框架所使用的方法。通过DI，可以灵活的控制框架中的服务：哪些需要启用，哪些不启用，组件的内部细节等等，因此Phalcon是一个松耦合可替换的框架，完全可以通过DI替换MVC中任何一个组件。</p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">require</span> <span class="keyword">__DIR__</span> . <span class="string">'/../config/services.php'</span>;</span><br></pre></td></tr></table></figure>
+
 <p>这个文件中默认注册了<code>Phalcon\Mvc\Router</code>（路由）、<code>Phalcon\Mvc\Url</code>（Url）、<code>Phalcon\Session\Adapter\Files</code>（Session）三个最基本的组件。同时当MVC启动后，DI中默认注册的服务还有很多，可以通过DI得到所有当前已经注册的服务：</p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$services = $application-&gt;getDI()-&gt;getServices();</span><br><span class="line"><span class="keyword">foreach</span> ($services <span class="keyword">as</span> $key =&gt; $service) &#123;</span><br><span class="line">   var_dump($key);</span><br><span class="line">   var_dump(get_class($application-&gt;getDI()-&gt;get($key)));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <p>打印看到Phalcon还注册了以下服务：</p>
 <ul>
 <li><code>dispatcher</code> : <code>Phalcon\Mvc\Dispatcher</code> 分发服务，将路由命中的结果分发到对应的Controller</li>
@@ -116,10 +119,13 @@
 </ul>
 <p>而每一个服务都可以通过DI进行替换。接下来实例化一个标准的MVC应用，然后将我们定义好的DI注入进去</p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$application = <span class="keyword">new</span> Phalcon\Mvc\Application();</span><br><span class="line">$application-&gt;setDI($di);</span><br></pre></td></tr></table></figure>
+
 <h2 id="模块注册阶段"><a href="#模块注册阶段" class="headerlink" title="模块注册阶段"></a>模块注册阶段</h2><p>与DI一样，Phalcon建议通过引入一个独立文件的方式注册所有需要的模块：</p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">require</span> <span class="keyword">__DIR__</span> . <span class="string">'/../config/modules.php'</span>;</span><br></pre></td></tr></table></figure>
+
 <p>这个文件的内容如下</p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$application-&gt;registerModules(<span class="keyword">array</span>(    </span><br><span class="line">   <span class="string">'frontend'</span> =&gt; <span class="keyword">array</span>(</span><br><span class="line">        <span class="string">'className'</span> =&gt;<span class="string">'Eva\Frontend\Module'</span>,</span><br><span class="line">        <span class="string">'path'</span> =&gt; <span class="keyword">__DIR__</span> . <span class="string">'/../apps/frontend/Module.php'</span></span><br><span class="line">    )</span><br><span class="line">));</span><br></pre></td></tr></table></figure>
+
 <p>可以看到Phalcon所谓的模块注册，其实只是告诉框架MVC模块的引导文件<code>Module.php</code>所在位置及类名是什么。</p>
 <h2 id="MVC阶段"><a href="#MVC阶段" class="headerlink" title="MVC阶段"></a>MVC阶段</h2><p><code>$application-&gt;handle()</code>是整个MVC的核心，这个函数中处理了路由、模块、分发等MVC的全部流程，处理过程中在关键位置会通过事件驱动触发一系列<code>application:</code>事件，方便外部注入逻辑，最终返回一个<code>Phalcon\Http\Response</code>。整个<code>handle</code>方法的过程并不复杂，下面按顺序介绍：</p>
 <h3 id="基础检查"><a href="#基础检查" class="headerlink" title="基础检查"></a>基础检查</h3><p>首先检查DI，如果没有任何DI注入，会抛出错误</p>
@@ -170,10 +176,12 @@
 <p>将http的头部信息先行发送。至此，<code>Application-&gt;handle()</code>对于请求的处理过程全部结束，对外返回一个<code>Phalcon\Http\Response</code>响应。</p>
 <h3 id="发送响应"><a href="#发送响应" class="headerlink" title="发送响应"></a>发送响应</h3><p>HTTP头部发送后一般把响应的内容也发送出去：</p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">echo</span> $application-&gt;handle()-&gt;getContent();</span><br></pre></td></tr></table></figure>
+
 <p>这就是Phalcon Framework的完整MVC流程。</p>
 <h2 id="流程控制"><a href="#流程控制" class="headerlink" title="流程控制"></a>流程控制</h2><p>分析MVC的启动流程，无疑是希望对流程有更好的把握和控制，方法有两种：</p>
 <h3 id="自定义启动"><a href="#自定义启动" class="headerlink" title="自定义启动"></a>自定义启动</h3><p>按照上面的流程，我们其实完全可以自己实现<code>$application-&gt;handle()-&gt;getContent()</code>这一流程，下面就是一个简单的替代方案，代码中暂时没有考虑事件的触发。</p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//Roter</span></span><br><span class="line">$router = $di[<span class="string">'router'</span>];</span><br><span class="line">$router-&gt;handle();</span><br><span class="line"></span><br><span class="line"><span class="comment">//Module handle</span></span><br><span class="line">$modules = $application-&gt;getModules();</span><br><span class="line">$routeModule = $router-&gt;getModuleName();</span><br><span class="line"><span class="keyword">if</span> (<span class="keyword">isset</span>($modules[$routeModule])) &#123;   </span><br><span class="line">   $moduleClass = <span class="keyword">new</span> $modules[$routeModule][<span class="string">'className'</span>]();</span><br><span class="line">   $moduleClass-&gt;registerAutoloaders();    </span><br><span class="line">   $moduleClass-&gt;registerServices($di);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//dispatch</span></span><br><span class="line">$dispatcher = $di[<span class="string">'dispatcher'</span>];</span><br><span class="line">$dispatcher-&gt;setModuleName($router-&gt;getModuleName());</span><br><span class="line">$dispatcher-&gt;setControllerName($router-&gt;getControllerName());</span><br><span class="line">$dispatcher-&gt;setActionName($router-&gt;getActionName());</span><br><span class="line">$dispatcher-&gt;setParams($router-&gt;getParams());</span><br><span class="line"></span><br><span class="line"><span class="comment">//view</span></span><br><span class="line">$view = $di[<span class="string">'view'</span>];</span><br><span class="line">$view-&gt;start();</span><br><span class="line">$controller = $dispatcher-&gt;dispatch();</span><br><span class="line"><span class="comment">//Not able to call render in controller or else will repeat output</span></span><br><span class="line">$view-&gt;render(</span><br><span class="line">    $dispatcher-&gt;getControllerName(),    </span><br><span class="line">    $dispatcher-&gt;getActionName(),    </span><br><span class="line">    $dispatcher-&gt;getParams()</span><br><span class="line">);</span><br><span class="line">$view-&gt;finish();</span><br><span class="line"></span><br><span class="line">$response = $di[<span class="string">'response'</span>];</span><br><span class="line">$response-&gt;setContent($view-&gt;getContent());</span><br><span class="line">$response-&gt;sendHeaders();</span><br><span class="line"><span class="keyword">echo</span> $response-&gt;getContent();</span><br></pre></td></tr></table></figure>
+
 <h3 id="流程清单"><a href="#流程清单" class="headerlink" title="流程清单"></a>流程清单</h3><p>为了方便查找，将整个流程整理为一个树形清单如下：</p>
 <ul>
 <li>初始化DI (config/services.php) <code>$di = new FactoryDefault();</code><ul>
@@ -289,7 +297,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.liluoao.com/2018/phalcon-start-process.html" data-id="ck49m02cy002w8smj91bf0o9n" class="article-share-link">分享</a>
+      <a data-url="http://www.liluoao.com/2018/phalcon-start-process.html" data-id="ck4dti79s002y4gmjwuaz8k6c" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/phalcon/">phalcon</a></li></ul>

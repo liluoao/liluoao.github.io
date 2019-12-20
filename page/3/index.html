@@ -90,9 +90,14 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>策略是在特定模型或者资源中组织授权逻辑的类，一个模型类对应一个策略类。</p>
-<p>在 <code>AuthServiceProvider</code> 中：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">protected</span> $policies = [</span><br><span class="line">    <span class="string">'App\Model'</span> =&gt; <span class="string">'App\Policies\ModelPolicy'</span>,</span><br><span class="line">];</span><br></pre></td></tr></table></figure></p>
-<h4 id="创建策略"><a href="#创建策略" class="headerlink" title="创建策略"></a>创建策略</h4><p>在 <code>app/Policies</code> 中生成类：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">php artisan make:policy PostPolicy</span><br></pre></td></tr></table></figure></p>
-<h4 id="注册策略"><a href="#注册策略" class="headerlink" title="注册策略"></a>注册策略</h4><p>修改 <code>$policies</code> 属性：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">protected</span> $policies = [</span><br><span class="line">    Post::class =&gt; PostPolicy::class,</span><br><span class="line">];</span><br></pre></td></tr></table></figure></p>
+<p>在 <code>AuthServiceProvider</code> 中：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">protected</span> $policies = [</span><br><span class="line">    <span class="string">'App\Model'</span> =&gt; <span class="string">'App\Policies\ModelPolicy'</span>,</span><br><span class="line">];</span><br></pre></td></tr></table></figure>
+
+<h4 id="创建策略"><a href="#创建策略" class="headerlink" title="创建策略"></a>创建策略</h4><p>在 <code>app/Policies</code> 中生成类：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">php artisan make:policy PostPolicy</span><br></pre></td></tr></table></figure>
+
+<h4 id="注册策略"><a href="#注册策略" class="headerlink" title="注册策略"></a>注册策略</h4><p>修改 <code>$policies</code> 属性：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">protected</span> $policies = [</span><br><span class="line">    Post::class =&gt; PostPolicy::class,</span><br><span class="line">];</span><br></pre></td></tr></table></figure>
         
           <p class="article-more-link">
             <a href="/2018/laravel-policy.html#more">阅读全文</a>
@@ -101,7 +106,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.liluoao.com/2018/laravel-policy.html" data-id="ck49m02bn00118smjva6gjusl" class="article-share-link">分享</a>
+      <a data-url="http://www.liluoao.com/2018/laravel-policy.html" data-id="ck4dti78h000z4gmje5neljuy" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/laravel/">laravel</a></li></ul>
@@ -151,6 +156,7 @@
 </li>
 <li><p>Generate keys</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">php artisan passport:install</span><br></pre></td></tr></table></figure>
+
 </li>
 </ol>
         
@@ -161,7 +167,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.liluoao.com/2018/create-rest-api-in-laravel-with-authentication-using-passport.html" data-id="ck49m02bn000w8smjmpt4j2yi" class="article-share-link">分享</a>
+      <a data-url="http://www.liluoao.com/2018/create-rest-api-in-laravel-with-authentication-using-passport.html" data-id="ck4dti78h000w4gmjfxakwsrs" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/laravel/">laravel</a></li></ul>
@@ -199,8 +205,11 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h4 id="创建中间件"><a href="#创建中间件" class="headerlink" title="创建中间件"></a>创建中间件</h4><p>Artisan命令，在 <code>app/Http/Middleware</code> 目录创建类：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">php artisan make:middleware CheckLogin</span><br></pre></td></tr></table></figure></p>
-<p>由处理逻辑的位置决定是前置还是后置：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">handle</span><span class="params">($request, Closure $next)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">// 这里就是前置</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> $next($request);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//or</span></span><br><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">handle</span><span class="params">($request, Closure $next)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    $response = $next($request);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 这里就是后置</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> $response;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+        <h4 id="创建中间件"><a href="#创建中间件" class="headerlink" title="创建中间件"></a>创建中间件</h4><p>Artisan命令，在 <code>app/Http/Middleware</code> 目录创建类：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">php artisan make:middleware CheckLogin</span><br></pre></td></tr></table></figure>
+
+<p>由处理逻辑的位置决定是前置还是后置：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">handle</span><span class="params">($request, Closure $next)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">// 这里就是前置</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> $next($request);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//or</span></span><br><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">handle</span><span class="params">($request, Closure $next)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    $response = $next($request);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 这里就是后置</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> $response;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
         
           <p class="article-more-link">
             <a href="/2018/laravel-middleware.html#more">阅读全文</a>
@@ -209,7 +218,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.liluoao.com/2018/laravel-middleware.html" data-id="ck49m02bn000s8smjflxz1cl8" class="article-share-link">分享</a>
+      <a data-url="http://www.liluoao.com/2018/laravel-middleware.html" data-id="ck4dti78h000s4gmj7tx7rm9t" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/laravel/">laravel</a></li></ul>
@@ -247,9 +256,12 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="创建规则"><a href="#创建规则" class="headerlink" title="创建规则"></a>创建规则</h2><p>使用Artisan命令创建规则：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">php artisan make:rule CheckPhoneNumber</span><br></pre></td></tr></table></figure></p>
+        <h2 id="创建规则"><a href="#创建规则" class="headerlink" title="创建规则"></a>创建规则</h2><p>使用Artisan命令创建规则：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">php artisan make:rule CheckPhoneNumber</span><br></pre></td></tr></table></figure>
+
 <p>规则放在 <code>app/Rules</code> 目录</p>
-<p>规则对象包括 <code>passes()</code> 和 <code>message()</code> 方法<br><code>passes</code> 方法接收属性值和名称，并根据属性值是否符合规则而返回 <code>true</code> 或者 <code>false</code>：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">passes</span><span class="params">($attribute, $value)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> preg_match(<span class="string">'/^1[3456789]\d&#123;9&#125;$/'</span>,$value);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">message</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">'电话号码格式不正确'</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>规则对象包括 <code>passes()</code> 和 <code>message()</code> 方法<br><code>passes</code> 方法接收属性值和名称，并根据属性值是否符合规则而返回 <code>true</code> 或者 <code>false</code>：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">passes</span><span class="params">($attribute, $value)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> preg_match(<span class="string">'/^1[3456789]\d&#123;9&#125;$/'</span>,$value);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">message</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">'电话号码格式不正确'</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
         
           <p class="article-more-link">
             <a href="/2018/laravel-custom-validation-rules.html#more">阅读全文</a>
@@ -258,7 +270,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.liluoao.com/2018/laravel-custom-validation-rules.html" data-id="ck49m02c3001h8smj9or61q1a" class="article-share-link">分享</a>
+      <a data-url="http://www.liluoao.com/2018/laravel-custom-validation-rules.html" data-id="ck4dti78w001h4gmjkrhaegqk" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/laravel/">laravel</a></li></ul>
@@ -300,6 +312,7 @@
 <ul>
 <li>Confirmed<br>如果要验证的字段是 <code>password</code>，输入中必须存在匹配的 <code>password_confirmation</code> 字段。</li>
 <li>Different<br>验证的字段值必须与参数字段的值不同。<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">rules</span><span class="params">()</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> [</span><br><span class="line">        <span class="comment">//...</span></span><br><span class="line">        <span class="string">'password'</span> =&gt; <span class="string">'bail|required|string|between:8,20|confirmed|different:old_password'</span>,</span><br><span class="line">        <span class="string">'password_confirmation'</span> =&gt; <span class="string">'bail|required|string|between:8,20'</span></span><br><span class="line">        <span class="comment">//...</span></span><br><span class="line">    ];</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 </li>
 </ul>
         
@@ -310,7 +323,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.liluoao.com/2018/laravel-form-validation.html" data-id="ck49m02c3001b8smjl33ub9ot" class="article-share-link">分享</a>
+      <a data-url="http://www.liluoao.com/2018/laravel-form-validation.html" data-id="ck4dti78w001b4gmjibr2uo2x" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/laravel/">laravel</a></li></ul>
@@ -357,7 +370,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.liluoao.com/2018/laravel-localization.html" data-id="ck49m02bn00198smj70h0qgdt" class="article-share-link">分享</a>
+      <a data-url="http://www.liluoao.com/2018/laravel-localization.html" data-id="ck4dti78w00194gmj7xmlvd1h" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/laravel/">laravel</a></li></ul>
@@ -395,8 +408,12 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>在 <code>composer.json</code> 中定义了自动加载的文件：<br><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="comment">//...</span></span><br><span class="line">    <span class="attr">"autoload"</span>: &#123;</span><br><span class="line">        <span class="comment">//...</span></span><br><span class="line">        <span class="attr">"files"</span>: [</span><br><span class="line">            <span class="string">"app/helpers.php"</span></span><br><span class="line">        ]</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>在 <code>app/helpers.php</code> 中自定义辅助函数：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (!function_exists(<span class="string">'changeShowMoneyFormat'</span>)) &#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 转换金额格式</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> float $money 金额</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> int $length 保留位数</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> string|bool 转换结果</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">changeShowMoneyFormat</span><span class="params">($money, $length = <span class="number">2</span>)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> sprintf(<span class="string">"%.&#123;$length&#125;f"</span>, $money);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+        <p>在 <code>composer.json</code> 中定义了自动加载的文件：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="comment">//...</span></span><br><span class="line">    <span class="attr">"autoload"</span>: &#123;</span><br><span class="line">        <span class="comment">//...</span></span><br><span class="line">        <span class="attr">"files"</span>: [</span><br><span class="line">            <span class="string">"app/helpers.php"</span></span><br><span class="line">        ]</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在 <code>app/helpers.php</code> 中自定义辅助函数：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (!function_exists(<span class="string">'changeShowMoneyFormat'</span>)) &#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 转换金额格式</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> float $money 金额</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> int $length 保留位数</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> string|bool 转换结果</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">changeShowMoneyFormat</span><span class="params">($money, $length = <span class="number">2</span>)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> sprintf(<span class="string">"%.&#123;$length&#125;f"</span>, $money);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <p>Packagist包：<a href="https://packagist.org/packages/sebastiaanluca/laravel-helpers" target="_blank" rel="noopener">https://packagist.org/packages/sebastiaanluca/laravel-helpers</a></p>
 <p>常用函数如：<code>dd()</code> <code>app()</code> <code>env()</code> <code>config()</code> <code>public_path()</code> <code>array_pluck()</code></p>
 <p>更多Laravel辅助函数见<a href="https://laravel.com/docs/5.6/helpers" target="_blank" rel="noopener">Helpers</a></p>
@@ -404,7 +421,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.liluoao.com/2018/laravel-helpers.html" data-id="ck49m02c3001e8smjgb9dd4s3" class="article-share-link">分享</a>
+      <a data-url="http://www.liluoao.com/2018/laravel-helpers.html" data-id="ck4dti78w001e4gmjxqcux0ww" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/laravel/">laravel</a></li></ul>
@@ -442,10 +459,13 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h3><p>文档推荐使用<a href="https://forge.laravel.com/" target="_blank" rel="noopener">Laravel Forge</a>管理 <code>cron</code> 项目。示例：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">* * * * * php /path-to-your-project/artisan schedule:run &gt;&gt; /dev/null 2&gt;&amp;1</span><br></pre></td></tr></table></figure></p>
+        <h3 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h3><p>文档推荐使用<a href="https://forge.laravel.com/" target="_blank" rel="noopener">Laravel Forge</a>管理 <code>cron</code> 项目。示例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">* * * * * php /path-to-your-project/artisan schedule:run &gt;&gt; /dev/null 2&gt;&amp;1</span><br></pre></td></tr></table></figure>
+
 <h3 id="定义调度"><a href="#定义调度" class="headerlink" title="定义调度"></a>定义调度</h3><p>在 <code>App\Console\Kernel</code> 中 <code>schedule()</code> 方法中定义所有调度任务。有如下几种可以调度：</p>
 <ol>
 <li><strong>Closure</strong><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$schedule-&gt;call(<span class="function"><span class="keyword">function</span> <span class="params">()</span> </span>&#123;</span><br><span class="line">    DB::table(<span class="string">'should_delete'</span>)-&gt;delete();</span><br><span class="line">&#125;)-&gt;daily();</span><br></pre></td></tr></table></figure>
+
 </li>
 </ol>
         
@@ -456,7 +476,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.liluoao.com/2018/laravel-task-scheduling.html" data-id="ck49m02bn00168smj3mx9npcn" class="article-share-link">分享</a>
+      <a data-url="http://www.liluoao.com/2018/laravel-task-scheduling.html" data-id="ck4dti78w00164gmjljser30j" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/laravel/">laravel</a></li></ul>
@@ -494,7 +514,9 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="生成命令"><a href="#生成命令" class="headerlink" title="生成命令"></a>生成命令</h3><p>在 <code>app/Console/Commands</code> 中新建一个命令：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">php artisan make:command ReserveExpired//你的命令名</span><br></pre></td></tr></table></figure></p>
+        <h3 id="生成命令"><a href="#生成命令" class="headerlink" title="生成命令"></a>生成命令</h3><p>在 <code>app/Console/Commands</code> 中新建一个命令：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">php artisan make:command ReserveExpired//你的命令名</span><br></pre></td></tr></table></figure>
+
 <h3 id="命令结构"><a href="#命令结构" class="headerlink" title="命令结构"></a>命令结构</h3>
         
           <p class="article-more-link">
@@ -504,7 +526,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.liluoao.com/2018/laravel-artisan.html" data-id="ck49m02b7000h8smjyics0nyo" class="article-share-link">分享</a>
+      <a data-url="http://www.liluoao.com/2018/laravel-artisan.html" data-id="ck4dti78h000h4gmjnafv1igs" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/laravel/">laravel</a></li></ul>
@@ -542,7 +564,9 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h3><p>首先打开 <code>config/queue.php</code> 。<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'default'</span> =&gt; env(<span class="string">'QUEUE_DRIVER'</span>, <span class="string">'sync'</span>),</span><br><span class="line"><span class="string">'connections'</span> =&gt; [</span><br><span class="line">        <span class="string">'sync'</span> =&gt; [</span><br><span class="line">            <span class="string">'driver'</span> =&gt; <span class="string">'sync'</span>,</span><br><span class="line">        ],</span><br><span class="line">        <span class="string">'database'</span> =&gt; [</span><br><span class="line">            <span class="string">'driver'</span> =&gt; <span class="string">'database'</span>,</span><br><span class="line">        ],</span><br><span class="line">        <span class="comment">//...</span></span><br><span class="line">        <span class="string">'redis'</span> =&gt; [</span><br><span class="line">            <span class="string">'driver'</span> =&gt; <span class="string">'redis'</span>,</span><br><span class="line">        ],</span><br><span class="line">    ],</span><br></pre></td></tr></table></figure></p>
+        <h3 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h3><p>首先打开 <code>config/queue.php</code> 。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'default'</span> =&gt; env(<span class="string">'QUEUE_DRIVER'</span>, <span class="string">'sync'</span>),</span><br><span class="line"><span class="string">'connections'</span> =&gt; [</span><br><span class="line">        <span class="string">'sync'</span> =&gt; [</span><br><span class="line">            <span class="string">'driver'</span> =&gt; <span class="string">'sync'</span>,</span><br><span class="line">        ],</span><br><span class="line">        <span class="string">'database'</span> =&gt; [</span><br><span class="line">            <span class="string">'driver'</span> =&gt; <span class="string">'database'</span>,</span><br><span class="line">        ],</span><br><span class="line">        <span class="comment">//...</span></span><br><span class="line">        <span class="string">'redis'</span> =&gt; [</span><br><span class="line">            <span class="string">'driver'</span> =&gt; <span class="string">'redis'</span>,</span><br><span class="line">        ],</span><br><span class="line">    ],</span><br></pre></td></tr></table></figure>
+
 <p><code>default</code> 是队列系统默认使用的驱动，在连接时可以使用 <code>onConnection()</code> 方法将任务推到指定连接。<br><code>connections</code> 可以配置各种驱动的设置，如<strong>Redis</strong>的数据库连接等。<br><code>failed</code> 配置队列中的任务执行失败时，保存失败任务的库与表。</p>
         
           <p class="article-more-link">
@@ -552,7 +576,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.liluoao.com/2018/laravel-queue.html" data-id="ck49m02bn000z8smjukflypne" class="article-share-link">分享</a>
+      <a data-url="http://www.liluoao.com/2018/laravel-queue.html" data-id="ck4dti78w00114gmjr0h8gvou" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/laravel/">laravel</a></li></ul>

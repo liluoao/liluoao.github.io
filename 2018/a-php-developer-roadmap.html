@@ -15,7 +15,7 @@
 <meta property="og:site_name" content="To be a Web Artisan">
 <meta property="og:description" content="前言在昨天（2018-08-02）已经发布了PHP 7.3.0.beta1 Released 如果你还没有使用 PHP7 ，那真的很遗憾。2018年PHP开发者应该熟练使用 PHP7，并且知道版本更新内容。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-12-17T08:32:06.705Z">
+<meta property="og:updated_time" content="2019-12-20T07:13:18.055Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="PHP新手开发者的路线">
 <meta name="twitter:description" content="前言在昨天（2018-08-02）已经发布了PHP 7.3.0.beta1 Released 如果你还没有使用 PHP7 ，那真的很遗憾。2018年PHP开发者应该熟练使用 PHP7，并且知道版本更新内容。">
@@ -88,6 +88,7 @@
         <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>在昨天（<code>2018-08-02</code>）已经发布了<a href="http://php.net/archive/2018.php#id2018-08-02-1" target="_blank" rel="noopener">PHP 7.3.0.beta1 Released</a></p>
 <p>如果你还没有使用 <strong>PHP7</strong> ，那真的很遗憾。2018年PHP开发者应该熟练使用 PHP7，并且知道版本更新内容。</p>
 <a id="more"></a>
+
 <h2 id="使用Composer"><a href="#使用Composer" class="headerlink" title="使用Composer"></a>使用Composer</h2><p>如果你在想使用一个扩展包时，还在下载源码，并尝试修改命名空间来嵌入你的项目中，你应该改变了。<br>至少应该使用 <strong>Composer</strong> 进行依赖管理，可以看看我以前写的 <a href="/2018/use-composer.html">《使用Composer管理依赖》</a></p>
 <h2 id="使用Guzzle"><a href="#使用Guzzle" class="headerlink" title="使用Guzzle"></a>使用Guzzle</h2><p><strong>Guzzle</strong> 是一个 PHP 的 HTTP 客户端，用来轻而易举地发送请求，并集成到我们的 WEB 服务上。<br>它的优点有构建查询语句、<code>POST</code> 请求、分流上传下载大文件、使用 <code>HTTP cookies</code>、上传 <code>JSON</code> 数据等等。<br><a href="http://guzzle-cn.readthedocs.io/zh_CN/latest/index.html" target="_blank" rel="noopener">《Guzzle中文文档》</a></p>
 <h2 id="使用Carbon"><a href="#使用Carbon" class="headerlink" title="使用Carbon"></a>使用Carbon</h2><p><strong>Carbon</strong> 是一个继承于 PHP 的 <code>DateTime</code> 类的时间类，让用法更加人性化<br>可以让你在处理时间时事半功倍，可以看看我以前写的 <a href="/2018/use-carbon.html">《使用Carbon》</a></p>
@@ -97,13 +98,13 @@
 <h2 id="持续集成"><a href="#持续集成" class="headerlink" title="持续集成"></a>持续集成</h2><p>持续集成（Continuous integration）是一种软件开发实践，即团队开发成员经常集成他们的工作，通过每个成员每天至少集成一次，也就意味着每天可能会发生多次集成。每次集成都通过自动化的构建（包括编译，发布，自动化测试）来验证，从而尽早地发现集成错误。<br>集成工具很多，流行的有 <strong><a href="https://jenkins.io/doc/" target="_blank" rel="noopener">Jenkins</a></strong>，<strong><a href="https://www.travis-ci.org/" target="_blank" rel="noopener">Travis CI</a></strong><br>我博客用的 <a href="/2018/use-appveyor-ci.html">《使用AppVeyor持续集成本博客》</a></p>
 <h2 id="代码风格"><a href="#代码风格" class="headerlink" title="代码风格"></a>代码风格</h2><p>良好的代码规范可以提高代码可读性，降低团队沟通维护成本。<br><strong>PSR</strong>（PHP Standard Recommendations）是 <a href="http://psr.phphub.org/" target="_blank" rel="noopener">PHP 标准规范</a> ，是 PHP 开发的实践标准。<br>其中 <a href="https://laravel-china.org/topics/2078/psr-specification-psr-1-basic-coding-specification" target="_blank" rel="noopener">PSR-1</a> 和 <a href="https://laravel-china.org/topics/2079/psr-specification-psr-2-coding-style-specification" target="_blank" rel="noopener">PSR-2</a> 是编码风格规范。<br><strong><a href="https://docs.styleci.io/" target="_blank" rel="noopener">StyleCI</a></strong> 提供 PHP 代码风格持续集成服务</p>
 <h2 id="单元测试"><a href="#单元测试" class="headerlink" title="单元测试"></a>单元测试</h2><p>测试对于程序员的重要性不言而喻<br><strong><a href="http://www.phpunit.cn/manual/6.5/zh_cn/index.html" target="_blank" rel="noopener">PHPUnit</a></strong> 是 PHP 单元测试包，由 <a href="https://github.com/sebastianbergmann" target="_blank" rel="noopener">Sebastian Bergmann</a> 开发<br>Laravel 有开箱即用的测试： <a href="https://www.jianshu.com/p/d8b3ac2c4623" target="_blank" rel="noopener">《在Laravel中测试》</a></p>
-<h2 id="微信开发"><a href="#微信开发" class="headerlink" title="微信开发"></a>微信开发</h2><p>PHP 由于它的特点，在开发微信上非常方便，也被作为开发首选。<br>对于未接触过 <strong>OAuth2.0</strong> 或者是不理解 <strong>RESTful API</strong> 的开发者，这是一个很好的学习机会，可以看看<a href="/2018/wechat-authorize-web.html">《微信网页授权》</a><br><a href="https://mp.weixin.qq.com/wiki?t=resource/res_main&amp;id=mp1445241432" target="_blank" rel="noopener">《微信公众平台文档》</a><br><a href="https://pay.weixin.qq.com/wiki/doc/api/micropay.php?chapter=5_1" target="_blank" rel="noopener">《微信支付文档》</a><br><a href="https://work.weixin.qq.com/api/doc" target="_blank" rel="noopener">《企业微信开发文档》</a><br>也可以看看<a href="/2018/how-i-understand-restful-api.html">《我所理解的接口设计（转）》</a></p>
+<h2 id="微信开发"><a href="#微信开发" class="headerlink" title="微信开发"></a>微信开发</h2><p>PHP 由于它的特点，在开发微信上非常方便，也被作为开发首选。<br>对于未接触过 <strong>OAuth2.0</strong> 或者是不理解 <strong>RESTful API</strong> 的开发者，这是一个很好的学习机会，可以看看<a href="/2018/wechat-authorize-web.html">《微信网页授权》</a><br><a href="https://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1445241432" target="_blank" rel="noopener">《微信公众平台文档》</a><br><a href="https://pay.weixin.qq.com/wiki/doc/api/micropay.php?chapter=5_1" target="_blank" rel="noopener">《微信支付文档》</a><br><a href="https://work.weixin.qq.com/api/doc" target="_blank" rel="noopener">《企业微信开发文档》</a><br>也可以看看<a href="/2018/how-i-understand-restful-api.html">《我所理解的接口设计（转）》</a></p>
 <h2 id="其它"><a href="#其它" class="headerlink" title="其它"></a>其它</h2><p>开发中应该遵循的<a href="/2018/php-solid.html">《SOLID原则》</a><br>通过分库、分表等方式来<a href="http://blog.51cto.com/lizhenliang/2095526" target="_blank" rel="noopener">《MySQL优化》</a><br>需要了解的<a href="/2018/what-is-jwt.html">《什么是 JWT（转）》</a><br>设计模式，包括<a href="/2018/php-creational-design-patterns.html">创建模式</a>（Creational Patterns）、<a href="/2018/php-structural-design-patterns-part1.html">架构模式</a>（Structural Patterns）、<a href="/2018/php-behavioral-design-patterns-part1.html">行为模式</a>（Behavioral Patterns）</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.liluoao.com/2018/a-php-developer-roadmap.html" data-id="ck49m02ci002e8smjnv59tukx" class="article-share-link">分享</a>
+      <a data-url="http://www.liluoao.com/2018/a-php-developer-roadmap.html" data-id="ck4dti79c002e4gmjjilw6mzg" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/php/">php</a></li></ul>

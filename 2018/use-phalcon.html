@@ -7,19 +7,19 @@
   
   <title>Phalcon框架入门 | To be a Web Artisan</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="安装PhalconPhalcon 是使用 C 扩展编写、高性能的 PHP 框架。 Windows用户可以在https://github.com/phalcon/cphalcon/releases 下载 .dll 文件，加入 php.ini 配置中： 1extension=php_phalcon.dll 重启你的WEB服务器后，在 phpinfo() 中看到 Phalcon 扩展，代表你安装成功。">
+  <meta name="description" content="安装PhalconPhalcon 是使用 C 扩展编写、高性能的 PHP 框架。 Windows用户可以在https://github.com/phalcon/cphalcon/releases 下载 .dll 文件，加入 php.ini 配置中： 1extension=php_phalcon.dll  重启你的WEB服务器后，在 phpinfo() 中看到 Phalcon 扩展，代表你安装成功。">
 <meta name="keywords" content="phalcon">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Phalcon框架入门">
 <meta property="og:url" content="http://www.liluoao.com/2018/use-phalcon.html">
 <meta property="og:site_name" content="To be a Web Artisan">
-<meta property="og:description" content="安装PhalconPhalcon 是使用 C 扩展编写、高性能的 PHP 框架。 Windows用户可以在https://github.com/phalcon/cphalcon/releases 下载 .dll 文件，加入 php.ini 配置中： 1extension=php_phalcon.dll 重启你的WEB服务器后，在 phpinfo() 中看到 Phalcon 扩展，代表你安装成功。">
+<meta property="og:description" content="安装PhalconPhalcon 是使用 C 扩展编写、高性能的 PHP 框架。 Windows用户可以在https://github.com/phalcon/cphalcon/releases 下载 .dll 文件，加入 php.ini 配置中： 1extension=php_phalcon.dll  重启你的WEB服务器后，在 phpinfo() 中看到 Phalcon 扩展，代表你安装成功。">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://img.shields.io/packagist/v/liluoao/phalcon.svg">
-<meta property="og:updated_time" content="2019-12-17T08:32:06.721Z">
+<meta property="og:updated_time" content="2019-12-20T07:13:18.055Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Phalcon框架入门">
-<meta name="twitter:description" content="安装PhalconPhalcon 是使用 C 扩展编写、高性能的 PHP 框架。 Windows用户可以在https://github.com/phalcon/cphalcon/releases 下载 .dll 文件，加入 php.ini 配置中： 1extension=php_phalcon.dll 重启你的WEB服务器后，在 phpinfo() 中看到 Phalcon 扩展，代表你安装成功。">
+<meta name="twitter:description" content="安装PhalconPhalcon 是使用 C 扩展编写、高性能的 PHP 框架。 Windows用户可以在https://github.com/phalcon/cphalcon/releases 下载 .dll 文件，加入 php.ini 配置中： 1extension=php_phalcon.dll  重启你的WEB服务器后，在 phpinfo() 中看到 Phalcon 扩展，代表你安装成功。">
 <meta name="twitter:image" content="https://img.shields.io/packagist/v/liluoao/phalcon.svg">
 <meta name="twitter:creator" content="@liluoao">
   
@@ -94,24 +94,32 @@
         <h3 id="安装Phalcon"><a href="#安装Phalcon" class="headerlink" title="安装Phalcon"></a>安装Phalcon</h3><p>Phalcon 是使用 C 扩展编写、高性能的 PHP 框架。</p>
 <p>Windows用户可以在<a href="https://github.com/phalcon/cphalcon/releases" target="_blank" rel="noopener">https://github.com/phalcon/cphalcon/releases</a> 下载 <code>.dll</code> 文件，加入 <code>php.ini</code> 配置中：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">extension=php_phalcon.dll</span><br></pre></td></tr></table></figure>
+
 <p>重启你的WEB服务器后，在 <code>phpinfo()</code> 中看到 Phalcon 扩展，代表你安装成功。</p>
-<p>其它平台安装方法见：<a href="https://phalconphp.com/zh/download/linux" target="_blank" rel="noopener">https://phalconphp.com/zh/download/linux</a><br><a id="more"></a></p>
+<p>其它平台安装方法见：<a href="https://phalconphp.com/zh/download/linux" target="_blank" rel="noopener">https://phalconphp.com/zh/download/linux</a></p>
+<a id="more"></a>
 <h3 id="安装Phalcon-devtool"><a href="#安装Phalcon-devtool" class="headerlink" title="安装Phalcon-devtool"></a>安装Phalcon-devtool</h3><p><a href="https://github.com/phalcon/phalcon-devtools" target="_blank" rel="noopener">phalcon-devtools</a> 是Phalcon开发者工具，可以自动生成代码，和为IDE创建Phalcon语法提示。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/phalcon/phalcon-devtools.git</span><br></pre></td></tr></table></figure>
+
 <p>然后将<code>~/phalcon-devtools</code>目录加入系统环境变量<strong>PATH</strong>，在命令行输入：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">phalcon --<span class="built_in">help</span></span><br></pre></td></tr></table></figure>
+
 <p>返回如下信息，说明设置成功：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">Phalcon DevTools (3.2.12)</span><br><span class="line"></span><br><span class="line">Help:</span><br><span class="line">  Lists the commands available </span><br><span class="line"><span class="keyword">in</span></span><br><span class="line"> Phalcon devtools</span><br><span class="line"></span><br><span class="line">Available commands:</span><br><span class="line">  info             (<span class="built_in">alias</span> of: i)</span><br><span class="line">  commands         (<span class="built_in">alias</span> of: list, enumerate)</span><br><span class="line">  controller       (<span class="built_in">alias</span> of: create-controller)</span><br><span class="line">  module           (<span class="built_in">alias</span> of: create-module)</span><br><span class="line">  model            (<span class="built_in">alias</span> of: create-model)</span><br><span class="line">  all-models       (<span class="built_in">alias</span> of: create-all-models)</span><br><span class="line">  project          (<span class="built_in">alias</span> of: create-project)</span><br><span class="line">  scaffold         (<span class="built_in">alias</span> of: create-scaffold)</span><br><span class="line">  migration        (<span class="built_in">alias</span> of: create-migration)</span><br><span class="line">  webtools         (<span class="built_in">alias</span> of: create-webtools)</span><br><span class="line">  serve            (<span class="built_in">alias</span> of: server)</span><br><span class="line">  console          (<span class="built_in">alias</span> of: shell, psysh)</span><br></pre></td></tr></table></figure>
+
 <h4 id="为IDE创建语法提示"><a href="#为IDE创建语法提示" class="headerlink" title="为IDE创建语法提示"></a>为IDE创建语法提示</h4><p>进入 <code>~/phalcon-devtools/ide</code> 文件夹，运行命令：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">php gen-stubs.php</span><br></pre></td></tr></table></figure>
+
 <p>它会在本文件夹中生成相应版本语法目录，在你的IDE中导入 <code>Configure PHP Include Paths</code> 即可。</p>
 <h3 id="下载框架文件"><a href="#下载框架文件" class="headerlink" title="下载框架文件"></a>下载框架文件</h3><p>安利我的项目：<a href="https://github.com/liluoao/phalcon-framework" target="_blank" rel="noopener">https://github.com/liluoao/phalcon-framework</a></p>
-<p><a href="https://packagist.org/packages/liluoao/phalcon" target="_blank" rel="noopener"><img src="https://img.shields.io/packagist/v/liluoao/phalcon.svg" alt="Packagist"></a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">composer create-project liluoao/phalcon</span><br></pre></td></tr></table></figure></p>
+<p><a href="https://packagist.org/packages/liluoao/phalcon" target="_blank" rel="noopener"><img src="https://img.shields.io/packagist/v/liluoao/phalcon.svg" alt="Packagist"></a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">composer create-project liluoao/phalcon</span><br></pre></td></tr></table></figure>
+
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.liluoao.com/2018/use-phalcon.html" data-id="ck49m02dd003y8smjvmc0qykt" class="article-share-link">分享</a>
+      <a data-url="http://www.liluoao.com/2018/use-phalcon.html" data-id="ck4dti7a7003y4gmja2pfshid" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/phalcon/">phalcon</a></li></ul>

@@ -7,18 +7,18 @@
   
   <title>Laravel的路由 | To be a Web Artisan</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="新增路由文件在 app/Providers/RouteServiceProvider 中：12345678910protected function mapWebRoutes()&amp;#123;    Route::group([        &apos;middleware&apos; =&amp;gt; &apos;web&apos;,         &apos;namespace&apos; =&amp;gt; $this-&amp;gt;namespace">
+  <meta name="description" content="新增路由文件在 app/Providers/RouteServiceProvider 中： 12345678910protected function mapWebRoutes()&amp;#123;    Route::group([        &apos;middleware&apos; =&amp;gt; &apos;web&apos;,         &apos;namespace&apos; =&amp;gt; $this-&amp;gt;namespace">
 <meta name="keywords" content="laravel">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Laravel的路由">
 <meta property="og:url" content="http://www.liluoao.com/2018/laravel-route.html">
 <meta property="og:site_name" content="To be a Web Artisan">
-<meta property="og:description" content="新增路由文件在 app/Providers/RouteServiceProvider 中：12345678910protected function mapWebRoutes()&amp;#123;    Route::group([        &apos;middleware&apos; =&amp;gt; &apos;web&apos;,         &apos;namespace&apos; =&amp;gt; $this-&amp;gt;namespace">
+<meta property="og:description" content="新增路由文件在 app/Providers/RouteServiceProvider 中： 12345678910protected function mapWebRoutes()&amp;#123;    Route::group([        &apos;middleware&apos; =&amp;gt; &apos;web&apos;,         &apos;namespace&apos; =&amp;gt; $this-&amp;gt;namespace">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-12-17T08:32:06.705Z">
+<meta property="og:updated_time" content="2019-12-20T07:13:18.048Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Laravel的路由">
-<meta name="twitter:description" content="新增路由文件在 app/Providers/RouteServiceProvider 中：12345678910protected function mapWebRoutes()&amp;#123;    Route::group([        &apos;middleware&apos; =&amp;gt; &apos;web&apos;,         &apos;namespace&apos; =&amp;gt; $this-&amp;gt;namespace">
+<meta name="twitter:description" content="新增路由文件在 app/Providers/RouteServiceProvider 中： 12345678910protected function mapWebRoutes()&amp;#123;    Route::group([        &apos;middleware&apos; =&amp;gt; &apos;web&apos;,         &apos;namespace&apos; =&amp;gt; $this-&amp;gt;namespace">
 <meta name="twitter:creator" content="@liluoao">
   
   
@@ -89,14 +89,18 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h4 id="新增路由文件"><a href="#新增路由文件" class="headerlink" title="新增路由文件"></a>新增路由文件</h4><p>在 <code>app/Providers/RouteServiceProvider</code> 中：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">protected</span> <span class="function"><span class="keyword">function</span> <span class="title">mapWebRoutes</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    Route::group([</span><br><span class="line">        <span class="string">'middleware'</span> =&gt; <span class="string">'web'</span>, </span><br><span class="line">        <span class="string">'namespace'</span> =&gt; <span class="keyword">$this</span>-&gt;namespace</span><br><span class="line">        ], <span class="function"><span class="keyword">function</span> <span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">require</span> base_path(<span class="string">'routes/web.php'</span>);</span><br><span class="line">        <span class="keyword">require</span> base_path(<span class="string">'routes/test.php'</span>);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+        <h4 id="新增路由文件"><a href="#新增路由文件" class="headerlink" title="新增路由文件"></a>新增路由文件</h4><p>在 <code>app/Providers/RouteServiceProvider</code> 中：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">protected</span> <span class="function"><span class="keyword">function</span> <span class="title">mapWebRoutes</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    Route::group([</span><br><span class="line">        <span class="string">'middleware'</span> =&gt; <span class="string">'web'</span>, </span><br><span class="line">        <span class="string">'namespace'</span> =&gt; <span class="keyword">$this</span>-&gt;namespace</span><br><span class="line">        ], <span class="function"><span class="keyword">function</span> <span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">require</span> base_path(<span class="string">'routes/web.php'</span>);</span><br><span class="line">        <span class="keyword">require</span> base_path(<span class="string">'routes/test.php'</span>);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <h4 id="分配其他中间件组"><a href="#分配其他中间件组" class="headerlink" title="分配其他中间件组"></a>分配其他中间件组</h4><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">protected</span> <span class="function"><span class="keyword">function</span> <span class="title">mapApiRoutes</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    Route::prefix(<span class="string">'api'</span>)</span><br><span class="line">         -&gt;middleware(<span class="string">'restful-api'</span>)</span><br><span class="line">         -&gt;namespace(<span class="keyword">$this</span>-&gt;namespace)</span><br><span class="line">         -&gt;group(base_path(<span class="string">'routes/api.php'</span>));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <h4 id="当前路由"><a href="#当前路由" class="headerlink" title="当前路由"></a>当前路由</h4><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$route = Route::current();</span><br><span class="line"></span><br><span class="line">$name = Route::currentRouteName();</span><br><span class="line"></span><br><span class="line">$action = Route::currentRouteAction();</span><br></pre></td></tr></table></figure>
+
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.liluoao.com/2018/laravel-route.html" data-id="ck49m02bn00148smjntg9ahsn" class="article-share-link">分享</a>
+      <a data-url="http://www.liluoao.com/2018/laravel-route.html" data-id="ck4dti78w00144gmjkxaop80o" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/laravel/">laravel</a></li></ul>

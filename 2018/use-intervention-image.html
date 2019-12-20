@@ -15,7 +15,7 @@
 <meta property="og:site_name" content="To be a Web Artisan">
 <meta property="og:description" content="Intervention/image 是为 Laravel 定制的图片处理工具, 它提供了一套易于表达的方式来创建、编辑图片。  Composer安装1composer require intervention/image">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-12-17T08:32:06.721Z">
+<meta property="og:updated_time" content="2019-12-20T07:13:18.055Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="使用Intervention-Image处理图像">
 <meta name="twitter:description" content="Intervention/image 是为 Laravel 定制的图片处理工具, 它提供了一套易于表达的方式来创建、编辑图片。  Composer安装1composer require intervention/image">
@@ -92,6 +92,7 @@
         <p><a href="https://github.com/Intervention/image" target="_blank" rel="noopener">Intervention/image</a> 是为 Laravel 定制的图片处理工具, 它提供了一套易于表达的方式来创建、编辑图片。</p>
 <ul>
 <li>Composer安装<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">composer require intervention/image</span><br></pre></td></tr></table></figure>
+
 </li>
 </ul>
 <a id="more"></a>
@@ -108,7 +109,9 @@
 <p>此扩展包默认使用 PHP 的 GD 库来进行图像处理, 但由于 GD 库对图像的处理效率要稍逊色于 imagemagick 库, 因此这里推荐替换为 imagemagick 库来进行图像处理.</p>
 <p>开始之前, 你得先确定本地已经安装好 GD 或 Imagick.</p>
 <p>在使用 Intervention Image 的时候, 你只需要给 ImageManager 传一个数组参数就可以完成 GD 和 Imagick 库之间的互相切换. </p>
-<p>如下：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 通过指定 driver 来创建一个 image manager 实例</span></span><br><span class="line">$manager = <span class="keyword">new</span> ImageManager(<span class="keyword">array</span>(<span class="string">'driver'</span> =&gt; <span class="string">'imagick'</span>));</span><br><span class="line"></span><br><span class="line"><span class="comment">// 最后创建 image 实例</span></span><br><span class="line">$image = $manager-&gt;make(<span class="string">'public/foo.jpg'</span>)-&gt;resize(<span class="number">300</span>, <span class="number">200</span>);</span><br></pre></td></tr></table></figure></p>
+<p>如下：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 通过指定 driver 来创建一个 image manager 实例</span></span><br><span class="line">$manager = <span class="keyword">new</span> ImageManager(<span class="keyword">array</span>(<span class="string">'driver'</span> =&gt; <span class="string">'imagick'</span>));</span><br><span class="line"></span><br><span class="line"><span class="comment">// 最后创建 image 实例</span></span><br><span class="line">$image = $manager-&gt;make(<span class="string">'public/foo.jpg'</span>)-&gt;resize(<span class="number">300</span>, <span class="number">200</span>);</span><br></pre></td></tr></table></figure>
+
 <ul>
 <li>除上文介绍的基本用法之外, 此扩展包还支持:<br>  图片上传功能;<br>  图片缓存功能;<br>  图片过滤功能: 将图片按照统一规则进行转换;<br>  图片动态处理: 根据访问图片的 URL 参数自动调整图片大小</li>
 </ul>
@@ -117,7 +120,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.liluoao.com/2018/use-intervention-image.html" data-id="ck49m02dd003m8smj2bce8bt1" class="article-share-link">分享</a>
+      <a data-url="http://www.liluoao.com/2018/use-intervention-image.html" data-id="ck4dti7a7003m4gmjiyhbll08" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/laravel/">laravel</a></li></ul>

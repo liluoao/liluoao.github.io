@@ -15,7 +15,7 @@
 <meta property="og:site_name" content="To be a Web Artisan">
 <meta property="og:description" content="Laravel Excel  brings the power of PHPOffice’s PHPExcel to Laravel 5 with a touch of the Laravel Magic. It includes features like: importing Excel and CSV to collections, exporting models, array’s and">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-12-17T08:32:06.721Z">
+<meta property="og:updated_time" content="2019-12-20T07:13:18.055Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="使用Laravel-Excel">
 <meta name="twitter:description" content="Laravel Excel  brings the power of PHPOffice’s PHPExcel to Laravel 5 with a touch of the Laravel Magic. It includes features like: importing Excel and CSV to collections, exporting models, array’s and">
@@ -93,6 +93,7 @@
 <p><a href="https://github.com/Maatwebsite/Laravel-Excel" target="_blank" rel="noopener">Github传送门</a></p>
 <ul>
 <li>Composer安装<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">composer require maatwebsite/excel</span><br></pre></td></tr></table></figure>
+
 </li>
 </ul>
 <a id="more"></a>
@@ -102,19 +103,22 @@
 </li>
 <li><p>发布<br>会创建一个 <code>config/excel.php</code></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">php artisan vendor:publish</span><br></pre></td></tr></table></figure>
+
 </li>
 </ul>
 <h2 id="Import"><a href="#Import" class="headerlink" title="Import"></a>Import</h2><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">use</span> <span class="title">Maatwebsite</span>\<span class="title">Excel</span>\<span class="title">Facades</span>\<span class="title">Excel</span>;</span><br><span class="line">Excel::load(<span class="string">'file.xls'</span>, <span class="function"><span class="keyword">function</span><span class="params">($reader)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// Getting all results</span></span><br><span class="line">    $results = $reader-&gt;get();</span><br><span class="line">    <span class="comment">// -&gt;all() is a wrapper for -&gt;get() and will work the same</span></span><br><span class="line">    $results = $reader-&gt;all();</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
 <p>这里对<code>$reader</code>使用<code>get()</code>或<code>all()</code>方法时会生成<strong>Sheet</strong>集合，可以使用<code>getTitle()</code>,<code>toArray()</code>,<code>toObject</code>等方法。<br>使用<code>first()</code>或通过<code>each()</code>或<code>foreach</code>遍历时，会生成<strong>Row</strong>集合，这时<code>toArray()</code>就是最终结果了。</p>
 <p>工具默认会把第一行当作title，最后数据从A2单元格开始。<br>第一行的大写字母会转成小写输出，汉字为空。</p>
 <p>整个结果集是<strong>LaravelExcelReader</strong>对象。</p>
 <h2 id="Export"><a href="#Export" class="headerlink" title="Export"></a>Export</h2><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">$model = AdminModel::query()-&gt;get();</span><br><span class="line">$array = [</span><br><span class="line">    [<span class="string">'data1'</span>,<span class="string">'data2'</span>],</span><br><span class="line">    [<span class="string">'data3'</span>,<span class="string">'data4'</span>]</span><br><span class="line">];</span><br><span class="line">Excel::create(<span class="string">'test'</span>,<span class="function"><span class="keyword">function</span> <span class="params">($excel)</span><span class="title">use</span><span class="params">($model)</span></span>&#123;</span><br><span class="line">    $excel-&gt;sheet(<span class="string">'sheet1'</span>,<span class="function"><span class="keyword">function</span> <span class="params">($sheet)</span><span class="title">use</span><span class="params">($model)</span></span>&#123;</span><br><span class="line">        $sheet-&gt;fromModel($model);</span><br><span class="line">        <span class="comment">//$sheet-&gt;fromArray($array);</span></span><br><span class="line">    &#125;);</span><br><span class="line">&#125;)-&gt;export(<span class="string">'xls'</span>);</span><br></pre></td></tr></table></figure>
+
 <p>有从数组导出和从Model导出两种方法</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.liluoao.com/2018/use-laravel-excel.html" data-id="ck49m02dd003v8smj6w6vqx1i" class="article-share-link">分享</a>
+      <a data-url="http://www.liluoao.com/2018/use-laravel-excel.html" data-id="ck4dti7a7003v4gmjrvekdo0p" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/laravel/">laravel</a></li></ul>

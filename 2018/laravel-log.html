@@ -7,18 +7,18 @@
   
   <title>Laravel的日志 | To be a Web Artisan</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Laravel 的日志系统基于 Monolog 库 错误日志级别（RFC5424定义）：debug, info, notice, warning, error, critical, alert, emergency Laravel的日志默认保存在 storage/logs/laravel.log123456789101112131415161718192021use Illuminate\Supp">
+  <meta name="description" content="Laravel 的日志系统基于 Monolog 库 错误日志级别（RFC5424定义）：debug, info, notice, warning, error, critical, alert, emergency Laravel的日志默认保存在 storage/logs/laravel.log 123456789101112131415161718192021use Illuminate\Sup">
 <meta name="keywords" content="laravel">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Laravel的日志">
 <meta property="og:url" content="http://www.liluoao.com/2018/laravel-log.html">
 <meta property="og:site_name" content="To be a Web Artisan">
-<meta property="og:description" content="Laravel 的日志系统基于 Monolog 库 错误日志级别（RFC5424定义）：debug, info, notice, warning, error, critical, alert, emergency Laravel的日志默认保存在 storage/logs/laravel.log123456789101112131415161718192021use Illuminate\Supp">
+<meta property="og:description" content="Laravel 的日志系统基于 Monolog 库 错误日志级别（RFC5424定义）：debug, info, notice, warning, error, critical, alert, emergency Laravel的日志默认保存在 storage/logs/laravel.log 123456789101112131415161718192021use Illuminate\Sup">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-12-17T08:32:06.705Z">
+<meta property="og:updated_time" content="2019-12-20T07:13:18.048Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Laravel的日志">
-<meta name="twitter:description" content="Laravel 的日志系统基于 Monolog 库 错误日志级别（RFC5424定义）：debug, info, notice, warning, error, critical, alert, emergency Laravel的日志默认保存在 storage/logs/laravel.log123456789101112131415161718192021use Illuminate\Supp">
+<meta name="twitter:description" content="Laravel 的日志系统基于 Monolog 库 错误日志级别（RFC5424定义）：debug, info, notice, warning, error, critical, alert, emergency Laravel的日志默认保存在 storage/logs/laravel.log 123456789101112131415161718192021use Illuminate\Sup">
 <meta name="twitter:creator" content="@liluoao">
   
   
@@ -91,12 +91,12 @@
       
         <p>Laravel 的日志系统基于 <a href="https://github.com/Seldaek/monolog" target="_blank" rel="noopener">Monolog</a> 库</p>
 <p>错误日志级别（<a href="https://tools.ietf.org/html/rfc5424" target="_blank" rel="noopener">RFC5424</a>定义）：<em>debug, info, notice, warning, error, critical, alert, emergency</em></p>
-<p>Laravel的日志默认保存在 <code>storage/logs/laravel.log</code><br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">use</span> <span class="title">Illuminate</span>\<span class="title">Support</span>\<span class="title">Facades</span>\<span class="title">Log</span>;</span><br><span class="line"></span><br><span class="line">Log::emergency($message, $contextualInfo);</span><br><span class="line">Log::alert($message);</span><br><span class="line">Log::critical($message);</span><br><span class="line">Log::error($message);</span><br><span class="line">Log::warning($message);</span><br><span class="line">Log::notice($message);</span><br><span class="line">Log::info($message);</span><br><span class="line">Log::debug($message);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 或者全局助手方法</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// Log::info()</span></span><br><span class="line">info(<span class="string">'Some helpful information!'</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// Log::debug()</span></span><br><span class="line">logger(<span class="string">'Debug message'</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// Log::error()</span></span><br><span class="line">logger()-&gt;error(<span class="string">'You are not allowed here.'</span>);</span><br></pre></td></tr></table></figure></p>
-
+<p>Laravel的日志默认保存在 <code>storage/logs/laravel.log</code></p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">use</span> <span class="title">Illuminate</span>\<span class="title">Support</span>\<span class="title">Facades</span>\<span class="title">Log</span>;</span><br><span class="line"></span><br><span class="line">Log::emergency($message, $contextualInfo);</span><br><span class="line">Log::alert($message);</span><br><span class="line">Log::critical($message);</span><br><span class="line">Log::error($message);</span><br><span class="line">Log::warning($message);</span><br><span class="line">Log::notice($message);</span><br><span class="line">Log::info($message);</span><br><span class="line">Log::debug($message);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 或者全局助手方法</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// Log::info()</span></span><br><span class="line">info(<span class="string">'Some helpful information!'</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// Log::debug()</span></span><br><span class="line">logger(<span class="string">'Debug message'</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// Log::error()</span></span><br><span class="line">logger()-&gt;error(<span class="string">'You are not allowed here.'</span>);</span><br></pre></td></tr></table></figure>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.liluoao.com/2018/laravel-log.html" data-id="ck49m02bn000o8smj9g4iub8q" class="article-share-link">分享</a>
+      <a data-url="http://www.liluoao.com/2018/laravel-log.html" data-id="ck4dti78h000o4gmjo0ej4pmp" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/laravel/">laravel</a></li></ul>
