@@ -5,21 +5,20 @@
   
 
   
-  <title>Kong集群间数据同步 | To be a Web Artisan</title>
+  <title>Kong框架的集群间数据同步 | To be a Web Artisan</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="概览  kong 的代码运行于 nginx 的 worker 进程中。kong 对数据的修改会在一个 worker 中进行，数据被修改后需要通知给本地的其他 worker 进程和其他机器上的 worker 进程。kong 使用的进程间通信主要方式有：  本机间通信-共享内存 跨机器通信-数据库">
+  <meta name="description" content="概览Kong 的代码运行于 Nginx 的 worker 进程中。Kong 对数据的修改会在一个 worker 中进行，数据被修改后需要通知给本地的其他 worker 进程和其他机器上的 worker 进程。Kong 使用的进程间通信主要方式有：  本机间通信-共享内存 跨机器通信-数据库">
 <meta name="keywords" content="lua,kong,openresty">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Kong集群间数据同步">
-<meta property="og:url" content="http://www.liluoao.com/2018/kong-cluster-event.html">
+<meta property="og:title" content="Kong框架的集群间数据同步">
+<meta property="og:url" content="https://liluoao.github.io/2018/kong-cluster-event.html">
 <meta property="og:site_name" content="To be a Web Artisan">
-<meta property="og:description" content="概览  kong 的代码运行于 nginx 的 worker 进程中。kong 对数据的修改会在一个 worker 中进行，数据被修改后需要通知给本地的其他 worker 进程和其他机器上的 worker 进程。kong 使用的进程间通信主要方式有：  本机间通信-共享内存 跨机器通信-数据库">
+<meta property="og:description" content="概览Kong 的代码运行于 Nginx 的 worker 进程中。Kong 对数据的修改会在一个 worker 中进行，数据被修改后需要通知给本地的其他 worker 进程和其他机器上的 worker 进程。Kong 使用的进程间通信主要方式有：  本机间通信-共享内存 跨机器通信-数据库">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-12-20T08:51:52.974Z">
+<meta property="og:updated_time" content="2019-12-23T12:07:16.059Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Kong集群间数据同步">
-<meta name="twitter:description" content="概览  kong 的代码运行于 nginx 的 worker 进程中。kong 对数据的修改会在一个 worker 中进行，数据被修改后需要通知给本地的其他 worker 进程和其他机器上的 worker 进程。kong 使用的进程间通信主要方式有：  本机间通信-共享内存 跨机器通信-数据库">
-<meta name="twitter:creator" content="@liluoao">
+<meta name="twitter:title" content="Kong框架的集群间数据同步">
+<meta name="twitter:description" content="概览Kong 的代码运行于 Nginx 的 worker 进程中。Kong 对数据的修改会在一个 worker 中进行，数据被修改后需要通知给本地的其他 worker 进程和其他机器上的 worker 进程。Kong 使用的进程间通信主要方式有：  本机间通信-共享内存 跨机器通信-数据库">
   
   
     <link rel="icon" href="/favicon.png">
@@ -47,17 +46,13 @@
         
           <a class="main-nav-link" href="/archives">文章列表</a>
         
-          <a class="main-nav-link" href="/categories/laravel">Laravel</a>
-        
-          <a class="main-nav-link" href="/categories/wechat">Wechat</a>
-        
       </nav>
       <nav id="sub-nav">
         
         <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
       </nav>
       <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://www.liluoao.com"></form>
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://liluoao.github.io"></form>
       </div>
     </div>
   </div>
@@ -69,6 +64,10 @@
   <time datetime="2018-11-23T06:45:28.000Z" itemprop="datePublished">2018-11-23</time>
 </a>
     
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Lua/">Lua</a>
+  </div>
+
   </div>
   <div class="article-inner">
     
@@ -77,7 +76,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      Kong集群间数据同步
+      Kong框架的集群间数据同步
     </h1>
   
 
@@ -85,19 +84,19 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="概览"><a href="#概览" class="headerlink" title="概览"></a>概览</h2><p>  kong 的代码运行于 nginx 的 worker 进程中。kong 对数据的修改会在一个 worker 中进行，数据被修改后需要通知给本地的其他 worker 进程和其他机器上的 worker 进程。kong 使用的进程间通信主要方式有：</p>
+        <h2 id="概览"><a href="#概览" class="headerlink" title="概览"></a>概览</h2><p>Kong 的代码运行于 Nginx 的 worker 进程中。Kong 对数据的修改会在一个 worker 中进行，数据被修改后需要通知给本地的其他 worker 进程和其他机器上的 worker 进程。Kong 使用的进程间通信主要方式有：</p>
 <ol>
 <li>本机间通信-共享内存</li>
 <li>跨机器通信-数据库</li>
 </ol>
 <a id="more"></a>
 
-<h2 id="数据共享"><a href="#数据共享" class="headerlink" title="数据共享"></a>数据共享</h2><p>  kong 的数据存储在数据库中，同时在缓存中保留一份。当数据库的中的数据被修改时，需要发出相应的事件通知其他 worker。其他 worker 接收事件后，删除缓存中对应的数据。下次从缓存读数据时发现没有的话，就从数据库加载出来。<br>  事件分为本地事件和集群事件。本地事件用于通知在一台机器上的 worker，集群事件用于通知在多台机器上的 worker。</p>
-<h3 id="共享内存"><a href="#共享内存" class="headerlink" title="共享内存"></a>共享内存</h3><p>  本地事件通过共享内存实现。kong 实现了一套基于 nginx 共享内存的 <strong>事件发布-订阅</strong> 机制，源码见仓库 <a href="https://github.com/Kong/lua-resty-worker-events" target="_blank" rel="noopener">lua-resty-worker-events</a>。该包提供 <code>post_local</code> 方法在 worker 进程内进行事件发布，提供 <code>post</code> 方法在同属于一台机器上的 worker 进程间进行事件发布。这2个方法需要指定 source 和 event 来确定事件源。<br>  kong 的数据访问层 <a href="https://github.com/Kong/kong/blob/master/kong/dao/dao.lua" target="_blank" rel="noopener">dao.lua</a> 封装了 <code>insert、update 和 delete</code> 三个对数据操作的方法。这三个方法分别会使用 <code>post_local</code> 发出 <strong>source 为 dao:crud，event 为 <code>insert、delete、update</code></strong> 的数据增、删、改的事件。</p>
+<h2 id="数据共享"><a href="#数据共享" class="headerlink" title="数据共享"></a>数据共享</h2><p>kong 的数据存储在数据库中，同时在缓存中保留一份。当数据库的中的数据被修改时，需要发出相应的事件通知其他 worker。其他 worker 接收事件后，删除缓存中对应的数据。下次从缓存读数据时发现没有的话，就从数据库加载出来。<br>事件分为本地事件和集群事件。本地事件用于通知在一台机器上的 worker，集群事件用于通知在多台机器上的 worker。</p>
+<h3 id="共享内存"><a href="#共享内存" class="headerlink" title="共享内存"></a>共享内存</h3><p>本地事件通过共享内存实现。kong 实现了一套基于 nginx 共享内存的 <strong>事件发布-订阅</strong> 机制，源码见仓库 <a href="https://github.com/Kong/lua-resty-worker-events" target="_blank" rel="noopener">lua-resty-worker-events</a>。该包提供 <code>post_local</code> 方法在 worker 进程内进行事件发布，提供 <code>post</code> 方法在同属于一台机器上的 worker 进程间进行事件发布。这2个方法需要指定 source 和 event 来确定事件源。<br>kong 的数据访问层 <a href="https://github.com/Kong/kong/blob/master/kong/dao/dao.lua" target="_blank" rel="noopener">dao.lua</a> 封装了 <code>insert、update 和 delete</code> 三个对数据操作的方法。这三个方法分别会使用 <code>post_local</code> 发出 <strong>source 为 dao:crud，event 为 <code>insert、delete、update</code></strong> 的数据增、删、改的事件。</p>
 <p>事件的数据格式如下:</p>
 <figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">   schema    = self.schema, <span class="comment">--表名</span></span><br><span class="line">   operation = <span class="string">"create"</span>, <span class="comment">--操作类型</span></span><br><span class="line">   entity    = res, <span class="comment">--数据</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>  worker 进程启动的时候会在 init_worker 阶段注册这些事件的订阅方法，见 <a href="https://github.com/Kong/kong/blob/master/kong/runloop/handler.lua#L172" target="_blank" rel="noopener">worker_events.register()</a>。订阅方法中把所有的 dao:crud 事件按表名称使用 post_local 再进行分发。所以从 dao:crud 分发的事件如下:</p>
+<p>worker 进程启动的时候会在 init_worker 阶段注册这些事件的订阅方法，见 <a href="https://github.com/Kong/kong/blob/master/kong/runloop/handler.lua#L172" target="_blank" rel="noopener">worker_events.register()</a>。订阅方法中把所有的 dao:crud 事件按表名称使用 post_local 再进行分发。所以从 dao:crud 分发的事件如下:</p>
 <ul>
 <li><code>source=crud, event=apis</code></li>
 </ul>
@@ -123,7 +122,7 @@
 <li><code>source=crud, event=upstreams</code></li>
 </ul>
 <p>这个事件会通知所有的 worker(包含不同机器)upstreams数据的修改。使用 <code>cluster_events:broadcast</code> 方法发送一条 channel=balancer:upstreams 集群事件。</p>
-<h3 id="数据库"><a href="#数据库" class="headerlink" title="数据库"></a>数据库</h3><p>  集群事件通过数据库实现。数据库表 <strong>cluster_events</strong> 存放用于集群间分发的事件。<strong>cluster_events</strong> 表结构如下:</p>
+<h3 id="数据库"><a href="#数据库" class="headerlink" title="数据库"></a>数据库</h3><p>集群事件通过数据库实现。数据库表 <strong>cluster_events</strong> 存放用于集群间分发的事件。<strong>cluster_events</strong> 表结构如下:</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> cluster_events (</span><br><span class="line">  <span class="keyword">id</span> <span class="built_in">varchar</span>(<span class="number">64</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span>,</span><br><span class="line">  <span class="comment">-- 标识生成事件的节点id</span></span><br><span class="line">  node_id <span class="built_in">varchar</span>(<span class="number">64</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span>,</span><br><span class="line">  <span class="comment">-- 事件产生时间，精确到毫秒</span></span><br><span class="line">  <span class="keyword">at</span> <span class="built_in">timestamp</span>(<span class="number">3</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span>,</span><br><span class="line">  <span class="comment">-- 事件生效时间，精确到毫秒</span></span><br><span class="line">  nbf <span class="built_in">timestamp</span>(<span class="number">3</span>) <span class="literal">NULL</span> <span class="keyword">DEFAULT</span> <span class="literal">NULL</span>,</span><br><span class="line">  <span class="comment">-- 事件过期时间，精确到毫秒</span></span><br><span class="line">  expire_at <span class="built_in">timestamp</span>(<span class="number">3</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span>,</span><br><span class="line">  <span class="comment">-- 事件类型</span></span><br><span class="line">  channel <span class="built_in">varchar</span>(<span class="number">1023</span>) <span class="keyword">DEFAULT</span> <span class="literal">NULL</span>,</span><br><span class="line">  <span class="comment">-- 事件数据</span></span><br><span class="line">  <span class="keyword">data</span> <span class="built_in">varchar</span>(<span class="number">10000</span>) <span class="keyword">DEFAULT</span> <span class="literal">NULL</span>,</span><br><span class="line">  </span><br><span class="line">  PRIMARY <span class="keyword">KEY</span> (<span class="keyword">id</span>),</span><br><span class="line">  <span class="keyword">KEY</span> cluster_events_at_idx (<span class="keyword">at</span>),</span><br><span class="line">  <span class="keyword">KEY</span> cluster_events_channelt_idx (channel)</span><br><span class="line">) <span class="keyword">ENGINE</span>=<span class="keyword">InnoDB</span> <span class="keyword">DEFAULT</span> <span class="keyword">CHARSET</span>=utf8 ROW_FORMAT=DYNAMIC;</span><br></pre></td></tr></table></figure>
 
 <p><code>channel</code> 的类型有:</p>
@@ -147,7 +146,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.liluoao.com/2018/kong-cluster-event.html" data-id="ck4dx10hs000718mj1ht6jru9" class="article-share-link">分享</a>
+      <a data-url="https://liluoao.github.io/2018/kong-cluster-event.html" data-id="ck4iebwfz0007x8mjj85cvftv" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/kong/">kong</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/lua/">lua</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/openresty/">openresty</a></li></ul>
@@ -162,7 +161,7 @@
       <strong class="article-nav-caption">上一篇</strong>
       <div class="article-nav-title">
         
-          使用Kong的AdminAPI
+          Kong框架的AdminAPI
         
       </div>
     </a>
@@ -170,7 +169,7 @@
   
     <a href="/2018/lua-metatable.html" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">下一篇</strong>
-      <div class="article-nav-title">Lua的元表</div>
+      <div class="article-nav-title">Lua的元表及元方法学习</div>
     </a>
   
 </nav>
@@ -217,15 +216,15 @@
           </li>
         
           <li>
+            <a href="/2019/how-to-refactor.html">重构--改善既有代码的设计</a>
+          </li>
+        
+          <li>
             <a href="/2019/yii-batch-query.html">Yii批处理查询</a>
           </li>
         
           <li>
             <a href="/2019/problem-about-xhprof-in-php7.html">XHProf与PHP7的问题</a>
-          </li>
-        
-          <li>
-            <a href="/2018/use-sonarqube-continuous-code-quality.html">使用SonarQube管理代码质量</a>
           </li>
         
       </ul>
@@ -235,9 +234,9 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">标签</h3>
+    <h3 class="widget-title">分类</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/algorithm/">algorithm</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/alipay/">alipay</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/apache/">apache</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/design-patterns/">design-patterns</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/kong/">kong</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/laravel/">laravel</a><span class="tag-list-count">21</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/lua/">lua</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mongo/">mongo</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/">mysql</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/openresty/">openresty</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/other/">other</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/phalcon/">phalcon</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/php/">php</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tool/">tool</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/wechat/">wechat</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/yaf/">yaf</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/yii/">yii</a><span class="tag-list-count">1</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Lua/">Lua</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/PHP框架/">PHP框架</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/laravel/">laravel</a><span class="category-list-count">21</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/工具/">工具</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/微信开发/">微信开发</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/支付宝开发/">支付宝开发</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/数据库/">数据库</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/服务器/">服务器</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/杂谈/">杂谈</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/">设计模式</a><span class="category-list-count">8</span></li></ul>
     </div>
   </div>
 
@@ -245,9 +244,9 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">归档</h3>
+    <h3 class="widget-title">标签</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">十二月 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">十一月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">十月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">九月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">七月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">五月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">二月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">一月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">十二月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">十一月 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">八月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">七月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">五月 2018</a><span class="archive-list-count">20</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a><span class="archive-list-count">15</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">二月 2018</a><span class="archive-list-count">20</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/alipay/">alipay</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/apache/">apache</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/design-patterns/">design-patterns</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/kong/">kong</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/laravel/">laravel</a><span class="tag-list-count">21</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/lua/">lua</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mongo/">mongo</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/">mysql</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/openresty/">openresty</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/other/">other</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/phalcon/">phalcon</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/php/">php</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tool/">tool</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/wechat/">wechat</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/yaf/">yaf</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/yii/">yii</a><span class="tag-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -272,10 +271,6 @@
     <a href="/" class="mobile-nav-link">首页</a>
   
     <a href="/archives" class="mobile-nav-link">文章列表</a>
-  
-    <a href="/categories/laravel" class="mobile-nav-link">Laravel</a>
-  
-    <a href="/categories/wechat" class="mobile-nav-link">Wechat</a>
   
 </nav>
     

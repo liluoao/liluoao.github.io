@@ -10,14 +10,13 @@
   <meta name="description" content="李罗奥的博客">
 <meta property="og:type" content="website">
 <meta property="og:title" content="To be a Web Artisan">
-<meta property="og:url" content="http://www.liluoao.com/page/7/index.html">
+<meta property="og:url" content="https://liluoao.github.io/page/7/index.html">
 <meta property="og:site_name" content="To be a Web Artisan">
 <meta property="og:description" content="李罗奥的博客">
 <meta property="og:locale" content="zh-CN">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="To be a Web Artisan">
 <meta name="twitter:description" content="李罗奥的博客">
-<meta name="twitter:creator" content="@liluoao">
   
   
     <link rel="icon" href="/favicon.png">
@@ -45,17 +44,13 @@
         
           <a class="main-nav-link" href="/archives">文章列表</a>
         
-          <a class="main-nav-link" href="/categories/laravel">Laravel</a>
-        
-          <a class="main-nav-link" href="/categories/wechat">Wechat</a>
-        
       </nav>
       <nav id="sub-nav">
         
         <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
       </nav>
       <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://www.liluoao.com"></form>
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://liluoao.github.io"></form>
       </div>
     </div>
   </div>
@@ -63,12 +58,71 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-Linux搭建环境" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/linux-environment.html" class="article-date">
+  <time datetime="2018-03-04T01:09:04.000Z" itemprop="datePublished">2018-03-04</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/服务器/">服务器</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/linux-environment.html">Linux搭建环境</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>在阿里云买了个低配云服务器，系统为Ubuntu 16.4，需要安装基础环境。</p>
+<h2 id="更新源"><a href="#更新源" class="headerlink" title="更新源"></a>更新源</h2><p>阿里云已配置好了源，直接更新就行。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get update</span><br></pre></td></tr></table></figure>
+
+<h2 id="安装Nginx-Apache"><a href="#安装Nginx-Apache" class="headerlink" title="安装Nginx/Apache"></a>安装Nginx/Apache</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install nginx</span><br><span class="line">sudo apt-get install apache2</span><br></pre></td></tr></table></figure>
+
+<p>根据提示符，输入“Y” 确认后，开始安装软件，直至软件安装完成。</p>
+<p>软件安装完成后，通过通过 <code>dpkg -L</code> 列出软件包所在的目录，及该软件包中的所有文件：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dpkg -L nginx</span><br></pre></td></tr></table></figure>
+        
+          <p class="article-more-link">
+            <a href="/2018/linux-environment.html#more">阅读全文</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://liluoao.github.io/2018/linux-environment.html" data-id="ck4iebwha001sx8mj6kh96td4" class="article-share-link">分享</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux/">linux</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-使用Postman-Interceptor" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2018/use-postman-interceptor.html" class="article-date">
   <time datetime="2018-02-20T06:57:06.000Z" itemprop="datePublished">2018-02-20</time>
 </a>
     
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/工具/">工具</a>
+  </div>
+
   </div>
   <div class="article-inner">
     
@@ -103,7 +157,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.liluoao.com/2018/use-postman-interceptor.html" data-id="ck4dx10ke004318mjm0x4tzo8" class="article-share-link">分享</a>
+      <a data-url="https://liluoao.github.io/2018/use-postman-interceptor.html" data-id="ck4iebwj1004xx8mjwt8k4513" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/tool/">tool</a></li></ul>
@@ -121,6 +175,10 @@
   <time datetime="2018-02-19T03:10:22.000Z" itemprop="datePublished">2018-02-19</time>
 </a>
     
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/工具/">工具</a>
+  </div>
+
   </div>
   <div class="article-inner">
     
@@ -151,7 +209,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.liluoao.com/2018/how-to-use-editorconfig.html" data-id="ck4dx10l9005o18mjpdma5t56" class="article-share-link">分享</a>
+      <a data-url="https://liluoao.github.io/2018/how-to-use-editorconfig.html" data-id="ck4iebwjg006ex8mja6sjgtce" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/tool/">tool</a></li></ul>
@@ -200,52 +258,9 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.liluoao.com/2018/php-sapi.html" data-id="ck4dx10jy002y18mjshnkb8i7" class="article-share-link">分享</a>
+      <a data-url="https://liluoao.github.io/2018/php-sapi.html" data-id="ck4iebwhq003bx8mj9h7x0n0q" class="article-share-link">分享</a>
       
       
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-整理的一些PHP方法" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/some-php-functions.html" class="article-date">
-  <time datetime="2018-02-17T03:32:25.000Z" itemprop="datePublished">2018-02-17</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/some-php-functions.html">整理的一些PHP方法</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="获取文件扩展名"><a href="#获取文件扩展名" class="headerlink" title="获取文件扩展名"></a>获取文件扩展名</h2><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getFileExtension1</span><span class="params">($fileName)</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> strrchr($fileName, <span class="string">'.'</span>);</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getFileExtension2</span><span class="params">($fileName)</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> substr($fileName, strrpos($fileName, <span class="string">'.'</span>));</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getFileExtension3</span><span class="params">($fileName)</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> array_pop(explode(<span class="string">'.'</span>, $fileName));</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getFileExtension4</span><span class="params">($fileName)</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    $p = pathinfo($fileName);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> $p[<span class="string">'extension'</span>];</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getFileExtension5</span><span class="params">($fileName)</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> strrev(substr(strrev($fileName), <span class="number">0</span>, strpos(strrev($fileName), <span class="string">'.'</span>)));</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-        
-          <p class="article-more-link">
-            <a href="/2018/some-php-functions.html#more">阅读全文</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://www.liluoao.com/2018/some-php-functions.html" data-id="ck4dx10l9005d18mjm4w9n3w0" class="article-share-link">分享</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/php/">php</a></li></ul>
-
     </footer>
   </div>
   
@@ -292,203 +307,9 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.liluoao.com/2018/php-solid.html" data-id="ck4dx10jy003318mjnmim8fnh" class="article-share-link">分享</a>
+      <a data-url="https://liluoao.github.io/2018/php-solid.html" data-id="ck4iebwi5003ix8mjgtqh5asm" class="article-share-link">分享</a>
       
       
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-危险的target-blank与opener" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/target-blank-should-be-used-with-caution.html" class="article-date">
-  <time datetime="2018-02-15T08:16:35.000Z" itemprop="datePublished">2018-02-15</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/target-blank-should-be-used-with-caution.html">危险的target=&#34;_blank&#34;与&#34;opener&#34;</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>原文链接：<a href="https://juejin.im/post/5a9f8425f265da239a5f57f8" target="_blank" rel="noopener">https://juejin.im/post/5a9f8425f265da239a5f57f8</a></p>
-<blockquote>
-<p>在网页中使用链接时，如果想要让浏览器自动在新的标签页打开指定的地址，通常的做法就是在 a 标签上添加 target等于”_blank” 属性。<br>然而，就是这个属性，为钓鱼攻击者带来了可乘之机。</p>
-</blockquote>
-<h2 id="起源"><a href="#起源" class="headerlink" title="起源"></a>起源</h2><h4 id="parent-与-opener"><a href="#parent-与-opener" class="headerlink" title="parent 与 opener"></a><code>parent</code> 与 <code>opener</code></h4><p>在说 <code>opener</code> 之前，可以先聊聊 <code>&lt;iframe&gt;</code> 中的 <code>parent</code>。</p>
-<p>我们知道，在 <code>&lt;iframe&gt;</code> 中提供了一个用于父子页面交互的对象，叫做 <code>window.parent</code>，我们可以通过 <code>window.parent</code> 对象来从框架中的页面访问父级页面的 <code>window</code>。</p>
-<p><code>opener</code> 与 <code>parent</code> 一样，只不过是用于 <code>&lt;a target=&quot;_blank&quot;&gt;</code> 在新标签页打开的页面的。通过 <code>&lt;a target=&quot;_blank&quot;&gt;</code> 打开的页面，可以直接使用 <code>window.opener</code> 来访问来源页面的 <code>window</code> 对象。</p>
-        
-          <p class="article-more-link">
-            <a href="/2018/target-blank-should-be-used-with-caution.html#more">阅读全文</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://www.liluoao.com/2018/target-blank-should-be-used-with-caution.html" data-id="ck4dx10ku004f18mjevhevdt5" class="article-share-link">分享</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-排列组合" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/permutation-and-combination-question.html" class="article-date">
-  <time datetime="2018-02-14T06:35:58.000Z" itemprop="datePublished">2018-02-14</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/permutation-and-combination-question.html">一道排列组合题</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p><code>1 2 3 4 5 6 7 8 9 = 110</code></p>
-<p>为使等式成立，在数字间填入加号或减号或不填，求出所有可能组合</p>
-<p>示例：</p>
-<p>输入：</p>
-<pre><code>[1 2 3 4 5 6 7 8 9]</code></pre><p>输出：</p>
-<pre><code>12 + 34 + 56 + 7 - 8 + 9</code></pre>
-        
-          <p class="article-more-link">
-            <a href="/2018/permutation-and-combination-question.html#more">阅读全文</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://www.liluoao.com/2018/permutation-and-combination-question.html" data-id="ck4dx10l9005a18mj81kgw1zi" class="article-share-link">分享</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/algorithm/">algorithm</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-求数组中非负元素组合的最大字符串" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/find-the-maximum-string-of-elements-in-the-array.html" class="article-date">
-  <time datetime="2018-02-13T02:17:58.000Z" itemprop="datePublished">2018-02-13</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/find-the-maximum-string-of-elements-in-the-array.html">求数组中元素组合的最大字符串（转）</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>原文链接：<a href="https://www.fanhaobai.com/2017/04/array-form-max-string.html" target="_blank" rel="noopener">https://www.fanhaobai.com/2017/04/array-form-max-string.html</a></p>
-<h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p>给定一个所有元素为非负的数组，将数组中的所有数字连接起来，求最大的那个数。</p>
-<p>示例：<br>输入：</p>
-<pre><code>4,94,9,14,1</code></pre><p>输出：</p>
-<pre><code>9944141</code></pre><p>输入：</p>
-<pre><code>121,89,98,15,4,3451</code></pre><p>输出：</p>
-<pre><code>98894345115121</code></pre>
-        
-          <p class="article-more-link">
-            <a href="/2018/find-the-maximum-string-of-elements-in-the-array.html#more">阅读全文</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://www.liluoao.com/2018/find-the-maximum-string-of-elements-in-the-array.html" data-id="ck4dx10l9005h18mjt13m1jt6" class="article-share-link">分享</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/algorithm/">algorithm</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-蓄水池算法题" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/pool-algorithm-question.html" class="article-date">
-  <time datetime="2018-02-12T02:37:19.000Z" itemprop="datePublished">2018-02-12</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/pool-algorithm-question.html">蓄水池算法题（转）</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>原文链接：<a href="https://www.fanhaobai.com/2017/12/2017-ziroom-king-2.html" target="_blank" rel="noopener">https://www.fanhaobai.com/2017/12/2017-ziroom-king-2.html</a></p>
-<h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p>某地准备用砖头围立一个蓄水池子，从上面看凹凸不平，凹的地方会有积水。如果用数字代表每个砖头的高度，就形成一个二维数据（如示例），请问这个池子能存储多少单位的水？</p>
-<p>例如二维数组为：</p>
-<pre><code>9 9 9 9
-3 0 0 9
-7 8 2 6</code></pre><p>时，答案是中间的 0,0 位置可以存储 2（因为其外面最低是 2）个单位的水，因此答案为 2 + 2 = 4。</p>
-        
-          <p class="article-more-link">
-            <a href="/2018/pool-algorithm-question.html#more">阅读全文</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://www.liluoao.com/2018/pool-algorithm-question.html" data-id="ck4dx10l9005t18mjz4lu872m" class="article-share-link">分享</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/algorithm/">algorithm</a></li></ul>
-
     </footer>
   </div>
   
@@ -503,7 +324,7 @@
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/categories/mysql/">mysql</a>
+    <a class="article-category-link" href="/categories/数据库/">数据库</a>
   </div>
 
   </div>
@@ -514,7 +335,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2018/mysql-optimize.html">MySQL优化那些事儿（转）</a>
+      <a class="article-title" href="/2018/mysql-optimize.html">MySQL优化那些事儿</a>
     </h1>
   
 
@@ -540,10 +361,207 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.liluoao.com/2018/mysql-optimize.html" data-id="ck4dx10jj002118mjm8d92mfz" class="article-share-link">分享</a>
+      <a data-url="https://liluoao.github.io/2018/mysql-optimize.html" data-id="ck4iebwha0023x8mjrvazgqwh" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mysql/">mysql</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-依赖注入" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/a-dependency-injection-example.html" class="article-date">
+  <time datetime="2018-02-10T02:49:27.000Z" itemprop="datePublished">2018-02-10</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/设计模式/">设计模式</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/a-dependency-injection-example.html">举例实现依赖注入</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>原文链接：<a href="https://www.jianshu.com/p/38b69a020188" target="_blank" rel="noopener">https://www.jianshu.com/p/38b69a020188</a></p>
+<p>依赖注入的实质就是把一个类不可能更换的部分 和 可更换的部分 分离开来，通过注入的方式来使用，从而达到解耦的目的。</p>
+<p>这里就举个数据库链接的栗子</p>
+<h4 id="一个数据库连接类"><a href="#一个数据库连接类" class="headerlink" title="一个数据库连接类"></a>一个数据库连接类</h4>
+        
+          <p class="article-more-link">
+            <a href="/2018/a-dependency-injection-example.html#more">阅读全文</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://liluoao.github.io/2018/a-dependency-injection-example.html" data-id="ck4iebwj10058x8mj4gmme5df" class="article-share-link">分享</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/design-patterns/">design-patterns</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-什么是JWT" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/what-is-jwt.html" class="article-date">
+  <time datetime="2018-02-09T02:37:19.000Z" itemprop="datePublished">2018-02-09</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/what-is-jwt.html">什么是 JWT</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>原文链接：<a href="https://www.jianshu.com/p/576dbf44b2ae" target="_blank" rel="noopener">https://www.jianshu.com/p/576dbf44b2ae</a></p>
+<blockquote>
+<p>Json web token (<a href="https://jwt.io/introduction/" target="_blank" rel="noopener">JWT</a>)，是为了在网络应用环境间传递声明而执行的一种基于JSON的开放标准(<a href="https://tools.ietf.org/html/rfc7519" target="_blank" rel="noopener">RFC 7519</a>)。该token被设计为紧凑且安全的，特别适用于分布式站点的单点登录（ Single Sign On）场景。JWT的声明一般被用来在身份提供者和服务提供者间传递被认证的用户身份信息，以便于从资源服务器获取资源，也可以增加一些额外的其它业务逻辑所必须的声明信息，该token也可直接被用于认证，也可被加密。</p>
+</blockquote>
+<h2 id="起源"><a href="#起源" class="headerlink" title="起源"></a>起源</h2><p>说起JWT，我们应该来谈一谈基于 TOKEN 的认证和传统的 SESSION 认证的区别。</p>
+<h3 id="传统的SESSION认证"><a href="#传统的SESSION认证" class="headerlink" title="传统的SESSION认证"></a>传统的SESSION认证</h3><p>我们知道，HTTP 协议本身是一种无状态的协议，而这就意味着如果用户向我们的应用提供了用户名和密码来进行用户认证，那么下一次请求时，用户还要再一次进行用户认证才行，因为根据http协议，我们并不能知道是哪个用户发出的请求，所以为了让我们的应用能识别是哪个用户发出的请求，我们只能在服务器存储一份用户登录的信息，这份登录信息会在响应时传递给浏览器，告诉其保存为cookie,以便下次请求时发送给我们的应用，这样我们的应用就能识别请求来自哪个用户了,这就是传统的基于session认证。</p>
+<p>但是这种基于 SESSION 的认证使应用本身很难得到扩展，随着不同客户端用户的增加，独立的服务器已无法承载更多的用户，而这时候基于 SESSION 认证应用的问题就会暴露出来.</p>
+        
+          <p class="article-more-link">
+            <a href="/2018/what-is-jwt.html#more">阅读全文</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://liluoao.github.io/2018/what-is-jwt.html" data-id="ck4iebwi5003wx8mjx7e0l8h2" class="article-share-link">分享</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-PHPStorm使用FTP" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/phpstorm-use-ftp.html" class="article-date">
+  <time datetime="2018-02-04T08:51:42.000Z" itemprop="datePublished">2018-02-04</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/工具/">工具</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/phpstorm-use-ftp.html">IDE中使用SFTP提高效率</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>在开发时如果需要实时将文件同步到服务器上，可能需要用 Xftp 等软件来实现。<br>这样需要在几个界面来回切换，比较耗时。其实 IDE 已经为你实现了这个功能。</p>
+        
+          <p class="article-more-link">
+            <a href="/2018/phpstorm-use-ftp.html#more">阅读全文</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://liluoao.github.io/2018/phpstorm-use-ftp.html" data-id="ck4iebwha002fx8mjr9qwlijt" class="article-share-link">分享</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/tool/">tool</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-给项目添加狗牌" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/add-project-badge.html" class="article-date">
+  <time datetime="2018-02-03T06:47:05.000Z" itemprop="datePublished">2018-02-03</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/工具/">工具</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/add-project-badge.html">给项目README添加徽章</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>在许多项目的 <code>README</code> 中，我们经常会看到下面这种 <code>徽章（Badge）</code>，这是如何制作的呢？</p>
+<ul>
+<li>CI结果<br><a href="https://ci.appveyor.com/project/liluoao/blog-source" target="_blank" rel="noopener"><img src="https://img.shields.io/appveyor/ci/liluoao/blog-source.svg?longCache=true&logo=appveyor" alt="AppVeyor"></a></li>
+<li>项目许可<br><a href="https://github.com/liluoao/blog-source/blob/master/LICENSE" target="_blank" rel="noopener"><img src="https://img.shields.io/github/license/liluoao/blog-source.svg?longCache=true" alt="license"></a></li>
+<li>项目版本<br><a href="https://packagist.org/packages/liluoao/phalcon" target="_blank" rel="noopener"><img src="https://img.shields.io/packagist/v/liluoao/phalcon.svg?longCache=true" alt="Packagist"></a></li>
+<li>包/环境版本要求<br><a href="https://packagist.org/packages/liluoao/phalcon" target="_blank" rel="noopener"><img src="https://img.shields.io/packagist/php-v/liluoao/phalcon.svg?longCache=true" alt="PHP 版本"></a></li>
+</ul>
+        
+          <p class="article-more-link">
+            <a href="/2018/add-project-badge.html#more">阅读全文</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://liluoao.github.io/2018/add-project-badge.html" data-id="ck4iebwjg006ax8mjj7r6djrc" class="article-share-link">分享</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/tool/">tool</a></li></ul>
 
     </footer>
   </div>
@@ -598,15 +616,15 @@
           </li>
         
           <li>
+            <a href="/2019/how-to-refactor.html">重构--改善既有代码的设计</a>
+          </li>
+        
+          <li>
             <a href="/2019/yii-batch-query.html">Yii批处理查询</a>
           </li>
         
           <li>
             <a href="/2019/problem-about-xhprof-in-php7.html">XHProf与PHP7的问题</a>
-          </li>
-        
-          <li>
-            <a href="/2018/use-sonarqube-continuous-code-quality.html">使用SonarQube管理代码质量</a>
           </li>
         
       </ul>
@@ -616,9 +634,9 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">标签</h3>
+    <h3 class="widget-title">分类</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/algorithm/">algorithm</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/alipay/">alipay</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/apache/">apache</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/design-patterns/">design-patterns</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/kong/">kong</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/laravel/">laravel</a><span class="tag-list-count">21</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/lua/">lua</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mongo/">mongo</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/">mysql</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/openresty/">openresty</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/other/">other</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/phalcon/">phalcon</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/php/">php</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tool/">tool</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/wechat/">wechat</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/yaf/">yaf</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/yii/">yii</a><span class="tag-list-count">1</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Lua/">Lua</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/PHP框架/">PHP框架</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/laravel/">laravel</a><span class="category-list-count">21</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/工具/">工具</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/微信开发/">微信开发</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/支付宝开发/">支付宝开发</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/数据库/">数据库</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/服务器/">服务器</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/杂谈/">杂谈</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/">设计模式</a><span class="category-list-count">8</span></li></ul>
     </div>
   </div>
 
@@ -626,9 +644,9 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">归档</h3>
+    <h3 class="widget-title">标签</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">十二月 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">十一月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">十月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">九月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">七月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">五月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">二月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">一月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">十二月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">十一月 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">八月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">七月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">五月 2018</a><span class="archive-list-count">20</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a><span class="archive-list-count">15</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">二月 2018</a><span class="archive-list-count">20</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/alipay/">alipay</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/apache/">apache</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/design-patterns/">design-patterns</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/kong/">kong</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/laravel/">laravel</a><span class="tag-list-count">21</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/lua/">lua</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mongo/">mongo</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/">mysql</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/openresty/">openresty</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/other/">other</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/phalcon/">phalcon</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/php/">php</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tool/">tool</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/wechat/">wechat</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/yaf/">yaf</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/yii/">yii</a><span class="tag-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -653,10 +671,6 @@
     <a href="/" class="mobile-nav-link">首页</a>
   
     <a href="/archives" class="mobile-nav-link">文章列表</a>
-  
-    <a href="/categories/laravel" class="mobile-nav-link">Laravel</a>
-  
-    <a href="/categories/wechat" class="mobile-nav-link">Wechat</a>
   
 </nav>
     
