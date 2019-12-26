@@ -58,377 +58,16 @@
       <div class="outer">
         <section id="main">
   
-    <article id="post-Linux搭建环境" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/linux-environment.html" class="article-date">
-  <time datetime="2018-03-04T01:09:04.000Z" itemprop="datePublished">2018-03-04</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/服务器/">服务器</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/linux-environment.html">Linux搭建环境</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>在阿里云买了个低配云服务器，系统为Ubuntu 16.4，需要安装基础环境。</p>
-<h2 id="更新源"><a href="#更新源" class="headerlink" title="更新源"></a>更新源</h2><p>阿里云已配置好了源，直接更新就行。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get update</span><br></pre></td></tr></table></figure>
-
-<h2 id="安装Nginx-Apache"><a href="#安装Nginx-Apache" class="headerlink" title="安装Nginx/Apache"></a>安装Nginx/Apache</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install nginx</span><br><span class="line">sudo apt-get install apache2</span><br></pre></td></tr></table></figure>
-
-<p>根据提示符，输入“Y” 确认后，开始安装软件，直至软件安装完成。</p>
-<p>软件安装完成后，通过通过 <code>dpkg -L</code> 列出软件包所在的目录，及该软件包中的所有文件：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dpkg -L nginx</span><br></pre></td></tr></table></figure>
-        
-          <p class="article-more-link">
-            <a href="/2018/linux-environment.html#more">阅读全文</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2018/linux-environment.html" data-id="ck4iebwha001sx8mj6kh96td4" class="article-share-link">分享</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux/">linux</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-使用Postman-Interceptor" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/use-postman-interceptor.html" class="article-date">
-  <time datetime="2018-02-20T06:57:06.000Z" itemprop="datePublished">2018-02-20</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/工具/">工具</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/use-postman-interceptor.html">使用Postman-Interceptor</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>目前的Postman插件如果想正常使用，必须安装 <code>Postman Interceptor</code> 插件，这样才能直接使用Chrome浏览器的<strong>cookie</strong>等信息，否则Postman是无法完成老版本的功能的。</p>
-<p>如果可以科学上网，直接在软件商店下载。<br>没有条件的可以去：</p>
-<ul>
-<li><a href="https://www.crx4chrome.com/extensions/" target="_blank" rel="noopener">https://www.crx4chrome.com/extensions/</a></li>
-<li><a href="http://chromecj.com/" target="_blank" rel="noopener">http://chromecj.com/</a></li>
-<li><a href="http://www.cnplugins.com/" target="_blank" rel="noopener">http://www.cnplugins.com/</a></li>
-</ul>
-<ol>
-<li>将下载好的文件扩展名改为 <code>.zip</code> 并解压</li>
-<li>把解压后文件夹中的 <code>_metadata</code> 的下划线去掉</li>
-<li>打开Chrome，打开<code>扩展程序</code>，勾选<code>开发者模式</code>，选择<code>加载已经解压的扩展程序</code></li>
-</ol>
-<p>除了 <code>Postman Interceptor</code> ，好用的插件还有 <code>Vue.js devtools</code> 、<code>WEB前端助手(FeHelper)</code>等。</p>
-<p>参考网址：<br>1.<a href="http://www.jianshu.com/p/a4223bab1e73" title="离线安装Chrome Postman 和Postman Interceptor 插件" target="_blank" rel="noopener">离线安装Chrome Postman 和Postman Interceptor 插件</a><br>2.<a href="http://www.jianshu.com/p/12ca04c61fc6" title="如何在谷歌浏览器中安装.crx扩展名的离线Chrome插件" target="_blank" rel="noopener">如何在谷歌浏览器中安装.crx扩展名的离线Chrome插件</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2018/use-postman-interceptor.html" data-id="ck4iebwj1004xx8mjwt8k4513" class="article-share-link">分享</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/tool/">tool</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-统一代码风格-editorConfig" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/how-to-use-editorconfig.html" class="article-date">
-  <time datetime="2018-02-19T03:10:22.000Z" itemprop="datePublished">2018-02-19</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/工具/">工具</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/how-to-use-editorconfig.html">统一代码风格-editorConfig</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><a href="http://editorconfig.org/" target="_blank" rel="noopener">EditorConfig官网</a><br>在团队开发中，统一的代码格式是必要的。但是不同开发人员的代码风格不同，代码编辑工具的默认格式也不相同，这样就造成代码的 differ。而 <strong>editorConfig</strong> 可以帮助开发人员在不同的编辑器和 IDE 中定义和维护一致的编码风格。本文将详细介绍统一代码风格工具 <strong>editorConfig</strong></p>
-<h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p><strong>editorConfig</strong> 不是什么软件，而是一个名称为 <code>.editorconfig</code> 的自定义文件。该文件用来定义项目的编码规范，编辑器的行为会与 <code>.editorconfig</code> 文件中定义的一致，并且其优先级比编辑器自身的设置要高，这在多人合作开发项目时十分有用而且必要</p>
-<p>有些编辑器默认支持 <strong>editorConfig</strong>，如 <strong>webstorm</strong> ；而有些编辑器则需要安装 <strong>editorConfig</strong> 插件，如<strong>ATOM</strong>、<strong>Sublime</strong>、<strong>VS Code</strong> 等</p>
-<p>当打开一个文件时，<strong>EditorConfig</strong> 插件会在打开文件的目录和其每一级父目录查找 <code>.editorconfig</code> 文件，直到有一个配置文件 <code>root=true</code></p>
-<p><strong>EditorConfig</strong> 的配置文件是从上往下读取的并且最近的 <strong>EditorConfig</strong> 配置文件会被最先读取. 匹配 <strong>EditorConfig</strong> 配置文件中的配置项会按照读取顺序被应用, 所以最近的配置文件中的配置项拥有优先权</p>
-<p>如果 <code>.editorconfig</code> 文件没有进行某些配置，则使用编辑器默认的设置</p>
-        
-          <p class="article-more-link">
-            <a href="/2018/how-to-use-editorconfig.html#more">阅读全文</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2018/how-to-use-editorconfig.html" data-id="ck4iebwjg006ex8mja6sjgtce" class="article-share-link">分享</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/tool/">tool</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-PHP运行模式" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/php-sapi.html" class="article-date">
-  <time datetime="2018-02-18T03:46:52.000Z" itemprop="datePublished">2018-02-18</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/php-sapi.html">PHP的运行模式</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>原文链接：<a href="https://segmentfault.com/a/1190000014547406" target="_blank" rel="noopener">https://segmentfault.com/a/1190000014547406</a></p>
-<h2 id="SAPI"><a href="#SAPI" class="headerlink" title="SAPI"></a>SAPI</h2><p>这里所说的 PHP 运行模式， 其实指的是 SAPI （Server Application Programming Interface，服务端应用编程端口 ）。SAPI 为 PHP 提供了一个和外部通信的接口， PHP 就是通过这个接口来与其它的应用进行数据交互的。针对不同的应用场景， PHP 也提供了多种不同的 SAPI ，常见的有：apache、apache2filter、apache2handler、cli、cgi、embed 、fast-cgi、isapi 等等。 </p>
-<blockquote>
-<p><code>php_sapi_name()</code> — 返回 web 服务器和 PHP 之间的接口类型。可能返回的值包括了 aolserver、apache、 apache2filter、apache2handler、 caudium、cgi （直到 PHP 5.3）, cgi-fcgi、cli、 cli-server、 continuity、embed、fpm-fcgi、 isapi、litespeed、 milter、nsapi、 phttpd、pi3web、roxen、 thttpd、tux 和 webjames。</p>
-</blockquote>
-<p>目前 PHP 内置的很多 SAPI 实现都已不再维护或者变的有些非主流了，PHP 社区目前正在考虑将一些 SAPI 移出代码库。 社区对很多功能的考虑是除非真的非常必要，或者某些功能已近非常通用了，否则就在 PECL 库中。</p>
-<p>接下来会对其中五个比较常见的运行模式进行说明。</p>
-        
-          <p class="article-more-link">
-            <a href="/2018/php-sapi.html#more">阅读全文</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2018/php-sapi.html" data-id="ck4iebwhq003bx8mj9h7x0n0q" class="article-share-link">分享</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-SOLID" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/php-solid.html" class="article-date">
-  <time datetime="2018-02-16T07:50:39.000Z" itemprop="datePublished">2018-02-16</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/php-solid.html">面向对象的SOLID原则</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><strong>SOLID</strong> 是Michael Feathers推荐的便于记忆的首字母简写，它代表了Robert Martin命名的最重要的五个面对对象编码设计原则</p>
-<ul>
-<li>S: 职责单一原则 (SRP)</li>
-<li>O: 开闭原则 (OCP)</li>
-<li>L: 里氏替换原则 (LSP)</li>
-<li>I: 接口隔离原则 (ISP)</li>
-<li>D: 依赖反转原则 (DIP)</li>
-</ul>
-<h4 id="职责单一原则-Single-Responsibility-Principle-SRP"><a href="#职责单一原则-Single-Responsibility-Principle-SRP" class="headerlink" title="职责单一原则 Single Responsibility Principle (SRP)"></a>职责单一原则 Single Responsibility Principle (SRP)</h4><p>正如在Clean Code所述，”修改一个类应该只为一个理由”。人们总是易于用一堆方法塞满一个类，如同我们只能在飞机上只能携带一个行李箱（把所有的东西都塞到箱子里）。这样做的问题是：从概念上这样的类不是高内聚的，并且留下了很多理由去修改它。将你需要修改类的次数降低到最小很重要。这是因为，当有很多方法在类中时，修改其中一处，你很难知晓在代码库中哪些依赖的模块会被影响到。</p>
-        
-          <p class="article-more-link">
-            <a href="/2018/php-solid.html#more">阅读全文</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2018/php-solid.html" data-id="ck4iebwi5003ix8mjgtqh5asm" class="article-share-link">分享</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-MySQL优化那些事" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/mysql-optimize.html" class="article-date">
-  <time datetime="2018-02-11T02:37:19.000Z" itemprop="datePublished">2018-02-11</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/数据库/">数据库</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/mysql-optimize.html">MySQL优化那些事儿</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>原文链接：<a href="https://juejin.im/post/5a9b6342f265da23a2289281" target="_blank" rel="noopener">https://juejin.im/post/5a9b6342f265da23a2289281</a></p>
-<h1 id="一、优化库表结构"><a href="#一、优化库表结构" class="headerlink" title="一、优化库表结构"></a>一、优化库表结构</h1><h3 id="（1）字符串类型"><a href="#（1）字符串类型" class="headerlink" title="（1）字符串类型"></a>（1）字符串类型</h3><blockquote>
-<p>在MySQL中表示字符串的类型有多种,其中常见的有<code>Char</code>和<code>VarChar</code>,<code>BLOB</code>和<code>TEXT</code>以及可以实现某些优化的<code>ENUM</code>。我们要认识到不同的数据类型在存储和使用的区别,然后合理的使用就能实现优化。</p>
-</blockquote>
-<p>关于MySQL中数据类型的介绍，可以参看我的另一篇博文： <a href="http://beautifulsoup.top/2018/02/22/MySQL%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C/" target="_blank" rel="noopener">MySQL的常见操作</a></p>
-<ol>
-<li><strong>Char和VarChar</strong></li>
-</ol>
-<p><code>Char</code>是定长类型，MySQL会根据定义的字符串的长度分配足够的空间，并且MySQL在存储CHAR值的时候会删除末尾所有的空格。对于经常变更的数据，一般采用CHAR来进行存储,因为CHAR类型在变化的时候不容易产生碎片。</p>
-<p>VARCHAR是变长类型，它比CHAR更加节省空间，但是VARCHAR在数据变化的时候容易产生碎片，所以一般用于作为不经常变化的数据的数据类型。VARCHAR需要多使用一个或者两个额外字节来记录字符串的长度，如果列的最大长度小于等于255字节就用一个额外的字节来存储长度，否则使用两个字节。例如<code>VARCHAR(10)</code>的列需要11个字节的存储空间，<code>VARCHAR(1000)</code>的列需要1002个字节。</p>
-        
-          <p class="article-more-link">
-            <a href="/2018/mysql-optimize.html#more">阅读全文</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2018/mysql-optimize.html" data-id="ck4iebwha0023x8mjrvazgqwh" class="article-share-link">分享</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mysql/">mysql</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-依赖注入" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/a-dependency-injection-example.html" class="article-date">
-  <time datetime="2018-02-10T02:49:27.000Z" itemprop="datePublished">2018-02-10</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/设计模式/">设计模式</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/a-dependency-injection-example.html">举例实现依赖注入</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>原文链接：<a href="https://www.jianshu.com/p/38b69a020188" target="_blank" rel="noopener">https://www.jianshu.com/p/38b69a020188</a></p>
-<p>依赖注入的实质就是把一个类不可能更换的部分 和 可更换的部分 分离开来，通过注入的方式来使用，从而达到解耦的目的。</p>
-<p>这里就举个数据库链接的栗子</p>
-<h4 id="一个数据库连接类"><a href="#一个数据库连接类" class="headerlink" title="一个数据库连接类"></a>一个数据库连接类</h4>
-        
-          <p class="article-more-link">
-            <a href="/2018/a-dependency-injection-example.html#more">阅读全文</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2018/a-dependency-injection-example.html" data-id="ck4iebwj10058x8mj4gmme5df" class="article-share-link">分享</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/design-patterns/">design-patterns</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
     <article id="post-什么是JWT" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2018/what-is-jwt.html" class="article-date">
   <time datetime="2018-02-09T02:37:19.000Z" itemprop="datePublished">2018-02-09</time>
 </a>
     
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/杂谈/">杂谈</a>
+  </div>
+
   </div>
   <div class="article-inner">
     
@@ -437,7 +76,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2018/what-is-jwt.html">什么是 JWT</a>
+      <a class="article-title" href="/2018/what-is-jwt.html">JWT认证的优点</a>
     </h1>
   
 
@@ -445,13 +84,8 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>原文链接：<a href="https://www.jianshu.com/p/576dbf44b2ae" target="_blank" rel="noopener">https://www.jianshu.com/p/576dbf44b2ae</a></p>
-<blockquote>
-<p>Json web token (<a href="https://jwt.io/introduction/" target="_blank" rel="noopener">JWT</a>)，是为了在网络应用环境间传递声明而执行的一种基于JSON的开放标准(<a href="https://tools.ietf.org/html/rfc7519" target="_blank" rel="noopener">RFC 7519</a>)。该token被设计为紧凑且安全的，特别适用于分布式站点的单点登录（ Single Sign On）场景。JWT的声明一般被用来在身份提供者和服务提供者间传递被认证的用户身份信息，以便于从资源服务器获取资源，也可以增加一些额外的其它业务逻辑所必须的声明信息，该token也可直接被用于认证，也可被加密。</p>
-</blockquote>
-<h2 id="起源"><a href="#起源" class="headerlink" title="起源"></a>起源</h2><p>说起JWT，我们应该来谈一谈基于 TOKEN 的认证和传统的 SESSION 认证的区别。</p>
-<h3 id="传统的SESSION认证"><a href="#传统的SESSION认证" class="headerlink" title="传统的SESSION认证"></a>传统的SESSION认证</h3><p>我们知道，HTTP 协议本身是一种无状态的协议，而这就意味着如果用户向我们的应用提供了用户名和密码来进行用户认证，那么下一次请求时，用户还要再一次进行用户认证才行，因为根据http协议，我们并不能知道是哪个用户发出的请求，所以为了让我们的应用能识别是哪个用户发出的请求，我们只能在服务器存储一份用户登录的信息，这份登录信息会在响应时传递给浏览器，告诉其保存为cookie,以便下次请求时发送给我们的应用，这样我们的应用就能识别请求来自哪个用户了,这就是传统的基于session认证。</p>
-<p>但是这种基于 SESSION 的认证使应用本身很难得到扩展，随着不同客户端用户的增加，独立的服务器已无法承载更多的用户，而这时候基于 SESSION 认证应用的问题就会暴露出来.</p>
+        <h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p><a href="https://jwt.io/introduction/" target="_blank" rel="noopener">JWT (Json web token)</a>，是为了在网络应用环境间传递声明而执行的一种基于 <em>JSON</em> 格式的开放标准 (<a href="https://tools.ietf.org/html/rfc7519" target="_blank" rel="noopener">RFC 7519</a>)，它一般被用来做身份认证。</p>
+<p>我们来对比一下基于 Token 的认证和传统的 SESSION 认证</p>
         
           <p class="article-more-link">
             <a href="/2018/what-is-jwt.html#more">阅读全文</a>
@@ -460,7 +94,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2018/what-is-jwt.html" data-id="ck4iebwi5003wx8mjx7e0l8h2" class="article-share-link">分享</a>
+      <a data-url="https://liluoao.github.io/2018/what-is-jwt.html" data-id="ck4mmrlyp003dwcmj3x2zfnwh" class="article-share-link">分享</a>
       
       
     </footer>
@@ -505,7 +139,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2018/phpstorm-use-ftp.html" data-id="ck4iebwha002fx8mjr9qwlijt" class="article-share-link">分享</a>
+      <a data-url="https://liluoao.github.io/2018/phpstorm-use-ftp.html" data-id="ck4mmrlxu0024wcmj77vsoaoq" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/tool/">tool</a></li></ul>
@@ -558,7 +192,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2018/add-project-badge.html" data-id="ck4iebwjg006ax8mjj7r6djrc" class="article-share-link">分享</a>
+      <a data-url="https://liluoao.github.io/2018/add-project-badge.html" data-id="ck4mmrlzl005pwcmjzrdfpg01" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/tool/">tool</a></li></ul>
@@ -570,11 +204,105 @@
 
 
   
+    <article id="post-使用AppVeyor持续集成本博客" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/use-appveyor-ci.html" class="article-date">
+  <time datetime="2018-02-02T03:37:55.000Z" itemprop="datePublished">2018-02-02</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/工具/">工具</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/use-appveyor-ci.html">使用持续集成维护博客</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="持续集成介绍"><a href="#持续集成介绍" class="headerlink" title="持续集成介绍"></a>持续集成介绍</h2><p>持续集成（Continuous integration，简称 CI）是一种软件开发实践，即团队开发成员经常集成他们的工作，通常每个成员每天至少集成一次，也就意味着每天可能会发生多次集成。每次集成都通过自动化的构建（包括编译，发布，自动化测试）来验证，从而尽早地发现集成错误。</p>
+<p>减少重复的过程可以节省时间、费用和工作量。说起来简单，做起来难。这些浪费时间的重复劳动可能在我们的项目活动的任何一个环节发生，包括代码编译、数据库集成、测试、审查、部署及反馈。通过自动化的持续集成可以将这些重复的动作都变成自动化的，无需太多人工干预，让人们的时间更多的投入到动脑筋的、更高价值的事情上。</p>
+<p>市面上常见的持续集成工具有 <a href="https://jenkins.io/zh/" target="_blank" rel="noopener">Jenkins</a>，<a href="https://www.travis-ci.org/" target="_blank" rel="noopener">TravisCI</a>，和本文要使用的 <a href="https://ci.appveyor.com" target="_blank" rel="noopener">AppVeyor</a>。<br>一般代码管理平台也支持 CI/CD</p>
+        
+          <p class="article-more-link">
+            <a href="/2018/use-appveyor-ci.html#more">阅读全文</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://liluoao.github.io/2018/use-appveyor-ci.html" data-id="ck4mmrlyp003kwcmjus1rk48y" class="article-share-link">分享</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-使用Hexo" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/use-hexo.html" class="article-date">
+  <time datetime="2018-02-01T02:37:19.000Z" itemprop="datePublished">2018-02-01</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/工具/">工具</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/use-hexo.html">使用Hexo写博客</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="Hexo-介绍"><a href="#Hexo-介绍" class="headerlink" title="Hexo 介绍"></a>Hexo 介绍</h2><p><a href="https://hexo.io/zh-cn/docs/" target="_blank" rel="noopener">Hexo</a> 是一个快速、简洁且高效的博客框架。Hexo 使用 Markdown（或其他渲染引擎）解析文章，在几秒内，即可利用靓丽的主题生成静态网页</p>
+<p>直接用 NPM 全局安装：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g hexo-cli</span><br></pre></td></tr></table></figure>
+        
+          <p class="article-more-link">
+            <a href="/2018/use-hexo.html#more">阅读全文</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://liluoao.github.io/2018/use-hexo.html" data-id="ck4mmrlyp003rwcmjh163xxab" class="article-share-link">分享</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
 
 
   <nav id="page-nav">
     
-    <a class="extend prev" rel="prev" href="/page/6/">&laquo; 上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><span class="page-number current">7</span><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/8/">下一页 &raquo;</a>
+    <a class="extend prev" rel="prev" href="/page/6/">&laquo; 上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><span class="page-number current">7</span>
   </nav>
 
 </section>
@@ -636,7 +364,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">分类</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Lua/">Lua</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/PHP框架/">PHP框架</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/laravel/">laravel</a><span class="category-list-count">21</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/工具/">工具</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/微信开发/">微信开发</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/支付宝开发/">支付宝开发</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/数据库/">数据库</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/服务器/">服务器</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/杂谈/">杂谈</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/">设计模式</a><span class="category-list-count">8</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Lua/">Lua</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/PHP框架/">PHP框架</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/laravel/">laravel</a><span class="category-list-count">21</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/工具/">工具</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/微信开发/">微信开发</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/支付宝开发/">支付宝开发</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/数据库/">数据库</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/服务器/">服务器</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/杂谈/">杂谈</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/">设计模式</a><span class="category-list-count">7</span></li></ul>
     </div>
   </div>
 
@@ -646,7 +374,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/alipay/">alipay</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/apache/">apache</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/design-patterns/">design-patterns</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/kong/">kong</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/laravel/">laravel</a><span class="tag-list-count">21</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/lua/">lua</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mongo/">mongo</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/">mysql</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/openresty/">openresty</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/other/">other</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/phalcon/">phalcon</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/php/">php</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tool/">tool</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/wechat/">wechat</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/yaf/">yaf</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/yii/">yii</a><span class="tag-list-count">1</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/alipay/">alipay</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/apache/">apache</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/design-patterns/">design-patterns</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/kong/">kong</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/laravel/">laravel</a><span class="tag-list-count">21</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/lua/">lua</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mongo/">mongo</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/openresty/">openresty</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/other/">other</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/phalcon/">phalcon</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/php/">php</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tool/">tool</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/wechat/">wechat</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/yaf/">yaf</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/yii/">yii</a><span class="tag-list-count">1</span></li></ul>
     </div>
   </div>
 
