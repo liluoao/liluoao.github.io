@@ -5,20 +5,20 @@
   
 
   
-  <title>Apache的SSL配置 | To be a Web Artisan</title>
+  <title>Apache配置HTTPS并重定向 | To be a Web Artisan</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="安装Apache1sudo apt-get install apache2   默认站点目录在 /var/www/html/ 配置文件在 /etc/apache2/ 日志在 /var/log/apache2/ 启动脚本是 /etc/init.d/apache2  安装OpenSSLUbuntu默认已经安装了OPENSSL，如果没安装， 1sudo apt-get install openssl">
+  <meta name="description" content="在阿里云购买了服务器后，把自己的博客放了上去。但是现在浏览器不再建议使用 HTTP，会提示网站不安全，需要把网站更换为 HTTPS，并将 HTTP 访问的自动转发到 HTTPS 端口上，下面分享下整个操作流程。">
 <meta name="keywords" content="apache,linux">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Apache的SSL配置">
+<meta property="og:title" content="Apache配置HTTPS并重定向">
 <meta property="og:url" content="https://liluoao.github.io/2018/apache-ssl-config.html">
 <meta property="og:site_name" content="To be a Web Artisan">
-<meta property="og:description" content="安装Apache1sudo apt-get install apache2   默认站点目录在 /var/www/html/ 配置文件在 /etc/apache2/ 日志在 /var/log/apache2/ 启动脚本是 /etc/init.d/apache2  安装OpenSSLUbuntu默认已经安装了OPENSSL，如果没安装， 1sudo apt-get install openssl">
+<meta property="og:description" content="在阿里云购买了服务器后，把自己的博客放了上去。但是现在浏览器不再建议使用 HTTP，会提示网站不安全，需要把网站更换为 HTTPS，并将 HTTP 访问的自动转发到 HTTPS 端口上，下面分享下整个操作流程。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-12-26T11:14:35.145Z">
+<meta property="og:updated_time" content="2019-12-27T07:10:58.576Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Apache的SSL配置">
-<meta name="twitter:description" content="安装Apache1sudo apt-get install apache2   默认站点目录在 /var/www/html/ 配置文件在 /etc/apache2/ 日志在 /var/log/apache2/ 启动脚本是 /etc/init.d/apache2  安装OpenSSLUbuntu默认已经安装了OPENSSL，如果没安装， 1sudo apt-get install openssl">
+<meta name="twitter:title" content="Apache配置HTTPS并重定向">
+<meta name="twitter:description" content="在阿里云购买了服务器后，把自己的博客放了上去。但是现在浏览器不再建议使用 HTTP，会提示网站不安全，需要把网站更换为 HTTPS，并将 HTTP 访问的自动转发到 HTTPS 端口上，下面分享下整个操作流程。">
   
   
     <link rel="icon" href="/favicon.png">
@@ -76,7 +76,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      Apache的SSL配置
+      Apache配置HTTPS并重定向
     </h1>
   
 
@@ -84,7 +84,11 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="安装Apache"><a href="#安装Apache" class="headerlink" title="安装Apache"></a>安装Apache</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install apache2</span><br></pre></td></tr></table></figure>
+        <p>在阿里云购买了服务器后，把自己的博客放了上去。但是现在浏览器不再建议使用 HTTP，会提示网站不安全，需要把网站更换为 HTTPS，并将 HTTP 访问的自动转发到 HTTPS 端口上，下面分享下整个操作流程。</p>
+<a id="more"></a>
+
+<h2 id="安装和开启-SSL"><a href="#安装和开启-SSL" class="headerlink" title="安装和开启 SSL"></a>安装和开启 SSL</h2><h3 id="Apache安装"><a href="#Apache安装" class="headerlink" title="Apache安装"></a>Apache安装</h3><p>已安装的可跳过</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install apache2</span><br></pre></td></tr></table></figure>
 
 <ul>
 <li>默认站点目录在 <code>/var/www/html/</code></li>
@@ -92,59 +96,58 @@
 <li>日志在 <code>/var/log/apache2/</code></li>
 <li>启动脚本是 <code>/etc/init.d/apache2</code></li>
 </ul>
-<h2 id="安装OpenSSL"><a href="#安装OpenSSL" class="headerlink" title="安装OpenSSL"></a>安装OpenSSL</h2><p>Ubuntu默认已经安装了OPENSSL，如果没安装，</p>
+<h3 id="OpenSSL安装"><a href="#OpenSSL安装" class="headerlink" title="OpenSSL安装"></a>OpenSSL安装</h3><p>Ubuntu默认已经安装了OPENSSL，如果没安装，使用如下命令：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install openssl</span><br></pre></td></tr></table></figure>
 
-<h2 id="开启SSL模块"><a href="#开启SSL模块" class="headerlink" title="开启SSL模块"></a>开启SSL模块</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo a2enmod ssl</span><br></pre></td></tr></table></figure>
+<h3 id="开启SSL模块"><a href="#开启SSL模块" class="headerlink" title="开启SSL模块"></a>开启SSL模块</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo a2enmod ssl</span><br></pre></td></tr></table></figure>
 
-<p>这条命令相当于</p>
+<p>这条命令相当于下面 2 条：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo ln -s /etc/apache2/mods-available/ssl.load /etc/apache2/mods-enabled</span><br><span class="line">sudo ln -s /etc/apache2/mods-available/ssl.conf /etc/apache2/mods-enabled</span><br></pre></td></tr></table></figure>
 
-<p>如果没有a2enmod指令，也可直接在apache2.conf中设置SSL模块加载：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">LoadModule ssl_module /usr/lib/apache2/modules/mod_ssl.so</span><br></pre></td></tr></table></figure>
-
-<a id="more"></a>
-<h2 id="创建证书"><a href="#创建证书" class="headerlink" title="创建证书"></a>创建证书</h2><p>创建证书有两种：一种是自签名证书，另外一种是第三方CA机构签名证书。第一种随便使用，只是没有经过官方认可的机构认证而已，后一种则是正规的签名证 书，有发证机构签名。其实很多所谓的大网站上使用的SSL证书，一样都是自签名的，主要是因为这个证书只做为在线验证使用，保证传输数据安全即可，不过使 用这种证书，对常规浏览器和一些软件而言，一般均会弹出警告，让你确认这个签名证书的有效性。正规签名证书也不过只是多了一重保障而已，而且浏览器、软件 等可以自己鉴别。</p>
-<p>阿里云提供了免费的自签名证书，也可以自己创建自签名证书。</p>
-<h4 id="创建自签名证书"><a href="#创建自签名证书" class="headerlink" title="创建自签名证书"></a>创建自签名证书</h4><p>可使用apache内置的工具创建默认的自签名证书，通过-days参数指定有效期。</p>
+<blockquote>
+<p>如果没有 <code>a2enmod</code> 指令，也可以直接在 <em>apache2.conf</em> 中设置 SSL 模块加载：<br><code>LoadModule ssl_module /usr/lib/apache2/modules/mod_ssl.so</code></p>
+</blockquote>
+<h2 id="证书"><a href="#证书" class="headerlink" title="证书"></a>证书</h2><p>证书有两种：一种是自签名证书，另外一种是第三方 CA 机构签名证书。<br>第一种随便使用，没有经过官方认可的机构认证。<br>后一种则是正规的签名证书，有发证机构签名。<br>阿里云提供了免费的自签名证书，也可以自己创建自签名证书。</p>
+<h3 id="创建自签名证书"><a href="#创建自签名证书" class="headerlink" title="创建自签名证书"></a>创建自签名证书</h3><p>可使用 apache 内置的工具创建默认的自签名证书，通过 <strong>-days</strong> 参数指定有效期：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apache2-ssl-certificate</span><br></pre></td></tr></table></figure>
 
-<p>创建完成后，当前目录下有个apache.pem文件，已经包含密钥和证书。可以把这个证书拷贝到/etc/apache2/下。</p>
-<h4 id="第三方CA机构签署证书"><a href="#第三方CA机构签署证书" class="headerlink" title="第三方CA机构签署证书"></a>第三方CA机构签署证书</h4><p>生成此证书，需要向第三方提交一个“生成证书请求文件(CSR)”，生成这个CSR需要两步：</p>
+<p>创建完成后，当前目录下有个 <em>apache.pem</em> 文件，已经包含密钥和证书。<br>可以把这个证书拷贝到 <em>/etc/apache2/</em> 下。</p>
+<h3 id="第三方-CA-机构签署证书"><a href="#第三方-CA-机构签署证书" class="headerlink" title="第三方 CA 机构签署证书"></a>第三方 CA 机构签署证书</h3><p>生成此证书，需要向第三方提交一个“<code>生成证书请求文件(CSR)</code>”，生成这个 CSR 需要两步：</p>
 <ol>
-<li>生成私钥KEY</li>
-<li>生成请求CSR</li>
+<li>生成私钥 KEY</li>
+<li>生成请求 CSR</li>
 </ol>
 <p>运行如下命令生成私钥：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">openssl genrsa -des3 1024 -out server.key</span><br></pre></td></tr></table></figure>
 
-<p>这里使用了-des3参数，将会需要输入一个密码对私钥进行加密，每次使用此私钥也需要输入此密码，如不需对私钥加密请不要使用-des3选项。输入两次密码后，将会生成server.key私钥文件。</p>
-<p>生成请求文件:<br>运行如下命令生成证书请求文件（CSR）</p>
+<p>这里使用了 <code>-des3</code> 参数，将会需要输入一个密码对私钥进行加密，每次使用此私钥也需要输入此密码，如不需对私钥加密请不要使用 <code>-des3</code> 选项。<br>输入两次密码后，将会生成 <em>server.key</em> 私钥文件。</p>
+<p>运行如下命令生成证书请求文件（CSR）</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">openssl req -new -key server.key –out server.csr</span><br></pre></td></tr></table></figure>
 
-<p>把这个CSR文件传给CA机构，然后他们会使用此请求文件生成证书。</p>
-<h2 id="编辑HTTPS（SSL）配置"><a href="#编辑HTTPS（SSL）配置" class="headerlink" title="编辑HTTPS（SSL）配置"></a>编辑HTTPS（SSL）配置</h2><h4 id="添加监听端口"><a href="#添加监听端口" class="headerlink" title="添加监听端口"></a>添加监听端口</h4><p>编辑Apache端口配置（/etc/apache2/ports.conf），加入443端口（SSL缺省使用）：</p>
+<p>把这个 CSR 文件传给 CA 机构，然后他们会使用此请求文件生成证书。</p>
+<h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><h3 id="添加监听端口"><a href="#添加监听端口" class="headerlink" title="添加监听端口"></a>添加监听端口</h3><p>编辑 Apache 端口配置（<em>/etc/apache2/ports.conf</em>），加入 <strong>443</strong> 端口（SSL 缺省使用）：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Listen 80</span><br><span class="line">Listen 443</span><br></pre></td></tr></table></figure>
 
-<h4 id="设置site-enabled"><a href="#设置site-enabled" class="headerlink" title="设置site-enabled"></a>设置<strong>site-enabled</strong></h4><p>上文安装完后，会在 <code>/etc/apache2/sites-available/</code> 目录下生成一个缺省的 <code>default-ssl</code> 文件。缺省的网页目录仍然是 <code>/var/www/html</code> 。我们可以创建一个链接到 <code>site-enabled</code> 目录。</p>
+<h3 id="设置site-enabled"><a href="#设置site-enabled" class="headerlink" title="设置site-enabled"></a>设置site-enabled</h3><p>上文安装完后，会在 <em>/etc/apache2/sites-available/</em> 目录下生成一个缺省的 <em>default-ssl</em> 文件。<br>缺省的网页目录仍然是 <em>/var/www/html*。<br>我们可以创建一个链接到 *site-enabled</em> 目录。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ln -s /etc/apache2/sites-available/default-ssl /etc/apache2/sites-enabled/001-ssl</span><br></pre></td></tr></table></figure>
 
-<h4 id="修改配置"><a href="#修改配置" class="headerlink" title="修改配置"></a>修改配置</h4><p>确认HTTP监听端口改为80</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi /etc/apache2/sites-enabled/000-default</span><br></pre></td></tr></table></figure>
+<h3 id="修改配置"><a href="#修改配置" class="headerlink" title="修改配置"></a>修改配置</h3><p>把端口改为 443，在 <code>&lt;Virtualhost&gt;</code> 下加入 SSL 认证配置，其它的根据需要定制：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">&lt;VirtualHost *:443&gt;</span><br><span class="line">    ServerAdmin liluoao@qq.com</span><br><span class="line">    ServerName liluoao.com</span><br><span class="line">    DocumentRoot /var/www/html</span><br><span class="line">    SSLEngine on</span><br><span class="line">    # 添加 SSL 协议</span><br><span class="line">    SSLProtocol all -SSLv2 -SSLv3</span><br><span class="line">    # 修改加密套件</span><br><span class="line">    SSLCipherSuite HIGH:!RC4:!MD5:!aNULL:!eNULL:!NULL:!DH:!EDH:!EXP:+MEDIUM</span><br><span class="line">    SSLHonorCipherOrder on</span><br><span class="line">    # 公钥</span><br><span class="line">    SSLCertificateFile /etc/apache2/cert/public.pem</span><br><span class="line">    # 私钥</span><br><span class="line">    SSLCertificateKeyFile /etc/apache2/cert/1523613072453.key</span><br><span class="line">    # 链配置</span><br><span class="line">    SSLCertificateChainFile /etc/apache2/cert/chain.pem</span><br><span class="line">&lt;/VirtualHost&gt;</span><br></pre></td></tr></table></figure>
 
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;VirtualHost *:80&gt;</span><br></pre></td></tr></table></figure>
+<h2 id="重定向-HTTP-到-HTTPS"><a href="#重定向-HTTP-到-HTTPS" class="headerlink" title="重定向 HTTP 到 HTTPS"></a>重定向 HTTP 到 HTTPS</h2><p>开启重定向需要加载 <code>rewrite</code> 模块</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">a2enmod rewrite</span><br><span class="line">//或者用下面这句</span><br><span class="line">ln -s /etc/apache2/mods-available/rewrite.load  /etc/apache2/mods-enabled/rewrite.load</span><br></pre></td></tr></table></figure>
 
-<p>HTTPS监听端口缺省443：</p>
-<p>把端口改为443，在 <code>&lt;Virtualhost&gt;</code> 下加入SSL认证配置，其它的根据需要自己定制 与普通配置无异：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi /etc/apache2/sites-enabled/001-ssl</span><br></pre></td></tr></table></figure>
+<p>编辑你的 HTTP 配置：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;VirtualHost *:80&gt;</span><br><span class="line">    ServerName www.liluoao.com</span><br><span class="line">    ServerAdmin liluoao@qq.com</span><br><span class="line">    DocumentRoot /var/www/html</span><br><span class="line">    ErrorLog $&#123;APACHE_LOG_DIR&#125;/error.log</span><br><span class="line">    CustomLog $&#123;APACHE_LOG_DIR&#125;/access.log combined</span><br><span class="line">    RewriteEngine on</span><br><span class="line">    RewriteCond   %&#123;HTTPS&#125; !=on</span><br><span class="line">    RewriteRule   ^(.*)  https://%&#123;SERVER_NAME&#125;$1 [L,R]</span><br><span class="line">&lt;/VirtualHost&gt;</span><br></pre></td></tr></table></figure>
 
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&lt;VirtualHost *:443&gt;</span><br><span class="line">SSLEngine on</span><br><span class="line"># 添加 SSL 协议支持协议，去掉不安全的协议</span><br><span class="line">SSLProtocol all -SSLv2 -SSLv3</span><br><span class="line"># 修改加密套件如下</span><br><span class="line">SSLCipherSuite HIGH:!RC4:!MD5:!aNULL:!eNULL:!NULL:!DH:!EDH:!EXP:+MEDIUM</span><br><span class="line">SSLHonorCipherOrder on</span><br><span class="line"># 证书公钥配置</span><br><span class="line">SSLCertificateFile cert/public.pem</span><br><span class="line"># 证书私钥配置</span><br><span class="line">SSLCertificateKeyFile cert/1523613072453.key</span><br><span class="line"># 证书链配置，如果该属性开头有 &apos;#&apos;字符，请删除掉</span><br><span class="line">SSLCertificateChainFile cert/chain.pem</span><br><span class="line">ServerAdmin webmaster@localhost</span><br><span class="line">DocumentRoot /var/www/html</span><br><span class="line">&lt;/VirtualHost&gt;</span><br></pre></td></tr></table></figure>
+<p>或者是在根目录编辑 <em>.htaccess</em> 文件：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">RewriteEngine on</span><br><span class="line">RewriteBase /</span><br><span class="line">RewriteCond %&#123;SERVER_PORT&#125; !^443$</span><br><span class="line">RewriteRule ^.* https://%&#123;SERVER_NAME&#125;%&#123;REQUEST_URI&#125; [L,R]</span><br></pre></td></tr></table></figure>
 
-<h2 id="重启Apache"><a href="#重启Apache" class="headerlink" title="重启Apache"></a>重启Apache</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">service apache2 restart</span><br></pre></td></tr></table></figure>
+
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2018/apache-ssl-config.html" data-id="ck4mmrlwj0006wcmjmipmmjib" class="article-share-link">分享</a>
+      <a data-url="https://liluoao.github.io/2018/apache-ssl-config.html" data-id="ck4nti8g80007twmjgdphazki" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/apache/">apache</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux/">linux</a></li></ul>
@@ -155,11 +158,11 @@
     
 <nav id="article-nav">
   
-    <a href="/2018/rewrite-http-to-https.html" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2018/use-phalcon.html" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption">上一篇</strong>
       <div class="article-nav-title">
         
-          重定向HTTP到HTTPS
+          Phalcon框架安装
         
       </div>
     </a>
@@ -234,7 +237,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">分类</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Lua/">Lua</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/PHP框架/">PHP框架</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/laravel/">laravel</a><span class="category-list-count">21</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/工具/">工具</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/微信开发/">微信开发</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/支付宝开发/">支付宝开发</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/数据库/">数据库</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/服务器/">服务器</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/杂谈/">杂谈</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/">设计模式</a><span class="category-list-count">7</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Lua/">Lua</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/PHP框架/">PHP框架</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/laravel/">laravel</a><span class="category-list-count">20</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/工具/">工具</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/微信开发/">微信开发</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/支付宝开发/">支付宝开发</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/数据库/">数据库</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/服务器/">服务器</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/杂谈/">杂谈</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/">设计模式</a><span class="category-list-count">7</span></li></ul>
     </div>
   </div>
 
@@ -244,7 +247,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/alipay/">alipay</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/apache/">apache</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/design-patterns/">design-patterns</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/kong/">kong</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/laravel/">laravel</a><span class="tag-list-count">21</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/lua/">lua</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mongo/">mongo</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/openresty/">openresty</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/other/">other</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/phalcon/">phalcon</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/php/">php</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tool/">tool</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/wechat/">wechat</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/yaf/">yaf</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/yii/">yii</a><span class="tag-list-count">1</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/alipay/">alipay</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/apache/">apache</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/design-patterns/">design-patterns</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/kong/">kong</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/laravel/">laravel</a><span class="tag-list-count">20</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/lua/">lua</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mongo/">mongo</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/openresty/">openresty</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/other/">other</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/phalcon/">phalcon</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/php/">php</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tool/">tool</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/wechat/">wechat</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/yaf/">yaf</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/yii/">yii</a><span class="tag-list-count">1</span></li></ul>
     </div>
   </div>
 
