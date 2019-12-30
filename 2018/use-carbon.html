@@ -5,20 +5,20 @@
   
 
   
-  <title>使用Carbon时间类 | To be a Web Artisan</title>
+  <title>Carbon便捷处理时间 | To be a Web Artisan</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Carbon  继承自 PHP DateTime 类的 API 扩展，它使得处理日期和时间更加简单。 Github传送门  Composer安装1composer require nesbot/carbon    PS：由于 Laravel 项目已默认安装了此包，所以不需要再次执行上面的命令。 示例1234//常规项目use Carbon\Carbon;//Laravel项目use Illumin">
-<meta name="keywords" content="laravel">
+  <meta name="description" content="Carbon 是一个 PHP 的时间处理包，它继承自 DateTime 类的 API 扩展，让处理日期和时间更加简单。">
+<meta name="keywords" content="tool">
 <meta property="og:type" content="article">
-<meta property="og:title" content="使用Carbon时间类">
+<meta property="og:title" content="Carbon便捷处理时间">
 <meta property="og:url" content="https://liluoao.github.io/2018/use-carbon.html">
 <meta property="og:site_name" content="To be a Web Artisan">
-<meta property="og:description" content="Carbon  继承自 PHP DateTime 类的 API 扩展，它使得处理日期和时间更加简单。 Github传送门  Composer安装1composer require nesbot/carbon    PS：由于 Laravel 项目已默认安装了此包，所以不需要再次执行上面的命令。 示例1234//常规项目use Carbon\Carbon;//Laravel项目use Illumin">
+<meta property="og:description" content="Carbon 是一个 PHP 的时间处理包，它继承自 DateTime 类的 API 扩展，让处理日期和时间更加简单。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-12-27T07:10:58.576Z">
+<meta property="og:updated_time" content="2019-12-30T02:31:18.851Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="使用Carbon时间类">
-<meta name="twitter:description" content="Carbon  继承自 PHP DateTime 类的 API 扩展，它使得处理日期和时间更加简单。 Github传送门  Composer安装1composer require nesbot/carbon    PS：由于 Laravel 项目已默认安装了此包，所以不需要再次执行上面的命令。 示例1234//常规项目use Carbon\Carbon;//Laravel项目use Illumin">
+<meta name="twitter:title" content="Carbon便捷处理时间">
+<meta name="twitter:description" content="Carbon 是一个 PHP 的时间处理包，它继承自 DateTime 类的 API 扩展，让处理日期和时间更加简单。">
   
   
     <link rel="icon" href="/favicon.png">
@@ -58,14 +58,14 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-使用Carbon" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-Carbon便捷处理时间" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2018/use-carbon.html" class="article-date">
   <time datetime="2018-05-01T06:11:35.000Z" itemprop="datePublished">2018-05-01</time>
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/categories/laravel/">laravel</a>
+    <a class="article-category-link" href="/categories/工具/">工具</a>
   </div>
 
   </div>
@@ -76,7 +76,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      使用Carbon时间类
+      Carbon便捷处理时间
     </h1>
   
 
@@ -84,26 +84,32 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><strong><a href="http://carbon.nesbot.com/" target="_blank" rel="noopener">Carbon</a></strong>  继承自 PHP DateTime 类的 API 扩展，它使得处理日期和时间更加简单。</p>
-<p><a href="https://github.com/briannesbitt/carbon" target="_blank" rel="noopener">Github传送门</a></p>
-<ul>
-<li>Composer安装<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">composer require nesbot/carbon</span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-<p>PS：由于 Laravel 项目已默认安装了此包，所以不需要再次执行上面的命令。</p>
-<h2 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h2><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//常规项目</span></span><br><span class="line"><span class="keyword">use</span> <span class="title">Carbon</span>\<span class="title">Carbon</span>;</span><br><span class="line"><span class="comment">//Laravel项目</span></span><br><span class="line"><span class="keyword">use</span> <span class="title">Illuminate</span>\<span class="title">Support</span>\<span class="title">Carbon</span>;</span><br></pre></td></tr></table></figure>
-
-<p>后者除了继承于前者，还实现了 <code>JsonSerializable</code> interface 和 <code>Macroable</code> trait</p>
+        <p><a href="http://carbon.nesbot.com/" target="_blank" rel="noopener">Carbon</a> 是一个 PHP 的时间处理包，它继承自 <code>DateTime</code> 类的 API 扩展，让处理日期和时间更加简单。</p>
 <a id="more"></a>
+
+<p>Composer 安装方式：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">composer require nesbot/carbon</span><br></pre></td></tr></table></figure>
+
+<p>使用方式：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//常规项目</span></span><br><span class="line"><span class="keyword">use</span> <span class="title">Carbon</span>\<span class="title">Carbon</span>;</span><br><span class="line"><span class="comment">//Laravel项目</span></span><br><span class="line"><span class="keyword">use</span> <span class="title">Illuminate</span>\<span class="title">Support</span>\<span class="title">Carbon</span>;</span><br></pre></td></tr></table></figure>
+
+<p>后者除了继承于前者，还实现了 <em>JsonSerializable</em> interface 和 <em>Macroable</em> trait</p>
 <h4 id="实例化"><a href="#实例化" class="headerlink" title="实例化"></a>实例化</h4><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Carbon::now();<span class="comment">//同Laravel辅助函数now()</span></span><br><span class="line">Carbon::today();<span class="comment">//同Laravel辅助函数today()</span></span><br><span class="line">Carbon::parse(<span class="string">'2018-5-7 14:38:00'</span>);</span><br><span class="line">Carbon::create(<span class="number">2018</span>, <span class="number">5</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>);</span><br><span class="line">Carbon::now()-&gt;year(<span class="number">2008</span>)-&gt;month(<span class="number">5</span>)-&gt;day(<span class="number">21</span>)-&gt;hour(<span class="number">22</span>)-&gt;minute(<span class="number">32</span>)-&gt;second(<span class="number">5</span>);</span><br><span class="line">Carbon::now()-&gt;setDate(<span class="number">1975</span>, <span class="number">5</span>, <span class="number">21</span>)-&gt;setTime(<span class="number">22</span>, <span class="number">32</span>, <span class="number">5</span>);</span><br></pre></td></tr></table></figure>
 
 <p>更多方法见<a href="http://carbon.nesbot.com/docs/#api-settersfluent" target="_blank" rel="noopener">Fluent Setters</a></p>
 <h4 id="字符串输出"><a href="#字符串输出" class="headerlink" title="字符串输出"></a>字符串输出</h4><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$dt = Carbon::create(<span class="number">1975</span>, <span class="number">12</span>, <span class="number">25</span>, <span class="number">14</span>, <span class="number">15</span>, <span class="number">16</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">echo</span> $dt-&gt;toDateString();                          <span class="comment">// 1975-12-25</span></span><br><span class="line"><span class="keyword">echo</span> $dt-&gt;toTimeString();                          <span class="comment">// 14:15:16</span></span><br><span class="line"><span class="keyword">echo</span> $dt-&gt;toDateTimeString();                      <span class="comment">// 1975-12-25 14:15:16</span></span><br><span class="line"><span class="keyword">echo</span> $dt-&gt;toDayDateTimeString();                   <span class="comment">// Thu, Dec 25, 1975 2:15 PM</span></span><br></pre></td></tr></table></figure>
 
 <p>更多方法见<a href="http://carbon.nesbot.com/docs/#api-formatting" target="_blank" rel="noopener">String Formatting</a></p>
-<h4 id="比较"><a href="#比较" class="headerlink" title="比较"></a>比较</h4><p>常用比较如 <code>eq</code> (equalTo) <code>ne</code> (notEqualTo) <code>gt</code> (greaterThan) <code>lt</code> (lessThan) <code>gte</code> (greaterThanOrEqualTo) <code>lte</code> (lessThanOrEqualTo)</p>
-<p>这些比较使用的是 <code>==</code> ，在PHP7.1前忽略毫秒微秒的差别。</p>
+<h4 id="比较"><a href="#比较" class="headerlink" title="比较"></a>比较</h4><p>常用比较如</p>
+<ul>
+<li><code>eq</code> (equalTo)</li>
+<li><code>ne</code> (notEqualTo)</li>
+<li><code>gt</code> (greaterThan)</li>
+<li><code>lt</code> (lessThan)</li>
+<li><code>gte</code> (greaterThanOrEqualTo)</li>
+<li><code>lte</code> (lessThanOrEqualTo)</li>
+</ul>
+<p>这些比较使用的是 <code>==</code> ，在 PHP7.1 前忽略毫秒微秒的差别。</p>
 <p>其它可用比较方法：</p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//过去or未来</span></span><br><span class="line">$dt-&gt;isFuture();</span><br><span class="line">$dt-&gt;isPast();</span><br><span class="line"><span class="comment">//闰年</span></span><br><span class="line">$dt-&gt;isLeapYear();</span><br><span class="line"><span class="comment">//季度</span></span><br><span class="line">$dt-&gt;isCurrentQuarter();</span><br><span class="line"><span class="comment">//工作日or周末</span></span><br><span class="line">$dt-&gt;isWeekday();</span><br><span class="line">$dt-&gt;isWeekend();</span><br><span class="line"><span class="comment">//周几</span></span><br><span class="line">$dt-&gt;isWednesday();</span><br><span class="line">$dt-&gt;isDayOfWeek(Carbon::SATURDAY);</span><br></pre></td></tr></table></figure>
 
@@ -111,19 +117,22 @@
 <h4 id="自增自减"><a href="#自增自减" class="headerlink" title="自增自减"></a>自增自减</h4><p>可以对世纪、年、季度、月、周、时、分、秒进行 <code>add()</code> 加或 <code>sub()</code> 减</p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//世纪</span></span><br><span class="line"><span class="keyword">echo</span> $dt-&gt;addCentury();</span><br><span class="line"><span class="comment">//文档里对加减复数使用复数方法，源码中单数方法也可以接收参数</span></span><br><span class="line"><span class="keyword">echo</span> $dt-&gt;addCenturies(<span class="number">5</span>);</span><br><span class="line"><span class="keyword">echo</span> $dt-&gt;subCentury();</span><br><span class="line"><span class="comment">//工作日</span></span><br><span class="line"><span class="keyword">echo</span> $dt-&gt;addWeekday();</span><br><span class="line"><span class="keyword">echo</span> $dt-&gt;subWeekday();</span><br></pre></td></tr></table></figure>
 
-<h4 id="求差"><a href="#求差" class="headerlink" title="求差"></a>求差</h4><p>有时我们会使一件事在一个周期里只允许一次，例如每年分一次红，这时我们可以判断 <code>当前日期</code> 和 <code>上次分红日期</code> 对于 <code>设置的分红日期</code> 是否在同一年</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//今天是第几年分红</span></span><br><span class="line">$todayPassYearNum = $canDividendDate-&gt;diffInYears(today());</span><br><span class="line"><span class="comment">//上次分红是第几年</span></span><br><span class="line">$dividendDatePassYearNum = $canDividendDate-&gt;diffInYears(Carbon::parse($lastDividendDate));</span><br><span class="line"><span class="keyword">if</span> ($todayPassYearNum === $dividendDatePassYearNum) &#123;</span><br><span class="line">    <span class="keyword">throw</span> <span class="keyword">new</span> <span class="keyword">Exception</span>(<span class="number">2004</span>, <span class="string">'本年已分过红'</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="求差"><a href="#求差" class="headerlink" title="求差"></a>求差</h4><p>有时我们会使一件事在一个周期里只允许一次，例如发年终奖，这时我们可以判断 <code>今天</code> 和 <code>上次发年终奖</code> 对于 <code>发年终奖日期</code> 是否在同一年</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//今天是第几年发奖</span></span><br><span class="line">$todayPassYearNum = $canDividendDate-&gt;diffInYears(today());</span><br><span class="line"><span class="comment">//上次发奖是第几年</span></span><br><span class="line">$dividendDatePassYearNum = $canDividendDate-&gt;diffInYears(Carbon::parse($lastDividendDate));</span><br><span class="line"><span class="keyword">if</span> ($todayPassYearNum === $dividendDatePassYearNum) &#123;</span><br><span class="line">    <span class="keyword">throw</span> <span class="keyword">new</span> <span class="keyword">Exception</span>(<span class="number">600</span>, <span class="string">'本年已发过奖'</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>同理也有 <code>diffInHours()</code> <code>diffInDays()</code> 等方法</p>
-<h4 id="常量"><a href="#常量" class="headerlink" title="常量"></a>常量</h4><p>源码中定义了许多常量</p>
+<h4 id="常量"><a href="#常量" class="headerlink" title="常量"></a>常量</h4><p>Carbon 定义了许多常量：</p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">var_dump(Carbon::SUNDAY);                          <span class="comment">// int(0)</span></span><br><span class="line">var_dump(Carbon::MONDAY);                          <span class="comment">// int(1)</span></span><br><span class="line">var_dump(Carbon::TUESDAY);                         <span class="comment">// int(2)</span></span><br><span class="line">var_dump(Carbon::WEDNESDAY);                       <span class="comment">// int(3)</span></span><br><span class="line">var_dump(Carbon::THURSDAY);                        <span class="comment">// int(4)</span></span><br><span class="line">var_dump(Carbon::FRIDAY);                          <span class="comment">// int(5)</span></span><br><span class="line">var_dump(Carbon::SATURDAY);                        <span class="comment">// int(6)</span></span><br><span class="line"></span><br><span class="line">var_dump(Carbon::YEARS_PER_CENTURY);               <span class="comment">// int(100)</span></span><br><span class="line">var_dump(Carbon::YEARS_PER_DECADE);                <span class="comment">// int(10)</span></span><br><span class="line">var_dump(Carbon::MONTHS_PER_YEAR);                 <span class="comment">// int(12)</span></span><br><span class="line">var_dump(Carbon::WEEKS_PER_YEAR);                  <span class="comment">// int(52)</span></span><br><span class="line">var_dump(Carbon::DAYS_PER_WEEK);                   <span class="comment">// int(7)</span></span><br><span class="line">var_dump(Carbon::HOURS_PER_DAY);                   <span class="comment">// int(24)</span></span><br><span class="line">var_dump(Carbon::MINUTES_PER_HOUR);                <span class="comment">// int(60)</span></span><br><span class="line">var_dump(Carbon::SECONDS_PER_MINUTE);              <span class="comment">// int(60)</span></span><br></pre></td></tr></table></figure>
+
+<p>还有更多方法等你了解，总的来说 Carbon 让时间处理方便了很多</p>
+
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2018/use-carbon.html" data-id="ck4nti8hy003atwmjdymbag1o" class="article-share-link">分享</a>
+      <a data-url="https://liluoao.github.io/2018/use-carbon.html" data-id="ck4rtu4bt00038kmjm944aek0" class="article-share-link">分享</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/laravel/">laravel</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/tool/">tool</a></li></ul>
 
     </footer>
   </div>
@@ -135,15 +144,15 @@
       <strong class="article-nav-caption">上一篇</strong>
       <div class="article-nav-title">
         
-          使用Laravel-Excel
+          Laravel中操作Excel
         
       </div>
     </a>
   
   
-    <a href="/2018/work-wechat-address-list.html" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2018/php-behavioral-design-patterns-part3.html" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">下一篇</strong>
-      <div class="article-nav-title">企业微信通讯录</div>
+      <div class="article-nav-title">PHP的设计模式之行为模式（三）</div>
     </a>
   
 </nav>
@@ -210,7 +219,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">分类</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Lua/">Lua</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/PHP框架/">PHP框架</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/laravel/">laravel</a><span class="category-list-count">20</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/工具/">工具</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/微信开发/">微信开发</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/支付宝开发/">支付宝开发</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/数据库/">数据库</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/服务器/">服务器</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/杂谈/">杂谈</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/">设计模式</a><span class="category-list-count">7</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Laravel/">Laravel</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Lua/">Lua</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/PHP框架/">PHP框架</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/laravel/">laravel</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/工具/">工具</a><span class="category-list-count">11</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/数据库/">数据库</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/服务器/">服务器</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/杂谈/">杂谈</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/">设计模式</a><span class="category-list-count">7</span></li></ul>
     </div>
   </div>
 
@@ -220,7 +229,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/alipay/">alipay</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/apache/">apache</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/design-patterns/">design-patterns</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/kong/">kong</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/laravel/">laravel</a><span class="tag-list-count">20</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/lua/">lua</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mongo/">mongo</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/openresty/">openresty</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/other/">other</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/phalcon/">phalcon</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/php/">php</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tool/">tool</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/wechat/">wechat</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/yaf/">yaf</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/yii/">yii</a><span class="tag-list-count">1</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/apache/">apache</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/design-patterns/">design-patterns</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/kong/">kong</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/laravel/">laravel</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/lua/">lua</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mongo/">mongo</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/openresty/">openresty</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/other/">other</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/phalcon/">phalcon</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/php/">php</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tool/">tool</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/yaf/">yaf</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/yii/">yii</a><span class="tag-list-count">1</span></li></ul>
     </div>
   </div>
 

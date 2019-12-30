@@ -58,14 +58,14 @@
       <div class="outer">
         <section id="main">
   
-    <article id="post-Laravel的Queue" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-Phalcon框架安装" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2018/laravel-queue.html" class="article-date">
-  <time datetime="2018-05-08T01:08:48.000Z" itemprop="datePublished">2018-05-08</time>
+    <a href="/2018/use-phalcon.html" class="article-date">
+  <time datetime="2018-03-17T02:37:19.000Z" itemprop="datePublished">2018-03-17</time>
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/categories/laravel/">laravel</a>
+    <a class="article-category-link" href="/categories/PHP框架/">PHP框架</a>
   </div>
 
   </div>
@@ -76,7 +76,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2018/laravel-queue.html">Laravel的队列</a>
+      <a class="article-title" href="/2018/use-phalcon.html">Phalcon框架安装</a>
     </h1>
   
 
@@ -84,22 +84,19 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h3><p>首先打开 <code>config/queue.php</code> 。</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'default'</span> =&gt; env(<span class="string">'QUEUE_DRIVER'</span>, <span class="string">'sync'</span>),</span><br><span class="line"><span class="string">'connections'</span> =&gt; [</span><br><span class="line">        <span class="string">'sync'</span> =&gt; [</span><br><span class="line">            <span class="string">'driver'</span> =&gt; <span class="string">'sync'</span>,</span><br><span class="line">        ],</span><br><span class="line">        <span class="string">'database'</span> =&gt; [</span><br><span class="line">            <span class="string">'driver'</span> =&gt; <span class="string">'database'</span>,</span><br><span class="line">        ],</span><br><span class="line">        <span class="comment">//...</span></span><br><span class="line">        <span class="string">'redis'</span> =&gt; [</span><br><span class="line">            <span class="string">'driver'</span> =&gt; <span class="string">'redis'</span>,</span><br><span class="line">        ],</span><br><span class="line">    ],</span><br></pre></td></tr></table></figure>
-
-<p><code>default</code> 是队列系统默认使用的驱动，在连接时可以使用 <code>onConnection()</code> 方法将任务推到指定连接。<br><code>connections</code> 可以配置各种驱动的设置，如<strong>Redis</strong>的数据库连接等。<br><code>failed</code> 配置队列中的任务执行失败时，保存失败任务的库与表。</p>
+        <p>Phalcon 是一个使用 C 编写、高性能的 PHP 框架。</p>
         
           <p class="article-more-link">
-            <a href="/2018/laravel-queue.html#more">阅读全文</a>
+            <a href="/2018/use-phalcon.html#more">阅读全文</a>
           </p>
         
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2018/laravel-queue.html" data-id="ck4nti8h30017twmjy1m55r96" class="article-share-link">分享</a>
+      <a data-url="https://liluoao.github.io/2018/use-phalcon.html" data-id="ck4rtu4d4001i8kmj2f6e15fp" class="article-share-link">分享</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/laravel/">laravel</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/phalcon/">phalcon</a></li></ul>
 
     </footer>
   </div>
@@ -108,14 +105,14 @@
 
 
   
-    <article id="post-Laravel的Log" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-Apache的SSL配置" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2018/laravel-log.html" class="article-date">
-  <time datetime="2018-05-07T08:13:07.000Z" itemprop="datePublished">2018-05-07</time>
+    <a href="/2018/apache-ssl-config.html" class="article-date">
+  <time datetime="2018-03-05T07:15:45.000Z" itemprop="datePublished">2018-03-05</time>
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/categories/laravel/">laravel</a>
+    <a class="article-category-link" href="/categories/服务器/">服务器</a>
   </div>
 
   </div>
@@ -126,7 +123,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2018/laravel-log.html">Laravel的日志</a>
+      <a class="article-title" href="/2018/apache-ssl-config.html">Apache配置HTTPS并重定向</a>
     </h1>
   
 
@@ -134,68 +131,19 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>Laravel 的日志系统基于 <a href="https://github.com/Seldaek/monolog" target="_blank" rel="noopener">Monolog</a> 库</p>
-<p>错误日志级别（<a href="https://tools.ietf.org/html/rfc5424" target="_blank" rel="noopener">RFC5424</a>定义）：<em>debug, info, notice, warning, error, critical, alert, emergency</em></p>
-<p>Laravel的日志默认保存在 <code>storage/logs/laravel.log</code></p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">use</span> <span class="title">Illuminate</span>\<span class="title">Support</span>\<span class="title">Facades</span>\<span class="title">Log</span>;</span><br><span class="line"></span><br><span class="line">Log::emergency($message, $contextualInfo);</span><br><span class="line">Log::alert($message);</span><br><span class="line">Log::critical($message);</span><br><span class="line">Log::error($message);</span><br><span class="line">Log::warning($message);</span><br><span class="line">Log::notice($message);</span><br><span class="line">Log::info($message);</span><br><span class="line">Log::debug($message);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 或者全局助手方法</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// Log::info()</span></span><br><span class="line">info(<span class="string">'Some helpful information!'</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// Log::debug()</span></span><br><span class="line">logger(<span class="string">'Debug message'</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// Log::error()</span></span><br><span class="line">logger()-&gt;error(<span class="string">'You are not allowed here.'</span>);</span><br></pre></td></tr></table></figure>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2018/laravel-log.html" data-id="ck4nti8go000ytwmj87kd4gr8" class="article-share-link">分享</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/laravel/">laravel</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-Laravel的Config" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/laravel-config.html" class="article-date">
-  <time datetime="2018-05-06T08:08:10.000Z" itemprop="datePublished">2018-05-06</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/laravel/">laravel</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/laravel-config.html">Laravel的配置</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><code>$_ENV</code> 或<code>env()</code>可读取<code>.env</code>文件中的变量.</p>
-<p>读取 config/app.php 中的数据:</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$value = config(<span class="string">'app.timezone'</span>);</span><br></pre></td></tr></table></figure>
-
-<p>新增配置文件后，如 <code>config/wechat.php</code>，使用 <code>config(&#39;wechat.xxx&#39;)</code> 读取</p>
+        <p>在阿里云购买了服务器后，把自己的博客放了上去。但是现在浏览器不再建议使用 HTTP，会提示网站不安全，需要把网站更换为 HTTPS，并将 HTTP 访问的自动转发到 HTTPS 端口上，下面分享下整个操作流程。</p>
         
           <p class="article-more-link">
-            <a href="/2018/laravel-config.html#more">阅读全文</a>
+            <a href="/2018/apache-ssl-config.html#more">阅读全文</a>
           </p>
         
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2018/laravel-config.html" data-id="ck4nti8go000ttwmj21e0a7fx" class="article-share-link">分享</a>
+      <a data-url="https://liluoao.github.io/2018/apache-ssl-config.html" data-id="ck4rtu4bt00028kmj8i6x0400" class="article-share-link">分享</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/laravel/">laravel</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/apache/">apache</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux/">linux</a></li></ul>
 
     </footer>
   </div>
@@ -204,14 +152,14 @@
 
 
   
-    <article id="post-Laravel的Eloquent-ORM-Relationship" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-统一代码风格-editorConfig" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2018/laravel-eloquent-orm-relationship.html" class="article-date">
-  <time datetime="2018-05-05T01:04:19.000Z" itemprop="datePublished">2018-05-05</time>
+    <a href="/2018/how-to-use-editorconfig.html" class="article-date">
+  <time datetime="2018-02-19T03:10:22.000Z" itemprop="datePublished">2018-02-19</time>
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/categories/laravel/">laravel</a>
+    <a class="article-category-link" href="/categories/工具/">工具</a>
   </div>
 
   </div>
@@ -222,7 +170,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2018/laravel-eloquent-orm-relationship.html">Eloquent-ORM-Relationship</a>
+      <a class="article-title" href="/2018/how-to-use-editorconfig.html">代码风格工具EditorConfig</a>
     </h1>
   
 
@@ -230,24 +178,19 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <ul>
-<li><strong>一对一 One To One</strong><br>场景：用户表（<code>users</code>）、用户设置表（<code>user_settings</code>）<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">User</span> <span class="keyword">extends</span> <span class="title">Model</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">settings</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">$this</span>-&gt;hasOne(<span class="string">'App\Models\Settings'</span>, <span class="string">'user_id'</span>, <span class="string">'id'</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-<p>然后通过动态属性 <code>User::find(1)-&gt;settings</code> 可以读取。</p>
+        <p>在团队开发中，统一的代码格式非常重要。可能团队对于后端代码格式有专门的规定，对于前端代码格式也有专门规定。<br>但是由于开发习惯的不同，后端 PHP 可能使用的是 PHPStorm，前端开发可能使用的是 Visual Studio Code，这样还是没有避免问题出现。<br>而 <a href="http://editorconfig.org/" target="_blank" rel="noopener">EditorConfig</a> 可以帮助开发人员在不同的编辑器和 IDE 中定义和维护一致的编码风格。</p>
         
           <p class="article-more-link">
-            <a href="/2018/laravel-eloquent-orm-relationship.html#more">阅读全文</a>
+            <a href="/2018/how-to-use-editorconfig.html#more">阅读全文</a>
           </p>
         
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2018/laravel-eloquent-orm-relationship.html" data-id="ck4nti8go000utwmj03rsnv14" class="article-share-link">分享</a>
+      <a data-url="https://liluoao.github.io/2018/how-to-use-editorconfig.html" data-id="ck4rtu4dz002y8kmjgl83n9xv" class="article-share-link">分享</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/laravel/">laravel</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/tool/">tool</a></li></ul>
 
     </footer>
   </div>
@@ -256,14 +199,14 @@
 
 
   
-    <article id="post-Laravel的Route" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-JWT认证的优点" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2018/laravel-route.html" class="article-date">
-  <time datetime="2018-05-04T02:55:55.000Z" itemprop="datePublished">2018-05-04</time>
+    <a href="/2018/what-is-jwt.html" class="article-date">
+  <time datetime="2018-02-09T02:37:19.000Z" itemprop="datePublished">2018-02-09</time>
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/categories/laravel/">laravel</a>
+    <a class="article-category-link" href="/categories/杂谈/">杂谈</a>
   </div>
 
   </div>
@@ -274,7 +217,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2018/laravel-route.html">Laravel的路由</a>
+      <a class="article-title" href="/2018/what-is-jwt.html">JWT认证的优点</a>
     </h1>
   
 
@@ -282,22 +225,19 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h4 id="新增路由文件"><a href="#新增路由文件" class="headerlink" title="新增路由文件"></a>新增路由文件</h4><p>在 <code>app/Providers/RouteServiceProvider</code> 中：</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">protected</span> <span class="function"><span class="keyword">function</span> <span class="title">mapWebRoutes</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    Route::group([</span><br><span class="line">        <span class="string">'middleware'</span> =&gt; <span class="string">'web'</span>, </span><br><span class="line">        <span class="string">'namespace'</span> =&gt; <span class="keyword">$this</span>-&gt;namespace</span><br><span class="line">        ], <span class="function"><span class="keyword">function</span> <span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">require</span> base_path(<span class="string">'routes/web.php'</span>);</span><br><span class="line">        <span class="keyword">require</span> base_path(<span class="string">'routes/test.php'</span>);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="分配其他中间件组"><a href="#分配其他中间件组" class="headerlink" title="分配其他中间件组"></a>分配其他中间件组</h4><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">protected</span> <span class="function"><span class="keyword">function</span> <span class="title">mapApiRoutes</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    Route::prefix(<span class="string">'api'</span>)</span><br><span class="line">         -&gt;middleware(<span class="string">'restful-api'</span>)</span><br><span class="line">         -&gt;namespace(<span class="keyword">$this</span>-&gt;namespace)</span><br><span class="line">         -&gt;group(base_path(<span class="string">'routes/api.php'</span>));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="当前路由"><a href="#当前路由" class="headerlink" title="当前路由"></a>当前路由</h4><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$route = Route::current();</span><br><span class="line"></span><br><span class="line">$name = Route::currentRouteName();</span><br><span class="line"></span><br><span class="line">$action = Route::currentRouteAction();</span><br></pre></td></tr></table></figure>
-
-
+        <h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p><a href="https://jwt.io/introduction/" target="_blank" rel="noopener">JWT (Json web token)</a>，是为了在网络应用环境间传递声明而执行的一种基于 <em>JSON</em> 格式的开放标准 (<a href="https://tools.ietf.org/html/rfc7519" target="_blank" rel="noopener">RFC 7519</a>)，它一般被用来做身份认证。</p>
+<p>我们来对比一下基于 Token 的认证和传统的 SESSION 认证</p>
+        
+          <p class="article-more-link">
+            <a href="/2018/what-is-jwt.html#more">阅读全文</a>
+          </p>
+        
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2018/laravel-route.html" data-id="ck4nti8h3001btwmj9lxkwttl" class="article-share-link">分享</a>
+      <a data-url="https://liluoao.github.io/2018/what-is-jwt.html" data-id="ck4rtu4bt00068kmje1y6mzh7" class="article-share-link">分享</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/laravel/">laravel</a></li></ul>
-
     </footer>
   </div>
   
@@ -305,14 +245,14 @@
 
 
   
-    <article id="post-使用Intervention-Image" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-IDE中使用SFTP提高效率" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2018/use-intervention-image.html" class="article-date">
-  <time datetime="2018-05-03T06:36:58.000Z" itemprop="datePublished">2018-05-03</time>
+    <a href="/2018/phpstorm-use-ftp.html" class="article-date">
+  <time datetime="2018-02-04T08:51:42.000Z" itemprop="datePublished">2018-02-04</time>
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/categories/laravel/">laravel</a>
+    <a class="article-category-link" href="/categories/工具/">工具</a>
   </div>
 
   </div>
@@ -323,7 +263,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2018/use-intervention-image.html">使用Intervention-Image处理图像</a>
+      <a class="article-title" href="/2018/phpstorm-use-ftp.html">IDE中使用SFTP提高效率</a>
     </h1>
   
 
@@ -331,24 +271,72 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><a href="https://github.com/Intervention/image" target="_blank" rel="noopener">Intervention/image</a> 是为 Laravel 定制的图片处理工具, 它提供了一套易于表达的方式来创建、编辑图片。</p>
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>在开发时如果需要实时将文件同步到服务器上，可能需要用 Xftp 等软件来实现。<br>这样需要在几个界面来回切换，比较耗时。其实 IDE 已经为你实现了这个功能。</p>
+        
+          <p class="article-more-link">
+            <a href="/2018/phpstorm-use-ftp.html#more">阅读全文</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://liluoao.github.io/2018/phpstorm-use-ftp.html" data-id="ck4rtu4bt00078kmjq7khky7r" class="article-share-link">分享</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/tool/">tool</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-给项目README添加徽章" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/add-project-badge.html" class="article-date">
+  <time datetime="2018-02-03T06:47:05.000Z" itemprop="datePublished">2018-02-03</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/工具/">工具</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/add-project-badge.html">给项目README添加徽章</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>在许多项目的 <code>README</code> 中，我们经常会看到下面这种 <code>徽章（Badge）</code>，这是如何制作的呢？</p>
 <ul>
-<li>Composer安装<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">composer require intervention/image</span><br></pre></td></tr></table></figure>
-
-</li>
+<li>CI结果<br><a href="https://ci.appveyor.com/project/liluoao/blog-source" target="_blank" rel="noopener"><img src="https://img.shields.io/appveyor/ci/liluoao/blog-source.svg?longCache=true&logo=appveyor" alt="AppVeyor"></a></li>
+<li>项目许可<br><a href="https://github.com/liluoao/blog-source/blob/master/LICENSE" target="_blank" rel="noopener"><img src="https://img.shields.io/github/license/liluoao/blog-source.svg?longCache=true" alt="license"></a></li>
+<li>项目版本<br><a href="https://packagist.org/packages/liluoao/phalcon" target="_blank" rel="noopener"><img src="https://img.shields.io/packagist/v/liluoao/phalcon.svg?longCache=true" alt="Packagist"></a></li>
+<li>包/环境版本要求<br><a href="https://packagist.org/packages/liluoao/phalcon" target="_blank" rel="noopener"><img src="https://img.shields.io/packagist/php-v/liluoao/phalcon.svg?longCache=true" alt="PHP 版本"></a></li>
 </ul>
         
           <p class="article-more-link">
-            <a href="/2018/use-intervention-image.html#more">阅读全文</a>
+            <a href="/2018/add-project-badge.html#more">阅读全文</a>
           </p>
         
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2018/use-intervention-image.html" data-id="ck4nti8hy003itwmjpuwknjn8" class="article-share-link">分享</a>
+      <a data-url="https://liluoao.github.io/2018/add-project-badge.html" data-id="ck4rtu4dz002t8kmjec3hgtq4" class="article-share-link">分享</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/laravel/">laravel</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/tool/">tool</a></li></ul>
 
     </footer>
   </div>
@@ -357,14 +345,14 @@
 
 
   
-    <article id="post-使用Laravel-Excel" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-使用持续集成维护博客" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2018/use-laravel-excel.html" class="article-date">
-  <time datetime="2018-05-02T07:42:19.000Z" itemprop="datePublished">2018-05-02</time>
+    <a href="/2018/use-appveyor-ci.html" class="article-date">
+  <time datetime="2018-02-02T03:37:55.000Z" itemprop="datePublished">2018-02-02</time>
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/categories/laravel/">laravel</a>
+    <a class="article-category-link" href="/categories/工具/">工具</a>
   </div>
 
   </div>
@@ -375,7 +363,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2018/use-laravel-excel.html">使用Laravel-Excel</a>
+      <a class="article-title" href="/2018/use-appveyor-ci.html">使用持续集成维护博客</a>
     </h1>
   
 
@@ -383,25 +371,21 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><strong><a href="https://laravel-excel.maatwebsite.nl/" target="_blank" rel="noopener">Laravel Excel</a></strong>  brings the power of PHPOffice’s PHPExcel to Laravel 5 with a touch of the Laravel Magic. It includes features like: importing Excel and CSV to collections, exporting models, array’s and views to Excel, importing batches of files and importing a file by a config file.</p>
-<p><a href="https://github.com/Maatwebsite/Laravel-Excel" target="_blank" rel="noopener">Github传送门</a></p>
-<ul>
-<li>Composer安装<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">composer require maatwebsite/excel</span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
+        <h2 id="持续集成介绍"><a href="#持续集成介绍" class="headerlink" title="持续集成介绍"></a>持续集成介绍</h2><p>持续集成（Continuous integration，简称 CI）是一种软件开发实践，即团队开发成员经常集成他们的工作，通常每个成员每天至少集成一次，也就意味着每天可能会发生多次集成。每次集成都通过自动化的构建（包括编译，发布，自动化测试）来验证，从而尽早地发现集成错误。</p>
+<p>减少重复的过程可以节省时间、费用和工作量。说起来简单，做起来难。这些浪费时间的重复劳动可能在我们的项目活动的任何一个环节发生，包括代码编译、数据库集成、测试、审查、部署及反馈。通过自动化的持续集成可以将这些重复的动作都变成自动化的，无需太多人工干预，让人们的时间更多的投入到动脑筋的、更高价值的事情上。</p>
+<p>市面上常见的持续集成工具有 <a href="https://jenkins.io/zh/" target="_blank" rel="noopener">Jenkins</a>，<a href="https://www.travis-ci.org/" target="_blank" rel="noopener">TravisCI</a>，和本文要使用的 <a href="https://ci.appveyor.com" target="_blank" rel="noopener">AppVeyor</a>。<br>一般代码管理平台也支持 CI/CD</p>
         
           <p class="article-more-link">
-            <a href="/2018/use-laravel-excel.html#more">阅读全文</a>
+            <a href="/2018/use-appveyor-ci.html#more">阅读全文</a>
           </p>
         
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2018/use-laravel-excel.html" data-id="ck4nti8ie003ptwmjcjnhcpm7" class="article-share-link">分享</a>
+      <a data-url="https://liluoao.github.io/2018/use-appveyor-ci.html" data-id="ck4rtu4dj00258kmjp81crkne" class="article-share-link">分享</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/laravel/">laravel</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/tool/">tool</a></li></ul>
 
     </footer>
   </div>
@@ -410,14 +394,14 @@
 
 
   
-    <article id="post-使用Carbon" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-使用Hexo" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2018/use-carbon.html" class="article-date">
-  <time datetime="2018-05-01T06:11:35.000Z" itemprop="datePublished">2018-05-01</time>
+    <a href="/2018/use-hexo.html" class="article-date">
+  <time datetime="2018-02-01T02:37:19.000Z" itemprop="datePublished">2018-02-01</time>
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/categories/laravel/">laravel</a>
+    <a class="article-category-link" href="/categories/工具/">工具</a>
   </div>
 
   </div>
@@ -428,7 +412,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2018/use-carbon.html">使用Carbon时间类</a>
+      <a class="article-title" href="/2018/use-hexo.html">使用Hexo写博客</a>
     </h1>
   
 
@@ -436,129 +420,20 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><strong><a href="http://carbon.nesbot.com/" target="_blank" rel="noopener">Carbon</a></strong>  继承自 PHP DateTime 类的 API 扩展，它使得处理日期和时间更加简单。</p>
-<p><a href="https://github.com/briannesbitt/carbon" target="_blank" rel="noopener">Github传送门</a></p>
-<ul>
-<li>Composer安装<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">composer require nesbot/carbon</span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-<p>PS：由于 Laravel 项目已默认安装了此包，所以不需要再次执行上面的命令。</p>
-<h2 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h2><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//常规项目</span></span><br><span class="line"><span class="keyword">use</span> <span class="title">Carbon</span>\<span class="title">Carbon</span>;</span><br><span class="line"><span class="comment">//Laravel项目</span></span><br><span class="line"><span class="keyword">use</span> <span class="title">Illuminate</span>\<span class="title">Support</span>\<span class="title">Carbon</span>;</span><br></pre></td></tr></table></figure>
-
-<p>后者除了继承于前者，还实现了 <code>JsonSerializable</code> interface 和 <code>Macroable</code> trait</p>
+        <h2 id="Hexo-介绍"><a href="#Hexo-介绍" class="headerlink" title="Hexo 介绍"></a>Hexo 介绍</h2><p><a href="https://hexo.io/zh-cn/docs/" target="_blank" rel="noopener">Hexo</a> 是一个快速、简洁且高效的博客框架。Hexo 使用 Markdown（或其他渲染引擎）解析文章，在几秒内，即可利用靓丽的主题生成静态网页</p>
+<p>直接用 NPM 全局安装：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g hexo-cli</span><br></pre></td></tr></table></figure>
         
           <p class="article-more-link">
-            <a href="/2018/use-carbon.html#more">阅读全文</a>
+            <a href="/2018/use-hexo.html#more">阅读全文</a>
           </p>
         
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2018/use-carbon.html" data-id="ck4nti8hy003atwmjdymbag1o" class="article-share-link">分享</a>
+      <a data-url="https://liluoao.github.io/2018/use-hexo.html" data-id="ck4rtu4d4001r8kmj5h8eftel" class="article-share-link">分享</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/laravel/">laravel</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-企业微信通讯录" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/work-wechat-address-list.html" class="article-date">
-  <time datetime="2018-04-15T02:18:48.000Z" itemprop="datePublished">2018-04-15</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/微信开发/">微信开发</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/work-wechat-address-list.html">企业微信通讯录</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><a href="https://work.weixin.qq.com/" target="_blank" rel="noopener">企业微信</a>（原企业号）提供了通讯录管理、应用管理、消息推送、身份验证、移动端SDK、素材、OA数据接口、企业支付、电子发票等API，管理员可以使用这些API，为企业接入更多个性化的办公应用。</p>
-<p>要使用API管理通讯录，必须打开 <code>通讯录同步</code><br>登录企业管理后台-&gt;“管理工具”-&gt;“通讯录同步”-&gt;“开启API接口同步”</p>
-<p><img src="/images/work-wechat-config.png" alt="企业微信配置"></p>
-        
-          <p class="article-more-link">
-            <a href="/2018/work-wechat-address-list.html#more">阅读全文</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2018/work-wechat-address-list.html" data-id="ck4nti8hy0036twmjrldnxrge" class="article-share-link">分享</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/wechat/">wechat</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-微信硬件设备授权" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/wechat-authorize-hardware.html" class="article-date">
-  <time datetime="2018-04-14T01:35:57.000Z" itemprop="datePublished">2018-04-14</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/微信开发/">微信开发</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/wechat-authorize-hardware.html">微信硬件设备授权</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><img src="/images/wechat-hardware.png" alt="设备授权流程"></p>
-<ol>
-<li>进入<a href="https://mp.weixin.qq.com/" target="_blank" rel="noopener">微信公众平台</a><br>在 <code>功能</code> -&gt; <code>设备管理</code> 中添加产品，填写相关信息后获取到产品ID（product_id）</li>
-</ol>
-        
-          <p class="article-more-link">
-            <a href="/2018/wechat-authorize-hardware.html#more">阅读全文</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2018/wechat-authorize-hardware.html" data-id="ck4nti8iu004wtwmjbl6nk1rh" class="article-share-link">分享</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/wechat/">wechat</a></li></ul>
-
     </footer>
   </div>
   
@@ -570,7 +445,7 @@
 
   <nav id="page-nav">
     
-    <a class="extend prev" rel="prev" href="/page/3/">&laquo; 上一页</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/5/">下一页 &raquo;</a>
+    <a class="extend prev" rel="prev" href="/page/3/">&laquo; 上一页</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span>
   </nav>
 
 </section>
@@ -632,7 +507,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">分类</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Lua/">Lua</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/PHP框架/">PHP框架</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/laravel/">laravel</a><span class="category-list-count">20</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/工具/">工具</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/微信开发/">微信开发</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/支付宝开发/">支付宝开发</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/数据库/">数据库</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/服务器/">服务器</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/杂谈/">杂谈</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/">设计模式</a><span class="category-list-count">7</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Laravel/">Laravel</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Lua/">Lua</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/PHP框架/">PHP框架</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/laravel/">laravel</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/工具/">工具</a><span class="category-list-count">11</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/数据库/">数据库</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/服务器/">服务器</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/杂谈/">杂谈</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/">设计模式</a><span class="category-list-count">7</span></li></ul>
     </div>
   </div>
 
@@ -642,7 +517,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/alipay/">alipay</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/apache/">apache</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/design-patterns/">design-patterns</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/kong/">kong</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/laravel/">laravel</a><span class="tag-list-count">20</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/lua/">lua</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mongo/">mongo</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/openresty/">openresty</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/other/">other</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/phalcon/">phalcon</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/php/">php</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tool/">tool</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/wechat/">wechat</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/yaf/">yaf</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/yii/">yii</a><span class="tag-list-count">1</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/apache/">apache</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/design-patterns/">design-patterns</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/kong/">kong</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/laravel/">laravel</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/lua/">lua</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mongo/">mongo</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/openresty/">openresty</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/other/">other</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/phalcon/">phalcon</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/php/">php</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tool/">tool</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/yaf/">yaf</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/yii/">yii</a><span class="tag-list-count">1</span></li></ul>
     </div>
   </div>
 

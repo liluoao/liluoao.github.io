@@ -5,20 +5,20 @@
   
 
   
-  <title>使用PHPUnit | To be a Web Artisan</title>
+  <title>Laravel单元测试 | To be a Web Artisan</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="如果是使用 Laravel 安装器创建的项目，则已经安装好了 PHPUnit 123456789&quot;require-dev&quot;: &amp;#123;    //...    &quot;phpunit/phpunit&quot;: &quot;^7.0&quot;&amp;#125;,&quot;autoload-dev&quot;: &amp;#123;    &quot;psr-4&quot;: &amp;#123;        &quot;Tests\\&quot;: &quot;tests/&quot;    &amp;#125;&amp;#125;,">
+  <meta name="description" content="PHP 的单元测试 PHPUnit 使用非常普遍，在 Laravel 中是否一样使用呢，或者提供了更方便的方法？让我们一起了解一下吧。">
 <meta name="keywords" content="laravel">
 <meta property="og:type" content="article">
-<meta property="og:title" content="使用PHPUnit">
+<meta property="og:title" content="Laravel单元测试">
 <meta property="og:url" content="https://liluoao.github.io/2018/laravel-phpunit.html">
 <meta property="og:site_name" content="To be a Web Artisan">
-<meta property="og:description" content="如果是使用 Laravel 安装器创建的项目，则已经安装好了 PHPUnit 123456789&quot;require-dev&quot;: &amp;#123;    //...    &quot;phpunit/phpunit&quot;: &quot;^7.0&quot;&amp;#125;,&quot;autoload-dev&quot;: &amp;#123;    &quot;psr-4&quot;: &amp;#123;        &quot;Tests\\&quot;: &quot;tests/&quot;    &amp;#125;&amp;#125;,">
+<meta property="og:description" content="PHP 的单元测试 PHPUnit 使用非常普遍，在 Laravel 中是否一样使用呢，或者提供了更方便的方法？让我们一起了解一下吧。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-12-27T07:10:58.576Z">
+<meta property="og:updated_time" content="2019-12-30T02:31:18.851Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="使用PHPUnit">
-<meta name="twitter:description" content="如果是使用 Laravel 安装器创建的项目，则已经安装好了 PHPUnit 123456789&quot;require-dev&quot;: &amp;#123;    //...    &quot;phpunit/phpunit&quot;: &quot;^7.0&quot;&amp;#125;,&quot;autoload-dev&quot;: &amp;#123;    &quot;psr-4&quot;: &amp;#123;        &quot;Tests\\&quot;: &quot;tests/&quot;    &amp;#125;&amp;#125;,">
+<meta name="twitter:title" content="Laravel单元测试">
+<meta name="twitter:description" content="PHP 的单元测试 PHPUnit 使用非常普遍，在 Laravel 中是否一样使用呢，或者提供了更方便的方法？让我们一起了解一下吧。">
   
   
     <link rel="icon" href="/favicon.png">
@@ -58,14 +58,14 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-Laravel使用PHPUnit" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-Laravel单元测试" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2018/laravel-phpunit.html" class="article-date">
   <time datetime="2018-05-27T02:44:40.000Z" itemprop="datePublished">2018-05-27</time>
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/categories/laravel/">laravel</a>
+    <a class="article-category-link" href="/categories/Laravel/">Laravel</a>
   </div>
 
   </div>
@@ -76,7 +76,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      使用PHPUnit
+      Laravel单元测试
     </h1>
   
 
@@ -84,43 +84,43 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>如果是使用 Laravel 安装器创建的项目，则已经安装好了 PHPUnit</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">"require-dev": &#123;</span><br><span class="line">    <span class="comment">//...</span></span><br><span class="line">    "phpunit/phpunit": "^7.0"</span><br><span class="line">&#125;,</span><br><span class="line">"autoload-dev": &#123;</span><br><span class="line">    "psr-4": &#123;</span><br><span class="line">        "Tests\\": "tests/"</span><br><span class="line">    &#125;</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
-
-<p>根目录有 <code>phpunit.xml</code> 配置文件</p>
-<h4 id="创建用例"><a href="#创建用例" class="headerlink" title="创建用例"></a>创建用例</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">php artisan make:<span class="built_in">test</span> UserTest</span><br></pre></td></tr></table></figure>
-
-<p>该命令会在 <code>tests/Feature</code> 目录中创建一个新的 <code>UserTest</code> 类</p>
+        <p>PHP 的单元测试 PHPUnit 使用非常普遍，在 Laravel 中是否一样使用呢，或者提供了更方便的方法？让我们一起了解一下吧。</p>
 <a id="more"></a>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">namespace</span> <span class="title">Tests</span>\<span class="title">Feature</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">use</span> <span class="title">Tests</span>\<span class="title">TestCase</span>;</span><br><span class="line"><span class="keyword">use</span> <span class="title">Illuminate</span>\<span class="title">Foundation</span>\<span class="title">Testing</span>\<span class="title">WithFaker</span>;</span><br><span class="line"><span class="keyword">use</span> <span class="title">Illuminate</span>\<span class="title">Foundation</span>\<span class="title">Testing</span>\<span class="title">RefreshDatabase</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">UserTest</span> <span class="keyword">extends</span> <span class="title">TestCase</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * A basic test example.</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> void</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">testExample</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">$this</span>-&gt;assertTrue(<span class="keyword">true</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h4 id="应用测试"><a href="#应用测试" class="headerlink" title="应用测试"></a>应用测试</h4><p>看看示例方法 <code>ExampleTest</code>：</p>
+<p>如果是使用 Laravel 安装器创建的项目，则已经安装好了 PHPUnit。不是的话通过 Composer 手动安装也一样方便。<br>安装后的 <em>composer.json</em> 配置示例：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">"require-dev": &#123;</span><br><span class="line">    "phpunit/phpunit": "^7.0"</span><br><span class="line">&#125;,</span><br><span class="line">"autoload-dev": &#123;</span><br><span class="line">    "psr-4": &#123;</span><br><span class="line">        "Tests\\": "tests/"</span><br><span class="line">    &#125;</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+
+<p>单元测试的配置文件 <em>phpunit.xml</em> 和平常一样使用，详细参见<a href="www.phpunit.cn/manual/6.5/zh_cn/appendixes.configuration.html">附录 C. XML 配置文件</a></p>
+<h2 id="快速创建用例"><a href="#快速创建用例" class="headerlink" title="快速创建用例"></a>快速创建用例</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">php artisan make:<span class="built_in">test</span> UserTest</span><br></pre></td></tr></table></figure>
+
+<p>该命令会在 <em>tests/Feature</em> 目录中创建一个 UserTest 测试类</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">namespace</span> <span class="title">Tests</span>\<span class="title">Feature</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">use</span> <span class="title">Tests</span>\<span class="title">TestCase</span>;</span><br><span class="line"><span class="keyword">use</span> <span class="title">Illuminate</span>\<span class="title">Foundation</span>\<span class="title">Testing</span>\<span class="title">WithFaker</span>;</span><br><span class="line"><span class="keyword">use</span> <span class="title">Illuminate</span>\<span class="title">Foundation</span>\<span class="title">Testing</span>\<span class="title">RefreshDatabase</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">UserTest</span> <span class="keyword">extends</span> <span class="title">TestCase</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">testExample</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">$this</span>-&gt;assertTrue(<span class="keyword">true</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Web测试"><a href="#Web测试" class="headerlink" title="Web测试"></a>Web测试</h2><p>断言某 GET 请求的响应码为 200 的示例方法 ExampleTest 如下：</p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">testBasicTest</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    $response = <span class="keyword">$this</span>-&gt;get(<span class="string">'/'</span>);</span><br><span class="line"></span><br><span class="line">    $response-&gt;assertStatus(<span class="number">200</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>本方法断言这个 <code>GET</code> 请求的响应码为 <code>200</code></p>
-<h4 id="测试-JSON-APIs"><a href="#测试-JSON-APIs" class="headerlink" title="测试 JSON APIs"></a>测试 JSON APIs</h4><p>一个 <code>POST</code> 请求的测试来断言 <code>/user</code> 会返回给定数组的 JSON 格式：</p>
+<h2 id="接口测试"><a href="#接口测试" class="headerlink" title="接口测试"></a>接口测试</h2><p>下面的测试是断言 <code>/user</code> 这个 POST 接口会返回给定数组的 JSON 格式：</p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">$this</span>-&gt;json(<span class="string">'POST'</span>, <span class="string">'/user'</span>, [<span class="string">'name'</span> =&gt; <span class="string">'Sally'</span>])</span><br><span class="line">    -&gt;seeJson([</span><br><span class="line">        <span class="string">'created'</span> =&gt; <span class="keyword">true</span>,</span><br><span class="line">    ]) ;</span><br></pre></td></tr></table></figure>
 
-<p><code>seeJson</code> 方法会转换给定的数组为 JSON，并且会验证应用响应的完整 JSON 中是否会出现相应的片段。所以，如果响应中还含有其他 JSON 属性，那么这个测试依然会被通过。</p>
-<ul>
-<li><p>验证完全匹配的 JSON<br>如果你希望验证完整的 JSON 响应，你可以使用 seeJsonEquals 方法，除非 JSON 相应于所给定的数组完全匹配，否则该测试不会被通过：</p>
+<p><code>seeJson</code> 方法会转换给定的数组为 JSON，并且会验证应用响应的完整 JSON 中是否会出现相应的片段。<br>所以，如果响应中还含有其他 JSON 属性，那么这个测试依然会被通过。</p>
+<h3 id="验证完全匹配的-JSON"><a href="#验证完全匹配的-JSON" class="headerlink" title="验证完全匹配的 JSON"></a>验证完全匹配的 JSON</h3><p>如果希望验证完整的 JSON 响应，你可以使用 <code>seeJsonEquals()</code> 方法，JSON 与所给定的数组完全匹配：</p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">$this</span>-&gt;json(<span class="string">'POST'</span>, <span class="string">'/user'</span>, [<span class="string">'name'</span> =&gt; <span class="string">'Sally'</span>])</span><br><span class="line">    -&gt;seeJsonEquals([</span><br><span class="line">        <span class="string">'created'</span> =&gt; <span class="keyword">true</span>,</span><br><span class="line">    ]);</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>验证匹配 JSON 结构<br>验证 JSON 响应是否采取给定的结构也是可以的。你可以使用 seeJsonStructure 方法并传递嵌套的键列表：</p>
+
+<h3 id="验证匹配-JSON-结构"><a href="#验证匹配-JSON-结构" class="headerlink" title="验证匹配 JSON 结构"></a>验证匹配 JSON 结构</h3><p>使用 <code>seeJsonStructure()</code> 方法并传递嵌套的键列表：</p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">$this</span>-&gt;get(<span class="string">'/user/1'</span>)</span><br><span class="line">    -&gt;seeJsonStructure([</span><br><span class="line">        <span class="string">'name'</span>,</span><br><span class="line">        <span class="string">'pet'</span> =&gt; [</span><br><span class="line">          <span class="string">'name'</span>, <span class="string">'age'</span></span><br><span class="line">        ]</span><br><span class="line">    ]);</span><br></pre></td></tr></table></figure>
 
-</li>
-</ul>
-<p>在上面的例子中表明了期望获取一个含有 name 和 pet 属性的 JSON，并且 pet 键是一个含有 name 和 age 属性的对象。如果含有额外的键，<code>seeJsonStructure</code> 方法并不会失败。比如，如果 pet 还含有 weight 属性，那么测试依然会被通过。</p>
-<p>你可以使用 * 来断言所返回的 JSON 结构中的每一项都应该包含所列出的这些属性：</p>
+<p>在上面的例子中表明了期望获取一个含有 name 和 pet 属性的 JSON，并且 pet 键是一个含有 name 和 age 属性的对象。<br>如果含有额外的键，<code>seeJsonStructure</code> 方法并不会失败。比如，如果 pet 还含有 weight 属性，那么测试依然会被通过。</p>
+<p>你可以使用 <code>*</code> 来断言所返回的 JSON 结构中的每一项都应该包含所列出的这些属性：</p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">$this</span>-&gt;get(<span class="string">'/users'</span>)</span><br><span class="line">    -&gt;seeJsonStructure([</span><br><span class="line">        <span class="string">'*'</span> =&gt; [</span><br><span class="line">          <span class="string">'id'</span>, <span class="string">'name'</span>, <span class="string">'email'</span></span><br><span class="line">        ]</span><br><span class="line">    ]);</span><br></pre></td></tr></table></figure>
 
 <p>你也可以嵌套使用 *，下面的例子中，我们断言 JSON 响应返回的每一个用户都应该包含所列出的属性，并且 pet 属性应该也包含所给定的属性：</p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">$this</span>-&gt;get(<span class="string">'/users'</span>)</span><br><span class="line">    -&gt;seeJsonStructure([</span><br><span class="line">        <span class="string">'*'</span> =&gt; [</span><br><span class="line">            <span class="string">'id'</span>, <span class="string">'name'</span>, <span class="string">'email'</span>, <span class="string">'pets'</span> =&gt; [</span><br><span class="line">                <span class="string">'*'</span> =&gt; [</span><br><span class="line">                    <span class="string">'name'</span>, <span class="string">'age'</span></span><br><span class="line">                ]</span><br><span class="line">            ]</span><br><span class="line">        ]</span><br><span class="line">    ]);</span><br></pre></td></tr></table></figure>
+
+
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2018/laravel-phpunit.html" data-id="ck4nti8go000ntwmjgz03y7z2" class="article-share-link">分享</a>
+      <a data-url="https://liluoao.github.io/2018/laravel-phpunit.html" data-id="ck4rtu4co000n8kmjxzxc2d55" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/laravel/">laravel</a></li></ul>
@@ -141,9 +141,9 @@
     </a>
   
   
-    <a href="/2018/restful-api-in-laravel-56-using-jwt-authentication.html" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2018/use-intervention-image.html" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">下一篇</strong>
-      <div class="article-nav-title">使用JWT-Authentication</div>
+      <div class="article-nav-title">Laravel中处理图像</div>
     </a>
   
 </nav>
@@ -210,7 +210,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">分类</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Lua/">Lua</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/PHP框架/">PHP框架</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/laravel/">laravel</a><span class="category-list-count">20</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/工具/">工具</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/微信开发/">微信开发</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/支付宝开发/">支付宝开发</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/数据库/">数据库</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/服务器/">服务器</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/杂谈/">杂谈</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/">设计模式</a><span class="category-list-count">7</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Laravel/">Laravel</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Lua/">Lua</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/PHP框架/">PHP框架</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/laravel/">laravel</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/工具/">工具</a><span class="category-list-count">11</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/数据库/">数据库</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/服务器/">服务器</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/杂谈/">杂谈</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/">设计模式</a><span class="category-list-count">7</span></li></ul>
     </div>
   </div>
 
@@ -220,7 +220,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/alipay/">alipay</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/apache/">apache</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/design-patterns/">design-patterns</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/kong/">kong</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/laravel/">laravel</a><span class="tag-list-count">20</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/lua/">lua</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mongo/">mongo</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/openresty/">openresty</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/other/">other</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/phalcon/">phalcon</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/php/">php</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tool/">tool</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/wechat/">wechat</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/yaf/">yaf</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/yii/">yii</a><span class="tag-list-count">1</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/apache/">apache</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/design-patterns/">design-patterns</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/kong/">kong</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/laravel/">laravel</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/lua/">lua</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mongo/">mongo</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/openresty/">openresty</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/other/">other</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/phalcon/">phalcon</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/php/">php</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tool/">tool</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/yaf/">yaf</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/yii/">yii</a><span class="tag-list-count">1</span></li></ul>
     </div>
   </div>
 

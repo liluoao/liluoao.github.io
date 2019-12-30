@@ -5,20 +5,20 @@
   
 
   
-  <title>使用Laravel-Excel | To be a Web Artisan</title>
+  <title>Laravel中操作Excel | To be a Web Artisan</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Laravel Excel  brings the power of PHPOffice’s PHPExcel to Laravel 5 with a touch of the Laravel Magic. It includes features like: importing Excel and CSV to collections, exporting models, array’s and">
+  <meta name="description" content="Laravel Excel 是建议在 Laravel 中使用的 Excel 处理包，它把原来 PHPOffice 的 PHPExcel 的强大功能在 Laravel 5.x 框架中再实现，还实现了 Laravel 的集合、模型、视图、配置等。">
 <meta name="keywords" content="laravel">
 <meta property="og:type" content="article">
-<meta property="og:title" content="使用Laravel-Excel">
+<meta property="og:title" content="Laravel中操作Excel">
 <meta property="og:url" content="https://liluoao.github.io/2018/use-laravel-excel.html">
 <meta property="og:site_name" content="To be a Web Artisan">
-<meta property="og:description" content="Laravel Excel  brings the power of PHPOffice’s PHPExcel to Laravel 5 with a touch of the Laravel Magic. It includes features like: importing Excel and CSV to collections, exporting models, array’s and">
+<meta property="og:description" content="Laravel Excel 是建议在 Laravel 中使用的 Excel 处理包，它把原来 PHPOffice 的 PHPExcel 的强大功能在 Laravel 5.x 框架中再实现，还实现了 Laravel 的集合、模型、视图、配置等。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-12-27T07:10:58.591Z">
+<meta property="og:updated_time" content="2019-12-30T02:31:18.851Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="使用Laravel-Excel">
-<meta name="twitter:description" content="Laravel Excel  brings the power of PHPOffice’s PHPExcel to Laravel 5 with a touch of the Laravel Magic. It includes features like: importing Excel and CSV to collections, exporting models, array’s and">
+<meta name="twitter:title" content="Laravel中操作Excel">
+<meta name="twitter:description" content="Laravel Excel 是建议在 Laravel 中使用的 Excel 处理包，它把原来 PHPOffice 的 PHPExcel 的强大功能在 Laravel 5.x 框架中再实现，还实现了 Laravel 的集合、模型、视图、配置等。">
   
   
     <link rel="icon" href="/favicon.png">
@@ -58,14 +58,14 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-使用Laravel-Excel" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-Laravel中操作Excel" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2018/use-laravel-excel.html" class="article-date">
   <time datetime="2018-05-02T07:42:19.000Z" itemprop="datePublished">2018-05-02</time>
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/categories/laravel/">laravel</a>
+    <a class="article-category-link" href="/categories/Laravel/">Laravel</a>
   </div>
 
   </div>
@@ -76,7 +76,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      使用Laravel-Excel
+      Laravel中操作Excel
     </h1>
   
 
@@ -84,36 +84,31 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><strong><a href="https://laravel-excel.maatwebsite.nl/" target="_blank" rel="noopener">Laravel Excel</a></strong>  brings the power of PHPOffice’s PHPExcel to Laravel 5 with a touch of the Laravel Magic. It includes features like: importing Excel and CSV to collections, exporting models, array’s and views to Excel, importing batches of files and importing a file by a config file.</p>
-<p><a href="https://github.com/Maatwebsite/Laravel-Excel" target="_blank" rel="noopener">Github传送门</a></p>
-<ul>
-<li>Composer安装<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">composer require maatwebsite/excel</span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
+        <p><a href="https://laravel-excel.com/" target="_blank" rel="noopener">Laravel Excel</a> 是建议在 Laravel 中使用的 Excel 处理包，它把原来 PHPOffice 的 <strong>PHPExcel</strong> 的强大功能在 Laravel 5.x 框架中再实现，还实现了 Laravel 的集合、模型、视图、配置等。</p>
 <a id="more"></a>
-<ul>
-<li><p>修改 <code>app/config/app.php</code> 添加 <code>ServiceProvider</code>:</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 将下面代码添加到 providers 数组中</span></span><br><span class="line"><span class="string">'providers'</span> =&gt; [</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">    Maatwebsite\Excel\ExcelServiceProvider::class,</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">],</span><br><span class="line"></span><br><span class="line"><span class="comment">// 将下面代码添加到 aliases 数组中</span></span><br><span class="line"><span class="string">'aliases'</span> =&gt; [</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">    <span class="string">'Excel'</span> =&gt; Maatwebsite\Excel\Facades\Excel::class,</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">],</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>发布<br>会创建一个 <code>config/excel.php</code></p>
+
+<p>Composer 安装：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">composer require maatwebsite/excel</span><br></pre></td></tr></table></figure>
+
+<p>修改 <em>app/config/app.php</em> ，添加 <code>ServiceProvider</code>：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'providers'</span> =&gt; [</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">    Maatwebsite\Excel\ExcelServiceProvider::class,</span><br><span class="line">],</span><br><span class="line"><span class="string">'aliases'</span> =&gt; [</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">    <span class="string">'Excel'</span> =&gt; Maatwebsite\Excel\Facades\Excel::class,</span><br><span class="line">],</span><br></pre></td></tr></table></figure>
+
+<p>使用如下命令创建一个配置文件 <em>config/excel.php</em></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">php artisan vendor:publish</span><br></pre></td></tr></table></figure>
 
-</li>
-</ul>
-<h2 id="Import"><a href="#Import" class="headerlink" title="Import"></a>Import</h2><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">use</span> <span class="title">Maatwebsite</span>\<span class="title">Excel</span>\<span class="title">Facades</span>\<span class="title">Excel</span>;</span><br><span class="line">Excel::load(<span class="string">'file.xls'</span>, <span class="function"><span class="keyword">function</span><span class="params">($reader)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// Getting all results</span></span><br><span class="line">    $results = $reader-&gt;get();</span><br><span class="line">    <span class="comment">// -&gt;all() is a wrapper for -&gt;get() and will work the same</span></span><br><span class="line">    $results = $reader-&gt;all();</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h4 id="Import-导入"><a href="#Import-导入" class="headerlink" title="Import 导入"></a>Import 导入</h4><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">use</span> <span class="title">Maatwebsite</span>\<span class="title">Excel</span>\<span class="title">Facades</span>\<span class="title">Excel</span>;</span><br><span class="line">Excel::load(<span class="string">'file.xls'</span>, <span class="function"><span class="keyword">function</span><span class="params">($reader)</span> </span>&#123;</span><br><span class="line">    $results = $reader-&gt;get();</span><br><span class="line">    $results = $reader-&gt;all();</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
 
-<p>这里对<code>$reader</code>使用<code>get()</code>或<code>all()</code>方法时会生成<strong>Sheet</strong>集合，可以使用<code>getTitle()</code>,<code>toArray()</code>,<code>toObject</code>等方法。<br>使用<code>first()</code>或通过<code>each()</code>或<code>foreach</code>遍历时，会生成<strong>Row</strong>集合，这时<code>toArray()</code>就是最终结果了。</p>
-<p>工具默认会把第一行当作title，最后数据从A2单元格开始。<br>第一行的大写字母会转成小写输出，汉字为空。</p>
-<p>整个结果集是<strong>LaravelExcelReader</strong>对象。</p>
-<h2 id="Export"><a href="#Export" class="headerlink" title="Export"></a>Export</h2><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">$model = AdminModel::query()-&gt;get();</span><br><span class="line">$array = [</span><br><span class="line">    [<span class="string">'data1'</span>,<span class="string">'data2'</span>],</span><br><span class="line">    [<span class="string">'data3'</span>,<span class="string">'data4'</span>]</span><br><span class="line">];</span><br><span class="line">Excel::create(<span class="string">'test'</span>,<span class="function"><span class="keyword">function</span> <span class="params">($excel)</span><span class="title">use</span><span class="params">($model)</span></span>&#123;</span><br><span class="line">    $excel-&gt;sheet(<span class="string">'sheet1'</span>,<span class="function"><span class="keyword">function</span> <span class="params">($sheet)</span><span class="title">use</span><span class="params">($model)</span></span>&#123;</span><br><span class="line">        $sheet-&gt;fromModel($model);</span><br><span class="line">        <span class="comment">//$sheet-&gt;fromArray($array);</span></span><br><span class="line">    &#125;);</span><br><span class="line">&#125;)-&gt;export(<span class="string">'xls'</span>);</span><br></pre></td></tr></table></figure>
+<p>这里对 <code>$reader</code> 使用 <code>get()</code> 或 <code>all()</code> 方法时会生成 Sheet 集合（单个工作簿），可以使用 <code>getTitle()</code>，<code>toArray()</code>，<code>toObject()</code> 等方法。</p>
+<p>使用 <code>first()</code> 或通过 <code>each()</code> 或 <code>foreach()</code> 遍历时，会生成 Row 集合（一行数据），这时 <code>toArray()</code> 就是最终结果了。</p>
+<p>工具默认会把第一行当作 title，最后数据从 A2 单元格开始。<br>第一行的大写字母会转成小写输出，汉字为空。</p>
+<p>整个结果集是 <em>LaravelExcelReader</em> 对象。</p>
+<h2 id="Export-导出"><a href="#Export-导出" class="headerlink" title="Export 导出"></a>Export 导出</h2><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">$model = AdminModel::query()-&gt;get();</span><br><span class="line">$array = [</span><br><span class="line">    [<span class="string">'data1'</span>,<span class="string">'data2'</span>],</span><br><span class="line">    [<span class="string">'data3'</span>,<span class="string">'data4'</span>]</span><br><span class="line">];</span><br><span class="line">Excel::create(<span class="string">'test'</span>, <span class="function"><span class="keyword">function</span> <span class="params">($excel)</span> <span class="title">use</span> <span class="params">($model)</span> </span>&#123;</span><br><span class="line">    $excel-&gt;sheet(<span class="string">'sheet1'</span>, <span class="function"><span class="keyword">function</span> <span class="params">($sheet)</span> <span class="title">use</span> <span class="params">($model)</span> </span>&#123;</span><br><span class="line">        $sheet-&gt;fromModel($model);<span class="comment">//从 Model 导出</span></span><br><span class="line">        $sheet-&gt;fromArray($array);<span class="comment">//从数组导出</span></span><br><span class="line">    &#125;);</span><br><span class="line">&#125;)-&gt;export(<span class="string">'xls'</span>);</span><br></pre></td></tr></table></figure>
 
-<p>有从数组导出和从Model导出两种方法</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2018/use-laravel-excel.html" data-id="ck4nti8ie003ptwmjcjnhcpm7" class="article-share-link">分享</a>
+      <a data-url="https://liluoao.github.io/2018/use-laravel-excel.html" data-id="ck4rtu4c8000g8kmjdjttgea7" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/laravel/">laravel</a></li></ul>
@@ -128,7 +123,7 @@
       <strong class="article-nav-caption">上一篇</strong>
       <div class="article-nav-title">
         
-          使用Intervention-Image处理图像
+          Laravel中处理图像
         
       </div>
     </a>
@@ -136,7 +131,7 @@
   
     <a href="/2018/use-carbon.html" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">下一篇</strong>
-      <div class="article-nav-title">使用Carbon时间类</div>
+      <div class="article-nav-title">Carbon便捷处理时间</div>
     </a>
   
 </nav>
@@ -203,7 +198,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">分类</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Lua/">Lua</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/PHP框架/">PHP框架</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/laravel/">laravel</a><span class="category-list-count">20</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/工具/">工具</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/微信开发/">微信开发</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/支付宝开发/">支付宝开发</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/数据库/">数据库</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/服务器/">服务器</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/杂谈/">杂谈</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/">设计模式</a><span class="category-list-count">7</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Laravel/">Laravel</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Lua/">Lua</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/PHP框架/">PHP框架</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/laravel/">laravel</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/工具/">工具</a><span class="category-list-count">11</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/数据库/">数据库</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/服务器/">服务器</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/杂谈/">杂谈</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/">设计模式</a><span class="category-list-count">7</span></li></ul>
     </div>
   </div>
 
@@ -213,7 +208,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/alipay/">alipay</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/apache/">apache</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/design-patterns/">design-patterns</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/kong/">kong</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/laravel/">laravel</a><span class="tag-list-count">20</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/lua/">lua</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mongo/">mongo</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/openresty/">openresty</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/other/">other</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/phalcon/">phalcon</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/php/">php</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tool/">tool</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/wechat/">wechat</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/yaf/">yaf</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/yii/">yii</a><span class="tag-list-count">1</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/apache/">apache</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/design-patterns/">design-patterns</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/kong/">kong</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/laravel/">laravel</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/lua/">lua</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mongo/">mongo</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/openresty/">openresty</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/other/">other</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/phalcon/">phalcon</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/php/">php</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tool/">tool</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/yaf/">yaf</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/yii/">yii</a><span class="tag-list-count">1</span></li></ul>
     </div>
   </div>
 

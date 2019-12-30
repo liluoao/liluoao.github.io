@@ -5,20 +5,20 @@
   
 
   
-  <title>使用Intervention-Image处理图像 | To be a Web Artisan</title>
+  <title>Laravel中处理图像 | To be a Web Artisan</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Intervention/image 是为 Laravel 定制的图片处理工具, 它提供了一套易于表达的方式来创建、编辑图片。  Composer安装1composer require intervention/image">
+  <meta name="description" content="Intervention/image 是一个图片处理工具，它提供了一套容易理解的方式来创建、编辑图片。它实现了 ServiceProvider、Facade 等来方便地在 Laravel 中使用。">
 <meta name="keywords" content="laravel">
 <meta property="og:type" content="article">
-<meta property="og:title" content="使用Intervention-Image处理图像">
+<meta property="og:title" content="Laravel中处理图像">
 <meta property="og:url" content="https://liluoao.github.io/2018/use-intervention-image.html">
 <meta property="og:site_name" content="To be a Web Artisan">
-<meta property="og:description" content="Intervention/image 是为 Laravel 定制的图片处理工具, 它提供了一套易于表达的方式来创建、编辑图片。  Composer安装1composer require intervention/image">
+<meta property="og:description" content="Intervention/image 是一个图片处理工具，它提供了一套容易理解的方式来创建、编辑图片。它实现了 ServiceProvider、Facade 等来方便地在 Laravel 中使用。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-12-27T07:10:58.591Z">
+<meta property="og:updated_time" content="2019-12-30T02:31:18.851Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="使用Intervention-Image处理图像">
-<meta name="twitter:description" content="Intervention/image 是为 Laravel 定制的图片处理工具, 它提供了一套易于表达的方式来创建、编辑图片。  Composer安装1composer require intervention/image">
+<meta name="twitter:title" content="Laravel中处理图像">
+<meta name="twitter:description" content="Intervention/image 是一个图片处理工具，它提供了一套容易理解的方式来创建、编辑图片。它实现了 ServiceProvider、Facade 等来方便地在 Laravel 中使用。">
   
   
     <link rel="icon" href="/favicon.png">
@@ -58,14 +58,14 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-使用Intervention-Image" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-Laravel中处理图像" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2018/use-intervention-image.html" class="article-date">
   <time datetime="2018-05-03T06:36:58.000Z" itemprop="datePublished">2018-05-03</time>
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/categories/laravel/">laravel</a>
+    <a class="article-category-link" href="/categories/Laravel/">Laravel</a>
   </div>
 
   </div>
@@ -76,7 +76,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      使用Intervention-Image处理图像
+      Laravel中处理图像
     </h1>
   
 
@@ -84,38 +84,39 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><a href="https://github.com/Intervention/image" target="_blank" rel="noopener">Intervention/image</a> 是为 Laravel 定制的图片处理工具, 它提供了一套易于表达的方式来创建、编辑图片。</p>
-<ul>
-<li>Composer安装<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">composer require intervention/image</span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
+        <p><a href="http://image.intervention.io/" target="_blank" rel="noopener">Intervention/image</a> 是一个图片处理工具，它提供了一套容易理解的方式来创建、编辑图片。它实现了 ServiceProvider、Facade 等来方便地在 Laravel 中使用。</p>
 <a id="more"></a>
-<ul>
-<li><p>修改 <code>app/config/app.php</code> 添加 <code>ServiceProvider</code>:</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 将下面代码添加到 providers 数组中</span></span><br><span class="line"><span class="string">'providers'</span> =&gt; [</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">    Intervention\Image\ImageServiceProvider::class,</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">],</span><br><span class="line"></span><br><span class="line"><span class="comment">// 将下面代码添加到 aliases 数组中</span></span><br><span class="line"><span class="string">'aliases'</span> =&gt; [</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">    <span class="string">'Image'</span> =&gt; Intervention\Image\Facades\Image::class,</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">],</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>发布<br>会创建一个 <code>config/image.php</code></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">php artisan vendor:publish</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>配置</p>
-</li>
-</ul>
-<p>此扩展包默认使用 PHP 的 GD 库来进行图像处理, 但由于 GD 库对图像的处理效率要稍逊色于 imagemagick 库, 因此这里推荐替换为 imagemagick 库来进行图像处理.</p>
-<p>开始之前, 你得先确定本地已经安装好 GD 或 Imagick.</p>
-<p>在使用 Intervention Image 的时候, 你只需要给 ImageManager 传一个数组参数就可以完成 GD 和 Imagick 库之间的互相切换. </p>
-<p>如下：</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 通过指定 driver 来创建一个 image manager 实例</span></span><br><span class="line">$manager = <span class="keyword">new</span> ImageManager(<span class="keyword">array</span>(<span class="string">'driver'</span> =&gt; <span class="string">'imagick'</span>));</span><br><span class="line"></span><br><span class="line"><span class="comment">// 最后创建 image 实例</span></span><br><span class="line">$image = $manager-&gt;make(<span class="string">'public/foo.jpg'</span>)-&gt;resize(<span class="number">300</span>, <span class="number">200</span>);</span><br></pre></td></tr></table></figure>
 
-<ul>
-<li>除上文介绍的基本用法之外, 此扩展包还支持:<br>  图片上传功能;<br>  图片缓存功能;<br>  图片过滤功能: 将图片按照统一规则进行转换;<br>  图片动态处理: 根据访问图片的 URL 参数自动调整图片大小</li>
-</ul>
-<p>更多内容请见：<a href="http://image.intervention.io/getting_started/installation" target="_blank" rel="noopener">官方文档</a></p>
+<p>Composer 安装</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">composer require intervention/image</span><br></pre></td></tr></table></figure>
+
+<p>修改 <em>app/config/app.php</em> ，添加 <code>ServiceProvider</code>：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'providers'</span> =&gt; [</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">    Intervention\Image\ImageServiceProvider::class,</span><br><span class="line"></span><br><span class="line">],</span><br><span class="line"><span class="string">'aliases'</span> =&gt; [</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">    <span class="string">'Image'</span> =&gt; Intervention\Image\Facades\Image::class,</span><br><span class="line">],</span><br></pre></td></tr></table></figure>
+
+<p>使用如下命令创建一个配置文件 <em>config/image.php</em></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">php artisan vendor:publish</span><br></pre></td></tr></table></figure>
+
+<h4 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h4><p>先确定本地已经安装好 GD 或 Imagick</p>
+<blockquote>
+<p>此扩展包默认使用 PHP 的 <code>GD</code> 库来进行图像处理，但由于 GD 库对图像的处理效率要稍逊色于 <code>imagemagick</code> 库，因此这里推荐替换为 imagemagick 库来进行图像处理</p>
+</blockquote>
+<p>在使用 Intervention Image 的时候，你只需要给 ImageManager 传一个数组参数就可以完成 GD 和 Imagick 库之间的互相切换：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 通过指定 driver 来创建一个 image manager 实例</span></span><br><span class="line">$manager = <span class="keyword">new</span> ImageManager([<span class="string">'driver'</span> =&gt; <span class="string">'imagick'</span>]);</span><br></pre></td></tr></table></figure>
+
 <h2 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h2><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">use</span> <span class="title">Intervention</span>\<span class="title">Image</span>\<span class="title">ImageManager</span>;</span><br><span class="line">$manager = <span class="keyword">new</span> ImageManager();</span><br><span class="line"><span class="comment">//字体路径</span></span><br><span class="line">$fontPath = storage_path(<span class="string">'font/SourceHanSansCN-Normal.ttf'</span>);</span><br><span class="line"><span class="comment">//以一张背景图开始</span></span><br><span class="line">$image = $manager-&gt;make(<span class="string">'images/invitation-bg.png'</span>);</span><br><span class="line"><span class="comment">//插入图片</span></span><br><span class="line">$image-&gt;insert(<span class="string">'images/logo.png'</span>, <span class="string">'top'</span>, <span class="number">0</span>, <span class="number">20</span>);</span><br><span class="line"><span class="comment">//插入文字</span></span><br><span class="line">$image-&gt;text(<span class="string">'欢迎光临'</span>, <span class="number">200</span>, <span class="number">80</span>, <span class="function"><span class="keyword">function</span> <span class="params">($font)</span> <span class="title">use</span> <span class="params">($fontPath)</span> </span>&#123;</span><br><span class="line">    $font-&gt;file($fontPath);<span class="comment">//字体</span></span><br><span class="line">    $font-&gt;size(<span class="number">24</span>);<span class="comment">//大小</span></span><br><span class="line">    $font-&gt;color(<span class="string">'#61B8A8'</span>);<span class="comment">//颜色</span></span><br><span class="line">    $font-&gt;align(<span class="string">'center'</span>);<span class="comment">//水平对齐</span></span><br><span class="line">    $font-&gt;valign(<span class="string">'top'</span>);<span class="comment">//垂直对齐</span></span><br><span class="line">&#125;);</span><br><span class="line"><span class="comment">//保存为文件</span></span><br><span class="line">$image-&gt;save(<span class="string">'uploads/1.jpg'</span>);</span><br></pre></td></tr></table></figure>
+
+<p>除介绍的基本用法之外，此扩展包还支持：</p>
+<ul>
+<li>上传功能</li>
+<li>缓存功能</li>
+<li>过滤功能: 将图片按照统一规则进行转换</li>
+<li>动态处理: 根据访问图片的 URL 参数自动调整图片大小</li>
+</ul>
+
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2018/use-intervention-image.html" data-id="ck4nti8hy003itwmjpuwknjn8" class="article-share-link">分享</a>
+      <a data-url="https://liluoao.github.io/2018/use-intervention-image.html" data-id="ck4rtu4c8000c8kmjclmvlk5v" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/laravel/">laravel</a></li></ul>
@@ -126,11 +127,11 @@
     
 <nav id="article-nav">
   
-    <a href="/2018/laravel-route.html" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2018/laravel-phpunit.html" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption">上一篇</strong>
       <div class="article-nav-title">
         
-          Laravel的路由
+          Laravel单元测试
         
       </div>
     </a>
@@ -138,7 +139,7 @@
   
     <a href="/2018/use-laravel-excel.html" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">下一篇</strong>
-      <div class="article-nav-title">使用Laravel-Excel</div>
+      <div class="article-nav-title">Laravel中操作Excel</div>
     </a>
   
 </nav>
@@ -205,7 +206,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">分类</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Lua/">Lua</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/PHP框架/">PHP框架</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/laravel/">laravel</a><span class="category-list-count">20</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/工具/">工具</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/微信开发/">微信开发</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/支付宝开发/">支付宝开发</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/数据库/">数据库</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/服务器/">服务器</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/杂谈/">杂谈</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/">设计模式</a><span class="category-list-count">7</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Laravel/">Laravel</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Lua/">Lua</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/PHP框架/">PHP框架</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/laravel/">laravel</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/工具/">工具</a><span class="category-list-count">11</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/数据库/">数据库</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/服务器/">服务器</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/杂谈/">杂谈</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/">设计模式</a><span class="category-list-count">7</span></li></ul>
     </div>
   </div>
 
@@ -215,7 +216,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/alipay/">alipay</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/apache/">apache</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/design-patterns/">design-patterns</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/kong/">kong</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/laravel/">laravel</a><span class="tag-list-count">20</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/lua/">lua</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mongo/">mongo</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/openresty/">openresty</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/other/">other</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/phalcon/">phalcon</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/php/">php</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tool/">tool</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/wechat/">wechat</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/yaf/">yaf</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/yii/">yii</a><span class="tag-list-count">1</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/apache/">apache</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/design-patterns/">design-patterns</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/kong/">kong</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/laravel/">laravel</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/lua/">lua</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mongo/">mongo</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/openresty/">openresty</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/other/">other</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/phalcon/">phalcon</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/php/">php</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tool/">tool</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/yaf/">yaf</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/yii/">yii</a><span class="tag-list-count">1</span></li></ul>
     </div>
   </div>
 

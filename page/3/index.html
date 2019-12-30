@@ -58,14 +58,14 @@
       <div class="outer">
         <section id="main">
   
-    <article id="post-Laravel使用JWT-Authentication" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-Laravel中处理图像" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2018/restful-api-in-laravel-56-using-jwt-authentication.html" class="article-date">
-  <time datetime="2018-05-25T03:35:27.000Z" itemprop="datePublished">2018-05-25</time>
+    <a href="/2018/use-intervention-image.html" class="article-date">
+  <time datetime="2018-05-03T06:36:58.000Z" itemprop="datePublished">2018-05-03</time>
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/categories/laravel/">laravel</a>
+    <a class="article-category-link" href="/categories/Laravel/">Laravel</a>
   </div>
 
   </div>
@@ -76,7 +76,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2018/restful-api-in-laravel-56-using-jwt-authentication.html">使用JWT-Authentication</a>
+      <a class="article-title" href="/2018/use-intervention-image.html">Laravel中处理图像</a>
     </h1>
   
 
@@ -84,23 +84,16 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="Restful-API-In-Laravel-5-6-Using-jwt-Authentication"><a href="#Restful-API-In-Laravel-5-6-Using-jwt-Authentication" class="headerlink" title="Restful API In Laravel 5.6 Using jwt Authentication"></a>Restful API In Laravel 5.6 Using jwt Authentication</h2><h4 id="Installing-tymon-jwt-auth-package"><a href="#Installing-tymon-jwt-auth-package" class="headerlink" title="Installing tymon/jwt-auth package"></a>Installing tymon/jwt-auth package</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">composer require tymon/jwt-auth:dev-develop --prefer-source</span><br></pre></td></tr></table></figure>
-
-<h4 id="Publishing-Configuration-File"><a href="#Publishing-Configuration-File" class="headerlink" title="Publishing Configuration File"></a>Publishing Configuration File</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">php artisan vendor:publish --provider=<span class="string">"Tymon\JWTAuth\Providers\JWTAuthServiceProvider"</span></span><br></pre></td></tr></table></figure>
-
-<h4 id="Generate-JWT-Key"><a href="#Generate-JWT-Key" class="headerlink" title="Generate JWT Key"></a>Generate JWT Key</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">php artisan jwt:secret</span><br></pre></td></tr></table></figure>
-
-<h4 id="Registering-Middleware"><a href="#Registering-Middleware" class="headerlink" title="Registering Middleware"></a>Registering Middleware</h4><p>在 <code>app\Http\Kernel</code> 中加入：</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">protected</span> $routeMiddleware = [</span><br><span class="line">    <span class="comment">//...</span></span><br><span class="line">    <span class="string">'auth.jwt'</span> =&gt; \Tymon\JWTAuth\Http\Middleware\Authenticate::class,</span><br><span class="line">];</span><br></pre></td></tr></table></figure>
+        <p><a href="http://image.intervention.io/" target="_blank" rel="noopener">Intervention/image</a> 是一个图片处理工具，它提供了一套容易理解的方式来创建、编辑图片。它实现了 ServiceProvider、Facade 等来方便地在 Laravel 中使用。</p>
         
           <p class="article-more-link">
-            <a href="/2018/restful-api-in-laravel-56-using-jwt-authentication.html#more">阅读全文</a>
+            <a href="/2018/use-intervention-image.html#more">阅读全文</a>
           </p>
         
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2018/restful-api-in-laravel-56-using-jwt-authentication.html" data-id="ck4nti8go000jtwmj8g6t32jv" class="article-share-link">分享</a>
+      <a data-url="https://liluoao.github.io/2018/use-intervention-image.html" data-id="ck4rtu4c8000c8kmjclmvlk5v" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/laravel/">laravel</a></li></ul>
@@ -112,14 +105,14 @@
 
 
   
-    <article id="post-Laravel的Policy" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-Laravel中操作Excel" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2018/laravel-policy.html" class="article-date">
-  <time datetime="2018-05-24T03:25:43.000Z" itemprop="datePublished">2018-05-24</time>
+    <a href="/2018/use-laravel-excel.html" class="article-date">
+  <time datetime="2018-05-02T07:42:19.000Z" itemprop="datePublished">2018-05-02</time>
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/categories/laravel/">laravel</a>
+    <a class="article-category-link" href="/categories/Laravel/">Laravel</a>
   </div>
 
   </div>
@@ -130,7 +123,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2018/laravel-policy.html">Laravel的策略</a>
+      <a class="article-title" href="/2018/use-laravel-excel.html">Laravel中操作Excel</a>
     </h1>
   
 
@@ -138,24 +131,16 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>策略是在特定模型或者资源中组织授权逻辑的类，一个模型类对应一个策略类。</p>
-<p>在 <code>AuthServiceProvider</code> 中：</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">protected</span> $policies = [</span><br><span class="line">    <span class="string">'App\Model'</span> =&gt; <span class="string">'App\Policies\ModelPolicy'</span>,</span><br><span class="line">];</span><br></pre></td></tr></table></figure>
-
-<h4 id="创建策略"><a href="#创建策略" class="headerlink" title="创建策略"></a>创建策略</h4><p>在 <code>app/Policies</code> 中生成类：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">php artisan make:policy PostPolicy</span><br></pre></td></tr></table></figure>
-
-<h4 id="注册策略"><a href="#注册策略" class="headerlink" title="注册策略"></a>注册策略</h4><p>修改 <code>$policies</code> 属性：</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">protected</span> $policies = [</span><br><span class="line">    Post::class =&gt; PostPolicy::class,</span><br><span class="line">];</span><br></pre></td></tr></table></figure>
+        <p><a href="https://laravel-excel.com/" target="_blank" rel="noopener">Laravel Excel</a> 是建议在 Laravel 中使用的 Excel 处理包，它把原来 PHPOffice 的 <strong>PHPExcel</strong> 的强大功能在 Laravel 5.x 框架中再实现，还实现了 Laravel 的集合、模型、视图、配置等。</p>
         
           <p class="article-more-link">
-            <a href="/2018/laravel-policy.html#more">阅读全文</a>
+            <a href="/2018/use-laravel-excel.html#more">阅读全文</a>
           </p>
         
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2018/laravel-policy.html" data-id="ck4nti8go0016twmjqsw20yr4" class="article-share-link">分享</a>
+      <a data-url="https://liluoao.github.io/2018/use-laravel-excel.html" data-id="ck4rtu4c8000g8kmjdjttgea7" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/laravel/">laravel</a></li></ul>
@@ -167,14 +152,14 @@
 
 
   
-    <article id="post-Laravel的Passport-Authentication" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-Carbon便捷处理时间" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2018/create-rest-api-in-laravel-with-authentication-using-passport.html" class="article-date">
-  <time datetime="2018-05-23T06:33:42.000Z" itemprop="datePublished">2018-05-23</time>
+    <a href="/2018/use-carbon.html" class="article-date">
+  <time datetime="2018-05-01T06:11:35.000Z" itemprop="datePublished">2018-05-01</time>
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/categories/laravel/">laravel</a>
+    <a class="article-category-link" href="/categories/工具/">工具</a>
   </div>
 
   </div>
@@ -185,7 +170,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2018/create-rest-api-in-laravel-with-authentication-using-passport.html">使用Passport-Authentication</a>
+      <a class="article-title" href="/2018/use-carbon.html">Carbon便捷处理时间</a>
     </h1>
   
 
@@ -193,33 +178,19 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="Create-REST-API-in-Laravel-with-authentication-using-Passport"><a href="#Create-REST-API-in-Laravel-with-authentication-using-Passport" class="headerlink" title="Create REST API in Laravel with authentication using Passport"></a>Create REST API in Laravel with authentication using Passport</h2><ol>
-<li><p>Install Laravel</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">laravel new auth</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>Install Laravel Passport Package</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">composer require laravel/passport</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>Run Migration</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">php artisan migrate</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>Generate keys</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">php artisan passport:install</span><br></pre></td></tr></table></figure>
-
-</li>
-</ol>
+        <p><a href="http://carbon.nesbot.com/" target="_blank" rel="noopener">Carbon</a> 是一个 PHP 的时间处理包，它继承自 <code>DateTime</code> 类的 API 扩展，让处理日期和时间更加简单。</p>
         
           <p class="article-more-link">
-            <a href="/2018/create-rest-api-in-laravel-with-authentication-using-passport.html#more">阅读全文</a>
+            <a href="/2018/use-carbon.html#more">阅读全文</a>
           </p>
         
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2018/create-rest-api-in-laravel-with-authentication-using-passport.html" data-id="ck4nti8go0013twmjvktjg92e" class="article-share-link">分享</a>
+      <a data-url="https://liluoao.github.io/2018/use-carbon.html" data-id="ck4rtu4bt00038kmjm944aek0" class="article-share-link">分享</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/laravel/">laravel</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/tool/">tool</a></li></ul>
 
     </footer>
   </div>
@@ -228,14 +199,14 @@
 
 
   
-    <article id="post-Laravel的Middleware" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-PHP的设计模式之行为模式（三）" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2018/laravel-middleware.html" class="article-date">
-  <time datetime="2018-05-22T06:58:37.000Z" itemprop="datePublished">2018-05-22</time>
+    <a href="/2018/php-behavioral-design-patterns-part3.html" class="article-date">
+  <time datetime="2018-04-06T07:27:18.000Z" itemprop="datePublished">2018-04-06</time>
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/categories/laravel/">laravel</a>
+    <a class="article-category-link" href="/categories/设计模式/">设计模式</a>
   </div>
 
   </div>
@@ -246,7 +217,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2018/laravel-middleware.html">Laravel的中间件</a>
+      <a class="article-title" href="/2018/php-behavioral-design-patterns-part3.html">PHP的设计模式之行为模式（三）</a>
     </h1>
   
 
@@ -254,281 +225,32 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h4 id="创建中间件"><a href="#创建中间件" class="headerlink" title="创建中间件"></a>创建中间件</h4><p>Artisan命令，在 <code>app/Http/Middleware</code> 目录创建类：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">php artisan make:middleware CheckLogin</span><br></pre></td></tr></table></figure>
-
-<p>由处理逻辑的位置决定是前置还是后置：</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">handle</span><span class="params">($request, Closure $next)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">// 这里就是前置</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> $next($request);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//or</span></span><br><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">handle</span><span class="params">($request, Closure $next)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    $response = $next($request);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 这里就是后置</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> $response;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-        
-          <p class="article-more-link">
-            <a href="/2018/laravel-middleware.html#more">阅读全文</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2018/laravel-middleware.html" data-id="ck4nti8go0010twmje23ckclm" class="article-share-link">分享</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/laravel/">laravel</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-Laravel自定义验证规则" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/laravel-custom-validation-rules.html" class="article-date">
-  <time datetime="2018-05-16T03:24:10.000Z" itemprop="datePublished">2018-05-16</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/laravel/">laravel</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/laravel-custom-validation-rules.html">自定义验证规则</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="创建规则"><a href="#创建规则" class="headerlink" title="创建规则"></a>创建规则</h2><p>使用Artisan命令创建规则：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">php artisan make:rule CheckPhoneNumber</span><br></pre></td></tr></table></figure>
-
-<p>规则放在 <code>app/Rules</code> 目录</p>
-<p>规则对象包括 <code>passes()</code> 和 <code>message()</code> 方法<br><code>passes</code> 方法接收属性值和名称，并根据属性值是否符合规则而返回 <code>true</code> 或者 <code>false</code>：</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">passes</span><span class="params">($attribute, $value)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> preg_match(<span class="string">'/^1[3456789]\d&#123;9&#125;$/'</span>,$value);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">message</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">'电话号码格式不正确'</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-        
-          <p class="article-more-link">
-            <a href="/2018/laravel-custom-validation-rules.html#more">阅读全文</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2018/laravel-custom-validation-rules.html" data-id="ck4nti8h3001qtwmj6q6oyvre" class="article-share-link">分享</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/laravel/">laravel</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-Laravel的表单验证" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/laravel-form-validation.html" class="article-date">
-  <time datetime="2018-05-15T06:48:33.000Z" itemprop="datePublished">2018-05-15</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/laravel/">laravel</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/laravel-form-validation.html">Laravel的表单验证</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h4 id="修改密码"><a href="#修改密码" class="headerlink" title="修改密码"></a>修改密码</h4><p><img src="/images/form-request1.png" alt></p>
-<ul>
-<li>Confirmed<br>如果要验证的字段是 <code>password</code>，输入中必须存在匹配的 <code>password_confirmation</code> 字段。</li>
-<li>Different<br>验证的字段值必须与参数字段的值不同。<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">rules</span><span class="params">()</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> [</span><br><span class="line">        <span class="comment">//...</span></span><br><span class="line">        <span class="string">'password'</span> =&gt; <span class="string">'bail|required|string|between:8,20|confirmed|different:old_password'</span>,</span><br><span class="line">        <span class="string">'password_confirmation'</span> =&gt; <span class="string">'bail|required|string|between:8,20'</span></span><br><span class="line">        <span class="comment">//...</span></span><br><span class="line">    ];</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-        
-          <p class="article-more-link">
-            <a href="/2018/laravel-form-validation.html#more">阅读全文</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2018/laravel-form-validation.html" data-id="ck4nti8h3001itwmjw7awdrtf" class="article-share-link">分享</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/laravel/">laravel</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-Laravel的本地化" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/laravel-localization.html" class="article-date">
-  <time datetime="2018-05-12T07:11:14.000Z" itemprop="datePublished">2018-05-12</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/laravel/">laravel</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/laravel-localization.html">Laravel的本地化</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><strong>i18n</strong>（其来源是英文单词 internationalization 的首末字符i和n，18为中间的字符数）是“国际化”的简称。<br>在资讯领域，国际化(i18n)指让产品（出版物，软件，硬件等）无需做大的改变就能够适应不同的语言和地区的需要。对程序来说，在不修改内部代码的情况下，能根据不同语言及地区显示相应的界面。<br>对应的有<strong>l10n</strong>（ localization 的缩写形式，意即在 l 和 n 之间有 10 个字母），本意是指软件的“本地化”。</p>
-        
-          <p class="article-more-link">
-            <a href="/2018/laravel-localization.html#more">阅读全文</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2018/laravel-localization.html" data-id="ck4nti8h3001gtwmjsdpginn8" class="article-share-link">分享</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/laravel/">laravel</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-Laravel的辅助函数" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/laravel-helpers.html" class="article-date">
-  <time datetime="2018-05-11T06:27:09.000Z" itemprop="datePublished">2018-05-11</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/laravel/">laravel</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/laravel-helpers.html">Laravel的辅助函数</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>在 <code>composer.json</code> 中定义了自动加载的文件：</p>
-<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="comment">//...</span></span><br><span class="line">    <span class="attr">"autoload"</span>: &#123;</span><br><span class="line">        <span class="comment">//...</span></span><br><span class="line">        <span class="attr">"files"</span>: [</span><br><span class="line">            <span class="string">"app/helpers.php"</span></span><br><span class="line">        ]</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>在 <code>app/helpers.php</code> 中自定义辅助函数：</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (!function_exists(<span class="string">'changeShowMoneyFormat'</span>)) &#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 转换金额格式</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> float $money 金额</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> int $length 保留位数</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> string|bool 转换结果</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">changeShowMoneyFormat</span><span class="params">($money, $length = <span class="number">2</span>)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> sprintf(<span class="string">"%.&#123;$length&#125;f"</span>, $money);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>Packagist包：<a href="https://packagist.org/packages/sebastiaanluca/laravel-helpers" target="_blank" rel="noopener">https://packagist.org/packages/sebastiaanluca/laravel-helpers</a></p>
-<p>常用函数如：<code>dd()</code> <code>app()</code> <code>env()</code> <code>config()</code> <code>public_path()</code> <code>array_pluck()</code></p>
-<p>更多Laravel辅助函数见<a href="https://laravel.com/docs/5.6/helpers" target="_blank" rel="noopener">Helpers</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2018/laravel-helpers.html" data-id="ck4nti8h3001ntwmj4qo3bj25" class="article-share-link">分享</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/laravel/">laravel</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-Laravel的Task-Scheduling" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/laravel-task-scheduling.html" class="article-date">
-  <time datetime="2018-05-10T01:37:40.000Z" itemprop="datePublished">2018-05-10</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/laravel/">laravel</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/laravel-task-scheduling.html">Laravel的任务调度</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h3><p>文档推荐使用<a href="https://forge.laravel.com/" target="_blank" rel="noopener">Laravel Forge</a>管理 <code>cron</code> 项目。示例：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">* * * * * php /path-to-your-project/artisan schedule:run &gt;&gt; /dev/null 2&gt;&amp;1</span><br></pre></td></tr></table></figure>
-
-<h3 id="定义调度"><a href="#定义调度" class="headerlink" title="定义调度"></a>定义调度</h3><p>在 <code>App\Console\Kernel</code> 中 <code>schedule()</code> 方法中定义所有调度任务。有如下几种可以调度：</p>
+        <p>原文链接：<a href="https://www.imooc.com/article/17848" target="_blank" rel="noopener">https://www.imooc.com/article/17848</a></p>
+<h2 id="Behavioral-Patterns（行为模式）"><a href="#Behavioral-Patterns（行为模式）" class="headerlink" title="Behavioral Patterns（行为模式）"></a>Behavioral Patterns（行为模式）</h2><h4 id="Mediator（中介者模式）"><a href="#Mediator（中介者模式）" class="headerlink" title="Mediator（中介者模式）"></a>Mediator（中介者模式）</h4><p>用一个中介对象来封装一系列的对象交互，中介者使各对象不需要显式地相互引用，从而使其耦合松散，而且可以独立地改变它们之间的交互。中介者模式又称为调停者模式，它是一种对象行为型模式。</p>
+<p>为什么需要中介者模式</p>
 <ol>
-<li><strong>Closure</strong><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$schedule-&gt;call(<span class="function"><span class="keyword">function</span> <span class="params">()</span> </span>&#123;</span><br><span class="line">    DB::table(<span class="string">'should_delete'</span>)-&gt;delete();</span><br><span class="line">&#125;)-&gt;daily();</span><br></pre></td></tr></table></figure>
-
+<li><p>中介者模式可以使对象之间的关系数量急剧减少。</p>
+</li>
+<li><p>中转作用（结构性）：通过中介者提供的中转作用，各个同事对象就不再需要显式引用其他同事，当需要和其他同事进行通信时，通过中介者即可。该中转作用属于中介者在结构上的支持。</p>
+</li>
+<li><p>协调作用（行为性）：中介者可以更进一步的对同事之间的关系进行封装，同事可以一致地和中介者进行交互，而不需要指明中介者需要具体怎么做，中介者根据封装在自身内部的协调逻辑，对同事的请求进行进一步处理，将同事成员之间的关系行为进行分离和封装。该协调作用属于中介者在行为上的支持。</p>
 </li>
 </ol>
+<p>中介者模式的思想在现实生活中也很常见，比如说交换机。没有交换机存在的时代，每个电话之间都需要电话线连接才能进行通话。如果一个台电话要和其它100台电话通话，那么它就必须要有100条电话线与其它100个电话连接。</p>
+<p>后来为了解决这种麻烦，交换机出现了。每个电话只需连入交换机，通话时。只需构建一条电话-交换机-电话的链路，就可以进行通话。所以现在我们的电话理论上可以同世界上任何一台电话通话，但是只需一条电话线。当然现在用电话的人少了，但是手机呀，计算机网络的实现也是在传统通信网的设计上进行演进的。</p>
+<p>其实交换机对应的就是中介者模式的中介者，而电话机就是中介者中的同事。下面，就让我们用代码来实现这个思想。</p>
         
           <p class="article-more-link">
-            <a href="/2018/laravel-task-scheduling.html#more">阅读全文</a>
+            <a href="/2018/php-behavioral-design-patterns-part3.html#more">阅读全文</a>
           </p>
         
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2018/laravel-task-scheduling.html" data-id="ck4nti8h3001ctwmj7jiiu6uc" class="article-share-link">分享</a>
+      <a data-url="https://liluoao.github.io/2018/php-behavioral-design-patterns-part3.html" data-id="ck4rtu4d400188kmjai5cfa7y" class="article-share-link">分享</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/laravel/">laravel</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/design-patterns/">design-patterns</a></li></ul>
 
     </footer>
   </div>
@@ -537,14 +259,14 @@
 
 
   
-    <article id="post-Laravel的Artisan" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-PHP的设计模式之行为模式（二）" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2018/laravel-artisan.html" class="article-date">
-  <time datetime="2018-05-09T01:17:13.000Z" itemprop="datePublished">2018-05-09</time>
+    <a href="/2018/php-behavioral-design-patterns-part2.html" class="article-date">
+  <time datetime="2018-04-05T06:52:10.000Z" itemprop="datePublished">2018-04-05</time>
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/categories/laravel/">laravel</a>
+    <a class="article-category-link" href="/categories/设计模式/">设计模式</a>
   </div>
 
   </div>
@@ -555,7 +277,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2018/laravel-artisan.html">Laravel的命令行</a>
+      <a class="article-title" href="/2018/php-behavioral-design-patterns-part2.html">PHP的设计模式之行为模式（二）</a>
     </h1>
   
 
@@ -563,22 +285,305 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="生成命令"><a href="#生成命令" class="headerlink" title="生成命令"></a>生成命令</h3><p>在 <code>app/Console/Commands</code> 中新建一个命令：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">php artisan make:command ReserveExpired//你的命令名</span><br></pre></td></tr></table></figure>
-
-<h3 id="命令结构"><a href="#命令结构" class="headerlink" title="命令结构"></a>命令结构</h3>
+        <p>原文链接：<a href="https://www.imooc.com/article/17844" target="_blank" rel="noopener">https://www.imooc.com/article/17844</a></p>
+<h2 id="Behavioral-Patterns（行为模式）"><a href="#Behavioral-Patterns（行为模式）" class="headerlink" title="Behavioral Patterns（行为模式）"></a>Behavioral Patterns（行为模式）</h2><h4 id="Command（命令模式）"><a href="#Command（命令模式）" class="headerlink" title="Command（命令模式）"></a>Command（命令模式）</h4><p>将一个请求封装为一个对象，从而使我们可用不同的请求对客户进行参数化；对请求排队或者记录请求日志，以及支持可撤销的操作。命令模式是一种对象行为型模式，其别名为动作(<code>Action</code>)模式或事务(<code>Transaction</code>)模式。</p>
+<p>为什么需要命令模式</p>
+<ol>
+<li><p>使用命令模式，能够让请求发送者与请求接收者消除彼此之间的耦合，让对象之间的调用关系更加灵活。</p>
+</li>
+<li><p>使用命令模式可以比较容易地设计一个命令队列和宏命令（组合命令），而且新的命令可以很容易地加入系统</p>
+</li>
+</ol>
+<p>有关命令模式的一个经典的例子，就是电视机与遥控器。有这样的对应关系：电视机是请求的接收者，遥控器是请求的发送者。遥控器上有一些按钮，不同的按钮对应电视机的不同操作。这些按钮就是对应的具体命令类。抽象命令角色由一个命令接口来扮演，有三个具体的命令类实现了抽象命令接口，这三个具体命令类分别代表三种操作：打开电视机、关闭电视机和切换频道。</p>
         
           <p class="article-more-link">
-            <a href="/2018/laravel-artisan.html#more">阅读全文</a>
+            <a href="/2018/php-behavioral-design-patterns-part2.html#more">阅读全文</a>
           </p>
         
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2018/laravel-artisan.html" data-id="ck4nti8go000ptwmjcc9hoqt9" class="article-share-link">分享</a>
+      <a data-url="https://liluoao.github.io/2018/php-behavioral-design-patterns-part2.html" data-id="ck4rtu4d4001b8kmja9owgwak" class="article-share-link">分享</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/laravel/">laravel</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/design-patterns/">design-patterns</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-PHP的设计模式之行为模式" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/php-behavioral-design-patterns-part1.html" class="article-date">
+  <time datetime="2018-04-04T03:06:21.000Z" itemprop="datePublished">2018-04-04</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/设计模式/">设计模式</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/php-behavioral-design-patterns-part1.html">PHP的设计模式之行为模式</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>原文链接：<a href="https://www.imooc.com/article/17840" target="_blank" rel="noopener">https://www.imooc.com/article/17840</a></p>
+<h2 id="Behavioral-Patterns（行为模式）"><a href="#Behavioral-Patterns（行为模式）" class="headerlink" title="Behavioral Patterns（行为模式）"></a>Behavioral Patterns（行为模式）</h2><h4 id="Iterator（迭代模式）"><a href="#Iterator（迭代模式）" class="headerlink" title="Iterator（迭代模式）"></a>Iterator（迭代模式）</h4><p>迭代器模式可帮组构造特定的对象，那些对象能够提供单一的标准接口循环或迭代任何类型的可计数数据。</p>
+<p>为什么需要迭代模式</p>
+<ol>
+<li><p>我们想要向遍历数组那样，遍历对象，或是遍历一个容器。</p>
+</li>
+<li><p>迭代器模式可以隐藏遍历元素所需的操作。</p>
+</li>
+</ol>
+<p>现在我们把一个类当做一个容器，让其实现Iterator接口，使其可以被遍历。</p>
+        
+          <p class="article-more-link">
+            <a href="/2018/php-behavioral-design-patterns-part1.html#more">阅读全文</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://liluoao.github.io/2018/php-behavioral-design-patterns-part1.html" data-id="ck4rtu4co00168kmj7w4zztyd" class="article-share-link">分享</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/design-patterns/">design-patterns</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-PHP的设计模式之架构模式（二）" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/php-structural-design-patterns-part2.html" class="article-date">
+  <time datetime="2018-04-03T08:03:46.000Z" itemprop="datePublished">2018-04-03</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/设计模式/">设计模式</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/php-structural-design-patterns-part2.html">PHP的设计模式之架构模式（二）</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>原文链接：<a href="https://www.imooc.com/article/17276" target="_blank" rel="noopener">https://www.imooc.com/article/17276</a></p>
+<h2 id="Structural-Patterns（架构模式）"><a href="#Structural-Patterns（架构模式）" class="headerlink" title="Structural Patterns（架构模式）"></a>Structural Patterns（架构模式）</h2><h4 id="Bridge（桥接模式）"><a href="#Bridge（桥接模式）" class="headerlink" title="Bridge（桥接模式）"></a>Bridge（桥接模式）</h4><p>将抽象与实现解耦，使得两者可以独立的变化</p>
+<p>为什么需要桥接模式</p>
+<ol>
+<li><p>如果一个系统需要在构件的抽象化角色和具体化角色之间增加更多的灵活性，避免在两个层次之间建立静态的继承联系，通过桥接模式可以使它们在抽象层建立一个关联关系。</p>
+</li>
+<li><p>抽象化角色和实现化角色可以以继承的方式独立扩展而互不影响，在程序运行时可以动态将一个抽象化子类的对象和一个实现化子类的对象进行组合，即系统需要对抽象化角色和实现化角色进行动态耦合。</p>
+</li>
+<li><p>虽然在系统中使用继承是没有问题的，但是由于抽象化角色和具体化角色需要独立变化，设计要求需要独立管理这两者。对于那些不希望使用继承或因为多层次继承导致系统类的个数急剧增加的系统，桥接模式尤为适用。</p>
+</li>
+</ol>
+<p>例子：<br>如果我现在是小米公司的雷布斯，小米公司旗下有小米mix和小米note手机，现在有一个底层的语音输出软件，由于小米mix的全面屏设计没有开孔使用了骨传导，所以和小米note有些不同。那么我们要如何来设计这个输出功能呢？</p>
+        
+          <p class="article-more-link">
+            <a href="/2018/php-structural-design-patterns-part2.html#more">阅读全文</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://liluoao.github.io/2018/php-structural-design-patterns-part2.html" data-id="ck4rtu4co00138kmjdlna6qia" class="article-share-link">分享</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/design-patterns/">design-patterns</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-PHP的设计模式之架构模式" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/php-structural-design-patterns-part1.html" class="article-date">
+  <time datetime="2018-04-02T01:23:38.000Z" itemprop="datePublished">2018-04-02</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/设计模式/">设计模式</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/php-structural-design-patterns-part1.html">PHP的设计模式之架构模式</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>原文链接：<a href="https://www.imooc.com/article/17118" target="_blank" rel="noopener">https://www.imooc.com/article/17118</a></p>
+<h2 id="Structural-Patterns（架构模式）"><a href="#Structural-Patterns（架构模式）" class="headerlink" title="Structural Patterns（架构模式）"></a>Structural Patterns（架构模式）</h2><h4 id="Facade（门面模式）"><a href="#Facade（门面模式）" class="headerlink" title="Facade（门面模式）"></a>Facade（门面模式）</h4><p>为子系统中的一组接口提供一个一致的界面，定义一个高层接口，这个接口使得这一子系统更加容易使用。</p>
+<p>为什么需要外观模式</p>
+<ol>
+<li><p>开发阶段，子系统越来越复杂，增加外观模式提供一个简单的调用接口。</p>
+</li>
+<li><p>维护一个大型遗留系统的时候，可能这个系统已经非常难以维护和扩展，但又包含非常重要的功能，为其开发一个外观类，以便新系统与其交互。</p>
+</li>
+<li><p>外观模式可以隐藏来自调用对象的复杂性。</p>
+</li>
+</ol>
+<p>例子：<br>比如说我们去医院就诊，医院有医生员工系统，有药品系统，有患者资料系统。但是我们只是在前台挂个号，就能在其他系统里都看到我们。外观系统就差不多这样。</p>
+<p>如果没有挂号系统的话，我们就先要去医生系统通知一下医生，<br>然后去患者系统取一下患者资料交给医生，再去药品系统登记一下，最后到药房领药。</p>
+        
+          <p class="article-more-link">
+            <a href="/2018/php-structural-design-patterns-part1.html#more">阅读全文</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://liluoao.github.io/2018/php-structural-design-patterns-part1.html" data-id="ck4rtu4co00108kmjc15morv5" class="article-share-link">分享</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/design-patterns/">design-patterns</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-PHP的设计模式之创建模式" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/php-creational-design-patterns.html" class="article-date">
+  <time datetime="2018-04-01T14:50:50.000Z" itemprop="datePublished">2018-04-01</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/设计模式/">设计模式</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/php-creational-design-patterns.html">PHP的设计模式之创建模式</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>原文链接：<a href="https://www.devbattles.com/en/sand/post-1306-Design+Patterns+in+PHP" target="_blank" rel="noopener">https://www.devbattles.com/en/sand/post-1306-Design+Patterns+in+PHP</a></p>
+<p>什么是设计模式，设计模式并不是一种用来解释的模式，它们并不是像链表那样的常见的数据结构，也不是某种特殊的应用或者框架设计。事实上，设计模式的解释如下：</p>
+<blockquote>
+<p>descriptions of communicating objects and classes that are customized to solve a general design problem in a particular context.</p>
+</blockquote>
+<p>另一方面，设计模式提供了一种广泛的可重用的方式来解决我们日常编程中常常遇见的问题。设计模式并不一定就是一个类库或者第三方框架，它们更多的表现为一种思想并且广泛地应用在系统中。它们也表现为一种模式或者模板，可以在多个不同的场景下用于解决问题。设计模式可以用于加速开发，并且将很多大的想法或者设计以一种简单地方式实现。当然，虽然设计模式在开发中很有作用，但是千万要避免在不适当的场景误用它们。</p>
+<p>目前常见的设计模式主要有23种，根据使用目标的不同可以分为以下三大类：</p>
+<ul>
+<li>创建模式（Creational Patterns）：用于创建对象从而将某个对象从实现中解耦合。</li>
+<li>架构模式（Structural Patterns）：用于在不同的对象之间构造大的对象结构。</li>
+<li>行为模式（Behavioral Patterns）：用于在不同的对象之间管理算法、关系以及职责。
+        
+          <p class="article-more-link">
+            <a href="/2018/php-creational-design-patterns.html#more">阅读全文</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://liluoao.github.io/2018/php-creational-design-patterns.html" data-id="ck4rtu4co000z8kmjsfg1dlav" class="article-share-link">分享</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/design-patterns/">design-patterns</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-发布包到Packagist" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/upload-library-to-packagist.html" class="article-date">
+  <time datetime="2018-03-18T02:37:19.000Z" itemprop="datePublished">2018-03-18</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/工具/">工具</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/upload-library-to-packagist.html">发布包到Packagist</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>作为 PHP 使用者，平常会接触到 Composer 与很多包。如何发布一个自己的包让别人使用呢，下面介绍下实现步骤。</p>
+        
+          <p class="article-more-link">
+            <a href="/2018/upload-library-to-packagist.html#more">阅读全文</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://liluoao.github.io/2018/upload-library-to-packagist.html" data-id="ck4rtu4dj002a8kmjig8d18dk" class="article-share-link">分享</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/tool/">tool</a></li></ul>
 
     </footer>
   </div>
@@ -591,7 +596,7 @@
 
   <nav id="page-nav">
     
-    <a class="extend prev" rel="prev" href="/page/2/">&laquo; 上一页</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/4/">下一页 &raquo;</a>
+    <a class="extend prev" rel="prev" href="/page/2/">&laquo; 上一页</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/4/">下一页 &raquo;</a>
   </nav>
 
 </section>
@@ -653,7 +658,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">分类</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Lua/">Lua</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/PHP框架/">PHP框架</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/laravel/">laravel</a><span class="category-list-count">20</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/工具/">工具</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/微信开发/">微信开发</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/支付宝开发/">支付宝开发</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/数据库/">数据库</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/服务器/">服务器</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/杂谈/">杂谈</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/">设计模式</a><span class="category-list-count">7</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Laravel/">Laravel</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Lua/">Lua</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/PHP框架/">PHP框架</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/laravel/">laravel</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/工具/">工具</a><span class="category-list-count">11</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/数据库/">数据库</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/服务器/">服务器</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/杂谈/">杂谈</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/">设计模式</a><span class="category-list-count">7</span></li></ul>
     </div>
   </div>
 
@@ -663,7 +668,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/alipay/">alipay</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/apache/">apache</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/design-patterns/">design-patterns</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/kong/">kong</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/laravel/">laravel</a><span class="tag-list-count">20</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/lua/">lua</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mongo/">mongo</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/openresty/">openresty</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/other/">other</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/phalcon/">phalcon</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/php/">php</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tool/">tool</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/wechat/">wechat</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/yaf/">yaf</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/yii/">yii</a><span class="tag-list-count">1</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/apache/">apache</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/design-patterns/">design-patterns</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/kong/">kong</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/laravel/">laravel</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/lua/">lua</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mongo/">mongo</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/openresty/">openresty</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/other/">other</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/phalcon/">phalcon</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/php/">php</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tool/">tool</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/yaf/">yaf</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/yii/">yii</a><span class="tag-list-count">1</span></li></ul>
     </div>
   </div>
 
