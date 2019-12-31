@@ -5,20 +5,18 @@
   
 
   
-  <title>版本控制工具提交规范 | To be a Web Artisan</title>
+  <title>分类: Laravel | To be a Web Artisan</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="前言在日常工作中，我们经常会使用版本控制工具，不管是 Git 还是 SVN，或是其它。 在多人协作中，提交注释是一个可能会忽视的点。清晰明了的注释可以降低沟通成本，提高工作效率。而含糊不清的注释会在你需要找一次具体提交时造成麻烦。">
-<meta name="keywords" content="tool">
-<meta property="og:type" content="article">
-<meta property="og:title" content="版本控制工具提交规范">
-<meta property="og:url" content="https://liluoao.github.io/2019/vcs-commit-rule.html">
+  <meta name="description" content="李罗奥的博客">
+<meta property="og:type" content="website">
+<meta property="og:title" content="To be a Web Artisan">
+<meta property="og:url" content="https://liluoao.github.io/categories/Laravel/index.html">
 <meta property="og:site_name" content="To be a Web Artisan">
-<meta property="og:description" content="前言在日常工作中，我们经常会使用版本控制工具，不管是 Git 还是 SVN，或是其它。 在多人协作中，提交注释是一个可能会忽视的点。清晰明了的注释可以降低沟通成本，提高工作效率。而含糊不清的注释会在你需要找一次具体提交时造成麻烦。">
+<meta property="og:description" content="李罗奥的博客">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-12-31T08:03:54.560Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="版本控制工具提交规范">
-<meta name="twitter:description" content="前言在日常工作中，我们经常会使用版本控制工具，不管是 Git 还是 SVN，或是其它。 在多人协作中，提交注释是一个可能会忽视的点。清晰明了的注释可以降低沟通成本，提高工作效率。而含糊不清的注释会在你需要找一次具体提交时造成麻烦。">
+<meta name="twitter:title" content="To be a Web Artisan">
+<meta name="twitter:description" content="李罗奥的博客">
   
   
     <link rel="icon" href="/favicon.png">
@@ -58,92 +56,78 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-版本控制工具提交规范" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/vcs-commit-rule.html" class="article-date">
-  <time datetime="2019-10-15T02:54:21.000Z" itemprop="datePublished">2019-10-15</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/工具/">工具</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
+        <section id="main">
   
-    <h1 class="article-title" itemprop="name">
-      版本控制工具提交规范
+  
+    
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2018" class="archive-year">2018</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      <a href="/2018/laravel-phpunit.html" class="archive-article-date">
+  <time datetime="2018-05-27T02:44:40.000Z" itemprop="datePublished">5月 27</time>
+</a>
+      
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2018/laravel-phpunit.html">Laravel单元测试</a>
     </h1>
   
 
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>在日常工作中，我们经常会使用版本控制工具，不管是 <strong>Git</strong> 还是 <strong>SVN</strong>，或是其它。</p>
-<p>在多人协作中，提交注释是一个可能会忽视的点。<strong>清晰明了的注释</strong>可以降低沟通成本，提高工作效率。而<strong>含糊不清的注释</strong>会在你需要找一次具体提交时造成麻烦。</p>
-<a id="more"></a>
-
-<h2 id="规范内容"><a href="#规范内容" class="headerlink" title="规范内容"></a>规范内容</h2><p>最基础的规范，也是最重要的——就是每个任务的代码分开提交。这样在 Review 的时候比较清楚，出现 BUG 后可以快速回退单次提交。如果代码管理水平不足，出现了几个环境代码不统一，需要手动合并代码时，可能这个任务需要发布正式，另一个任务只需要发布测试或者预发布，糅杂在一起的提交就会导致噩梦般的后果。</p>
-<p>团队合作中一般会使用到事务跟踪工具，例如 <a href="https://www.atlassian.com/software/jira" target="_blank" rel="noopener">JIRA</a>、<a href="https://www.zentao.net/" target="_blank" rel="noopener">禅道</a> 等。每个开发任务有自己的编号，在提交时一定要带上。</p>
-<p>其它规范因人而异，举个例子：</p>
-<p>先把文件按类型分为如下几种</p>
-<ul>
-<li>【视图】如 Blade、Smarty、PHTML 等</li>
-<li>【功能】一般是业务代码，根据项目结构不同可分为 Model、Bean、Business 等</li>
-<li>【脚本】定时脚本 Crontab 类，也叫 Job</li>
-<li>【测试】单元测试，也叫 Test</li>
-<li>【插件】有的框架如 Yaf、Yii 中存在的概念，或者是自己封装的工具类</li>
-<li>【配置】根据项目要求的不同，有 php，ini，env，XML，Json 等</li>
-<li>【前端】JS、CSS、image等，或者是组件</li>
-<li>【接口】提供给外部的接口</li>
-<li>【API】调用的外部接口，可进一步分为公司内部的和外网的</li>
-<li>【SQL】也叫做 Migration。数据库迁移文件，或是结构变更的纯 SQL</li>
-<li>【FUNC】也叫做 helper，全局函数文件</li>
-</ul>
-<p>最后拼装成一整条 <code>commit message</code></p>
-<blockquote>
-<p>【任务编号】【新增|修改|删除】【功能|视图|脚本|等】任务标题-功能备注</p>
-</blockquote>
-<p>如果是复制的代码，可在后面加上 <code>@copy</code>（如果有统计代码量的要求）。再提一嘴，部分要找历史提交的原因可能是因为需求有变更，要还原回之前的代码。刚好脉脉给我推送了一条通知——删除代码时是注释掉还是直接删除。我的选择毫无疑问是直接删除掉，因为有版本控制工具在，找历史还是没啥难度的。如果是仅注释掉的话，代码的美观性可想而知（代码洁癖实锤）。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2019/vcs-commit-rule.html" data-id="ck4tl5pin002l44mj9vket0jb" class="article-share-link">分享</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/tool/">tool</a></li></ul>
-
-    </footer>
+    </header>
   </div>
+</article>
   
     
-<nav id="article-nav">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      <a href="/2018/use-intervention-image.html" class="archive-article-date">
+  <time datetime="2018-05-03T06:36:58.000Z" itemprop="datePublished">5月 3</time>
+</a>
+      
   
-    <a href="/2019/big-or-small-size-company.html" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">上一篇</strong>
-      <div class="article-nav-title">
-        
-          大小规模公司思考
-        
-      </div>
-    </a>
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2018/use-intervention-image.html">Laravel中处理图像</a>
+    </h1>
   
-  
-    <a href="/2019/yaf-individualization.html" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">下一篇</strong>
-      <div class="article-nav-title">Yaf框架结构个性化</div>
-    </a>
-  
-</nav>
 
-  
+    </header>
+  </div>
 </article>
+  
+    
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      <a href="/2018/use-laravel-excel.html" class="archive-article-date">
+  <time datetime="2018-05-02T07:42:19.000Z" itemprop="datePublished">5月 2</time>
+</a>
+      
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2018/use-laravel-excel.html">Laravel中操作Excel</a>
+    </h1>
+  
+
+    </header>
+  </div>
+</article>
+  
+  
+    </div></section>
+  
+
 
 </section>
         
