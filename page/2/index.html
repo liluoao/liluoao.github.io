@@ -58,6 +58,55 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-XHProf与PHP7的问题" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/problem-about-xhprof-in-php7.html" class="article-date">
+  <time datetime="2019-01-18T05:35:48.000Z" itemprop="datePublished">2019-01-18</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/工具/">工具</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/problem-about-xhprof-in-php7.html">XHProf与PHP7的问题</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>XHProf 是 <strong>Facebook</strong> 开源的一个轻量级的 PHP 性能分析工具，跟 Xdebug 类似，但性能开销更低。可以用在生产环境中，也可以由程序开关来控制是否进行 profile 。</p>
+<h2 id="问题排查"><a href="#问题排查" class="headerlink" title="问题排查"></a>问题排查</h2><p>最近我们认证中心部门将定时脚本切换为 <code>PHP7</code> 命令执行时，发现过一段时间脚本就内存泄漏，且该释放内存的地方都做了处理。</p>
+<p>经过一段时间排查后发现是 XHProf 造成的，关闭后就可以了。</p>
+        
+          <p class="article-more-link">
+            <a href="/2019/problem-about-xhprof-in-php7.html#more">阅读全文</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://liluoao.github.io/2019/problem-about-xhprof-in-php7.html" data-id="ck4yz3i9t001ddomj5dylpjhp" class="article-share-link">分享</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/tool/">tool</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-使用SonarQube管理代码质量" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2018/use-sonarqube-continuous-code-quality.html" class="article-date">
@@ -84,7 +133,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><a href="https://www.sonarqube.org/" target="_blank" rel="noopener">SonarQube®</a>是一种自动代码审查工具，用于检测代码中的错误，漏洞和代码异味。它可以与您现有的工作流程集成，以便在项目分支和拉取请求之间进行连续的代码检查。官方提供了2种方式，一种是下载后本地搭建，另一种是在线运行。</p>
+        <p><a href="https://www.sonarqube.org/" target="_blank" rel="noopener">SonarQube</a> 是一个自动代码审查工具，用于检测代码中的错误，漏洞和代码异味。它可以与现有的工作流程集成，以便在项目分支和拉取请求之间进行连续的代码检查。官方提供了2种方式，一种是下载后本地搭建，另一种是在线运行。</p>
         
           <p class="article-more-link">
             <a href="/2018/use-sonarqube-continuous-code-quality.html#more">阅读全文</a>
@@ -93,7 +142,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2018/use-sonarqube-continuous-code-quality.html" data-id="ck4tl5pi8001x44mjucvhmt00" class="article-share-link">分享</a>
+      <a data-url="https://liluoao.github.io/2018/use-sonarqube-continuous-code-quality.html" data-id="ck4yz3ia90023domjdrxvc9am" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/tool/">tool</a></li></ul>
@@ -145,7 +194,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2018/use-kong-admin-api.html" data-id="ck4tl5phc000844mj4dszzb5p" class="article-share-link">分享</a>
+      <a data-url="https://liluoao.github.io/2018/use-kong-admin-api.html" data-id="ck4yz3i8y0008domjm1bm8jzk" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/kong/">kong</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/lua/">lua</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/openresty/">openresty</a></li></ul>
@@ -196,7 +245,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2018/kong-cluster-event.html" data-id="ck4tl5phc000b44mjz2vblbap" class="article-share-link">分享</a>
+      <a data-url="https://liluoao.github.io/2018/kong-cluster-event.html" data-id="ck4yz3i9e000bdomjczz6jq3s" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/kong/">kong</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/lua/">lua</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/openresty/">openresty</a></li></ul>
@@ -234,7 +283,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>在 Lua 5.1 语言中，元表 <em>(metatable)</em> 的表现行为类似于 C++ 语言中的操作符重载，例如我们可以重载 “__add” 元方法 <em>(metamethod)</em>，来计算两个 Lua 数组的并集；或者重载 “__index” 方法，来定义我们自己的 Hash 函数。Lua 提供了两个十分重要的用来处理元表的方法，如下：</p>
+        <p>在 Lua 5.1 中，元表 <em>(metatable)</em> 的表现行为类似于 C++ 语言中的操作符重载，例如我们可以重载 “__add” 元方法 <em>(metamethod)</em>，来计算两个 Lua 数组的并集；或者重载 “__index” 方法，来定义我们自己的 Hash 函数。Lua 提供了两个十分重要的用来处理元表的方法，如下：</p>
 <ul>
 <li>setmetatable(table, metatable)：此方法用于为一个表设置元表。</li>
 <li>getmetatable(table)：此方法用于获取表的元表对象。</li>
@@ -247,7 +296,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2018/lua-metatable.html" data-id="ck4tl5phc000n44mj1fclnbh8" class="article-share-link">分享</a>
+      <a data-url="https://liluoao.github.io/2018/lua-metatable.html" data-id="ck4yz3i9e000ndomjzf2wzptt" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/lua/">lua</a></li></ul>
@@ -294,7 +343,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2018/use-kong-for-api-gateway.html" data-id="ck4tl5pi8001r44mj0dje5v21" class="article-share-link">分享</a>
+      <a data-url="https://liluoao.github.io/2018/use-kong-for-api-gateway.html" data-id="ck4yz3ia9001vdomjyo8r2ywk" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/kong/">kong</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/lua/">lua</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/openresty/">openresty</a></li></ul>
@@ -342,7 +391,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2018/a-php-developer-roadmap.html" data-id="ck4tl5phs000t44mjuz503ub3" class="article-share-link">分享</a>
+      <a data-url="https://liluoao.github.io/2018/a-php-developer-roadmap.html" data-id="ck4yz3i9t000tdomj9z289e9a" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/php/">php</a></li></ul>
@@ -391,7 +440,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2018/php-7-use-mongodb.html" data-id="ck4tl5phc000p44mji2cnafpg" class="article-share-link">分享</a>
+      <a data-url="https://liluoao.github.io/2018/php-7-use-mongodb.html" data-id="ck4yz3i9e000pdomjo8ex3at5" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mongo/">mongo</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/php/">php</a></li></ul>
@@ -440,7 +489,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2018/compile-php-extension.html" data-id="ck4tl5pin002y44mjbh5n0h1r" class="article-share-link">分享</a>
+      <a data-url="https://liluoao.github.io/2018/compile-php-extension.html" data-id="ck4yz3iap0032domjc0hlu6zk" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux/">linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/php/">php</a></li></ul>
@@ -459,7 +508,7 @@
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/categories/Laravel/">Laravel</a>
+    <a class="article-category-link" href="/categories/PHP框架/">PHP框架</a>
   </div>
 
   </div>
@@ -487,54 +536,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2018/laravel-phpunit.html" data-id="ck4tl5phc000g44mj2lfsty76" class="article-share-link">分享</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/laravel/">laravel</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-Laravel中处理图像" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/use-intervention-image.html" class="article-date">
-  <time datetime="2018-05-03T06:36:58.000Z" itemprop="datePublished">2018-05-03</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Laravel/">Laravel</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/use-intervention-image.html">Laravel中处理图像</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><a href="http://image.intervention.io/" target="_blank" rel="noopener">Intervention/image</a> 是一个图片处理工具，它提供了一套容易理解的方式来创建、编辑图片。它实现了 ServiceProvider、Facade 等来方便地在 Laravel 中使用。</p>
-        
-          <p class="article-more-link">
-            <a href="/2018/use-intervention-image.html#more">阅读全文</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2018/use-intervention-image.html" data-id="ck4tl5phc000c44mjsh0w2k8h" class="article-share-link">分享</a>
+      <a data-url="https://liluoao.github.io/2018/laravel-phpunit.html" data-id="ck4yz3i9e000idomjqtpu44or" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/laravel/">laravel</a></li></ul>
@@ -584,6 +586,10 @@
           </li>
         
           <li>
+            <a href="/2019/yii-codeception.html">Yii单元测试</a>
+          </li>
+        
+          <li>
             <a href="/2019/use-code-sniffer-in-phpstorm.html">如何用工具保证代码风格</a>
           </li>
         
@@ -599,10 +605,6 @@
             <a href="/2019/yii-batch-query.html">Yii批处理查询</a>
           </li>
         
-          <li>
-            <a href="/2019/problem-about-xhprof-in-php7.html">XHProf与PHP7的问题</a>
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -612,7 +614,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">分类</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Laravel/">Laravel</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Lua/">Lua</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/PHP框架/">PHP框架</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/工具/">工具</a><span class="category-list-count">11</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/数据库/">数据库</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/服务器/">服务器</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/杂谈/">杂谈</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/">设计模式</a><span class="category-list-count">7</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Lua/">Lua</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/PHP框架/">PHP框架</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/工具/">工具</a><span class="category-list-count">11</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/数据库/">数据库</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/服务器/">服务器</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/杂谈/">杂谈</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/">设计模式</a><span class="category-list-count">7</span></li></ul>
     </div>
   </div>
 
@@ -622,7 +624,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/apache/">apache</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/design-patterns/">design-patterns</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/kong/">kong</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/laravel/">laravel</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/lua/">lua</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mongo/">mongo</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/openresty/">openresty</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/other/">other</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/phalcon/">phalcon</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/php/">php</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tool/">tool</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/yaf/">yaf</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/yii/">yii</a><span class="tag-list-count">1</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/apache/">apache</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/design-patterns/">design-patterns</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/kong/">kong</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/laravel/">laravel</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/lua/">lua</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mongo/">mongo</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/openresty/">openresty</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/other/">other</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/phalcon/">phalcon</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/php/">php</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tool/">tool</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/yaf/">yaf</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/yii/">yii</a><span class="tag-list-count">2</span></li></ul>
     </div>
   </div>
 
@@ -636,7 +638,7 @@
   <div class="outer">
     <div id="footer-info" class="inner">
       <div style="width:300px;margin:0 auto; padding:20px 0;">
-          &copy; 2019 李罗奥
+          &copy; 2020 李罗奥
           Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
     </div>
   </div>
