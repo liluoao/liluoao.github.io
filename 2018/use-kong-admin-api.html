@@ -7,18 +7,18 @@
   
   <title>Kong框架的AdminAPI | 码之力，三段</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="介绍Kong附带了一个用于管理的内部 RESTful Admin API。可以将对 Admin API 的请求发送到集群中的任何节点，并且 Kong 将使所有节点上的配置保持一致。admin_listen 默认端口配置  8001 是 Admin API 侦听的默认端口。 8444 是 Admin API 的 HTTPS 流量的默认端口。  此 API 专为内部使用而设置，在设置 Kong 环境时">
-<meta name="keywords" content="lua,kong,openresty">
+  <meta name="description" content="介绍Kong 附带了一个用于管理的内部 RESTful Admin API。可以将对 Admin API 的请求发送到集群中的任何节点，并且 Kong 将使所有节点上的配置保持一致。admin_listen 默认端口配置  8001 是 Admin API 侦听的默认端口。 8444 是 HTTPS 的默认端口。  此 API 专为内部使用而设置，在设置 Kong 环境时应谨慎，避免把 API 暴">
+<meta name="keywords" content="openresty">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Kong框架的AdminAPI">
 <meta property="og:url" content="https://liluoao.github.io/2018/use-kong-admin-api.html">
 <meta property="og:site_name" content="码之力，三段">
-<meta property="og:description" content="介绍Kong附带了一个用于管理的内部 RESTful Admin API。可以将对 Admin API 的请求发送到集群中的任何节点，并且 Kong 将使所有节点上的配置保持一致。admin_listen 默认端口配置  8001 是 Admin API 侦听的默认端口。 8444 是 Admin API 的 HTTPS 流量的默认端口。  此 API 专为内部使用而设置，在设置 Kong 环境时">
+<meta property="og:description" content="介绍Kong 附带了一个用于管理的内部 RESTful Admin API。可以将对 Admin API 的请求发送到集群中的任何节点，并且 Kong 将使所有节点上的配置保持一致。admin_listen 默认端口配置  8001 是 Admin API 侦听的默认端口。 8444 是 HTTPS 的默认端口。  此 API 专为内部使用而设置，在设置 Kong 环境时应谨慎，避免把 API 暴">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-01-04T09:05:47.392Z">
+<meta property="og:updated_time" content="2020-01-06T13:06:49.637Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Kong框架的AdminAPI">
-<meta name="twitter:description" content="介绍Kong附带了一个用于管理的内部 RESTful Admin API。可以将对 Admin API 的请求发送到集群中的任何节点，并且 Kong 将使所有节点上的配置保持一致。admin_listen 默认端口配置  8001 是 Admin API 侦听的默认端口。 8444 是 Admin API 的 HTTPS 流量的默认端口。  此 API 专为内部使用而设置，在设置 Kong 环境时">
+<meta name="twitter:description" content="介绍Kong 附带了一个用于管理的内部 RESTful Admin API。可以将对 Admin API 的请求发送到集群中的任何节点，并且 Kong 将使所有节点上的配置保持一致。admin_listen 默认端口配置  8001 是 Admin API 侦听的默认端口。 8444 是 HTTPS 的默认端口。  此 API 专为内部使用而设置，在设置 Kong 环境时应谨慎，避免把 API 暴">
   
   
     <link rel="icon" href="/favicon.png">
@@ -69,7 +69,7 @@
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/categories/Lua/">Lua</a>
+    <a class="article-category-link" href="/categories/OpenResty/">OpenResty</a>
   </div>
 
   </div>
@@ -88,79 +88,126 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>Kong附带了一个用于管理的内部 RESTful Admin API。可以将对 Admin API 的请求发送到集群中的任何节点，并且 Kong 将使所有节点上的配置保持一致。<a href="https://github.com/Kong/kong/blob/master/kong/templates/kong_defaults.lua#L13" target="_blank" rel="noopener">admin_listen 默认端口配置</a></p>
+        <h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>Kong 附带了一个用于管理的内部 RESTful Admin API。可以将对 Admin API 的请求发送到集群中的任何节点，并且 Kong 将使所有节点上的配置保持一致。<a href="https://github.com/Kong/kong/blob/master/kong/templates/kong_defaults.lua#L13" target="_blank" rel="noopener">admin_listen 默认端口配置</a></p>
 <ul>
 <li><code>8001</code> 是 Admin API 侦听的默认端口。</li>
-<li><code>8444</code> 是 Admin API 的 HTTPS 流量的默认端口。</li>
+<li><code>8444</code> 是 HTTPS 的默认端口。</li>
 </ul>
-<p>此 API 专为内部使用而设置，在设置 Kong 环境时应谨慎，避免把API暴露给外部。</p>
+<p>此 API 专为内部使用而设置，在设置 Kong 环境时应谨慎，避免把 API 暴露给外部。</p>
 <a id="more"></a>
 
-<h2 id="基础信息"><a href="#基础信息" class="headerlink" title="基础信息"></a>基础信息</h2><h3 id="节点信息"><a href="#节点信息" class="headerlink" title="节点信息"></a>节点信息</h3><p>地址：<code>GET /</code></p>
-<p>响应：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">HTTP 200 OK</span><br></pre></td></tr></table></figure>
+<h2 id="基础信息"><a href="#基础信息" class="headerlink" title="基础信息"></a>基础信息</h2><h3 id="节点信息"><a href="#节点信息" class="headerlink" title="节点信息"></a>节点信息</h3><p>方式：GET<br>URI：<code>/</code><br>响应：HTTP 200 OK</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">"hostname"</span>: <span class="string">""</span>,</span><br><span class="line">    <span class="comment">//表示正在运行的 Kong 节点的 UUID</span></span><br><span class="line">    <span class="comment">//当 Kong 启动时，该 UUID 是随机生成的，因此 node_id 每次重启节点时节点都会有所不同</span></span><br><span class="line">    <span class="attr">"node_id"</span>: <span class="string">"6a72192c-a3a1-4c8d-95c6-efabae9fb969"</span>,</span><br><span class="line">    <span class="attr">"lua_version"</span>: <span class="string">"LuaJIT 2.1.0-beta3"</span>,</span><br><span class="line">    <span class="attr">"plugins"</span>: &#123;</span><br><span class="line">        <span class="comment">//节点上安装的插件的名称</span></span><br><span class="line">        <span class="attr">"available_on_server"</span>: [</span><br><span class="line">            ...</span><br><span class="line">        ],</span><br><span class="line">        <span class="comment">//已启用/配置的插件的名称。</span></span><br><span class="line">        <span class="comment">//也就是说，所有Kong节点共享的数据存储区中当前的插件配置</span></span><br><span class="line">        <span class="attr">"enabled_in_cluster"</span>: [</span><br><span class="line">            ...</span><br><span class="line">        ]</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">"configuration"</span> : &#123;</span><br><span class="line">        ...</span><br><span class="line">    &#125;,</span><br><span class="line">    "tagline": "Welcome to Kong",</span><br><span class="line">    "version": "0.14.0"</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">"hostname"</span>: <span class="string">""</span>,</span><br><span class="line">    <span class="attr">"node_id"</span>: <span class="string">"6a72192c-a3a1-4c8d-95c6-efabae9fb969"</span>,</span><br><span class="line">    <span class="attr">"lua_version"</span>: <span class="string">"LuaJIT 2.1.0-beta3"</span>,</span><br><span class="line">    <span class="attr">"plugins"</span>: &#123;</span><br><span class="line">        <span class="attr">"available_on_server"</span>: [</span><br><span class="line">            ...</span><br><span class="line">        ],</span><br><span class="line">        <span class="attr">"enabled_in_cluster"</span>: [</span><br><span class="line">            ...</span><br><span class="line">        ]</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">"configuration"</span> : &#123;</span><br><span class="line">        ...</span><br><span class="line">    &#125;,</span><br><span class="line">    "tagline": "Welcome to Kong",</span><br><span class="line">    "version": "0.14.0"</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="节点状态"><a href="#节点状态" class="headerlink" title="节点状态"></a>节点状态</h3><p>方式：GET<br>URI：<code>/status</code><br>响应：HTTP 200 OK</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="comment">//有关 HTTP / HTTPS服务器的度量标准</span></span><br><span class="line">    <span class="attr">"server"</span>: &#123;</span><br><span class="line">        <span class="comment">//客户端请求的总数</span></span><br><span class="line">        <span class="attr">"total_requests"</span>: <span class="number">3</span>,</span><br><span class="line">        <span class="comment">//当前活动客户端连接数，包括等待连接</span></span><br><span class="line">        <span class="attr">"connections_active"</span>: <span class="number">1</span>,</span><br><span class="line">        <span class="comment">//已接受的客户端连接总数</span></span><br><span class="line">        <span class="attr">"connections_accepted"</span>: <span class="number">1</span>,</span><br><span class="line">        <span class="comment">//已处理连接的总数。通常，参数值与accept相同，除非已达到某些资源限制</span></span><br><span class="line">        <span class="attr">"connections_handled"</span>: <span class="number">1</span>,</span><br><span class="line">        <span class="comment">//正在读取请求标头的当前连接数</span></span><br><span class="line">        <span class="attr">"connections_reading"</span>: <span class="number">0</span>,</span><br><span class="line">        <span class="comment">//Nginx 将响应写回客户端的当前连接数</span></span><br><span class="line">        <span class="attr">"connections_writing"</span>: <span class="number">1</span>,</span><br><span class="line">        <span class="comment">//等待请求的当前空闲客户端连接数</span></span><br><span class="line">        <span class="attr">"connections_waiting"</span>: <span class="number">0</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="comment">//有关数据库的度量标准</span></span><br><span class="line">    <span class="attr">"database"</span>: &#123;</span><br><span class="line">        <span class="comment">//反映数据库连接状态的布尔值。此标志不反映数据库本身的运行状况</span></span><br><span class="line">        <span class="attr">"reachable"</span>: <span class="literal">true</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<ul>
-<li><code>node_id</code>：表示正在运行的Kong节点的UUID。当Kong启动时，该UUID是随机生成的，因此node_id每次重启节点时节点都会有所不同。</li>
-<li><code>available_on_server</code>：节点上安装的插件的名称。</li>
-<li><code>enabled_in_cluster</code>：已启用/配置的插件的名称。也就是说，所有Kong节点共享的数据存储区中当前的插件配置。</li>
-</ul>
-<h3 id="节点状态"><a href="#节点状态" class="headerlink" title="节点状态"></a>节点状态</h3><p>地址：<code>GET /status</code></p>
-<p>响应：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">HTTP 200 OK</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">"server"</span>: &#123;</span><br><span class="line">        <span class="attr">"total_requests"</span>: <span class="number">3</span>,</span><br><span class="line">        <span class="attr">"connections_active"</span>: <span class="number">1</span>,</span><br><span class="line">        <span class="attr">"connections_accepted"</span>: <span class="number">1</span>,</span><br><span class="line">        <span class="attr">"connections_handled"</span>: <span class="number">1</span>,</span><br><span class="line">        <span class="attr">"connections_reading"</span>: <span class="number">0</span>,</span><br><span class="line">        <span class="attr">"connections_writing"</span>: <span class="number">1</span>,</span><br><span class="line">        <span class="attr">"connections_waiting"</span>: <span class="number">0</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">"database"</span>: &#123;</span><br><span class="line">        <span class="attr">"reachable"</span>: <span class="literal">true</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>server：有关nginx HTTP / S服务器的度量标准。<ul>
-<li>total_requests：客户端请求的总数。</li>
-<li>connections_active：当前活动客户端连接数，包括等待连接。</li>
-<li>connections_accepted：已接受的客户端连接总数。</li>
-<li>connections_handled：已处理连接的总数。通常，参数值与accept相同，除非已达到某些资源限制。</li>
-<li>connections_reading：Kong正在读取请求标头的当前连接数。</li>
-<li>connections_writing：nginx将响应写回客户端的当前连接数。</li>
-<li>connections_waiting：等待请求的当前空闲客户端连接数。</li>
-</ul>
-</li>
-<li>database：有关数据库的度量标准。<ul>
-<li>reachable：反映数据库连接状态的布尔值。请注意，此标志<strong>不</strong>反映数据库本身的运行状况。</li>
-</ul>
-</li>
-</ul>
-<h2 id="服务"><a href="#服务" class="headerlink" title="服务"></a>服务</h2><h3 id="添加"><a href="#添加" class="headerlink" title="添加"></a>添加</h3><p>地址：<code>POST /services/</code></p>
-<p>请求：</p>
-<p>|字段|说明|<br>|-|<br>|name（可选）|The Service name.|<br>|protocol|http （默认） or https.<br>|host|The host of the upstream server.|<br>|port|端口，默认80|<br>|url|Shorthand attribute to set protocol, host, port and path at once. This attribute is write-only (the Admin API never “returns” the url).|</p>
-<p>响应：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">HTTP 201 Created</span><br></pre></td></tr></table></figure>
-
+<h2 id="服务"><a href="#服务" class="headerlink" title="服务"></a>服务</h2><h3 id="添加"><a href="#添加" class="headerlink" title="添加"></a>添加</h3><p>方式：POST<br>地址：<code>/services/</code><br>响应：HTTP 201 Created<br>参数：</p>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>约束</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>name</td>
+<td>可选</td>
+<td>服务名称</td>
+</tr>
+<tr>
+<td>protocol</td>
+<td>必填，默认http</td>
+<td>用于与上游接口通信的协议。http 或 https</td>
+</tr>
+<tr>
+<td>host</td>
+<td>必填</td>
+<td>上游服务的 host</td>
+</tr>
+<tr>
+<td>port</td>
+<td>必填，默认80</td>
+<td>上游服务的端口</td>
+</tr>
+<tr>
+<td>path</td>
+<td>可选，默认null</td>
+<td>请求上游服务器使用的路径，默认为空</td>
+</tr>
+<tr>
+<td>retries</td>
+<td>可选，默认5</td>
+<td>代理失败时重试的次数</td>
+</tr>
+<tr>
+<td>connect_timeout</td>
+<td>可选，默认60000ms</td>
+<td>建立与上游服务器连接的超时时间(ms)</td>
+</tr>
+<tr>
+<td>write_timeout</td>
+<td>可选，默认60000ms</td>
+<td>在向上游服务器发送请求的两个连续写入操作之间的超时时间(ms)</td>
+</tr>
+<tr>
+<td>read_timeout</td>
+<td>可选，默认60000ms</td>
+<td>在向上游服务器发送请求的两个连续读取操作之间的超时时间(ms)</td>
+</tr>
+<tr>
+<td>url</td>
+<td>shorthand-attribute</td>
+<td>一次性设置 protocol、host、port 和 path 的缩写。此属性是只读的（管理API不会返回“URL”）</td>
+</tr>
+</tbody></table>
 <figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">"id"</span>: <span class="string">"4e13f54a-bbf1-47a8-8777-255fed7116f2"</span>,</span><br><span class="line">    <span class="attr">"created_at"</span>: <span class="number">1488869076800</span>,</span><br><span class="line">    <span class="attr">"updated_at"</span>: <span class="number">1488869076800</span>,</span><br><span class="line">    <span class="attr">"connect_timeout"</span>: <span class="number">60000</span>,</span><br><span class="line">    <span class="attr">"protocol"</span>: <span class="string">"http"</span>,</span><br><span class="line">    <span class="attr">"host"</span>: <span class="string">"example.org"</span>,</span><br><span class="line">    <span class="attr">"port"</span>: <span class="number">80</span>,</span><br><span class="line">    <span class="attr">"path"</span>: <span class="string">"/api"</span>,</span><br><span class="line">    <span class="attr">"name"</span>: <span class="string">"example-service"</span>,</span><br><span class="line">    <span class="attr">"retries"</span>: <span class="number">5</span>,</span><br><span class="line">    <span class="attr">"read_timeout"</span>: <span class="number">60000</span>,</span><br><span class="line">    <span class="attr">"write_timeout"</span>: <span class="number">60000</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h3 id="修改"><a href="#修改" class="headerlink" title="修改"></a>修改</h3><p>地址：<code>PATCH /services/{name or id}</code></p>
-<p>|字段|说明|<br>|-|<br>|name or id（必需）|The id or the name attribute of the Service to update.|</p>
-<p>响应：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">HTTP 200 OK</span><br></pre></td></tr></table></figure>
-
+<h3 id="修改"><a href="#修改" class="headerlink" title="修改"></a>修改</h3><p>方式：PATCH<br>地址：<code>/services/{name or id}</code><br>响应：HTTP 200 OK</p>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>约束</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>name or id</td>
+<td>必填</td>
+<td>服务的唯一标识符</td>
+</tr>
+</tbody></table>
 <figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">"id"</span>: <span class="string">"4e13f54a-bbf1-47a8-8777-255fed7116f2"</span>,</span><br><span class="line">    <span class="attr">"created_at"</span>: <span class="number">1488869076800</span>,</span><br><span class="line">    <span class="attr">"updated_at"</span>: <span class="number">1488869076800</span>,</span><br><span class="line">    <span class="attr">"connect_timeout"</span>: <span class="number">60000</span>,</span><br><span class="line">    <span class="attr">"protocol"</span>: <span class="string">"http"</span>,</span><br><span class="line">    <span class="attr">"host"</span>: <span class="string">"example.org"</span>,</span><br><span class="line">    <span class="attr">"port"</span>: <span class="number">80</span>,</span><br><span class="line">    <span class="attr">"path"</span>: <span class="string">"/api"</span>,</span><br><span class="line">    <span class="attr">"name"</span>: <span class="string">"example-service"</span>,</span><br><span class="line">    <span class="attr">"retries"</span>: <span class="number">5</span>,</span><br><span class="line">    <span class="attr">"read_timeout"</span>: <span class="number">60000</span>,</span><br><span class="line">    <span class="attr">"write_timeout"</span>: <span class="number">60000</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h3 id="删除"><a href="#删除" class="headerlink" title="删除"></a>删除</h3><p>地址：<code>DELETE /services/{name or id}</code></p>
-<p>|字段|说明|<br>|-|<br>|name or id（必需）|The id or the name attribute of the Service to update.|</p>
-<p>响应：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">HTTP 204 No Content</span><br></pre></td></tr></table></figure>
-
+<h3 id="删除"><a href="#删除" class="headerlink" title="删除"></a>删除</h3><p>方式：DELETE<br>地址：<code>/services/{name or id}</code><br>响应：HTTP 204 No Content</p>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>约束</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>name or id</td>
+<td>必填</td>
+<td>服务的唯一标识符</td>
+</tr>
+</tbody></table>
 <p>路由、消费者、Upstream 与服务类似，除了参数不同</p>
-<p>推荐阅读：</p>
-<p><a href="https://docs.konghq.com/0.14.x/admin-api/" target="_blank" rel="noopener">Admin API 官方文档</a></p>
-<p><a href="https://www.cnblogs.com/zhoujie/p/kong2.html" target="_blank" rel="noopener">apigateway-kong(二)admin-api – zhoujie</a></p>
+<p>管理API的请求日志路径：<em>/usr/local/opt/kong/logs</em></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">├── access.log</span><br><span class="line">├── admin_access.log #admin-api请求日志</span><br><span class="line">└── error.log</span><br></pre></td></tr></table></figure>
+
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2018/use-kong-admin-api.html" data-id="ck4zd4ota00081wmjwoulwsw0" class="article-share-link">分享</a>
+      <a data-url="https://liluoao.github.io/2018/use-kong-admin-api.html" data-id="ck52gmesd000b9cmj2bg4fdae" class="article-share-link">分享</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/kong/">kong</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/lua/">lua</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/openresty/">openresty</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/openresty/">openresty</a></li></ul>
 
     </footer>
   </div>
@@ -180,7 +227,7 @@
   
     <a href="/2018/kong-cluster-event.html" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">下一篇</strong>
-      <div class="article-nav-title">Kong框架的集群间数据同步</div>
+      <div class="article-nav-title">Kong的进程间数据同步</div>
     </a>
   
 </nav>
@@ -247,7 +294,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">分类</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Lua/">Lua</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/PHP框架/">PHP框架</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/工具/">工具</a><span class="category-list-count">11</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/数据库/">数据库</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/服务器/">服务器</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/杂谈/">杂谈</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/">设计模式</a><span class="category-list-count">7</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/OpenResty/">OpenResty</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/PHP框架/">PHP框架</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/工具/">工具</a><span class="category-list-count">11</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/数据库/">数据库</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/服务器/">服务器</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/杂谈/">杂谈</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/">设计模式</a><span class="category-list-count">7</span></li></ul>
     </div>
   </div>
 
@@ -257,7 +304,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/apache/">apache</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/design-patterns/">design-patterns</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/kong/">kong</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/laravel/">laravel</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/lua/">lua</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mongo/">mongo</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/openresty/">openresty</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/other/">other</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/phalcon/">phalcon</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/php/">php</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tool/">tool</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/yaf/">yaf</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/yii/">yii</a><span class="tag-list-count">2</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/apache/">apache</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/design-patterns/">design-patterns</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/laravel/">laravel</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mongo/">mongo</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/openresty/">openresty</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/other/">other</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/phalcon/">phalcon</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/php/">php</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tool/">tool</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/yaf/">yaf</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/yii/">yii</a><span class="tag-list-count">2</span></li></ul>
     </div>
   </div>
 
