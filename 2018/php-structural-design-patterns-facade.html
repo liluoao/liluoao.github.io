@@ -5,20 +5,20 @@
   
 
   
-  <title>架构型模式之门面模式 | 码之力，三段</title>
+  <title>门面模式（Facade） | 码之力，三段</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="门面模式（Facade）也叫外观模式。为子系统中的一组接口提供一个一致的界面，定义一个高层接口，这个接口使得这一子系统更加容易使用。 为什么需要外观模式  开发阶段，子系统越来越复杂，增加外观模式提供一个简单的调用接口。 维护一个大型遗留系统的时候，可能这个系统已经非常难以维护和扩展，但又包含非常重要的功能，为其开发一个外观类，以便新系统与其交互。 外观模式可以隐藏来自调用对象的复杂性。">
+  <meta name="description" content="也叫外观模式。为子系统中的一组接口提供一个一致的界面，定义一个高层接口，这个接口使得这一子系统更加容易使用。 为什么需要外观模式  开发阶段，子系统越来越复杂，增加外观模式提供一个简单的调用接口。 维护一个大型遗留系统的时候，可能这个系统已经非常难以维护和扩展，但又包含非常重要的功能，为其开发一个外观类，以便新系统与其交互。 外观模式可以隐藏来自调用对象的复杂性。">
 <meta name="keywords" content="design-patterns">
 <meta property="og:type" content="article">
-<meta property="og:title" content="架构型模式之门面模式">
+<meta property="og:title" content="门面模式（Facade）">
 <meta property="og:url" content="https://liluoao.github.io/2018/php-structural-design-patterns-facade.html">
 <meta property="og:site_name" content="码之力，三段">
-<meta property="og:description" content="门面模式（Facade）也叫外观模式。为子系统中的一组接口提供一个一致的界面，定义一个高层接口，这个接口使得这一子系统更加容易使用。 为什么需要外观模式  开发阶段，子系统越来越复杂，增加外观模式提供一个简单的调用接口。 维护一个大型遗留系统的时候，可能这个系统已经非常难以维护和扩展，但又包含非常重要的功能，为其开发一个外观类，以便新系统与其交互。 外观模式可以隐藏来自调用对象的复杂性。">
+<meta property="og:description" content="也叫外观模式。为子系统中的一组接口提供一个一致的界面，定义一个高层接口，这个接口使得这一子系统更加容易使用。 为什么需要外观模式  开发阶段，子系统越来越复杂，增加外观模式提供一个简单的调用接口。 维护一个大型遗留系统的时候，可能这个系统已经非常难以维护和扩展，但又包含非常重要的功能，为其开发一个外观类，以便新系统与其交互。 外观模式可以隐藏来自调用对象的复杂性。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-01-09T12:38:39.605Z">
+<meta property="og:updated_time" content="2020-01-17T09:08:48.159Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="架构型模式之门面模式">
-<meta name="twitter:description" content="门面模式（Facade）也叫外观模式。为子系统中的一组接口提供一个一致的界面，定义一个高层接口，这个接口使得这一子系统更加容易使用。 为什么需要外观模式  开发阶段，子系统越来越复杂，增加外观模式提供一个简单的调用接口。 维护一个大型遗留系统的时候，可能这个系统已经非常难以维护和扩展，但又包含非常重要的功能，为其开发一个外观类，以便新系统与其交互。 外观模式可以隐藏来自调用对象的复杂性。">
+<meta name="twitter:title" content="门面模式（Facade）">
+<meta name="twitter:description" content="也叫外观模式。为子系统中的一组接口提供一个一致的界面，定义一个高层接口，这个接口使得这一子系统更加容易使用。 为什么需要外观模式  开发阶段，子系统越来越复杂，增加外观模式提供一个简单的调用接口。 维护一个大型遗留系统的时候，可能这个系统已经非常难以维护和扩展，但又包含非常重要的功能，为其开发一个外观类，以便新系统与其交互。 外观模式可以隐藏来自调用对象的复杂性。">
   
   
     <link rel="icon" href="/favicon.png">
@@ -62,7 +62,7 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-架构型模式之门面模式" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-门面模式（Facade）" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2018/php-structural-design-patterns-facade.html" class="article-date">
   <time datetime="2018-04-02T01:23:38.000Z" itemprop="datePublished">2018-04-02</time>
@@ -80,7 +80,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      架构型模式之门面模式
+      门面模式（Facade）
     </h1>
   
 
@@ -88,7 +88,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h4 id="门面模式（Facade）"><a href="#门面模式（Facade）" class="headerlink" title="门面模式（Facade）"></a>门面模式（Facade）</h4><p>也叫外观模式。为子系统中的一组接口提供一个一致的界面，定义一个高层接口，这个接口使得这一子系统更加容易使用。</p>
+        <p>也叫外观模式。为子系统中的一组接口提供一个一致的界面，定义一个高层接口，这个接口使得这一子系统更加容易使用。</p>
 <p>为什么需要外观模式</p>
 <ol>
 <li>开发阶段，子系统越来越复杂，增加外观模式提供一个简单的调用接口。</li>
@@ -110,7 +110,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2018/php-structural-design-patterns-facade.html" data-id="ck56py0e5002q9wmj0dgf0kj5" class="article-share-link">分享</a>
+      <a data-url="https://liluoao.github.io/2018/php-structural-design-patterns-facade.html" data-id="ck5hxyogc003l0wmjh4g1wylr" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/design-patterns/">design-patterns</a></li></ul>
@@ -152,7 +152,7 @@
       <ul>
         
           <li>
-            <a href="/2019/use-design-patterns.html">设计模式的应用</a>
+            <a href="/2019/php-structural-design-patterns-template-method.html">模板方法模式（TemplateMethod）</a>
           </li>
         
           <li>
@@ -172,7 +172,7 @@
           </li>
         
           <li>
-            <a href="/2019/yii-codeception.html">Yii单元测试</a>
+            <a href="/2019/yii-codeception.html">Yii2的单元测试</a>
           </li>
         
           <li>
@@ -180,15 +180,15 @@
           </li>
         
           <li>
+            <a href="/2019/php-structural-design-patterns-state.html">状态模式（State）</a>
+          </li>
+        
+          <li>
             <a href="/2019/mongodb-aggregation.html">使用MongoDB的聚合</a>
           </li>
         
           <li>
-            <a href="/2019/how-to-refactor.html">重构--改善既有代码的设计</a>
-          </li>
-        
-          <li>
-            <a href="/2019/yii-batch-query.html">Yii批处理查询</a>
+            <a href="/2019/php-structural-design-patterns-decorator.html">装饰器模式（Decorator）</a>
           </li>
         
       </ul>
@@ -200,7 +200,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">分类</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/OpenResty/">OpenResty</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/PHP框架/">PHP框架</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/工具/">工具</a><span class="category-list-count">11</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/数据库/">数据库</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/服务器/">服务器</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/杂谈/">杂谈</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/">设计模式</a><span class="category-list-count">9</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/OpenResty/">OpenResty</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/PHP框架/">PHP框架</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/工具/">工具</a><span class="category-list-count">11</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/数据库/">数据库</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/服务器/">服务器</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/杂谈/">杂谈</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/">设计模式</a><span class="category-list-count">11</span></li></ul>
     </div>
   </div>
 
@@ -210,7 +210,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/apache/">apache</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/design-patterns/">design-patterns</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/laravel/">laravel</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mongo/">mongo</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/openresty/">openresty</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/other/">other</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/phalcon/">phalcon</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/php/">php</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tool/">tool</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/yaf/">yaf</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/yii/">yii</a><span class="tag-list-count">2</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/apache/">apache</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/design-patterns/">design-patterns</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/laravel/">laravel</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mongo/">mongo</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/openresty/">openresty</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/other/">other</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/phalcon/">phalcon</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/php/">php</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tool/">tool</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/yaf/">yaf</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/yii/">yii</a><span class="tag-list-count">2</span></li></ul>
     </div>
   </div>
 

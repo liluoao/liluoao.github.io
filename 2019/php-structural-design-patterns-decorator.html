@@ -5,20 +5,20 @@
   
 
   
-  <title>架构型模式之装饰器 | 码之力，三段</title>
+  <title>装饰器模式（Decorator） | 码之力，三段</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="装饰器模式（Decorator）装饰器模式允许我们根据运行时不同的情景动态地为某个对象调用前后添加不同的行为动作。以奇迹暖暖这种换装游戏为例，我们需要实现动态的换套装，或者混搭。">
+  <meta name="description" content="装饰器模式允许我们根据运行时不同的情景动态地为某个对象调用前后添加不同的行为动作。以奇迹暖暖这种换装游戏为例，我们需要实现动态的换套装，或者混搭。">
 <meta name="keywords" content="design-patterns">
 <meta property="og:type" content="article">
-<meta property="og:title" content="架构型模式之装饰器">
-<meta property="og:url" content="https://liluoao.github.io/2018/php-structural-design-patterns-decorator.html">
+<meta property="og:title" content="装饰器模式（Decorator）">
+<meta property="og:url" content="https://liluoao.github.io/2019/php-structural-design-patterns-decorator.html">
 <meta property="og:site_name" content="码之力，三段">
-<meta property="og:description" content="装饰器模式（Decorator）装饰器模式允许我们根据运行时不同的情景动态地为某个对象调用前后添加不同的行为动作。以奇迹暖暖这种换装游戏为例，我们需要实现动态的换套装，或者混搭。">
+<meta property="og:description" content="装饰器模式允许我们根据运行时不同的情景动态地为某个对象调用前后添加不同的行为动作。以奇迹暖暖这种换装游戏为例，我们需要实现动态的换套装，或者混搭。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-01-09T12:38:39.605Z">
+<meta property="og:updated_time" content="2020-01-17T09:08:48.159Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="架构型模式之装饰器">
-<meta name="twitter:description" content="装饰器模式（Decorator）装饰器模式允许我们根据运行时不同的情景动态地为某个对象调用前后添加不同的行为动作。以奇迹暖暖这种换装游戏为例，我们需要实现动态的换套装，或者混搭。">
+<meta name="twitter:title" content="装饰器模式（Decorator）">
+<meta name="twitter:description" content="装饰器模式允许我们根据运行时不同的情景动态地为某个对象调用前后添加不同的行为动作。以奇迹暖暖这种换装游戏为例，我们需要实现动态的换套装，或者混搭。">
   
   
     <link rel="icon" href="/favicon.png">
@@ -62,10 +62,10 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-架构型模式之装饰器" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-装饰器模式（Decorator）" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2018/php-structural-design-patterns-decorator.html" class="article-date">
-  <time datetime="2018-06-18T01:23:38.000Z" itemprop="datePublished">2018-06-18</time>
+    <a href="/2019/php-structural-design-patterns-decorator.html" class="article-date">
+  <time datetime="2019-04-18T01:23:38.000Z" itemprop="datePublished">2019-04-18</time>
 </a>
     
   <div class="article-category">
@@ -80,7 +80,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      架构型模式之装饰器
+      装饰器模式（Decorator）
     </h1>
   
 
@@ -88,7 +88,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h4 id="装饰器模式（Decorator）"><a href="#装饰器模式（Decorator）" class="headerlink" title="装饰器模式（Decorator）"></a>装饰器模式（Decorator）</h4><p>装饰器模式允许我们根据运行时不同的情景动态地为某个对象调用前后添加不同的行为动作。<br>以奇迹暖暖这种换装游戏为例，我们需要实现动态的换套装，或者混搭。</p>
+        <p>装饰器模式允许我们根据运行时不同的情景动态地为某个对象调用前后添加不同的行为动作。<br>以奇迹暖暖这种换装游戏为例，我们需要实现动态的换套装，或者混搭。</p>
 <a id="more"></a>
 
 <p>我们先创建好装饰器接口：</p>
@@ -110,7 +110,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2018/php-structural-design-patterns-decorator.html" data-id="ck56py0e5002i9wmj1m9tuiby" class="article-share-link">分享</a>
+      <a data-url="https://liluoao.github.io/2019/php-structural-design-patterns-decorator.html" data-id="ck5hxyofw00370wmjjbxqte5t" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/design-patterns/">design-patterns</a></li></ul>
@@ -121,19 +121,19 @@
     
 <nav id="article-nav">
   
-    <a href="/2018/compile-php-extension.html" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2019/mongodb-aggregation.html" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption">上一篇</strong>
       <div class="article-nav-title">
         
-          编译PHP扩展
+          使用MongoDB的聚合
         
       </div>
     </a>
   
   
-    <a href="/2018/php-structural-design-patterns-adapter.html" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2019/how-to-refactor.html" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">下一篇</strong>
-      <div class="article-nav-title">架构型模式之适配器</div>
+      <div class="article-nav-title">重构——改善既有代码的设计</div>
     </a>
   
 </nav>
@@ -152,7 +152,7 @@
       <ul>
         
           <li>
-            <a href="/2019/use-design-patterns.html">设计模式的应用</a>
+            <a href="/2019/php-structural-design-patterns-template-method.html">模板方法模式（TemplateMethod）</a>
           </li>
         
           <li>
@@ -172,7 +172,7 @@
           </li>
         
           <li>
-            <a href="/2019/yii-codeception.html">Yii单元测试</a>
+            <a href="/2019/yii-codeception.html">Yii2的单元测试</a>
           </li>
         
           <li>
@@ -180,15 +180,15 @@
           </li>
         
           <li>
+            <a href="/2019/php-structural-design-patterns-state.html">状态模式（State）</a>
+          </li>
+        
+          <li>
             <a href="/2019/mongodb-aggregation.html">使用MongoDB的聚合</a>
           </li>
         
           <li>
-            <a href="/2019/how-to-refactor.html">重构--改善既有代码的设计</a>
-          </li>
-        
-          <li>
-            <a href="/2019/yii-batch-query.html">Yii批处理查询</a>
+            <a href="/2019/php-structural-design-patterns-decorator.html">装饰器模式（Decorator）</a>
           </li>
         
       </ul>
@@ -200,7 +200,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">分类</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/OpenResty/">OpenResty</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/PHP框架/">PHP框架</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/工具/">工具</a><span class="category-list-count">11</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/数据库/">数据库</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/服务器/">服务器</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/杂谈/">杂谈</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/">设计模式</a><span class="category-list-count">9</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/OpenResty/">OpenResty</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/PHP框架/">PHP框架</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/工具/">工具</a><span class="category-list-count">11</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/数据库/">数据库</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/服务器/">服务器</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/杂谈/">杂谈</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/">设计模式</a><span class="category-list-count">11</span></li></ul>
     </div>
   </div>
 
@@ -210,7 +210,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/apache/">apache</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/design-patterns/">design-patterns</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/laravel/">laravel</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mongo/">mongo</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/openresty/">openresty</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/other/">other</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/phalcon/">phalcon</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/php/">php</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tool/">tool</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/yaf/">yaf</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/yii/">yii</a><span class="tag-list-count">2</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/apache/">apache</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/design-patterns/">design-patterns</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/laravel/">laravel</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mongo/">mongo</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/openresty/">openresty</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/other/">other</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/phalcon/">phalcon</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/php/">php</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tool/">tool</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/yaf/">yaf</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/yii/">yii</a><span class="tag-list-count">2</span></li></ul>
     </div>
   </div>
 

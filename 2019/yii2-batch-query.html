@@ -5,20 +5,20 @@
   
 
   
-  <title>Yii批处理查询 | 码之力，三段</title>
+  <title>Yii2的批处理查询 | 码之力，三段</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Yii2 官方文档中对于大数据处理是这样说的：  当需要处理大数据的时候，像 yii\db\Query::all() 这样的方法就不太合适了， 因为它们会把所有查询的数据都读取到客户端内存上。为了解决这个问题， Yii 提供了批处理查询的支持。服务端先保存查询结果，然后客户端使用游标（cursor） 每次迭代出固定的一批结果集回来。  但是，下面有非常显眼的 WARNING ：MySQL 批处理查">
+  <meta name="description" content="Yii2 官方文档中对于大数据处理是这样说的： 当需要处理大数据的时候，像 yii\db\Query::all() 这样的方法就不太合适了， 因为它们会把所有查询的数据都读取到客户端内存上。为了解决这个问题， Yii 提供了批处理查询的支持。服务端先保存查询结果，然后客户端使用游标（cursor） 每次迭代出固定的一批结果集回来。 但是，下面有非常显眼的 WARNING ：MySQL 批处理查询的">
 <meta name="keywords" content="php,yii">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Yii批处理查询">
-<meta property="og:url" content="https://liluoao.github.io/2019/yii-batch-query.html">
+<meta property="og:title" content="Yii2的批处理查询">
+<meta property="og:url" content="https://liluoao.github.io/2019/yii2-batch-query.html">
 <meta property="og:site_name" content="码之力，三段">
-<meta property="og:description" content="Yii2 官方文档中对于大数据处理是这样说的：  当需要处理大数据的时候，像 yii\db\Query::all() 这样的方法就不太合适了， 因为它们会把所有查询的数据都读取到客户端内存上。为了解决这个问题， Yii 提供了批处理查询的支持。服务端先保存查询结果，然后客户端使用游标（cursor） 每次迭代出固定的一批结果集回来。  但是，下面有非常显眼的 WARNING ：MySQL 批处理查">
+<meta property="og:description" content="Yii2 官方文档中对于大数据处理是这样说的： 当需要处理大数据的时候，像 yii\db\Query::all() 这样的方法就不太合适了， 因为它们会把所有查询的数据都读取到客户端内存上。为了解决这个问题， Yii 提供了批处理查询的支持。服务端先保存查询结果，然后客户端使用游标（cursor） 每次迭代出固定的一批结果集回来。 但是，下面有非常显眼的 WARNING ：MySQL 批处理查询的">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-01-09T12:38:39.605Z">
+<meta property="og:updated_time" content="2020-01-17T09:08:48.144Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Yii批处理查询">
-<meta name="twitter:description" content="Yii2 官方文档中对于大数据处理是这样说的：  当需要处理大数据的时候，像 yii\db\Query::all() 这样的方法就不太合适了， 因为它们会把所有查询的数据都读取到客户端内存上。为了解决这个问题， Yii 提供了批处理查询的支持。服务端先保存查询结果，然后客户端使用游标（cursor） 每次迭代出固定的一批结果集回来。  但是，下面有非常显眼的 WARNING ：MySQL 批处理查">
+<meta name="twitter:title" content="Yii2的批处理查询">
+<meta name="twitter:description" content="Yii2 官方文档中对于大数据处理是这样说的： 当需要处理大数据的时候，像 yii\db\Query::all() 这样的方法就不太合适了， 因为它们会把所有查询的数据都读取到客户端内存上。为了解决这个问题， Yii 提供了批处理查询的支持。服务端先保存查询结果，然后客户端使用游标（cursor） 每次迭代出固定的一批结果集回来。 但是，下面有非常显眼的 WARNING ：MySQL 批处理查询的">
   
   
     <link rel="icon" href="/favicon.png">
@@ -62,9 +62,9 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-Yii批处理查询" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-Yii2的批处理查询" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2019/yii-batch-query.html" class="article-date">
+    <a href="/2019/yii2-batch-query.html" class="article-date">
   <time datetime="2019-02-19T07:39:11.000Z" itemprop="datePublished">2019-02-19</time>
 </a>
     
@@ -80,7 +80,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      Yii批处理查询
+      Yii2的批处理查询
     </h1>
   
 
@@ -89,37 +89,34 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>Yii2 官方文档中对于<a href="https://www.yiiframework.com/doc/guide/2.0/en/db-query-builder#batch-query" target="_blank" rel="noopener">大数据处理</a>是这样说的：</p>
-<blockquote>
-<p>当需要处理大数据的时候，像 yii\db\Query::all() 这样的方法就不太合适了， 因为它们会把所有查询的数据都读取到客户端内存上。为了解决这个问题， Yii 提供了批处理查询的支持。服务端先保存查询结果，然后客户端使用游标（cursor） 每次迭代出固定的一批结果集回来。</p>
-</blockquote>
-<p>但是，下面有非常显眼的 <strong>WARNING</strong> ：<code>MySQL 批处理查询的实现存在已知的局限性</code></p>
+<p>当需要处理大数据的时候，像 <code>yii\db\Query::all()</code> 这样的方法就不太合适了， 因为它们会把所有查询的数据都读取到客户端内存上。为了解决这个问题， Yii 提供了批处理查询的支持。服务端先保存查询结果，然后客户端使用游标（cursor） 每次迭代出固定的一批结果集回来。</p>
+<p>但是，下面有非常显眼的 WARNING ：<strong>MySQL 批处理查询的实现存在已知的局限性</strong></p>
 <a id="more"></a>
 
-<p>以为批量查一次 5000 条可能就这么简单：</p>
+<p>看过文档后，以为批量查一次 5000 条可能像下面这样：</p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">use</span> <span class="title">yii</span>\<span class="title">db</span>\<span class="title">Query</span>;</span><br><span class="line"></span><br><span class="line">$query = (<span class="keyword">new</span> Query())</span><br><span class="line">    -&gt;from(<span class="string">'user'</span>)</span><br><span class="line">    -&gt;orderBy(<span class="string">'id'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">foreach</span> ($query-&gt;each(<span class="number">5000</span>) <span class="keyword">as</span> $user) &#123;</span><br><span class="line">    <span class="comment">// $user 代表 user 表里的一行数据</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>但是在 <a href="https://secure.php.net/manual/en/mysqlinfo.concepts.buffering.php" target="_blank" rel="noopener">MySQL PHP驱动程序概述</a> 中说到 <strong>查询默认使用缓冲模式</strong><br>也就是说你以为是每次去取了 5000 条执行，其实之前的查询结果一直占用着内存。<br>要禁用缓存并减少客户端内存的需求量，PDO 连接属性 <code>PDO::MYSQL_ATTR_USE_BUFFERED_QUERY</code> 必须设置为 <code>false</code>。<br>这样，直到整个数据集被处理完毕前，通过此连接是无法创建其他查询的。<br>我们可以通过切换原本的连接到非缓存模式，然后在批量查询完成后再切换回来。</p>
+<p>但是在 <a href="https://secure.php.net/manual/en/mysqlinfo.concepts.buffering.php" target="_blank" rel="noopener">MySQL PHP驱动程序概述</a> 中说道： <strong>查询默认使用缓冲模式</strong>，也就是说，之前的查询结果一直占用着内存，并不像我们以为的每次去取了 5000 条执行，。</p>
+<p>要禁用缓存并减少客户端内存的需求量，PDO 的连接属性 <code>PDO::MYSQL_ATTR_USE_BUFFERED_QUERY</code> 必须设置为 <code>false</code>。这样，直到整个数据集被处理完毕前，通过此连接是无法创建其他查询的。</p>
+<p>我们可以通过切换原本的连接到非缓存模式，然后在批量查询完成后再切换回来。</p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Yii::$app-&gt;db-&gt;pdo-&gt;setAttribute(\PDO::MYSQL_ATTR_USE_BUFFERED_QUERY, <span class="keyword">false</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// Do batch query</span></span><br><span class="line"></span><br><span class="line">Yii::$app-&gt;db-&gt;pdo-&gt;setAttribute(\PDO::MYSQL_ATTR_USE_BUFFERED_QUERY, <span class="keyword">true</span>);</span><br></pre></td></tr></table></figure>
 
-<p>非缓存查询在 PHP 端使用更少的缓存，但会增加 MySQL 服务器端的负载。</p>
-<blockquote>
-<p>对于 MyISAM 引擎，在执行批量查询的过程中，表可能会被锁， 导致延迟或拒绝其他连接的写入操作。</p>
-</blockquote>
-<p>我在使用非缓存查询时是保证瞬间只有这一个查询的脚本，如果在批量查询处理过程中需要执行其他查询， 你可以创建一个单独的非缓存链接到数据库：</p>
+<p>非缓存查询在 PHP 端使用更少的缓存，但会增加 MySQL 服务器端的负载。而像 MyISAM 引擎的表锁，在执行批量查询的过程中，需要注意同时存在的写入操作。</p>
+<p>如果在批量查询的处理过程中需要执行其他查询，可以创建一个单独的非缓存链接：</p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">$unbufferedDb = <span class="keyword">new</span> \yii\db\Connection([</span><br><span class="line">    <span class="string">'dsn'</span> =&gt; Yii::$app-&gt;db-&gt;dsn,</span><br><span class="line">    <span class="string">'username'</span> =&gt; Yii::$app-&gt;db-&gt;username,</span><br><span class="line">    <span class="string">'password'</span> =&gt; Yii::$app-&gt;db-&gt;password,</span><br><span class="line">    <span class="string">'charset'</span> =&gt; Yii::$app-&gt;db-&gt;charset,</span><br><span class="line">]);</span><br><span class="line">$unbufferedDb-&gt;open();</span><br><span class="line">$unbufferedDb-&gt;pdo-&gt;setAttribute(\PDO::MYSQL_ATTR_USE_BUFFERED_QUERY, <span class="keyword">false</span>);</span><br></pre></td></tr></table></figure>
 
 <p>然后在调用 <code>batch()</code> 或 <code>each()</code> 时作为参数传递：</p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">foreach</span> ($query-&gt;batch(<span class="number">5000</span>, $unbufferedDb) <span class="keyword">as</span> $users) &#123;</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>非缓存查询的链接使用后及时关闭：</p>
+<p>非缓存查询的链接使用后记得及时关闭：</p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$unbufferedDb-&gt;close();</span><br></pre></td></tr></table></figure>
 
-<p>在项目的 <a href="https://github.com/yiisoft/yii2/issues/8420#issuecomment-296109257" target="_blank" rel="noopener">Issue</a> 中举了个很常见的例子，<strong>使用数字类型的主键或索引循环取</strong>，这也是脱离框架的最常用的方法。</p>
+<p>在项目的 <a href="https://github.com/yiisoft/yii2/issues/8420#issuecomment-296109257" target="_blank" rel="noopener">Issue</a> 中举了个很常见的例子，<strong>使用数字类型的主键或索引循环取</strong>，这也是最常用的解决方法。</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2019/yii-batch-query.html" data-id="ck56py0dp001g9wmjumhv8j24" class="article-share-link">分享</a>
+      <a data-url="https://liluoao.github.io/2019/yii2-batch-query.html" data-id="ck5hxyof1001e0wmjjezeuuxf" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/php/">php</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/yii/">yii</a></li></ul>
@@ -134,7 +131,7 @@
       <strong class="article-nav-caption">上一篇</strong>
       <div class="article-nav-title">
         
-          重构--改善既有代码的设计
+          重构——改善既有代码的设计
         
       </div>
     </a>
@@ -161,7 +158,7 @@
       <ul>
         
           <li>
-            <a href="/2019/use-design-patterns.html">设计模式的应用</a>
+            <a href="/2019/php-structural-design-patterns-template-method.html">模板方法模式（TemplateMethod）</a>
           </li>
         
           <li>
@@ -181,7 +178,7 @@
           </li>
         
           <li>
-            <a href="/2019/yii-codeception.html">Yii单元测试</a>
+            <a href="/2019/yii-codeception.html">Yii2的单元测试</a>
           </li>
         
           <li>
@@ -189,15 +186,15 @@
           </li>
         
           <li>
+            <a href="/2019/php-structural-design-patterns-state.html">状态模式（State）</a>
+          </li>
+        
+          <li>
             <a href="/2019/mongodb-aggregation.html">使用MongoDB的聚合</a>
           </li>
         
           <li>
-            <a href="/2019/how-to-refactor.html">重构--改善既有代码的设计</a>
-          </li>
-        
-          <li>
-            <a href="/2019/yii-batch-query.html">Yii批处理查询</a>
+            <a href="/2019/php-structural-design-patterns-decorator.html">装饰器模式（Decorator）</a>
           </li>
         
       </ul>
@@ -209,7 +206,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">分类</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/OpenResty/">OpenResty</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/PHP框架/">PHP框架</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/工具/">工具</a><span class="category-list-count">11</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/数据库/">数据库</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/服务器/">服务器</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/杂谈/">杂谈</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/">设计模式</a><span class="category-list-count">9</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/OpenResty/">OpenResty</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/PHP框架/">PHP框架</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/工具/">工具</a><span class="category-list-count">11</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/数据库/">数据库</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/服务器/">服务器</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/杂谈/">杂谈</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/">设计模式</a><span class="category-list-count">11</span></li></ul>
     </div>
   </div>
 
@@ -219,7 +216,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/apache/">apache</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/design-patterns/">design-patterns</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/laravel/">laravel</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mongo/">mongo</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/openresty/">openresty</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/other/">other</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/phalcon/">phalcon</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/php/">php</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tool/">tool</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/yaf/">yaf</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/yii/">yii</a><span class="tag-list-count">2</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/apache/">apache</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/design-patterns/">design-patterns</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/laravel/">laravel</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mongo/">mongo</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/openresty/">openresty</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/other/">other</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/phalcon/">phalcon</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/php/">php</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tool/">tool</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/yaf/">yaf</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/yii/">yii</a><span class="tag-list-count">2</span></li></ul>
     </div>
   </div>
 

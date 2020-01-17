@@ -5,20 +5,20 @@
   
 
   
-  <title>PHP设计模式概述 | 码之力，三段</title>
+  <title>模板方法模式（TemplateMethod） | 码之力，三段</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="设计模式提供了一种广泛的可重用的方式来解决我们日常编程中常常遇见的问题。它并不是一个类库或者第三方框架，更多的表现为一种思想，并且广泛地应用在系统中。它们也表现为一种模式或者模板，可以在多个不同的场景下用于解决问题。">
+  <meta name="description" content="模板方法模式是一种让抽象模板的子类「完成」一系列算法的行为策略。换而言之，它是一种非常适合框架库的算法骨架。用户只需要实现子类的一种方法，其父类便可去搞定这项工作了。">
 <meta name="keywords" content="design-patterns">
 <meta property="og:type" content="article">
-<meta property="og:title" content="PHP设计模式概述">
-<meta property="og:url" content="https://liluoao.github.io/2018/php-design-patterns-sketch.html">
+<meta property="og:title" content="模板方法模式（TemplateMethod）">
+<meta property="og:url" content="https://liluoao.github.io/2019/php-structural-design-patterns-template-method.html">
 <meta property="og:site_name" content="码之力，三段">
-<meta property="og:description" content="设计模式提供了一种广泛的可重用的方式来解决我们日常编程中常常遇见的问题。它并不是一个类库或者第三方框架，更多的表现为一种思想，并且广泛地应用在系统中。它们也表现为一种模式或者模板，可以在多个不同的场景下用于解决问题。">
+<meta property="og:description" content="模板方法模式是一种让抽象模板的子类「完成」一系列算法的行为策略。换而言之，它是一种非常适合框架库的算法骨架。用户只需要实现子类的一种方法，其父类便可去搞定这项工作了。">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:updated_time" content="2020-01-17T09:08:48.144Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="PHP设计模式概述">
-<meta name="twitter:description" content="设计模式提供了一种广泛的可重用的方式来解决我们日常编程中常常遇见的问题。它并不是一个类库或者第三方框架，更多的表现为一种思想，并且广泛地应用在系统中。它们也表现为一种模式或者模板，可以在多个不同的场景下用于解决问题。">
+<meta name="twitter:title" content="模板方法模式（TemplateMethod）">
+<meta name="twitter:description" content="模板方法模式是一种让抽象模板的子类「完成」一系列算法的行为策略。换而言之，它是一种非常适合框架库的算法骨架。用户只需要实现子类的一种方法，其父类便可去搞定这项工作了。">
   
   
     <link rel="icon" href="/favicon.png">
@@ -62,10 +62,10 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-PHP设计模式概述" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-模板方法模式（TemplateMethod）" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2018/php-design-patterns-sketch.html" class="article-date">
-  <time datetime="2018-03-31T11:42:57.000Z" itemprop="datePublished">2018-03-31</time>
+    <a href="/2019/php-structural-design-patterns-template-method.html" class="article-date">
+  <time datetime="2019-12-16T06:58:00.000Z" itemprop="datePublished">2019-12-16</time>
 </a>
     
   <div class="article-category">
@@ -80,7 +80,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      PHP设计模式概述
+      模板方法模式（TemplateMethod）
     </h1>
   
 
@@ -88,34 +88,22 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>设计模式提供了一种广泛的可重用的方式来解决我们日常编程中常常遇见的问题。它并不是一个类库或者第三方框架，更多的表现为一种思想，并且广泛地应用在系统中。它们也表现为一种模式或者模板，可以在多个不同的场景下用于解决问题。</p>
+        <p>模板方法模式是一种让抽象模板的子类「完成」一系列算法的行为策略。换而言之，它是一种非常适合框架库的算法骨架。用户只需要实现子类的一种方法，其父类便可去搞定这项工作了。</p>
 <a id="more"></a>
 
-<p>设计模式可以用于加速开发，并且将很多大的想法或者设计以一种简单地方式实现。当然，虽然设计模式在开发中很有作用，但是千万要避免在不适当的场景误用它们。</p>
-<p>目前 PHP 的设计模式主要有 23 种，根据使用目标的不同可以分为以下三大类：</p>
-<ul>
-<li>创建模式（Creational Patterns）：用于创建对象从而将某个对象从实现中解耦合。</li>
-<li>架构模式（Structural Patterns）：用于在不同的对象之间构造大的对象结构。</li>
-<li>行为模式（Behavioral Patterns）：用于在不同的对象之间管理算法、关系以及职责。</li>
-</ul>
-<h3 id="设计模式六大原则"><a href="#设计模式六大原则" class="headerlink" title="设计模式六大原则"></a>设计模式六大原则</h3><p><code>SOLID</code> 是 Michael Feathers 推荐的便于记忆的首字母简写，它代表了 Robert Martin 命名的最重要的五个面对对象编码设计原则：</p>
-<h4 id="职责单一原则（SRP，Single-Responsibility-Principle）"><a href="#职责单一原则（SRP，Single-Responsibility-Principle）" class="headerlink" title="职责单一原则（SRP，Single Responsibility Principle）"></a>职责单一原则（SRP，Single Responsibility Principle）</h4><p>一个类只负责一件事。</p>
-<h4 id="开闭原则（OCP，Open-Closed-Principle）"><a href="#开闭原则（OCP，Open-Closed-Principle）" class="headerlink" title="开闭原则（OCP，Open/Closed Principle）"></a>开闭原则（OCP，Open/Closed Principle）</h4><p>一个软件实体如类、模块和函数应该对扩展开放，对修改关闭。<br>你应该允许在不改变已有代码的情况下增加新的功能。</p>
-<h4 id="里氏替换原则（LSP，Liskov-Substitution-Principle）"><a href="#里氏替换原则（LSP，Liskov-Substitution-Principle）" class="headerlink" title="里氏替换原则（LSP，Liskov Substitution Principle）"></a>里氏替换原则（LSP，Liskov Substitution Principle）</h4><p>这是一个简单的原则，却用了一个不好理解的术语。<br>对这个概念最好的解释是：如果你有一个父类和一个子类，在不改变原有结果正确性的前提下父类和子类可以互换。</p>
-<h4 id="接口隔离原则（ISP，Interface-Segregation-Principle）"><a href="#接口隔离原则（ISP，Interface-Segregation-Principle）" class="headerlink" title="接口隔离原则（ISP，Interface Segregation Principle）"></a>接口隔离原则（ISP，Interface Segregation Principle）</h4><p>调用方不应该被强制依赖于他不需要的接口。<br>当一个类需要一个大量的设置项，为了方便不会要求调用方去设置大量的选项，因为在通常他们不需要所有的设置项。使设置项可选有助于我们避免产生”胖接口”</p>
-<h4 id="依赖反转原则（DIP，Dependency-Inversion-Principle）"><a href="#依赖反转原则（DIP，Dependency-Inversion-Principle）" class="headerlink" title="依赖反转原则（DIP，Dependency Inversion Principle）"></a>依赖反转原则（DIP，Dependency Inversion Principle）</h4><p>这条原则说明两个基本的要点：</p>
-<ol>
-<li>高阶的模块不应该依赖低阶的模块，它们都应该依赖于抽象</li>
-<li>抽象不应该依赖于实现，实现应该依赖于抽象</li>
-</ol>
-<p>看起来有点晦涩难懂，但是如果你使用过框架（例如Symfony），你应该见过依赖注入（DI）对这个概念的实现。虽然它们不是完全相通的概念，依赖倒置原则使高阶模块与低阶模块的实现细节和创建分离。可以使用依赖注入（DI）这种方式来实现它。更多的好处是它使模块之间解耦。</p>
-<p>在加上下面这条原则，构成设计模式六大原则</p>
-<h4 id="迪米特法则（Law-of-Demeter）"><a href="#迪米特法则（Law-of-Demeter）" class="headerlink" title="迪米特法则（Law of Demeter）"></a>迪米特法则（Law of Demeter）</h4><p>又叫作最少知识原则（LKP，Least Knowledge Principle），一个对象应该对其他对象保持最少的了解。</p>
+<p>半年前有个任务是为认证中心部门制作一个 <strong>API 统一框架</strong>，技术选型是 Yaf 框架，原因是它的轻量级和速度快。但是正因为太过简略，开发拥有很大的自主性，需要制定一个统一的开发流程。</p>
+<p>一般思路是需要一个控制器抽象基类直接继承 <code>Yaf\Controller_Abstract</code>，普通的控制器再继承基类。我们是用 <code>trait</code> 来把流程的模板脱离出控制器。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">use</span> <span class="title">ApiTemplate</span>;</span><br></pre></td></tr></table></figure>
 
+<p>在 <em>ApiTemplate</em> 中规定了流程：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">trait</span> ApiTemplate</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">protected</span> $response;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">final</span> funtion runAction()</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="keyword">$this</span>-&gt;setParams();</span><br><span class="line">            <span class="keyword">$this</span>-&gt;checkParams();</span><br><span class="line">            <span class="keyword">$this</span>-&gt;response = <span class="keyword">$this</span>-&gt;exec();</span><br><span class="line">            <span class="keyword">$this</span>-&gt;checkResponse();</span><br><span class="line">            <span class="keyword">$this</span>-&gt;returnResponse();</span><br><span class="line">        &#125; <span class="keyword">catch</span> (<span class="keyword">Exception</span> $e) &#123;</span><br><span class="line">            <span class="keyword">$this</span>-&gt;handleError($e);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//用参数处理插件代替</span></span><br><span class="line">    <span class="keyword">abstract</span> <span class="function"><span class="keyword">function</span> <span class="title">setParams</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="keyword">abstract</span> <span class="function"><span class="keyword">function</span> <span class="title">checkParams</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="comment">//主方法</span></span><br><span class="line">    <span class="keyword">abstract</span> <span class="function"><span class="keyword">function</span> <span class="title">exec</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="comment">//用响应处理插件代替</span></span><br><span class="line">    <span class="keyword">abstract</span> <span class="function"><span class="keyword">function</span> <span class="title">checkResponse</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="keyword">abstract</span> <span class="function"><span class="keyword">function</span> <span class="title">returnResponse</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="comment">//统一错误处理</span></span><br><span class="line">    <span class="keyword">abstract</span> <span class="function"><span class="keyword">function</span> <span class="title">handleError</span><span class="params">(Exception $e)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>让开发们按约定设置好 <em>请求参数和响应的配置*，只需要关心逻辑处理并写在 <code>exec()</code> 中，请求时统一都转到 *xxx/run</em> 方法，整个流程就统一了。</p>
+<h2 id="状态模式-State"><a href="#状态模式-State" class="headerlink" title="状态模式 State"></a>状态模式 State</h2>
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2018/php-design-patterns-sketch.html" data-id="ck5hxyoel000z0wmjieokvv9l" class="article-share-link">分享</a>
+      <a data-url="https://liluoao.github.io/2019/php-structural-design-patterns-template-method.html" data-id="ck5hxyofw002j0wmj1pdfzu9v" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/design-patterns/">design-patterns</a></li></ul>
@@ -126,19 +114,10 @@
     
 <nav id="article-nav">
   
-    <a href="/2018/php-creational-design-patterns.html" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">上一篇</strong>
-      <div class="article-nav-title">
-        
-          常见的创建型设计模式
-        
-      </div>
-    </a>
   
-  
-    <a href="/2018/upload-library-to-packagist.html" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2019/about-middle-end.html" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">下一篇</strong>
-      <div class="article-nav-title">发布包到Packagist</div>
+      <div class="article-nav-title">大中台的思考</div>
     </a>
   
 </nav>

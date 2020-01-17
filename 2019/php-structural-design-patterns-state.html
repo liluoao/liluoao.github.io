@@ -5,20 +5,20 @@
   
 
   
-  <title>设计模式的应用 | 码之力，三段</title>
+  <title>状态模式（State） | 码之力，三段</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="前言PHP 的设计模式有 23 种之多，平时开发中使用比较多的可能是 单例 Singleton 适配器 Adapter 工厂 Factory 策略 Strategy 等模式。下面讲一些平时自己碰到的模式。">
+  <meta name="description" content="状态模式可以基于一个对象的同种事务而封装出不同的行为。它提供一种简洁的方式使得对象在运行时可以改变自身行为，而不必借助单一庞大的条件判断语句。">
 <meta name="keywords" content="design-patterns">
 <meta property="og:type" content="article">
-<meta property="og:title" content="设计模式的应用">
-<meta property="og:url" content="https://liluoao.github.io/2019/use-design-patterns.html">
+<meta property="og:title" content="状态模式（State）">
+<meta property="og:url" content="https://liluoao.github.io/2019/php-structural-design-patterns-state.html">
 <meta property="og:site_name" content="码之力，三段">
-<meta property="og:description" content="前言PHP 的设计模式有 23 种之多，平时开发中使用比较多的可能是 单例 Singleton 适配器 Adapter 工厂 Factory 策略 Strategy 等模式。下面讲一些平时自己碰到的模式。">
+<meta property="og:description" content="状态模式可以基于一个对象的同种事务而封装出不同的行为。它提供一种简洁的方式使得对象在运行时可以改变自身行为，而不必借助单一庞大的条件判断语句。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-01-09T12:38:39.605Z">
+<meta property="og:updated_time" content="2020-01-17T09:08:48.144Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="设计模式的应用">
-<meta name="twitter:description" content="前言PHP 的设计模式有 23 种之多，平时开发中使用比较多的可能是 单例 Singleton 适配器 Adapter 工厂 Factory 策略 Strategy 等模式。下面讲一些平时自己碰到的模式。">
+<meta name="twitter:title" content="状态模式（State）">
+<meta name="twitter:description" content="状态模式可以基于一个对象的同种事务而封装出不同的行为。它提供一种简洁的方式使得对象在运行时可以改变自身行为，而不必借助单一庞大的条件判断语句。">
   
   
     <link rel="icon" href="/favicon.png">
@@ -62,10 +62,10 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-设计模式的应用" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-状态模式（State）" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2019/use-design-patterns.html" class="article-date">
-  <time datetime="2019-12-16T06:58:00.000Z" itemprop="datePublished">2019-12-16</time>
+    <a href="/2019/php-structural-design-patterns-state.html" class="article-date">
+  <time datetime="2019-06-18T01:23:38.000Z" itemprop="datePublished">2019-06-18</time>
 </a>
     
   <div class="article-category">
@@ -80,7 +80,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      设计模式的应用
+      状态模式（State）
     </h1>
   
 
@@ -88,18 +88,10 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>PHP 的设计模式有 23 种之多，平时开发中使用比较多的可能是 <code>单例 Singleton</code> <code>适配器 Adapter</code> <code>工厂 Factory</code> <code>策略 Strategy</code> 等模式。下面讲一些平时自己碰到的模式。</p>
+        <p>状态模式可以基于一个对象的同种事务而封装出不同的行为。它提供一种简洁的方式使得对象在运行时可以改变自身行为，而不必借助单一庞大的条件判断语句。</p>
 <a id="more"></a>
 
-<h2 id="模板方法-TemplateMethod"><a href="#模板方法-TemplateMethod" class="headerlink" title="模板方法 TemplateMethod"></a>模板方法 TemplateMethod</h2><p>半年前有个任务是为认证中心部门制作一个 <strong>API 统一框架</strong>，技术选型是 Yaf 框架，原因是它的轻量级和速度快。但是正因为太过简略，开发拥有很大的自主性，需要制定一个统一的开发流程。</p>
-<p>一般思路是需要一个控制器抽象基类直接继承 <code>Yaf\Controller_Abstract</code>，普通的控制器再继承基类。我们是用 <code>trait</code> 来把流程的模板脱离出控制器。</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">use</span> <span class="title">ApiTemplate</span>;</span><br></pre></td></tr></table></figure>
-
-<p>在 <em>ApiTemplate</em> 中规定了流程：</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">trait</span> ApiTemplate</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">protected</span> $response;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">final</span> funtion runAction()</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="keyword">$this</span>-&gt;setParams();</span><br><span class="line">            <span class="keyword">$this</span>-&gt;checkParams();</span><br><span class="line">            <span class="keyword">$this</span>-&gt;response = <span class="keyword">$this</span>-&gt;exec();</span><br><span class="line">            <span class="keyword">$this</span>-&gt;checkResponse();</span><br><span class="line">            <span class="keyword">$this</span>-&gt;returnResponse();</span><br><span class="line">        &#125; <span class="keyword">catch</span> (<span class="keyword">Exception</span> $e) &#123;</span><br><span class="line">            <span class="keyword">$this</span>-&gt;handleError($e);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//用参数处理插件代替</span></span><br><span class="line">    <span class="keyword">abstract</span> <span class="function"><span class="keyword">function</span> <span class="title">setParams</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="keyword">abstract</span> <span class="function"><span class="keyword">function</span> <span class="title">checkParams</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="comment">//主方法</span></span><br><span class="line">    <span class="keyword">abstract</span> <span class="function"><span class="keyword">function</span> <span class="title">exec</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="comment">//用响应处理插件代替</span></span><br><span class="line">    <span class="keyword">abstract</span> <span class="function"><span class="keyword">function</span> <span class="title">checkResponse</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="keyword">abstract</span> <span class="function"><span class="keyword">function</span> <span class="title">returnResponse</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="comment">//统一错误处理</span></span><br><span class="line">    <span class="keyword">abstract</span> <span class="function"><span class="keyword">function</span> <span class="title">handleError</span><span class="params">(Exception $e)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>让开发们按约定设置好 <em>请求参数和响应的配置*，只需要关心逻辑处理并写在 <code>exec()</code> 中，请求时统一都转到 *xxx/run</em> 方法，整个流程就统一了。</p>
-<h2 id="状态模式-State"><a href="#状态模式-State" class="headerlink" title="状态模式 State"></a>状态模式 State</h2><p>17 年在做订单系统时，设计的订单类简化后大致如下：</p>
+<p>17 年在做订单系统时，设计的订单类简化后大致如下：</p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Order</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> $state;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">const</span> UN_PAY_STATE = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">const</span> PAY_STATE = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">const</span> EVALUATE_STATE = <span class="number">2</span>;</span><br><span class="line">    <span class="keyword">const</span> FINISH_STATE = <span class="number">3</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">handle</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">switch</span> (<span class="keyword">$this</span>-&gt;state) &#123;</span><br><span class="line">            <span class="keyword">case</span> <span class="keyword">self</span>::UN_PAY_STATE:</span><br><span class="line">                <span class="comment">//客户新建订单，是未付款</span></span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">case</span> <span class="keyword">self</span>::PAY_STATE:</span><br><span class="line">                <span class="comment">//客户未付款，要收钱</span></span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">case</span> <span class="keyword">self</span>::EVALUATE_STATE:</span><br><span class="line">                <span class="comment">//客户已付款，要评价</span></span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">case</span> <span class="keyword">self</span>::FINISH_STATE:</span><br><span class="line">                <span class="comment">//客户已评价，订单完成</span></span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>使用时可能是这样的，思路就是单独状态单独处理，手动设置状态，比较僵硬：</p>
@@ -113,12 +105,10 @@
 
 <p>原来的订单类中需要加上新属性： <code>$currentState</code>，存放当前状态，原来的 <code>$state</code> 属性存放的就不是值了，而是一个状态对象：</p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Order</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> $state;</span><br><span class="line">    <span class="keyword">private</span> $currentState;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">$this</span>-&gt;state = <span class="keyword">new</span> UnPayState();</span><br><span class="line">        <span class="keyword">$this</span>-&gt;currentState = UnPayState::STATE;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">handle</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">$this</span>-&gt;state-&gt;doAction(<span class="keyword">$this</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2019/use-design-patterns.html" data-id="ck56py0el003a9wmjrdhaehti" class="article-share-link">分享</a>
+      <a data-url="https://liluoao.github.io/2019/php-structural-design-patterns-state.html" data-id="ck5hxyofw002q0wmjpa71tops" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/design-patterns/">design-patterns</a></li></ul>
@@ -129,10 +119,19 @@
     
 <nav id="article-nav">
   
+    <a href="/2019/use-code-sniffer-in-phpstorm.html" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          如何用工具保证代码风格
+        
+      </div>
+    </a>
   
-    <a href="/2019/about-middle-end.html" id="article-nav-older" class="article-nav-link-wrap">
+  
+    <a href="/2019/mongodb-aggregation.html" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">下一篇</strong>
-      <div class="article-nav-title">大中台的思考</div>
+      <div class="article-nav-title">使用MongoDB的聚合</div>
     </a>
   
 </nav>
@@ -151,7 +150,7 @@
       <ul>
         
           <li>
-            <a href="/2019/use-design-patterns.html">设计模式的应用</a>
+            <a href="/2019/php-structural-design-patterns-template-method.html">模板方法模式（TemplateMethod）</a>
           </li>
         
           <li>
@@ -171,7 +170,7 @@
           </li>
         
           <li>
-            <a href="/2019/yii-codeception.html">Yii单元测试</a>
+            <a href="/2019/yii-codeception.html">Yii2的单元测试</a>
           </li>
         
           <li>
@@ -179,15 +178,15 @@
           </li>
         
           <li>
+            <a href="/2019/php-structural-design-patterns-state.html">状态模式（State）</a>
+          </li>
+        
+          <li>
             <a href="/2019/mongodb-aggregation.html">使用MongoDB的聚合</a>
           </li>
         
           <li>
-            <a href="/2019/how-to-refactor.html">重构--改善既有代码的设计</a>
-          </li>
-        
-          <li>
-            <a href="/2019/yii-batch-query.html">Yii批处理查询</a>
+            <a href="/2019/php-structural-design-patterns-decorator.html">装饰器模式（Decorator）</a>
           </li>
         
       </ul>
@@ -199,7 +198,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">分类</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/OpenResty/">OpenResty</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/PHP框架/">PHP框架</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/工具/">工具</a><span class="category-list-count">11</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/数据库/">数据库</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/服务器/">服务器</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/杂谈/">杂谈</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/">设计模式</a><span class="category-list-count">9</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/OpenResty/">OpenResty</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/PHP框架/">PHP框架</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/工具/">工具</a><span class="category-list-count">11</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/数据库/">数据库</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/服务器/">服务器</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/杂谈/">杂谈</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/">设计模式</a><span class="category-list-count">11</span></li></ul>
     </div>
   </div>
 
@@ -209,7 +208,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/apache/">apache</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/design-patterns/">design-patterns</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/laravel/">laravel</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mongo/">mongo</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/openresty/">openresty</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/other/">other</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/phalcon/">phalcon</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/php/">php</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tool/">tool</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/yaf/">yaf</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/yii/">yii</a><span class="tag-list-count">2</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/apache/">apache</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/design-patterns/">design-patterns</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/laravel/">laravel</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mongo/">mongo</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/openresty/">openresty</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/other/">other</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/phalcon/">phalcon</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/php/">php</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tool/">tool</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/yaf/">yaf</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/yii/">yii</a><span class="tag-list-count">2</span></li></ul>
     </div>
   </div>
 
