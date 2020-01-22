@@ -5,20 +5,23 @@
   
 
   
-  <title>版本控制工具提交规范 | 码之力，三段</title>
+  <title>DB主从一致性方案 | 码之力，三段</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="前言在日常工作中，我们经常会使用版本控制工具，不管是 Git 还是 SVN，或是其它。 在多人协作中，提交注释是一个可能会忽视的点。清晰明了的注释可以降低沟通成本，提高工作效率。而含糊不清的注释会在你需要找一次具体提交时造成麻烦。">
-<meta name="keywords" content="tool">
+  <meta name="description" content="实际工作中，大部分项目和业务都是读多写少。为了保证高可用性，提升读速度，一般会采用读写分离、一主多从的数据库架构。 但是主从同步是延时的，如果在写操作同步完成前发生了读操作，就会导致脏读，如何解决？">
+<meta name="keywords" content="other">
 <meta property="og:type" content="article">
-<meta property="og:title" content="版本控制工具提交规范">
-<meta property="og:url" content="https://liluoao.github.io/2019/vcs-commit-rule.html">
+<meta property="og:title" content="DB主从一致性方案">
+<meta property="og:url" content="https://liluoao.github.io/2020/consistency-of-master-and-slave-database.html">
 <meta property="og:site_name" content="码之力，三段">
-<meta property="og:description" content="前言在日常工作中，我们经常会使用版本控制工具，不管是 Git 还是 SVN，或是其它。 在多人协作中，提交注释是一个可能会忽视的点。清晰明了的注释可以降低沟通成本，提高工作效率。而含糊不清的注释会在你需要找一次具体提交时造成麻烦。">
+<meta property="og:description" content="实际工作中，大部分项目和业务都是读多写少。为了保证高可用性，提升读速度，一般会采用读写分离、一主多从的数据库架构。 但是主从同步是延时的，如果在写操作同步完成前发生了读操作，就会导致脏读，如何解决？">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-01-22T06:48:24.750Z">
+<meta property="og:image" content="https://liluoao.github.io/images/semi-sync.jpg">
+<meta property="og:image" content="https://liluoao.github.io/images/mysql-middleware.jpg">
+<meta property="og:updated_time" content="2020-01-22T06:48:24.715Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="版本控制工具提交规范">
-<meta name="twitter:description" content="前言在日常工作中，我们经常会使用版本控制工具，不管是 Git 还是 SVN，或是其它。 在多人协作中，提交注释是一个可能会忽视的点。清晰明了的注释可以降低沟通成本，提高工作效率。而含糊不清的注释会在你需要找一次具体提交时造成麻烦。">
+<meta name="twitter:title" content="DB主从一致性方案">
+<meta name="twitter:description" content="实际工作中，大部分项目和业务都是读多写少。为了保证高可用性，提升读速度，一般会采用读写分离、一主多从的数据库架构。 但是主从同步是延时的，如果在写操作同步完成前发生了读操作，就会导致脏读，如何解决？">
+<meta name="twitter:image" content="https://liluoao.github.io/images/semi-sync.jpg">
   
   
     <link rel="icon" href="/favicon.png">
@@ -62,14 +65,14 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-版本控制工具提交规范" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-DB主从一致性方案" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2019/vcs-commit-rule.html" class="article-date">
-  <time datetime="2019-10-15T02:54:21.000Z" itemprop="datePublished">2019-10-15</time>
+    <a href="/2020/consistency-of-master-and-slave-database.html" class="article-date">
+  <time datetime="2020-01-22T05:45:49.000Z" itemprop="datePublished">2020-01-22</time>
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/categories/工具/">工具</a>
+    <a class="article-category-link" href="/categories/数据库/">数据库</a>
   </div>
 
   </div>
@@ -80,7 +83,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      版本控制工具提交规范
+      DB主从一致性方案
     </h1>
   
 
@@ -88,40 +91,58 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>在日常工作中，我们经常会使用版本控制工具，不管是 <strong>Git</strong> 还是 <strong>SVN</strong>，或是其它。</p>
-<p>在多人协作中，提交注释是一个可能会忽视的点。<strong>清晰明了的注释</strong>可以降低沟通成本，提高工作效率。而<strong>含糊不清的注释</strong>会在你需要找一次具体提交时造成麻烦。</p>
+        <p>实际工作中，大部分项目和业务都是读多写少。为了保证高可用性，提升读速度，一般会采用读写分离、一主多从的数据库架构。</p>
+<p>但是主从同步是延时的，如果在写操作同步完成前发生了读操作，就会导致脏读，如何解决？</p>
 <a id="more"></a>
 
-<h2 id="规范内容"><a href="#规范内容" class="headerlink" title="规范内容"></a>规范内容</h2><p>最基础的规范，也是最重要的——就是每个任务的代码分开提交。这样在 Review 的时候比较清楚，出现 BUG 后可以快速回退单次提交。如果代码管理水平不足，出现了几个环境代码不统一，需要手动合并代码时，可能这个任务需要发布正式，另一个任务只需要发布测试或者预发布，糅杂在一起的提交就会导致噩梦般的后果。</p>
-<p>团队合作中一般会使用到事务跟踪工具，例如 <a href="https://www.atlassian.com/software/jira" target="_blank" rel="noopener">JIRA</a>、<a href="https://www.zentao.net/" target="_blank" rel="noopener">禅道</a> 等。每个开发任务有自己的编号，在提交时一定要带上。</p>
-<p>其它规范因人而异，举个例子：</p>
-<p>先把文件按类型分为如下几种</p>
+<h3 id="半同步复制"><a href="#半同步复制" class="headerlink" title="半同步复制"></a>半同步复制</h3><p>普通的主从同步是使用 MySQL 的异步复制，依靠二进制日志（binary log）进行。从 5.5 版本开始，MySQL 引入了半同步复制（semi-sync）：一个事务提交时，日志至少要保证有一个从接收到，那么它的提交才能继续。</p>
+<p><img src="/images/semi-sync.jpg" alt="半同步复制"></p>
+<ol>
+<li>系统先对主库进行了一个写操作</li>
+<li>等主从同步完成，写主库的请求才返回</li>
+<li>读从库，读到最新的数据（如果读请求先完成，写请求后完成，读取到的是“当时”最新的数据）</li>
+</ol>
+<p>这个方案的优点是原生功能，使用简单。<br>在线加载插件安装：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; install plugin rpl_semi_sync_master soname &apos;semisync_master.so&apos;;</span><br><span class="line">mysql&gt; install plugin rpl_semi_sync_slave soname &apos;semisync_slave.so&apos;;</span><br></pre></td></tr></table></figure>
+
+<p>写入配置文件：</p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">[mysqld]</span></span><br><span class="line"><span class="attr">plugin-dir</span>=/usr/local/mysql/lib/plugin</span><br><span class="line"><span class="attr">plugin-load</span>=<span class="string">"rpl_semi_sync_master:semisync_master.so;rpl_semi_sync_slave:semisync_slave.so"</span></span><br></pre></td></tr></table></figure>
+
+<p>缺点是主库的写请求时延会增长，吞吐量会降低。</p>
+<h3 id="强制读主库"><a href="#强制读主库" class="headerlink" title="强制读主库"></a>强制读主库</h3><p>如果读写都到主库，就不会出现这种问题了。需要使用缓存来弥补缺失的读性能。</p>
+<h3 id="数据库中间件"><a href="#数据库中间件" class="headerlink" title="数据库中间件"></a>数据库中间件</h3><ol>
+<li>所有的读写都走数据库中间件，通常情况下，写请求路由到主库，读请求路由到从库</li>
+<li>记录所有路由到写库的 key，在经验主从同步时间窗口内，如果有读请求访问中间件，此时有可能从库还是旧数据，就把这个key上的读请求路由到主库</li>
+<li>经验主从同步时间过完后，对应 key 的读请求继续路由到从库</li>
+</ol>
+<p>市面上的开源中间件相当少了，可能只有原当当网的 <a href="https://github.com/apache/incubator-shardingsphere" target="_blank" rel="noopener">apache/incubator-shardingsphere</a> 还在维护。</p>
+<p><img src="/images/mysql-middleware.jpg" alt="早期主流的开源中间件"></p>
+<p>想新开发的话要看公司技术实力如何，时间人力成本都相当高。使用市场上的中间件也要注意信息安全。</p>
+<h3 id="缓存记录写-key"><a href="#缓存记录写-key" class="headerlink" title="缓存记录写 key"></a>缓存记录写 key</h3><p>最后说的这个方案总结了前三个方案的优缺点，就是用缓存记录库中操作的 key：</p>
 <ul>
-<li>【视图】如 Blade、Smarty、PHTML 等</li>
-<li>【功能】一般是业务代码，根据项目结构不同可分为 Model、Bean、Business 等</li>
-<li>【脚本】定时脚本 Crontab 类，也叫 Job</li>
-<li>【测试】单元测试，也叫 Test</li>
-<li>【插件】有的框架如 Yaf、Yii 中存在的概念，或者是自己封装的工具类</li>
-<li>【配置】根据项目要求的不同，有 php，ini，env，XML，Json 等</li>
-<li>【前端】JS、CSS、image等，或者是组件</li>
-<li>【接口】提供给外部的接口</li>
-<li>【API】调用的外部接口，可进一步分为公司内部的和外网的</li>
-<li>【SQL】也叫做 Migration。数据库迁移文件，或是结构变更的纯 SQL</li>
-<li>【FUNC】也叫做 helper，全局函数文件</li>
+<li>写</li>
 </ul>
-<p>最后拼装成一整条 <code>commit message</code></p>
-<blockquote>
-<p>【任务编号】【新增|修改|删除】【功能|视图|脚本|等】任务标题-功能备注</p>
-</blockquote>
-<p>如果是复制的代码，可在后面加上 <code>@copy</code>（如果有统计代码量的要求）。再提一嘴，部分要找历史提交的原因可能是因为需求有变更，要还原回之前的代码。刚好脉脉给我推送了一条通知——删除代码时是注释掉还是直接删除。我的选择毫无疑问是直接删除掉，因为有版本控制工具在，找历史还是没啥难度的。如果是仅注释掉的话，代码的美观性可想而知（代码洁癖实锤）。</p>
+<ol>
+<li>某库的某 key 要进行写操作，把它记录到缓存里，设置好超时时间（比主从同步的时间大点）</li>
+<li>进行写操作</li>
+</ol>
+<ul>
+<li>读</li>
+</ul>
+<ol>
+<li>查询缓存，本次读操作的 key 是否在缓存里</li>
+<li>缓存命中，将本次读操作路由给主库，查新数据</li>
+<li>缓存未命中，依旧从库处理</li>
+</ol>
+<p>这个方案成本低，付出的代价是在读写时都多了一步缓存操作。</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2019/vcs-commit-rule.html" data-id="ck5oy5cz3002i10mjes0zosfk" class="article-share-link">分享</a>
+      <a data-url="https://liluoao.github.io/2020/consistency-of-master-and-slave-database.html" data-id="ck5oy5cxc000310mjt508llty" class="article-share-link">分享</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/tool/">tool</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/other/">other</a></li></ul>
 
     </footer>
   </div>
@@ -129,19 +150,10 @@
     
 <nav id="article-nav">
   
-    <a href="/2019/big-or-small-size-company.html" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">上一篇</strong>
-      <div class="article-nav-title">
-        
-          大小规模公司思考
-        
-      </div>
-    </a>
   
-  
-    <a href="/2019/yaf-individualization.html" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2019/php-structural-design-patterns-template-method.html" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">下一篇</strong>
-      <div class="article-nav-title">Yaf框架结构个性化</div>
+      <div class="article-nav-title">模板方法模式（TemplateMethod）</div>
     </a>
   
 </nav>
