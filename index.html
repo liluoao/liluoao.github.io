@@ -62,6 +62,58 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-Redis-Proxy分布式缓存方案分享" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/redis-proxy-distributed-cache-project.html" class="article-date">
+  <time datetime="2020-04-20T10:56:46.000Z" itemprop="datePublished">2020-04-20</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/工具/">工具</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/redis-proxy-distributed-cache-project.html">Redis-Proxy分布式缓存方案分享</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>想必在大家的架构中，Redis 已经是一个必不可少的部件，丰富的数据结构、超高的性能以及简单的协议，让它能够很好的作为数据库的上游缓存层。正是人们大量使用 Redis，逐渐暴露了一些缺点：</p>
+<ol>
+<li>单节点物理内存是有限的，不能满足日益增长的业务内存的需要；</li>
+<li>不能提供高可用服务。节点挂掉或者该节点机器宕机，导致大量请求走向数据库，造成数据库压力增大，加大数据库宕机风险；</li>
+<li>运维会为每个业务方创建一个节点。各业务方内存分配不均匀；机器部署杂、多，请求入口多，运维管理复杂、难以维护等。</li>
+</ol>
+        
+          <p class="article-more-link">
+            <a href="/2020/redis-proxy-distributed-cache-project.html#more">阅读全文</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://liluoao.github.io/2020/redis-proxy-distributed-cache-project.html" data-id="ck98ezob7000wncmjaqgw9az8" class="article-share-link">分享</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/redis/">redis</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-DB主从一致性方案" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2020/consistency-of-master-and-slave-database.html" class="article-date">
@@ -98,7 +150,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2020/consistency-of-master-and-slave-database.html" data-id="ck5oy5cxc000310mjt508llty" class="article-share-link">分享</a>
+      <a data-url="https://liluoao.github.io/2020/consistency-of-master-and-slave-database.html" data-id="ck98ezoas0003ncmjd4p473vq" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/other/">other</a></li></ul>
@@ -145,7 +197,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2019/php-structural-design-patterns-template-method.html" data-id="ck5oy5cz3002d10mji35b4q1a" class="article-share-link">分享</a>
+      <a data-url="https://liluoao.github.io/2019/php-structural-design-patterns-template-method.html" data-id="ck98ezoci0029ncmjkggd137l" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/design-patterns/">design-patterns</a></li></ul>
@@ -193,7 +245,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2019/about-middle-end.html" data-id="ck5oy5cyn001x10mjz82lhaeo" class="article-share-link">分享</a>
+      <a data-url="https://liluoao.github.io/2019/about-middle-end.html" data-id="ck98ezoc3001uncmj615ba0zd" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/other/">other</a></li></ul>
@@ -240,7 +292,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2019/big-or-small-size-company.html" data-id="ck5oy5cz3002210mjils2ewbz" class="article-share-link">分享</a>
+      <a data-url="https://liluoao.github.io/2019/big-or-small-size-company.html" data-id="ck98ezoc3001yncmjjwd2i6w8" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/other/">other</a></li></ul>
@@ -288,7 +340,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2019/vcs-commit-rule.html" data-id="ck5oy5cz3002i10mjes0zosfk" class="article-share-link">分享</a>
+      <a data-url="https://liluoao.github.io/2019/vcs-commit-rule.html" data-id="ck98ezoci002encmjnvd8wwbi" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/tool/">tool</a></li></ul>
@@ -335,7 +387,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2019/yaf-individualization.html" data-id="ck5oy5cy7001210mjbddx0bkc" class="article-share-link">分享</a>
+      <a data-url="https://liluoao.github.io/2019/yaf-individualization.html" data-id="ck98ezobn0013ncmjjk9wjx61" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/php/">php</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/yaf/">yaf</a></li></ul>
@@ -382,7 +434,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2019/yii-codeception.html" data-id="ck5oy5cyn001510mjoui9mbq2" class="article-share-link">分享</a>
+      <a data-url="https://liluoao.github.io/2019/yii-codeception.html" data-id="ck98ezobn0015ncmj9m2dzpc0" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/yii/">yii</a></li></ul>
@@ -431,7 +483,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2019/use-code-sniffer-in-phpstorm.html" data-id="ck5oy5cz3002510mjyhpkjjxl" class="article-share-link">分享</a>
+      <a data-url="https://liluoao.github.io/2019/use-code-sniffer-in-phpstorm.html" data-id="ck98ezoci0021ncmj0ntotgrn" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/tool/">tool</a></li></ul>
@@ -478,61 +530,10 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2019/php-structural-design-patterns-state.html" data-id="ck5oy5cz3002l10mja11tl1pc" class="article-share-link">分享</a>
+      <a data-url="https://liluoao.github.io/2019/php-structural-design-patterns-state.html" data-id="ck98ezoci002hncmj0stp63qs" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/design-patterns/">design-patterns</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-使用MongoDB的聚合" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/mongodb-aggregation.html" class="article-date">
-  <time datetime="2019-05-28T02:15:54.000Z" itemprop="datePublished">2019-05-28</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/数据库/">数据库</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/mongodb-aggregation.html">使用MongoDB的聚合</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="引子"><a href="#引子" class="headerlink" title="引子"></a>引子</h2><p>最近需要做个统计，计算一个销售或部门（n 个销售），在一段时间内（n 天）的成交数据。数据在 Mongo，大致结构如下：</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">[</span><br><span class="line">    <span class="string">'si_id'</span> =&gt; <span class="number">1</span>,<span class="comment">//销售ID</span></span><br><span class="line">    <span class="string">'date'</span> =&gt; <span class="string">'2019-05-28'</span>,<span class="comment">//Y-m-d时间</span></span><br><span class="line">    <span class="string">'data'</span> =&gt; [</span><br><span class="line">        <span class="number">0</span> =&gt; [</span><br><span class="line">            <span class="string">'product_name'</span> =&gt; <span class="string">'产品A'</span>,</span><br><span class="line">            <span class="string">'product_id'</span> =&gt; <span class="number">1</span>,</span><br><span class="line">            <span class="string">'num'</span> =&gt; <span class="number">123</span></span><br><span class="line">        ],</span><br><span class="line">        <span class="number">1</span> =&gt; [</span><br><span class="line">            <span class="string">'product_name'</span> =&gt; <span class="string">'产品B'</span>,</span><br><span class="line">            <span class="string">'product_id'</span> =&gt; <span class="number">2</span>,</span><br><span class="line">            <span class="string">'num'</span> =&gt; <span class="number">123</span></span><br><span class="line">        ],</span><br><span class="line">        <span class="comment">//more..</span></span><br><span class="line">    ],</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
-
-<p>每个销售每天一条记录（<em>si_id</em> 和 <em>date</em> 组合索引），<em>data</em> 数组存放了每个产品的成交数量。简单分析后，我们需要得到的就是每个 <em>product_id</em> 的 <em>num</em> 之和。</p>
-<p>在查询出来后，进行循环处理，结果由于数据量太大导致<strong>内存溢出</strong>。能不能像 MySQL 中直接进行 <code>GROUP BY</code> + <code>SUM()</code> 呢？</p>
-        
-          <p class="article-more-link">
-            <a href="/2019/mongodb-aggregation.html#more">阅读全文</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2019/mongodb-aggregation.html" data-id="ck5oy5cyn001g10mjykduoopg" class="article-share-link">分享</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mongo/">mongo</a></li></ul>
 
     </footer>
   </div>
@@ -557,6 +558,10 @@
     <h3 class="widget-title">最新文章</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2020/redis-proxy-distributed-cache-project.html">Redis-Proxy分布式缓存方案分享</a>
+          </li>
         
           <li>
             <a href="/2020/consistency-of-master-and-slave-database.html">DB主从一致性方案</a>
@@ -594,10 +599,6 @@
             <a href="/2019/php-structural-design-patterns-state.html">状态模式（State）</a>
           </li>
         
-          <li>
-            <a href="/2019/mongodb-aggregation.html">使用MongoDB的聚合</a>
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -607,7 +608,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">分类</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/OpenResty/">OpenResty</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/PHP框架/">PHP框架</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/工具/">工具</a><span class="category-list-count">11</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/数据库/">数据库</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/服务器/">服务器</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/杂谈/">杂谈</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/">设计模式</a><span class="category-list-count">8</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/OpenResty/">OpenResty</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/PHP框架/">PHP框架</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/工具/">工具</a><span class="category-list-count">12</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/数据库/">数据库</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/服务器/">服务器</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/杂谈/">杂谈</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/">设计模式</a><span class="category-list-count">8</span></li></ul>
     </div>
   </div>
 
@@ -617,7 +618,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/apache/">apache</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/design-patterns/">design-patterns</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/laravel/">laravel</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mongo/">mongo</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/openresty/">openresty</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/other/">other</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/phalcon/">phalcon</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/php/">php</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tool/">tool</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/yaf/">yaf</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/yii/">yii</a><span class="tag-list-count">2</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/apache/">apache</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/design-patterns/">design-patterns</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/laravel/">laravel</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mongo/">mongo</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/openresty/">openresty</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/other/">other</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/phalcon/">phalcon</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/php/">php</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/redis/">redis</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tool/">tool</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/yaf/">yaf</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/yii/">yii</a><span class="tag-list-count">2</span></li></ul>
     </div>
   </div>
 
