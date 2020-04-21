@@ -5,20 +5,20 @@
   
 
   
-  <title>版本控制工具提交规范 | 码之力，三段</title>
+  <title>SonarQube再续前缘 | 码之力，三段</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="前言在日常工作中，我们经常会使用版本控制工具，不管是 Git 还是 SVN，或是其它。 在多人协作中，提交注释是一个可能会忽视的点。清晰明了的注释可以降低沟通成本，提高工作效率。而含糊不清的注释会在你需要找一次具体提交时造成麻烦。">
+  <meta name="description" content="前言之前写过一篇《使用SonarQube管理代码质量》，现在我们在服务器自己搭建了这个分析工具，加入了 CI 中。">
 <meta name="keywords" content="tool">
 <meta property="og:type" content="article">
-<meta property="og:title" content="版本控制工具提交规范">
-<meta property="og:url" content="https://liluoao.github.io/2019/vcs-commit-rule.html">
+<meta property="og:title" content="SonarQube再续前缘">
+<meta property="og:url" content="https://liluoao.github.io/2020/build-sonarqube-and-rules.html">
 <meta property="og:site_name" content="码之力，三段">
-<meta property="og:description" content="前言在日常工作中，我们经常会使用版本控制工具，不管是 Git 还是 SVN，或是其它。 在多人协作中，提交注释是一个可能会忽视的点。清晰明了的注释可以降低沟通成本，提高工作效率。而含糊不清的注释会在你需要找一次具体提交时造成麻烦。">
+<meta property="og:description" content="前言之前写过一篇《使用SonarQube管理代码质量》，现在我们在服务器自己搭建了这个分析工具，加入了 CI 中。">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:updated_time" content="2020-04-21T08:24:29.833Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="版本控制工具提交规范">
-<meta name="twitter:description" content="前言在日常工作中，我们经常会使用版本控制工具，不管是 Git 还是 SVN，或是其它。 在多人协作中，提交注释是一个可能会忽视的点。清晰明了的注释可以降低沟通成本，提高工作效率。而含糊不清的注释会在你需要找一次具体提交时造成麻烦。">
+<meta name="twitter:title" content="SonarQube再续前缘">
+<meta name="twitter:description" content="前言之前写过一篇《使用SonarQube管理代码质量》，现在我们在服务器自己搭建了这个分析工具，加入了 CI 中。">
   
   
     <link rel="icon" href="/favicon.png">
@@ -62,10 +62,10 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-版本控制工具提交规范" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-SonarQube再续前缘" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2019/vcs-commit-rule.html" class="article-date">
-  <time datetime="2019-10-15T02:54:21.000Z" itemprop="datePublished">2019-10-15</time>
+    <a href="/2020/build-sonarqube-and-rules.html" class="article-date">
+  <time datetime="2020-03-31T07:44:16.000Z" itemprop="datePublished">2020-03-31</time>
 </a>
     
   <div class="article-category">
@@ -80,7 +80,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      版本控制工具提交规范
+      SonarQube再续前缘
     </h1>
   
 
@@ -88,37 +88,61 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>在日常工作中，我们经常会使用版本控制工具，不管是 <strong>Git</strong> 还是 <strong>SVN</strong>，或是其它。</p>
-<p>在多人协作中，提交注释是一个可能会忽视的点。<strong>清晰明了的注释</strong>可以降低沟通成本，提高工作效率。而<strong>含糊不清的注释</strong>会在你需要找一次具体提交时造成麻烦。</p>
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>之前写过一篇<a href="/2018/use-sonarqube-continuous-code-quality.html">《使用SonarQube管理代码质量》</a>，现在我们在服务器自己搭建了这个分析工具，加入了 CI 中。</p>
 <a id="more"></a>
 
-<h2 id="规范内容"><a href="#规范内容" class="headerlink" title="规范内容"></a>规范内容</h2><p>最基础的规范，也是最重要的——就是每个任务的代码分开提交。这样在 Review 的时候比较清楚，出现 BUG 后可以快速回退单次提交。如果代码管理水平不足，出现了几个环境代码不统一，需要手动合并代码时，可能这个任务需要发布正式，另一个任务只需要发布测试或者预发布，糅杂在一起的提交就会导致噩梦般的后果。</p>
-<p>团队合作中一般会使用到事务跟踪工具，例如 <a href="https://www.atlassian.com/software/jira" target="_blank" rel="noopener">JIRA</a>、<a href="https://www.zentao.net/" target="_blank" rel="noopener">禅道</a> 等。每个开发任务有自己的编号，在提交时一定要带上。</p>
-<p>其它规范因人而异，举个例子：</p>
-<p>先把文件按类型分为如下几种</p>
-<ul>
-<li>【视图】如 Blade、Smarty、PHTML 等</li>
-<li>【功能】一般是业务代码，根据项目结构不同可分为 Model、Bean、Business 等</li>
-<li>【脚本】定时脚本 Crontab 类，也叫 Job</li>
-<li>【测试】单元测试，也叫 Test</li>
-<li>【插件】有的框架如 Yaf、Yii 中存在的概念，或者是自己封装的工具类</li>
-<li>【配置】根据项目要求的不同，有 php，ini，env，XML，Json 等</li>
-<li>【前端】JS、CSS、image等，或者是组件</li>
-<li>【接口】提供给外部的接口</li>
-<li>【API】调用的外部接口，可进一步分为公司内部的和外网的</li>
-<li>【SQL】也叫做 Migration。数据库迁移文件，或是结构变更的纯 SQL</li>
-<li>【FUNC】也叫做 helper，全局函数文件</li>
-</ul>
-<p>最后拼装成一整条 <code>commit message</code></p>
-<blockquote>
-<p>【任务编号】【新增|修改|删除】【功能|视图|脚本|等】任务标题-功能备注</p>
-</blockquote>
-<p>如果是复制的代码，可在后面加上 <code>@copy</code>（如果有统计代码量的要求）。再提一嘴，部分要找历史提交的原因可能是因为需求有变更，要还原回之前的代码。刚好脉脉给我推送了一条通知——删除代码时是注释掉还是直接删除。我的选择毫无疑问是直接删除掉，因为有版本控制工具在，找历史还是没啥难度的。如果是仅注释掉的话，代码的美观性可想而知（代码洁癖实锤）。</p>
+<p>名词解释：SonarQube（以下简称Sonar），是一个用于代码质量管理的开源的平台。通过插件机制可以和不通的测试工具、代码分析工具或者持续集成等平台相结合。Sonar 不是一个质量数据报告方面的工具，是一个代码管理的质量平台。目前它支持绝大部分语言，例如 Java、C#、Python、PHP 等。</p>
+<p>持续集成（Continuous integration，简称 CI）是一种软件开发实践，即团队开发成员经常集成他们的工作，通常每个成员每天至少集成一次，也就意味着每天可能会发生多次集成。每次集成都通过自动化的构建（包括编译，发布，自动化测试）来验证，从而尽早地发现集成错误。</p>
+<h2 id="搭建"><a href="#搭建" class="headerlink" title="搭建"></a>搭建</h2><p>拉镜像</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">docker pull postgres</span><br><span class="line">docker pull sonarqube</span><br></pre></td></tr></table></figure>
+
+<p>启动</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">#启动数据库</span><br><span class="line">docker run --name db -e POSTGRES_USER=sonar -e POSTGRES_PASSWORD=sonar -d postgres</span><br><span class="line">#启动sonarqube</span><br><span class="line">docker run --name sq --link db -e SONARQUBE_JDBC_URL=jdbc:postgresql://db:5432/sonar -p 9000:9000 -d sonarqube</span><br></pre></td></tr></table></figure>
+
+<p>非容器的就自己去下载安装，不多讲了</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget -O /home/tool/sonarqube.zip https://binaries.sonarsource.com/Distribution/sonarqube/sonarqube-7.9.1.zip</span><br></pre></td></tr></table></figure>
+
+<h2 id="PHP规则"><a href="#PHP规则" class="headerlink" title="PHP规则"></a>PHP规则</h2><p>把我们一个历史悠久的项目加入检查后，出来了 228 个 Bugs、64 个漏洞、1.5K 安全热点、30K 的异味……</p>
+<p>重构之路任重而道远，我们先解决掉 Bugs 类，经过整理后大致分为如下几点：</p>
+<ol>
+<li><p><strong>Remove this unreachable code.</strong><br>删除 <code>return</code> 语句后的无用代码</p>
+</li>
+<li><p><strong>Remove or refactor this statement.</strong><br>例如 <code>$i == 0;</code>，需要检查语句正确性或删除掉未使用的语句</p>
+</li>
+<li><p><strong>This branch duplicates the one on line xxx.</strong><br>条件语句的分支条件出现重复，例如：</p>
+</li>
+</ol>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> ($a &gt; <span class="number">10</span>) &#123;</span><br><span class="line"></span><br><span class="line">&#125; <span class="keyword">elseif</span> ($a &gt; <span class="number">5</span>) &#123;</span><br><span class="line"></span><br><span class="line">&#125; <span class="keyword">elseif</span> ($a &gt; <span class="number">5</span>) &#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol start="4">
+<li><p><strong>Review the data-flow - use of uninitialized value.</strong><br>使用了未初始化的值/数组/对象，例如字符串的 <code>.=</code>，数字的 <code>$i++</code>，数组的 <code>$foo[&#39;bar&#39;]</code></p>
+</li>
+<li><p><strong>Remove this conditional structure or edit its code blocks so that they’re not all the same.</strong><br>2个分支语句的内容一样，例如：</p>
+</li>
+</ol>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (<span class="keyword">true</span>) &#123;</span><br><span class="line">    $a = <span class="number">1</span>;</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    $a = <span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol start="6">
+<li><p><strong>Remove or correct this useless self-assignment.</strong><br>等号左右一样，也就是自己等于自己，无用代码</p>
+</li>
+<li><p><strong>Was “-=”/“!=” meant instead?</strong><br>等号后面无空格，和后面的运算符易产生误解</p>
+</li>
+<li><p><strong>Identical sub-expressions on both sides of operator “&amp;&amp;”/“||”</strong><br>与、或运算符左右一样，无意义</p>
+</li>
+<li><p><strong>“$i” is incremented and will never reach “stop condition”.</strong><br>类似 <code>while (true)</code> 的写法，想在循环内部 break，应直接省略条件部分，例如</p>
+</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">for ($i = 0; ;$i++)</span><br></pre></td></tr></table></figure>
+
+<ol start="10">
+<li><strong>Remove this “if” statement.</strong><br>删除无用的 <code>if (true)</code></li>
+</ol>
+<p>完整的规则可以在 <code>/coding_rules?language=php&amp;types=BUG</code> 中查看</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2019/vcs-commit-rule.html" data-id="ck99n7v0q002rg8mjhssbl0ng" class="article-share-link">分享</a>
+      <a data-url="https://liluoao.github.io/2020/build-sonarqube-and-rules.html" data-id="ck99n7uyz0019g8mji468jlut" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/tool/">tool</a></li></ul>
@@ -129,19 +153,19 @@
     
 <nav id="article-nav">
   
-    <a href="/2019/big-or-small-size-company.html" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2020/redis-proxy-distributed-cache-project.html" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption">上一篇</strong>
       <div class="article-nav-title">
         
-          大小规模公司思考
+          Redis-Proxy分布式缓存方案分享
         
       </div>
     </a>
   
   
-    <a href="/2019/yaf-individualization.html" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2020/consistency-of-master-and-slave-database.html" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">下一篇</strong>
-      <div class="article-nav-title">Yaf框架结构个性化</div>
+      <div class="article-nav-title">DB主从一致性方案</div>
     </a>
   
 </nav>
