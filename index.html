@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>码之力，三段</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="李罗奥的博客">
+<meta property="og:type" content="website">
+<meta property="og:title" content="码之力，三段">
+<meta property="og:url" content="https://liluoao.github.io/index.html">
+<meta property="og:site_name" content="码之力，三段">
+<meta property="og:description" content="李罗奥的博客">
+<meta property="og:locale" content="zh-CN">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="码之力，三段">
+<meta name="twitter:description" content="李罗奥的博客">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">码之力，三段</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">To be a Web Artisan</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">首页</a>
+        
+          <a class="main-nav-link" href="/archives">文章列表</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://liluoao.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-Redis-Proxy分布式缓存方案分享" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/redis-proxy-distributed-cache-project.html" class="article-date">
+  <time datetime="2020-04-20T10:56:46.000Z" itemprop="datePublished">2020-04-20</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/tool/">工具</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/redis-proxy-distributed-cache-project.html">Redis-Proxy分布式缓存方案分享</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>想必在大家的架构中，Redis 已经是一个必不可少的部件，丰富的数据结构、超高的性能以及简单的协议，让它能够很好的作为数据库的上游缓存层。正是人们大量使用 Redis，逐渐暴露了一些缺点：</p>
+<ol>
+<li>单节点物理内存是有限的，不能满足日益增长的业务内存的需要；</li>
+<li>不能提供高可用服务。节点挂掉或者该节点机器宕机，导致大量请求走向数据库，造成数据库压力增大，加大数据库宕机风险；</li>
+<li>运维会为每个业务方创建一个节点。各业务方内存分配不均匀；机器部署杂、多，请求入口多，运维管理复杂、难以维护等。</li>
+</ol>
+        
+          <p class="article-more-link">
+            <a href="/2020/redis-proxy-distributed-cache-project.html#more">阅读全文</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://liluoao.github.io/2020/redis-proxy-distributed-cache-project.html" data-id="ckajaooow000xb4mjr2r8ecmt" class="article-share-link">分享</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/redis/">redis</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-SonarQube再续前缘" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/build-sonarqube-and-rules.html" class="article-date">
+  <time datetime="2020-03-31T07:44:16.000Z" itemprop="datePublished">2020-03-31</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/tool/">工具</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/build-sonarqube-and-rules.html">SonarQube再续前缘</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>之前写过一篇<a href="/2018/use-sonarqube-continuous-code-quality.html">《使用SonarQube管理代码质量》</a>，现在我们在服务器自己搭建了这个分析工具，加入了 CI 中。</p>
+        
+          <p class="article-more-link">
+            <a href="/2020/build-sonarqube-and-rules.html#more">阅读全文</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://liluoao.github.io/2020/build-sonarqube-and-rules.html" data-id="ckajaooow0012b4mjhkw85lhf" class="article-share-link">分享</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/tool/">tool</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-DB主从一致性方案" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/consistency-of-master-and-slave-database.html" class="article-date">
+  <time datetime="2020-01-22T05:45:49.000Z" itemprop="datePublished">2020-01-22</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/database/">数据库</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/consistency-of-master-and-slave-database.html">DB主从一致性方案</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>实际工作中，大部分项目和业务都是读多写少。为了保证高可用性，提升读速度，一般会采用读写分离、一主多从的数据库架构。</p>
+<p>但是主从同步是延时的，如果在写操作同步完成前发生了读操作，就会导致脏读，如何解决？</p>
+        
+          <p class="article-more-link">
+            <a href="/2020/consistency-of-master-and-slave-database.html#more">阅读全文</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://liluoao.github.io/2020/consistency-of-master-and-slave-database.html" data-id="ckajaooo00003b4mjxgts4q0d" class="article-share-link">分享</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/other/">other</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-模板方法模式（TemplateMethod）" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/php-structural-design-patterns-template-method.html" class="article-date">
+  <time datetime="2019-12-16T06:58:00.000Z" itemprop="datePublished">2019-12-16</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/design-patterns/">设计模式</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/php-structural-design-patterns-template-method.html">模板方法模式（TemplateMethod）</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>模板方法模式是一种让抽象模板的子类「完成」一系列算法的行为策略。换而言之，它是一种非常适合框架库的算法骨架。用户只需要实现子类的一种方法，其父类便可去搞定这项工作了。</p>
+        
+          <p class="article-more-link">
+            <a href="/2019/php-structural-design-patterns-template-method.html#more">阅读全文</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://liluoao.github.io/2019/php-structural-design-patterns-template-method.html" data-id="ckajaoopr002kb4mjgypeygwb" class="article-share-link">分享</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/design-patterns/">design-patterns</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-大中台的思考" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/about-middle-end.html" class="article-date">
+  <time datetime="2019-12-07T08:20:59.000Z" itemprop="datePublished">2019-12-07</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/other/">杂谈</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/about-middle-end.html">大中台的思考</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>最近朋友给我分享了一篇文章—— <a href="https://mp.weixin.qq.com/s/Pge_G3bVk40b70YpwCOx3Q" target="_blank" rel="noopener">《叹！中台的末路》</a> ，问我的公司是否也是这样的。文中是这么说的：从 15 年开始，到 19 年现在为止，各大公司都在吹捧中台理念。仿佛中台是业务复杂性的救世主，是某些架构师和 PM 的新出路，各种割韭菜的讲中台的课程层出不穷。</p>
+<p>简单介绍下我们公司的中台：同花顺大中台项目，成立于2018年12月21日，项目代码：Arsenal（武器库）。Arsenal 旨在实现 “<strong>大中台 + 小前台</strong>” 的技术架构和组织架构，解决目前普遍存在的新产品开发速度慢、老产品维护困难、大量的低效重复劳动等问题，打造一个整合公司核心业务的高内聚、低耦合、高可用的共享平台，为前台业务拓展提供强有力的支持。</p>
+        
+          <p class="article-more-link">
+            <a href="/2019/about-middle-end.html#more">阅读全文</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://liluoao.github.io/2019/about-middle-end.html" data-id="ckajaoopb0026b4mj6rdrr29i" class="article-share-link">分享</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/other/">other</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+
+
+  <nav id="page-nav">
+    
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/2/">下一页 &raquo;</a>
+  </nav>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/redis-proxy-distributed-cache-project.html">Redis-Proxy分布式缓存方案分享</a>
+          </li>
+        
+          <li>
+            <a href="/2020/build-sonarqube-and-rules.html">SonarQube再续前缘</a>
+          </li>
+        
+          <li>
+            <a href="/2020/consistency-of-master-and-slave-database.html">DB主从一致性方案</a>
+          </li>
+        
+          <li>
+            <a href="/2019/php-structural-design-patterns-template-method.html">模板方法模式（TemplateMethod）</a>
+          </li>
+        
+          <li>
+            <a href="/2019/about-middle-end.html">大中台的思考</a>
+          </li>
+        
+          <li>
+            <a href="/2019/big-or-small-size-company.html">大小规模公司思考</a>
+          </li>
+        
+          <li>
+            <a href="/2019/vcs-commit-rule.html">版本控制工具提交规范</a>
+          </li>
+        
+          <li>
+            <a href="/2019/yaf-individualization.html">Yaf框架结构个性化</a>
+          </li>
+        
+          <li>
+            <a href="/2019/yii-codeception.html">Yii2的单元测试</a>
+          </li>
+        
+          <li>
+            <a href="/2019/use-code-sniffer-in-phpstorm.html">如何用工具保证代码风格</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/openresty/">OpenResty</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/php-framework/">PHP框架</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/tool/">工具</a><span class="category-list-count">13</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/database/">数据库</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/server/">服务器</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/other/">杂谈</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/design-patterns/">设计模式</a><span class="category-list-count">8</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/apache/">apache</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/design-patterns/">design-patterns</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/laravel/">laravel</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mongo/">mongo</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/openresty/">openresty</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/other/">other</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/phalcon/">phalcon</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/php/">php</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/redis/">redis</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tool/">tool</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/yaf/">yaf</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/yii/">yii</a><span class="tag-list-count">2</span></li></ul>
+    </div>
+  </div>
+
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      <div style="width: 300px; margin: 0 auto; text-align: center;">
+        传送门
+        &nbsp;<a href="https://github.com/liluoao" target="_blank" title="GitHub">GitHub</a>&nbsp;
+        &nbsp;<a href="https://segmentfault.com/u/liluoao" target="_blank" title="SegmentFault">思否</a>
+      </div>
+      <div style="width: 300px; margin:0 auto; padding: 20px 0; text-align: center;">
+          &copy; 2020 码之力，三段
+          Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">首页</a>
+  
+    <a href="/archives" class="mobile-nav-link">文章列表</a>
+  
+</nav>
+    
+
+<script src="//lib.sinaapp.com/js/jquery/3.1.0/jquery-3.1.0.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

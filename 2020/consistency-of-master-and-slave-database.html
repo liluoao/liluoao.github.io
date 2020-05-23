@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>DB主从一致性方案 | 码之力，三段</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="实际工作中，大部分项目和业务都是读多写少。为了保证高可用性，提升读速度，一般会采用读写分离、一主多从的数据库架构。 但是主从同步是延时的，如果在写操作同步完成前发生了读操作，就会导致脏读，如何解决？">
+<meta name="keywords" content="other">
+<meta property="og:type" content="article">
+<meta property="og:title" content="DB主从一致性方案">
+<meta property="og:url" content="https://liluoao.github.io/2020/consistency-of-master-and-slave-database.html">
+<meta property="og:site_name" content="码之力，三段">
+<meta property="og:description" content="实际工作中，大部分项目和业务都是读多写少。为了保证高可用性，提升读速度，一般会采用读写分离、一主多从的数据库架构。 但是主从同步是延时的，如果在写操作同步完成前发生了读操作，就会导致脏读，如何解决？">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://liluoao.github.io/images/semi-sync.jpg">
+<meta property="og:image" content="https://liluoao.github.io/images/mysql-middleware.jpg">
+<meta property="og:updated_time" content="2020-05-23T07:11:17.457Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="DB主从一致性方案">
+<meta name="twitter:description" content="实际工作中，大部分项目和业务都是读多写少。为了保证高可用性，提升读速度，一般会采用读写分离、一主多从的数据库架构。 但是主从同步是延时的，如果在写操作同步完成前发生了读操作，就会导致脏读，如何解决？">
+<meta name="twitter:image" content="https://liluoao.github.io/images/semi-sync.jpg">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">码之力，三段</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">To be a Web Artisan</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">首页</a>
+        
+          <a class="main-nav-link" href="/archives">文章列表</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://liluoao.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-DB主从一致性方案" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/consistency-of-master-and-slave-database.html" class="article-date">
+  <time datetime="2020-01-22T05:45:49.000Z" itemprop="datePublished">2020-01-22</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/database/">数据库</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      DB主从一致性方案
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>实际工作中，大部分项目和业务都是读多写少。为了保证高可用性，提升读速度，一般会采用读写分离、一主多从的数据库架构。</p>
+<p>但是主从同步是延时的，如果在写操作同步完成前发生了读操作，就会导致脏读，如何解决？</p>
+<a id="more"></a>
+
+<h3 id="半同步复制"><a href="#半同步复制" class="headerlink" title="半同步复制"></a>半同步复制</h3><p>普通的主从同步是使用 MySQL 的异步复制，依靠二进制日志（binary log）进行。从 5.5 版本开始，MySQL 引入了半同步复制（semi-sync）：一个事务提交时，日志至少要保证有一个从接收到，那么它的提交才能继续。</p>
+<p><img src="/images/semi-sync.jpg" alt="半同步复制"></p>
+<ol>
+<li>系统先对主库进行了一个写操作</li>
+<li>等主从同步完成，写主库的请求才返回</li>
+<li>读从库，读到最新的数据（如果读请求先完成，写请求后完成，读取到的是“当时”最新的数据）</li>
+</ol>
+<p>这个方案的优点是原生功能，使用简单。<br>在线加载插件安装：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; install plugin rpl_semi_sync_master soname &apos;semisync_master.so&apos;;</span><br><span class="line">mysql&gt; install plugin rpl_semi_sync_slave soname &apos;semisync_slave.so&apos;;</span><br></pre></td></tr></table></figure>
+
+<p>写入配置文件：</p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">[mysqld]</span></span><br><span class="line"><span class="attr">plugin-dir</span>=/usr/local/mysql/lib/plugin</span><br><span class="line"><span class="attr">plugin-load</span>=<span class="string">"rpl_semi_sync_master:semisync_master.so;rpl_semi_sync_slave:semisync_slave.so"</span></span><br></pre></td></tr></table></figure>
+
+<p>缺点是主库的写请求时延会增长，吞吐量会降低。</p>
+<h3 id="强制读主库"><a href="#强制读主库" class="headerlink" title="强制读主库"></a>强制读主库</h3><p>如果读写都到主库，就不会出现这种问题了。需要使用缓存来弥补缺失的读性能。</p>
+<h3 id="数据库中间件"><a href="#数据库中间件" class="headerlink" title="数据库中间件"></a>数据库中间件</h3><ol>
+<li>所有的读写都走数据库中间件，通常情况下，写请求路由到主库，读请求路由到从库</li>
+<li>记录所有路由到写库的 key，在经验主从同步时间窗口内，如果有读请求访问中间件，此时有可能从库还是旧数据，就把这个key上的读请求路由到主库</li>
+<li>经验主从同步时间过完后，对应 key 的读请求继续路由到从库</li>
+</ol>
+<p>市面上的开源中间件相当少了，可能只有原当当网的 <a href="https://github.com/apache/incubator-shardingsphere" target="_blank" rel="noopener">apache/incubator-shardingsphere</a> 还在维护。</p>
+<p><img src="/images/mysql-middleware.jpg" alt="早期主流的开源中间件"></p>
+<p>想新开发的话要看公司技术实力如何，时间人力成本都相当高。使用市场上的中间件也要注意信息安全。</p>
+<h3 id="缓存记录写-key"><a href="#缓存记录写-key" class="headerlink" title="缓存记录写 key"></a>缓存记录写 key</h3><p>最后说的这个方案总结了前三个方案的优缺点，就是用缓存记录库中操作的 key：</p>
+<ul>
+<li>写</li>
+</ul>
+<ol>
+<li>某库的某 key 要进行写操作，把它记录到缓存里，设置好超时时间（比主从同步的时间大点）</li>
+<li>进行写操作</li>
+</ol>
+<ul>
+<li>读</li>
+</ul>
+<ol>
+<li>查询缓存，本次读操作的 key 是否在缓存里</li>
+<li>缓存命中，将本次读操作路由给主库，查新数据</li>
+<li>缓存未命中，依旧从库处理</li>
+</ol>
+<p>这个方案成本低，付出的代价是在读写时都多了一步缓存操作。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://liluoao.github.io/2020/consistency-of-master-and-slave-database.html" data-id="ckajaooo00003b4mjxgts4q0d" class="article-share-link">分享</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/other/">other</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2020/build-sonarqube-and-rules.html" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          SonarQube再续前缘
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/php-structural-design-patterns-template-method.html" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">模板方法模式（TemplateMethod）</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/redis-proxy-distributed-cache-project.html">Redis-Proxy分布式缓存方案分享</a>
+          </li>
+        
+          <li>
+            <a href="/2020/build-sonarqube-and-rules.html">SonarQube再续前缘</a>
+          </li>
+        
+          <li>
+            <a href="/2020/consistency-of-master-and-slave-database.html">DB主从一致性方案</a>
+          </li>
+        
+          <li>
+            <a href="/2019/php-structural-design-patterns-template-method.html">模板方法模式（TemplateMethod）</a>
+          </li>
+        
+          <li>
+            <a href="/2019/about-middle-end.html">大中台的思考</a>
+          </li>
+        
+          <li>
+            <a href="/2019/big-or-small-size-company.html">大小规模公司思考</a>
+          </li>
+        
+          <li>
+            <a href="/2019/vcs-commit-rule.html">版本控制工具提交规范</a>
+          </li>
+        
+          <li>
+            <a href="/2019/yaf-individualization.html">Yaf框架结构个性化</a>
+          </li>
+        
+          <li>
+            <a href="/2019/yii-codeception.html">Yii2的单元测试</a>
+          </li>
+        
+          <li>
+            <a href="/2019/use-code-sniffer-in-phpstorm.html">如何用工具保证代码风格</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/openresty/">OpenResty</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/php-framework/">PHP框架</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/tool/">工具</a><span class="category-list-count">13</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/database/">数据库</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/server/">服务器</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/other/">杂谈</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/design-patterns/">设计模式</a><span class="category-list-count">8</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/apache/">apache</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/design-patterns/">design-patterns</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/laravel/">laravel</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mongo/">mongo</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/openresty/">openresty</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/other/">other</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/phalcon/">phalcon</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/php/">php</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/redis/">redis</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tool/">tool</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/yaf/">yaf</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/yii/">yii</a><span class="tag-list-count">2</span></li></ul>
+    </div>
+  </div>
+
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      <div style="width: 300px; margin: 0 auto; text-align: center;">
+        传送门
+        &nbsp;<a href="https://github.com/liluoao" target="_blank" title="GitHub">GitHub</a>&nbsp;
+        &nbsp;<a href="https://segmentfault.com/u/liluoao" target="_blank" title="SegmentFault">思否</a>
+      </div>
+      <div style="width: 300px; margin:0 auto; padding: 20px 0; text-align: center;">
+          &copy; 2020 码之力，三段
+          Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">首页</a>
+  
+    <a href="/archives" class="mobile-nav-link">文章列表</a>
+  
+</nav>
+    
+
+<script src="//lib.sinaapp.com/js/jquery/3.1.0/jquery-3.1.0.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

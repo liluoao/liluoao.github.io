@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>PHP新手开发者的路线 | 码之力，三段</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="前言在昨天（2018-08-02）已经发布了PHP 7.3.0.beta1 版本。如果你还没有使用 PHP7，那真的很遗憾，不仅是性能上的提升，类型提示 等特性能够让你更加注重代码质量和提高效率。2018 年 PHP 开发者应该熟练使用 PHP7，且了解各版本更新内容。">
+<meta name="keywords" content="php">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PHP新手开发者的路线">
+<meta property="og:url" content="https://liluoao.github.io/2018/a-php-developer-roadmap.html">
+<meta property="og:site_name" content="码之力，三段">
+<meta property="og:description" content="前言在昨天（2018-08-02）已经发布了PHP 7.3.0.beta1 版本。如果你还没有使用 PHP7，那真的很遗憾，不仅是性能上的提升，类型提示 等特性能够让你更加注重代码质量和提高效率。2018 年 PHP 开发者应该熟练使用 PHP7，且了解各版本更新内容。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2020-05-23T07:11:17.472Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="PHP新手开发者的路线">
+<meta name="twitter:description" content="前言在昨天（2018-08-02）已经发布了PHP 7.3.0.beta1 版本。如果你还没有使用 PHP7，那真的很遗憾，不仅是性能上的提升，类型提示 等特性能够让你更加注重代码质量和提高效率。2018 年 PHP 开发者应该熟练使用 PHP7，且了解各版本更新内容。">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">码之力，三段</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">To be a Web Artisan</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">首页</a>
+        
+          <a class="main-nav-link" href="/archives">文章列表</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://liluoao.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-PHP新手开发者的路线" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/a-php-developer-roadmap.html" class="article-date">
+  <time datetime="2018-08-03T08:29:51.000Z" itemprop="datePublished">2018-08-03</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/other/">杂谈</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      PHP新手开发者的路线
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>在昨天（2018-08-02）已经发布了PHP 7.3.0.beta1 版本。如果你还没有使用 PHP7，那真的很遗憾，不仅是性能上的提升，<code>类型提示</code> 等特性能够让你更加注重代码质量和提高效率。2018 年 PHP 开发者应该熟练使用 PHP7，且了解各版本更新内容。</p>
+<a id="more"></a>
+
+<h2 id="依赖管理"><a href="#依赖管理" class="headerlink" title="依赖管理"></a>依赖管理</h2><p>如果你在想使用一个扩展包时，还在下载源码，并尝试修改命名空间来嵌入你的项目中，你应该改变了，使用 Composer 进行依赖管理。</p>
+<h2 id="使用优秀的包"><a href="#使用优秀的包" class="headerlink" title="使用优秀的包"></a>使用优秀的包</h2><h3 id="Guzzle"><a href="#Guzzle" class="headerlink" title="Guzzle"></a>Guzzle</h3><p>Guzzle 是一个 PHP 的 HTTP 客户端，用来轻而易举地发送请求，它的优点有分流上传下载大文件、使用 HTTP cookies、上传 JSON 数据等。</p>
+<h3 id="Carbon"><a href="#Carbon" class="headerlink" title="Carbon"></a>Carbon</h3><p>Carbon 是一个继承于 PHP 的 DateTime 类的时间类，让用法更加人性化。可以让你在处理时间时事半功倍，阅读链接： <a href="/2018/use-carbon.html">《Carbon便捷处理时间》</a></p>
+<h2 id="NOSQL"><a href="#NOSQL" class="headerlink" title="NOSQL"></a>NOSQL</h2><h3 id="MongoDB"><a href="#MongoDB" class="headerlink" title="MongoDB"></a>MongoDB</h3><p>MongoDB 是一个基于分布式文件存储的数据库。它是一个介于关系数据库和非关系数据库之间的产品，是非关系数据库当中功能最丰富，最像关系数据库的。<br>以 MongoDB 作为非关系型数据库的开始非常好，可以看 <a href="/2018/php-7-use-mongodb.html">《PHP7操作MongoDB》</a></p>
+<h3 id="Redis"><a href="#Redis" class="headerlink" title="Redis"></a>Redis</h3><p>Redis 是一个基于内存的Key-Value 数据库，常用于缓存和需求不高的队列。</p>
+<h2 id="容器"><a href="#容器" class="headerlink" title="容器"></a>容器</h2><p>Docker 是一个开源的引擎，可以轻松的为任何应用创建一个轻量级的、可移植的、自给自足的容器。</p>
+<h2 id="持续集成"><a href="#持续集成" class="headerlink" title="持续集成"></a>持续集成</h2><p>持续集成（Continuous integration）是一种软件开发实践，每次集成都通过自动化的构建（包括编译，发布，自动化测试）来验证，从而尽早地发现集成错误。<br>本博客也是通过 CI 工具来维护的，步骤详见<a href="/2018/use-appveyor-ci.html">《使用持续集成维护博客》</a></p>
+<h2 id="代码风格"><a href="#代码风格" class="headerlink" title="代码风格"></a>代码风格</h2><p>良好的代码规范可以提高代码可读性，降低团队沟通维护成本。PSR（PHP Standard Recommendations）是 PHP 的标准规范，其中 PSR-1 和 PSR-2 是编码风格规范。</p>
+<h2 id="单元测试"><a href="#单元测试" class="headerlink" title="单元测试"></a>单元测试</h2><p>测试对于程序员的重要性不言而喻，PHPUnit 是 PHP 的单元测试包，Laravel 、Yii 等框架都有开箱即用的测试</p>
+<h2 id="设计模式"><a href="#设计模式" class="headerlink" title="设计模式"></a>设计模式</h2><p>推荐阅读清华大学出版社的 Aaron Saray 著《PHP设计模式》</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://liluoao.github.io/2018/a-php-developer-roadmap.html" data-id="ckajaooog000pb4mjj4had2l4" class="article-share-link">分享</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/php/">php</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2018/php-structural-design-patterns-strategy.html" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          策略模式（Strategy）
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/php-7-use-mongodb.html" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">PHP7操作MongoDB</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/redis-proxy-distributed-cache-project.html">Redis-Proxy分布式缓存方案分享</a>
+          </li>
+        
+          <li>
+            <a href="/2020/build-sonarqube-and-rules.html">SonarQube再续前缘</a>
+          </li>
+        
+          <li>
+            <a href="/2020/consistency-of-master-and-slave-database.html">DB主从一致性方案</a>
+          </li>
+        
+          <li>
+            <a href="/2019/php-structural-design-patterns-template-method.html">模板方法模式（TemplateMethod）</a>
+          </li>
+        
+          <li>
+            <a href="/2019/about-middle-end.html">大中台的思考</a>
+          </li>
+        
+          <li>
+            <a href="/2019/big-or-small-size-company.html">大小规模公司思考</a>
+          </li>
+        
+          <li>
+            <a href="/2019/vcs-commit-rule.html">版本控制工具提交规范</a>
+          </li>
+        
+          <li>
+            <a href="/2019/yaf-individualization.html">Yaf框架结构个性化</a>
+          </li>
+        
+          <li>
+            <a href="/2019/yii-codeception.html">Yii2的单元测试</a>
+          </li>
+        
+          <li>
+            <a href="/2019/use-code-sniffer-in-phpstorm.html">如何用工具保证代码风格</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/openresty/">OpenResty</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/php-framework/">PHP框架</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/tool/">工具</a><span class="category-list-count">13</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/database/">数据库</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/server/">服务器</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/other/">杂谈</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/design-patterns/">设计模式</a><span class="category-list-count">8</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/apache/">apache</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/design-patterns/">design-patterns</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/laravel/">laravel</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mongo/">mongo</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/openresty/">openresty</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/other/">other</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/phalcon/">phalcon</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/php/">php</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/redis/">redis</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tool/">tool</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/yaf/">yaf</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/yii/">yii</a><span class="tag-list-count">2</span></li></ul>
+    </div>
+  </div>
+
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      <div style="width: 300px; margin: 0 auto; text-align: center;">
+        传送门
+        &nbsp;<a href="https://github.com/liluoao" target="_blank" title="GitHub">GitHub</a>&nbsp;
+        &nbsp;<a href="https://segmentfault.com/u/liluoao" target="_blank" title="SegmentFault">思否</a>
+      </div>
+      <div style="width: 300px; margin:0 auto; padding: 20px 0; text-align: center;">
+          &copy; 2020 码之力，三段
+          Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">首页</a>
+  
+    <a href="/archives" class="mobile-nav-link">文章列表</a>
+  
+</nav>
+    
+
+<script src="//lib.sinaapp.com/js/jquery/3.1.0/jquery-3.1.0.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

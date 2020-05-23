@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>常见的创建型设计模式 | 码之力，三段</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="单例模式（Singleton）单例模式也是最常见的模式之一，它确保一个类只有一个实例，并提供一个全局的访问点。 主要是为了避免因为创建了多个实例造成资源的浪费，且多个实例由于多次调用容易导致结果出现错误。比如 Redis、MySQL 连接、CURL 句柄等。">
+<meta name="keywords" content="design-patterns">
+<meta property="og:type" content="article">
+<meta property="og:title" content="常见的创建型设计模式">
+<meta property="og:url" content="https://liluoao.github.io/2018/php-creational-design-patterns.html">
+<meta property="og:site_name" content="码之力，三段">
+<meta property="og:description" content="单例模式（Singleton）单例模式也是最常见的模式之一，它确保一个类只有一个实例，并提供一个全局的访问点。 主要是为了避免因为创建了多个实例造成资源的浪费，且多个实例由于多次调用容易导致结果出现错误。比如 Redis、MySQL 连接、CURL 句柄等。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2020-05-23T07:11:17.472Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="常见的创建型设计模式">
+<meta name="twitter:description" content="单例模式（Singleton）单例模式也是最常见的模式之一，它确保一个类只有一个实例，并提供一个全局的访问点。 主要是为了避免因为创建了多个实例造成资源的浪费，且多个实例由于多次调用容易导致结果出现错误。比如 Redis、MySQL 连接、CURL 句柄等。">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">码之力，三段</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">To be a Web Artisan</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">首页</a>
+        
+          <a class="main-nav-link" href="/archives">文章列表</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://liluoao.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-常见的创建型设计模式" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/php-creational-design-patterns.html" class="article-date">
+  <time datetime="2018-04-01T14:50:50.000Z" itemprop="datePublished">2018-04-01</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/design-patterns/">设计模式</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      常见的创建型设计模式
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="单例模式（Singleton）"><a href="#单例模式（Singleton）" class="headerlink" title="单例模式（Singleton）"></a>单例模式（Singleton）</h4><p>单例模式也是最常见的模式之一，它确保一个类只有一个实例，并提供一个全局的访问点。</p>
+<p>主要是为了避免因为创建了多个实例造成资源的浪费，且多个实例由于多次调用容易导致结果出现错误。比如 Redis、MySQL 连接、CURL 句柄等。</p>
+<a id="more"></a>
+
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">RedisUtil</span> </span>&#123;</span><br><span class="line">    <span class="keyword">protected</span> $redis = <span class="keyword">null</span>;</span><br><span class="line">    <span class="keyword">protected</span> <span class="keyword">static</span> $instance = <span class="keyword">null</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span><span class="params">()</span> </span>&#123;&#125;</span><br><span class="line">    <span class="keyword">private</span> <span class="function"><span class="keyword">function</span> <span class="title">__clone</span><span class="params">()</span> </span>&#123;&#125;</span><br><span class="line">    <span class="keyword">private</span> <span class="function"><span class="keyword">function</span> <span class="title">__sleep</span><span class="params">()</span> </span>&#123;&#125;</span><br><span class="line">    <span class="keyword">private</span>  <span class="function"><span class="keyword">function</span> <span class="title">__wakeup</span><span class="params">()</span> </span>&#123;&#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="function"><span class="keyword">function</span> <span class="title">getInstance</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (!<span class="keyword">self</span>::$instance <span class="keyword">instanceof</span> <span class="keyword">self</span>) &#123;</span><br><span class="line">            <span class="keyword">self</span>::$instance = <span class="keyword">new</span> <span class="keyword">self</span>();</span><br><span class="line">            <span class="keyword">self</span>::$instance-&gt;connect();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">self</span>::$instance;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="工厂模式（Factory）"><a href="#工厂模式（Factory）" class="headerlink" title="工厂模式（Factory）"></a>工厂模式（Factory）</h4><p>工厂模式是另一种非常常用的模式，它根据参数的不同返回不同类的实例。简单工厂模式专门定义一个类来负责创建其他类的实例，被创建的实例通常都具有共同的父类。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Factory</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 获取数据库驱动实例</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> string $type</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> Base</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="function"><span class="keyword">function</span> <span class="title">getDb</span><span class="params">($type = <span class="string">'mysql'</span>)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        $connection = <span class="keyword">null</span>;</span><br><span class="line">        $type = strtolower($type);</span><br><span class="line">        <span class="keyword">switch</span> ($type) &#123;</span><br><span class="line">            <span class="keyword">case</span> <span class="string">'mongo'</span>:</span><br><span class="line">                $connection = Mongo::getInstance();</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">case</span> <span class="string">'pgsql'</span>:</span><br><span class="line">                $connection = Pgsql::getInstance();</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">case</span> <span class="string">'mysql'</span>:</span><br><span class="line">            <span class="keyword">default</span>:</span><br><span class="line">                $connection = Mysql::getInstance();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> $connection;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="原型模式（Prototype）"><a href="#原型模式（Prototype）" class="headerlink" title="原型模式（Prototype）"></a>原型模式（Prototype）</h4><p>有些时候，部分对象需要被初始化多次。相比正常创建一个对象 (<code>new Foo ()</code>)，首先创建一个原型，然后克隆它会更节省开销。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//抽象原型类</span></span><br><span class="line"><span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">BookPrototype</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="keyword">protected</span> $title;<span class="comment">//getter和setter略</span></span><br><span class="line">    <span class="keyword">protected</span> $author;</span><br><span class="line">    <span class="keyword">abstract</span> <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__clone</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//子原型类</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">YellowBookPrototype</span> <span class="keyword">extends</span> <span class="title">BookPrototype</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="keyword">protected</span> $author = <span class="string">'LiLuoao'</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__clone</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//使用</span></span><br><span class="line">$yellowPrototype = <span class="keyword">new</span> YellowBookPrototype();</span><br><span class="line"><span class="keyword">for</span> ($i = <span class="number">0</span>; $i &lt; <span class="number">10</span>; $i++) &#123;</span><br><span class="line">    $book = <span class="keyword">clone</span> $yellowPrototype;</span><br><span class="line">    $book-&gt;setTitle(<span class="string">'Yellow Book No '</span> . $i);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="建造者模式（Builder）"><a href="#建造者模式（Builder）" class="headerlink" title="建造者模式（Builder）"></a>建造者模式（Builder）</h4><p>建造者模式是一步一步创建一个复杂的对象，它允许用户只通过指定复杂对象的类型和内容就可以构建它们，用户不需要知道内部的具体构建细节。</p>
+<ol>
+<li>对象的生产需要复杂的初始化，比如给一大堆类成员属性赋初值，设置一下其他的系统环境变量。使用建造者模式可以将这些初始化工作封装起来。</li>
+<li>对象的生成时可根据初始化的顺序或数据不同，而生成不同角色。</li>
+</ol>
+<p>如果我们想创造出一个英雄类，我们通过实例化时设置的属性不同，让一个是射程远血量少的射手，一个是射程短血量厚的坦克：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Hero</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> $hp;</span><br><span class="line">    <span class="keyword">public</span> $range;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//抽象建造者类</span></span><br><span class="line"><span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">Builder</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> $hero;<span class="comment">//getter略</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">abstract</span> <span class="function"><span class="keyword">function</span> <span class="title">setHp</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">abstract</span> <span class="function"><span class="keyword">function</span> <span class="title">setRange</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span><span class="params">(Hero $hero)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">$this</span>-&gt;hero = $hero;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//射手建造者</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ADCarryBuider</span> <span class="keyword">extends</span> <span class="title">Builder</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">setHp</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">$this</span>-&gt;hero-&gt;hp = <span class="number">1980</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">setRange</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">$this</span>-&gt;hero-&gt;range = <span class="number">575</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//坦克建造者</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TankBuider</span> <span class="keyword">extends</span> <span class="title">Builder</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">setHp</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">$this</span>-&gt;hero-&gt;hp = <span class="number">4780</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">setRange</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">$this</span>-&gt;hero-&gt;range = <span class="number">125</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//建造指挥者</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Director</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> $builder;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span><span class="params">(Builder $builder)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">$this</span>-&gt;builder = $builder;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">built</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">$this</span>-&gt;builder-&gt;setHp();</span><br><span class="line">        <span class="keyword">$this</span>-&gt;builder-&gt;setRange();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//实例化一个射手建造者</span></span><br><span class="line">$adcBuilder = <span class="keyword">new</span> ADCarryBuider(<span class="keyword">new</span> Hero);</span><br><span class="line"><span class="comment">//实例化指挥者并建造</span></span><br><span class="line">(<span class="keyword">new</span> Director($adcBuilder))-&gt;built();</span><br><span class="line"><span class="comment">//得到射手</span></span><br><span class="line">$adc = $adcBuilder-&gt;getHero();</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://liluoao.github.io/2018/php-creational-design-patterns.html" data-id="ckajaoopr002hb4mj8ol86uj7" class="article-share-link">分享</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/design-patterns/">design-patterns</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2018/php-structural-design-patterns-facade.html" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          门面模式（Facade）
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/php-design-patterns-sketch.html" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">PHP设计模式概述</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/redis-proxy-distributed-cache-project.html">Redis-Proxy分布式缓存方案分享</a>
+          </li>
+        
+          <li>
+            <a href="/2020/build-sonarqube-and-rules.html">SonarQube再续前缘</a>
+          </li>
+        
+          <li>
+            <a href="/2020/consistency-of-master-and-slave-database.html">DB主从一致性方案</a>
+          </li>
+        
+          <li>
+            <a href="/2019/php-structural-design-patterns-template-method.html">模板方法模式（TemplateMethod）</a>
+          </li>
+        
+          <li>
+            <a href="/2019/about-middle-end.html">大中台的思考</a>
+          </li>
+        
+          <li>
+            <a href="/2019/big-or-small-size-company.html">大小规模公司思考</a>
+          </li>
+        
+          <li>
+            <a href="/2019/vcs-commit-rule.html">版本控制工具提交规范</a>
+          </li>
+        
+          <li>
+            <a href="/2019/yaf-individualization.html">Yaf框架结构个性化</a>
+          </li>
+        
+          <li>
+            <a href="/2019/yii-codeception.html">Yii2的单元测试</a>
+          </li>
+        
+          <li>
+            <a href="/2019/use-code-sniffer-in-phpstorm.html">如何用工具保证代码风格</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/openresty/">OpenResty</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/php-framework/">PHP框架</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/tool/">工具</a><span class="category-list-count">13</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/database/">数据库</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/server/">服务器</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/other/">杂谈</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/design-patterns/">设计模式</a><span class="category-list-count">8</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/apache/">apache</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/design-patterns/">design-patterns</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/laravel/">laravel</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mongo/">mongo</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/openresty/">openresty</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/other/">other</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/phalcon/">phalcon</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/php/">php</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/redis/">redis</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tool/">tool</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/yaf/">yaf</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/yii/">yii</a><span class="tag-list-count">2</span></li></ul>
+    </div>
+  </div>
+
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      <div style="width: 300px; margin: 0 auto; text-align: center;">
+        传送门
+        &nbsp;<a href="https://github.com/liluoao" target="_blank" title="GitHub">GitHub</a>&nbsp;
+        &nbsp;<a href="https://segmentfault.com/u/liluoao" target="_blank" title="SegmentFault">思否</a>
+      </div>
+      <div style="width: 300px; margin:0 auto; padding: 20px 0; text-align: center;">
+          &copy; 2020 码之力，三段
+          Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">首页</a>
+  
+    <a href="/archives" class="mobile-nav-link">文章列表</a>
+  
+</nav>
+    
+
+<script src="//lib.sinaapp.com/js/jquery/3.1.0/jquery-3.1.0.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

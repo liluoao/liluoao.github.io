@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>Yaf框架结构个性化 | 码之力，三段</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="执行流程由于 Yaf 只提供一个 MVC 的基本骨架，所以我们有很大的开发自由度，可以实现一个自己最习惯的项目。">
+<meta name="keywords" content="php,yaf">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Yaf框架结构个性化">
+<meta property="og:url" content="https://liluoao.github.io/2019/yaf-individualization.html">
+<meta property="og:site_name" content="码之力，三段">
+<meta property="og:description" content="执行流程由于 Yaf 只提供一个 MVC 的基本骨架，所以我们有很大的开发自由度，可以实现一个自己最习惯的项目。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://liluoao.github.io/images/yaf-life-cycle.png">
+<meta property="og:updated_time" content="2020-05-23T07:11:17.472Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Yaf框架结构个性化">
+<meta name="twitter:description" content="执行流程由于 Yaf 只提供一个 MVC 的基本骨架，所以我们有很大的开发自由度，可以实现一个自己最习惯的项目。">
+<meta name="twitter:image" content="https://liluoao.github.io/images/yaf-life-cycle.png">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">码之力，三段</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">To be a Web Artisan</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">首页</a>
+        
+          <a class="main-nav-link" href="/archives">文章列表</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://liluoao.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Yaf框架结构个性化" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/yaf-individualization.html" class="article-date">
+  <time datetime="2019-09-21T06:14:44.000Z" itemprop="datePublished">2019-09-21</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/php-framework/">PHP框架</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Yaf框架结构个性化
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="执行流程"><a href="#执行流程" class="headerlink" title="执行流程"></a>执行流程</h2><p>由于 Yaf 只提供一个 MVC 的基本骨架，所以我们有很大的开发自由度，可以实现一个自己最习惯的项目。</p>
+<a id="more"></a>
+
+<p><img src="/images/yaf-life-cycle.png" alt="Yaf执行流程"></p>
+<h2 id="实现Laravel结构"><a href="#实现Laravel结构" class="headerlink" title="实现Laravel结构"></a>实现Laravel结构</h2><p>可以通过修改配置来变更代码结构，例如在入口修改配置文件夹</p>
+<figure class="highlight php"><figcaption><span>public/index.php</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">define(<span class="string">'APP_ROOT'</span>, dirname(<span class="keyword">__DIR__</span>));</span><br><span class="line"></span><br><span class="line">$app = <span class="keyword">new</span> Yaf\Application(APP_ROOT.<span class="string">'/config/application.ini'</span>);</span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">    $app-&gt;bootstrap()-&gt;run();</span><br><span class="line">&#125; <span class="keyword">catch</span> (Yaf\<span class="keyword">Exception</span>\LoadFailed\Action $e) &#123;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">'方法输入错误'</span>;</span><br><span class="line">    <span class="keyword">exit</span>();</span><br><span class="line">&#125; <span class="keyword">catch</span> (Yaf\<span class="keyword">Exception</span>\LoadFailed\Controller $e) &#123;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">'控制器输入错误'</span>;</span><br><span class="line">    <span class="keyword">exit</span>();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>修改应用目录和启动文件位置</p>
+<figure class="highlight ini"><figcaption><span>application.ini</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">application.directory</span> = APP_ROOT <span class="string">"/app/"</span></span><br><span class="line"><span class="attr">application.bootstrap</span> = APP_ROOT <span class="string">"/bootstrap/app.php"</span></span><br><span class="line"><span class="attr">application.library</span> = APP_ROOT <span class="string">"/app/Library"</span></span><br></pre></td></tr></table></figure>
+
+<p>这样就有了基础的结构，你可以加入 <code>Laravel Mix</code> 支持前端，或者是引入 <code>Symfony 命令行</code></p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">use</span> <span class="title">Symfony</span>\<span class="title">Component</span>\<span class="title">Console</span>\<span class="title">Application</span>;</span><br><span class="line">$application = <span class="keyword">new</span> Application();</span><br><span class="line"><span class="comment">// ... register commands</span></span><br><span class="line">$application-&gt;run();</span><br></pre></td></tr></table></figure>
+
+<h2 id="启动文件"><a href="#启动文件" class="headerlink" title="启动文件"></a>启动文件</h2><p>启动文件经常实现的方法有几个，例如</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * composer autoload.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">_initAutoload</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    $autoload = APP_ROOT . <span class="string">'/vendor/autoload.php'</span>;</span><br><span class="line">    <span class="keyword">if</span> (file_exists($autoload)) &#123;</span><br><span class="line">        Yaf\Loader::import($autoload);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * disable view.</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> Yaf\Dispatcher $dispatcher</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">_initView</span><span class="params">(Dispatcher $dispatcher)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    $dispatcher-&gt;disableView();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>你可以选择把很多验证放在这里，如白名单、参数处理、路由重新分发等。我选择在这里把常量放入 Registry</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">_initConfig</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    $const = <span class="keyword">new</span> \Yaf\Config\Ini(APP_ROOT . <span class="string">'/config/const.ini'</span>);</span><br><span class="line">    Yaf\Registry::set(<span class="string">'const_config'</span>, $const);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在项目中使用常量时可以直接获取</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$foo = Yaf\Registry::get(<span class="string">'const_config'</span>)-&gt;bar;</span><br></pre></td></tr></table></figure>
+
+<h2 id="单元测试"><a href="#单元测试" class="headerlink" title="单元测试"></a>单元测试</h2><p>由于 Yaf 只能同时存在一个应用，所以我们需要一个基类实现单例</p>
+<p>如果是测试接口的返回值，需要测试用例，可以使用 Simple 请求</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">testQueryMobile</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    ob_start();</span><br><span class="line"></span><br><span class="line">    $request = <span class="keyword">new</span> Yaf\Request\Simple(<span class="string">'CLI'</span>, <span class="string">'index'</span>, <span class="string">'querymobile'</span>, <span class="string">'exec'</span>, [</span><br><span class="line">        <span class="string">'ascode'</span> =&gt; <span class="string">'xxxxx'</span>,</span><br><span class="line">        <span class="comment">//...</span></span><br><span class="line">    ]);</span><br><span class="line">    <span class="keyword">self</span>::getInstance()-&gt;getDispatch()-&gt;dispatch($request);</span><br><span class="line"></span><br><span class="line">    $result = ob_get_contents();</span><br><span class="line">    ob_end_clean();</span><br><span class="line">    <span class="keyword">$this</span>-&gt;assertEquals(<span class="number">0</span>, $result);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>如果是单元测试，直接常规操作就行了</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> TEST_MOBILE = <span class="string">'156XXXXXXXX'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">testInsertMobile</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    $model = <span class="keyword">new</span> \MobileModel();</span><br><span class="line">    $result = $model-&gt;insertMobile(<span class="keyword">self</span>::TEST_MOBILE);</span><br><span class="line">    <span class="keyword">$this</span>-&gt;assertArrayHasKey(<span class="string">'mobile'</span>, $result);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="命令行脚本"><a href="#命令行脚本" class="headerlink" title="命令行脚本"></a>命令行脚本</h2><p>如果想自己实现命令行脚本，可以使用控制器的抽象方法实现</p>
+<p>先创建一个脚本统一入口 <code>yaf</code></p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env php</span></span><br><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"></span><br><span class="line">$env = get_cfg_var(<span class="string">'env'</span>);</span><br><span class="line"></span><br><span class="line">define(<span class="string">'APPLICATION_ENV'</span>, $env);</span><br><span class="line"></span><br><span class="line">define(<span class="string">'APP_ROOT'</span>, dirname(<span class="keyword">__FILE__</span>));</span><br><span class="line"></span><br><span class="line">$action = $argv[<span class="number">1</span>] ?? <span class="string">''</span>;</span><br><span class="line"><span class="keyword">if</span> (<span class="keyword">empty</span>($action) || !is_string($action)) &#123;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">'请输入命令'</span> . PHP_EOL;</span><br><span class="line">    <span class="keyword">exit</span>();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">$origin_params = array_slice($argv, <span class="number">2</span>);</span><br><span class="line">$params = [];</span><br><span class="line"></span><br><span class="line"><span class="keyword">foreach</span> ($origin_params <span class="keyword">as</span> $origin_param) &#123;</span><br><span class="line">    $temp = explode(<span class="string">'='</span>, $origin_param);</span><br><span class="line">    $params[$temp[<span class="number">0</span>]] = $temp[<span class="number">1</span>];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">$app = <span class="keyword">new</span> Yaf\Application(APP_ROOT . <span class="string">'/config/application.ini'</span>, APPLICATION_ENV);</span><br><span class="line">$app-&gt;bootstrap();</span><br><span class="line"></span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">    $app-&gt;getDispatcher()-&gt;dispatch(<span class="keyword">new</span> Yaf\Request\Simple(<span class="string">'CLI'</span>, <span class="string">'index'</span>, <span class="string">'console'</span>, $action, $params));</span><br><span class="line">&#125; <span class="keyword">catch</span> (Yaf\<span class="keyword">Exception</span>\LoadFailed\Action $e) &#123;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">'未识别的命令'</span> . PHP_EOL;</span><br><span class="line">    <span class="keyword">exit</span>();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这样就能在命令行统一访问 console 控制器了</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">php yaf 脚本名</span><br></pre></td></tr></table></figure>
+
+<p>下一步就是创建 <code>ConsoleController</code></p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ConsoleController</span> <span class="keyword">extends</span> <span class="title">BaseController</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 命令定义.</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@var</span> array 虚拟方法名 映射命令文件</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> $actions = [</span><br><span class="line">        <span class="string">'test'</span> =&gt; <span class="string">'Consoles/Test.php'</span>,</span><br><span class="line">    ];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>最后就是具体的脚本，统一放在 <code>app/Consoles</code> 下</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TestAction</span> <span class="keyword">extends</span> \<span class="title">Yaf</span>\<span class="title">Action_Abstract</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">execute</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        $controller = <span class="keyword">$this</span>-&gt;getController();</span><br><span class="line">        <span class="comment">//...</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><code>execute()</code> 是控制器实际调用的方法</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://liluoao.github.io/2019/yaf-individualization.html" data-id="ckajaooow0019b4mj06hs2a7t" class="article-share-link">分享</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/php/">php</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/yaf/">yaf</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/vcs-commit-rule.html" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          版本控制工具提交规范
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/yii-codeception.html" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">Yii2的单元测试</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/redis-proxy-distributed-cache-project.html">Redis-Proxy分布式缓存方案分享</a>
+          </li>
+        
+          <li>
+            <a href="/2020/build-sonarqube-and-rules.html">SonarQube再续前缘</a>
+          </li>
+        
+          <li>
+            <a href="/2020/consistency-of-master-and-slave-database.html">DB主从一致性方案</a>
+          </li>
+        
+          <li>
+            <a href="/2019/php-structural-design-patterns-template-method.html">模板方法模式（TemplateMethod）</a>
+          </li>
+        
+          <li>
+            <a href="/2019/about-middle-end.html">大中台的思考</a>
+          </li>
+        
+          <li>
+            <a href="/2019/big-or-small-size-company.html">大小规模公司思考</a>
+          </li>
+        
+          <li>
+            <a href="/2019/vcs-commit-rule.html">版本控制工具提交规范</a>
+          </li>
+        
+          <li>
+            <a href="/2019/yaf-individualization.html">Yaf框架结构个性化</a>
+          </li>
+        
+          <li>
+            <a href="/2019/yii-codeception.html">Yii2的单元测试</a>
+          </li>
+        
+          <li>
+            <a href="/2019/use-code-sniffer-in-phpstorm.html">如何用工具保证代码风格</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/openresty/">OpenResty</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/php-framework/">PHP框架</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/tool/">工具</a><span class="category-list-count">13</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/database/">数据库</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/server/">服务器</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/other/">杂谈</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/design-patterns/">设计模式</a><span class="category-list-count">8</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/apache/">apache</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/design-patterns/">design-patterns</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/laravel/">laravel</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mongo/">mongo</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/openresty/">openresty</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/other/">other</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/phalcon/">phalcon</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/php/">php</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/redis/">redis</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tool/">tool</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/yaf/">yaf</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/yii/">yii</a><span class="tag-list-count">2</span></li></ul>
+    </div>
+  </div>
+
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      <div style="width: 300px; margin: 0 auto; text-align: center;">
+        传送门
+        &nbsp;<a href="https://github.com/liluoao" target="_blank" title="GitHub">GitHub</a>&nbsp;
+        &nbsp;<a href="https://segmentfault.com/u/liluoao" target="_blank" title="SegmentFault">思否</a>
+      </div>
+      <div style="width: 300px; margin:0 auto; padding: 20px 0; text-align: center;">
+          &copy; 2020 码之力，三段
+          Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">首页</a>
+  
+    <a href="/archives" class="mobile-nav-link">文章列表</a>
+  
+</nav>
+    
+
+<script src="//lib.sinaapp.com/js/jquery/3.1.0/jquery-3.1.0.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

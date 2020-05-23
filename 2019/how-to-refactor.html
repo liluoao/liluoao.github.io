@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>重构——改善既有代码的设计 | 码之力，三段</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="抽时间读了这本非常有名的书《重构–改善既有代码的设计》，结合一下网上大佬分享的思路，与自己平时的经验，写写小感悟。重构不是对以前代码的全盘否定，而是利用更好的方式，写出更好、更有维护性的代码。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="重构——改善既有代码的设计">
+<meta property="og:url" content="https://liluoao.github.io/2019/how-to-refactor.html">
+<meta property="og:site_name" content="码之力，三段">
+<meta property="og:description" content="抽时间读了这本非常有名的书《重构–改善既有代码的设计》，结合一下网上大佬分享的思路，与自己平时的经验，写写小感悟。重构不是对以前代码的全盘否定，而是利用更好的方式，写出更好、更有维护性的代码。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2020-05-23T07:11:17.472Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="重构——改善既有代码的设计">
+<meta name="twitter:description" content="抽时间读了这本非常有名的书《重构–改善既有代码的设计》，结合一下网上大佬分享的思路，与自己平时的经验，写写小感悟。重构不是对以前代码的全盘否定，而是利用更好的方式，写出更好、更有维护性的代码。">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">码之力，三段</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">To be a Web Artisan</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">首页</a>
+        
+          <a class="main-nav-link" href="/archives">文章列表</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://liluoao.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-重构——改善既有代码的设计" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/how-to-refactor.html" class="article-date">
+  <time datetime="2019-03-07T08:44:52.000Z" itemprop="datePublished">2019-03-07</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/other/">杂谈</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      重构——改善既有代码的设计
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>抽时间读了这本非常有名的书《重构–改善既有代码的设计》，结合一下网上大佬分享的思路，与自己平时的经验，写写小感悟。<br>重构不是对以前代码的全盘否定，而是利用更好的方式，写出更好、更有维护性的代码。</p>
+<a id="more"></a>
+
+<h2 id="什么是重构"><a href="#什么是重构" class="headerlink" title="什么是重构"></a>什么是重构</h2><p>首先，重构不是重写。重构大概的意思是在不影响项目的功能使用前提下，使用一系列的重构方式，改变项目的内部结构。提高项目内部的可读性，可维护性。</p>
+<p>无论是什么项目，都有一个从简单到复杂的一个迭代过程。在这个过程里面，在不影响项目的使用情况下，需要不断的对代码进行优化，保持或者增加代码的可读性，可维护性。这样一来，就可以避免在团队协作开发上需要大量的沟通，交流。才能加入项目的开发中。</p>
+<h2 id="为什么重构"><a href="#为什么重构" class="headerlink" title="为什么重构"></a>为什么重构</h2><p>随着业务需求的不断增加，变更，舍弃，项目的代码也难免会出现瑕疵，这就会影响代码的可读性，可维护性，甚至影响项目的性能。而重构的目的，就是为了解决这些瑕疵，保证代码质量和性能。但是前提是不能影响项目的使用。</p>
+<p>至于重构的原因，自己总结了一下，大概有以下几点：</p>
+<ol>
+<li>函数逻辑结构混乱，或因为没注释原因，连原代码写作者都很难理清当中的逻辑。</li>
+<li>函数无扩展性可言，遇到新的变化，不能灵活的处理。</li>
+<li>因为对象强耦合或者业务逻辑的原因，导致业务逻辑的代码巨大，维护的时候排查困难。</li>
+<li>重复代码太多，没有复用性。</li>
+<li>随着技术的发展，代码可能也需要使用新特性进行修改。</li>
+<li>随着学习的深入，对于以前的代码，是否有着更好的一个解决方案。</li>
+<li>因为代码的写法，虽然功能正常使用，但是性能消耗较多，需要换方案进行优化</li>
+</ol>
+<h2 id="何时重构"><a href="#何时重构" class="headerlink" title="何时重构"></a>何时重构</h2><p>在我的理解中，重构可以说是贯穿整一个项目的开发和维护周期，可以当作重构就是开发的一部分。通俗讲，在开发的任何时候，只要看到代码有别扭，激发了强迫症，就可以考虑重构了。<br>只是，重构之前先参考下面几点：</p>
+<ul>
+<li>首先，重构是需要花时间去做的一件事。花的时间可能比之前的开发时间还要多。</li>
+<li>其次，重构是为了把代码优化，前提是不能影响项目的使用。</li>
+<li>最后，重构的难度大小不一，可能只是稍微改动，可能难度比之前开发还要难。</li>
+</ul>
+<p>基于上面的几点，需要大家去评估是否要进行重构。<br>评估的指标，可以参考下面几点：</p>
+<ul>
+<li>数量: 需要重构的代码是否过多。</li>
+<li>质量: 可读性，可维护性，代码逻辑复杂度，等问题，对代码的质量影响是否到了一个难以忍受的地步。</li>
+<li>时间: 是否有充裕的时间进行重构和测试。</li>
+<li>效果: 如果重构了代码，得到哪些改善，比如代码质量提高了，性能提升了，更好的支持后续功能等。</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://liluoao.github.io/2019/how-to-refactor.html" data-id="ckajaooq6003jb4mjxu8osc99" class="article-share-link">分享</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/php-structural-design-patterns-decorator.html" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          装饰器模式（Decorator）
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/yii2-batch-query.html" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">Yii2的批处理查询</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/redis-proxy-distributed-cache-project.html">Redis-Proxy分布式缓存方案分享</a>
+          </li>
+        
+          <li>
+            <a href="/2020/build-sonarqube-and-rules.html">SonarQube再续前缘</a>
+          </li>
+        
+          <li>
+            <a href="/2020/consistency-of-master-and-slave-database.html">DB主从一致性方案</a>
+          </li>
+        
+          <li>
+            <a href="/2019/php-structural-design-patterns-template-method.html">模板方法模式（TemplateMethod）</a>
+          </li>
+        
+          <li>
+            <a href="/2019/about-middle-end.html">大中台的思考</a>
+          </li>
+        
+          <li>
+            <a href="/2019/big-or-small-size-company.html">大小规模公司思考</a>
+          </li>
+        
+          <li>
+            <a href="/2019/vcs-commit-rule.html">版本控制工具提交规范</a>
+          </li>
+        
+          <li>
+            <a href="/2019/yaf-individualization.html">Yaf框架结构个性化</a>
+          </li>
+        
+          <li>
+            <a href="/2019/yii-codeception.html">Yii2的单元测试</a>
+          </li>
+        
+          <li>
+            <a href="/2019/use-code-sniffer-in-phpstorm.html">如何用工具保证代码风格</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/openresty/">OpenResty</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/php-framework/">PHP框架</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/tool/">工具</a><span class="category-list-count">13</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/database/">数据库</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/server/">服务器</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/other/">杂谈</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/design-patterns/">设计模式</a><span class="category-list-count">8</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/apache/">apache</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/design-patterns/">design-patterns</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/laravel/">laravel</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mongo/">mongo</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/openresty/">openresty</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/other/">other</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/phalcon/">phalcon</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/php/">php</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/redis/">redis</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tool/">tool</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/yaf/">yaf</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/yii/">yii</a><span class="tag-list-count">2</span></li></ul>
+    </div>
+  </div>
+
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      <div style="width: 300px; margin: 0 auto; text-align: center;">
+        传送门
+        &nbsp;<a href="https://github.com/liluoao" target="_blank" title="GitHub">GitHub</a>&nbsp;
+        &nbsp;<a href="https://segmentfault.com/u/liluoao" target="_blank" title="SegmentFault">思否</a>
+      </div>
+      <div style="width: 300px; margin:0 auto; padding: 20px 0; text-align: center;">
+          &copy; 2020 码之力，三段
+          Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">首页</a>
+  
+    <a href="/archives" class="mobile-nav-link">文章列表</a>
+  
+</nav>
+    
+
+<script src="//lib.sinaapp.com/js/jquery/3.1.0/jquery-3.1.0.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>
