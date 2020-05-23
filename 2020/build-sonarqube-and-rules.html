@@ -15,7 +15,7 @@
 <meta property="og:site_name" content="码之力，三段">
 <meta property="og:description" content="前言之前写过一篇《使用SonarQube管理代码质量》，现在我们在服务器自己搭建了这个分析工具，加入了 CI 中。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-05-23T06:36:12.710Z">
+<meta property="og:updated_time" content="2020-05-23T06:59:46.740Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="SonarQube再续前缘">
 <meta name="twitter:description" content="前言之前写过一篇《使用SonarQube管理代码质量》，现在我们在服务器自己搭建了这个分析工具，加入了 CI 中。">
@@ -69,7 +69,7 @@
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/categories/工具/">工具</a>
+    <a class="article-category-link" href="/categories/tool/">工具</a>
   </div>
 
   </div>
@@ -94,13 +94,13 @@
 <p>名词解释：SonarQube（以下简称Sonar），是一个用于代码质量管理的开源的平台。通过插件机制可以和不通的测试工具、代码分析工具或者持续集成等平台相结合。Sonar 不是一个质量数据报告方面的工具，是一个代码管理的质量平台。目前它支持绝大部分语言，例如 Java、C#、Python、PHP 等。</p>
 <p>持续集成（Continuous integration，简称 CI）是一种软件开发实践，即团队开发成员经常集成他们的工作，通常每个成员每天至少集成一次，也就意味着每天可能会发生多次集成。每次集成都通过自动化的构建（包括编译，发布，自动化测试）来验证，从而尽早地发现集成错误。</p>
 <h2 id="搭建"><a href="#搭建" class="headerlink" title="搭建"></a>搭建</h2><p>拉镜像</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">docker pull postgres</span><br><span class="line">docker pull sonarqube</span><br></pre></td></tr></table></figure>
+<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">docker pull postgres</span></span><br><span class="line"><span class="attribute">docker pull sonarqube</span></span><br></pre></td></tr></table></figure>
 
 <p>启动</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">#启动数据库</span><br><span class="line">docker run --name db -e POSTGRES_USER=sonar -e POSTGRES_PASSWORD=sonar -d postgres</span><br><span class="line">#启动sonarqube</span><br><span class="line">docker run --name sq --link db -e SONARQUBE_JDBC_URL=jdbc:postgresql://db:5432/sonar -p 9000:9000 -d sonarqube</span><br></pre></td></tr></table></figure>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#启动数据库</span></span><br><span class="line">docker <span class="builtin-name">run</span> --name db -e <span class="attribute">POSTGRES_USER</span>=sonar -e <span class="attribute">POSTGRES_PASSWORD</span>=sonar -d postgres</span><br><span class="line"><span class="comment">#启动sonarqube</span></span><br><span class="line">docker <span class="builtin-name">run</span> --name sq --link db -e <span class="attribute">SONARQUBE_JDBC_URL</span>=jdbc:postgresql://db:5432/sonar -p 9000:9000 -d sonarqube</span><br></pre></td></tr></table></figure>
 
 <p>非容器的就自己去下载安装，不多讲了</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget -O /home/tool/sonarqube.zip https://binaries.sonarsource.com/Distribution/sonarqube/sonarqube-7.9.1.zip</span><br></pre></td></tr></table></figure>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget -O <span class="regexp">/home/</span>tool<span class="regexp">/sonarqube.zip https:/</span><span class="regexp">/binaries.sonarsource.com/</span>Distribution<span class="regexp">/sonarqube/</span>sonarqube-<span class="number">7.9</span>.<span class="number">1</span>.zip</span><br></pre></td></tr></table></figure>
 
 <h2 id="PHP规则"><a href="#PHP规则" class="headerlink" title="PHP规则"></a>PHP规则</h2><p>把我们一个历史悠久的项目加入检查后，出来了 228 个 Bugs、64 个漏洞、1.5K 安全热点、30K 的异味……</p>
 <p>重构之路任重而道远，我们先解决掉 Bugs 类，经过整理后大致分为如下几点：</p>
@@ -132,7 +132,7 @@
 <li><p><strong>“$i” is incremented and will never reach “stop condition”.</strong><br>类似 <code>while (true)</code> 的写法，想在循环内部 break，应直接省略条件部分，例如</p>
 </li>
 </ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">for ($i = 0; ;$i++)</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="variable">$i</span> = 0; ;<span class="variable">$i</span>++)</span><br></pre></td></tr></table></figure>
 
 <ol start="10">
 <li><strong>Remove this “if” statement.</strong><br>删除无用的 <code>if (true)</code></li>
@@ -142,7 +142,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2020/build-sonarqube-and-rules.html" data-id="ckaj9fl4h00123gmjd1nogz2w" class="article-share-link">分享</a>
+      <a data-url="https://liluoao.github.io/2020/build-sonarqube-and-rules.html" data-id="ckajaa2ne0012v4mjokgoc0hi" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/tool/">tool</a></li></ul>
@@ -232,7 +232,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">分类</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/OpenResty/">OpenResty</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/PHP框架/">PHP框架</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/工具/">工具</a><span class="category-list-count">13</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/数据库/">数据库</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/服务器/">服务器</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/杂谈/">杂谈</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/">设计模式</a><span class="category-list-count">8</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/openresty/">OpenResty</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/php-framework/">PHP框架</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/tool/">工具</a><span class="category-list-count">13</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/database/">数据库</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/server/">服务器</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/other/">杂谈</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/design-patterns/">设计模式</a><span class="category-list-count">8</span></li></ul>
     </div>
   </div>
 

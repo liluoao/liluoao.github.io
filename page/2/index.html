@@ -62,14 +62,14 @@
       <div class="outer">
         <section id="main">
   
-    <article id="post-状态模式（State）" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-大小规模公司思考" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2019/php-structural-design-patterns-state.html" class="article-date">
-  <time datetime="2019-06-18T01:23:38.000Z" itemprop="datePublished">2019-06-18</time>
+    <a href="/2019/big-or-small-size-company.html" class="article-date">
+  <time datetime="2019-11-22T07:41:18.000Z" itemprop="datePublished">2019-11-22</time>
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/categories/设计模式/">设计模式</a>
+    <a class="article-category-link" href="/categories/other/">杂谈</a>
   </div>
 
   </div>
@@ -80,7 +80,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2019/php-structural-design-patterns-state.html">状态模式（State）</a>
+      <a class="article-title" href="/2019/big-or-small-size-company.html">大小规模公司思考</a>
     </h1>
   
 
@@ -88,19 +88,19 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>状态模式可以基于一个对象的同种事务而封装出不同的行为。它提供一种简洁的方式使得对象在运行时可以改变自身行为，而不必借助单一庞大的条件判断语句。</p>
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>昨天在掘金上看到一篇文章——<a href="https://juejin.im/post/5dd55512f265da47a807cc06" target="_blank" rel="noopener">《if 我是前端Leader，怎么走出小微前端团队的围墙?》</a>，虽然是讲前端，但是对后端来说也有许多共性，也让我回想起了在2017-18我工作的一家小型公司。与现在2019工作的上市公司相比，两者都给我带来了不同方面的成长，也有一些思考，就用 <code>SWOT</code> 分析一下吧。</p>
         
           <p class="article-more-link">
-            <a href="/2019/php-structural-design-patterns-state.html#more">阅读全文</a>
+            <a href="/2019/big-or-small-size-company.html#more">阅读全文</a>
           </p>
         
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2019/php-structural-design-patterns-state.html" data-id="ckaj9fl5c002r3gmjpkmehryf" class="article-share-link">分享</a>
+      <a data-url="https://liluoao.github.io/2019/big-or-small-size-company.html" data-id="ckajaa2o9002av4mj7c6t5ioh" class="article-share-link">分享</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/design-patterns/">design-patterns</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/other/">other</a></li></ul>
 
     </footer>
   </div>
@@ -109,14 +109,14 @@
 
 
   
-    <article id="post-使用MongoDB的聚合" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-版本控制工具提交规范" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2019/mongodb-aggregation.html" class="article-date">
-  <time datetime="2019-05-28T02:15:54.000Z" itemprop="datePublished">2019-05-28</time>
+    <a href="/2019/vcs-commit-rule.html" class="article-date">
+  <time datetime="2019-10-15T02:54:21.000Z" itemprop="datePublished">2019-10-15</time>
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/categories/数据库/">数据库</a>
+    <a class="article-category-link" href="/categories/tool/">工具</a>
   </div>
 
   </div>
@@ -127,7 +127,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2019/mongodb-aggregation.html">使用MongoDB的聚合</a>
+      <a class="article-title" href="/2019/vcs-commit-rule.html">版本控制工具提交规范</a>
     </h1>
   
 
@@ -135,210 +135,17 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="引子"><a href="#引子" class="headerlink" title="引子"></a>引子</h2><p>最近需要做个统计，计算一个销售或部门（n 个销售），在一段时间内（n 天）的成交数据。数据在 Mongo，大致结构如下：</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">[</span><br><span class="line">    <span class="string">'si_id'</span> =&gt; <span class="number">1</span>,<span class="comment">//销售ID</span></span><br><span class="line">    <span class="string">'date'</span> =&gt; <span class="string">'2019-05-28'</span>,<span class="comment">//Y-m-d时间</span></span><br><span class="line">    <span class="string">'data'</span> =&gt; [</span><br><span class="line">        <span class="number">0</span> =&gt; [</span><br><span class="line">            <span class="string">'product_name'</span> =&gt; <span class="string">'产品A'</span>,</span><br><span class="line">            <span class="string">'product_id'</span> =&gt; <span class="number">1</span>,</span><br><span class="line">            <span class="string">'num'</span> =&gt; <span class="number">123</span></span><br><span class="line">        ],</span><br><span class="line">        <span class="number">1</span> =&gt; [</span><br><span class="line">            <span class="string">'product_name'</span> =&gt; <span class="string">'产品B'</span>,</span><br><span class="line">            <span class="string">'product_id'</span> =&gt; <span class="number">2</span>,</span><br><span class="line">            <span class="string">'num'</span> =&gt; <span class="number">123</span></span><br><span class="line">        ],</span><br><span class="line">        <span class="comment">//more..</span></span><br><span class="line">    ],</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
-
-<p>每个销售每天一条记录（<em>si_id</em> 和 <em>date</em> 组合索引），<em>data</em> 数组存放了每个产品的成交数量。简单分析后，我们需要得到的就是每个 <em>product_id</em> 的 <em>num</em> 之和。</p>
-<p>在查询出来后，进行循环处理，结果由于数据量太大导致<strong>内存溢出</strong>。能不能像 MySQL 中直接进行 <code>GROUP BY</code> + <code>SUM()</code> 呢？</p>
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>在日常工作中，我们经常会使用版本控制工具，不管是 <strong>Git</strong> 还是 <strong>SVN</strong>，或是其它。</p>
+<p>在多人协作中，提交注释是一个可能会忽视的点。<strong>清晰明了的注释</strong>可以降低沟通成本，提高工作效率。而<strong>含糊不清的注释</strong>会在你需要找一次具体提交时造成麻烦。</p>
         
           <p class="article-more-link">
-            <a href="/2019/mongodb-aggregation.html#more">阅读全文</a>
+            <a href="/2019/vcs-commit-rule.html#more">阅读全文</a>
           </p>
         
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2019/mongodb-aggregation.html" data-id="ckaj9fl4w001k3gmjtge3kvu3" class="article-share-link">分享</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mongo/">mongo</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-装饰器模式（Decorator）" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/php-structural-design-patterns-decorator.html" class="article-date">
-  <time datetime="2019-04-18T01:23:38.000Z" itemprop="datePublished">2019-04-18</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/设计模式/">设计模式</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/php-structural-design-patterns-decorator.html">装饰器模式（Decorator）</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>装饰器模式允许我们根据运行时不同的情景动态地为某个对象调用前后添加不同的行为动作。<br>以奇迹暖暖这种换装游戏为例，我们需要实现动态的换套装，或者混搭。</p>
-        
-          <p class="article-more-link">
-            <a href="/2019/php-structural-design-patterns-decorator.html#more">阅读全文</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2019/php-structural-design-patterns-decorator.html" data-id="ckaj9fl5s00383gmjt1608fjs" class="article-share-link">分享</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/design-patterns/">design-patterns</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-重构——改善既有代码的设计" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/how-to-refactor.html" class="article-date">
-  <time datetime="2019-03-07T08:44:52.000Z" itemprop="datePublished">2019-03-07</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/杂谈/">杂谈</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/how-to-refactor.html">重构——改善既有代码的设计</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>抽时间读了这本非常有名的书《重构–改善既有代码的设计》，结合一下网上大佬分享的思路，与自己平时的经验，写写小感悟。<br>重构不是对以前代码的全盘否定，而是利用更好的方式，写出更好、更有维护性的代码。</p>
-        
-          <p class="article-more-link">
-            <a href="/2019/how-to-refactor.html#more">阅读全文</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2019/how-to-refactor.html" data-id="ckaj9fl5s003j3gmj9ht27tze" class="article-share-link">分享</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-Yii2的批处理查询" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/yii2-batch-query.html" class="article-date">
-  <time datetime="2019-02-19T07:39:11.000Z" itemprop="datePublished">2019-02-19</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/PHP框架/">PHP框架</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/yii2-batch-query.html">Yii2的批处理查询</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Yii2 官方文档中对于<a href="https://www.yiiframework.com/doc/guide/2.0/en/db-query-builder#batch-query" target="_blank" rel="noopener">大数据处理</a>是这样说的：</p>
-<p>当需要处理大数据的时候，像 <code>yii\db\Query::all()</code> 这样的方法就不太合适了， 因为它们会把所有查询的数据都读取到客户端内存上。为了解决这个问题， Yii 提供了批处理查询的支持。服务端先保存查询结果，然后客户端使用游标（cursor） 每次迭代出固定的一批结果集回来。</p>
-<p>但是，下面有非常显眼的 WARNING ：<strong>MySQL 批处理查询的实现存在已知的局限性</strong></p>
-        
-          <p class="article-more-link">
-            <a href="/2019/yii2-batch-query.html#more">阅读全文</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2019/yii2-batch-query.html" data-id="ckaj9fl4w001h3gmjij8d7osf" class="article-share-link">分享</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/php/">php</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/yii/">yii</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-XHProf与PHP7的问题" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/problem-about-xhprof-in-php7.html" class="article-date">
-  <time datetime="2019-01-18T05:35:48.000Z" itemprop="datePublished">2019-01-18</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/工具/">工具</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/problem-about-xhprof-in-php7.html">XHProf与PHP7的问题</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>XHProf 是 <strong>Facebook</strong> 开源的一个轻量级的 PHP 性能分析工具，跟 Xdebug 类似，但性能开销更低。可以用在生产环境中，也可以由程序开关来控制是否进行 profile 。</p>
-<h2 id="问题排查"><a href="#问题排查" class="headerlink" title="问题排查"></a>问题排查</h2><p>最近我们认证中心部门将定时脚本切换为 <code>PHP7</code> 命令执行时，发现过一段时间脚本就内存泄漏，且该释放内存的地方都做了处理。</p>
-<p>经过一段时间排查后发现是 XHProf 造成的，关闭后就可以了。</p>
-        
-          <p class="article-more-link">
-            <a href="/2019/problem-about-xhprof-in-php7.html#more">阅读全文</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2019/problem-about-xhprof-in-php7.html" data-id="ckaj9fl4w00143gmj9hwfdrcg" class="article-share-link">分享</a>
+      <a data-url="https://liluoao.github.io/2019/vcs-commit-rule.html" data-id="ckajaa2o9002nv4mjl2kiit25" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/tool/">tool</a></li></ul>
@@ -350,14 +157,14 @@
 
 
   
-    <article id="post-使用SonarQube管理代码质量" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-Yaf框架结构个性化" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2018/use-sonarqube-continuous-code-quality.html" class="article-date">
-  <time datetime="2018-12-25T08:21:24.000Z" itemprop="datePublished">2018-12-25</time>
+    <a href="/2019/yaf-individualization.html" class="article-date">
+  <time datetime="2019-09-21T06:14:44.000Z" itemprop="datePublished">2019-09-21</time>
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/categories/工具/">工具</a>
+    <a class="article-category-link" href="/categories/php-framework/">PHP框架</a>
   </div>
 
   </div>
@@ -368,7 +175,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2018/use-sonarqube-continuous-code-quality.html">使用SonarQube管理代码质量</a>
+      <a class="article-title" href="/2019/yaf-individualization.html">Yaf框架结构个性化</a>
     </h1>
   
 
@@ -376,167 +183,115 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><a href="https://www.sonarqube.org/" target="_blank" rel="noopener">SonarQube</a> 是一个自动代码审查工具，用于检测代码中的错误，漏洞和代码异味。它可以与现有的工作流程集成，以便在项目分支和拉取请求之间进行连续的代码检查。官方提供了2种方式，一种是下载后本地搭建，另一种是在线运行。</p>
+        <h2 id="执行流程"><a href="#执行流程" class="headerlink" title="执行流程"></a>执行流程</h2><p>由于 Yaf 只提供一个 MVC 的基本骨架，所以我们有很大的开发自由度，可以实现一个自己最习惯的项目。</p>
         
           <p class="article-more-link">
-            <a href="/2018/use-sonarqube-continuous-code-quality.html#more">阅读全文</a>
+            <a href="/2019/yaf-individualization.html#more">阅读全文</a>
           </p>
         
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2018/use-sonarqube-continuous-code-quality.html" data-id="ckaj9fl4w001r3gmjtqa45wlg" class="article-share-link">分享</a>
+      <a data-url="https://liluoao.github.io/2019/yaf-individualization.html" data-id="ckajaa2nu0019v4mjqsvjs1au" class="article-share-link">分享</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/php/">php</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/yaf/">yaf</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Yii2的单元测试" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/yii-codeception.html" class="article-date">
+  <time datetime="2019-08-02T09:03:53.000Z" itemprop="datePublished">2019-08-02</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/php-framework/">PHP框架</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/yii-codeception.html">Yii2的单元测试</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>最近一个老项目前端机所在的服务器之一宕机了，在更换新服务器后发现这个项目没有单元测试，在验证时比较麻烦。现在一步步为这个 Yii2.0.12 项目引入单元测试。</p>
+        
+          <p class="article-more-link">
+            <a href="/2019/yii-codeception.html#more">阅读全文</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://liluoao.github.io/2019/yii-codeception.html" data-id="ckajaa2nu001cv4mjdhfz78vx" class="article-share-link">分享</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/yii/">yii</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-如何用工具保证代码风格" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/use-code-sniffer-in-phpstorm.html" class="article-date">
+  <time datetime="2019-07-02T06:25:53.000Z" itemprop="datePublished">2019-07-02</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/tool/">工具</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/use-code-sniffer-in-phpstorm.html">如何用工具保证代码风格</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>在一个多人合作的项目中，使用同一份代码规范是非常重要的。风格混乱不统一会造成阅读困难、工作交接困难、增加 Review 成本等问题，还可能会造成潜在的 Bug。</p>
+<p>保持良好的规范也可以从侧面反映出工作严谨（没有暗示）。</p>
+<p><a href="https://github.com/PizzaLiu/PHP-FIG/blob/master/PSR-1-basic-coding-standard-cn.md" target="_blank" rel="noopener">PSR1</a> 和 <a href="https://github.com/PizzaLiu/PHP-FIG/blob/master/PSR-2-coding-style-guide-cn.md" target="_blank" rel="noopener">PSR2</a> 是 PSR 中对于样式的规范，PSR2 也是基于 PSR1，所以文章的目标是让项目代码格式符合 PSR2。</p>
+        
+          <p class="article-more-link">
+            <a href="/2019/use-code-sniffer-in-phpstorm.html#more">阅读全文</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://liluoao.github.io/2019/use-code-sniffer-in-phpstorm.html" data-id="ckajaa2o9002dv4mje7jwmisb" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/tool/">tool</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-Kong框架的AdminAPI" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/use-kong-admin-api.html" class="article-date">
-  <time datetime="2018-12-07T03:24:33.000Z" itemprop="datePublished">2018-12-07</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/OpenResty/">OpenResty</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/use-kong-admin-api.html">Kong框架的AdminAPI</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>Kong 附带了一个用于管理的内部 RESTful Admin API。可以将对 Admin API 的请求发送到集群中的任何节点，并且 Kong 将使所有节点上的配置保持一致。<a href="https://github.com/Kong/kong/blob/master/kong/templates/kong_defaults.lua#L13" target="_blank" rel="noopener">admin_listen 默认端口配置</a></p>
-<ul>
-<li><code>8001</code> 是 Admin API 侦听的默认端口。</li>
-<li><code>8444</code> 是 HTTPS 的默认端口。</li>
-</ul>
-<p>此 API 专为内部使用而设置，在设置 Kong 环境时应谨慎，避免把 API 暴露给外部。</p>
-        
-          <p class="article-more-link">
-            <a href="/2018/use-kong-admin-api.html#more">阅读全文</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2018/use-kong-admin-api.html" data-id="ckaj9fl4100083gmju4vn5uvl" class="article-share-link">分享</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/openresty/">openresty</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-Kong的进程间数据同步" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/kong-cluster-event.html" class="article-date">
-  <time datetime="2018-11-23T06:45:28.000Z" itemprop="datePublished">2018-11-23</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/OpenResty/">OpenResty</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/kong-cluster-event.html">Kong的进程间数据同步</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Nginx 在启动后，会有一个 master 进程和多个相互独立的 worker 进程。</p>
-<p>Kong 的代码运行于 worker 进程，数据存储在数据库，同时在缓存中保留一份。当数据被修改时，需要通知给本地的其他 worker 进程和其他机器上的 worker 进程。其他 worker 接收事件后，删除缓存中对应的数据。下次从缓存读数据时发现没有的话，就从数据库加载出来。</p>
-<p>事件分为本地事件和集群事件。本地事件用于通知在一台机器上的 worker，集群事件用于通知在多台机器上的 worker。</p>
-        
-          <p class="article-more-link">
-            <a href="/2018/kong-cluster-event.html#more">阅读全文</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2018/kong-cluster-event.html" data-id="ckaj9fl41000b3gmjdsosoilk" class="article-share-link">分享</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/openresty/">openresty</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-选择Kong作为API网关" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/use-kong-for-api-gateway.html" class="article-date">
-  <time datetime="2018-11-09T12:17:07.000Z" itemprop="datePublished">2018-11-09</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/OpenResty/">OpenResty</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/use-kong-for-api-gateway.html">选择Kong作为API网关</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>随着移动互联网的兴起、开放合作思维的盛行，不同终端和第三方开发者都需要大量的接入企业核心业务能力，此时各业务系统将会面临同一系列的问题，例如：如何让调用方快速接入、如何让业务方安全地对外开放能力，如何应对和控制业务洪峰调用等等。于是就诞生了一个隔离企业内部业务系统和外部系统调用的屏障 - API 网关，它负责在上层抽象出各业务系统需要的通用功能，例如：鉴权、限流、ACL、降级等。另外随着近年来微服务的流行，API 网关已经成为一个微服务架构中的标配组件。</p>
-        
-          <p class="article-more-link">
-            <a href="/2018/use-kong-for-api-gateway.html#more">阅读全文</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2018/use-kong-for-api-gateway.html" data-id="ckaj9fl5s003f3gmjhqid9wsx" class="article-share-link">分享</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/openresty/">openresty</a></li></ul>
 
     </footer>
   </div>
@@ -549,7 +304,7 @@
 
   <nav id="page-nav">
     
-    <a class="extend prev" rel="prev" href="/">&laquo; 上一页</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/3/">下一页 &raquo;</a>
+    <a class="extend prev" rel="prev" href="/">&laquo; 上一页</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/3/">下一页 &raquo;</a>
   </nav>
 
 </section>
@@ -611,7 +366,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">分类</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/OpenResty/">OpenResty</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/PHP框架/">PHP框架</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/工具/">工具</a><span class="category-list-count">13</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/数据库/">数据库</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/服务器/">服务器</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/杂谈/">杂谈</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/">设计模式</a><span class="category-list-count">8</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/openresty/">OpenResty</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/php-framework/">PHP框架</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/tool/">工具</a><span class="category-list-count">13</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/database/">数据库</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/server/">服务器</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/other/">杂谈</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/design-patterns/">设计模式</a><span class="category-list-count">8</span></li></ul>
     </div>
   </div>
 

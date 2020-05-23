@@ -16,7 +16,7 @@
 <meta property="og:description" content="Phalcon 是一个使用 C 编写、高性能的 PHP 框架。">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://img.shields.io/packagist/v/liluoao/phalcon.svg">
-<meta property="og:updated_time" content="2020-05-23T06:36:12.710Z">
+<meta property="og:updated_time" content="2020-05-23T06:59:46.740Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Phalcon框架安装">
 <meta name="twitter:description" content="Phalcon 是一个使用 C 编写、高性能的 PHP 框架。">
@@ -71,7 +71,7 @@
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/categories/PHP框架/">PHP框架</a>
+    <a class="article-category-link" href="/categories/php-framework/">PHP框架</a>
   </div>
 
   </div>
@@ -111,10 +111,10 @@
 
 <p>它会在本文件夹中生成相应版本语法目录，在你的 PHPStorm 中配置 <code>Configure PHP Include Paths</code> 即可。</p>
 <h2 id="框架文件"><a href="#框架文件" class="headerlink" title="框架文件"></a>框架文件</h2><p>Phalcon 对于结构要求不固定，单模块结构如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">single/</span><br><span class="line">    app/</span><br><span class="line">        controllers/</span><br><span class="line">        models/</span><br><span class="line">        views/</span><br><span class="line">    public/</span><br><span class="line">        css/</span><br><span class="line">        img/</span><br><span class="line">        js/</span><br></pre></td></tr></table></figure>
+<figure class="highlight vbnet"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">single</span>/</span><br><span class="line">    app/</span><br><span class="line">        controllers/</span><br><span class="line">        models/</span><br><span class="line">        views/</span><br><span class="line">    <span class="keyword">public</span>/</span><br><span class="line">        css/</span><br><span class="line">        img/</span><br><span class="line">        js/</span><br></pre></td></tr></table></figure>
 
 <p>多模块：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">multiple/</span><br><span class="line">  apps/</span><br><span class="line">    front/</span><br><span class="line">       controllers/</span><br><span class="line">       models/</span><br><span class="line">       views/</span><br><span class="line">       Module.php</span><br><span class="line">    back/</span><br><span class="line">       controllers/</span><br><span class="line">       models/</span><br><span class="line">       views/</span><br><span class="line">       Module.php</span><br><span class="line">  public/</span><br><span class="line">    css/</span><br><span class="line">    img/</span><br><span class="line">    js/</span><br></pre></td></tr></table></figure>
+<figure class="highlight fortran"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">multiple/</span><br><span class="line">  apps/</span><br><span class="line">    front/</span><br><span class="line">       controllers/</span><br><span class="line">       models/</span><br><span class="line">       views/</span><br><span class="line">       <span class="keyword">Module</span>.php</span><br><span class="line">    back/</span><br><span class="line">       controllers/</span><br><span class="line">       models/</span><br><span class="line">       views/</span><br><span class="line">       <span class="keyword">Module</span>.php</span><br><span class="line">  <span class="keyword">public</span>/</span><br><span class="line">    css/</span><br><span class="line">    img/</span><br><span class="line">    js/</span><br></pre></td></tr></table></figure>
 
 <p>下面是我自定义的框架文件</p>
 <p><a href="https://packagist.org/packages/liluoao/phalcon" target="_blank" rel="noopener"><img src="https://img.shields.io/packagist/v/liluoao/phalcon.svg" alt="liluoao/phalcon"></a></p>
@@ -124,7 +124,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2018/use-phalcon.html" data-id="ckaj9fl4h000v3gmjnlcbj1iu" class="article-share-link">分享</a>
+      <a data-url="https://liluoao.github.io/2018/use-phalcon.html" data-id="ckajaa2ne000vv4mjo04p59rh" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/phalcon/">phalcon</a></li></ul>
@@ -214,7 +214,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">分类</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/OpenResty/">OpenResty</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/PHP框架/">PHP框架</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/工具/">工具</a><span class="category-list-count">13</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/数据库/">数据库</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/服务器/">服务器</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/杂谈/">杂谈</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/">设计模式</a><span class="category-list-count">8</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/openresty/">OpenResty</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/php-framework/">PHP框架</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/tool/">工具</a><span class="category-list-count">13</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/database/">数据库</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/server/">服务器</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/other/">杂谈</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/design-patterns/">设计模式</a><span class="category-list-count">8</span></li></ul>
     </div>
   </div>
 

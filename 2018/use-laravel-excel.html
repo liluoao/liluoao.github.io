@@ -15,7 +15,7 @@
 <meta property="og:site_name" content="码之力，三段">
 <meta property="og:description" content="Laravel Excel 是建议在 Laravel 中使用的 Excel 处理包，它把原来 PHPOffice 的 PHPExcel 的强大功能在 Laravel 5.x 框架中再实现，还实现了 Laravel 的集合、模型、视图、配置等。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-05-23T06:36:12.710Z">
+<meta property="og:updated_time" content="2020-05-23T06:59:46.740Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Laravel中操作Excel">
 <meta name="twitter:description" content="Laravel Excel 是建议在 Laravel 中使用的 Excel 处理包，它把原来 PHPOffice 的 PHPExcel 的强大功能在 Laravel 5.x 框架中再实现，还实现了 Laravel 的集合、模型、视图、配置等。">
@@ -69,7 +69,7 @@
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/categories/PHP框架/">PHP框架</a>
+    <a class="article-category-link" href="/categories/php-framework/">PHP框架</a>
   </div>
 
   </div>
@@ -92,13 +92,13 @@
 <a id="more"></a>
 
 <p>Composer 安装：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">composer require maatwebsite/excel</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">composer <span class="built_in">require</span> maatwebsite/excel</span><br></pre></td></tr></table></figure>
 
 <p>修改 <em>app/config/app.php</em> ，添加 <code>ServiceProvider</code>：</p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'providers'</span> =&gt; [</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">    Maatwebsite\Excel\ExcelServiceProvider::class,</span><br><span class="line">],</span><br><span class="line"><span class="string">'aliases'</span> =&gt; [</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">    <span class="string">'Excel'</span> =&gt; Maatwebsite\Excel\Facades\Excel::class,</span><br><span class="line">],</span><br></pre></td></tr></table></figure>
 
 <p>使用如下命令创建一个配置文件 <em>config/excel.php</em></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">php artisan vendor:publish</span><br></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">php</span> <span class="selector-tag">artisan</span> <span class="selector-tag">vendor</span><span class="selector-pseudo">:publish</span></span><br></pre></td></tr></table></figure>
 
 <h4 id="Import-导入"><a href="#Import-导入" class="headerlink" title="Import 导入"></a>Import 导入</h4><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">use</span> <span class="title">Maatwebsite</span>\<span class="title">Excel</span>\<span class="title">Facades</span>\<span class="title">Excel</span>;</span><br><span class="line">Excel::load(<span class="string">'file.xls'</span>, <span class="function"><span class="keyword">function</span><span class="params">($reader)</span> </span>&#123;</span><br><span class="line">    $results = $reader-&gt;get();</span><br><span class="line">    $results = $reader-&gt;all();</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
 
@@ -112,7 +112,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2018/use-laravel-excel.html" data-id="ckaj9fl4h000g3gmjqa1mipal" class="article-share-link">分享</a>
+      <a data-url="https://liluoao.github.io/2018/use-laravel-excel.html" data-id="ckajaa2ne000gv4mj6jj0fkyg" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/laravel/">laravel</a></li></ul>
@@ -202,7 +202,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">分类</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/OpenResty/">OpenResty</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/PHP框架/">PHP框架</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/工具/">工具</a><span class="category-list-count">13</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/数据库/">数据库</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/服务器/">服务器</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/杂谈/">杂谈</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/">设计模式</a><span class="category-list-count">8</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/openresty/">OpenResty</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/php-framework/">PHP框架</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/tool/">工具</a><span class="category-list-count">13</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/database/">数据库</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/server/">服务器</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/other/">杂谈</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/design-patterns/">设计模式</a><span class="category-list-count">8</span></li></ul>
     </div>
   </div>
 
