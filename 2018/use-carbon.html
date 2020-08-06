@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<head><meta name="generator" content="Hexo 3.9.0">
+<head>
   <meta charset="utf-8">
   
 
@@ -8,24 +8,26 @@
   <title>便捷处理时间——Carbon | 码之力，三段</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="Carbon 是一个 PHP 的时间处理包，它继承自 DateTime 类的 API 扩展，让处理日期和时间更加简单。">
-<meta name="keywords" content="tool">
 <meta property="og:type" content="article">
 <meta property="og:title" content="便捷处理时间——Carbon">
 <meta property="og:url" content="https://liluoao.github.io/2018/use-carbon.html">
 <meta property="og:site_name" content="码之力，三段">
 <meta property="og:description" content="Carbon 是一个 PHP 的时间处理包，它继承自 DateTime 类的 API 扩展，让处理日期和时间更加简单。">
-<meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-08-05T11:34:18.304Z">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2018-05-01T06:11:35.000Z">
+<meta property="article:modified_time" content="2020-08-06T03:37:27.962Z">
+<meta property="article:author" content="李罗奥">
+<meta property="article:tag" content="tool">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="便捷处理时间——Carbon">
-<meta name="twitter:description" content="Carbon 是一个 PHP 的时间处理包，它继承自 DateTime 类的 API 扩展，让处理日期和时间更加简单。">
   
   
     <link rel="icon" href="/favicon.png">
   
-  <link rel="stylesheet" href="/css/style.css">
-</head>
-</html>
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.0.0"></head>
+
 <body>
   <div id="container">
     <div id="wrap">
@@ -36,10 +38,6 @@
       <h1 id="logo-wrap">
         <a href="/" id="logo">码之力，三段</a>
       </h1>
-      
-        <h2 id="subtitle-wrap">
-          <a href="/" id="subtitle">To be a Web Artisan</a>
-        </h2>
       
     </div>
     <div id="header-inner" class="inner">
@@ -88,22 +86,22 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><a href="http://carbon.nesbot.com/" target="_blank" rel="noopener">Carbon</a> 是一个 PHP 的时间处理包，它继承自 <code>DateTime</code> 类的 API 扩展，让处理日期和时间更加简单。</p>
+        <p><a target="_blank" rel="noopener" href="http://carbon.nesbot.com/">Carbon</a> 是一个 PHP 的时间处理包，它继承自 <code>DateTime</code> 类的 API 扩展，让处理日期和时间更加简单。</p>
 <a id="more"></a>
 
 <p>Composer 安装方式：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">composer <span class="built_in">require</span> nesbot/carbon</span><br></pre></td></tr></table></figure>
+<figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">composer</span> <span class="meta">require</span> nesbot/carbon</span><br></pre></td></tr></table></figure>
 
 <p>使用方式：</p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//常规项目</span></span><br><span class="line"><span class="keyword">use</span> <span class="title">Carbon</span>\<span class="title">Carbon</span>;</span><br><span class="line"><span class="comment">//Laravel项目</span></span><br><span class="line"><span class="keyword">use</span> <span class="title">Illuminate</span>\<span class="title">Support</span>\<span class="title">Carbon</span>;</span><br></pre></td></tr></table></figure>
 
 <p>后者除了继承于前者，还实现了 <em>JsonSerializable</em> interface 和 <em>Macroable</em> trait</p>
-<h4 id="实例化"><a href="#实例化" class="headerlink" title="实例化"></a>实例化</h4><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Carbon::now();<span class="comment">//同Laravel辅助函数now()</span></span><br><span class="line">Carbon::today();<span class="comment">//同Laravel辅助函数today()</span></span><br><span class="line">Carbon::parse(<span class="string">'2018-5-7 14:38:00'</span>);</span><br><span class="line">Carbon::create(<span class="number">2018</span>, <span class="number">5</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>);</span><br><span class="line">Carbon::now()-&gt;year(<span class="number">2008</span>)-&gt;month(<span class="number">5</span>)-&gt;day(<span class="number">21</span>)-&gt;hour(<span class="number">22</span>)-&gt;minute(<span class="number">32</span>)-&gt;second(<span class="number">5</span>);</span><br><span class="line">Carbon::now()-&gt;setDate(<span class="number">1975</span>, <span class="number">5</span>, <span class="number">21</span>)-&gt;setTime(<span class="number">22</span>, <span class="number">32</span>, <span class="number">5</span>);</span><br></pre></td></tr></table></figure>
+<h4 id="实例化"><a href="#实例化" class="headerlink" title="实例化"></a>实例化</h4><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Carbon::now();<span class="comment">//同Laravel辅助函数now()</span></span><br><span class="line">Carbon::today();<span class="comment">//同Laravel辅助函数today()</span></span><br><span class="line">Carbon::parse(<span class="string">&#x27;2018-5-7 14:38:00&#x27;</span>);</span><br><span class="line">Carbon::create(<span class="number">2018</span>, <span class="number">5</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>);</span><br><span class="line">Carbon::now()-&gt;year(<span class="number">2008</span>)-&gt;month(<span class="number">5</span>)-&gt;day(<span class="number">21</span>)-&gt;hour(<span class="number">22</span>)-&gt;minute(<span class="number">32</span>)-&gt;second(<span class="number">5</span>);</span><br><span class="line">Carbon::now()-&gt;setDate(<span class="number">1975</span>, <span class="number">5</span>, <span class="number">21</span>)-&gt;setTime(<span class="number">22</span>, <span class="number">32</span>, <span class="number">5</span>);</span><br></pre></td></tr></table></figure>
 
-<p>更多方法见<a href="http://carbon.nesbot.com/docs/#api-settersfluent" target="_blank" rel="noopener">Fluent Setters</a></p>
+<p>更多方法见<a target="_blank" rel="noopener" href="http://carbon.nesbot.com/docs/#api-settersfluent">Fluent Setters</a></p>
 <h4 id="字符串输出"><a href="#字符串输出" class="headerlink" title="字符串输出"></a>字符串输出</h4><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$dt = Carbon::create(<span class="number">1975</span>, <span class="number">12</span>, <span class="number">25</span>, <span class="number">14</span>, <span class="number">15</span>, <span class="number">16</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">echo</span> $dt-&gt;toDateString();                          <span class="comment">// 1975-12-25</span></span><br><span class="line"><span class="keyword">echo</span> $dt-&gt;toTimeString();                          <span class="comment">// 14:15:16</span></span><br><span class="line"><span class="keyword">echo</span> $dt-&gt;toDateTimeString();                      <span class="comment">// 1975-12-25 14:15:16</span></span><br><span class="line"><span class="keyword">echo</span> $dt-&gt;toDayDateTimeString();                   <span class="comment">// Thu, Dec 25, 1975 2:15 PM</span></span><br></pre></td></tr></table></figure>
 
-<p>更多方法见<a href="http://carbon.nesbot.com/docs/#api-formatting" target="_blank" rel="noopener">String Formatting</a></p>
+<p>更多方法见<a target="_blank" rel="noopener" href="http://carbon.nesbot.com/docs/#api-formatting">String Formatting</a></p>
 <h4 id="比较"><a href="#比较" class="headerlink" title="比较"></a>比较</h4><p>常用比较如</p>
 <ul>
 <li><code>eq</code> (equalTo)</li>
@@ -117,12 +115,12 @@
 <p>其它可用比较方法：</p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//过去or未来</span></span><br><span class="line">$dt-&gt;isFuture();</span><br><span class="line">$dt-&gt;isPast();</span><br><span class="line"><span class="comment">//闰年</span></span><br><span class="line">$dt-&gt;isLeapYear();</span><br><span class="line"><span class="comment">//季度</span></span><br><span class="line">$dt-&gt;isCurrentQuarter();</span><br><span class="line"><span class="comment">//工作日or周末</span></span><br><span class="line">$dt-&gt;isWeekday();</span><br><span class="line">$dt-&gt;isWeekend();</span><br><span class="line"><span class="comment">//周几</span></span><br><span class="line">$dt-&gt;isWednesday();</span><br><span class="line">$dt-&gt;isDayOfWeek(Carbon::SATURDAY);</span><br></pre></td></tr></table></figure>
 
-<p>更多方法见<a href="http://carbon.nesbot.com/docs/#api-comparison" target="_blank" rel="noopener">Comparison</a></p>
+<p>更多方法见<a target="_blank" rel="noopener" href="http://carbon.nesbot.com/docs/#api-comparison">Comparison</a></p>
 <h4 id="自增自减"><a href="#自增自减" class="headerlink" title="自增自减"></a>自增自减</h4><p>可以对世纪、年、季度、月、周、时、分、秒进行 <code>add()</code> 加或 <code>sub()</code> 减</p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//世纪</span></span><br><span class="line"><span class="keyword">echo</span> $dt-&gt;addCentury();</span><br><span class="line"><span class="comment">//文档里对加减复数使用复数方法，源码中单数方法也可以接收参数</span></span><br><span class="line"><span class="keyword">echo</span> $dt-&gt;addCenturies(<span class="number">5</span>);</span><br><span class="line"><span class="keyword">echo</span> $dt-&gt;subCentury();</span><br><span class="line"><span class="comment">//工作日</span></span><br><span class="line"><span class="keyword">echo</span> $dt-&gt;addWeekday();</span><br><span class="line"><span class="keyword">echo</span> $dt-&gt;subWeekday();</span><br></pre></td></tr></table></figure>
 
 <h4 id="求差"><a href="#求差" class="headerlink" title="求差"></a>求差</h4><p>有时我们会使一件事在一个周期里只允许一次，例如发年终奖，这时我们可以判断 <code>今天</code> 和 <code>上次发年终奖</code> 对于 <code>发年终奖日期</code> 是否在同一年</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//今天是第几年发奖</span></span><br><span class="line">$todayPassYearNum = $canDividendDate-&gt;diffInYears(today());</span><br><span class="line"><span class="comment">//上次发奖是第几年</span></span><br><span class="line">$dividendDatePassYearNum = $canDividendDate-&gt;diffInYears(Carbon::parse($lastDividendDate));</span><br><span class="line"><span class="keyword">if</span> ($todayPassYearNum === $dividendDatePassYearNum) &#123;</span><br><span class="line">    <span class="keyword">throw</span> <span class="keyword">new</span> <span class="keyword">Exception</span>(<span class="number">600</span>, <span class="string">'本年已发过奖'</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//今天是第几年发奖</span></span><br><span class="line">$todayPassYearNum = $canDividendDate-&gt;diffInYears(today());</span><br><span class="line"><span class="comment">//上次发奖是第几年</span></span><br><span class="line">$dividendDatePassYearNum = $canDividendDate-&gt;diffInYears(Carbon::parse($lastDividendDate));</span><br><span class="line"><span class="keyword">if</span> ($todayPassYearNum === $dividendDatePassYearNum) &#123;</span><br><span class="line">    <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Exception</span>(<span class="number">600</span>, <span class="string">&#x27;本年已发过奖&#x27;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>同理也有 <code>diffInHours()</code> <code>diffInDays()</code> 等方法</p>
 <h4 id="常量"><a href="#常量" class="headerlink" title="常量"></a>常量</h4><p>Carbon 定义了许多常量：</p>
@@ -133,10 +131,10 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2018/use-carbon.html" data-id="ckdhanzwb001ycsmjao7z57cr" class="article-share-link">分享</a>
+      <a data-url="https://liluoao.github.io/2018/use-carbon.html" data-id="ckdi92hv1001ybwmjf78c03vn" class="article-share-link">分享</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/tool/">tool</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/tool/" rel="tag">tool</a></li></ul>
 
     </footer>
   </div>
@@ -191,7 +189,7 @@
           </li>
         
           <li>
-            <a href="/2019/about-middle-end.html">大中台的思考</a>
+            <a href="/2019/about-middle-end.html">初识大中台</a>
           </li>
         
           <li>
@@ -233,7 +231,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/apache/">apache</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/design-patterns/">design-patterns</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/laravel/">laravel</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mongo/">mongo</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/openresty/">openresty</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/other/">other</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/phalcon/">phalcon</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/php/">php</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/redis/">redis</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tool/">tool</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/yaf/">yaf</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/yii/">yii</a><span class="tag-list-count">2</span></li></ul>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/apache/" rel="tag">apache</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/design-patterns/" rel="tag">design-patterns</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/laravel/" rel="tag">laravel</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/" rel="tag">linux</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mongo/" rel="tag">mongo</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/openresty/" rel="tag">openresty</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/other/" rel="tag">other</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/phalcon/" rel="tag">phalcon</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/php/" rel="tag">php</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/redis/" rel="tag">redis</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tool/" rel="tag">tool</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/yaf/" rel="tag">yaf</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/yii/" rel="tag">yii</a><span class="tag-list-count">2</span></li></ul>
     </div>
   </div>
 
@@ -273,11 +271,17 @@
 <script src="//lib.sinaapp.com/js/jquery/3.1.0/jquery-3.1.0.min.js"></script>
 
 
-  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
-  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
 
 
 <script src="/js/script.js"></script>
+
 
 
 

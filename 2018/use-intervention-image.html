@@ -1,31 +1,33 @@
 <!DOCTYPE html>
 <html>
-<head><meta name="generator" content="Hexo 3.9.0">
+<head>
   <meta charset="utf-8">
   
 
   
   <title>Laravel中处理图像 | 码之力，三段</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Intervention/image 是一个图片处理工具，它提供了一套容易理解的方式来创建、编辑图片。它实现了 ServiceProvider、Facade 等来方便地在 Laravel 中使用。">
-<meta name="keywords" content="laravel">
+  <meta name="description" content="Intervention&#x2F;image 是一个图片处理工具，它提供了一套容易理解的方式来创建、编辑图片。它实现了 ServiceProvider、Facade 等来方便地在 Laravel 中使用。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Laravel中处理图像">
 <meta property="og:url" content="https://liluoao.github.io/2018/use-intervention-image.html">
 <meta property="og:site_name" content="码之力，三段">
-<meta property="og:description" content="Intervention/image 是一个图片处理工具，它提供了一套容易理解的方式来创建、编辑图片。它实现了 ServiceProvider、Facade 等来方便地在 Laravel 中使用。">
-<meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-08-05T11:34:18.304Z">
+<meta property="og:description" content="Intervention&#x2F;image 是一个图片处理工具，它提供了一套容易理解的方式来创建、编辑图片。它实现了 ServiceProvider、Facade 等来方便地在 Laravel 中使用。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2018-05-03T06:36:58.000Z">
+<meta property="article:modified_time" content="2020-08-06T03:37:27.962Z">
+<meta property="article:author" content="李罗奥">
+<meta property="article:tag" content="laravel">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Laravel中处理图像">
-<meta name="twitter:description" content="Intervention/image 是一个图片处理工具，它提供了一套容易理解的方式来创建、编辑图片。它实现了 ServiceProvider、Facade 等来方便地在 Laravel 中使用。">
   
   
     <link rel="icon" href="/favicon.png">
   
-  <link rel="stylesheet" href="/css/style.css">
-</head>
-</html>
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.0.0"></head>
+
 <body>
   <div id="container">
     <div id="wrap">
@@ -36,10 +38,6 @@
       <h1 id="logo-wrap">
         <a href="/" id="logo">码之力，三段</a>
       </h1>
-      
-        <h2 id="subtitle-wrap">
-          <a href="/" id="subtitle">To be a Web Artisan</a>
-        </h2>
       
     </div>
     <div id="header-inner" class="inner">
@@ -88,14 +86,14 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><a href="http://image.intervention.io/" target="_blank" rel="noopener">Intervention/image</a> 是一个图片处理工具，它提供了一套容易理解的方式来创建、编辑图片。它实现了 ServiceProvider、Facade 等来方便地在 Laravel 中使用。</p>
+        <p><a target="_blank" rel="noopener" href="http://image.intervention.io/">Intervention/image</a> 是一个图片处理工具，它提供了一套容易理解的方式来创建、编辑图片。它实现了 ServiceProvider、Facade 等来方便地在 Laravel 中使用。</p>
 <a id="more"></a>
 
 <p>Composer 安装</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">composer <span class="built_in">require</span> intervention/image</span><br></pre></td></tr></table></figure>
+<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">composer require <span class="built_in">int</span>ervention/image</span><br></pre></td></tr></table></figure>
 
 <p>修改 <em>app/config/app.php</em> ，添加 <code>ServiceProvider</code>：</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'providers'</span> =&gt; [</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">    Intervention\Image\ImageServiceProvider::class,</span><br><span class="line"></span><br><span class="line">],</span><br><span class="line"><span class="string">'aliases'</span> =&gt; [</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">    <span class="string">'Image'</span> =&gt; Intervention\Image\Facades\Image::class,</span><br><span class="line">],</span><br></pre></td></tr></table></figure>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&#x27;providers&#x27;</span> =&gt; [</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">    Intervention\Image\ImageServiceProvider::class,</span><br><span class="line"></span><br><span class="line">],</span><br><span class="line"><span class="string">&#x27;aliases&#x27;</span> =&gt; [</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">    <span class="string">&#x27;Image&#x27;</span> =&gt; Intervention\Image\Facades\Image::class,</span><br><span class="line">],</span><br></pre></td></tr></table></figure>
 
 <p>使用如下命令创建一个配置文件 <em>config/image.php</em></p>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">php</span> <span class="selector-tag">artisan</span> <span class="selector-tag">vendor</span><span class="selector-pseudo">:publish</span></span><br></pre></td></tr></table></figure>
@@ -105,9 +103,9 @@
 <p>此扩展包默认使用 PHP 的 <code>GD</code> 库来进行图像处理，但由于 GD 库对图像的处理效率要稍逊色于 <code>imagemagick</code> 库，因此这里推荐替换为 imagemagick 库来进行图像处理</p>
 </blockquote>
 <p>在使用 Intervention Image 的时候，你只需要给 ImageManager 传一个数组参数就可以完成 GD 和 Imagick 库之间的互相切换：</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 通过指定 driver 来创建一个 image manager 实例</span></span><br><span class="line">$manager = <span class="keyword">new</span> ImageManager([<span class="string">'driver'</span> =&gt; <span class="string">'imagick'</span>]);</span><br></pre></td></tr></table></figure>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 通过指定 driver 来创建一个 image manager 实例</span></span><br><span class="line">$manager = <span class="keyword">new</span> ImageManager([<span class="string">&#x27;driver&#x27;</span> =&gt; <span class="string">&#x27;imagick&#x27;</span>]);</span><br></pre></td></tr></table></figure>
 
-<h2 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h2><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">use</span> <span class="title">Intervention</span>\<span class="title">Image</span>\<span class="title">ImageManager</span>;</span><br><span class="line">$manager = <span class="keyword">new</span> ImageManager();</span><br><span class="line"><span class="comment">//字体路径</span></span><br><span class="line">$fontPath = storage_path(<span class="string">'font/SourceHanSansCN-Normal.ttf'</span>);</span><br><span class="line"><span class="comment">//以一张背景图开始</span></span><br><span class="line">$image = $manager-&gt;make(<span class="string">'images/invitation-bg.png'</span>);</span><br><span class="line"><span class="comment">//插入图片</span></span><br><span class="line">$image-&gt;insert(<span class="string">'images/logo.png'</span>, <span class="string">'top'</span>, <span class="number">0</span>, <span class="number">20</span>);</span><br><span class="line"><span class="comment">//插入文字</span></span><br><span class="line">$image-&gt;text(<span class="string">'欢迎光临'</span>, <span class="number">200</span>, <span class="number">80</span>, <span class="function"><span class="keyword">function</span> <span class="params">($font)</span> <span class="title">use</span> <span class="params">($fontPath)</span> </span>&#123;</span><br><span class="line">    $font-&gt;file($fontPath);<span class="comment">//字体</span></span><br><span class="line">    $font-&gt;size(<span class="number">24</span>);<span class="comment">//大小</span></span><br><span class="line">    $font-&gt;color(<span class="string">'#61B8A8'</span>);<span class="comment">//颜色</span></span><br><span class="line">    $font-&gt;align(<span class="string">'center'</span>);<span class="comment">//水平对齐</span></span><br><span class="line">    $font-&gt;valign(<span class="string">'top'</span>);<span class="comment">//垂直对齐</span></span><br><span class="line">&#125;);</span><br><span class="line"><span class="comment">//保存为文件</span></span><br><span class="line">$image-&gt;save(<span class="string">'uploads/1.jpg'</span>);</span><br></pre></td></tr></table></figure>
+<h2 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h2><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">use</span> <span class="title">Intervention</span>\<span class="title">Image</span>\<span class="title">ImageManager</span>;</span><br><span class="line">$manager = <span class="keyword">new</span> ImageManager();</span><br><span class="line"><span class="comment">//字体路径</span></span><br><span class="line">$fontPath = storage_path(<span class="string">&#x27;font/SourceHanSansCN-Normal.ttf&#x27;</span>);</span><br><span class="line"><span class="comment">//以一张背景图开始</span></span><br><span class="line">$image = $manager-&gt;make(<span class="string">&#x27;images/invitation-bg.png&#x27;</span>);</span><br><span class="line"><span class="comment">//插入图片</span></span><br><span class="line">$image-&gt;insert(<span class="string">&#x27;images/logo.png&#x27;</span>, <span class="string">&#x27;top&#x27;</span>, <span class="number">0</span>, <span class="number">20</span>);</span><br><span class="line"><span class="comment">//插入文字</span></span><br><span class="line">$image-&gt;text(<span class="string">&#x27;欢迎光临&#x27;</span>, <span class="number">200</span>, <span class="number">80</span>, <span class="function"><span class="keyword">function</span> (<span class="params">$font</span>) <span class="title">use</span> (<span class="params">$fontPath</span>) </span>&#123;</span><br><span class="line">    $font-&gt;file($fontPath);<span class="comment">//字体</span></span><br><span class="line">    $font-&gt;size(<span class="number">24</span>);<span class="comment">//大小</span></span><br><span class="line">    $font-&gt;color(<span class="string">&#x27;#61B8A8&#x27;</span>);<span class="comment">//颜色</span></span><br><span class="line">    $font-&gt;align(<span class="string">&#x27;center&#x27;</span>);<span class="comment">//水平对齐</span></span><br><span class="line">    $font-&gt;valign(<span class="string">&#x27;top&#x27;</span>);<span class="comment">//垂直对齐</span></span><br><span class="line">&#125;);</span><br><span class="line"><span class="comment">//保存为文件</span></span><br><span class="line">$image-&gt;save(<span class="string">&#x27;uploads/1.jpg&#x27;</span>);</span><br></pre></td></tr></table></figure>
 
 <p>除介绍的基本用法之外，此扩展包还支持：</p>
 <ul>
@@ -120,10 +118,10 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2018/use-intervention-image.html" data-id="ckdhanzv0000bcsmjpkizzv0m" class="article-share-link">分享</a>
+      <a data-url="https://liluoao.github.io/2018/use-intervention-image.html" data-id="ckdi92hu6000cbwmj18ed8lxb" class="article-share-link">分享</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/laravel/">laravel</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/laravel/" rel="tag">laravel</a></li></ul>
 
     </footer>
   </div>
@@ -178,7 +176,7 @@
           </li>
         
           <li>
-            <a href="/2019/about-middle-end.html">大中台的思考</a>
+            <a href="/2019/about-middle-end.html">初识大中台</a>
           </li>
         
           <li>
@@ -220,7 +218,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/apache/">apache</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/design-patterns/">design-patterns</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/laravel/">laravel</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mongo/">mongo</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/openresty/">openresty</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/other/">other</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/phalcon/">phalcon</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/php/">php</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/redis/">redis</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tool/">tool</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/yaf/">yaf</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/yii/">yii</a><span class="tag-list-count">2</span></li></ul>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/apache/" rel="tag">apache</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/design-patterns/" rel="tag">design-patterns</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/laravel/" rel="tag">laravel</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/" rel="tag">linux</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mongo/" rel="tag">mongo</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/openresty/" rel="tag">openresty</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/other/" rel="tag">other</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/phalcon/" rel="tag">phalcon</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/php/" rel="tag">php</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/redis/" rel="tag">redis</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tool/" rel="tag">tool</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/yaf/" rel="tag">yaf</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/yii/" rel="tag">yii</a><span class="tag-list-count">2</span></li></ul>
     </div>
   </div>
 
@@ -260,11 +258,17 @@
 <script src="//lib.sinaapp.com/js/jquery/3.1.0/jquery-3.1.0.min.js"></script>
 
 
-  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
-  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
 
 
 <script src="/js/script.js"></script>
+
 
 
 

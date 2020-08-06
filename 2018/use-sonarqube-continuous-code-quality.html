@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<head><meta name="generator" content="Hexo 3.9.0">
+<head>
   <meta charset="utf-8">
   
 
@@ -8,28 +8,30 @@
   <title>使用SonarQube管理代码质量 | 码之力，三段</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="SonarQube 是一个自动代码审查工具，用于检测代码中的错误，漏洞和代码异味。它可以与现有的工作流程集成，以便在项目分支和拉取请求之间进行连续的代码检查。官方提供了2种方式，一种是下载后本地搭建，另一种是在线运行。">
-<meta name="keywords" content="tool">
 <meta property="og:type" content="article">
 <meta property="og:title" content="使用SonarQube管理代码质量">
 <meta property="og:url" content="https://liluoao.github.io/2018/use-sonarqube-continuous-code-quality.html">
 <meta property="og:site_name" content="码之力，三段">
 <meta property="og:description" content="SonarQube 是一个自动代码审查工具，用于检测代码中的错误，漏洞和代码异味。它可以与现有的工作流程集成，以便在项目分支和拉取请求之间进行连续的代码检查。官方提供了2种方式，一种是下载后本地搭建，另一种是在线运行。">
-<meta property="og:locale" content="zh-CN">
+<meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://liluoao.github.io/images/sonar-add-project.png">
 <meta property="og:image" content="https://liluoao.github.io/images/sonar-result.png">
 <meta property="og:image" content="https://sonarcloud.io/api/project_badges/measure?project=liluoao_api-doc&metric=alert_status">
-<meta property="og:updated_time" content="2020-08-05T11:34:18.304Z">
+<meta property="article:published_time" content="2018-12-25T08:21:24.000Z">
+<meta property="article:modified_time" content="2020-08-06T03:37:27.962Z">
+<meta property="article:author" content="李罗奥">
+<meta property="article:tag" content="tool">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="使用SonarQube管理代码质量">
-<meta name="twitter:description" content="SonarQube 是一个自动代码审查工具，用于检测代码中的错误，漏洞和代码异味。它可以与现有的工作流程集成，以便在项目分支和拉取请求之间进行连续的代码检查。官方提供了2种方式，一种是下载后本地搭建，另一种是在线运行。">
 <meta name="twitter:image" content="https://liluoao.github.io/images/sonar-add-project.png">
   
   
     <link rel="icon" href="/favicon.png">
   
-  <link rel="stylesheet" href="/css/style.css">
-</head>
-</html>
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.0.0"></head>
+
 <body>
   <div id="container">
     <div id="wrap">
@@ -40,10 +42,6 @@
       <h1 id="logo-wrap">
         <a href="/" id="logo">码之力，三段</a>
       </h1>
-      
-        <h2 id="subtitle-wrap">
-          <a href="/" id="subtitle">To be a Web Artisan</a>
-        </h2>
       
     </div>
     <div id="header-inner" class="inner">
@@ -92,31 +90,31 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><a href="https://www.sonarqube.org/" target="_blank" rel="noopener">SonarQube</a> 是一个自动代码审查工具，用于检测代码中的错误，漏洞和代码异味。它可以与现有的工作流程集成，以便在项目分支和拉取请求之间进行连续的代码检查。官方提供了2种方式，一种是下载后本地搭建，另一种是在线运行。</p>
+        <p><a target="_blank" rel="noopener" href="https://www.sonarqube.org/">SonarQube</a> 是一个自动代码审查工具，用于检测代码中的错误，漏洞和代码异味。它可以与现有的工作流程集成，以便在项目分支和拉取请求之间进行连续的代码检查。官方提供了2种方式，一种是下载后本地搭建，另一种是在线运行。</p>
 <a id="more"></a>
 
-<p>这里以在线运行为例，进入<a href="https://sonarcloud.io/about/sq" target="_blank" rel="noopener">SonarCloud</a>，使用 GitHub 账号登录。在 <code>Create Organization</code> 创建组织后，可以开始 <code>Analyze projects</code> 分析你的项目了。</p>
+<p>这里以在线运行为例，进入<a target="_blank" rel="noopener" href="https://sonarcloud.io/about/sq">SonarCloud</a>，使用 GitHub 账号登录。在 <code>Create Organization</code> 创建组织后，可以开始 <code>Analyze projects</code> 分析你的项目了。</p>
 <p><img src="/images/sonar-add-project.png" alt="添加项目"></p>
-<p>这里由于是测试项目，我选择 <em>Free plan</em>，上传后所有人都可以看到源码与分析结果。开始分析后，SonarCloud 会 <code>Provide a token</code> 创建一个 Token，在分析时填写。创建完后，下面要选择项目主要使用的语言，使用的操作系统，还需要下载一个<a href="https://docs.sonarqube.org/display/SCAN/Analyzing+with+SonarQube+Scanner" target="_blank" rel="noopener">SonarQube Scanner</a></p>
+<p>这里由于是测试项目，我选择 <em>Free plan</em>，上传后所有人都可以看到源码与分析结果。开始分析后，SonarCloud 会 <code>Provide a token</code> 创建一个 Token，在分析时填写。创建完后，下面要选择项目主要使用的语言，使用的操作系统，还需要下载一个<a target="_blank" rel="noopener" href="https://docs.sonarqube.org/display/SCAN/Analyzing+with+SonarQube+Scanner">SonarQube Scanner</a></p>
 <p>以 Windows 为例，下载解压后将其中的 <code>/bin</code> 目录加入环境变量，进入你的项目根目录执行如下命令（也可以复制页面自动生成的命令）：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">D:\WWW\Sm&gt;sonar-scanner.bat </span><br><span class="line">-D<span class="string">"sonar.projectKey=&#123;你的Project Key&#125;"</span> </span><br><span class="line">-D<span class="string">"sonar.organization=&#123;你的Organization Key&#125;"</span> </span><br><span class="line">-D<span class="string">"sonar.sources=."</span> </span><br><span class="line">-D<span class="string">"sonar.host.url=https://sonarcloud.io"</span> </span><br><span class="line">-D<span class="string">"sonar.login=&#123;你的Token&#125;"</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">D:\WWW\Sm&gt;sonar-scanner.bat </span><br><span class="line">-D<span class="string">&quot;sonar.projectKey=&#123;你的Project Key&#125;&quot;</span> </span><br><span class="line">-D<span class="string">&quot;sonar.organization=&#123;你的Organization Key&#125;&quot;</span> </span><br><span class="line">-D<span class="string">&quot;sonar.sources=.&quot;</span> </span><br><span class="line">-D<span class="string">&quot;sonar.host.url=https://sonarcloud.io&quot;</span> </span><br><span class="line">-D<span class="string">&quot;sonar.login=&#123;你的Token&#125;&quot;</span></span><br></pre></td></tr></table></figure>
 
 <p>部分输出结果如下：</p>
-<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">INFO:</span> SonarQube Scanner <span class="number">3.2</span><span class="number">.0</span><span class="number">.1227</span></span><br><span class="line"><span class="string">INFO:</span> Project <span class="string">key:</span> royal-flush-crm_mei-crm</span><br><span class="line"><span class="string">INFO:</span> Organization <span class="string">key:</span> royal-flush-crm</span><br><span class="line"><span class="string">INFO:</span> -------------  Scan royal-flush-crm_mei-crm</span><br><span class="line"><span class="string">INFO:</span> Index files</span><br><span class="line"><span class="string">INFO:</span> <span class="number">15</span> files indexed</span><br><span class="line"><span class="string">INFO:</span> Sensor HTML [web] (done) | time=<span class="number">347</span>ms</span><br><span class="line"><span class="string">INFO:</span> Sensor PHP sensor [php] (done) | time=<span class="number">2136</span>ms</span><br><span class="line"><span class="string">INFO:</span> SCM provider <span class="keyword">for</span> <span class="keyword">this</span> project <span class="string">is:</span> git</span><br><span class="line"><span class="string">INFO:</span> <span class="number">12</span> files to be analyzed</span><br><span class="line"><span class="string">INFO:</span> <span class="number">12</span>/<span class="number">12</span> files analyzed</span><br><span class="line"><span class="string">INFO:</span> CPD calculation finished</span><br><span class="line"><span class="string">INFO:</span> Analysis report generated <span class="keyword">in</span> <span class="number">316</span>ms, dir size=<span class="number">158</span> KB</span><br><span class="line"><span class="string">INFO:</span> Analysis reports compressed <span class="keyword">in</span> <span class="number">89</span>ms, zip size=<span class="number">52</span> KB</span><br><span class="line"><span class="string">INFO:</span> Analysis report uploaded <span class="keyword">in</span> <span class="number">2002</span>ms</span><br><span class="line"><span class="string">INFO:</span> ANALYSIS SUCCESSFUL, you can browse <span class="string">https:</span><span class="comment">//sonarcloud.io/dashboard?id=roy</span></span><br><span class="line">al-flush-crm_mei-crm</span><br><span class="line"><span class="string">INFO:</span> More about the report processing at <span class="string">https:</span><span class="comment">//sonarcloud.io/api/ce/task?id=A</span></span><br><span class="line">WfkWnRDqDdpA2vNWgTj</span><br><span class="line"><span class="string">INFO:</span> Task total <span class="string">time:</span> <span class="number">31.581</span> s</span><br><span class="line"><span class="string">INFO:</span> ------------------------------------------------------------------------</span><br><span class="line"><span class="string">INFO:</span> EXECUTION SUCCESS</span><br><span class="line"><span class="string">INFO:</span> ------------------------------------------------------------------------</span><br><span class="line"><span class="string">INFO:</span> Total <span class="string">time:</span> <span class="number">38.578</span>s</span><br><span class="line"><span class="string">INFO:</span> Final <span class="string">Memory:</span> <span class="number">34</span>M/<span class="number">293</span>M</span><br><span class="line"><span class="string">INFO:</span> ------------------------------------------------------------------------</span><br></pre></td></tr></table></figure>
+<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">INFO</span>: SonarQube Scanner <span class="number">3.2</span><span class="number">.0</span><span class="number">.1227</span></span><br><span class="line"><span class="keyword">INFO</span>: Project key: royal-flush-crm_mei-crm</span><br><span class="line"><span class="keyword">INFO</span>: Organization key: royal-flush-crm</span><br><span class="line"><span class="keyword">INFO</span>: <span class="comment">-------------  Scan royal-flush-crm_mei-crm</span></span><br><span class="line"><span class="keyword">INFO</span>: <span class="keyword">Index</span> files</span><br><span class="line"><span class="keyword">INFO</span>: <span class="number">15</span> files indexed</span><br><span class="line"><span class="keyword">INFO</span>: Sensor HTML [web] (done) | <span class="type">time</span>=<span class="number">347</span>ms</span><br><span class="line"><span class="keyword">INFO</span>: Sensor PHP sensor [php] (done) | <span class="type">time</span>=<span class="number">2136</span>ms</span><br><span class="line"><span class="keyword">INFO</span>: SCM provider <span class="keyword">for</span> this project <span class="keyword">is</span>: git</span><br><span class="line"><span class="keyword">INFO</span>: <span class="number">12</span> files <span class="keyword">to</span> be analyzed</span><br><span class="line"><span class="keyword">INFO</span>: <span class="number">12</span>/<span class="number">12</span> files analyzed</span><br><span class="line"><span class="keyword">INFO</span>: CPD calculation finished</span><br><span class="line"><span class="keyword">INFO</span>: Analysis report <span class="keyword">generated</span> <span class="keyword">in</span> <span class="number">316</span>ms, dir size=<span class="number">158</span> KB</span><br><span class="line"><span class="keyword">INFO</span>: Analysis reports compressed <span class="keyword">in</span> <span class="number">89</span>ms, zip size=<span class="number">52</span> KB</span><br><span class="line"><span class="keyword">INFO</span>: Analysis report uploaded <span class="keyword">in</span> <span class="number">2002</span>ms</span><br><span class="line"><span class="keyword">INFO</span>: ANALYSIS SUCCESSFUL, you can browse https://sonarcloud.io/dashboard?id=roy</span><br><span class="line">al-flush-crm_mei-crm</span><br><span class="line"><span class="keyword">INFO</span>: More about the report processing at https://sonarcloud.io/api/ce/task?id=A</span><br><span class="line">WfkWnRDqDdpA2vNWgTj</span><br><span class="line"><span class="keyword">INFO</span>: Task total <span class="type">time</span>: <span class="number">31.581</span> s</span><br><span class="line"><span class="keyword">INFO</span>: <span class="comment">------------------------------------------------------------------------</span></span><br><span class="line"><span class="keyword">INFO</span>: EXECUTION SUCCESS</span><br><span class="line"><span class="keyword">INFO</span>: <span class="comment">------------------------------------------------------------------------</span></span><br><span class="line"><span class="keyword">INFO</span>: Total <span class="type">time</span>: <span class="number">38.578</span>s</span><br><span class="line"><span class="keyword">INFO</span>: Final Memory: <span class="number">34</span>M/<span class="number">293</span>M</span><br><span class="line"><span class="keyword">INFO</span>: <span class="comment">------------------------------------------------------------------------</span></span><br></pre></td></tr></table></figure>
 
 <p>分析结果如下：</p>
 <p><img src="/images/sonar-result.png" alt="质量分析结果"></p>
 <p>完成后可以添加 Badge</p>
-<p><a href="https://sonarcloud.io/dashboard?id=liluoao_api-doc" target="_blank" rel="noopener"><img src="https://sonarcloud.io/api/project_badges/measure?project=liluoao_api-doc&metric=alert_status" alt="Quality Gate Status"></a></p>
+<p><a target="_blank" rel="noopener" href="https://sonarcloud.io/dashboard?id=liluoao_api-doc"><img src="https://sonarcloud.io/api/project_badges/measure?project=liluoao_api-doc&metric=alert_status" alt="Quality Gate Status"></a></p>
 <h3 id="后续"><a href="#后续" class="headerlink" title="后续"></a>后续</h3><p><a href="/2020/build-sonarqube-and-rules.html">《SonarQube再续前缘》</a></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2018/use-sonarqube-continuous-code-quality.html" data-id="ckdhanzvw001rcsmj2w4ujxvn" class="article-share-link">分享</a>
+      <a data-url="https://liluoao.github.io/2018/use-sonarqube-continuous-code-quality.html" data-id="ckdi92hv1001rbwmj1yibg775" class="article-share-link">分享</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/tool/">tool</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/tool/" rel="tag">tool</a></li></ul>
 
     </footer>
   </div>
@@ -171,7 +169,7 @@
           </li>
         
           <li>
-            <a href="/2019/about-middle-end.html">大中台的思考</a>
+            <a href="/2019/about-middle-end.html">初识大中台</a>
           </li>
         
           <li>
@@ -213,7 +211,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/apache/">apache</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/design-patterns/">design-patterns</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/laravel/">laravel</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mongo/">mongo</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/openresty/">openresty</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/other/">other</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/phalcon/">phalcon</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/php/">php</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/redis/">redis</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tool/">tool</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/yaf/">yaf</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/yii/">yii</a><span class="tag-list-count">2</span></li></ul>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/apache/" rel="tag">apache</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/design-patterns/" rel="tag">design-patterns</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/laravel/" rel="tag">laravel</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/" rel="tag">linux</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mongo/" rel="tag">mongo</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/openresty/" rel="tag">openresty</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/other/" rel="tag">other</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/phalcon/" rel="tag">phalcon</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/php/" rel="tag">php</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/redis/" rel="tag">redis</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tool/" rel="tag">tool</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/yaf/" rel="tag">yaf</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/yii/" rel="tag">yii</a><span class="tag-list-count">2</span></li></ul>
     </div>
   </div>
 
@@ -253,11 +251,17 @@
 <script src="//lib.sinaapp.com/js/jquery/3.1.0/jquery-3.1.0.min.js"></script>
 
 
-  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
-  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
 
 
 <script src="/js/script.js"></script>
+
 
 
 

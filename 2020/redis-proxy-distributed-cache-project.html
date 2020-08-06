@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<head><meta name="generator" content="Hexo 3.9.0">
+<head>
   <meta charset="utf-8">
   
 
@@ -8,27 +8,29 @@
   <title>Redis-Proxy分布式缓存方案分享 | 码之力，三段</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="前言想必在大家的架构中，Redis 已经是一个必不可少的部件，丰富的数据结构、超高的性能以及简单的协议，让它能够很好的作为数据库的上游缓存层。正是人们大量使用 Redis，逐渐暴露了一些缺点：  单节点物理内存是有限的，不能满足日益增长的业务内存的需要； 不能提供高可用服务。节点挂掉或者该节点机器宕机，导致大量请求走向数据库，造成数据库压力增大，加大数据库宕机风险； 运维会为每个业务方创建一个节点">
-<meta name="keywords" content="redis">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Redis-Proxy分布式缓存方案分享">
 <meta property="og:url" content="https://liluoao.github.io/2020/redis-proxy-distributed-cache-project.html">
 <meta property="og:site_name" content="码之力，三段">
 <meta property="og:description" content="前言想必在大家的架构中，Redis 已经是一个必不可少的部件，丰富的数据结构、超高的性能以及简单的协议，让它能够很好的作为数据库的上游缓存层。正是人们大量使用 Redis，逐渐暴露了一些缺点：  单节点物理内存是有限的，不能满足日益增长的业务内存的需要； 不能提供高可用服务。节点挂掉或者该节点机器宕机，导致大量请求走向数据库，造成数据库压力增大，加大数据库宕机风险； 运维会为每个业务方创建一个节点">
-<meta property="og:locale" content="zh-CN">
+<meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://liluoao.github.io/images/RedisProxy-structure.png">
 <meta property="og:image" content="https://liluoao.github.io/images/RedisProxy-stat.jpg">
-<meta property="og:updated_time" content="2020-08-05T11:34:18.304Z">
+<meta property="article:published_time" content="2020-04-20T10:56:46.000Z">
+<meta property="article:modified_time" content="2020-08-06T03:37:27.962Z">
+<meta property="article:author" content="李罗奥">
+<meta property="article:tag" content="redis">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Redis-Proxy分布式缓存方案分享">
-<meta name="twitter:description" content="前言想必在大家的架构中，Redis 已经是一个必不可少的部件，丰富的数据结构、超高的性能以及简单的协议，让它能够很好的作为数据库的上游缓存层。正是人们大量使用 Redis，逐渐暴露了一些缺点：  单节点物理内存是有限的，不能满足日益增长的业务内存的需要； 不能提供高可用服务。节点挂掉或者该节点机器宕机，导致大量请求走向数据库，造成数据库压力增大，加大数据库宕机风险； 运维会为每个业务方创建一个节点">
 <meta name="twitter:image" content="https://liluoao.github.io/images/RedisProxy-structure.png">
   
   
     <link rel="icon" href="/favicon.png">
   
-  <link rel="stylesheet" href="/css/style.css">
-</head>
-</html>
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.0.0"></head>
+
 <body>
   <div id="container">
     <div id="wrap">
@@ -39,10 +41,6 @@
       <h1 id="logo-wrap">
         <a href="/" id="logo">码之力，三段</a>
       </h1>
-      
-        <h2 id="subtitle-wrap">
-          <a href="/" id="subtitle">To be a Web Artisan</a>
-        </h2>
       
     </div>
     <div id="header-inner" class="inner">
@@ -119,7 +117,7 @@
 <ol>
 <li><p>混用和扩容问题，可以用 redis-proxy 里面支持的子集群解决<br>a. 针对混用问题，我们线上搭建两个子集群 group1 和 group2，业务方A和B分别属于 group1 和 group2，这样业务方A和业务方B是物理隔离，如果A出了问题，不会影响业务方B；<br>b. 针对扩容问题，我们解决方式是搭建一个新的子集群。比如子集群 group1 快要用完了，我们可以搭建 group2，而且搭建和使用都不会影响 group1 里面的业务。</p>
 </li>
-<li><p>key 冲突、命令乱用、请求 value 大、集群难以恢复问题，通过分配 source 解决。<br>a. 针对 key 冲突问题，redis-proxy 服务会给每个业务方分配一个 source 作为业务方每个请求 key 的前缀，诸如 <code>{source}&amp;key</code> 形式。这样每个业务方请求redis的key都不一样；<br>b. 针对命令乱用问题，我们会给每个业务方分配请求 redis 的命令，未分配的命令不给使用，这样可以有效管控命令；<br>c. 针对 bigkey 问题，我们会给每个业务方的每个请求限制请求最大值，大于这个值的，直接返回异常，不给存入集群；<br>d. 针对集群难以恢复问题，如果业务方严重影响子集群，对其他业务产生严重影响时，我们可以在运营平台给业务方快速降级；<br>e. 针对连接数占用严重问题，我们可以在运营平台限制每个业务方的连接数，防止因为异常导致 proxy 不稳定。</p>
+<li><p>key 冲突、命令乱用、请求 value 大、集群难以恢复问题，通过分配 source 解决。<br>a. 针对 key 冲突问题，redis-proxy 服务会给每个业务方分配一个 source 作为业务方每个请求 key 的前缀，诸如 <code>&#123;source&#125;&amp;key</code> 形式。这样每个业务方请求redis的key都不一样；<br>b. 针对命令乱用问题，我们会给每个业务方分配请求 redis 的命令，未分配的命令不给使用，这样可以有效管控命令；<br>c. 针对 bigkey 问题，我们会给每个业务方的每个请求限制请求最大值，大于这个值的，直接返回异常，不给存入集群；<br>d. 针对集群难以恢复问题，如果业务方严重影响子集群，对其他业务产生严重影响时，我们可以在运营平台给业务方快速降级；<br>e. 针对连接数占用严重问题，我们可以在运营平台限制每个业务方的连接数，防止因为异常导致 proxy 不稳定。</p>
 </li>
 <li><p>针对定位问题复杂、业务方不设置缓存失效时间、报警和报表问题，通过打印日志来解决。<br>a. 针对定位问题复杂，我们打印日志，日志包括请求 key、source、耗时、命令、请求大小、返回大小、所属子集群等信息全面反映当时请求情况；<br>b. 针对业务方不设置缓存失效时间问题，我们可以让业务方请求的 key 强制失效，解决业务方因使用不当而占用线上大量内存的问题；<br>c. 针对报表问题，我们也可以通过日志统计报表，也可以在 Kibana 看到各个 source 各种命令的请求数、耗时以及命中率等信息。</p>
 </li>
@@ -132,10 +130,10 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2020/redis-proxy-distributed-cache-project.html" data-id="ckdhanzvg0012csmj4zp534w9" class="article-share-link">分享</a>
+      <a data-url="https://liluoao.github.io/2020/redis-proxy-distributed-cache-project.html" data-id="ckdi92hul000xbwmje0wa3af5" class="article-share-link">分享</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/redis/">redis</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/redis/" rel="tag">redis</a></li></ul>
 
     </footer>
   </div>
@@ -181,7 +179,7 @@
           </li>
         
           <li>
-            <a href="/2019/about-middle-end.html">大中台的思考</a>
+            <a href="/2019/about-middle-end.html">初识大中台</a>
           </li>
         
           <li>
@@ -223,7 +221,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/apache/">apache</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/design-patterns/">design-patterns</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/laravel/">laravel</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mongo/">mongo</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/openresty/">openresty</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/other/">other</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/phalcon/">phalcon</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/php/">php</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/redis/">redis</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tool/">tool</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/yaf/">yaf</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/yii/">yii</a><span class="tag-list-count">2</span></li></ul>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/apache/" rel="tag">apache</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/design-patterns/" rel="tag">design-patterns</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/laravel/" rel="tag">laravel</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/" rel="tag">linux</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mongo/" rel="tag">mongo</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/openresty/" rel="tag">openresty</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/other/" rel="tag">other</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/phalcon/" rel="tag">phalcon</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/php/" rel="tag">php</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/redis/" rel="tag">redis</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tool/" rel="tag">tool</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/yaf/" rel="tag">yaf</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/yii/" rel="tag">yii</a><span class="tag-list-count">2</span></li></ul>
     </div>
   </div>
 
@@ -263,11 +261,17 @@
 <script src="//lib.sinaapp.com/js/jquery/3.1.0/jquery-3.1.0.min.js"></script>
 
 
-  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
-  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
 
 
 <script src="/js/script.js"></script>
+
 
 
 

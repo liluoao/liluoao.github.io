@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<head><meta name="generator" content="Hexo 3.9.0">
+<head>
   <meta charset="utf-8">
   
 
@@ -8,27 +8,29 @@
   <title>DB主从一致性方案 | 码之力，三段</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="实际工作中，大部分项目和业务都是读多写少。为了保证高可用性，提升读速度，一般会采用读写分离、一主多从的数据库架构。 但是主从同步是延时的，如果在写操作同步完成前发生了读操作，就会导致脏读，如何解决？">
-<meta name="keywords" content="other">
 <meta property="og:type" content="article">
 <meta property="og:title" content="DB主从一致性方案">
 <meta property="og:url" content="https://liluoao.github.io/2020/consistency-of-master-and-slave-database.html">
 <meta property="og:site_name" content="码之力，三段">
 <meta property="og:description" content="实际工作中，大部分项目和业务都是读多写少。为了保证高可用性，提升读速度，一般会采用读写分离、一主多从的数据库架构。 但是主从同步是延时的，如果在写操作同步完成前发生了读操作，就会导致脏读，如何解决？">
-<meta property="og:locale" content="zh-CN">
+<meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://liluoao.github.io/images/semi-sync.jpg">
 <meta property="og:image" content="https://liluoao.github.io/images/mysql-middleware.jpg">
-<meta property="og:updated_time" content="2020-08-05T11:34:18.304Z">
+<meta property="article:published_time" content="2020-01-22T05:45:49.000Z">
+<meta property="article:modified_time" content="2020-08-06T03:37:27.962Z">
+<meta property="article:author" content="李罗奥">
+<meta property="article:tag" content="other">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="DB主从一致性方案">
-<meta name="twitter:description" content="实际工作中，大部分项目和业务都是读多写少。为了保证高可用性，提升读速度，一般会采用读写分离、一主多从的数据库架构。 但是主从同步是延时的，如果在写操作同步完成前发生了读操作，就会导致脏读，如何解决？">
 <meta name="twitter:image" content="https://liluoao.github.io/images/semi-sync.jpg">
   
   
     <link rel="icon" href="/favicon.png">
   
-  <link rel="stylesheet" href="/css/style.css">
-</head>
-</html>
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.0.0"></head>
+
 <body>
   <div id="container">
     <div id="wrap">
@@ -39,10 +41,6 @@
       <h1 id="logo-wrap">
         <a href="/" id="logo">码之力，三段</a>
       </h1>
-      
-        <h2 id="subtitle-wrap">
-          <a href="/" id="subtitle">To be a Web Artisan</a>
-        </h2>
       
     </div>
     <div id="header-inner" class="inner">
@@ -103,10 +101,10 @@
 <li>读从库，读到最新的数据（如果读请求先完成，写请求后完成，读取到的是“当时”最新的数据）</li>
 </ol>
 <p>这个方案的优点是原生功能，使用简单。<br>在线加载插件安装：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; install plugin rpl_semi_sync_master soname &apos;semisync_master.so&apos;;</span><br><span class="line">mysql&gt; install plugin rpl_semi_sync_slave soname &apos;semisync_slave.so&apos;;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; install plugin rpl_semi_sync_master soname &#39;semisync_master.so&#39;;</span><br><span class="line">mysql&gt; install plugin rpl_semi_sync_slave soname &#39;semisync_slave.so&#39;;</span><br></pre></td></tr></table></figure>
 
 <p>写入配置文件：</p>
-<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">[mysqld]</span></span><br><span class="line"><span class="attr">plugin-dir</span>=/usr/local/mysql/lib/plugin</span><br><span class="line"><span class="attr">plugin-load</span>=<span class="string">"rpl_semi_sync_master:semisync_master.so;rpl_semi_sync_slave:semisync_slave.so"</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">[mysqld]</span></span><br><span class="line"><span class="attr">plugin-dir</span>=/usr/local/mysql/lib/plugin</span><br><span class="line"><span class="attr">plugin-load</span>=<span class="string">&quot;rpl_semi_sync_master:semisync_master.so;rpl_semi_sync_slave:semisync_slave.so&quot;</span></span><br></pre></td></tr></table></figure>
 
 <p>缺点是主库的写请求时延会增长，吞吐量会降低。</p>
 <h3 id="强制读主库"><a href="#强制读主库" class="headerlink" title="强制读主库"></a>强制读主库</h3><p>如果读写都到主库，就不会出现这种问题了。需要使用缓存来弥补缺失的读性能。</p>
@@ -115,7 +113,7 @@
 <li>记录所有路由到写库的 key，在经验主从同步时间窗口内，如果有读请求访问中间件，此时有可能从库还是旧数据，就把这个key上的读请求路由到主库</li>
 <li>经验主从同步时间过完后，对应 key 的读请求继续路由到从库</li>
 </ol>
-<p>市面上的开源中间件相当少了，可能只有原当当网的 <a href="https://github.com/apache/incubator-shardingsphere" target="_blank" rel="noopener">apache/incubator-shardingsphere</a> 还在维护。</p>
+<p>市面上的开源中间件相当少了，可能只有原当当网的 <a target="_blank" rel="noopener" href="https://github.com/apache/incubator-shardingsphere">apache/incubator-shardingsphere</a> 还在维护。</p>
 <p><img src="/images/mysql-middleware.jpg" alt="早期主流的开源中间件"></p>
 <p>想新开发的话要看公司技术实力如何，时间人力成本都相当高。使用市场上的中间件也要注意信息安全。</p>
 <h3 id="缓存记录写-key"><a href="#缓存记录写-key" class="headerlink" title="缓存记录写 key"></a>缓存记录写 key</h3><p>最后说的这个方案总结了前三个方案的优缺点，就是用缓存记录库中操作的 key：</p>
@@ -139,10 +137,10 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2020/consistency-of-master-and-slave-database.html" data-id="ckdhanzv00003csmj8pndmodd" class="article-share-link">分享</a>
+      <a data-url="https://liluoao.github.io/2020/consistency-of-master-and-slave-database.html" data-id="ckdi92htq0003bwmjcsyjhewv" class="article-share-link">分享</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/other/">other</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/other/" rel="tag">other</a></li></ul>
 
     </footer>
   </div>
@@ -197,7 +195,7 @@
           </li>
         
           <li>
-            <a href="/2019/about-middle-end.html">大中台的思考</a>
+            <a href="/2019/about-middle-end.html">初识大中台</a>
           </li>
         
           <li>
@@ -239,7 +237,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/apache/">apache</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/design-patterns/">design-patterns</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/laravel/">laravel</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mongo/">mongo</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/openresty/">openresty</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/other/">other</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/phalcon/">phalcon</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/php/">php</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/redis/">redis</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tool/">tool</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/yaf/">yaf</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/yii/">yii</a><span class="tag-list-count">2</span></li></ul>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/apache/" rel="tag">apache</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/design-patterns/" rel="tag">design-patterns</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/laravel/" rel="tag">laravel</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/" rel="tag">linux</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mongo/" rel="tag">mongo</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/openresty/" rel="tag">openresty</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/other/" rel="tag">other</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/phalcon/" rel="tag">phalcon</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/php/" rel="tag">php</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/redis/" rel="tag">redis</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tool/" rel="tag">tool</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/yaf/" rel="tag">yaf</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/yii/" rel="tag">yii</a><span class="tag-list-count">2</span></li></ul>
     </div>
   </div>
 
@@ -279,11 +277,17 @@
 <script src="//lib.sinaapp.com/js/jquery/3.1.0/jquery-3.1.0.min.js"></script>
 
 
-  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
-  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
 
 
 <script src="/js/script.js"></script>
+
 
 
 
