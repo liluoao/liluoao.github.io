@@ -15,9 +15,8 @@
 <meta property="og:description" content="实际工作中，大部分项目和业务都是读多写少。为了保证高可用性，提升读速度，一般会采用读写分离、一主多从的数据库架构。 但是主从同步是延时的，如果在写操作同步完成前发生了读操作，就会导致脏读，如何解决？">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://liluoao.github.io/images/semi-sync.jpg">
-<meta property="og:image" content="https://liluoao.github.io/images/mysql-middleware.jpg">
 <meta property="article:published_time" content="2020-01-22T05:45:49.000Z">
-<meta property="article:modified_time" content="2020-08-06T06:13:07.954Z">
+<meta property="article:modified_time" content="2020-08-06T07:13:40.880Z">
 <meta property="article:author" content="李罗奥">
 <meta property="article:tag" content="other">
 <meta name="twitter:card" content="summary">
@@ -76,6 +75,16 @@
   </div>
   <div class="article-inner">
     
+<div class="article-gallery">
+  <div class="article-gallery-photos">
+    
+      <a class="article-gallery-img fancybox" href="/images/semi-sync.jpg" rel="gallery_ckdigsj64000384mj25hc4l84">
+        <img src="/images/semi-sync.jpg" itemprop="image">
+      </a>
+    
+  </div>
+</div>
+
     
       <header class="article-header">
         
@@ -94,7 +103,6 @@
 <a id="more"></a>
 
 <h3 id="半同步复制"><a href="#半同步复制" class="headerlink" title="半同步复制"></a>半同步复制</h3><p>普通的主从同步是使用 MySQL 的异步复制，依靠二进制日志（binary log）进行。从 5.5 版本开始，MySQL 引入了半同步复制（semi-sync）：一个事务提交时，日志至少要保证有一个从接收到，那么它的提交才能继续。</p>
-<p><img src="/images/semi-sync.jpg" alt="半同步复制"></p>
 <ol>
 <li>系统先对主库进行了一个写操作</li>
 <li>等主从同步完成，写主库的请求才返回</li>
@@ -137,7 +145,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2020/consistency-of-master-and-slave-database.html" data-id="ckdiempg600039omj773bdwn5" class="article-share-link">分享</a>
+      <a data-url="https://liluoao.github.io/2020/consistency-of-master-and-slave-database.html" data-id="ckdigsj64000384mj25hc4l84" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/other/" rel="tag">other</a></li></ul>
@@ -149,7 +157,7 @@
 <nav id="article-nav">
   
     <a href="/2020/build-sonarqube-and-rules.html" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">上一篇</strong>
+      <strong class="article-nav-caption">下一篇</strong>
       <div class="article-nav-title">
         
           SonarQube再续前缘
@@ -159,7 +167,7 @@
   
   
     <a href="/2019/php-structural-design-patterns-template-method.html" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">下一篇</strong>
+      <strong class="article-nav-caption">上一篇</strong>
       <div class="article-nav-title">模板方法模式（TemplateMethod）</div>
     </a>
   

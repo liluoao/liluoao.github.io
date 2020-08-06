@@ -14,14 +14,13 @@
 <meta property="og:site_name" content="码之力，三段">
 <meta property="og:description" content="引子最近需要做个统计，计算一个销售或部门（n 个销售），在一段时间内（n 天）的成交数据。数据在 Mongo，大致结构如下： 1234567891011121314151617[    &amp;#x27;si_id&amp;#x27; &#x3D;&gt; 1,&#x2F;&#x2F;销售ID    &amp;#x27;date&amp;#x27; &#x3D;&gt; &amp;#x27;2019-05-28&amp;#x27;,&#x2F;&#x2F;Y-m-d时间    &amp;#x27;data&amp;#">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://docs.mongodb.com/manual/_images/map-reduce.bakedsvg.svg">
 <meta property="og:image" content="https://liluoao.github.io/images/mongo-aggregation.jpg">
 <meta property="article:published_time" content="2019-05-28T02:15:54.000Z">
-<meta property="article:modified_time" content="2020-08-06T06:13:07.954Z">
+<meta property="article:modified_time" content="2020-08-06T07:13:40.880Z">
 <meta property="article:author" content="李罗奥">
 <meta property="article:tag" content="mongo">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://docs.mongodb.com/manual/_images/map-reduce.bakedsvg.svg">
+<meta name="twitter:image" content="https://liluoao.github.io/images/mongo-aggregation.jpg">
   
   
     <link rel="icon" href="/favicon.png">
@@ -76,6 +75,16 @@
   </div>
   <div class="article-inner">
     
+<div class="article-gallery">
+  <div class="article-gallery-photos">
+    
+      <a class="article-gallery-img fancybox" href="/images/mongo-aggregation.jpg" rel="gallery_ckdigsj6y001j84mjbau01l0h">
+        <img src="/images/mongo-aggregation.jpg" itemprop="image">
+      </a>
+    
+  </div>
+</div>
+
     
       <header class="article-header">
         
@@ -112,7 +121,6 @@
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">[</span><br><span class="line">    <span class="string">&#x27;$group&#x27;</span> =&gt; [</span><br><span class="line">        <span class="string">&#x27;_id&#x27;</span> =&gt; <span class="string">&#x27;$data.product_id&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;num&#x27;</span> =&gt; [</span><br><span class="line">            <span class="string">&#x27;$sum&#x27;</span> =&gt; <span class="string">&#x27;$data.num&#x27;</span> <span class="comment">//对num字段进行求和</span></span><br><span class="line">        ]</span><br><span class="line">    ]</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
 
 <p>意犹未尽的你可以再去看看文档，是否能进一步优化你的日常开发。</p>
-<p><img src="/images/mongo-aggregation.jpg" alt="聚合介绍"></p>
 <table>
 <thead>
 <tr>
@@ -157,7 +165,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2019/mongodb-aggregation.html" data-id="ckdiemph1001o9omj97drg91r" class="article-share-link">分享</a>
+      <a data-url="https://liluoao.github.io/2019/mongodb-aggregation.html" data-id="ckdigsj6y001j84mjbau01l0h" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mongo/" rel="tag">mongo</a></li></ul>
@@ -169,7 +177,7 @@
 <nav id="article-nav">
   
     <a href="/2019/php-structural-design-patterns-state.html" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">上一篇</strong>
+      <strong class="article-nav-caption">下一篇</strong>
       <div class="article-nav-title">
         
           状态模式（State）
@@ -179,7 +187,7 @@
   
   
     <a href="/2019/php-structural-design-patterns-decorator.html" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">下一篇</strong>
+      <strong class="article-nav-caption">上一篇</strong>
       <div class="article-nav-title">装饰器模式（Decorator）</div>
     </a>
   
