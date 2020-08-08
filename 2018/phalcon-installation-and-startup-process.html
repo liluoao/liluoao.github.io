@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>Phalcon安装与启动流程 | 码之力，三段</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Phalcon 是一个使用 C 编写、高性能的 PHP 框架。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Phalcon安装与启动流程">
+<meta property="og:url" content="https://liluoao.github.io/2018/phalcon-installation-and-startup-process.html">
+<meta property="og:site_name" content="码之力，三段">
+<meta property="og:description" content="Phalcon 是一个使用 C 编写、高性能的 PHP 框架。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2018-03-17T02:37:19.000Z">
+<meta property="article:modified_time" content="2020-08-08T08:21:02.938Z">
+<meta property="article:author" content="李罗奥">
+<meta property="article:tag" content="phalcon">
+<meta name="twitter:card" content="summary">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.0.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">码之力，三段</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">首页</a>
+        
+          <a class="main-nav-link" href="/archives">文章列表</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://liluoao.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Phalcon安装与启动流程" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/phalcon-installation-and-startup-process.html" class="article-date">
+  <time datetime="2018-03-17T02:37:19.000Z" itemprop="datePublished">2018-03-17</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/php-framework/">PHP框架</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Phalcon安装与启动流程
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Phalcon 是一个使用 C 编写、高性能的 PHP 框架。</p>
+<a id="more"></a>
+
+<p>Windows 用户下载 <em>.dll</em> 文件，加入 <em>php.ini</em> ：</p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">extension</span> = php_phalcon.dll</span><br></pre></td></tr></table></figure>
+
+<p>Linux 安装方法见：<a target="_blank" rel="noopener" href="https://phalcon.io/zh-cn/download/linux">Linux/Unix/Mac</a></p>
+<h4 id="安装-Phalcon-devtool"><a href="#安装-Phalcon-devtool" class="headerlink" title="安装 Phalcon-devtool"></a>安装 Phalcon-devtool</h4><p><a target="_blank" rel="noopener" href="https://github.com/phalcon/phalcon-devtools">phalcon-devtools</a> 是 Phalcon 开发者工具，可以自动生成代码，为 IDE 创建 Phalcon 语法提示。</p>
+<p>clone 下来后将 <em>~/phalcon-devtools</em> 目录加入环境变量，方便使用</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">phalcon --<span class="built_in">help</span></span><br></pre></td></tr></table></figure>
+
+<p>成功返回如下信息：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">Phalcon DevTools (3.2.12)</span><br><span class="line"></span><br><span class="line">Help:</span><br><span class="line">  Lists the commands available</span><br><span class="line"><span class="keyword">in</span></span><br><span class="line"> Phalcon devtools</span><br><span class="line"></span><br><span class="line">Available commands:</span><br><span class="line">  info             (<span class="built_in">alias</span> of: i)</span><br><span class="line">  commands         (<span class="built_in">alias</span> of: list, enumerate)</span><br><span class="line">  controller       (<span class="built_in">alias</span> of: create-controller)</span><br><span class="line">  module           (<span class="built_in">alias</span> of: create-module)</span><br><span class="line">  model            (<span class="built_in">alias</span> of: create-model)</span><br><span class="line">  all-models       (<span class="built_in">alias</span> of: create-all-models)</span><br><span class="line">  project          (<span class="built_in">alias</span> of: create-project)</span><br><span class="line">  scaffold         (<span class="built_in">alias</span> of: create-scaffold)</span><br><span class="line">  migration        (<span class="built_in">alias</span> of: create-migration)</span><br><span class="line">  webtools         (<span class="built_in">alias</span> of: create-webtools)</span><br><span class="line">  serve            (<span class="built_in">alias</span> of: server)</span><br><span class="line">  console          (<span class="built_in">alias</span> of: shell, psysh)</span><br></pre></td></tr></table></figure>
+
+<h4 id="为-IDE-创建语法提示"><a href="#为-IDE-创建语法提示" class="headerlink" title="为 IDE 创建语法提示"></a>为 IDE 创建语法提示</h4><p>进入 <em>~/phalcon-devtools/ide</em> 文件夹，运行命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">php gen-stubs.php</span><br></pre></td></tr></table></figure>
+
+<p>它会在本文件夹中生成相应版本语法目录，在你的 PHPStorm 中配置 <code>Configure PHP Include Paths</code> 即可。</p>
+<h4 id="框架文件"><a href="#框架文件" class="headerlink" title="框架文件"></a>框架文件</h4><p>Phalcon 对于结构要求不固定，单模块例子如下：</p>
+<figure class="highlight x86asm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">app/</span><br><span class="line">    controllers/</span><br><span class="line">    models/</span><br><span class="line">    views/</span><br><span class="line"><span class="meta">public</span>/</span><br><span class="line">    css/</span><br><span class="line">    img/</span><br><span class="line">    <span class="keyword">js</span>/</span><br></pre></td></tr></table></figure>
+
+<p>多模块例子：</p>
+<figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">apps/</span><br><span class="line">  frontend/</span><br><span class="line">     controllers/</span><br><span class="line">     models/</span><br><span class="line">     views/</span><br><span class="line">     <span class="module-access"><span class="module"><span class="identifier">Module</span>.</span></span>php</span><br><span class="line">  backend/</span><br><span class="line">     controllers/</span><br><span class="line">     models/</span><br><span class="line">     views/</span><br><span class="line">     <span class="module-access"><span class="module"><span class="identifier">Module</span>.</span></span>php</span><br><span class="line">public/</span><br><span class="line">  css/</span><br><span class="line">  img/</span><br><span class="line">  js/</span><br></pre></td></tr></table></figure>
+
+<h2 id="启动流程"><a href="#启动流程" class="headerlink" title="启动流程"></a>启动流程</h2><p>入口文件简化后一共5行，包含了整个 Phalcon 的启动流程，以下将按顺序说明</p>
+<h3 id="1-DI-注册阶段"><a href="#1-DI-注册阶段" class="headerlink" title="1.DI 注册阶段"></a>1.DI 注册阶段</h3><p>Phalcon的所有组件服务都是通过<a target="_blank" rel="noopener" href="https://docs.phalcon.io/4.0/zh-cn/api/phalcon_di">DI（依赖注入）</a>进行组织的，这也是目前大部分主流框架所使用的方法</p>
+<p>通过 DI，可以灵活的控制框架中的服务：哪些需要启用，哪些不启用，组件的内部细节等等，因此 Phalcon 是一个松耦合可替换的框架，完全可以通过 DI 替换 MVC 中任何一个组件</p>
+<figure class="highlight php"><figcaption><span>public/index.php</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//line 1</span></span><br><span class="line"><span class="keyword">require</span>  <span class="keyword">__DIR__</span> . <span class="string">&#x27;/../config/services.php&#x27;</span>;</span><br></pre></td></tr></table></figure>
+
+<p>这个文件中默认注册了<code>Phalcon\Mvc\Router</code>（路由）、<code>Phalcon\Mvc\Url</code>（Url）、<code>Phalcon\Session\Adapter\Files</code>（Session）三个最基本的组件</p>
+<p>同时当MVC启动后，DI中默认注册的服务还有很多，可以通过DI得到所有当前已经注册的服务：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$services = $application-&gt;getDI()-&gt;getServices();</span><br><span class="line"><span class="keyword">foreach</span> ($services <span class="keyword">as</span> $key =&gt; $service) &#123;</span><br><span class="line">   var_dump($key);</span><br><span class="line">   var_dump(get_class($application-&gt;getDI()-&gt;get($key)));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>打印看到 Phalcon 还注册了以下服务：</p>
+<ul>
+<li>dispatcher：<code>Phalcon\Mvc\Dispatcher</code> 分发服务，将路由命中的结果分发到对应的Controller</li>
+<li>modelsManager：<code>Phalcon\Mvc\Model\Manager</code> Model管理</li>
+<li>modelsMetadata：<code>Phalcon\Mvc\Model\MetaData\Memory</code> ORM表结构</li>
+<li>response：<code>Phalcon\Http\Response</code> 响应</li>
+<li>cookies：<code>Phalcon\Http\Response\Cookies</code> Cookies</li>
+<li>request：<code>Phalcon\Http\Request</code> 请求</li>
+<li>filter：<code>Phalcon\Filter</code> 可对用户提交数据进行过滤</li>
+<li>escaper：<code>Phalcon\Escaper</code> 转义工具</li>
+<li>security：<code>Phalcon\Security</code> 密码Hash、防止CSRF等</li>
+<li>crypt：<code>Phalcon\Crypt</code> 加密算法</li>
+<li>annotations：<code>Phalcon\Annotations\Adapter\Memory</code> 注解分析</li>
+<li>flash：<code>Phalcon\Flash\Direct</code> 提示信息输出</li>
+<li>flashSession：<code>Phalcon\Flash\Session</code> 提示信息通过Session延迟输出</li>
+<li>tag：<code>Phalcon\Tag</code> View的常用Helper</li>
+</ul>
+<p>而每一个服务都可以通过 DI 进行替换。接下来实例化一个标准的 MVC 应用，然后将我们定义好的 DI 注入进去</p>
+<figure class="highlight php"><figcaption><span>public/index.php</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//line 2-3</span></span><br><span class="line">$application = <span class="keyword">new</span> Phalcon\Mvc\Application();</span><br><span class="line">$application-&gt;setDI($di);</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-模块注册阶段"><a href="#2-模块注册阶段" class="headerlink" title="2.模块注册阶段"></a>2.模块注册阶段</h3><p>与 DI 一样，Phalcon 建议通过引入一个独立文件的方式注册所有需要的模块：</p>
+<figure class="highlight php"><figcaption><span>public/index.php</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//line 4</span></span><br><span class="line"><span class="keyword">require</span> <span class="keyword">__DIR__</span> . <span class="string">&#x27;/../config/modules.php&#x27;</span>;</span><br></pre></td></tr></table></figure>
+
+<p>这个文件的内容如下</p>
+<figure class="highlight php"><figcaption><span>config/modules.php</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$application-&gt;registerModules(<span class="keyword">array</span>(    </span><br><span class="line">   <span class="string">&#x27;frontend&#x27;</span> =&gt; <span class="keyword">array</span>(</span><br><span class="line">        <span class="string">&#x27;className&#x27;</span> =&gt;<span class="string">&#x27;Eva\Frontend\Module&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;path&#x27;</span> =&gt; <span class="keyword">__DIR__</span> . <span class="string">&#x27;/../apps/frontend/Module.php&#x27;</span></span><br><span class="line">    )</span><br><span class="line">));</span><br></pre></td></tr></table></figure>
+
+<p>可以看到 Phalcon 的模块注册其实只是告诉框架 MVC 模块的引导文件 <code>Module.php</code> 所在位置及类名是什么</p>
+<h3 id="3-MVC阶段"><a href="#3-MVC阶段" class="headerlink" title="3.MVC阶段"></a>3.MVC阶段</h3><p><code>$application-&gt;handle()</code> 是整个MVC的核心，这个函数中处理了路由、模块、分发等MVC的全部流程</p>
+<p>处理过程中在关键位置会通过事件驱动触发一系列事件，方便外部注入逻辑，最终返回一个<code>Phalcon\Http\Response</code></p>
+<p>整个 handle 方法的过程并不复杂，下面按顺序介绍：</p>
+<h4 id="基础检查"><a href="#基础检查" class="headerlink" title="基础检查"></a>基础检查</h4><p>首先检查 DI，如果没有任何注入，会抛出错误</p>
+<blockquote>
+<p>A dependency injection object is required to access internal services</p>
+</blockquote>
+<p>然后从 DI 启动 EventsManager，并且通过 EventsManager 触发事件 <code>application:boot</code></p>
+<h4 id="路由阶段"><a href="#路由阶段" class="headerlink" title="路由阶段"></a>路由阶段</h4><p>接下来进入路由阶段，从 DI 中获得路由服务，将 uri 传入路由并调用路由的 <code>handle()</code> 方法</p>
+<p>路由的 handle 方法负责将一个 uri 根据路由配置，转换为相应的 Module、Controller、Action 等</p>
+<p>这一阶段接下来会检查路由是否命中了某个模块，并通过 <code>Router-&gt;getModuleName()</code> 获得模块名，如果模块存在，则进入模块启动阶段，否则直接进入分发阶段</p>
+<h4 id="模块启动"><a href="#模块启动" class="headerlink" title="模块启动"></a>模块启动</h4><p>模块启动时首先会触发 <code>application:beforeStartModule</code> 事件</p>
+<p>事件触发后检查模块的正确性，根据 <em>modules.php</em> 中定义的 <code>className</code>、<code>path</code> 等，将模块引导文件加载进来，并调用模块引导文件中必须存在的方法</p>
+<p>模块启动完成后触发 <code>application:afterStartModule</code>事件，进入分发阶段</p>
+<h4 id="分发阶段（Dispatch）"><a href="#分发阶段（Dispatch）" class="headerlink" title="分发阶段（Dispatch）"></a>分发阶段（Dispatch）</h4><p>分发过程由 <code>Phalcon\Mvc\Dispatcher</code>（分发器）来完成</p>
+<p>所谓分发，在 Phalcon 里本质上是分发器根据路由命中的结果，调用对应的 Controller/Action，最终获得 Action 返回的结果</p>
+<p>分发开始前首先会准备 View，虽然 View 位于 MVC 的最后一环，但是如果在分发过程中出现任何问题，通常都需要将问题显示出来，因此View必须在这个环节就提前启动</p>
+<p>Phalcon 没有准备默认的 View 服务，需要从外部注入，如果始终没有 View 注入，会抛出错误，导致分发过程直接中断</p>
+<blockquote>
+<p>Service ‘view’ was not found in the dependency injection container</p>
+</blockquote>
+<p>分发开始前还会触发事件 <code>application:beforeHandleRequest</code>，正式开始分发会调用<code>Phalcon\Mvc\Dispatcher-&gt;dispatch()</code></p>
+<h4 id="渲染阶段（View-Render）"><a href="#渲染阶段（View-Render）" class="headerlink" title="渲染阶段（View Render）"></a>渲染阶段（View Render）</h4><p>分发结束后会触发 <code>application:afterHandleRequest</code></p>
+<p>接下来通过 <code>Phalcon\Mvc\Dispatcher-&gt;getReturnedValue()</code> 取得分发过程返回的结果并进行处理</p>
+<p>由于 Action 的逻辑在框架外，Action 的返回值是无法预期的，因此这里根据返回值是否实现 <code>Phalcon\Http\ResponseInterface</code> 接口进行区分处理</p>
+<ol>
+<li>当 Action 返回一个<strong>非</strong>此接口类型<br>此时认为返回值无效，由 View 自己重新调度 Render 过程，会触发 <code>application:viewRender</code> 事件，完毕后调用 <code>Phalcon\Mvc\View-&gt;finish()</code> 结束缓冲区的接收<br>接下来从 DI 获得 Response 服务，将 <code>Phalcon\Mvc\View-&gt;getContent()</code> 获得的内容置入 Response</li>
+<li>当 Action 返回一个此接口类型<br>此时会将 Action 返回的 Response 作为最终的响应</li>
+</ol>
+<h4 id="返回响应"><a href="#返回响应" class="headerlink" title="返回响应"></a>返回响应</h4><p>通过前面的流程，无论中间经历了多少分支，最终都会汇总为唯一的响应</p>
+<p>此时会触发 <code>application:beforeSendResponse</code>，并调用 <code>Phalcon\Http\Response</code> 里的 <code>sendHeaders()</code> 和 <code>sendCookies()</code>，将头部信息先行发送</p>
+<p>至此，<code>Application-&gt;handle()</code> 对于请求的处理过程全部结束，对外返回一个 <code>Phalcon\Http\Response</code> 响应</p>
+<h4 id="发送响应"><a href="#发送响应" class="headerlink" title="发送响应"></a>发送响应</h4><p>HTTP 头部发送后一般把响应的内容也发送出去：</p>
+<figure class="highlight php"><figcaption><span>public/index.php</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//line 5</span></span><br><span class="line"><span class="keyword">echo</span> $application-&gt;handle()-&gt;getContent();</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://liluoao.github.io/2018/phalcon-installation-and-startup-process.html" data-id="ckdle2vk7000obomj02540nnm" class="article-share-link">分享</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/phalcon/" rel="tag">phalcon</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2018/upload-library-to-packagist.html" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">
+        
+          发布包到Packagist
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/apache-ssl-config.html" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">Apache配置HTTPS并重定向</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/redis-proxy-distributed-cache-project.html">Redis-Proxy分布式缓存方案分享</a>
+          </li>
+        
+          <li>
+            <a href="/2020/consistency-of-master-and-slave-database.html">DB主从一致性方案</a>
+          </li>
+        
+          <li>
+            <a href="/2019/php-structural-design-patterns-template-method.html">模板方法模式（TemplateMethod）</a>
+          </li>
+        
+          <li>
+            <a href="/2019/about-middle-end.html">初识大中台</a>
+          </li>
+        
+          <li>
+            <a href="/2019/big-or-small-size-company.html">大小规模公司思考</a>
+          </li>
+        
+          <li>
+            <a href="/2019/yaf-individualization.html">Yaf框架结构个性化</a>
+          </li>
+        
+          <li>
+            <a href="/2019/yii-codeception-and-laravel-phpunit.html">Yii2与Laravel5的单元测试</a>
+          </li>
+        
+          <li>
+            <a href="/2019/project-code-style-management.html">项目代码风格管理</a>
+          </li>
+        
+          <li>
+            <a href="/2019/php-structural-design-patterns-state.html">状态模式（State）</a>
+          </li>
+        
+          <li>
+            <a href="/2019/mongodb-aggregation.html">使用MongoDB的聚合</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/openresty/">OpenResty</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/php-framework/">PHP框架</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/tool/">工具</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/database/">数据库</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/server/">服务器</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/other/">杂谈</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/design-patterns/">设计模式</a><span class="category-list-count">8</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/apache/" rel="tag">apache</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/design-patterns/" rel="tag">design-patterns</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/laravel/" rel="tag">laravel</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/" rel="tag">linux</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mongo/" rel="tag">mongo</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/openresty/" rel="tag">openresty</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/other/" rel="tag">other</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/phalcon/" rel="tag">phalcon</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/php/" rel="tag">php</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/redis/" rel="tag">redis</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tool/" rel="tag">tool</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/yaf/" rel="tag">yaf</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/yii/" rel="tag">yii</a><span class="tag-list-count">2</span></li></ul>
+    </div>
+  </div>
+
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      <div style="width: 300px; margin: 0 auto; text-align: center;">
+        传送门
+        &nbsp;<a href="https://github.com/liluoao" target="_blank" title="GitHub">GitHub</a>&nbsp;
+        &nbsp;<a href="https://segmentfault.com/u/liluoao" target="_blank" title="SegmentFault">思否</a>&nbsp;
+        &nbsp;<a href="https://learnku.com/users/7144" target="_blank" title="Laravel China">LearnKu</a>&nbsp;
+        &nbsp;<a href="https://juejin.im/user/5a19374cf265da4332274600" target="_blank" title="Jue Jin">掘金</a>
+      </div>
+      <div style="width: 300px; margin:0 auto; padding: 20px 0; text-align: center;">
+          &copy; 2020 码之力，三段
+          Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+      </div>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">首页</a>
+  
+    <a href="/archives" class="mobile-nav-link">文章列表</a>
+  
+</nav>
+    
+
+<script src="//lib.sinaapp.com/js/jquery/3.1.0/jquery-3.1.0.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>
