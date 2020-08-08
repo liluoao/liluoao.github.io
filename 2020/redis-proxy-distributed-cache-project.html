@@ -5,18 +5,18 @@
   
 
   
-  <title>Redis-Proxy分布式缓存方案分享 | 码之力，三段</title>
+  <title>Redis-Proxy分布式缓存方案分享 | 码之力三段</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="前言想必在大家的架构中，Redis 已经是一个必不可少的部件，丰富的数据结构、超高的性能以及简单的协议，让它能够很好的作为数据库的上游缓存层。正是人们大量使用 Redis，逐渐暴露了一些缺点：  单节点物理内存是有限的，不能满足日益增长的业务内存的需要； 不能提供高可用服务。节点挂掉或者该节点机器宕机，导致大量请求走向数据库，造成数据库压力增大，加大数据库宕机风险； 运维会为每个业务方创建一个节点">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Redis-Proxy分布式缓存方案分享">
 <meta property="og:url" content="https://liluoao.github.io/2020/redis-proxy-distributed-cache-project.html">
-<meta property="og:site_name" content="码之力，三段">
+<meta property="og:site_name" content="码之力三段">
 <meta property="og:description" content="前言想必在大家的架构中，Redis 已经是一个必不可少的部件，丰富的数据结构、超高的性能以及简单的协议，让它能够很好的作为数据库的上游缓存层。正是人们大量使用 Redis，逐渐暴露了一些缺点：  单节点物理内存是有限的，不能满足日益增长的业务内存的需要； 不能提供高可用服务。节点挂掉或者该节点机器宕机，导致大量请求走向数据库，造成数据库压力增大，加大数据库宕机风险； 运维会为每个业务方创建一个节点">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://liluoao.github.io/images/RedisProxy-structure.png">
 <meta property="article:published_time" content="2020-04-20T10:56:46.000Z">
-<meta property="article:modified_time" content="2020-08-08T08:30:20.143Z">
+<meta property="article:modified_time" content="2020-08-08T11:06:39.938Z">
 <meta property="article:author" content="李罗奥">
 <meta property="article:tag" content="redis">
 <meta name="twitter:card" content="summary">
@@ -38,7 +38,7 @@
   <div id="header-outer" class="outer">
     <div id="header-title" class="inner">
       <h1 id="logo-wrap">
-        <a href="/" id="logo">码之力，三段</a>
+        <a href="/" id="logo">码之力三段</a>
       </h1>
       
     </div>
@@ -49,6 +49,8 @@
           <a class="main-nav-link" href="/">首页</a>
         
           <a class="main-nav-link" href="/archives">文章列表</a>
+        
+          <a class="main-nav-link" href="/live2d">吸猫</a>
         
       </nav>
       <nav id="sub-nav">
@@ -78,7 +80,7 @@
 <div class="article-gallery">
   <div class="article-gallery-photos">
     
-      <a class="article-gallery-img fancybox" href="/images/RedisProxy-structure.png" rel="gallery_ckdleerio000oa4mj9gj30d0w">
+      <a class="article-gallery-img fancybox" href="/images/RedisProxy-structure.png" rel="gallery_ckdlk012t000o9gmj50ch3br3">
         <img src="/images/RedisProxy-structure.png" itemprop="image">
       </a>
     
@@ -138,7 +140,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2020/redis-proxy-distributed-cache-project.html" data-id="ckdleerio000oa4mj9gj30d0w" class="article-share-link">分享</a>
+      <a data-url="https://liluoao.github.io/2020/redis-proxy-distributed-cache-project.html" data-id="ckdlk012t000o9gmj50ch3br3" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/redis/" rel="tag">redis</a></li></ul>
@@ -250,7 +252,7 @@
         &nbsp;<a href="https://juejin.im/user/5a19374cf265da4332274600" target="_blank" title="Jue Jin">掘金</a>
       </div>
       <div style="width: 300px; margin:0 auto; padding: 20px 0; text-align: center;">
-          &copy; 2020 码之力，三段
+          &copy; 2020 码之力三段
           Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
       </div>
     </div>
@@ -262,6 +264,8 @@
     <a href="/" class="mobile-nav-link">首页</a>
   
     <a href="/archives" class="mobile-nav-link">文章列表</a>
+  
+    <a href="/live2d" class="mobile-nav-link">吸猫</a>
   
 </nav>
     

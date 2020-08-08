@@ -5,18 +5,18 @@
   
 
   
-  <title>DB主从一致性方案 | 码之力，三段</title>
+  <title>DB主从一致性方案 | 码之力三段</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="实际工作中，大部分项目和业务都是读多写少。为了保证高可用性，提升读速度，一般会采用读写分离、一主多从的数据库架构。 但是主从同步是延时的，如果在写操作同步完成前发生了读操作，就会导致脏读，如何解决？">
 <meta property="og:type" content="article">
 <meta property="og:title" content="DB主从一致性方案">
 <meta property="og:url" content="https://liluoao.github.io/2020/consistency-of-master-and-slave-database.html">
-<meta property="og:site_name" content="码之力，三段">
+<meta property="og:site_name" content="码之力三段">
 <meta property="og:description" content="实际工作中，大部分项目和业务都是读多写少。为了保证高可用性，提升读速度，一般会采用读写分离、一主多从的数据库架构。 但是主从同步是延时的，如果在写操作同步完成前发生了读操作，就会导致脏读，如何解决？">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://liluoao.github.io/images/semi-sync.jpg">
 <meta property="article:published_time" content="2020-01-22T05:45:49.000Z">
-<meta property="article:modified_time" content="2020-08-08T08:30:20.143Z">
+<meta property="article:modified_time" content="2020-08-08T11:06:39.922Z">
 <meta property="article:author" content="李罗奥">
 <meta property="article:tag" content="other">
 <meta name="twitter:card" content="summary">
@@ -38,7 +38,7 @@
   <div id="header-outer" class="outer">
     <div id="header-title" class="inner">
       <h1 id="logo-wrap">
-        <a href="/" id="logo">码之力，三段</a>
+        <a href="/" id="logo">码之力三段</a>
       </h1>
       
     </div>
@@ -49,6 +49,8 @@
           <a class="main-nav-link" href="/">首页</a>
         
           <a class="main-nav-link" href="/archives">文章列表</a>
+        
+          <a class="main-nav-link" href="/live2d">吸猫</a>
         
       </nav>
       <nav id="sub-nav">
@@ -78,7 +80,7 @@
 <div class="article-gallery">
   <div class="article-gallery-photos">
     
-      <a class="article-gallery-img fancybox" href="/images/semi-sync.jpg" rel="gallery_ckdleeri80003a4mja08527zr">
+      <a class="article-gallery-img fancybox" href="/images/semi-sync.jpg" rel="gallery_ckdlk012d00039gmj1yyuch6z">
         <img src="/images/semi-sync.jpg" itemprop="image">
       </a>
     
@@ -145,7 +147,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2020/consistency-of-master-and-slave-database.html" data-id="ckdleeri80003a4mja08527zr" class="article-share-link">分享</a>
+      <a data-url="https://liluoao.github.io/2020/consistency-of-master-and-slave-database.html" data-id="ckdlk012d00039gmj1yyuch6z" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/other/" rel="tag">other</a></li></ul>
@@ -266,7 +268,7 @@
         &nbsp;<a href="https://juejin.im/user/5a19374cf265da4332274600" target="_blank" title="Jue Jin">掘金</a>
       </div>
       <div style="width: 300px; margin:0 auto; padding: 20px 0; text-align: center;">
-          &copy; 2020 码之力，三段
+          &copy; 2020 码之力三段
           Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
       </div>
     </div>
@@ -278,6 +280,8 @@
     <a href="/" class="mobile-nav-link">首页</a>
   
     <a href="/archives" class="mobile-nav-link">文章列表</a>
+  
+    <a href="/live2d" class="mobile-nav-link">吸猫</a>
   
 </nav>
     
