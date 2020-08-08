@@ -5,20 +5,22 @@
   
 
   
-  <title>便捷处理时间——Carbon | 码之力，三段</title>
+  <title>一些开发工具介绍 | 码之力，三段</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Carbon 是一个 PHP 的时间处理包，它继承自 DateTime 类的 API 扩展，让处理日期和时间更加简单。">
+  <meta name="description" content="在一些项目的 README 中，我们会看到上面这种 徽章（Badge），这是如何制作的呢？">
 <meta property="og:type" content="article">
-<meta property="og:title" content="便捷处理时间——Carbon">
-<meta property="og:url" content="https://liluoao.github.io/2018/use-carbon.html">
+<meta property="og:title" content="一些开发工具介绍">
+<meta property="og:url" content="https://liluoao.github.io/2018/introduction-to-some-development-tools.html">
 <meta property="og:site_name" content="码之力，三段">
-<meta property="og:description" content="Carbon 是一个 PHP 的时间处理包，它继承自 DateTime 类的 API 扩展，让处理日期和时间更加简单。">
+<meta property="og:description" content="在一些项目的 README 中，我们会看到上面这种 徽章（Badge），这是如何制作的呢？">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2018-05-01T06:11:35.000Z">
-<meta property="article:modified_time" content="2020-08-07T08:15:30.708Z">
+<meta property="og:image" content="https://liluoao.github.io/images/badge-style.png">
+<meta property="article:published_time" content="2018-02-03T06:47:05.000Z">
+<meta property="article:modified_time" content="2020-08-08T07:08:05.864Z">
 <meta property="article:author" content="李罗奥">
 <meta property="article:tag" content="tool">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://liluoao.github.io/images/badge-style.png">
   
   
     <link rel="icon" href="/favicon.png">
@@ -60,10 +62,10 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-便捷处理时间——Carbon" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-一些开发工具介绍" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2018/use-carbon.html" class="article-date">
-  <time datetime="2018-05-01T06:11:35.000Z" itemprop="datePublished">2018-05-01</time>
+    <a href="/2018/introduction-to-some-development-tools.html" class="article-date">
+  <time datetime="2018-02-03T06:47:05.000Z" itemprop="datePublished">2018-02-03</time>
 </a>
     
   <div class="article-category">
@@ -73,12 +75,22 @@
   </div>
   <div class="article-inner">
     
+<div class="article-gallery">
+  <div class="article-gallery-photos">
+    
+      <a class="article-gallery-img fancybox" href="/images/badge-style.png" rel="gallery_ckdlbh46f00150omj47md1pu1">
+        <img src="/images/badge-style.png" itemprop="image">
+      </a>
+    
+  </div>
+</div>
+
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      便捷处理时间——Carbon
+      一些开发工具介绍
     </h1>
   
 
@@ -86,22 +98,39 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><a target="_blank" rel="noopener" href="http://carbon.nesbot.com/">Carbon</a> 是一个 PHP 的时间处理包，它继承自 <code>DateTime</code> 类的 API 扩展，让处理日期和时间更加简单。</p>
+        <p>在一些项目的 <code>README</code> 中，我们会看到上面这种 <code>徽章（Badge）</code>，这是如何制作的呢？</p>
 <a id="more"></a>
 
-<p>Composer 安装方式：</p>
+<h2 id="Badge"><a href="#Badge" class="headerlink" title="Badge"></a>Badge</h2><ul>
+<li>CI结果<br><a target="_blank" rel="noopener" href="https://ci.appveyor.com/project/liluoao/blog-source"><img src="https://img.shields.io/appveyor/ci/liluoao/blog-source.svg?longCache=true&logo=appveyor" alt="AppVeyor"></a></li>
+<li>项目许可<br><a target="_blank" rel="noopener" href="https://github.com/liluoao/blog-source/blob/master/LICENSE"><img src="https://img.shields.io/github/license/liluoao/blog-source.svg?longCache=true" alt="license"></a></li>
+<li>项目版本<br><a target="_blank" rel="noopener" href="https://packagist.org/packages/liluoao/phalcon"><img src="https://img.shields.io/packagist/v/liluoao/phalcon.svg?longCache=true" alt="Packagist"></a></li>
+<li>包/环境版本要求<br><a target="_blank" rel="noopener" href="https://packagist.org/packages/liluoao/phalcon"><img src="https://img.shields.io/packagist/php-v/liluoao/phalcon.svg?longCache=true" alt="PHP 版本"></a></li>
+</ul>
+<p>这些 SVG 图标的来源都是 <a target="_blank" rel="noopener" href="https://shields.io/">Shields.io</a> ，现在各质量检测平台（如 Sonar）也实现了自己的徽章生成</p>
+<h4 id="自定义"><a href="#自定义" class="headerlink" title="自定义"></a>自定义</h4><p>shields.io 提供了自定义 Badge 的格式：</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https:<span class="regexp">//img</span>.shields.io<span class="regexp">/badge/</span>&lt;SUBJECT&gt;-&lt;STATUS&gt;-&lt;COLOR&gt;.svg</span><br></pre></td></tr></table></figure>
+
+<p>有 5 种样式的徽章，分别为</p>
+<ul>
+<li>plastic</li>
+<li>flat</li>
+<li>flat-square</li>
+<li>for-the-badge</li>
+<li>social</li>
+</ul>
+<p>以参数 <code>style=xx</code> 拼接在后面即可，多个中划线、下划线只保留 1 个</p>
+<h2 id="Carbon便捷处理时间"><a href="#Carbon便捷处理时间" class="headerlink" title="Carbon便捷处理时间"></a>Carbon便捷处理时间</h2><p><a target="_blank" rel="noopener" href="http://carbon.nesbot.com/">Carbon</a> 是一个 PHP 的时间处理包，它继承自 <code>DateTime</code> 类的 API 扩展，让处理日期和时间更加简单。</p>
+<p>使用方式：</p>
 <figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">composer</span> <span class="meta">require</span> nesbot/carbon</span><br></pre></td></tr></table></figure>
 
-<p>使用方式：</p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//常规项目</span></span><br><span class="line"><span class="keyword">use</span> <span class="title">Carbon</span>\<span class="title">Carbon</span>;</span><br><span class="line"><span class="comment">//Laravel项目</span></span><br><span class="line"><span class="keyword">use</span> <span class="title">Illuminate</span>\<span class="title">Support</span>\<span class="title">Carbon</span>;</span><br></pre></td></tr></table></figure>
 
-<p>后者除了继承于前者，还实现了 <em>JsonSerializable</em> interface 和 <em>Macroable</em> trait</p>
+<p>后者除了继承于前者，还实现了 <code>JsonSerializable</code> interface 和 <code>Macroable</code> trait</p>
 <h4 id="实例化"><a href="#实例化" class="headerlink" title="实例化"></a>实例化</h4><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Carbon::now();<span class="comment">//同Laravel辅助函数now()</span></span><br><span class="line">Carbon::today();<span class="comment">//同Laravel辅助函数today()</span></span><br><span class="line">Carbon::parse(<span class="string">&#x27;2018-5-7 14:38:00&#x27;</span>);</span><br><span class="line">Carbon::create(<span class="number">2018</span>, <span class="number">5</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>);</span><br><span class="line">Carbon::now()-&gt;year(<span class="number">2008</span>)-&gt;month(<span class="number">5</span>)-&gt;day(<span class="number">21</span>)-&gt;hour(<span class="number">22</span>)-&gt;minute(<span class="number">32</span>)-&gt;second(<span class="number">5</span>);</span><br><span class="line">Carbon::now()-&gt;setDate(<span class="number">1975</span>, <span class="number">5</span>, <span class="number">21</span>)-&gt;setTime(<span class="number">22</span>, <span class="number">32</span>, <span class="number">5</span>);</span><br></pre></td></tr></table></figure>
 
-<p>更多方法见<a target="_blank" rel="noopener" href="http://carbon.nesbot.com/docs/#api-settersfluent">Fluent Setters</a></p>
 <h4 id="字符串输出"><a href="#字符串输出" class="headerlink" title="字符串输出"></a>字符串输出</h4><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$dt = Carbon::create(<span class="number">1975</span>, <span class="number">12</span>, <span class="number">25</span>, <span class="number">14</span>, <span class="number">15</span>, <span class="number">16</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">echo</span> $dt-&gt;toDateString();                          <span class="comment">// 1975-12-25</span></span><br><span class="line"><span class="keyword">echo</span> $dt-&gt;toTimeString();                          <span class="comment">// 14:15:16</span></span><br><span class="line"><span class="keyword">echo</span> $dt-&gt;toDateTimeString();                      <span class="comment">// 1975-12-25 14:15:16</span></span><br><span class="line"><span class="keyword">echo</span> $dt-&gt;toDayDateTimeString();                   <span class="comment">// Thu, Dec 25, 1975 2:15 PM</span></span><br></pre></td></tr></table></figure>
 
-<p>更多方法见<a target="_blank" rel="noopener" href="http://carbon.nesbot.com/docs/#api-formatting">String Formatting</a></p>
 <h4 id="比较"><a href="#比较" class="headerlink" title="比较"></a>比较</h4><p>常用比较如</p>
 <ul>
 <li><code>eq</code> (equalTo)</li>
@@ -115,7 +144,6 @@
 <p>其它可用比较方法：</p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//过去or未来</span></span><br><span class="line">$dt-&gt;isFuture();</span><br><span class="line">$dt-&gt;isPast();</span><br><span class="line"><span class="comment">//闰年</span></span><br><span class="line">$dt-&gt;isLeapYear();</span><br><span class="line"><span class="comment">//季度</span></span><br><span class="line">$dt-&gt;isCurrentQuarter();</span><br><span class="line"><span class="comment">//工作日or周末</span></span><br><span class="line">$dt-&gt;isWeekday();</span><br><span class="line">$dt-&gt;isWeekend();</span><br><span class="line"><span class="comment">//周几</span></span><br><span class="line">$dt-&gt;isWednesday();</span><br><span class="line">$dt-&gt;isDayOfWeek(Carbon::SATURDAY);</span><br></pre></td></tr></table></figure>
 
-<p>更多方法见<a target="_blank" rel="noopener" href="http://carbon.nesbot.com/docs/#api-comparison">Comparison</a></p>
 <h4 id="自增自减"><a href="#自增自减" class="headerlink" title="自增自减"></a>自增自减</h4><p>可以对世纪、年、季度、月、周、时、分、秒进行 <code>add()</code> 加或 <code>sub()</code> 减</p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//世纪</span></span><br><span class="line"><span class="keyword">echo</span> $dt-&gt;addCentury();</span><br><span class="line"><span class="comment">//文档里对加减复数使用复数方法，源码中单数方法也可以接收参数</span></span><br><span class="line"><span class="keyword">echo</span> $dt-&gt;addCenturies(<span class="number">5</span>);</span><br><span class="line"><span class="keyword">echo</span> $dt-&gt;subCentury();</span><br><span class="line"><span class="comment">//工作日</span></span><br><span class="line"><span class="keyword">echo</span> $dt-&gt;addWeekday();</span><br><span class="line"><span class="keyword">echo</span> $dt-&gt;subWeekday();</span><br></pre></td></tr></table></figure>
 
@@ -123,15 +151,21 @@
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//今天是第几年发奖</span></span><br><span class="line">$todayPassYearNum = $canDividendDate-&gt;diffInYears(today());</span><br><span class="line"><span class="comment">//上次发奖是第几年</span></span><br><span class="line">$dividendDatePassYearNum = $canDividendDate-&gt;diffInYears(Carbon::parse($lastDividendDate));</span><br><span class="line"><span class="keyword">if</span> ($todayPassYearNum === $dividendDatePassYearNum) &#123;</span><br><span class="line">    <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Exception</span>(<span class="number">600</span>, <span class="string">&#x27;本年已发过奖&#x27;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>同理也有 <code>diffInHours()</code> <code>diffInDays()</code> 等方法</p>
-<h4 id="常量"><a href="#常量" class="headerlink" title="常量"></a>常量</h4><p>Carbon 定义了许多常量：</p>
+<h4 id="常量"><a href="#常量" class="headerlink" title="常量"></a>常量</h4><p>Carbon 提供了许多方便的常量，例如：</p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">var_dump(Carbon::SUNDAY);                          <span class="comment">// int(0)</span></span><br><span class="line">var_dump(Carbon::MONDAY);                          <span class="comment">// int(1)</span></span><br><span class="line">var_dump(Carbon::TUESDAY);                         <span class="comment">// int(2)</span></span><br><span class="line">var_dump(Carbon::WEDNESDAY);                       <span class="comment">// int(3)</span></span><br><span class="line">var_dump(Carbon::THURSDAY);                        <span class="comment">// int(4)</span></span><br><span class="line">var_dump(Carbon::FRIDAY);                          <span class="comment">// int(5)</span></span><br><span class="line">var_dump(Carbon::SATURDAY);                        <span class="comment">// int(6)</span></span><br><span class="line"></span><br><span class="line">var_dump(Carbon::YEARS_PER_CENTURY);               <span class="comment">// int(100)</span></span><br><span class="line">var_dump(Carbon::YEARS_PER_DECADE);                <span class="comment">// int(10)</span></span><br><span class="line">var_dump(Carbon::MONTHS_PER_YEAR);                 <span class="comment">// int(12)</span></span><br><span class="line">var_dump(Carbon::WEEKS_PER_YEAR);                  <span class="comment">// int(52)</span></span><br><span class="line">var_dump(Carbon::DAYS_PER_WEEK);                   <span class="comment">// int(7)</span></span><br><span class="line">var_dump(Carbon::HOURS_PER_DAY);                   <span class="comment">// int(24)</span></span><br><span class="line">var_dump(Carbon::MINUTES_PER_HOUR);                <span class="comment">// int(60)</span></span><br><span class="line">var_dump(Carbon::SECONDS_PER_MINUTE);              <span class="comment">// int(60)</span></span><br></pre></td></tr></table></figure>
 
-<p>还有更多方法等你了解，总的来说 Carbon 让时间处理方便了很多</p>
+<h2 id="PHPStorm使用SFTP"><a href="#PHPStorm使用SFTP" class="headerlink" title="PHPStorm使用SFTP"></a>PHPStorm使用SFTP</h2><p>在开发时如果需要实时将文件同步到服务器上，可能需要用 Xftp 等软件来实现。这样需要在几个界面来回切换，比较耗时。</p>
+<p>其实 IDE 已经为你实现了这个功能，打开 PHPStorm，点击 <code>Tools—&gt;Deployment—&gt;Cofiguration</code></p>
+<p><img src="/images/phpstorm-ftp.png" alt="配置位置"></p>
+<p>依次填入项目名称，FTP主机地址，用户名，密码，项目的浏览器访问地址，然后点击 <code>Test FTP connection</code> 测试是否连接成功</p>
+<p><img src="/images/ftp-config.png" alt="输入SFTP配置"></p>
+<p>完成后就可以像下图所示打开远程列表</p>
+<p><img src="/images/remote-host.png" alt=""></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2018/use-carbon.html" data-id="ckdjyfyfr001phsmjeqni23g2" class="article-share-link">分享</a>
+      <a data-url="https://liluoao.github.io/2018/introduction-to-some-development-tools.html" data-id="ckdlbh46f00150omj47md1pu1" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/tool/" rel="tag">tool</a></li></ul>
@@ -142,19 +176,19 @@
     
 <nav id="article-nav">
   
-    <a href="/2018/image-and-excel-in-laravel.html" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2018/what-is-jwt.html" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption">下一篇</strong>
       <div class="article-nav-title">
         
-          Laravel中处理图像与Excel
+          JWT认证的优点
         
       </div>
     </a>
   
   
-    <a href="/2018/php-structural-design-patterns-facade.html" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2018/the-birth-of-the-blog.html" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">上一篇</strong>
-      <div class="article-nav-title">门面模式（Facade）</div>
+      <div class="article-nav-title">记录此博客的诞生</div>
     </a>
   
 </nav>
@@ -177,10 +211,6 @@
           </li>
         
           <li>
-            <a href="/2020/build-sonarqube-and-rules.html">SonarQube再续前缘</a>
-          </li>
-        
-          <li>
             <a href="/2020/consistency-of-master-and-slave-database.html">DB主从一致性方案</a>
           </li>
         
@@ -197,10 +227,6 @@
           </li>
         
           <li>
-            <a href="/2019/vcs-commit-rule.html">版本控制工具提交规范</a>
-          </li>
-        
-          <li>
             <a href="/2019/yaf-individualization.html">Yaf框架结构个性化</a>
           </li>
         
@@ -209,7 +235,15 @@
           </li>
         
           <li>
-            <a href="/2019/use-code-sniffer-in-phpstorm.html">如何用工具保证代码风格</a>
+            <a href="/2019/project-code-style-management.html">项目代码风格管理</a>
+          </li>
+        
+          <li>
+            <a href="/2019/php-structural-design-patterns-state.html">状态模式（State）</a>
+          </li>
+        
+          <li>
+            <a href="/2019/mongodb-aggregation.html">使用MongoDB的聚合</a>
           </li>
         
       </ul>
@@ -221,7 +255,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">分类</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/openresty/">OpenResty</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/php-framework/">PHP框架</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/tool/">工具</a><span class="category-list-count">12</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/database/">数据库</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/server/">服务器</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/other/">杂谈</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/design-patterns/">设计模式</a><span class="category-list-count">8</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/openresty/">OpenResty</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/php-framework/">PHP框架</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/tool/">工具</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/database/">数据库</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/server/">服务器</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/other/">杂谈</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/design-patterns/">设计模式</a><span class="category-list-count">8</span></li></ul>
     </div>
   </div>
 
@@ -231,7 +265,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签</h3>
     <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/apache/" rel="tag">apache</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/design-patterns/" rel="tag">design-patterns</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/laravel/" rel="tag">laravel</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/" rel="tag">linux</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mongo/" rel="tag">mongo</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/openresty/" rel="tag">openresty</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/other/" rel="tag">other</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/phalcon/" rel="tag">phalcon</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/php/" rel="tag">php</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/redis/" rel="tag">redis</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tool/" rel="tag">tool</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/yaf/" rel="tag">yaf</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/yii/" rel="tag">yii</a><span class="tag-list-count">2</span></li></ul>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/apache/" rel="tag">apache</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/design-patterns/" rel="tag">design-patterns</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/laravel/" rel="tag">laravel</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/" rel="tag">linux</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mongo/" rel="tag">mongo</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/openresty/" rel="tag">openresty</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/other/" rel="tag">other</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/phalcon/" rel="tag">phalcon</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/php/" rel="tag">php</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/redis/" rel="tag">redis</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tool/" rel="tag">tool</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/yaf/" rel="tag">yaf</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/yii/" rel="tag">yii</a><span class="tag-list-count">2</span></li></ul>
     </div>
   </div>
 
