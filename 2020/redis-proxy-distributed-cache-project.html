@@ -15,8 +15,9 @@
 <meta property="og:description" content="前言想必在大家的架构中，Redis 已经是一个必不可少的部件，丰富的数据结构、超高的性能以及简单的协议，让它能够很好的作为数据库的上游缓存层。正是人们大量使用 Redis，逐渐暴露了一些缺点：  单节点物理内存是有限的，不能满足日益增长的业务内存的需要； 不能提供高可用服务。节点挂掉或者该节点机器宕机，导致大量请求走向数据库，造成数据库压力增大，加大数据库宕机风险； 运维会为每个业务方创建一个节点">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://liluoao.github.io/images/RedisProxy-structure.png">
+<meta property="og:image" content="https://liluoao.github.io/images/RedisProxy-stat.jpg">
 <meta property="article:published_time" content="2020-04-20T10:56:46.000Z">
-<meta property="article:modified_time" content="2020-08-08T11:06:39.938Z">
+<meta property="article:modified_time" content="2020-08-10T08:42:42.041Z">
 <meta property="article:author" content="李罗奥">
 <meta property="article:tag" content="redis">
 <meta name="twitter:card" content="summary">
@@ -28,7 +29,7 @@
   
 <link rel="stylesheet" href="/css/style.css">
 
-<meta name="generator" content="Hexo 5.0.0"></head>
+<meta name="generator" content="Hexo 5.0.2"></head>
 
 <body>
   <div id="container">
@@ -77,16 +78,6 @@
   </div>
   <div class="article-inner">
     
-<div class="article-gallery">
-  <div class="article-gallery-photos">
-    
-      <a class="article-gallery-img fancybox" href="/images/RedisProxy-structure.png" rel="gallery_ckdlk012t000o9gmj50ch3br3">
-        <img src="/images/RedisProxy-structure.png" itemprop="image">
-      </a>
-    
-  </div>
-</div>
-
     
       <header class="article-header">
         
@@ -134,13 +125,14 @@
 </li>
 </ol>
 <p>根据上面的介绍，我们给出 redis-proxy 的标签：redis 协议、netty 框架、分布式、高性能、平台管理。</p>
-<h2 id="现状介绍"><a href="#现状介绍" class="headerlink" title="现状介绍"></a>现状介绍</h2><p>RedisProxy 作为一套分布式系统，由一个配置节点、多个访问代理节点、以及一系列主备服务器组成，配置节点我们称其为 config-server，访问代理节点为 proxy-server，一套 redis 主备服务器为一个 redis-group。</p>
+<h2 id="现状介绍"><a href="#现状介绍" class="headerlink" title="现状介绍"></a>现状介绍</h2><p><img src="/images/RedisProxy-structure.png" alt="RedisProxy架构"></p>
+<p>RedisProxy 作为一套分布式系统，由一个配置节点、多个访问代理节点、以及一系列主备服务器组成，配置节点我们称其为 config-server，访问代理节点为 proxy-server，一套 redis 主备服务器为一个 redis-group。</p>
 <p><img src="/images/RedisProxy-stat.jpg" alt="日志统计"></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2020/redis-proxy-distributed-cache-project.html" data-id="ckdlk012t000o9gmj50ch3br3" class="article-share-link">分享</a>
+      <a data-url="https://liluoao.github.io/2020/redis-proxy-distributed-cache-project.html" data-id="ckdo9qe4o000rg4mj307sehmh" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/redis/" rel="tag">redis</a></li></ul>
@@ -189,10 +181,6 @@
           </li>
         
           <li>
-            <a href="/2019/big-or-small-size-company.html">大小规模公司思考</a>
-          </li>
-        
-          <li>
             <a href="/2019/yaf-individualization.html">Yaf框架结构个性化</a>
           </li>
         
@@ -209,7 +197,11 @@
           </li>
         
           <li>
-            <a href="/2019/mongodb-aggregation.html">使用MongoDB的聚合</a>
+            <a href="/2019/use-mongodb-aggregation.html">初识MongoDB的聚合</a>
+          </li>
+        
+          <li>
+            <a href="/2019/php-structural-design-patterns-decorator.html">装饰器模式（Decorator）</a>
           </li>
         
       </ul>
@@ -221,7 +213,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">分类</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/openresty/">OpenResty</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/php-framework/">PHP框架</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/tool/">工具</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/database/">数据库</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/server/">服务器</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/other/">杂谈</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/design-patterns/">设计模式</a><span class="category-list-count">8</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/openresty/">OpenResty</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/php-framework/">PHP框架</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/tool/">工具</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/database/">数据库</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/server/">服务器</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/other/">杂谈</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/design-patterns/">设计模式</a><span class="category-list-count">8</span></li></ul>
     </div>
   </div>
 
@@ -231,7 +223,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签</h3>
     <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/apache/" rel="tag">apache</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/design-patterns/" rel="tag">design-patterns</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/laravel/" rel="tag">laravel</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/" rel="tag">linux</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mongo/" rel="tag">mongo</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/openresty/" rel="tag">openresty</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/other/" rel="tag">other</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/phalcon/" rel="tag">phalcon</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/php/" rel="tag">php</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/redis/" rel="tag">redis</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tool/" rel="tag">tool</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/yaf/" rel="tag">yaf</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/yii/" rel="tag">yii</a><span class="tag-list-count">2</span></li></ul>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/apache/" rel="tag">apache</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/design-patterns/" rel="tag">design-patterns</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/laravel/" rel="tag">laravel</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/" rel="tag">linux</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mongo/" rel="tag">mongo</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/openresty/" rel="tag">openresty</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/other/" rel="tag">other</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/phalcon/" rel="tag">phalcon</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/php/" rel="tag">php</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/redis/" rel="tag">redis</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tool/" rel="tag">tool</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/yaf/" rel="tag">yaf</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/yii/" rel="tag">yii</a><span class="tag-list-count">2</span></li></ul>
     </div>
   </div>
 
