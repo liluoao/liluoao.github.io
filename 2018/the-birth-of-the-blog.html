@@ -16,7 +16,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://liluoao.github.io/images/appveyor_build.png">
 <meta property="article:published_time" content="2018-02-02T03:37:55.000Z">
-<meta property="article:modified_time" content="2020-08-11T08:00:03.973Z">
+<meta property="article:modified_time" content="2020-08-11T12:03:21.456Z">
 <meta property="article:author" content="李罗奥">
 <meta property="article:tag" content="tool">
 <meta name="twitter:card" content="summary">
@@ -80,7 +80,7 @@
 <div class="article-gallery">
   <div class="article-gallery-photos">
     
-      <a class="article-gallery-img fancybox" href="/images/appveyor_build.png" rel="gallery_ckdpnnhyy001zh4mj2tgjdldz">
+      <a class="article-gallery-img fancybox" href="/images/appveyor_build.png" rel="gallery_ckdpwcf9h001ywwmjcjnjfxdw">
         <img src="/images/appveyor_build.png" itemprop="image">
       </a>
     
@@ -103,7 +103,7 @@
         <p>在决定写自己的博客时，了解了几款市面上的博客系统，最后选择了使用人数多、自由度高的 <a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/docs/">Hexo</a></p>
 <a id="more"></a>
 
-<blockquote>
+<h2 id="Hexo"><a href="#Hexo" class="headerlink" title="Hexo"></a>Hexo</h2><blockquote>
 <p>Hexo 使用 Markdown（或其他渲染引擎）解析文章，在几秒内，即可利用靓丽的主题生成静态网页</p>
 </blockquote>
 <h4 id="Hexo-使用步骤"><a href="#Hexo-使用步骤" class="headerlink" title="Hexo 使用步骤"></a>Hexo 使用步骤</h4><p>直接用 NPM 全局安装，方便使用 CLI 命令：</p>
@@ -125,7 +125,7 @@
 
 <h4 id="维护缺陷"><a href="#维护缺陷" class="headerlink" title="维护缺陷"></a>维护缺陷</h4><p>为了把博客部署更新，我每次都需要把整个的博客静态文件生成好，并提交到 GIT 上，再去服务器上把整个博客 PULL 下来</p>
 <p>那么有没有办法让这个流程变的智能些，让我可以从搭建流程脱离出来呢？接下来就介绍下我的解决方案</p>
-<h4 id="持续集成介绍"><a href="#持续集成介绍" class="headerlink" title="持续集成介绍"></a>持续集成介绍</h4><p>持续集成（Continuous integration，简称 CI）是一种软件开发实践，即团队开发成员经常集成他们的工作，通常每个成员每天至少集成一次，也就意味着每天可能会发生多次集成。每次集成都通过自动化的构建（包括编译，发布，自动化测试）来验证，从而尽早地发现集成错误。</p>
+<h2 id="CI"><a href="#CI" class="headerlink" title="CI"></a>CI</h2><h4 id="持续集成介绍"><a href="#持续集成介绍" class="headerlink" title="持续集成介绍"></a>持续集成介绍</h4><p>持续集成（Continuous integration，简称 CI）是一种软件开发实践，即团队开发成员经常集成他们的工作，通常每个成员每天至少集成一次，也就意味着每天可能会发生多次集成。每次集成都通过自动化的构建（包括编译，发布，自动化测试）来验证，从而尽早地发现集成错误。</p>
 <p>减少重复的过程可以节省时间、费用和工作量。说起来简单，做起来难。这些浪费时间的重复劳动可能在我们的项目活动的任何一个环节发生，包括代码编译、数据库集成、测试、审查、部署及反馈。通过自动化的持续集成可以将这些重复的动作都变成自动化的，无需太多人工干预，让人们的时间更多的投入到动脑筋的、更高价值的事情上。</p>
 <p>市面上常见的持续集成工具有 <a target="_blank" rel="noopener" href="https://jenkins.io/zh/">Jenkins</a>，<a target="_blank" rel="noopener" href="https://www.travis-ci.org/">TravisCI</a>，和本文要使用的 <a target="_blank" rel="noopener" href="https://ci.appveyor.com">AppVeyor</a>（一般代码管理平台也支持 CI/CD）</p>
 <h4 id="配置项目"><a href="#配置项目" class="headerlink" title="配置项目"></a>配置项目</h4><p>可以使用 GitHub 账号授权登陆，快速导入自己的项目。在 <code>/projects</code> 页面选择你的博客源码仓库</p>
@@ -157,9 +157,8 @@
 <td>Github用户名</td>
 </tr>
 </tbody></table>
-<p>设置好后点击 <code>Save</code> 保存</p>
-<h4 id="获取-GitHub-的-AccessToken"><a href="#获取-GitHub-的-AccessToken" class="headerlink" title="获取 GitHub 的 AccessToken"></a>获取 GitHub 的 AccessToken</h4><p>打开 GitHub 个人设置</p>
-<p>点击 <code>Developer settings</code> 栏目，再点击 <code>Personal access tokens</code> 选项卡，可以看到已有的Token</p>
+<h4 id="获取-GitHub-的-Token"><a href="#获取-GitHub-的-Token" class="headerlink" title="获取 GitHub 的 Token"></a>获取 GitHub 的 Token</h4><p>打开 GitHub 个人设置</p>
+<p>点击 <code>Developer settings</code> 栏目，再点击 <code>Personal access tokens</code> 选项卡，可以看到已有的 Token</p>
 <p>这里点击 <code>Generate new token</code> 按钮创建一个博客专用的 Token</p>
 <p><img src="/images/github_token.png" alt="个人TOKEN"></p>
 <p>由于这个 Token 可以直接操作代码仓库，而且项目的配置文件是公开的，所以最好对它进行加密</p>
@@ -168,12 +167,36 @@
 <h4 id="配置构建命令"><a href="#配置构建命令" class="headerlink" title="配置构建命令"></a>配置构建命令</h4><p>在项目中新建 AppVeyor 的指定配置文件 <em>appveyor.yml</em>，以我的配置为例：</p>
 <figure class="highlight yml"><figcaption><span>appveyor.yml</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">clone_depth:</span> <span class="number">5</span></span><br><span class="line"></span><br><span class="line"><span class="attr">environment:</span></span><br><span class="line">    <span class="attr">access_token:</span></span><br><span class="line">        <span class="attr">secure:</span> <span class="comment"># 自己的加密token</span></span><br><span class="line"><span class="attr">install:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="attr">ps:</span> <span class="string">Install-Product</span> <span class="string">node</span> <span class="number">6.9</span> <span class="comment"># 默认node版本太老，具体版本根据包要求来</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">node</span> <span class="string">--version</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">npm</span> <span class="string">--version</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">npm</span> <span class="string">install</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">npm</span> <span class="string">install</span> <span class="string">hexo-cli</span> <span class="string">-g</span></span><br><span class="line"></span><br><span class="line"><span class="attr">build_script:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">hexo</span> <span class="string">generate</span></span><br><span class="line"></span><br><span class="line"><span class="attr">artifacts:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="attr">path:</span> <span class="string">public</span></span><br><span class="line"></span><br><span class="line"><span class="attr">on_success:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">git</span> <span class="string">config</span> <span class="string">--global</span> <span class="string">credential.helper</span> <span class="string">store</span></span><br><span class="line">    <span class="bullet">-</span> <span class="attr">ps:</span> <span class="string">Add-Content</span> <span class="string">&quot;$env:USERPROFILE\.git-credentials&quot;</span> <span class="string">&quot;https://$($env:access_token):x-oauth-basic@github.com`n&quot;</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">git</span> <span class="string">config</span> <span class="string">--global</span> <span class="string">user.email</span> <span class="string">&quot;%GIT_USER_EMAIL%&quot;</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">git</span> <span class="string">config</span> <span class="string">--global</span> <span class="string">user.name</span> <span class="string">&quot;%GIT_USER_NAME%&quot;</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">git</span> <span class="string">clone</span> <span class="string">--depth</span> <span class="number">5</span> <span class="string">-q</span> <span class="string">--branch=%TARGET_BRANCH%</span> <span class="string">%STATIC_SITE_REPO%</span> <span class="string">%TEMP%\static-site</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">cd</span> <span class="string">%TEMP%\static-site</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">del</span> <span class="string">*</span> <span class="string">/f</span> <span class="string">/q</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">for</span> <span class="string">/d</span> <span class="string">%%p</span> <span class="string">IN</span> <span class="string">(*)</span> <span class="string">do</span> <span class="string">rmdir</span> <span class="string">&quot;%%p&quot;</span> <span class="string">/s</span> <span class="string">/q</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">SETLOCAL</span> <span class="string">EnableDelayedExpansion</span> <span class="string">&amp;</span> <span class="string">robocopy</span> <span class="string">&quot;%APPVEYOR_BUILD_FOLDER%\public&quot;</span> <span class="string">&quot;%TEMP%\static-site&quot;</span> <span class="string">/e</span> <span class="string">&amp;</span> <span class="string">IF</span> <span class="type">!ERRORLEVEL</span><span class="string">!</span> <span class="string">EQU</span> <span class="number">1</span> <span class="string">(exit</span> <span class="number">0</span><span class="string">)</span> <span class="string">ELSE</span> <span class="string">(IF</span> <span class="type">!ERRORLEVEL</span><span class="string">!</span> <span class="string">EQU</span> <span class="number">3</span> <span class="string">(exit</span> <span class="number">0</span><span class="string">)</span> <span class="string">ELSE</span> <span class="string">(exit</span> <span class="number">1</span><span class="string">))</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">git</span> <span class="string">add</span> <span class="string">-A</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">git</span> <span class="string">commit</span> <span class="string">-m</span> <span class="string">&quot;&quot;</span> <span class="comment"># 自定义注释</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">git</span> <span class="string">push</span> <span class="string">origin</span> <span class="string">%TARGET_BRANCH%</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">appveyor</span> <span class="string">AddMessage</span> <span class="string">&quot;Static Site Updated&quot;</span></span><br></pre></td></tr></table></figure>
 
-<p>意思是从仓库的当前分支拉取下来，使用 <code>hexo generate</code> 命令编译成静态文件后，再 push 到目标项目。</p>
+<p>意思是从仓库的当前分支拉取下来，使用 <code>hexo generate</code> 命令编译成静态文件后，再 push 到目标项目</p>
 <blockquote>
 <p>由于 Hexo 自带的部署 <code>hexo g -d</code> 在访问的过程中需要我们输入帐号密码，所以不适合在这里使用</p>
 </blockquote>
-<h4 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h4><p>持续集成实现后，我可以随时随地把博客源文件项目（blog-source）给 PULL 下来写文章，提交后 AppVeyor 会根据源文件来生成最新的静态文件，并自动提交到展示项目（liluoao.github.io）中</p>
-<p><del>在阿里云购买了服务器后，把自己的博客放了上去</del>（已过期未续费）。但是现在浏览器不再建议使用 HTTP，会提示网站不安全，需要把网站更换为 HTTPS，并将 HTTP 访问的自动转发到 HTTPS 端口上，下面分享下整个操作流程。</p>
+<p>持续集成实现后，我可以随时随地把博客源文件项目（blog-source）给 PULL 下来写文章，提交后 AppVeyor 会根据源文件来生成最新的静态文件，并自动提交到展示项目（liluoao.github.io）中</p>
+<h2 id="服务器搭建"><a href="#服务器搭建" class="headerlink" title="服务器搭建"></a>服务器搭建</h2><p><del>在阿里云购买了服务器后，把自己的博客放了上去</del>（已过期未续费）。系统为Ubuntu 16.4，需要安装基础环境</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 阿里云已配置好了源，直接更新就行</span></span><br><span class="line">sudo apt-get update</span><br><span class="line"><span class="comment"># 安装Web服务器</span></span><br><span class="line">sudo apt-get install nginx</span><br><span class="line">sudo apt-get install apache2</span><br></pre></td></tr></table></figure>
+
+<p>根据提示符，输入 Y 确认后，开始安装软件，直至软件安装完成</p>
+<p>软件安装完成后，通过通过 <code>dpkg -L</code> 列出软件包所在的目录，及该软件包中的所有文件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">sudo /etc/init.d/apache2 start</span><br><span class="line"><span class="comment"># 安装Git</span></span><br><span class="line">sudo apt-get install git</span><br><span class="line"><span class="comment"># 生成 SSH key</span></span><br><span class="line">ssh-keygen -t rsa -C <span class="string">&quot;你的用户名&quot;</span></span><br></pre></td></tr></table></figure>
+
+<ol>
+<li>第一次提示你想将 <code>key</code> 保存到哪里，直接回车代表使用默认的 <code>/.ssh/id_rsa</code></li>
+<li>第二次提示你设置一个口令密码，直接回车代表设为空</li>
+<li>第三次重复第二次的密码</li>
+</ol>
+<p>进入 <code>key</code> 保存位置，打开 <em>id_rsa.pub</em> ，全部复制后大写模式两下 Z 退出编辑</p>
+<ul>
+<li>进入 GitHub，打开 <code>Settings</code></li>
+<li>点击 <code>SSH and GPG keys</code> 选项卡</li>
+<li>点击 <code>New SSH key</code> 按钮，将复制的 <code>key</code> 粘贴进去</li>
+<li>取个能识别用途的名字，保存</li>
+</ul>
+<p>回到命令行，测试 SSH key 是否配置成功：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ssh -T git@github.com</span><br><span class="line"><span class="comment"># 出现如下信息则说明成功与 GitHub 连接</span></span><br><span class="line">Hi username! You<span class="string">&#x27;ve successfully authenticated, but GitHub does not provide shell access</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 配置 Git 的用户名和邮箱</span></span><br><span class="line">git config --global user.name <span class="string">&quot;用户名&quot;</span></span><br><span class="line">git config --global user.email <span class="string">&quot;邮箱&quot;</span></span><br><span class="line"><span class="comment"># 查看已有配置</span></span><br><span class="line">git config user.name</span><br><span class="line">git config user.email</span><br></pre></td></tr></table></figure>
+
+<h2 id="Apache-配置-SSL"><a href="#Apache-配置-SSL" class="headerlink" title="Apache 配置 SSL"></a>Apache 配置 SSL</h2><p>现在浏览器不再建议使用 HTTP，会提示网站不安全，需要把网站更换为 HTTPS，并将 HTTP 访问的自动转发到 HTTPS 端口上</p>
 <h4 id="开启SSL模块"><a href="#开启SSL模块" class="headerlink" title="开启SSL模块"></a>开启SSL模块</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo a2enmod ssl</span><br></pre></td></tr></table></figure>
 
 <p>这条命令相当于下面 2 条：</p>
@@ -183,19 +206,20 @@
 <figure class="highlight plain"><figcaption><span>apache2.conf</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">LoadModule ssl_module &#x2F;usr&#x2F;lib&#x2F;apache2&#x2F;modules&#x2F;mod_ssl.so</span><br></pre></td></tr></table></figure>
 
 <h4 id="证书"><a href="#证书" class="headerlink" title="证书"></a>证书</h4><p>证书有两种：一种是自签名证书，另外一种是第三方 CA 机构签名证书</p>
-<p>第一种随便使用，没有经过官方认可的机构认证。后一种则是正规的签名证书，有发证机构签名。</p>
-<p>阿里云提供了免费的自签名证书，也可以自己创建自签名证书。</p>
+<p>第一种随便使用，没有经过官方认可的机构认证。后一种则是正规的签名证书，有发证机构签名</p>
+<p>阿里云提供了免费的自签名证书，也可以自己创建自签名证书</p>
 <p>使用 apache 内置的工具创建默认的自签名证书，通过 <strong>-days</strong> 参数指定有效期：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apache2-ssl-certificate</span><br></pre></td></tr></table></figure>
 
-<p>创建完成后，当前目录下有个 <em>apache.pem</em> 文件，已经包含密钥和证书。<br>可以把这个证书拷贝到 <em>/etc/apache2/</em> 下。</p>
-<h4 id="添加监听端口"><a href="#添加监听端口" class="headerlink" title="添加监听端口"></a>添加监听端口</h4><p>编辑 Apache 端口配置，加入 <strong>443</strong> 端口：</p>
-<figure class="highlight plain"><figcaption><span>/etc/apache2/ports.conf</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Listen 80</span><br><span class="line">Listen 443</span><br></pre></td></tr></table></figure>
-
-<h4 id="设置site-enabled"><a href="#设置site-enabled" class="headerlink" title="设置site-enabled"></a>设置site-enabled</h4><p>上文安装完后，会在 <em>/etc/apache2/sites-available/</em> 目录下生成一个缺省的 <em>default-ssl</em> 文件。<br>缺省的网页目录仍然是 <em>/var/www/html*。<br>我们可以创建一个链接到 *site-enabled</em> 目录。</p>
+<p>创建完成后，当前目录下有个 <em>apache.pem</em> 文件，已经包含密钥和证书。可以把这个证书拷贝到 <em>/etc/apache2/</em> 下</p>
+<h4 id="修改配置"><a href="#修改配置" class="headerlink" title="修改配置"></a>修改配置</h4><p>安装完后，会在 <em>/etc/apache2/sites-available/</em> 目录下生成一个 <em>default-ssl</em> 文件</p>
+<p>我们可以创建一个链接到 <em>site-enabled</em> 目录</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ln -s /etc/apache2/sites-available/default-ssl /etc/apache2/sites-enabled/001-ssl</span><br></pre></td></tr></table></figure>
 
-<h4 id="修改配置"><a href="#修改配置" class="headerlink" title="修改配置"></a>修改配置</h4><p>把端口改为 443，在 <code>&lt;Virtualhost&gt;</code> 下加入 SSL 认证配置，其它的根据需要定制：</p>
+<p>编辑 Apache 端口配置，加入 443 端口：</p>
+<figure class="highlight plain"><figcaption><span>/etc/apache2/ports.conf</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Listen 80</span><br><span class="line">Listen 443</span><br></pre></td></tr></table></figure>
+
+<p>把端口改为 443，在 <code>&lt;Virtualhost&gt;</code> 下加入 SSL 认证配置，其它的根据需要定制：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">&lt;VirtualHost *:443&gt;</span><br><span class="line">    ServerAdmin liluoao@qq.com</span><br><span class="line">    ServerName liluoao.com</span><br><span class="line">    DocumentRoot &#x2F;var&#x2F;www&#x2F;html</span><br><span class="line">    SSLEngine on</span><br><span class="line">    # 添加 SSL 协议</span><br><span class="line">    SSLProtocol all -SSLv2 -SSLv3</span><br><span class="line">    # 修改加密套件</span><br><span class="line">    SSLCipherSuite HIGH:!RC4:!MD5:!aNULL:!eNULL:!NULL:!DH:!EDH:!EXP:+MEDIUM</span><br><span class="line">    SSLHonorCipherOrder on</span><br><span class="line">    # 公钥</span><br><span class="line">    SSLCertificateFile &#x2F;etc&#x2F;apache2&#x2F;cert&#x2F;public.pem</span><br><span class="line">    # 私钥</span><br><span class="line">    SSLCertificateKeyFile &#x2F;etc&#x2F;apache2&#x2F;cert&#x2F;1523613072453.key</span><br><span class="line">    # 链配置</span><br><span class="line">    SSLCertificateChainFile &#x2F;etc&#x2F;apache2&#x2F;cert&#x2F;chain.pem</span><br><span class="line">&lt;&#x2F;VirtualHost&gt;</span><br></pre></td></tr></table></figure>
 
 <p>开启重定向需要加载 <code>rewrite</code> 模块</p>
@@ -210,7 +234,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2018/the-birth-of-the-blog.html" data-id="ckdpnnhyy001zh4mj2tgjdldz" class="article-share-link">分享</a>
+      <a data-url="https://liluoao.github.io/2018/the-birth-of-the-blog.html" data-id="ckdpwcf9h001ywwmjcjnjfxdw" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/tool/" rel="tag">tool</a></li></ul>
