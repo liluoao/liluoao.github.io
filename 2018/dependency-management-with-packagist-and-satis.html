@@ -5,7 +5,7 @@
   
 
   
-  <title>Packagist与Satis管理依赖</title>
+  <title>Packagist与Satis管理依赖 | 码之力三段</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="作为 PHP 使用者，平常会接触到 Composer 与很多包。如何发布一个自己的包让别人使用呢，下面介绍下实现步骤。">
 <meta property="og:type" content="article">
@@ -16,7 +16,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://liluoao.github.io/images/packagist.png">
 <meta property="article:published_time" content="2018-03-18T02:37:19.000Z">
-<meta property="article:modified_time" content="2020-08-11T12:03:21.440Z">
+<meta property="article:modified_time" content="2020-08-12T03:28:38.165Z">
 <meta property="article:author" content="李罗奥">
 <meta property="article:tag" content="tool">
 <meta name="twitter:card" content="summary">
@@ -80,7 +80,7 @@
 <div class="article-gallery">
   <div class="article-gallery-photos">
     
-      <a class="article-gallery-img fancybox" href="/images/packagist.png" rel="gallery_ckdpwcf8m000lwwmj51zpa7mk">
+      <a class="article-gallery-img fancybox" href="/images/packagist.png" rel="gallery_ckdqtean6000jysmjan0hfovh">
         <img src="/images/packagist.png" itemprop="image">
       </a>
     
@@ -121,11 +121,27 @@
 <p><img src="/images/packagist-final.png" alt="成功示例"></p>
 <h2 id="镜像"><a href="#镜像" class="headerlink" title="镜像"></a>镜像</h2><p>由于网络原因，下载包的速度很慢，可以替换为国内镜像提高速度：<a target="_blank" rel="noopener" href="https://pkg.phpcomposer.com/#how-to-use-packagist-mirror">Packagist 镜像使用方法</a></p>
 <p>更新：<br><a target="_blank" rel="noopener" href="https://learnku.com/articles/30758">《Laravel China 镜像完成历史使命，将于两个月后停用》</a><br><a target="_blank" rel="noopener" href="https://learnku.com/php/wikis/30594">《Composer 国内加速：可用镜像列表 》</a></p>
+<h2 id="用-Satis-处理私有资源包"><a href="#用-Satis-处理私有资源包" class="headerlink" title="用 Satis 处理私有资源包"></a>用 Satis 处理私有资源包</h2><p>以下为入职同花顺后更新</p>
+<ul>
+<li>由于公司的架构是内外网分离，开发在内部局域网，无法拉取到公网的 Packagist</li>
+<li>顺便维护一些私有的包</li>
+</ul>
+<p>好在 Composer 官方提供了这样的静态代码库生成器——<a target="_blank" rel="noopener" href="https://docs.phpcomposer.com/articles/handling-private-packages-with-satis.html">Satis</a></p>
+<figure class="highlight dsconfig"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">composer </span><span class="built_in">create-project</span> <span class="string">composer/</span><span class="string">satis </span><span class="built_in">--stability=dev</span> <span class="built_in">--keep-vcs</span></span><br></pre></td></tr></table></figure>
+
+<p>Satis 的配置是通过 satis.json 进行的</p>
+<figure class="highlight json"><figcaption><span>satis.json</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">&quot;name&quot;</span>: <span class="string">&quot;crm&quot;</span>,</span><br><span class="line">  <span class="attr">&quot;homepage&quot;</span>: <span class="string">&quot;http://10.0.20.252:10450&quot;</span>,<span class="comment">//本项目地址，生成后可访问</span></span><br><span class="line">  <span class="attr">&quot;config&quot;</span>: &#123;</span><br><span class="line">    <span class="attr">&quot;disable-tls&quot;</span>: <span class="literal">true</span>,</span><br><span class="line">    <span class="attr">&quot;secure-http&quot;</span>: <span class="literal">false</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="comment">//镜像缓存设置，该设置会缓存require配置项中各个仓库的代码</span></span><br><span class="line">  <span class="attr">&quot;archive&quot;</span>: &#123;</span><br><span class="line">    <span class="attr">&quot;directory&quot;</span>: <span class="string">&quot;dist&quot;</span><span class="comment">//目录名</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">&quot;require&quot;</span>: &#123;</span><br><span class="line">    <span class="attr">&quot;monolog/monolog&quot;</span>: <span class="string">&quot;1.24.0&quot;</span></span><br><span class="line">    <span class="comment">//...</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">&quot;require-all&quot;</span>: <span class="literal">false</span>,<span class="comment">//为true时将从仓库获取所有相关的依赖包</span></span><br><span class="line">  <span class="attr">&quot;repositories&quot;</span>: [</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="attr">&quot;type&quot;</span>: <span class="string">&quot;git&quot;</span>,</span><br><span class="line">      <span class="attr">&quot;url&quot;</span>: <span class="string">&quot;http://10.0.20.254:10080/library/monolog/monolog.git&quot;</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//...</span></span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>生成项目</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">php bin<span class="regexp">/satis build satis.json public/</span></span><br><span class="line"><span class="comment"># 添加新的repo</span></span><br><span class="line">php bin<span class="regexp">/satis add http:/</span><span class="regexp">/10.0.20.254:10080/</span>library<span class="regexp">/guzzlehttp/gu</span>zzle.git satis.json</span><br></pre></td></tr></table></figure>
+
+<p>使用静态库时修改 composer.json 文件</p>
+<figure class="highlight json"><figcaption><span>composer.json</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">&quot;repositories&quot;</span>: [</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="attr">&quot;packagist&quot;</span>: <span class="literal">false</span></span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="attr">&quot;type&quot;</span>: <span class="string">&quot;composer&quot;</span>,</span><br><span class="line">      <span class="attr">&quot;url&quot;</span>: <span class="string">&quot;http://10.0.20.252:10450&quot;</span></span><br><span class="line">    &#125; </span><br><span class="line">  ],</span><br><span class="line">  <span class="attr">&quot;config&quot;</span>: &#123;</span><br><span class="line">      <span class="attr">&quot;disable-tls&quot;</span>: <span class="literal">true</span>,</span><br><span class="line">      <span class="attr">&quot;secure-http&quot;</span>: <span class="literal">false</span><span class="comment">//非HTTPS</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2018/dependency-management-with-packagist-and-satis.html" data-id="ckdpwcf8m000lwwmj51zpa7mk" class="article-share-link">分享</a>
+      <a data-url="https://liluoao.github.io/2018/dependency-management-with-packagist-and-satis.html" data-id="ckdqtean6000jysmjan0hfovh" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/tool/" rel="tag">tool</a></li></ul>
@@ -215,7 +231,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">分类</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/openresty/">OpenResty</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/php-framework/">PHP框架</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/tool/">工具</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/database/">数据库</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/other/">杂谈</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/design-patterns/">设计模式</a><span class="category-list-count">8</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/openresty/">OpenResty</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/php-framework/">PHP框架</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/tool/">工具</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/database/">数据库</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/other/">杂谈</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/design-patterns/">设计模式</a><span class="category-list-count">8</span></li></ul>
     </div>
   </div>
 
@@ -225,7 +241,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签</h3>
     <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/design-patterns/" rel="tag">design-patterns</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/laravel/" rel="tag">laravel</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mongo/" rel="tag">mongo</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/openresty/" rel="tag">openresty</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/other/" rel="tag">other</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/phalcon/" rel="tag">phalcon</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/php/" rel="tag">php</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/redis/" rel="tag">redis</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tool/" rel="tag">tool</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/yaf/" rel="tag">yaf</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/yii/" rel="tag">yii</a><span class="tag-list-count">2</span></li></ul>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/design-patterns/" rel="tag">design-patterns</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/laravel/" rel="tag">laravel</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mongo/" rel="tag">mongo</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/openresty/" rel="tag">openresty</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/other/" rel="tag">other</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/phalcon/" rel="tag">phalcon</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/php/" rel="tag">php</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/redis/" rel="tag">redis</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tool/" rel="tag">tool</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/yaf/" rel="tag">yaf</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/yii/" rel="tag">yii</a><span class="tag-list-count">2</span></li></ul>
     </div>
   </div>
 
