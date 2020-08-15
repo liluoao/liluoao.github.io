@@ -61,14 +61,14 @@
       <div class="outer">
         <section id="main">
   
-    <article id="post-Yii2的批处理查询" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-装饰器模式（Decorator）" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2019/yii2-batch-query.html" class="article-date">
-  <time datetime="2019-02-19T07:39:11.000Z" itemprop="datePublished">2019-02-19</time>
+    <a href="/2019/php-structural-design-patterns-decorator.html" class="article-date">
+  <time datetime="2019-04-18T01:23:38.000Z" itemprop="datePublished">2019-04-18</time>
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/categories/php-framework/">PHP框架</a>
+    <a class="article-category-link" href="/categories/design-patterns/">设计模式</a>
   </div>
 
   </div>
@@ -79,7 +79,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2019/yii2-batch-query.html">Yii2的批处理查询</a>
+      <a class="article-title" href="/2019/php-structural-design-patterns-decorator.html">装饰器模式（Decorator）</a>
     </h1>
   
 
@@ -87,21 +87,67 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>Yii2 官方文档中对于<a target="_blank" rel="noopener" href="https://www.yiiframework.com/doc/guide/2.0/en/db-query-builder#batch-query">大数据处理</a>是这样说的：</p>
-<p>当需要处理大数据的时候，像 <code>yii\db\Query::all()</code> 这样的方法就不太合适了， 因为它们会把所有查询的数据都读取到客户端内存上。为了解决这个问题， Yii 提供了批处理查询的支持。服务端先保存查询结果，然后客户端使用游标（cursor） 每次迭代出固定的一批结果集回来。</p>
-<p>但是，下面有非常显眼的 WARNING ：<strong>MySQL 批处理查询的实现存在已知的局限性</strong></p>
+        <p>装饰器模式允许我们根据运行时不同的情景动态地为某个对象调用前后添加不同的行为动作</p>
+<p>以奇迹暖暖这种换装游戏为例，我们需要实现动态的换套装，或者混搭</p>
         
           <p class="article-more-link">
-            <a href="/2019/yii2-batch-query.html#more">阅读全文</a>
+            <a href="/2019/php-structural-design-patterns-decorator.html#more">阅读全文</a>
           </p>
         
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2019/yii2-batch-query.html" data-id="ckdr9pax3000yd8mjfxmy9845" class="article-share-link">分享</a>
+      <a data-url="https://liluoao.github.io/2019/php-structural-design-patterns-decorator.html" data-id="ckdvvnsh4001xk8mj382vbbib" class="article-share-link">分享</a>
       
       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/php/" rel="tag">php</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/yii/" rel="tag">yii</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/design-patterns/" rel="tag">design-patterns</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-大数据下的查询与分页" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/query-and-paging-under-big-data.html" class="article-date">
+  <time datetime="2019-02-19T07:39:11.000Z" itemprop="datePublished">2019-02-19</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/database/">数据库</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/query-and-paging-under-big-data.html">大数据下的查询与分页</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>对于公司千万级的客户数据，在数据库查询时要特别小心，避免出现内存溢出与慢查询的问题</p>
+        
+          <p class="article-more-link">
+            <a href="/2019/query-and-paging-under-big-data.html#more">阅读全文</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://liluoao.github.io/2019/query-and-paging-under-big-data.html" data-id="ckdvvnsgo001gk8mj60zfhed9" class="article-share-link">分享</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mysql/" rel="tag">mysql</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/yii/" rel="tag">yii</a></li></ul>
 
     </footer>
   </div>
@@ -126,7 +172,7 @@
 <div class="article-gallery">
   <div class="article-gallery-photos">
     
-      <a class="article-gallery-img fancybox" href="/images/tideways.png" rel="gallery_ckdr9pawo000ad8mj3uwcdscb">
+      <a class="article-gallery-img fancybox" href="/images/tideways.png" rel="gallery_ckdvvnsft000ek8mj7mnq8tfv">
         <img src="/images/tideways.png" itemprop="image">
       </a>
     
@@ -155,7 +201,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2019/xhprof-memory-leak-in-php7.html" data-id="ckdr9pawo000ad8mj3uwcdscb" class="article-share-link">分享</a>
+      <a data-url="https://liluoao.github.io/2019/xhprof-memory-leak-in-php7.html" data-id="ckdvvnsft000ek8mj7mnq8tfv" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/tool/" rel="tag">tool</a></li></ul>
@@ -207,7 +253,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2018/use-kong-admin-api.html" data-id="ckdr9paw80001d8mj70l7czjm" class="article-share-link">分享</a>
+      <a data-url="https://liluoao.github.io/2018/use-kong-admin-api.html" data-id="ckdvvnsfd0001k8mj1f5b6w70" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/openresty/" rel="tag">openresty</a></li></ul>
@@ -256,7 +302,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2018/kong-cluster-event.html" data-id="ckdr9paw80003d8mjgrqfbfub" class="article-share-link">分享</a>
+      <a data-url="https://liluoao.github.io/2018/kong-cluster-event.html" data-id="ckdvvnsfd0003k8mj1ysqd0ns" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/openresty/" rel="tag">openresty</a></li></ul>
@@ -284,7 +330,7 @@
 <div class="article-gallery">
   <div class="article-gallery-photos">
     
-      <a class="article-gallery-img fancybox" href="/images/different-of-kong.png" rel="gallery_ckdr9paxz0026d8mj5hkec15h">
+      <a class="article-gallery-img fancybox" href="/images/different-of-kong.png" rel="gallery_ckdvvnsh40028k8mj7wz69r1o">
         <img src="/images/different-of-kong.png" itemprop="image">
       </a>
     
@@ -313,7 +359,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2018/use-kong-for-api-gateway.html" data-id="ckdr9paxz0026d8mj5hkec15h" class="article-share-link">分享</a>
+      <a data-url="https://liluoao.github.io/2018/use-kong-for-api-gateway.html" data-id="ckdvvnsh40028k8mj7wz69r1o" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/openresty/" rel="tag">openresty</a></li></ul>
@@ -361,7 +407,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2018/php-structural-design-patterns-strategy.html" data-id="ckdr9paxj001rd8mjhgi1fszx" class="article-share-link">分享</a>
+      <a data-url="https://liluoao.github.io/2018/php-structural-design-patterns-strategy.html" data-id="ckdvvnsgo001sk8mj56pt3ii8" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/design-patterns/" rel="tag">design-patterns</a></li></ul>
@@ -389,7 +435,7 @@
 <div class="article-gallery">
   <div class="article-gallery-photos">
     
-      <a class="article-gallery-img fancybox" href="/images/mongodb.png" rel="gallery_ckdr9pawo000ed8mjdx4naso9">
+      <a class="article-gallery-img fancybox" href="/images/mongodb.png" rel="gallery_ckdvvnsft000fk8mjfha64tyo">
         <img src="/images/mongodb.png" itemprop="image">
       </a>
     
@@ -420,7 +466,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2018/php-7-use-mongodb.html" data-id="ckdr9pawo000ed8mjdx4naso9" class="article-share-link">分享</a>
+      <a data-url="https://liluoao.github.io/2018/php-7-use-mongodb.html" data-id="ckdvvnsft000fk8mjfha64tyo" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mongo/" rel="tag">mongo</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/php/" rel="tag">php</a></li></ul>
@@ -467,7 +513,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2018/php-structural-design-patterns-adapter.html" data-id="ckdr9paxz0022d8mj9esddy10" class="article-share-link">分享</a>
+      <a data-url="https://liluoao.github.io/2018/php-structural-design-patterns-adapter.html" data-id="ckdvvnsh40025k8mjccbg62zc" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/design-patterns/" rel="tag">design-patterns</a></li></ul>
@@ -495,7 +541,7 @@
 <div class="article-gallery">
   <div class="article-gallery-photos">
     
-      <a class="article-gallery-img fancybox" href="/images/laravel-top-package.png" rel="gallery_ckdr9pawo0007d8mj7p72b275">
+      <a class="article-gallery-img fancybox" href="/images/laravel-top-package.png" rel="gallery_ckdvvnsft0007k8mj1pp62ls2">
         <img src="/images/laravel-top-package.png" itemprop="image">
       </a>
     
@@ -524,63 +570,10 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2018/image-and-excel-in-laravel.html" data-id="ckdr9pawo0007d8mj7p72b275" class="article-share-link">分享</a>
+      <a data-url="https://liluoao.github.io/2018/image-and-excel-in-laravel.html" data-id="ckdvvnsft0007k8mj1pp62ls2" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/laravel/" rel="tag">laravel</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-门面模式（Facade）" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/php-structural-design-patterns-facade.html" class="article-date">
-  <time datetime="2018-04-02T01:23:38.000Z" itemprop="datePublished">2018-04-02</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/design-patterns/">设计模式</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/php-structural-design-patterns-facade.html">门面模式（Facade）</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>也叫外观模式。为子系统中的一组接口提供一个一致的界面，定义一个高层接口，这个接口使得这一子系统更加容易使用。</p>
-<p>为什么需要外观模式</p>
-<ol>
-<li>开发阶段，子系统越来越复杂，增加外观模式提供一个简单的调用接口。</li>
-<li>维护一个大型遗留系统的时候，可能这个系统已经非常难以维护和扩展，但又包含非常重要的功能，为其开发一个外观类，以便新系统与其交互。</li>
-<li>外观模式可以隐藏来自调用对象的复杂性。</li>
-</ol>
-        
-          <p class="article-more-link">
-            <a href="/2018/php-structural-design-patterns-facade.html#more">阅读全文</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2018/php-structural-design-patterns-facade.html" data-id="ckdr9paxz0029d8mj9c4ddxmn" class="article-share-link">分享</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/design-patterns/" rel="tag">design-patterns</a></li></ul>
 
     </footer>
   </div>
@@ -623,6 +616,10 @@
           </li>
         
           <li>
+            <a href="/2019/mysql-specification-and-optimization.html">MySQL规范与优化</a>
+          </li>
+        
+          <li>
             <a href="/2019/yaf-individualization.html">Yaf框架结构个性化</a>
           </li>
         
@@ -642,10 +639,6 @@
             <a href="/2019/use-mongodb-aggregation.html">初识MongoDB的聚合</a>
           </li>
         
-          <li>
-            <a href="/2019/php-structural-design-patterns-decorator.html">装饰器模式（Decorator）</a>
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -655,7 +648,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">分类</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/openresty/">OpenResty</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/php-framework/">PHP框架</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/tool/">工具</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/database/">数据库</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/other/">杂谈</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/design-patterns/">设计模式</a><span class="category-list-count">8</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/openresty/">OpenResty</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/php-framework/">PHP框架</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/tool/">工具</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/database/">数据库</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/other/">杂谈</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/design-patterns/">设计模式</a><span class="category-list-count">8</span></li></ul>
     </div>
   </div>
 
@@ -665,7 +658,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签</h3>
     <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/design-patterns/" rel="tag">design-patterns</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/laravel/" rel="tag">laravel</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mongo/" rel="tag">mongo</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/" rel="tag">mysql</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/openresty/" rel="tag">openresty</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/phalcon/" rel="tag">phalcon</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/php/" rel="tag">php</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/redis/" rel="tag">redis</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tool/" rel="tag">tool</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/yaf/" rel="tag">yaf</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/yii/" rel="tag">yii</a><span class="tag-list-count">2</span></li></ul>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/design-patterns/" rel="tag">design-patterns</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/laravel/" rel="tag">laravel</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mongo/" rel="tag">mongo</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/" rel="tag">mysql</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/openresty/" rel="tag">openresty</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/phalcon/" rel="tag">phalcon</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/php/" rel="tag">php</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/redis/" rel="tag">redis</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tool/" rel="tag">tool</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/yaf/" rel="tag">yaf</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/yii/" rel="tag">yii</a><span class="tag-list-count">2</span></li></ul>
     </div>
   </div>
 

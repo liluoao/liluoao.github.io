@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>MySQL规范与优化 | 码之力三段</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="主要从优化库表结构、使用合适的索引、优化查询等方面">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MySQL规范与优化">
+<meta property="og:url" content="https://liluoao.github.io/2019/mysql-specification-and-optimization.html">
+<meta property="og:site_name" content="码之力三段">
+<meta property="og:description" content="主要从优化库表结构、使用合适的索引、优化查询等方面">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2019-11-15T15:36:42.000Z">
+<meta property="article:modified_time" content="2020-08-15T16:30:56.247Z">
+<meta property="article:author" content="李罗奥">
+<meta property="article:tag" content="mysql">
+<meta name="twitter:card" content="summary">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.0.2"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">码之力三段</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">首页</a>
+        
+          <a class="main-nav-link" href="/archives">文章列表</a>
+        
+          <a class="main-nav-link" href="/live2d">吸猫</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://liluoao.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-MySQL规范与优化" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/mysql-specification-and-optimization.html" class="article-date">
+  <time datetime="2019-11-15T15:36:42.000Z" itemprop="datePublished">2019-11-15</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/database/">数据库</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      MySQL规范与优化
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>主要从优化库表结构、使用合适的索引、优化查询等方面</p>
+<a id="more"></a>
+
+<h3 id="基础"><a href="#基础" class="headerlink" title="基础"></a>基础</h3><ul>
+<li>使用 InnoDB 存储引擎，UTF8 字符集</li>
+<li>禁止存储大文件或者大照片</li>
+<li>禁止使用存储过程、视图、触发器、Event</li>
+</ul>
+<h3 id="命名"><a href="#命名" class="headerlink" title="命名"></a>命名</h3><ul>
+<li>通过 Host 连接，而不是 IP</li>
+<li>主从通过 <code>master</code> <code>slave</code> 区分</li>
+<li>库名、表名、字段名：小写，下划线风格，不超过32个字符，必须见名知意，禁止拼音英文混用</li>
+</ul>
+<h3 id="表结构"><a href="#表结构" class="headerlink" title="表结构"></a>表结构</h3><ul>
+<li><p>表数量少于 500，字段数少于 30</p>
+</li>
+<li><p>必须有主键，如自增主键</p>
+<ol>
+<li><p>主键递增，数据行写入可以提高插入性能，可以避免 page 分裂，减少表碎片提升空间和内存的使用</p>
+</li>
+<li><p>主键要选择较短的数据类型， Innodb 引擎普通索引都会保存主键的值，较短的数据类型可以有效的减少索引的磁盘空间，提高索引的缓存效率</p>
+</li>
+<li><p>无主键的表删除，在 row 模式的主从架构，会导致备库夯住</p>
+</li>
+</ol>
+</li>
+<li><p>禁止使用外键<br>外键会导致表与表之间耦合，update 与 delete 操作都会涉及相关联的表，十分影响的性能</p>
+</li>
+</ul>
+<h3 id="字段"><a href="#字段" class="headerlink" title="字段"></a>字段</h3><ul>
+<li><p>必须把字段定义为 <code>NOT NULL</code> 并且提供默认值</p>
+<ol>
+<li><p>使索引/索引统计/值比较都更加复杂，对 MySQL 来说更难优化</p>
+</li>
+<li><p>MySQL 内部需要进行特殊处理，增加数据库处理记录的复杂性；同等条件下，表中有较多空字段的时候，数据库的处理性能会降低很多</p>
+</li>
+<li><p>需要更多的存储空间，无论是表还是索引中每行中的 null 的列都需要额外的空间来标识</p>
+</li>
+<li><p>处理的时候只能采用 is null 或 is not null</p>
+</li>
+</ol>
+</li>
+<li><p>禁止使用 <code>TEXT</code>、<code>BLOB</code> 类型</p>
+</li>
+</ul>
+<p>BLOB 即 SMALLBLOB，TEXT 即 SMALLTEXT，都是为了存储很大的数据而设计的字符串数据类型，分别采用二进制和字符串的方式来存储</p>
+<p>非必要的大量的大字段查询会淘汰掉热数据，导致内存命中率急剧降低，影响数据库性能</p>
+<ul>
+<li>禁止使用 <code>ENUM</code>，可使用 <code>TINYINT</code> 代替</li>
+</ul>
+<p>ENUM 的内部实际存储就是整数</p>
+<p>MySQL 在存储枚举的时候非常的紧凑，会根据列表值的数量压缩到一个或者两个字节中</p>
+<p>MySQL 在内部会将每个值在列表中的位置保存为整数，并且在表的 .frm 文件中保存”数字-字符串”映射关系的”查找表”</p>
+<ul>
+<li>关于数字类型</li>
+</ul>
+<p>MySQL 可以为整数类型指定宽度，如 <code>INT(1)</code> <code>INT(20)</code>，但是这对大多数应用是没有意义的</p>
+<p>MySQL 所指定的整数类型的宽度只是用于设置一些 MySQL 客户端显示字符的个数，对于存储和计算而言， <code>INT(1)</code> 和 <code>INT(20)</code> 不会限制值的合法范围，这两种类型都是相同的</p>
+<p>存货币时要么使用高精度的 <code>decimal(14, 3)</code>，要么直接乘 10 转成整数</p>
+<h3 id="索引"><a href="#索引" class="headerlink" title="索引"></a>索引</h3><p>MySQL中的索引类型主要有5种:</p>
+<ol>
+<li><p>普通索引: 最基本的索引、没有任何限制</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> article <span class="keyword">ADD</span> <span class="keyword">INDEX</span> index_title_name <span class="keyword">ON</span> title(<span class="number">100</span>);</span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">INDEX</span> index_name <span class="keyword">ON</span> <span class="keyword">table</span>(<span class="keyword">column</span>(<span class="number">100</span>))</span><br></pre></td></tr></table></figure>
+<p>或者直接在创建表的时候定义索引</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">index index_title_name(title(100))</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>唯一索引: 索引列的值可以为空，与普通索引类似，不同之处在于索引列的值必须唯一</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> article <span class="keyword">ADD</span> UNIQU index_title_name <span class="keyword">ON</span> title(<span class="number">100</span>);</span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">UNIQUE</span> <span class="keyword">INDEX</span> index_name <span class="keyword">ON</span> <span class="keyword">table</span>(<span class="keyword">column</span>(<span class="number">100</span>))</span><br></pre></td></tr></table></figure>
+<p>或者直接在创建表的时候定义索引</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">UNIQUE index_title_name(title(100))</span><br></pre></td></tr></table></figure></li>
+<li><p>全文索引:主要用来查找文本中的关键字，而不是直接与索引中的值相比较<br>仅可用于 MyISAM 表，针对较大的数据，生成全文索引很耗时耗空间</p>
+</li>
+<li><p>主键索引：它是一种特殊的唯一索引，不允许有空值</p>
+</li>
+<li><p>最左索引(组合索引): 组合索引可以更好的提高 MySQL 效率，最左索引遵循”最左索引”原则<br>创建复合索引时应该将最常用（频率）作限制条件的列放在最左边，依次递减。</p>
+</li>
+</ol>
+<h4 id="索引设计规范"><a href="#索引设计规范" class="headerlink" title="索引设计规范"></a>索引设计规范</h4><ul>
+<li><p>单表索引建议控制在 5 个以内</p>
+</li>
+<li><p>单索引字段数不允许超过 5 个<br>字段超过 5 个时，实际已经起不到有效过滤数据的作用了</p>
+</li>
+<li><p>禁止在更新十分频繁、区分度不高的属性上建立索引</p>
+<ol>
+<li>更新会变更 B+ 树，更新频繁的字段建立索引会大大降低数据库性能</li>
+<li>“性别”这种区分度不大的属性，建立索引是没有什么意义的，不能有效过滤数据，性能与全表扫描类似</li>
+</ol>
+</li>
+<li><p>建立组合索引，必须把区分度高的字段放在前面<br>能够更加有效的过滤数据</p>
+</li>
+</ul>
+<h3 id="SQL使用规范"><a href="#SQL使用规范" class="headerlink" title="SQL使用规范"></a>SQL使用规范</h3><ul>
+<li><p>禁止使用 <code>SELECT *</code>，只获取必要的字段，需要显示说明列属性</p>
+<ol>
+<li>读取不需要的列会增加 CPU、IO、NET 消耗</li>
+<li>不能有效的利用覆盖索引</li>
+<li>容易在增加或者删除字段后出现程序 BUG</li>
+</ol>
+</li>
+<li><p>禁止在 WHERE 条件的属性上使用函数或者表达式<br>会导致全表扫描</p>
+</li>
+<li><p>禁止负向查询，以及 <code>%</code> 开头的模糊查询<br>会导致全表扫描</p>
+</li>
+<li><p>禁止大表使用 JOIN 查询，禁止大表使用子查询<br>会产生临时表，消耗较多内存与 CPU，极大影响数据库性能</p>
+</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://liluoao.github.io/2019/mysql-specification-and-optimization.html" data-id="ckdvvnsft000ak8mja0bv4ed9" class="article-share-link">分享</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mysql/" rel="tag">mysql</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/about-middle-end.html" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">
+        
+          初识大中台
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/yaf-individualization.html" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">Yaf框架结构个性化</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/redis-proxy-distributed-cache-project.html">Redis-Proxy分布式缓存方案分享</a>
+          </li>
+        
+          <li>
+            <a href="/2020/consistency-of-master-and-slave-database.html">MySQL主从一致性方案</a>
+          </li>
+        
+          <li>
+            <a href="/2019/php-structural-design-patterns-template-method.html">模板方法模式（TemplateMethod）</a>
+          </li>
+        
+          <li>
+            <a href="/2019/about-middle-end.html">初识大中台</a>
+          </li>
+        
+          <li>
+            <a href="/2019/mysql-specification-and-optimization.html">MySQL规范与优化</a>
+          </li>
+        
+          <li>
+            <a href="/2019/yaf-individualization.html">Yaf框架结构个性化</a>
+          </li>
+        
+          <li>
+            <a href="/2019/yii-codeception-and-laravel-phpunit.html">Yii2与Laravel5的单元测试</a>
+          </li>
+        
+          <li>
+            <a href="/2019/project-code-style-management.html">项目代码风格管理</a>
+          </li>
+        
+          <li>
+            <a href="/2019/php-structural-design-patterns-state.html">状态模式（State）</a>
+          </li>
+        
+          <li>
+            <a href="/2019/use-mongodb-aggregation.html">初识MongoDB的聚合</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/openresty/">OpenResty</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/php-framework/">PHP框架</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/tool/">工具</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/database/">数据库</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/other/">杂谈</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/design-patterns/">设计模式</a><span class="category-list-count">8</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/design-patterns/" rel="tag">design-patterns</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/laravel/" rel="tag">laravel</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mongo/" rel="tag">mongo</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/" rel="tag">mysql</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/openresty/" rel="tag">openresty</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/phalcon/" rel="tag">phalcon</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/php/" rel="tag">php</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/redis/" rel="tag">redis</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tool/" rel="tag">tool</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/yaf/" rel="tag">yaf</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/yii/" rel="tag">yii</a><span class="tag-list-count">2</span></li></ul>
+    </div>
+  </div>
+
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      <div style="width: 300px; margin: 0 auto; text-align: center;">
+        传送门
+        &nbsp;<a href="https://github.com/liluoao" target="_blank" title="GitHub">GitHub</a>&nbsp;
+        &nbsp;<a href="https://segmentfault.com/u/liluoao" target="_blank" title="SegmentFault">思否</a>&nbsp;
+        &nbsp;<a href="https://learnku.com/users/7144" target="_blank" title="Laravel China">LearnKu</a>&nbsp;
+        &nbsp;<a href="https://juejin.im/user/5a19374cf265da4332274600" target="_blank" title="Jue Jin">掘金</a>
+      </div>
+      <div style="width: 300px; margin:0 auto; padding: 20px 0; text-align: center;">
+          &copy; 2020 码之力三段
+          Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+      </div>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">首页</a>
+  
+    <a href="/archives" class="mobile-nav-link">文章列表</a>
+  
+    <a href="/live2d" class="mobile-nav-link">吸猫</a>
+  
+</nav>
+    
+
+<script src="//lib.sinaapp.com/js/jquery/3.1.0/jquery-3.1.0.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>
