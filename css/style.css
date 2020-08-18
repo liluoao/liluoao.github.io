@@ -1099,12 +1099,36 @@ a.article-title:hover {
   color: #258fb8;
   text-decoration: none;
 }
-#footer a:hover {
-  text-decoration: underline;
-}
 #footer-info {
   line-height: 1.6em;
   font-size: 1em;
+}
+#footer-follow {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: box;
+  display: flex;
+  -webkit-box-align: center;
+  -moz-box-align: center;
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -moz-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+}
+.powered_by {
+  width: 300px;
+  margin: 0 auto;
+  padding: 20px 0;
+  text-align: center;
+}
+.follow-link {
+  margin-right: 5px;
 }
 .article-entry pre,
 .article-entry .highlight {
