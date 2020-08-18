@@ -7,20 +7,20 @@
   
   <title>选择Kong作为API网关 | 码之力三段</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="随着移动互联网的兴起、开放合作思维的盛行，不同终端和第三方开发者都需要大量的接入企业核心业务能力，此时各业务系统将会面临同一系列的问题，例如：如何让调用方快速接入、如何让业务方安全地对外开放能力，如何应对和控制业务洪峰调用等等。于是就诞生了一个隔离企业内部业务系统和外部系统调用的屏障 - API 网关，它负责在上层抽象出各业务系统需要的通用功能，例如：鉴权、限流、ACL、降级等。另外随着近年来微服">
+  <meta name="description" content="随着移动互联网的兴起、开放合作思维的盛行，不同终端和第三方开发者都需要大量的接入企业核心业务能力，此时各业务系统将会面临同一系列的问题，例如：如何让调用方快速接入、如何让业务方安全地对外开放能力，如何应对和控制业务洪峰调用等等 于是就诞生了一个隔离企业内部业务系统和外部系统调用的屏障 - API 网关，它负责在上层抽象出各业务系统需要的通用功能，例如：鉴权、限流、ACL、降级等 另外随着近年来微服">
 <meta property="og:type" content="article">
 <meta property="og:title" content="选择Kong作为API网关">
 <meta property="og:url" content="https://liluoao.github.io/2018/use-kong-for-api-gateway.html">
 <meta property="og:site_name" content="码之力三段">
-<meta property="og:description" content="随着移动互联网的兴起、开放合作思维的盛行，不同终端和第三方开发者都需要大量的接入企业核心业务能力，此时各业务系统将会面临同一系列的问题，例如：如何让调用方快速接入、如何让业务方安全地对外开放能力，如何应对和控制业务洪峰调用等等。于是就诞生了一个隔离企业内部业务系统和外部系统调用的屏障 - API 网关，它负责在上层抽象出各业务系统需要的通用功能，例如：鉴权、限流、ACL、降级等。另外随着近年来微服">
+<meta property="og:description" content="随着移动互联网的兴起、开放合作思维的盛行，不同终端和第三方开发者都需要大量的接入企业核心业务能力，此时各业务系统将会面临同一系列的问题，例如：如何让调用方快速接入、如何让业务方安全地对外开放能力，如何应对和控制业务洪峰调用等等 于是就诞生了一个隔离企业内部业务系统和外部系统调用的屏障 - API 网关，它负责在上层抽象出各业务系统需要的通用功能，例如：鉴权、限流、ACL、降级等 另外随着近年来微服">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://liluoao.github.io/images/different-of-kong.png">
+<meta property="og:image" content="https://liluoao.github.io/images/kong.jpg">
 <meta property="article:published_time" content="2018-11-09T12:17:07.000Z">
-<meta property="article:modified_time" content="2020-08-18T06:20:33.385Z">
+<meta property="article:modified_time" content="2020-08-18T07:13:47.141Z">
 <meta property="article:author" content="李罗奥">
-<meta property="article:tag" content="openresty">
+<meta property="article:tag" content="tool">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://liluoao.github.io/images/different-of-kong.png">
+<meta name="twitter:image" content="https://liluoao.github.io/images/kong.jpg">
   
   
     <link rel="icon" href="/favicon.png">
@@ -71,7 +71,7 @@
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/categories/openresty/">OpenResty</a>
+    <a class="article-category-link" href="/categories/tool/">工具</a>
   </div>
 
   </div>
@@ -80,8 +80,8 @@
 <div class="article-gallery">
   <div class="article-gallery-photos">
     
-      <a class="article-gallery-img fancybox" href="/images/different-of-kong.png" rel="gallery_ckdzk6f1n002zismj8vijbvvp">
-        <img src="/images/different-of-kong.png" itemprop="image">
+      <a class="article-gallery-img fancybox" href="/images/kong.jpg" rel="gallery_ckdzm2wue00270smj5otz8mub">
+        <img src="/images/kong.jpg" itemprop="image">
       </a>
     
   </div>
@@ -100,9 +100,13 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>随着移动互联网的兴起、开放合作思维的盛行，不同终端和第三方开发者都需要大量的接入企业核心业务能力，此时各业务系统将会面临同一系列的问题，例如：如何让调用方快速接入、如何让业务方安全地对外开放能力，如何应对和控制业务洪峰调用等等。于是就诞生了一个隔离企业内部业务系统和外部系统调用的屏障 - API 网关，它负责在上层抽象出各业务系统需要的通用功能，例如：鉴权、限流、ACL、降级等。另外随着近年来微服务的流行，API 网关已经成为一个微服务架构中的标配组件。</p>
+        <p>随着移动互联网的兴起、开放合作思维的盛行，不同终端和第三方开发者都需要大量的接入企业核心业务能力，此时各业务系统将会面临同一系列的问题，例如：如何让调用方快速接入、如何让业务方安全地对外开放能力，如何应对和控制业务洪峰调用等等</p>
+<p>于是就诞生了一个隔离企业内部业务系统和外部系统调用的屏障 - API 网关，它负责在上层抽象出各业务系统需要的通用功能，例如：鉴权、限流、ACL、降级等</p>
+<p>另外随着近年来微服务的流行，API 网关已经成为一个微服务架构中的标配组件</p>
 <a id="more"></a>
 
+<p><img src="/images/different-of-kong.png" alt=""></p>
+<p>在微服务架构之下，服务被拆的非常零散，降低了耦合度的同时也给服务的统一管理增加了难度。如上图左所示，在旧的服务治理体系之下，鉴权、限流、日志、监控等通用功能需要在每个服务中单独实现，这使得系统维护者没有一个全局的视图来统一管理这些功能。API 网关致力于解决的问题便是为微服务纳管这些通用的功能，在此基础上提高系统的可扩展性。如右图所示，微服务搭配上 API 网关，可以使得服务本身更专注于自己的领域，很好地对服务调用者和服务提供者做了隔离。</p>
 <p>认证中心部门提供了大量接口给外部门，非常需要这样一个网关。在选型时，放弃了 <a target="_blank" rel="noopener" href="http://orange.sumory.com/">Orange</a>，虽然它的优点有自带管理端、流量筛选和变量提取方面支持丰富，过滤统计配合配置规则比较好用，自带管理后台。但是从 2017 年 5 月开始后续没有开发，BUG 比较多。</p>
 <p><a target="_blank" rel="noopener" href="https://konghq.com/kong/">Kong</a> 的插件机制是其高可扩展性的根源，它可以很方便地为路由和服务提供各种插件，网关所需要的基本特性，Kong 都支持：</p>
 <ul>
@@ -118,19 +122,77 @@
 <li>动态负载均衡 Dynamic Load Balancing：在多个上游服务之间平衡流量</li>
 <li>插件 Plugins: <a target="_blank" rel="noopener" href="https://docs.konghq.com/hub/">Kong Hub</a> 提供众多开箱即用的插件</li>
 </ul>
-<p>在微服务架构之下，服务被拆的非常零散，降低了耦合度的同时也给服务的统一管理增加了难度。如上图左所示，在旧的服务治理体系之下，鉴权，限流，日志，监控等通用功能需要在每个服务中单独实现，这使得系统维护者没有一个全局的视图来统一管理这些功能。API 网关致力于解决的问题便是为微服务纳管这些通用的功能，在此基础上提高系统的可扩展性。如右图所示，微服务搭配上 API 网关，可以使得服务本身更专注于自己的领域，很好地对服务调用者和服务提供者做了隔离。</p>
-<p>在入手前，需要学习 OpenResty 的相关知识，还有 Lua 的语法。我看的李明江的《Nginx Lua开发实战》，内容大量搬运文档，不推荐。重点需要关注的是 11 个用户可介入阶段：</p>
+<p>在入手前，需要学习 OpenResty 的相关知识，还有 Lua 的语法。我看的李明江的《Nginx Lua开发实战》，内容大量搬运文档，不推荐</p>
+<p>重点需要关注的是 11 个用户可介入阶段：</p>
 <p><img src="/images/openresty_phases.png" alt="ngx_lua 的 11 个用户可介入阶段"></p>
-<p>对比这些阶段，再看 Kong 框架的入口文件 <em>init.lua</em>，就容易理解的多了：</p>
-<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">local</span> Kong = &#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- init_by_lua_block</span></span><br><span class="line"><span class="comment">-- 用来完成耗时长的模块加载</span></span><br><span class="line"><span class="comment">-- 或者初始化一些全局常量</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Kong.init</span><span class="params">()</span></span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="comment">-- init_worker_by_lua_block</span></span><br><span class="line"><span class="comment">-- 用于定时拉取配置/数据（启动一些定时任务）</span></span><br><span class="line"><span class="comment">-- 有几个Nginx工作进程就有几个定时任务</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Kong.init_worker</span><span class="params">()</span></span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="comment">-- ssl_certificate_by_lua_block</span></span><br><span class="line"><span class="comment">-- 在Nginx和下游服务开始一个SSL握手时处理</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Kong.ssl_certificate</span><span class="params">()</span></span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="comment">-- balancer_by_lua_block</span></span><br><span class="line"><span class="comment">-- 上游服务器中的负载均衡器</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Kong.balancer</span><span class="params">()</span></span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="comment">-- rewrite_by_lua_block</span></span><br><span class="line"><span class="comment">-- 内部URL重写或者外部重定向</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Kong.rewrite</span><span class="params">()</span></span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="comment">-- access_by_lua_block</span></span><br><span class="line"><span class="comment">-- 访问控制</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Kong.access</span><span class="params">()</span></span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="comment">-- header_filter_by_lua_block</span></span><br><span class="line"><span class="comment">-- 设置响应头</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Kong.header_filter</span><span class="params">()</span></span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="comment">-- body_filter_by_lua_block</span></span><br><span class="line"><span class="comment">-- 对响应数据进行过滤</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Kong.body_filter</span><span class="params">()</span></span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="comment">-- log_by_lua_block</span></span><br><span class="line"><span class="comment">-- 使用Lua处理日志</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Kong.log</span><span class="params">()</span></span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="comment">-- content_by_lua_block</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Kong.handle_error</span><span class="params">()</span></span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="comment">-- content_by_lua_block</span></span><br><span class="line"><span class="comment">-- 提供AdminAPI功能</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Kong.serve_admin_api</span><span class="params">(options)</span></span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">return</span> Kong</span><br></pre></td></tr></table></figure>
+<p>对比这些阶段，再看 Kong 框架的入口文件，就容易理解的多了：</p>
+<figure class="highlight lua"><figcaption><span>init.lua</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">local</span> Kong = &#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- init_by_lua_block</span></span><br><span class="line"><span class="comment">-- 用来完成耗时长的模块加载</span></span><br><span class="line"><span class="comment">-- 或者初始化一些全局常量</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Kong.init</span><span class="params">()</span></span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="comment">-- init_worker_by_lua_block</span></span><br><span class="line"><span class="comment">-- 用于定时拉取配置/数据（启动一些定时任务）</span></span><br><span class="line"><span class="comment">-- 有几个Nginx工作进程就有几个定时任务</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Kong.init_worker</span><span class="params">()</span></span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="comment">-- ssl_certificate_by_lua_block</span></span><br><span class="line"><span class="comment">-- 在Nginx和下游服务开始一个SSL握手时处理</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Kong.ssl_certificate</span><span class="params">()</span></span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="comment">-- balancer_by_lua_block</span></span><br><span class="line"><span class="comment">-- 上游服务器中的负载均衡器</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Kong.balancer</span><span class="params">()</span></span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="comment">-- rewrite_by_lua_block</span></span><br><span class="line"><span class="comment">-- 内部URL重写或者外部重定向</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Kong.rewrite</span><span class="params">()</span></span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="comment">-- access_by_lua_block</span></span><br><span class="line"><span class="comment">-- 访问控制</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Kong.access</span><span class="params">()</span></span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="comment">-- header_filter_by_lua_block</span></span><br><span class="line"><span class="comment">-- 设置响应头</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Kong.header_filter</span><span class="params">()</span></span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="comment">-- body_filter_by_lua_block</span></span><br><span class="line"><span class="comment">-- 对响应数据进行过滤</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Kong.body_filter</span><span class="params">()</span></span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="comment">-- log_by_lua_block</span></span><br><span class="line"><span class="comment">-- 使用Lua处理日志</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Kong.log</span><span class="params">()</span></span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="comment">-- content_by_lua_block</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Kong.handle_error</span><span class="params">()</span></span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="comment">-- content_by_lua_block</span></span><br><span class="line"><span class="comment">-- 提供AdminAPI功能</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Kong.serve_admin_api</span><span class="params">(options)</span></span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">return</span> Kong</span><br></pre></td></tr></table></figure>
+
+<p>Nginx 在启动后，会有一个 master 进程和多个相互独立的 worker 进程</p>
+<p>Kong 的代码运行于 worker 进程，数据存储在数据库，同时在缓存中保留一份</p>
+<p>当数据被修改时，需要通知给本地的其他 worker 进程和其他机器上的 worker 进程</p>
+<p>其他 worker 接收事件后，删除缓存中对应的数据。下次从缓存读数据时发现没有的话，就从数据库加载出来。</p>
+<p>事件分为本地事件和集群事件。本地事件用于通知在一台机器上的 worker，集群事件用于通知在多台机器上的 worker</p>
+<h3 id="本地事件-共享内存"><a href="#本地事件-共享内存" class="headerlink" title="本地事件-共享内存"></a>本地事件-共享内存</h3><p>Kong 实现了一套基于 Nginx 共享内存的事件发布-订阅（PUB/SUB）机制</p>
+<ul>
+<li>post_local() 方法在 worker 进程内进行事件发布</li>
+<li>post() 方法在同属于一台机器上的 worker 进程间进行事件发布</li>
+</ul>
+<p>这 2 个方法需要指定 <code>source</code> 和 <code>event</code> 来确定事件源。</p>
+<p>数据访问层封装了 insert、update 和 delete 3 个对数据操作的方法，分别会使用 post_local() 发出 event 对应增、删、改的事件</p>
+<p>事件的数据格式如下:</p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">   schema    = <span class="built_in">self</span>.schema, <span class="comment">--表名</span></span><br><span class="line">   operation = <span class="string">&quot;create&quot;</span>, <span class="comment">--操作类型</span></span><br><span class="line">   entity    = res, <span class="comment">--数据</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>worker 启动的时候会在 init_worker 阶段注册这些事件的订阅方法，见 <code>worker_events.register()</code></p>
+<p>订阅方法中把所有的 dao:crud 事件按表名称使用 post_local() 再进行分发，事件如下:</p>
+<ul>
+<li><p>source=crud, event=api</p>
+<p>这个事件会通知 apis 数据的修改<br>这里对缓存中对 key 为 <code>api_router:version</code> 进行 invalidate 操作会发送一条 channel=invalidations 集群事件</p>
+</li>
+<li><p>source=crud, event=routes</p>
+<p>这个事件会通知 routes 数据的修改<br>这里对缓存中对 key 为 <code>router:version</code> 进行 invalidate 操作会发送一条 channel=invalidations 集群事件</p>
+</li>
+<li><p>source=crud, event=services<br>这个事件会通知 services 数据的修改<br>只有当不是新增和删除操作时才需要更新路由，因为新增时服务还是空的，下面没有路由，删除时只有没有路由时才能删除<br>对缓存中对 key 为 <code>router:version</code> 进行 invalidate 操作会发送一条 channel=invalidations 集群事件</p>
+</li>
+<li><p>source=crud, event=targets<br>这个事件会通知 targets 数据的修改<br>使用 <code>cluster_events:broadcast</code> 方法发送一条 channel=balancer:targets 集群事件</p>
+</li>
+<li><p>source=crud, event=upstreams<br>这个事件会通知 upstreams 数据的修改<br>使用 <code>cluster_events:broadcast</code> 方法发送一条 channel=balancer:upstreams 集群事件</p>
+</li>
+</ul>
+<h3 id="集群事件-数据库"><a href="#集群事件-数据库" class="headerlink" title="集群事件-数据库"></a>集群事件-数据库</h3><p>集群事件通过数据库实现。表 <em>cluster_events</em> 存放用于集群间分发的事件，表结构如下:</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> cluster_events (</span><br><span class="line">  <span class="keyword">id</span> <span class="built_in">varchar</span>(<span class="number">64</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span>,</span><br><span class="line">  <span class="comment">-- 标识生成事件的节点id</span></span><br><span class="line">  node_id <span class="built_in">varchar</span>(<span class="number">64</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span>,</span><br><span class="line">  <span class="comment">-- 事件产生时间，精确到毫秒</span></span><br><span class="line">  <span class="keyword">at</span> <span class="built_in">timestamp</span>(<span class="number">3</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span>,</span><br><span class="line">  <span class="comment">-- 事件生效时间，精确到毫秒</span></span><br><span class="line">  nbf <span class="built_in">timestamp</span>(<span class="number">3</span>) <span class="literal">NULL</span> <span class="keyword">DEFAULT</span> <span class="literal">NULL</span>,</span><br><span class="line">  <span class="comment">-- 事件过期时间，精确到毫秒</span></span><br><span class="line">  expire_at <span class="built_in">timestamp</span>(<span class="number">3</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span>,</span><br><span class="line">  <span class="comment">-- 事件类型</span></span><br><span class="line">  channel <span class="built_in">varchar</span>(<span class="number">1023</span>) <span class="keyword">DEFAULT</span> <span class="literal">NULL</span>,</span><br><span class="line">  <span class="comment">-- 事件数据</span></span><br><span class="line">  <span class="keyword">data</span> <span class="built_in">varchar</span>(<span class="number">10000</span>) <span class="keyword">DEFAULT</span> <span class="literal">NULL</span>,</span><br><span class="line">  </span><br><span class="line">  PRIMARY <span class="keyword">KEY</span> (<span class="keyword">id</span>),</span><br><span class="line">  <span class="keyword">KEY</span> cluster_events_at_idx (<span class="keyword">at</span>),</span><br><span class="line">  <span class="keyword">KEY</span> cluster_events_channelt_idx (channel)</span><br><span class="line">) <span class="keyword">ENGINE</span>=<span class="keyword">InnoDB</span> <span class="keyword">DEFAULT</span> <span class="keyword">CHARSET</span>=utf8 ROW_FORMAT=DYNAMIC;</span><br></pre></td></tr></table></figure>
+
+<p>channel 的类型有:</p>
+<ul>
+<li>invalidations</li>
+</ul>
+<p>表示路由规则、插件配置的变更</p>
+<ul>
+<li><p>balancer:targets</p>
+<p>表示负载均衡的 targets 列表发生变更</p>
+</li>
+<li><p>balancer:upstreams</p>
+<p>表示 upstream 对象发生变更</p>
+</li>
+<li><p>balancer:post_health</p>
+<p>表示 target 的健康状态发生变更。由于被动健康检查拉出实例后，kong 不会在对该实例进行自动拉入，需要通过该事件来拉入实例。</p>
+</li>
+</ul>
+<p>调用 <code>cluster_events:broadcast()</code> 方法会往 <em>cluster_events</em> 表中新增一条记录</p>
+<p>在 init_worker 阶段通过调用 <code>cluster_events:subscribe()</code> 会开启一个定时器，定时查询出表中新增的记录</p>
+<p>这里要注意的是同一台机器上只会有一个 worker 进程会对数据库进行查询（通过加锁实现，代码见 get_lock()），查询出来后再通过共享内存的方式通知给这台机器上的其他 worker</p>
+<p>配置参数 <em>db_update_frequency</em> 确定查询数据库的间隔，默认为 5 秒。数据范围根据 at 字段是否落在 <strong>(起始时间, 结束时间]</strong> 确定。起始时间第一次设置在 init_worker 阶段，调用 ngx.now() 获取当前时间（精确到毫秒）并放入 key 为 <code>cluster_events:at</code> 的共享内存中。</p>
+<p>之后抢到锁的 worker 会从共享内存中取出该时间，该时间需要减去 db_update_propagation + 0.001 来确定起始时间，以防止事件丢失。配置参数 <em>db_update_propagation</em> 默认为 0。结束时间取 ngx.now() 的值。</p>
+<p>查询成功后会把结束时间覆盖之前的起始时间，并把该事件分发到本机的其他 worker</p>
+<p>对于设置了 nbf 的事件，kong 如果发现还没到生效时间，就会通过 ngx.timer 设置一个定时器延后分发该事件。</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2018/use-kong-for-api-gateway.html" data-id="ckdzk6f1n002zismj8vijbvvp" class="article-share-link">分享</a>
+      <a data-url="https://liluoao.github.io/2018/use-kong-for-api-gateway.html" data-id="ckdzm2wue00270smj5otz8mub" class="article-share-link">分享</a>
       
       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/openresty/" rel="tag">openresty</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/tool/" rel="tag">tool</a></li></ul>
 
     </footer>
   </div>
@@ -138,11 +200,11 @@
     
 <nav id="article-nav">
   
-    <a href="/2018/kong-cluster-event.html" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2019/xhprof-memory-leak-in-php7.html" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption">下一篇</strong>
       <div class="article-nav-title">
         
-          Kong的进程间数据同步
+          PHP7中XHProf内存泄漏
         
       </div>
     </a>
@@ -181,7 +243,7 @@
           </li>
         
           <li>
-            <a href="/2019/about-middle-end.html">初识大中台</a>
+            <a href="/2019/about-middle-office.html">初识大中台</a>
           </li>
         
           <li>
@@ -217,7 +279,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">分类</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/openresty/">OpenResty</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/php-framework/">PHP框架</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/tool/">工具</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/database/">数据库</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/other/">杂谈</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/design-patterns/">设计模式</a><span class="category-list-count">8</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/php-framework/">PHP框架</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/tool/">工具</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/database/">数据库</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/other/">杂谈</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/design-patterns/">设计模式</a><span class="category-list-count">8</span></li></ul>
     </div>
   </div>
 
@@ -227,7 +289,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签</h3>
     <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/design-patterns/" rel="tag">design-patterns</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/laravel/" rel="tag">laravel</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mongo/" rel="tag">mongo</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/" rel="tag">mysql</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/openresty/" rel="tag">openresty</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/phalcon/" rel="tag">phalcon</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/php/" rel="tag">php</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/redis/" rel="tag">redis</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tool/" rel="tag">tool</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/yaf/" rel="tag">yaf</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/yii/" rel="tag">yii</a><span class="tag-list-count">2</span></li></ul>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/design-patterns/" rel="tag">design-patterns</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/laravel/" rel="tag">laravel</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mongo/" rel="tag">mongo</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/" rel="tag">mysql</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/phalcon/" rel="tag">phalcon</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/php/" rel="tag">php</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/redis/" rel="tag">redis</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tool/" rel="tag">tool</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/yaf/" rel="tag">yaf</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/yii/" rel="tag">yii</a><span class="tag-list-count">2</span></li></ul>
     </div>
   </div>
 
