@@ -7,15 +7,15 @@
   
   <title>Laravel温故而知新 | 码之力三段</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="表单验证密码12345return [    &amp;#x27;old_password&amp;#x27; &#x3D;&gt; &amp;#x27;&amp;#x27;,    &amp;#x27;password&amp;#x27; &#x3D;&gt; &amp;#x27;bail|required|string|between:8,20|confirmed|different:old_password&amp;#x27;,    &amp;#x27;password_conf">
+  <meta name="description" content="回顾一下  表单验证与自定义规则 中间件 路由 配置与缓存 日志 国际化与本地化 辅助函数">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Laravel温故而知新">
 <meta property="og:url" content="https://liluoao.github.io/2020/review-what-has-been-learned-in-laravel.html">
 <meta property="og:site_name" content="码之力三段">
-<meta property="og:description" content="表单验证密码12345return [    &amp;#x27;old_password&amp;#x27; &#x3D;&gt; &amp;#x27;&amp;#x27;,    &amp;#x27;password&amp;#x27; &#x3D;&gt; &amp;#x27;bail|required|string|between:8,20|confirmed|different:old_password&amp;#x27;,    &amp;#x27;password_conf">
+<meta property="og:description" content="回顾一下  表单验证与自定义规则 中间件 路由 配置与缓存 日志 国际化与本地化 辅助函数">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-05-20T03:52:14.000Z">
-<meta property="article:modified_time" content="2020-09-16T06:44:02.958Z">
+<meta property="article:modified_time" content="2020-09-16T07:52:19.042Z">
 <meta property="article:author" content="李罗奥">
 <meta property="article:tag" content="laravel">
 <meta name="twitter:card" content="summary">
@@ -88,7 +88,19 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="表单验证"><a href="#表单验证" class="headerlink" title="表单验证"></a>表单验证</h2><h4 id="密码"><a href="#密码" class="headerlink" title="密码"></a>密码</h4><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">return</span> [</span><br><span class="line">    <span class="string">&#x27;old_password&#x27;</span> =&gt; <span class="string">&#x27;&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;password&#x27;</span> =&gt; <span class="string">&#x27;bail|required|string|between:8,20|confirmed|different:old_password&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;password_confirmation&#x27;</span> =&gt; <span class="string">&#x27;bail|required|string|between:8,20&#x27;</span>,</span><br><span class="line">];</span><br></pre></td></tr></table></figure>
+        <p>回顾一下</p>
+<ol>
+<li>表单验证与自定义规则</li>
+<li>中间件</li>
+<li>路由</li>
+<li>配置与缓存</li>
+<li>日志</li>
+<li>国际化与本地化</li>
+<li>辅助函数</li>
+</ol>
+<a id="more"></a>
+
+<h2 id="表单验证"><a href="#表单验证" class="headerlink" title="表单验证"></a>表单验证</h2><h4 id="密码"><a href="#密码" class="headerlink" title="密码"></a>密码</h4><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">return</span> [</span><br><span class="line">    <span class="string">&#x27;old_password&#x27;</span> =&gt; <span class="string">&#x27;&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;password&#x27;</span> =&gt; <span class="string">&#x27;bail|required|string|between:8,20|confirmed|different:old_password&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;password_confirmation&#x27;</span> =&gt; <span class="string">&#x27;bail|required|string|between:8,20&#x27;</span>,</span><br><span class="line">];</span><br></pre></td></tr></table></figure>
 
 <ul>
 <li>Confirmed<br>如果要验证的字段是 <code>password</code>，输入中必须存在匹配的 <code>password_confirmation</code> 字段</li>
@@ -210,7 +222,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2020/review-what-has-been-learned-in-laravel.html" data-id="ckf50sdea0007qgmjaa36cv8b" class="article-share-link">分享</a>
+      <a data-url="https://liluoao.github.io/2020/review-what-has-been-learned-in-laravel.html" data-id="ckf5386ht00032wmj3awr1dye" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/laravel/" rel="tag">laravel</a></li></ul>
@@ -220,6 +232,15 @@
   
     
 <nav id="article-nav">
+  
+    <a href="/2020/laravel-artisan-queue-and-task-scheduling.html" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">
+        
+          命令行、队列和任务调度
+        
+      </div>
+    </a>
   
   
     <a href="/2020/redis-proxy-distributed-cache-project.html" id="article-nav-older" class="article-nav-link-wrap">
@@ -241,6 +262,10 @@
     <h3 class="widget-title">最新文章</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2020/laravel-artisan-queue-and-task-scheduling.html">命令行、队列和任务调度</a>
+          </li>
         
           <li>
             <a href="/2020/review-what-has-been-learned-in-laravel.html">Laravel温故而知新</a>
@@ -278,10 +303,6 @@
             <a href="/2019/project-code-style-management.html">项目代码风格管理</a>
           </li>
         
-          <li>
-            <a href="/2019/php-structural-design-patterns-state.html">状态模式（State）</a>
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -291,7 +312,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">分类</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/php-framework/">PHP框架</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/tool/">工具</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/database/">数据库</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/other/">杂谈</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/design-patterns/">设计模式</a><span class="category-list-count">8</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/php-framework/">PHP框架</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/tool/">工具</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/database/">数据库</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/other/">杂谈</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/design-patterns/">设计模式</a><span class="category-list-count">8</span></li></ul>
     </div>
   </div>
 
@@ -301,7 +322,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签</h3>
     <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/design-patterns/" rel="tag">design-patterns</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/laravel/" rel="tag">laravel</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mongo/" rel="tag">mongo</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/" rel="tag">mysql</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/phalcon/" rel="tag">phalcon</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/php/" rel="tag">php</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/redis/" rel="tag">redis</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tool/" rel="tag">tool</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/yaf/" rel="tag">yaf</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/yii/" rel="tag">yii</a><span class="tag-list-count">2</span></li></ul>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/design-patterns/" rel="tag">design-patterns</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/laravel/" rel="tag">laravel</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mongo/" rel="tag">mongo</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/" rel="tag">mysql</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/phalcon/" rel="tag">phalcon</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/php/" rel="tag">php</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/redis/" rel="tag">redis</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tool/" rel="tag">tool</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/yaf/" rel="tag">yaf</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/yii/" rel="tag">yii</a><span class="tag-list-count">2</span></li></ul>
     </div>
   </div>
 

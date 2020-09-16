@@ -61,6 +61,55 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-命令行、队列和任务调度" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/laravel-artisan-queue-and-task-scheduling.html" class="article-date">
+  <time datetime="2020-06-16T07:22:49.000Z" itemprop="datePublished">2020-06-16</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/php-framework/">PHP框架</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/laravel-artisan-queue-and-task-scheduling.html">命令行、队列和任务调度</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Love,Death&amp;Robots</p>
+<p>The Lion,the Witch and the Wardrobe</p>
+<p>Artisan,Queue Job and Task-Scheduling</p>
+        
+          <p class="article-more-link">
+            <a href="/2020/laravel-artisan-queue-and-task-scheduling.html#more">阅读全文</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://liluoao.github.io/2020/laravel-artisan-queue-and-task-scheduling.html" data-id="ckf5386io001j2wmj0dat5qoc" class="article-share-link">分享</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/laravel/" rel="tag">laravel</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-Laravel温故而知新" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2020/review-what-has-been-learned-in-laravel.html" class="article-date">
@@ -87,129 +136,25 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="表单验证"><a href="#表单验证" class="headerlink" title="表单验证"></a>表单验证</h2><h4 id="密码"><a href="#密码" class="headerlink" title="密码"></a>密码</h4><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">return</span> [</span><br><span class="line">    <span class="string">&#x27;old_password&#x27;</span> =&gt; <span class="string">&#x27;&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;password&#x27;</span> =&gt; <span class="string">&#x27;bail|required|string|between:8,20|confirmed|different:old_password&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;password_confirmation&#x27;</span> =&gt; <span class="string">&#x27;bail|required|string|between:8,20&#x27;</span>,</span><br><span class="line">];</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>Confirmed<br>如果要验证的字段是 <code>password</code>，输入中必须存在匹配的 <code>password_confirmation</code> 字段</li>
-<li>Different<br>验证的字段值必须与参数字段的值不同</li>
-<li>Bail<br>第一次验证失败后停止运行验证规则。只是停止这个字段的验证，其它字段不影响</li>
-</ul>
-<h4 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h4><p>当获取前端传递的数组内容时，一般有如下要求：</p>
+        <p>回顾一下</p>
 <ol>
-<li>数组不能为空</li>
-<li>里面的每一个元素是唯一的</li>
+<li>表单验证与自定义规则</li>
+<li>中间件</li>
+<li>路由</li>
+<li>配置与缓存</li>
+<li>日志</li>
+<li>国际化与本地化</li>
+<li>辅助函数</li>
 </ol>
-<p>所以可以用下面的验证方法：</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Validator::make($request-&gt;all(), [    </span><br><span class="line">  <span class="string">&quot;tags&quot;</span> =&gt; <span class="string">&#x27;required|array&#x27;</span>,    </span><br><span class="line">  <span class="string">&quot;tags.*&quot;</span> =&gt; <span class="string">&#x27;required|string|distinct|min:3&#x27;</span>,</span><br><span class="line">]);</span><br></pre></td></tr></table></figure>
-
-<p><code>tags</code> 数组里面每个元素都是字符串，而且是唯一的，每个元素最小长度为 3</p>
-<h4 id="authorize"><a href="#authorize" class="headerlink" title="authorize()"></a>authorize()</h4><p>检查经过身份验证的用户确定其是否具有更新给定资源的权限</p>
-<p>如果 <code>authorize()</code> 方法返回 false，则会返回出一个 403 的 HTTP 响应</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">authorize</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="Unique"><a href="#Unique" class="headerlink" title="Unique"></a>Unique</h4><p>第一种写法：unique:（连接名）表名，表中对应字段，忽略值，表主键</p>
-<ol>
-<li>当字段名和表中字段相等时可省略</li>
-<li>忽略值一般用于修改判断时去掉自己</li>
-<li>表主键为 id 时可省略</li>
-</ol>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">return</span> [</span><br><span class="line">    <span class="string">&#x27;name&#x27;</span> =&gt; <span class="string">&#x27;required|string|unique:mysql.sometable,name&#x27;</span>,</span><br><span class="line">];</span><br></pre></td></tr></table></figure>
-
-<p>第二种写法：使用 <code>Illuminate\Validation\Rule::unique()</code> 静态方法</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">$id = <span class="keyword">$this</span>-&gt;get(<span class="string">&#x27;id&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">return</span> [</span><br><span class="line">    <span class="string">&#x27;id&#x27;</span> =&gt; <span class="string">&#x27;required|integer&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;name&#x27;</span> =&gt; [</span><br><span class="line">        <span class="string">&#x27;required&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;string&#x27;</span>,</span><br><span class="line">        Rule::unique(<span class="string">&#x27;mysql.sometable&#x27;</span>)-&gt;ignore($id, <span class="string">&#x27;id&#x27;</span>)</span><br><span class="line">    ],</span><br><span class="line">];</span><br></pre></td></tr></table></figure>
-
-<p>还有其他查询条件时，可以链式使用 <code>where()</code> 等方法</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">$stationId = <span class="keyword">$this</span>-&gt;get(<span class="string">&#x27;station_id&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">return</span> [</span><br><span class="line">    <span class="string">&#x27;car_number&#x27;</span> =&gt; [</span><br><span class="line">        <span class="string">&#x27;required&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;string&#x27;</span>,</span><br><span class="line">        Rule::unique(<span class="string">&#x27;queue&#x27;</span>)-&gt;where(<span class="function"><span class="keyword">function</span> (<span class="params">$query</span>) <span class="title">use</span> (<span class="params">$stationId</span>) </span>&#123;</span><br><span class="line">            $query-&gt;where([</span><br><span class="line">                [<span class="string">&#x27;station_id&#x27;</span>, $stationId],</span><br><span class="line">                [<span class="string">&#x27;cancel_state&#x27;</span>, <span class="number">0</span>]<span class="comment">//未取消</span></span><br><span class="line">            ])-&gt;whereDate(<span class="string">&#x27;create_time&#x27;</span>, today()-&gt;toDateString());</span><br><span class="line">        &#125;)<span class="comment">//排队中不允许重复</span></span><br><span class="line">    ],</span><br><span class="line">];</span><br></pre></td></tr></table></figure>
-
-<h2 id="自定义验证规则"><a href="#自定义验证规则" class="headerlink" title="自定义验证规则"></a>自定义验证规则</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">php artisan make:rule CheckPhoneNumber</span><br></pre></td></tr></table></figure>
-
-<p>规则对象包括 <code>passes()</code> 和 <code>message()</code> 方法 </p>
-<p><code>passes</code> 方法接收属性值和名称，并根据属性值是否符合规则而返回 <code>true</code> 或者 <code>false</code>：</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">passes</span>(<span class="params">$attribute, $value</span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> preg_match(<span class="string">&#x27;/^1[3456789]\d&#123;9&#125;$/&#x27;</span>,$value);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">message</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&#x27;电话号码格式不正确&#x27;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>创建表单请求类并使用新规则</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">php artisan make:request Auth\LoginRequest</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">return</span> [</span><br><span class="line">    <span class="string">&#x27;mobile&#x27;</span> =&gt; [</span><br><span class="line">        <span class="string">&#x27;required&#x27;</span>,</span><br><span class="line">        <span class="keyword">new</span> CheckPhoneNumber()</span><br><span class="line">    ],</span><br><span class="line">];</span><br></pre></td></tr></table></figure>
-
-<h2 id="中间件"><a href="#中间件" class="headerlink" title="中间件"></a>中间件</h2><p>以注册一个校验登录状态的中间件为例</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">php artisan make:middleware CheckLogin</span><br></pre></td></tr></table></figure>
-
-<p>由处理逻辑的位置决定是前置还是后置：</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">handle</span>(<span class="params">$request, <span class="built_in">Closure</span> $next</span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">// 这里就是前置</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> $next($request);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//or</span></span><br><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">handle</span>(<span class="params">$request, <span class="built_in">Closure</span> $next</span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    $response = $next($request);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 这里就是后置</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> $response;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>在 <em>app/Http/Kernel</em> 注册中间件：</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//全局中间件</span></span><br><span class="line"><span class="keyword">protected</span> $middleware = [];</span><br><span class="line"></span><br><span class="line"><span class="comment">//路由组</span></span><br><span class="line"><span class="keyword">protected</span> $middlewareGroups = [</span><br><span class="line">    <span class="string">&#x27;web&#x27;</span> =&gt; [],</span><br><span class="line">    <span class="string">&#x27;api&#x27;</span> =&gt; [],</span><br><span class="line">];</span><br><span class="line"></span><br><span class="line"><span class="comment">//自定义</span></span><br><span class="line"><span class="keyword">protected</span> $routeMiddleware = [</span><br><span class="line">    <span class="string">&#x27;checkLogin&#x27;</span> =&gt; \App\Http\Middleware\CheckLogin::class,</span><br><span class="line">];</span><br></pre></td></tr></table></figure>
-
-<p><code>RouteServiceProvider</code> 将 web 中间组自动应用到 <code>routes/web.php</code>，将 api 中间组自动应用到 <code>routes/api.php</code></p>
-<p>使用中间件时，参数使用 <code>:</code> 隔开，多个参数使用 <code>,</code> 分隔</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Route::group(</span><br><span class="line">    [</span><br><span class="line">        <span class="string">&#x27;prefix&#x27;</span> =&gt; <span class="string">&#x27;customer&#x27;</span>, </span><br><span class="line">        <span class="string">&#x27;namespace&#x27;</span> =&gt; <span class="string">&#x27;Crm&#x27;</span>, </span><br><span class="line">        <span class="string">&#x27;middleware&#x27;</span> =&gt; <span class="string">&#x27;checkLogin&#x27;</span>,<span class="comment">//为整个路由组分配中间件</span></span><br><span class="line">    ], <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="comment">//为单个路由分配中间件</span></span><br><span class="line">        Route::get(<span class="string">&#x27;customer-list&#x27;</span>, <span class="string">&#x27;CustomerController@getCustomerList&#x27;</span>)-&gt;middleware(<span class="string">&#x27;checkAction:9&#x27;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
-
-<p>接收参数：</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">CheckAction</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">handle</span>(<span class="params">$request, <span class="built_in">Closure</span> $next, $actionId</span>)</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="comment">//校验是否有权限</span></span><br><span class="line">        Action::checkAction($actionId);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> $next($request);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>在控制器中使用：</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">UserController</span> <span class="keyword">extends</span> <span class="title">Controller</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">$this</span>-&gt;middleware(<span class="string">&#x27;auth&#x27;</span>);</span><br><span class="line">        <span class="keyword">$this</span>-&gt;middleware(<span class="string">&#x27;log&#x27;</span>)-&gt;only(<span class="string">&#x27;index&#x27;</span>);</span><br><span class="line">        <span class="keyword">$this</span>-&gt;middleware(<span class="string">&#x27;subscribed&#x27;</span>)-&gt;except(<span class="string">&#x27;store&#x27;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="路由"><a href="#路由" class="headerlink" title="路由"></a>路由</h2><p>增加新的路由文件，在 <em>app/Providers/RouteServiceProvider</em> 中：</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">protected</span> <span class="function"><span class="keyword">function</span> <span class="title">mapWebRoutes</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    Route::group([</span><br><span class="line">        <span class="string">&#x27;middleware&#x27;</span> =&gt; <span class="string">&#x27;web&#x27;</span>, </span><br><span class="line">        <span class="string">&#x27;namespace&#x27;</span> =&gt; <span class="keyword">$this</span>-&gt;namespace</span><br><span class="line">        ], <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">require</span> base_path(<span class="string">&#x27;routes/web.php&#x27;</span>);</span><br><span class="line">        <span class="keyword">require</span> base_path(<span class="string">&#x27;routes/test.php&#x27;</span>);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>分配其他中间件组</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">protected</span> <span class="function"><span class="keyword">function</span> <span class="title">mapApiRoutes</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    Route::prefix(<span class="string">&#x27;api&#x27;</span>)</span><br><span class="line">         -&gt;middleware(<span class="string">&#x27;restful-api&#x27;</span>)</span><br><span class="line">         -&gt;namespace(<span class="keyword">$this</span>-&gt;namespace)</span><br><span class="line">         -&gt;group(base_path(<span class="string">&#x27;routes/api.php&#x27;</span>));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//当前路由</span></span><br><span class="line">$route = Route::current();</span><br><span class="line">$name = Route::currentRouteName();</span><br><span class="line">$action = Route::currentRouteAction();</span><br></pre></td></tr></table></figure>
-
-<h2 id="配置与缓存"><a href="#配置与缓存" class="headerlink" title="配置与缓存"></a>配置与缓存</h2><p><code>$_ENV</code> 或 <code>env()</code> 可读取 <em>.env</em> 文件中的配置</p>
-<p>新增配置文件后，如 <code>config/wechat.php</code>，使用 <code>config(&#39;wechat.xxx&#39;)</code> 读取</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 生成缓存文件 bootstrap/cache/config.php</span></span><br><span class="line">php artisan config:cache</span><br><span class="line"></span><br><span class="line"><span class="comment"># 生成缓存文件 bootstrap/cache/route.php</span></span><br><span class="line">php artisan route:cache</span><br></pre></td></tr></table></figure>
-
-<p>除了 config 文件夹下的配置文件，不要在其它地方使用 <code>env()</code> 函数</p>
-<p>因为一旦执行 <code>config:cache</code> 后，<code>env()</code> 所有读取都会返回 NULL</p>
-<p>config 文件里严禁使用 Closure 闭包，因为 <code>config:cache</code> 时无法被正确序列化</p>
-<p>routes 文件中尽量不使用闭包函数，统一使用控制器，因为缓存路由时 <code>route:cache</code> 无法缓存闭包函数</p>
-<h2 id="日志"><a href="#日志" class="headerlink" title="日志"></a>日志</h2><p>Laravel 的日志系统基于 <a target="_blank" rel="noopener" href="https://github.com/Seldaek/monolog">Monolog</a> 库</p>
-<p>错误日志级别（<a target="_blank" rel="noopener" href="https://tools.ietf.org/html/rfc5424">RFC5424</a>定义）：<em>debug, info, notice, warning, error, critical, alert, emergency</em></p>
-<p>Laravel的日志默认保存在 <code>storage/logs/laravel.log</code></p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">use</span> <span class="title">Illuminate</span>\<span class="title">Support</span>\<span class="title">Facades</span>\<span class="title">Log</span>;</span><br><span class="line"></span><br><span class="line">Log::emergency($message, $contextualInfo);</span><br><span class="line">Log::alert($message);</span><br><span class="line">Log::critical($message);</span><br><span class="line">Log::error($message);</span><br><span class="line">Log::warning($message);</span><br><span class="line">Log::notice($message);</span><br><span class="line">Log::info($message);</span><br><span class="line">Log::debug($message);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 或者全局助手方法</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// Log::info()</span></span><br><span class="line">info(<span class="string">&#x27;Some helpful information!&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// Log::debug()</span></span><br><span class="line">logger(<span class="string">&#x27;Debug message&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// Log::error()</span></span><br><span class="line">logger()-&gt;error(<span class="string">&#x27;You are not allowed here.&#x27;</span>);</span><br></pre></td></tr></table></figure>
-
-<h2 id="国际化与本地化"><a href="#国际化与本地化" class="headerlink" title="国际化与本地化"></a>国际化与本地化</h2><p><strong>i18n</strong>（其来源是英文单词 internationalization 的首末字符 i 和 n，18 为中间的字符数）是“国际化”的简称</p>
-<p>在资讯领域，国际化(i18n)指让产品（出版物，软件，硬件等）无需做大的改变就能够适应不同的语言和地区的需要。对程序来说，在不修改内部代码的情况下，能根据不同语言及地区显示相应的界面</p>
-<p>对应的有 <strong>l10n</strong>（localization 的缩写形式，意即在 l 和 n 之间有 10 个字母），指软件的“本地化”</p>
-<p><code>config/app.php</code> 中的区域（语言）设置：</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&#x27;locale&#x27;</span> =&gt; <span class="string">&#x27;zh-CN&#x27;</span>,</span><br><span class="line"><span class="string">&#x27;fallback_locale&#x27;</span> =&gt; <span class="string">&#x27;en&#x27;</span>,</span><br></pre></td></tr></table></figure>
-
-<p>可以使用 <code>App Facade</code> 的 <code>setLocale()</code> 方法动态地更改当前语言：</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Route::get(<span class="string">&#x27;welcome/&#123;locale&#125;&#x27;</span>, <span class="function"><span class="keyword">function</span> (<span class="params">$locale</span>) </span>&#123;</span><br><span class="line">    App::setLocale($locale);</span><br><span class="line">    <span class="comment">//...</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<p>还有 <code>getLocale()</code> 及 <code>isLocale()</code> 方法确定当前的区域设置或者检查语言环境是否为给定值</p>
-<p>例如Element文档：</p>
-<ul>
-<li><a target="_blank" rel="noopener" href="http://element-cn.eleme.io/#/zh-CN">http://element-cn.eleme.io/#/zh-CN</a></li>
-<li><a target="_blank" rel="noopener" href="http://element-cn.eleme.io/#/en-US">http://element-cn.eleme.io/#/en-US</a></li>
-<li><a target="_blank" rel="noopener" href="http://element-cn.eleme.io/#/es/">http://element-cn.eleme.io/#/es/</a></li>
-</ul>
-<p><strong>zh</strong> 为中文大类，其中还分为许多小类：</p>
-<ul>
-<li>zh-CN 简体中文，中华人民共和国</li>
-<li>zh-HK 繁体中文，香港特别行政区</li>
-<li>zh-MO 繁体中文，澳门特别行政区</li>
-<li>zh-SG 简体中文，新加坡</li>
-<li>zh-TW 繁体中文，中国台湾</li>
-</ul>
-<p><code>resources/lang/zh-CN/validation.php</code> 设置语言后会翻译表单验证的规则、标签等</p>
-<p>在应用中还可以使用 <code>__()</code>、<code>trans()</code>、<code>trans_choice()</code> 辅助方法来翻译</p>
-<h2 id="辅助函数"><a href="#辅助函数" class="headerlink" title="辅助函数"></a>辅助函数</h2><p>在 <em>composer.json</em> 中定义了自动加载的文件：</p>
-<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">&quot;autoload&quot;</span>: &#123;</span><br><span class="line">        <span class="attr">&quot;files&quot;</span>: [</span><br><span class="line">            <span class="string">&quot;app/helpers.php&quot;</span></span><br><span class="line">        ]</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>在此文件中自定义辅助函数：</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (!function_exists(<span class="string">&#x27;changeShowMoneyFormat&#x27;</span>)) &#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 转换金额格式</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> float $money 金额</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> int $length 保留位数</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> string|bool 转换结果</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">changeShowMoneyFormat</span>(<span class="params">$money, $length = <span class="number">2</span></span>)</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> sprintf(<span class="string">&quot;%.<span class="subst">&#123;$length&#125;</span>f&quot;</span>, $money);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>Packagist包：<a target="_blank" rel="noopener" href="https://packagist.org/packages/sebastiaanluca/laravel-helpers">https://packagist.org/packages/sebastiaanluca/laravel-helpers</a></p>
-
+        
+          <p class="article-more-link">
+            <a href="/2020/review-what-has-been-learned-in-laravel.html#more">阅读全文</a>
+          </p>
+        
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2020/review-what-has-been-learned-in-laravel.html" data-id="ckf50sdea0007qgmjaa36cv8b" class="article-share-link">分享</a>
+      <a data-url="https://liluoao.github.io/2020/review-what-has-been-learned-in-laravel.html" data-id="ckf5386ht00032wmj3awr1dye" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/laravel/" rel="tag">laravel</a></li></ul>
@@ -261,7 +206,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2020/redis-proxy-distributed-cache-project.html" data-id="ckf50sdeq000sqgmj3zaf6r40" class="article-share-link">分享</a>
+      <a data-url="https://liluoao.github.io/2020/redis-proxy-distributed-cache-project.html" data-id="ckf5386i8000s2wmje0x09nfz" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/redis/" rel="tag">redis</a></li></ul>
@@ -289,7 +234,7 @@
 <div class="article-gallery">
   <div class="article-gallery-photos">
     
-      <a class="article-gallery-img fancybox" href="/images/master-and-slave-database.png" rel="gallery_ckf50sdeq0009qgmj60cs5rlt">
+      <a class="article-gallery-img fancybox" href="/images/master-and-slave-database.png" rel="gallery_ckf5386ht00092wmj1jkccdig">
         <img src="/images/master-and-slave-database.png" itemprop="image">
       </a>
     
@@ -319,7 +264,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2020/consistency-of-master-and-slave-database.html" data-id="ckf50sdeq0009qgmj60cs5rlt" class="article-share-link">分享</a>
+      <a data-url="https://liluoao.github.io/2020/consistency-of-master-and-slave-database.html" data-id="ckf5386ht00092wmj1jkccdig" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mysql/" rel="tag">mysql</a></li></ul>
@@ -367,7 +312,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2019/php-structural-design-patterns-template-method.html" data-id="ckf50sdf5001oqgmjfg6v69ov" class="article-share-link">分享</a>
+      <a data-url="https://liluoao.github.io/2019/php-structural-design-patterns-template-method.html" data-id="ckf5386io001t2wmj0b8c2ccu" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/design-patterns/" rel="tag">design-patterns</a></li></ul>
@@ -414,7 +359,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2019/about-middle-office.html" data-id="ckf50sdf5001eqgmjgwocg4b4" class="article-share-link">分享</a>
+      <a data-url="https://liluoao.github.io/2019/about-middle-office.html" data-id="ckf5386io001e2wmjhmxr34yn" class="article-share-link">分享</a>
       
       
     </footer>
@@ -459,7 +404,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2019/mysql-specification-and-optimization.html" data-id="ckf50sdeq000aqgmja5ej9bop" class="article-share-link">分享</a>
+      <a data-url="https://liluoao.github.io/2019/mysql-specification-and-optimization.html" data-id="ckf5386ht000a2wmj199a6pn2" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mysql/" rel="tag">mysql</a></li></ul>
@@ -487,7 +432,7 @@
 <div class="article-gallery">
   <div class="article-gallery-photos">
     
-      <a class="article-gallery-img fancybox" href="/images/yaf.png" rel="gallery_ckf50sdeq000xqgmj6vtuedxa">
+      <a class="article-gallery-img fancybox" href="/images/yaf.png" rel="gallery_ckf5386i8000x2wmjhfc1gdjo">
         <img src="/images/yaf.png" itemprop="image">
       </a>
     
@@ -516,7 +461,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2019/yaf-individualization.html" data-id="ckf50sdeq000xqgmj6vtuedxa" class="article-share-link">分享</a>
+      <a data-url="https://liluoao.github.io/2019/yaf-individualization.html" data-id="ckf5386i8000x2wmjhfc1gdjo" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/php/" rel="tag">php</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/yaf/" rel="tag">yaf</a></li></ul>
@@ -544,7 +489,7 @@
 <div class="article-gallery">
   <div class="article-gallery-photos">
     
-      <a class="article-gallery-img fancybox" href="/images/codeception.png" rel="gallery_ckf50sdeq000zqgmj36mdh8pg">
+      <a class="article-gallery-img fancybox" href="/images/codeception.png" rel="gallery_ckf5386i8000z2wmj15svdg6k">
         <img src="/images/codeception.png" itemprop="image">
       </a>
     
@@ -574,7 +519,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2019/yii-codeception-and-laravel-phpunit.html" data-id="ckf50sdeq000zqgmj36mdh8pg" class="article-share-link">分享</a>
+      <a data-url="https://liluoao.github.io/2019/yii-codeception-and-laravel-phpunit.html" data-id="ckf5386i8000z2wmj15svdg6k" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/laravel/" rel="tag">laravel</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/yii/" rel="tag">yii</a></li></ul>
@@ -602,7 +547,7 @@
 <div class="article-gallery">
   <div class="article-gallery-photos">
     
-      <a class="article-gallery-img fancybox" href="/images/php-fig.png" rel="gallery_ckf50sdfl002iqgmjdcjk14ul">
+      <a class="article-gallery-img fancybox" href="/images/php-fig.png" rel="gallery_ckf5386j3002n2wmj8fc69b3k">
         <img src="/images/php-fig.png" itemprop="image">
       </a>
     
@@ -632,58 +577,10 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2019/project-code-style-management.html" data-id="ckf50sdfl002iqgmjdcjk14ul" class="article-share-link">分享</a>
+      <a data-url="https://liluoao.github.io/2019/project-code-style-management.html" data-id="ckf5386j3002n2wmj8fc69b3k" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/tool/" rel="tag">tool</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-状态模式（State）" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/php-structural-design-patterns-state.html" class="article-date">
-  <time datetime="2019-06-18T01:23:38.000Z" itemprop="datePublished">2019-06-18</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/design-patterns/">设计模式</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/php-structural-design-patterns-state.html">状态模式（State）</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>状态模式可以基于一个对象的同种事务而封装出不同的行为</p>
-<p>它提供一种简洁的方式使得对象在运行时可以改变自身行为，而不必借助单一庞大的条件判断语句</p>
-        
-          <p class="article-more-link">
-            <a href="/2019/php-structural-design-patterns-state.html#more">阅读全文</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2019/php-structural-design-patterns-state.html" data-id="ckf50sdf5001sqgmjaw28d5yc" class="article-share-link">分享</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/design-patterns/" rel="tag">design-patterns</a></li></ul>
 
     </footer>
   </div>
@@ -708,6 +605,10 @@
     <h3 class="widget-title">最新文章</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2020/laravel-artisan-queue-and-task-scheduling.html">命令行、队列和任务调度</a>
+          </li>
         
           <li>
             <a href="/2020/review-what-has-been-learned-in-laravel.html">Laravel温故而知新</a>
@@ -745,10 +646,6 @@
             <a href="/2019/project-code-style-management.html">项目代码风格管理</a>
           </li>
         
-          <li>
-            <a href="/2019/php-structural-design-patterns-state.html">状态模式（State）</a>
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -758,7 +655,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">分类</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/php-framework/">PHP框架</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/tool/">工具</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/database/">数据库</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/other/">杂谈</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/design-patterns/">设计模式</a><span class="category-list-count">8</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/php-framework/">PHP框架</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/tool/">工具</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/database/">数据库</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/other/">杂谈</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/design-patterns/">设计模式</a><span class="category-list-count">8</span></li></ul>
     </div>
   </div>
 
@@ -768,7 +665,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签</h3>
     <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/design-patterns/" rel="tag">design-patterns</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/laravel/" rel="tag">laravel</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mongo/" rel="tag">mongo</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/" rel="tag">mysql</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/phalcon/" rel="tag">phalcon</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/php/" rel="tag">php</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/redis/" rel="tag">redis</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tool/" rel="tag">tool</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/yaf/" rel="tag">yaf</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/yii/" rel="tag">yii</a><span class="tag-list-count">2</span></li></ul>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/design-patterns/" rel="tag">design-patterns</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/laravel/" rel="tag">laravel</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mongo/" rel="tag">mongo</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/" rel="tag">mysql</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/phalcon/" rel="tag">phalcon</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/php/" rel="tag">php</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/redis/" rel="tag">redis</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tool/" rel="tag">tool</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/yaf/" rel="tag">yaf</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/yii/" rel="tag">yii</a><span class="tag-list-count">2</span></li></ul>
     </div>
   </div>
 
