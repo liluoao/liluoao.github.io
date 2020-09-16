@@ -5,16 +5,19 @@
   
 
   
-  <title>码之力三段</title>
+  <title>Laravel温故而知新 | 码之力三段</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="李罗奥的博客">
-<meta property="og:type" content="website">
-<meta property="og:title" content="码之力三段">
-<meta property="og:url" content="https://liluoao.github.io/index.html">
+  <meta name="description" content="表单验证密码12345return [    &amp;#x27;old_password&amp;#x27; &#x3D;&gt; &amp;#x27;&amp;#x27;,    &amp;#x27;password&amp;#x27; &#x3D;&gt; &amp;#x27;bail|required|string|between:8,20|confirmed|different:old_password&amp;#x27;,    &amp;#x27;password_conf">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Laravel温故而知新">
+<meta property="og:url" content="https://liluoao.github.io/2020/review-what-has-been-learned-in-laravel.html">
 <meta property="og:site_name" content="码之力三段">
-<meta property="og:description" content="李罗奥的博客">
+<meta property="og:description" content="表单验证密码12345return [    &amp;#x27;old_password&amp;#x27; &#x3D;&gt; &amp;#x27;&amp;#x27;,    &amp;#x27;password&amp;#x27; &#x3D;&gt; &amp;#x27;bail|required|string|between:8,20|confirmed|different:old_password&amp;#x27;,    &amp;#x27;password_conf">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-05-20T03:52:14.000Z">
+<meta property="article:modified_time" content="2020-09-16T06:44:02.958Z">
 <meta property="article:author" content="李罗奥">
+<meta property="article:tag" content="laravel">
 <meta name="twitter:card" content="summary">
   
   
@@ -59,9 +62,7 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-    <article id="post-Laravel温故而知新" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-Laravel温故而知新" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2020/review-what-has-been-learned-in-laravel.html" class="article-date">
   <time datetime="2020-05-20T03:52:14.000Z" itemprop="datePublished">2020-05-20</time>
@@ -78,8 +79,8 @@
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/review-what-has-been-learned-in-laravel.html">Laravel温故而知新</a>
+    <h1 class="article-title" itemprop="name">
+      Laravel温故而知新
     </h1>
   
 
@@ -217,487 +218,19 @@
     </footer>
   </div>
   
-</article>
-
-
+    
+<nav id="article-nav">
   
-    <article id="post-Redis-Proxy分布式缓存方案分享" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/redis-proxy-distributed-cache-project.html" class="article-date">
-  <time datetime="2020-04-20T10:56:46.000Z" itemprop="datePublished">2020-04-20</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/tool/">工具</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/redis-proxy-distributed-cache-project.html">Redis-Proxy分布式缓存方案分享</a>
-    </h1>
+    <a href="/2020/redis-proxy-distributed-cache-project.html" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">Redis-Proxy分布式缓存方案分享</div>
+    </a>
   
+</nav>
 
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>想必在大家的架构中，Redis 已经是一个必不可少的部件，丰富的数据结构、超高的性能以及简单的协议，让它能够很好的作为数据库的上游缓存层。正是人们大量使用 Redis，逐渐暴露了一些缺点：</p>
-<ol>
-<li>单节点物理内存是有限的，不能满足日益增长的业务内存的需要；</li>
-<li>不能提供高可用服务。节点挂掉或者该节点机器宕机，导致大量请求走向数据库，造成数据库压力增大，加大数据库宕机风险；</li>
-<li>运维会为每个业务方创建一个节点。各业务方内存分配不均匀；机器部署杂、多，请求入口多，运维管理复杂、难以维护等。</li>
-</ol>
-        
-          <p class="article-more-link">
-            <a href="/2020/redis-proxy-distributed-cache-project.html#more">阅读全文</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2020/redis-proxy-distributed-cache-project.html" data-id="ckf50sdeq000sqgmj3zaf6r40" class="article-share-link">分享</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/redis/" rel="tag">redis</a></li></ul>
-
-    </footer>
-  </div>
   
 </article>
-
-
-  
-    <article id="post-MySQL主从一致性方案" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/consistency-of-master-and-slave-database.html" class="article-date">
-  <time datetime="2020-01-22T05:45:49.000Z" itemprop="datePublished">2020-01-22</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/database/">数据库</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-<div class="article-gallery">
-  <div class="article-gallery-photos">
-    
-      <a class="article-gallery-img fancybox" href="/images/master-and-slave-database.png" rel="gallery_ckf50sdeq0009qgmj60cs5rlt">
-        <img src="/images/master-and-slave-database.png" itemprop="image">
-      </a>
-    
-  </div>
-</div>
-
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/consistency-of-master-and-slave-database.html">MySQL主从一致性方案</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>实际工作中，大部分项目和业务都是读多写少。为了保证高可用性，提升读速度，一般会采用读写分离、一主多从的数据库架构。</p>
-<p>但是主从同步是延时的，如果在写操作同步完成前发生了读操作，就会导致脏读，如何解决？</p>
-        
-          <p class="article-more-link">
-            <a href="/2020/consistency-of-master-and-slave-database.html#more">阅读全文</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2020/consistency-of-master-and-slave-database.html" data-id="ckf50sdeq0009qgmj60cs5rlt" class="article-share-link">分享</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mysql/" rel="tag">mysql</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-模板方法模式（TemplateMethod）" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/php-structural-design-patterns-template-method.html" class="article-date">
-  <time datetime="2019-12-16T06:58:00.000Z" itemprop="datePublished">2019-12-16</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/design-patterns/">设计模式</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/php-structural-design-patterns-template-method.html">模板方法模式（TemplateMethod）</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>模板方法模式是一种让抽象模板的子类「完成」一系列算法的行为策略。换而言之，它是一种非常适合框架库的算法骨架</p>
-<p>用户只需要实现子类的一种方法，其父类便可去搞定这项工作了</p>
-        
-          <p class="article-more-link">
-            <a href="/2019/php-structural-design-patterns-template-method.html#more">阅读全文</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2019/php-structural-design-patterns-template-method.html" data-id="ckf50sdf5001oqgmjfg6v69ov" class="article-share-link">分享</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/design-patterns/" rel="tag">design-patterns</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-初识大中台" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/about-middle-office.html" class="article-date">
-  <time datetime="2019-12-07T08:20:59.000Z" itemprop="datePublished">2019-12-07</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/other/">杂谈</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/about-middle-office.html">初识大中台</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>互联网公司经过十几年的发展，组织已经庞大而复杂，业务不断细化拆分，也导致野蛮发展的系统越来越不可维护，开发和改造效率极低，也有很多新业务不得不重复造轮子，所以中台的目标是为了解决效率问题，同时降低创新成本。</p>
-        
-          <p class="article-more-link">
-            <a href="/2019/about-middle-office.html#more">阅读全文</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2019/about-middle-office.html" data-id="ckf50sdf5001eqgmjgwocg4b4" class="article-share-link">分享</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-MySQL规范与优化" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/mysql-specification-and-optimization.html" class="article-date">
-  <time datetime="2019-11-15T15:36:42.000Z" itemprop="datePublished">2019-11-15</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/database/">数据库</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/mysql-specification-and-optimization.html">MySQL规范与优化</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>主要从优化库表结构、使用合适的索引、优化查询等方面</p>
-        
-          <p class="article-more-link">
-            <a href="/2019/mysql-specification-and-optimization.html#more">阅读全文</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2019/mysql-specification-and-optimization.html" data-id="ckf50sdeq000aqgmja5ej9bop" class="article-share-link">分享</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mysql/" rel="tag">mysql</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-Yaf框架结构个性化" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/yaf-individualization.html" class="article-date">
-  <time datetime="2019-09-21T06:14:44.000Z" itemprop="datePublished">2019-09-21</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/php-framework/">PHP框架</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-<div class="article-gallery">
-  <div class="article-gallery-photos">
-    
-      <a class="article-gallery-img fancybox" href="/images/yaf.png" rel="gallery_ckf50sdeq000xqgmj6vtuedxa">
-        <img src="/images/yaf.png" itemprop="image">
-      </a>
-    
-  </div>
-</div>
-
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/yaf-individualization.html">Yaf框架结构个性化</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>由于 Yaf 只提供一个 MVC 的基本骨架，所以我们有很大的开发自由度，可以实现一个自己最习惯的项目。</p>
-        
-          <p class="article-more-link">
-            <a href="/2019/yaf-individualization.html#more">阅读全文</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2019/yaf-individualization.html" data-id="ckf50sdeq000xqgmj6vtuedxa" class="article-share-link">分享</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/php/" rel="tag">php</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/yaf/" rel="tag">yaf</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-Yii2与Laravel5的单元测试" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/yii-codeception-and-laravel-phpunit.html" class="article-date">
-  <time datetime="2019-08-02T09:03:53.000Z" itemprop="datePublished">2019-08-02</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/php-framework/">PHP框架</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-<div class="article-gallery">
-  <div class="article-gallery-photos">
-    
-      <a class="article-gallery-img fancybox" href="/images/codeception.png" rel="gallery_ckf50sdeq000zqgmj36mdh8pg">
-        <img src="/images/codeception.png" itemprop="image">
-      </a>
-    
-  </div>
-</div>
-
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/yii-codeception-and-laravel-phpunit.html">Yii2与Laravel5的单元测试</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>最近一个老项目前端机所在的服务器之一宕机了，在更换新服务器后发现这个项目没有单元测试，在验证时比较麻烦</p>
-<p>现在需要一步步为这个 Yii2.0.12 项目引入单元测试</p>
-        
-          <p class="article-more-link">
-            <a href="/2019/yii-codeception-and-laravel-phpunit.html#more">阅读全文</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2019/yii-codeception-and-laravel-phpunit.html" data-id="ckf50sdeq000zqgmj36mdh8pg" class="article-share-link">分享</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/laravel/" rel="tag">laravel</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/yii/" rel="tag">yii</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-项目代码风格管理" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/project-code-style-management.html" class="article-date">
-  <time datetime="2019-07-02T06:25:53.000Z" itemprop="datePublished">2019-07-02</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/tool/">工具</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-<div class="article-gallery">
-  <div class="article-gallery-photos">
-    
-      <a class="article-gallery-img fancybox" href="/images/php-fig.png" rel="gallery_ckf50sdfl002iqgmjdcjk14ul">
-        <img src="/images/php-fig.png" itemprop="image">
-      </a>
-    
-  </div>
-</div>
-
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/project-code-style-management.html">项目代码风格管理</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>在一个多人合作的项目中，使用同一份代码规范是非常重要的</p>
-<p>风格混乱不统一会造成阅读困难、工作交接困难、增加 Review 成本等问题，还可能会造成潜在的 Bug</p>
-        
-          <p class="article-more-link">
-            <a href="/2019/project-code-style-management.html#more">阅读全文</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2019/project-code-style-management.html" data-id="ckf50sdfl002iqgmjdcjk14ul" class="article-share-link">分享</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/tool/" rel="tag">tool</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-状态模式（State）" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/php-structural-design-patterns-state.html" class="article-date">
-  <time datetime="2019-06-18T01:23:38.000Z" itemprop="datePublished">2019-06-18</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/design-patterns/">设计模式</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/php-structural-design-patterns-state.html">状态模式（State）</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>状态模式可以基于一个对象的同种事务而封装出不同的行为</p>
-<p>它提供一种简洁的方式使得对象在运行时可以改变自身行为，而不必借助单一庞大的条件判断语句</p>
-        
-          <p class="article-more-link">
-            <a href="/2019/php-structural-design-patterns-state.html#more">阅读全文</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2019/php-structural-design-patterns-state.html" data-id="ckf50sdf5001sqgmjaw28d5yc" class="article-share-link">分享</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/design-patterns/" rel="tag">design-patterns</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-
-
-  <nav id="page-nav">
-    
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">下一页</a>
-  </nav>
 
 </section>
         
