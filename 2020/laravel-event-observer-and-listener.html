@@ -5,19 +5,19 @@
   
 
   
-  <title>策略模式（Strategy） | 码之力三段</title>
+  <title>事件、观察者与监听者 | 码之力三段</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="也称为政策模式（Policy），定义一系列算法，将每一个算法封装起来，并让它们可以相互替换 策略模式让算法独立于使用它的客户而变化，使他们之间能互相快速切换">
+  <meta name="description" content="对于需要降低模型间的耦合型，让关联记录的新增、其它服务的调用等拆分开，可以使用观察者模式 观察者模式实现了低耦合，非侵入式的通知与更新机制">
 <meta property="og:type" content="article">
-<meta property="og:title" content="策略模式（Strategy）">
-<meta property="og:url" content="https://liluoao.github.io/2018/php-structural-design-patterns-strategy.html">
+<meta property="og:title" content="事件、观察者与监听者">
+<meta property="og:url" content="https://liluoao.github.io/2020/laravel-event-observer-and-listener.html">
 <meta property="og:site_name" content="码之力三段">
-<meta property="og:description" content="也称为政策模式（Policy），定义一系列算法，将每一个算法封装起来，并让它们可以相互替换 策略模式让算法独立于使用它的客户而变化，使他们之间能互相快速切换">
+<meta property="og:description" content="对于需要降低模型间的耦合型，让关联记录的新增、其它服务的调用等拆分开，可以使用观察者模式 观察者模式实现了低耦合，非侵入式的通知与更新机制">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2018-08-18T01:23:38.000Z">
-<meta property="article:modified_time" content="2020-10-25T07:13:31.782Z">
+<meta property="article:published_time" content="2020-09-24T06:10:02.000Z">
+<meta property="article:modified_time" content="2020-10-25T07:13:31.778Z">
 <meta property="article:author" content="李罗奥">
-<meta property="article:tag" content="design-patterns">
+<meta property="article:tag" content="laravel">
 <meta name="twitter:card" content="summary">
   
   
@@ -62,14 +62,14 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-策略模式（Strategy）" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-事件、观察者与监听者" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2018/php-structural-design-patterns-strategy.html" class="article-date">
-  <time datetime="2018-08-18T01:23:38.000Z" itemprop="datePublished">2018-08-18</time>
+    <a href="/2020/laravel-event-observer-and-listener.html" class="article-date">
+  <time datetime="2020-09-24T06:10:02.000Z" itemprop="datePublished">2020-09-24</time>
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/categories/design-patterns/">设计模式</a>
+    <a class="article-category-link" href="/categories/php-framework/">PHP框架</a>
   </div>
 
   </div>
@@ -80,7 +80,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      策略模式（Strategy）
+      事件、观察者与监听者
     </h1>
   
 
@@ -88,26 +88,33 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>也称为政策模式（Policy），定义一系列算法，将每一个算法封装起来，并让它们可以相互替换</p>
-<p>策略模式让算法独立于使用它的客户而变化，使他们之间能互相快速切换</p>
+        <p>对于需要降低模型间的耦合型，让关联记录的新增、其它服务的调用等拆分开，可以使用观察者模式</p>
+<p>观察者模式实现了低耦合，非侵入式的通知与更新机制</p>
 <a id="more"></a>
 
-<p>先定义一个抽象策略，并且新增 2 个具体实现：</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">Strategy</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="keyword">abstract</span> <span class="function"><span class="keyword">function</span> <span class="title">peddle</span>(<span class="params"></span>)</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//女性用户策略</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">LadyStrategy</span> <span class="keyword">extends</span> <span class="title">Strategy</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">peddle</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">echo</span> <span class="string">&#x27;看看这款Dior豆沙色哑光口红，不行还有YSL、Mac等&#x27;</span> . PHP_EOL;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//男性用户策略</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">GentlemanStrategy</span> <span class="keyword">extends</span> <span class="title">Strategy</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">peddle</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">echo</span> <span class="string">&#x27;来看看这款刮胡刀，三环弧面，全身水洗&#x27;</span> . PHP_EOL;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在 <code>AppServiceProvider</code> 中添加观察者的绑定，例如员工与部门的管理，都易包括很多关联数据的变更：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">boot</span> (<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    Staff::observe(StaffObserver::class);</span><br><span class="line">    Department::observe(DepartmentObserver::class);</span><br><span class="line">    <span class="comment">//..</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>下面是需要传入策略的宣传语：</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Slogan</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="keyword">protected</span> $strategy;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span>(<span class="params">Strategy $strategy</span>)</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">$this</span>-&gt;strategy = $strategy;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">request</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">$this</span>-&gt;strategy-&gt;peddle(<span class="keyword">$this</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>然后可以完善观察者的几个对应方法，例如请求钉钉、企业微信等第三方接口</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">created</span> (<span class="params">Staff $staff</span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">//..</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">updated</span> (<span class="params">Staff $staff</span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">//..</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">deleted</span> (<span class="params">Staff $staff</span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">//..</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>最后是实际使用，根据不同策略输出合适宣传语：</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ladySlogan = <span class="keyword">new</span> Slogan(<span class="keyword">new</span> LadyStrategy);</span><br><span class="line">$ladySlogan-&gt;request();</span><br><span class="line">$gentlemanSlogan = <span class="keyword">new</span> Slogan(<span class="keyword">new</span> GentlemanStrategy);</span><br><span class="line">$gentlemanSlogan-&gt;request();</span><br></pre></td></tr></table></figure>
+<p>而另一种解耦方式，是使用事件加监听者</p>
+<p>在 <code>EventServiceProvider</code> 中配置事件与对应监听者的关联，以一个添加员工事件为例，添加时同时需要为公司的几个平台也增加账户：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">protected</span> $listen = [</span><br><span class="line">    \App\Events\Staff\StaffCreatedEvent::class         =&gt; [</span><br><span class="line">        \App\Listeners\Staff\StaffCreated\CreateCrmStaff::class,</span><br><span class="line">        \App\Listeners\Staff\StaffCreated\CreateOaStaff::class,</span><br><span class="line">        \App\Listeners\Staff\StaffCreated\CreateBmsStaff::class,</span><br><span class="line">    ],</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+
+<p>在新增时添加一个 <code>event()</code> 方法来触发：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">DB::transaction(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) <span class="title">use</span> (<span class="params">$staff</span>) </span>&#123;</span><br><span class="line">    $staffModel = Staff::findOrNew($staff[<span class="string">&#x27;id&#x27;</span>]);</span><br><span class="line">    <span class="comment">//...</span></span><br><span class="line">    $staffModel-&gt;save();</span><br><span class="line"></span><br><span class="line">    event(<span class="keyword">new</span> StaffCreatedEvent($staffModel));</span><br><span class="line">    <span class="keyword">return</span> $staffModel;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>监听者的结构非常简单，主要完善好 <code>handle()</code> 方法</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">namespace</span> <span class="title">App</span>\<span class="title">Listeners</span>\<span class="title">Staff</span>\<span class="title">StaffCreated</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">use</span> <span class="title">App</span>\<span class="title">Events</span>\<span class="title">Staff</span>\<span class="title">StaffCreatedEvent</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">CreateOaStaff</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * Create the event listener.</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> void</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span> (<span class="params"></span>)</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="comment">//</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * Handle the event.</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> StaffCreatedEvent $event</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> void</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">handle</span> (<span class="params">StaffCreatedEvent $event</span>)</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="comment">//..</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2018/php-structural-design-patterns-strategy.html" data-id="ckgos0map002vf0mj7e34140h" class="article-share-link">分享</a>
+      <a data-url="https://liluoao.github.io/2020/laravel-event-observer-and-listener.html" data-id="ckgos0map0029f0mj8fyqad78" class="article-share-link">分享</a>
       
       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/design-patterns/" rel="tag">design-patterns</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/laravel/" rel="tag">laravel</a></li></ul>
 
     </footer>
   </div>
@@ -115,19 +122,19 @@
     
 <nav id="article-nav">
   
-    <a href="/2018/use-dingo-api-and-interface-development.html" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2020/php-upload-file-to-go-server.html" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption">下一篇</strong>
       <div class="article-nav-title">
         
-          Dingo与接口开发
+          PHP发送文件给Go服务
         
       </div>
     </a>
   
   
-    <a href="/2018/php-7-use-mongodb.html" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2020/laravel-artisan-queue-and-task-scheduling.html" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">上一篇</strong>
-      <div class="article-nav-title">PHP7操作MongoDB</div>
+      <div class="article-nav-title">命令行、队列和任务调度</div>
     </a>
   
 </nav>
