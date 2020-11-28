@@ -16,7 +16,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://liluoao.github.io/images/phalcon.png">
 <meta property="article:published_time" content="2018-03-17T02:37:19.000Z">
-<meta property="article:modified_time" content="2020-10-25T07:13:31.778Z">
+<meta property="article:modified_time" content="2020-11-28T03:50:45.467Z">
 <meta property="article:author" content="李罗奥">
 <meta property="article:tag" content="phalcon">
 <meta name="twitter:card" content="summary">
@@ -80,7 +80,7 @@
 <div class="article-gallery">
   <div class="article-gallery-photos">
     
-      <a class="article-gallery-img fancybox" href="/images/phalcon.png" rel="gallery_ckgos0m9u000sf0mj3nnycaq4">
+      <a class="article-gallery-img fancybox" href="/images/phalcon.png" rel="gallery_cki15qpml000x9gmj5ysdb97j">
         <img src="/images/phalcon.png" itemprop="image">
       </a>
     
@@ -131,7 +131,7 @@
 
 <p>这个文件中默认注册了<code>Phalcon\Mvc\Router</code>（路由）、<code>Phalcon\Mvc\Url</code>（Url）、<code>Phalcon\Session\Adapter\Files</code>（Session）三个最基本的组件</p>
 <p>同时当MVC启动后，DI中默认注册的服务还有很多，可以通过DI得到所有当前已经注册的服务：</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$services = $application-&gt;getDI()-&gt;getServices();</span><br><span class="line"><span class="keyword">foreach</span> ($services <span class="keyword">as</span> $key =&gt; $service) &#123;</span><br><span class="line">   var_dump($key);</span><br><span class="line">   var_dump(get_class($application-&gt;getDI()-&gt;get($key)));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$services</span> = <span class="variable">$application</span>-&gt;getDI()-&gt;getServices();</span><br><span class="line"><span class="keyword">foreach</span> (<span class="variable">$services</span> <span class="keyword">as</span> <span class="variable">$key</span> =&gt; <span class="variable">$service</span>) &#123;</span><br><span class="line">   var_dump(<span class="variable">$key</span>);</span><br><span class="line">   var_dump(get_class(<span class="variable">$application</span>-&gt;getDI()-&gt;get(<span class="variable">$key</span>)));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>打印看到 Phalcon 还注册了以下服务：</p>
 <ul>
@@ -151,13 +151,13 @@
 <li>tag：<code>Phalcon\Tag</code> View的常用Helper</li>
 </ul>
 <p>而每一个服务都可以通过 DI 进行替换。接下来实例化一个标准的 MVC 应用，然后将我们定义好的 DI 注入进去</p>
-<figure class="highlight php"><figcaption><span>public/index.php</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//line 2-3</span></span><br><span class="line">$application = <span class="keyword">new</span> Phalcon\Mvc\Application();</span><br><span class="line">$application-&gt;setDI($di);</span><br></pre></td></tr></table></figure>
+<figure class="highlight php"><figcaption><span>public/index.php</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//line 2-3</span></span><br><span class="line"><span class="variable">$application</span> = <span class="keyword">new</span> Phalcon\Mvc\Application();</span><br><span class="line"><span class="variable">$application</span>-&gt;setDI(<span class="variable">$di</span>);</span><br></pre></td></tr></table></figure>
 
 <h3 id="2-模块注册阶段"><a href="#2-模块注册阶段" class="headerlink" title="2.模块注册阶段"></a>2.模块注册阶段</h3><p>与 DI 一样，Phalcon 建议通过引入一个独立文件的方式注册所有需要的模块：</p>
 <figure class="highlight php"><figcaption><span>public/index.php</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//line 4</span></span><br><span class="line"><span class="keyword">require</span> <span class="keyword">__DIR__</span> . <span class="string">&#x27;/../config/modules.php&#x27;</span>;</span><br></pre></td></tr></table></figure>
 
 <p>这个文件的内容如下</p>
-<figure class="highlight php"><figcaption><span>config/modules.php</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$application-&gt;registerModules(<span class="keyword">array</span>(    </span><br><span class="line">   <span class="string">&#x27;frontend&#x27;</span> =&gt; <span class="keyword">array</span>(</span><br><span class="line">        <span class="string">&#x27;className&#x27;</span> =&gt;<span class="string">&#x27;Eva\Frontend\Module&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;path&#x27;</span> =&gt; <span class="keyword">__DIR__</span> . <span class="string">&#x27;/../apps/frontend/Module.php&#x27;</span></span><br><span class="line">    )</span><br><span class="line">));</span><br></pre></td></tr></table></figure>
+<figure class="highlight php"><figcaption><span>config/modules.php</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$application</span>-&gt;registerModules(<span class="keyword">array</span>(    </span><br><span class="line">   <span class="string">&#x27;frontend&#x27;</span> =&gt; <span class="keyword">array</span>(</span><br><span class="line">        <span class="string">&#x27;className&#x27;</span> =&gt;<span class="string">&#x27;Eva\Frontend\Module&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;path&#x27;</span> =&gt; <span class="keyword">__DIR__</span> . <span class="string">&#x27;/../apps/frontend/Module.php&#x27;</span></span><br><span class="line">    )</span><br><span class="line">));</span><br></pre></td></tr></table></figure>
 
 <p>可以看到 Phalcon 的模块注册其实只是告诉框架 MVC 模块的引导文件 <code>Module.php</code> 所在位置及类名是什么</p>
 <h3 id="3-MVC阶段"><a href="#3-MVC阶段" class="headerlink" title="3.MVC阶段"></a>3.MVC阶段</h3><p><code>$application-&gt;handle()</code> 是整个MVC的核心，这个函数中处理了路由、模块、分发等MVC的全部流程</p>
@@ -193,12 +193,12 @@
 <p>此时会触发 <code>application:beforeSendResponse</code>，并调用 <code>Phalcon\Http\Response</code> 里的 <code>sendHeaders()</code> 和 <code>sendCookies()</code>，将头部信息先行发送</p>
 <p>至此，<code>Application-&gt;handle()</code> 对于请求的处理过程全部结束，对外返回一个 <code>Phalcon\Http\Response</code> 响应</p>
 <h4 id="发送响应"><a href="#发送响应" class="headerlink" title="发送响应"></a>发送响应</h4><p>HTTP 头部发送后一般把响应的内容也发送出去：</p>
-<figure class="highlight php"><figcaption><span>public/index.php</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//line 5</span></span><br><span class="line"><span class="keyword">echo</span> $application-&gt;handle()-&gt;getContent();</span><br></pre></td></tr></table></figure>
+<figure class="highlight php"><figcaption><span>public/index.php</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//line 5</span></span><br><span class="line"><span class="keyword">echo</span> <span class="variable">$application</span>-&gt;handle()-&gt;getContent();</span><br></pre></td></tr></table></figure>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2018/phalcon-installation-and-startup-process.html" data-id="ckgos0m9u000sf0mj3nnycaq4" class="article-share-link">分享</a>
+      <a data-url="https://liluoao.github.io/2018/phalcon-installation-and-startup-process.html" data-id="cki15qpml000x9gmj5ysdb97j" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/phalcon/" rel="tag">phalcon</a></li></ul>
@@ -221,7 +221,7 @@
   
     <a href="/2018/what-is-jwt-and-use-in-laravel.html" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">上一篇</strong>
-      <div class="article-nav-title">初识JWT与Laravel中的使用</div>
+      <div class="article-nav-title">JWT与在Laravel中的使用</div>
     </a>
   
 </nav>
@@ -240,11 +240,15 @@
       <ul>
         
           <li>
-            <a href="/2020/php-upload-file-to-go-server.html">PHP发送文件给Go服务</a>
+            <a href="/2020/php-upload-file-to-go-server.html">Golang接收上传文件</a>
           </li>
         
           <li>
             <a href="/2020/laravel-event-observer-and-listener.html">事件、观察者与监听者</a>
+          </li>
+        
+          <li>
+            <a href="/2020/buffer-penetration-breakdown-and-avalanche.html">缓存穿透、击穿与雪崩</a>
           </li>
         
           <li>
@@ -256,15 +260,11 @@
           </li>
         
           <li>
-            <a href="/2020/redis-proxy-distributed-cache-project.html">Redis-Proxy分布式缓存方案分享</a>
-          </li>
-        
-          <li>
             <a href="/2020/consistency-of-master-and-slave-database.html">MySQL主从一致性方案</a>
           </li>
         
           <li>
-            <a href="/2019/php-structural-design-patterns-template-method.html">模板方法模式（TemplateMethod）</a>
+            <a href="/2019/php-structural-design-patterns-template-method.html">设计模式——TemplateMethod</a>
           </li>
         
           <li>
@@ -288,7 +288,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">分类</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/php-framework/">PHP框架</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/tool/">工具</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/database/">数据库</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/other/">杂谈</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/design-patterns/">设计模式</a><span class="category-list-count">8</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/php-framework/">PHP框架</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/tool/">工具</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/database/">数据库</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/other/">杂谈</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/design-patterns/">设计模式</a><span class="category-list-count">8</span></li></ul>
     </div>
   </div>
 

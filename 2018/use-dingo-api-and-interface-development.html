@@ -16,10 +16,10 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://liluoao.github.io/2018/images/dingo.png">
 <meta property="article:published_time" content="2018-10-10T02:42:37.000Z">
-<meta property="article:modified_time" content="2020-10-25T07:13:31.762Z">
+<meta property="article:modified_time" content="2020-11-28T03:50:45.452Z">
 <meta property="article:author" content="李罗奥">
-<meta property="article:tag" content="laravel">
 <meta property="article:tag" content="tool">
+<meta property="article:tag" content="laravel">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://liluoao.github.io/2018/images/dingo.png">
   
@@ -81,7 +81,7 @@
 <div class="article-gallery">
   <div class="article-gallery-photos">
     
-      <a class="article-gallery-img fancybox" href="/images/dingo.png" rel="gallery_ckgos0m9e0001f0mj35i50htc">
+      <a class="article-gallery-img fancybox" href="/images/dingo.png" rel="gallery_cki15qpm500039gmj2hdufotk">
         <img src="/images/dingo.png" itemprop="image">
       </a>
     
@@ -130,7 +130,7 @@
 <p>通过 Composer 安装后发布配置文件：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">php artisan vendor:publish --provider=<span class="string">&quot;Dingo\Api\Provider\LaravelServiceProvider&quot;</span></span><br></pre></td></tr></table></figure>
 
-<h4 id="路由"><a href="#路由" class="headerlink" title="路由"></a>路由</h4><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">$api = app(<span class="string">&#x27;Dingo\Api\Routing\Router&#x27;</span>);</span><br><span class="line">$api-&gt;version(<span class="string">&#x27;v1&#x27;</span>, <span class="function"><span class="keyword">function</span> (<span class="params">$api</span>) </span>&#123;</span><br><span class="line">    $api-&gt;get(<span class="string">&#x27;users/&#123;id&#125;&#x27;</span>, <span class="string">&#x27;App\Api\V1\Controllers\UserController@show&#x27;</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">$api-&gt;version(<span class="string">&#x27;v2&#x27;</span>, <span class="function"><span class="keyword">function</span> (<span class="params">$api</span>) </span>&#123;</span><br><span class="line">    $api-&gt;get(<span class="string">&#x27;users/&#123;id&#125;&#x27;</span>, <span class="string">&#x27;App\Api\V2\Controllers\UserController@show&#x27;</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">//分组</span></span><br><span class="line">$api-&gt;version(<span class="string">&#x27;v3&#x27;</span>, <span class="function"><span class="keyword">function</span> (<span class="params">$api</span>) </span>&#123;</span><br><span class="line">    $api-&gt;group([<span class="string">&#x27;middleware&#x27;</span> =&gt; <span class="string">&#x27;foo&#x27;</span>], <span class="function"><span class="keyword">function</span> (<span class="params">$api</span>) </span>&#123;</span><br><span class="line">        $api-&gt;get(<span class="string">&#x27;users/&#123;id&#125;&#x27;</span>, <span class="string">&#x27;App\Api\Controllers\UserController@show&#x27;</span>);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h4 id="路由"><a href="#路由" class="headerlink" title="路由"></a>路由</h4><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$api</span> = app(<span class="string">&#x27;Dingo\Api\Routing\Router&#x27;</span>);</span><br><span class="line"><span class="variable">$api</span>-&gt;version(<span class="string">&#x27;v1&#x27;</span>, <span class="function"><span class="keyword">function</span> (<span class="params"><span class="variable">$api</span></span>) </span>&#123;</span><br><span class="line">    <span class="variable">$api</span>-&gt;get(<span class="string">&#x27;users/&#123;id&#125;&#x27;</span>, <span class="string">&#x27;App\Api\V1\Controllers\UserController@show&#x27;</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="variable">$api</span>-&gt;version(<span class="string">&#x27;v2&#x27;</span>, <span class="function"><span class="keyword">function</span> (<span class="params"><span class="variable">$api</span></span>) </span>&#123;</span><br><span class="line">    <span class="variable">$api</span>-&gt;get(<span class="string">&#x27;users/&#123;id&#125;&#x27;</span>, <span class="string">&#x27;App\Api\V2\Controllers\UserController@show&#x27;</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">//分组</span></span><br><span class="line"><span class="variable">$api</span>-&gt;version(<span class="string">&#x27;v3&#x27;</span>, <span class="function"><span class="keyword">function</span> (<span class="params"><span class="variable">$api</span></span>) </span>&#123;</span><br><span class="line">    <span class="variable">$api</span>-&gt;group([<span class="string">&#x27;middleware&#x27;</span> =&gt; <span class="string">&#x27;foo&#x27;</span>], <span class="function"><span class="keyword">function</span> (<span class="params"><span class="variable">$api</span></span>) </span>&#123;</span><br><span class="line">        <span class="variable">$api</span>-&gt;get(<span class="string">&#x27;users/&#123;id&#125;&#x27;</span>, <span class="string">&#x27;App\Api\Controllers\UserController@show&#x27;</span>);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
 
 <h4 id="响应"><a href="#响应" class="headerlink" title="响应"></a>响应</h4><p>控制器需要使用 <code>Dingo\Api\Routing\Helpers</code> Trait：</p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">use</span> <span class="title">Dingo</span>\<span class="title">Api</span>\<span class="title">Routing</span>\<span class="title">Helpers</span>;</span><br><span class="line"><span class="keyword">use</span> <span class="title">Illuminate</span>\<span class="title">Routing</span>\<span class="title">Controller</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">BaseController</span> <span class="keyword">extends</span> <span class="title">Controller</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="keyword">use</span> <span class="title">Helpers</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -138,17 +138,17 @@
 <ul>
 <li>响应一个数组</li>
 </ul>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">show</span>(<span class="params">$id</span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    $user = User::findOrFail($id);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">$this</span>-&gt;response-&gt;array($user-&gt;toArray());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">show</span>(<span class="params"><span class="variable">$id</span></span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="variable">$user</span> = User::findOrFail(<span class="variable">$id</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">$this</span>-&gt;response-&gt;array(<span class="variable">$user</span>-&gt;toArray());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <ul>
 <li>响应一个元素</li>
 </ul>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$user = User::findOrFail($id);</span><br><span class="line"></span><br><span class="line"><span class="keyword">return</span> <span class="keyword">$this</span>-&gt;response-&gt;item($user, <span class="keyword">new</span> UserTransformer);</span><br></pre></td></tr></table></figure>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$user</span> = User::findOrFail(<span class="variable">$id</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">return</span> <span class="keyword">$this</span>-&gt;response-&gt;item(<span class="variable">$user</span>, <span class="keyword">new</span> UserTransformer);</span><br></pre></td></tr></table></figure>
 
 <ul>
 <li>分页响应</li>
 </ul>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$users = User::paginate(<span class="number">25</span>);</span><br><span class="line"><span class="keyword">return</span> <span class="keyword">$this</span>-&gt;response-&gt;paginator($users, <span class="keyword">new</span> UserTransformer);</span><br></pre></td></tr></table></figure>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$users</span> = User::paginate(<span class="number">25</span>);</span><br><span class="line"><span class="keyword">return</span> <span class="keyword">$this</span>-&gt;response-&gt;paginator(<span class="variable">$users</span>, <span class="keyword">new</span> UserTransformer);</span><br></pre></td></tr></table></figure>
 
 <ul>
 <li>空响应</li>
@@ -163,17 +163,17 @@
 <ul>
 <li>设置响应状态码</li>
 </ul>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">return</span> <span class="keyword">$this</span>-&gt;response-&gt;item($user, <span class="keyword">new</span> UserTransformer)-&gt;setStatusCode(<span class="number">200</span>);</span><br></pre></td></tr></table></figure>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">return</span> <span class="keyword">$this</span>-&gt;response-&gt;item(<span class="variable">$user</span>, <span class="keyword">new</span> UserTransformer)-&gt;setStatusCode(<span class="number">200</span>);</span><br></pre></td></tr></table></figure>
 
 <ul>
 <li>添加额外的头信息</li>
 </ul>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">return</span> <span class="keyword">$this</span>-&gt;response-&gt;item($user, <span class="keyword">new</span> UserTransformer)-&gt;withHeader(<span class="string">&#x27;X-Foo&#x27;</span>, <span class="string">&#x27;Bar&#x27;</span>);</span><br></pre></td></tr></table></figure>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">return</span> <span class="keyword">$this</span>-&gt;response-&gt;item(<span class="variable">$user</span>, <span class="keyword">new</span> UserTransformer)-&gt;withHeader(<span class="string">&#x27;X-Foo&#x27;</span>, <span class="string">&#x27;Bar&#x27;</span>);</span><br></pre></td></tr></table></figure>
 
 <ul>
 <li>添加 Meta 信息</li>
 </ul>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">return</span> <span class="keyword">$this</span>-&gt;response-&gt;item($user, <span class="keyword">new</span> UserTransformer)-&gt;addMeta(<span class="string">&#x27;foo&#x27;</span>, <span class="string">&#x27;bar&#x27;</span>);</span><br><span class="line"><span class="keyword">return</span> <span class="keyword">$this</span>-&gt;response-&gt;item($user, <span class="keyword">new</span> UserTransformer)-&gt;setMeta($meta);</span><br></pre></td></tr></table></figure>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">return</span> <span class="keyword">$this</span>-&gt;response-&gt;item(<span class="variable">$user</span>, <span class="keyword">new</span> UserTransformer)-&gt;addMeta(<span class="string">&#x27;foo&#x27;</span>, <span class="string">&#x27;bar&#x27;</span>);</span><br><span class="line"><span class="keyword">return</span> <span class="keyword">$this</span>-&gt;response-&gt;item(<span class="variable">$user</span>, <span class="keyword">new</span> UserTransformer)-&gt;setMeta(<span class="variable">$meta</span>);</span><br></pre></td></tr></table></figure>
 
 <h2 id="接口参数定义"><a href="#接口参数定义" class="headerlink" title="接口参数定义"></a>接口参数定义</h2><p>接口设计中往可以抽象出一些新的公共参数，常见的公共接口参数如下：</p>
 <ul>
@@ -203,27 +203,27 @@
 <ul>
 <li>过期验证</li>
 </ul>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (microtime(<span class="literal">true</span>)*<span class="number">1000</span> - $_REQUEST[<span class="string">&#x27;timestamp&#x27;</span>] &gt; <span class="number">5000</span>) &#123;</span><br><span class="line">    <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Exception</span>(<span class="number">401</span>, <span class="string">&#x27;Expired request&#x27;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (microtime(<span class="literal">true</span>)*<span class="number">1000</span> - <span class="variable">$_REQUEST</span>[<span class="string">&#x27;timestamp&#x27;</span>] &gt; <span class="number">5000</span>) &#123;</span><br><span class="line">    <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Exception</span>(<span class="number">401</span>, <span class="string">&#x27;Expired request&#x27;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <ul>
 <li>签名验证</li>
 </ul>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//公钥校验省略</span></span><br><span class="line">$params = ksort($_REQUEST);</span><br><span class="line"><span class="keyword">unset</span>($params[<span class="string">&#x27;sign&#x27;</span>]);</span><br><span class="line">$sign = md5(sha1(implode(<span class="string">&#x27;-&#x27;</span>, $params) . $_REQUEST[<span class="string">&#x27;app_key&#x27;</span>]));</span><br><span class="line"><span class="keyword">if</span> ($sign !== $_REQUEST[<span class="string">&#x27;sign&#x27;</span>]) &#123;</span><br><span class="line">    <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Exception</span>(<span class="number">401</span>, <span class="string">&#x27;Invalid sign&#x27;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//公钥校验省略</span></span><br><span class="line"><span class="variable">$params</span> = ksort(<span class="variable">$_REQUEST</span>);</span><br><span class="line"><span class="keyword">unset</span>(<span class="variable">$params</span>[<span class="string">&#x27;sign&#x27;</span>]);</span><br><span class="line"><span class="variable">$sign</span> = md5(sha1(implode(<span class="string">&#x27;-&#x27;</span>, <span class="variable">$params</span>) . <span class="variable">$_REQUEST</span>[<span class="string">&#x27;app_key&#x27;</span>]));</span><br><span class="line"><span class="keyword">if</span> (<span class="variable">$sign</span> !== <span class="variable">$_REQUEST</span>[<span class="string">&#x27;sign&#x27;</span>]) &#123;</span><br><span class="line">    <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Exception</span>(<span class="number">401</span>, <span class="string">&#x27;Invalid sign&#x27;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <ul>
 <li>重放攻击</li>
 </ul>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//noise：随机字符串或随机正整数，用于防止重放攻击</span></span><br><span class="line">$key = md5(<span class="string">&quot;<span class="subst">&#123;$_REQUEST[&#x27;REQUEST_URI&#x27;]&#125;</span>-<span class="subst">&#123;$_REQUEST[&#x27;timestamp&#x27;]&#125;</span>-<span class="subst">&#123;$_REQUEST[&#x27;noise&#x27;]&#125;</span>-<span class="subst">&#123;$_REQUEST[&#x27;did&#x27;]&#125;</span>&quot;</span>);</span><br><span class="line"><span class="keyword">if</span> ($redisInstance-&gt;exists($key)) &#123;</span><br><span class="line">    <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Exception</span>(<span class="number">401</span>, <span class="string">&#x27;Repeated request&#x27;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//noise：随机字符串或随机正整数，用于防止重放攻击</span></span><br><span class="line"><span class="variable">$key</span> = md5(<span class="string">&quot;<span class="subst">&#123;$_REQUEST[&#x27;REQUEST_URI&#x27;]&#125;</span>-<span class="subst">&#123;$_REQUEST[&#x27;timestamp&#x27;]&#125;</span>-<span class="subst">&#123;$_REQUEST[&#x27;noise&#x27;]&#125;</span>-<span class="subst">&#123;$_REQUEST[&#x27;did&#x27;]&#125;</span>&quot;</span>);</span><br><span class="line"><span class="keyword">if</span> (<span class="variable">$redisInstance</span>-&gt;exists(<span class="variable">$key</span>)) &#123;</span><br><span class="line">    <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Exception</span>(<span class="number">401</span>, <span class="string">&#x27;Repeated request&#x27;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <ul>
 <li>限流</li>
 </ul>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$key = md5(<span class="string">&quot;<span class="subst">&#123;$_REQUEST[&#x27;REQUEST_URI&#x27;]&#125;</span>-<span class="subst">&#123;$_REQUEST[&#x27;REMOTE_ADDR&#x27;]&#125;</span>-<span class="subst">&#123;$_REQUEST[&#x27;did&#x27;]&#125;</span>&quot;</span>);</span><br><span class="line"><span class="keyword">if</span> ($redisInstance-&gt;get($key) &gt; <span class="number">60</span>) &#123;</span><br><span class="line">    <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Exception</span>(<span class="number">401</span>, <span class="string">&#x27;Request limit&#x27;</span>);</span><br><span class="line">&#125;</span><br><span class="line">$redisInstance-&gt;incre($key);</span><br></pre></td></tr></table></figure>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$key</span> = md5(<span class="string">&quot;<span class="subst">&#123;$_REQUEST[&#x27;REQUEST_URI&#x27;]&#125;</span>-<span class="subst">&#123;$_REQUEST[&#x27;REMOTE_ADDR&#x27;]&#125;</span>-<span class="subst">&#123;$_REQUEST[&#x27;did&#x27;]&#125;</span>&quot;</span>);</span><br><span class="line"><span class="keyword">if</span> (<span class="variable">$redisInstance</span>-&gt;get(<span class="variable">$key</span>) &gt; <span class="number">60</span>) &#123;</span><br><span class="line">    <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Exception</span>(<span class="number">401</span>, <span class="string">&#x27;Request limit&#x27;</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="variable">$redisInstance</span>-&gt;incre(<span class="variable">$key</span>);</span><br></pre></td></tr></table></figure>
 
 <ul>
 <li>转义</li>
 </ul>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$username = htmlspecialchars($_REQUEST[<span class="string">&#x27;username&#x27;</span>]);</span><br></pre></td></tr></table></figure>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$username</span> = htmlspecialchars(<span class="variable">$_REQUEST</span>[<span class="string">&#x27;username&#x27;</span>]);</span><br></pre></td></tr></table></figure>
 
 <h2 id="可读性"><a href="#可读性" class="headerlink" title="可读性"></a>可读性</h2><p>接口可读性核心就是 RESTful</p>
 <ol>
@@ -243,7 +243,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2018/use-dingo-api-and-interface-development.html" data-id="ckgos0m9e0001f0mj35i50htc" class="article-share-link">分享</a>
+      <a data-url="https://liluoao.github.io/2018/use-dingo-api-and-interface-development.html" data-id="cki15qpm500039gmj2hdufotk" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/laravel/" rel="tag">laravel</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/tool/" rel="tag">tool</a></li></ul>
@@ -258,7 +258,7 @@
       <strong class="article-nav-caption">下一篇</strong>
       <div class="article-nav-title">
         
-          选择Kong作为API网关
+          API网关选型
         
       </div>
     </a>
@@ -266,7 +266,7 @@
   
     <a href="/2018/php-structural-design-patterns-strategy.html" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">上一篇</strong>
-      <div class="article-nav-title">策略模式（Strategy）</div>
+      <div class="article-nav-title">设计模式——Strategy</div>
     </a>
   
 </nav>
@@ -285,11 +285,15 @@
       <ul>
         
           <li>
-            <a href="/2020/php-upload-file-to-go-server.html">PHP发送文件给Go服务</a>
+            <a href="/2020/php-upload-file-to-go-server.html">Golang接收上传文件</a>
           </li>
         
           <li>
             <a href="/2020/laravel-event-observer-and-listener.html">事件、观察者与监听者</a>
+          </li>
+        
+          <li>
+            <a href="/2020/buffer-penetration-breakdown-and-avalanche.html">缓存穿透、击穿与雪崩</a>
           </li>
         
           <li>
@@ -301,15 +305,11 @@
           </li>
         
           <li>
-            <a href="/2020/redis-proxy-distributed-cache-project.html">Redis-Proxy分布式缓存方案分享</a>
-          </li>
-        
-          <li>
             <a href="/2020/consistency-of-master-and-slave-database.html">MySQL主从一致性方案</a>
           </li>
         
           <li>
-            <a href="/2019/php-structural-design-patterns-template-method.html">模板方法模式（TemplateMethod）</a>
+            <a href="/2019/php-structural-design-patterns-template-method.html">设计模式——TemplateMethod</a>
           </li>
         
           <li>
@@ -333,7 +333,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">分类</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/php-framework/">PHP框架</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/tool/">工具</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/database/">数据库</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/other/">杂谈</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/design-patterns/">设计模式</a><span class="category-list-count">8</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/php-framework/">PHP框架</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/tool/">工具</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/database/">数据库</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/other/">杂谈</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/design-patterns/">设计模式</a><span class="category-list-count">8</span></li></ul>
     </div>
   </div>
 

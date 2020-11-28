@@ -16,7 +16,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://liluoao.github.io/images/codeception.png">
 <meta property="article:published_time" content="2019-08-02T09:03:53.000Z">
-<meta property="article:modified_time" content="2020-10-25T07:13:31.778Z">
+<meta property="article:modified_time" content="2020-11-28T03:50:45.467Z">
 <meta property="article:author" content="李罗奥">
 <meta property="article:tag" content="laravel">
 <meta property="article:tag" content="yii">
@@ -81,7 +81,7 @@
 <div class="article-gallery">
   <div class="article-gallery-photos">
     
-      <a class="article-gallery-img fancybox" href="/images/codeception.png" rel="gallery_ckgos0maa0013f0mj9r8441pl">
+      <a class="article-gallery-img fancybox" href="/images/codeception.png" rel="gallery_cki15qpml00169gmjg2pcf9iv">
         <img src="/images/codeception.png" itemprop="image">
       </a>
     
@@ -111,14 +111,14 @@
 <p>yiisoft/yii2 * requires bower-asset/jquery *@stable -&gt; no matching package found.</p>
 </blockquote>
 <p>这时需要安装这个 Composer 管理前端依赖的包，在下载中需要配置一个 GitHub 的 Token：</p>
-<figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">composer</span> <span class="meta">global</span> <span class="meta">require</span> <span class="string">&quot;fxp/composer-asset-plugin&quot;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight livescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">composer <span class="built_in">global</span> <span class="built_in">require</span> <span class="string">&quot;fxp/composer-asset-plugin&quot;</span></span><br></pre></td></tr></table></figure>
 
 <p>全部安装好后，在 <em>vendor/bin</em> 下能找到一个可执行文件 <code>codecept</code></p>
 <p>在项目根目录需要有一个配置文件，默认配置了 3 个测试模块：</p>
 <figure class="highlight yml"><figcaption><span>codeception.yml</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># global codeception file to run tests from all apps</span></span><br><span class="line"><span class="attr">include:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">common</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">frontend</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">backend</span></span><br><span class="line"><span class="attr">paths:</span></span><br><span class="line">    <span class="attr">log:</span> <span class="string">console/runtime/logs</span></span><br><span class="line"><span class="attr">settings:</span></span><br><span class="line">    <span class="attr">colors:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
 
 <p>如果是项目是完整的，里面已经包含了单元测试的例子，部分结果如下：</p>
-<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">$ vendor/bin/codecept run</span><br><span class="line">Codeception PHP Testing Framework v2.5.6</span><br><span class="line">Powered by PHPUnit 7.5.18 by Sebastian Bergmann <span class="keyword">and</span> contributors.</span><br><span class="line">Running with seed:</span><br><span class="line"></span><br><span class="line">[common\tests]: tests <span class="keyword">from</span> D:\WWW\yii2-app-advanced-2.0.11\common</span><br><span class="line"></span><br><span class="line">Common\tests.unit Tests (3) ----------------------------------------------------</span><br><span class="line">E LoginFormTest: Login <span class="literal">no</span><span class="built_in"> user </span>(2.89s)</span><br><span class="line">E LoginFormTest: Login wrong password (2.01s)</span><br><span class="line">E LoginFormTest: Login correct (2.00s)</span><br></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">$ vendor/bin/codecept run</span><br><span class="line">Codeception PHP Testing Framework v2.5.6</span><br><span class="line">Powered by PHPUnit 7.5.18 by Sebastian Bergmann and contributors.</span><br><span class="line">Running <span class="keyword">with</span> <span class="keyword">seed</span>:</span><br><span class="line"></span><br><span class="line">[common\tests]: tests <span class="keyword">from</span> D:\WWW\yii2-app-<span class="keyword">advanced</span><span class="number">-2.0</span><span class="number">.11</span>\common</span><br><span class="line"></span><br><span class="line">Common\tests.unit Tests (<span class="number">3</span>) <span class="comment">----------------------------------------------------</span></span><br><span class="line">E LoginFormTest: Login <span class="keyword">no</span> <span class="keyword">user</span> (<span class="number">2.89</span>s)</span><br><span class="line">E LoginFormTest: Login wrong <span class="keyword">password</span> (<span class="number">2.01</span>s)</span><br><span class="line">E LoginFormTest: Login correct (<span class="number">2.00</span>s)</span><br></pre></td></tr></table></figure>
 
 <h4 id="启动引导"><a href="#启动引导" class="headerlink" title="启动引导"></a>启动引导</h4><p>但是像我的项目经过了各种删减，原用例和配置都不在了，需要重新生成：</p>
 <figure class="highlight taggerscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vendor<span class="symbol">\b</span>in<span class="symbol">\c</span>odecept bootstrap</span><br></pre></td></tr></table></figure>
@@ -132,10 +132,10 @@
 
 <p>然后使用 <em>build</em> 命令构建测试</p>
 <h4 id="运行测试"><a href="#运行测试" class="headerlink" title="运行测试"></a>运行测试</h4><p>在写好你的 GetChatLog 用例后：</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">tryToTest</span>(<span class="params">ApiTester $I</span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    $I-&gt;sendPOST(<span class="string">&#x27;index/get-chat-log&#x27;</span>, [<span class="string">&#x27;from_id&#x27;</span> =&gt; <span class="number">1</span>, <span class="string">&#x27;to_id&#x27;</span> =&gt; <span class="number">1</span>]);</span><br><span class="line">    $I-&gt;seeResponseCodeIs(Codeception\Util\HttpCode::OK);</span><br><span class="line">    $I-&gt;seeResponseIsJson();</span><br><span class="line">    $I-&gt;seeResponseContainsJson([<span class="string">&#x27;code&#x27;</span> =&gt; <span class="number">0</span>]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">tryToTest</span>(<span class="params">ApiTester <span class="variable">$I</span></span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="variable">$I</span>-&gt;sendPOST(<span class="string">&#x27;index/get-chat-log&#x27;</span>, [<span class="string">&#x27;from_id&#x27;</span> =&gt; <span class="number">1</span>, <span class="string">&#x27;to_id&#x27;</span> =&gt; <span class="number">1</span>]);</span><br><span class="line">    <span class="variable">$I</span>-&gt;seeResponseCodeIs(Codeception\Util\HttpCode::OK);</span><br><span class="line">    <span class="variable">$I</span>-&gt;seeResponseIsJson();</span><br><span class="line">    <span class="variable">$I</span>-&gt;seeResponseContainsJson([<span class="string">&#x27;code&#x27;</span> =&gt; <span class="number">0</span>]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>运行测试查看结果</p>
-<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vendor\bin\codecept <span class="keyword">run</span><span class="bash"> api</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight taggerscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vendor<span class="symbol">\b</span>in<span class="symbol">\c</span>odecept run api</span><br></pre></td></tr></table></figure>
 
 <h2 id="Laravel5-PHPUnit"><a href="#Laravel5-PHPUnit" class="headerlink" title="Laravel5 PHPUnit"></a>Laravel5 PHPUnit</h2><p>回顾一下以前用 Laravel 5.5 时使用单元测试的方式</p>
 <p>如果是使用 Laravel 安装器创建的项目，则已经安装好了 PHPUnit</p>
@@ -145,7 +145,7 @@
 <figure class="highlight php"><figcaption><span>tests/Feature/UserTest.php</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">namespace</span> <span class="title">Tests</span>\<span class="title">Feature</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">use</span> <span class="title">Tests</span>\<span class="title">TestCase</span>;</span><br><span class="line"><span class="keyword">use</span> <span class="title">Illuminate</span>\<span class="title">Foundation</span>\<span class="title">Testing</span>\<span class="title">WithFaker</span>;</span><br><span class="line"><span class="keyword">use</span> <span class="title">Illuminate</span>\<span class="title">Foundation</span>\<span class="title">Testing</span>\<span class="title">RefreshDatabase</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">UserTest</span> <span class="keyword">extends</span> <span class="title">TestCase</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">testExample</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">$this</span>-&gt;assertTrue(<span class="literal">true</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <h4 id="Web测试"><a href="#Web测试" class="headerlink" title="Web测试"></a>Web测试</h4><p>断言某 GET 请求的响应码为 200 的示例方法 ExampleTest 如下：</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">testBasicTest</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    $response = <span class="keyword">$this</span>-&gt;get(<span class="string">&#x27;/&#x27;</span>);</span><br><span class="line"></span><br><span class="line">    $response-&gt;assertStatus(<span class="number">200</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">testBasicTest</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="variable">$response</span> = <span class="keyword">$this</span>-&gt;get(<span class="string">&#x27;/&#x27;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="variable">$response</span>-&gt;assertStatus(<span class="number">200</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <h4 id="接口测试"><a href="#接口测试" class="headerlink" title="接口测试"></a>接口测试</h4><p>下面的测试是断言 <code>/user</code> 这个 POST 接口会返回给定数组的 JSON 格式：</p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">$this</span>-&gt;json(<span class="string">&#x27;POST&#x27;</span>, <span class="string">&#x27;/user&#x27;</span>, [<span class="string">&#x27;name&#x27;</span> =&gt; <span class="string">&#x27;Sally&#x27;</span>])</span><br><span class="line">    -&gt;seeJson([</span><br><span class="line">        <span class="string">&#x27;created&#x27;</span> =&gt; <span class="literal">true</span>,</span><br><span class="line">    ]) ;</span><br></pre></td></tr></table></figure>
@@ -169,7 +169,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2019/yii-codeception-and-laravel-phpunit.html" data-id="ckgos0maa0013f0mj9r8441pl" class="article-share-link">分享</a>
+      <a data-url="https://liluoao.github.io/2019/yii-codeception-and-laravel-phpunit.html" data-id="cki15qpml00169gmjg2pcf9iv" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/laravel/" rel="tag">laravel</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/yii/" rel="tag">yii</a></li></ul>
@@ -211,11 +211,15 @@
       <ul>
         
           <li>
-            <a href="/2020/php-upload-file-to-go-server.html">PHP发送文件给Go服务</a>
+            <a href="/2020/php-upload-file-to-go-server.html">Golang接收上传文件</a>
           </li>
         
           <li>
             <a href="/2020/laravel-event-observer-and-listener.html">事件、观察者与监听者</a>
+          </li>
+        
+          <li>
+            <a href="/2020/buffer-penetration-breakdown-and-avalanche.html">缓存穿透、击穿与雪崩</a>
           </li>
         
           <li>
@@ -227,15 +231,11 @@
           </li>
         
           <li>
-            <a href="/2020/redis-proxy-distributed-cache-project.html">Redis-Proxy分布式缓存方案分享</a>
-          </li>
-        
-          <li>
             <a href="/2020/consistency-of-master-and-slave-database.html">MySQL主从一致性方案</a>
           </li>
         
           <li>
-            <a href="/2019/php-structural-design-patterns-template-method.html">模板方法模式（TemplateMethod）</a>
+            <a href="/2019/php-structural-design-patterns-template-method.html">设计模式——TemplateMethod</a>
           </li>
         
           <li>
@@ -259,7 +259,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">分类</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/php-framework/">PHP框架</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/tool/">工具</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/database/">数据库</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/other/">杂谈</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/design-patterns/">设计模式</a><span class="category-list-count">8</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/php-framework/">PHP框架</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/tool/">工具</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/database/">数据库</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/other/">杂谈</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/design-patterns/">设计模式</a><span class="category-list-count">8</span></li></ul>
     </div>
   </div>
 

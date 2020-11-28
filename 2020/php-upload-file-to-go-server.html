@@ -5,17 +5,17 @@
   
 
   
-  <title>PHP发送文件给Go服务 | 码之力三段</title>
+  <title>Golang接收上传文件 | 码之力三段</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="最近业务需要用 SFTP 发送文件到对接公司的服务器中，在实现时碰到了一些问题">
 <meta property="og:type" content="article">
-<meta property="og:title" content="PHP发送文件给Go服务">
+<meta property="og:title" content="Golang接收上传文件">
 <meta property="og:url" content="https://liluoao.github.io/2020/php-upload-file-to-go-server.html">
 <meta property="og:site_name" content="码之力三段">
 <meta property="og:description" content="最近业务需要用 SFTP 发送文件到对接公司的服务器中，在实现时碰到了一些问题">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-10-23T08:47:45.000Z">
-<meta property="article:modified_time" content="2020-10-25T07:13:31.778Z">
+<meta property="article:modified_time" content="2020-11-28T03:50:45.452Z">
 <meta property="article:author" content="李罗奥">
 <meta property="article:tag" content="php">
 <meta property="article:tag" content="go">
@@ -63,7 +63,7 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-PHP发送文件给Go服务" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-Golang接收上传文件" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2020/php-upload-file-to-go-server.html" class="article-date">
   <time datetime="2020-10-23T08:47:45.000Z" itemprop="datePublished">2020-10-23</time>
@@ -81,7 +81,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      PHP发送文件给Go服务
+      Golang接收上传文件
     </h1>
   
 
@@ -99,7 +99,7 @@
 <figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">srcFile, _ := os.Open(fileName)</span><br><span class="line">io.Copy(dstFile, io.LimitReader(srcFile, <span class="number">3e9</span>))</span><br></pre></td></tr></table></figure>
 
 <p>这肯定实现不了我们的需求，要把文件内容给发过来，所以改成了 POST 表单的方式</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">Storage::put($filename, $fileContent);</span><br><span class="line">$response = (<span class="keyword">new</span> Client())-&gt;post(<span class="keyword">$this</span>-&gt;apiUrlRoot.<span class="string">&#x27;/upload&#x27;</span>, [</span><br><span class="line">    <span class="string">&#x27;headers&#x27;</span>   =&gt; [</span><br><span class="line">        <span class="string">&#x27;token&#x27;</span>    =&gt; <span class="keyword">$this</span>-&gt;token,</span><br><span class="line">    ],</span><br><span class="line">    <span class="string">&#x27;multipart&#x27;</span> =&gt; [</span><br><span class="line">        [</span><br><span class="line">            <span class="string">&#x27;name&#x27;</span>     =&gt; <span class="string">&#x27;xxx&#x27;</span>,</span><br><span class="line">            <span class="string">&#x27;contents&#x27;</span> =&gt; stream_for(Storage::readStream($filename)),</span><br><span class="line">            <span class="string">&#x27;filename&#x27;</span> =&gt; $filename,</span><br><span class="line">        ],</span><br><span class="line">    ],</span><br><span class="line">]);</span><br><span class="line">Storage::delete($filename);</span><br></pre></td></tr></table></figure>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">Storage::put(<span class="variable">$filename</span>, <span class="variable">$fileContent</span>);</span><br><span class="line"><span class="variable">$response</span> = (<span class="keyword">new</span> Client())-&gt;post(<span class="keyword">$this</span>-&gt;apiUrlRoot.<span class="string">&#x27;/upload&#x27;</span>, [</span><br><span class="line">    <span class="string">&#x27;headers&#x27;</span>   =&gt; [</span><br><span class="line">        <span class="string">&#x27;token&#x27;</span>    =&gt; <span class="keyword">$this</span>-&gt;token,</span><br><span class="line">    ],</span><br><span class="line">    <span class="string">&#x27;multipart&#x27;</span> =&gt; [</span><br><span class="line">        [</span><br><span class="line">            <span class="string">&#x27;name&#x27;</span>     =&gt; <span class="string">&#x27;xxx&#x27;</span>,</span><br><span class="line">            <span class="string">&#x27;contents&#x27;</span> =&gt; stream_for(Storage::readStream(<span class="variable">$filename</span>)),</span><br><span class="line">            <span class="string">&#x27;filename&#x27;</span> =&gt; <span class="variable">$filename</span>,</span><br><span class="line">        ],</span><br><span class="line">    ],</span><br><span class="line">]);</span><br><span class="line">Storage::delete(<span class="variable">$filename</span>);</span><br></pre></td></tr></table></figure>
 
 <p>在 Golang 中接收有多种写法</p>
 <figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">file, handler, err := r.FormFile(<span class="string">&quot;xxx&quot;</span>)</span><br><span class="line"><span class="comment">//老</span></span><br><span class="line">err := r.ParseMultipartForm(<span class="number">0</span>)</span><br><span class="line">fileHeader := r.MultipartForm.File[<span class="string">&quot;xxx&quot;</span>][<span class="number">0</span>]</span><br></pre></td></tr></table></figure>
@@ -108,7 +108,7 @@
 <p>在搜索解决方案时，都说是请求头不对，不要加</p>
 <p>但是这个请求头是 Guzzlehttp 自己生成的，我手动改写后又返回了其它错误，例如 <strong>no multipart boundary param in Content-Type</strong></p>
 <p>我想，这种不行就换种吧，直接整个 body 放文件流</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$response = (<span class="keyword">new</span> Client())-&gt;post(<span class="keyword">$this</span>-&gt;apiUrlRoot.<span class="string">&#x27;/upload&#x27;</span>, [</span><br><span class="line">    <span class="string">&#x27;headers&#x27;</span>   =&gt; [</span><br><span class="line">        <span class="string">&#x27;token&#x27;</span>    =&gt; <span class="keyword">$this</span>-&gt;token,</span><br><span class="line">        <span class="string">&#x27;filename&#x27;</span> =&gt; $filename,</span><br><span class="line">    ],</span><br><span class="line">    <span class="string">&#x27;body&#x27;</span>      =&gt; torage::readStream($filename),</span><br><span class="line">]);</span><br></pre></td></tr></table></figure>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$response</span> = (<span class="keyword">new</span> Client())-&gt;post(<span class="keyword">$this</span>-&gt;apiUrlRoot.<span class="string">&#x27;/upload&#x27;</span>, [</span><br><span class="line">    <span class="string">&#x27;headers&#x27;</span>   =&gt; [</span><br><span class="line">        <span class="string">&#x27;token&#x27;</span>    =&gt; <span class="keyword">$this</span>-&gt;token,</span><br><span class="line">        <span class="string">&#x27;filename&#x27;</span> =&gt; <span class="variable">$filename</span>,</span><br><span class="line">    ],</span><br><span class="line">    <span class="string">&#x27;body&#x27;</span>      =&gt; torage::readStream(<span class="variable">$filename</span>),</span><br><span class="line">]);</span><br></pre></td></tr></table></figure>
 
 <p>在 Golang 中把请求放入文件</p>
 <figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">_, _ = io.Copy(dstFile, r.Body)</span><br></pre></td></tr></table></figure>
@@ -121,21 +121,21 @@
 </a></p>
 <p>由于在拼接地址时，多了一个 <code>/</code>，客户端使用 <code>//upload</code> POST 请求，Golang 会响应 301 到 <code>/upload</code>，并转为 GET 请求，不会重新发送 Body</p>
 <p>虽然解决了这个问题，但是在考虑业务流程长度上，还是去掉了 Golang 服务这步，直接用 PHP 连接 STFP 发文件</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">$connection = ssh2_connect(<span class="keyword">$this</span>-&gt;host, <span class="keyword">$this</span>-&gt;port);</span><br><span class="line">ssh2_auth_password($connection, <span class="keyword">$this</span>-&gt;user, <span class="keyword">$this</span>-&gt;password);</span><br><span class="line">Storage::put($filename, $csvFileContent);</span><br><span class="line">$result = ssh2_scp_send(</span><br><span class="line">    $connection,</span><br><span class="line">    Storage::path($filename),</span><br><span class="line">    <span class="keyword">$this</span>-&gt;path.$filename,</span><br><span class="line">    <span class="number">0644</span></span><br><span class="line">);</span><br><span class="line">ssh2_disconnect($connection);</span><br><span class="line">Storage::delete($filename);</span><br></pre></td></tr></table></figure>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$connection</span> = ssh2_connect(<span class="keyword">$this</span>-&gt;host, <span class="keyword">$this</span>-&gt;port);</span><br><span class="line">ssh2_auth_password(<span class="variable">$connection</span>, <span class="keyword">$this</span>-&gt;user, <span class="keyword">$this</span>-&gt;password);</span><br><span class="line">Storage::put(<span class="variable">$filename</span>, <span class="variable">$csvFileContent</span>);</span><br><span class="line"><span class="variable">$result</span> = ssh2_scp_send(</span><br><span class="line">    <span class="variable">$connection</span>,</span><br><span class="line">    Storage::path(<span class="variable">$filename</span>),</span><br><span class="line">    <span class="keyword">$this</span>-&gt;path.<span class="variable">$filename</span>,</span><br><span class="line">    <span class="number">0644</span></span><br><span class="line">);</span><br><span class="line">ssh2_disconnect(<span class="variable">$connection</span>);</span><br><span class="line">Storage::delete(<span class="variable">$filename</span>);</span><br></pre></td></tr></table></figure>
 
 <p>惊讶的是同一份代码在测试服务器上正常运行，在往对接公司的服务器上 SCP 就报错</p>
 <p><strong>ssh2_scp_send(): Failure creating remote file: (-28)</strong></p>
 <p>而用 IDE 自带的远程管理登录后，读写权限都是正常的</p>
 <p>这神奇的 BUG 体质，又该请教大佬了，通过命令行测试：</p>
-<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">scp</span> -v -P whichPort localFile whoYouAre<span class="variable">@address</span>:remoteFile</span><br><span class="line">...</span><br><span class="line">exec request failed <span class="literal">on</span> channel <span class="number">0</span></span><br><span class="line">lost connection</span><br></pre></td></tr></table></figure>
+<figure class="highlight livescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">scp -v -P whichPort localFile whoYouAre@address:remoteFile</span><br><span class="line">...</span><br><span class="line">exec request failed <span class="literal">on</span> channel <span class="number">0</span></span><br><span class="line">lost connection</span><br></pre></td></tr></table></figure>
 
 <p>改用 sftp 命令连接上再写文件是正常的，所以代码修改为</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$sftp = ssh2_sftp($connection);</span><br><span class="line">$stream = @fopen(<span class="string">&quot;ssh2.sftp://<span class="subst">$sftp</span><span class="subst">$this</span>-&gt;path/<span class="subst">$filename</span>&quot;</span>, <span class="string">&#x27;w+&#x27;</span>);</span><br><span class="line">fwrite($stream, $fileContent);</span><br><span class="line">fclose($stream);</span><br></pre></td></tr></table></figure>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$sftp</span> = ssh2_sftp(<span class="variable">$connection</span>);</span><br><span class="line"><span class="variable">$stream</span> = @fopen(<span class="string">&quot;ssh2.sftp://<span class="subst">$sftp</span><span class="subst">$this</span>-&gt;path/<span class="subst">$filename</span>&quot;</span>, <span class="string">&#x27;w+&#x27;</span>);</span><br><span class="line">fwrite(<span class="variable">$stream</span>, <span class="variable">$fileContent</span>);</span><br><span class="line">fclose(<span class="variable">$stream</span>);</span><br></pre></td></tr></table></figure>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2020/php-upload-file-to-go-server.html" data-id="ckgos0m9u000jf0mjeozs0nxx" class="article-share-link">分享</a>
+      <a data-url="https://liluoao.github.io/2020/php-upload-file-to-go-server.html" data-id="cki15qpm500079gmj01og8cck" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/go/" rel="tag">go</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/php/" rel="tag">php</a></li></ul>
@@ -168,11 +168,15 @@
       <ul>
         
           <li>
-            <a href="/2020/php-upload-file-to-go-server.html">PHP发送文件给Go服务</a>
+            <a href="/2020/php-upload-file-to-go-server.html">Golang接收上传文件</a>
           </li>
         
           <li>
             <a href="/2020/laravel-event-observer-and-listener.html">事件、观察者与监听者</a>
+          </li>
+        
+          <li>
+            <a href="/2020/buffer-penetration-breakdown-and-avalanche.html">缓存穿透、击穿与雪崩</a>
           </li>
         
           <li>
@@ -184,15 +188,11 @@
           </li>
         
           <li>
-            <a href="/2020/redis-proxy-distributed-cache-project.html">Redis-Proxy分布式缓存方案分享</a>
-          </li>
-        
-          <li>
             <a href="/2020/consistency-of-master-and-slave-database.html">MySQL主从一致性方案</a>
           </li>
         
           <li>
-            <a href="/2019/php-structural-design-patterns-template-method.html">模板方法模式（TemplateMethod）</a>
+            <a href="/2019/php-structural-design-patterns-template-method.html">设计模式——TemplateMethod</a>
           </li>
         
           <li>
@@ -216,7 +216,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">分类</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/php-framework/">PHP框架</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/tool/">工具</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/database/">数据库</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/other/">杂谈</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/design-patterns/">设计模式</a><span class="category-list-count">8</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/php-framework/">PHP框架</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/tool/">工具</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/database/">数据库</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/other/">杂谈</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/design-patterns/">设计模式</a><span class="category-list-count">8</span></li></ul>
     </div>
   </div>
 

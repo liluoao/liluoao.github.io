@@ -5,18 +5,18 @@
   
 
   
-  <title>选择Kong作为API网关 | 码之力三段</title>
+  <title>API网关选型 | 码之力三段</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="随着移动互联网的兴起、开放合作思维的盛行，不同终端和第三方开发者都需要大量的接入企业核心业务能力，此时各业务系统将会面临同一系列的问题，例如：如何让调用方快速接入、如何让业务方安全地对外开放能力，如何应对和控制业务洪峰调用等等 于是就诞生了一个隔离企业内部业务系统和外部系统调用的屏障 - API 网关，它负责在上层抽象出各业务系统需要的通用功能，例如：鉴权、限流、ACL、降级等 另外随着近年来微服">
 <meta property="og:type" content="article">
-<meta property="og:title" content="选择Kong作为API网关">
+<meta property="og:title" content="API网关选型">
 <meta property="og:url" content="https://liluoao.github.io/2018/use-kong-for-api-gateway.html">
 <meta property="og:site_name" content="码之力三段">
 <meta property="og:description" content="随着移动互联网的兴起、开放合作思维的盛行，不同终端和第三方开发者都需要大量的接入企业核心业务能力，此时各业务系统将会面临同一系列的问题，例如：如何让调用方快速接入、如何让业务方安全地对外开放能力，如何应对和控制业务洪峰调用等等 于是就诞生了一个隔离企业内部业务系统和外部系统调用的屏障 - API 网关，它负责在上层抽象出各业务系统需要的通用功能，例如：鉴权、限流、ACL、降级等 另外随着近年来微服">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://liluoao.github.io/images/kong.jpg">
 <meta property="article:published_time" content="2018-11-09T12:17:07.000Z">
-<meta property="article:modified_time" content="2020-10-25T07:13:31.782Z">
+<meta property="article:modified_time" content="2020-11-28T03:50:45.452Z">
 <meta property="article:author" content="李罗奥">
 <meta property="article:tag" content="tool">
 <meta name="twitter:card" content="summary">
@@ -64,7 +64,7 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-选择Kong作为API网关" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-API网关选型" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2018/use-kong-for-api-gateway.html" class="article-date">
   <time datetime="2018-11-09T12:17:07.000Z" itemprop="datePublished">2018-11-09</time>
@@ -80,7 +80,7 @@
 <div class="article-gallery">
   <div class="article-gallery-photos">
     
-      <a class="article-gallery-img fancybox" href="/images/kong.jpg" rel="gallery_ckgos0map0037f0mj59dc1ukb">
+      <a class="article-gallery-img fancybox" href="/images/kong.jpg" rel="gallery_cki15qpm500019gmj20m78nbx">
         <img src="/images/kong.jpg" itemprop="image">
       </a>
     
@@ -92,7 +92,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      选择Kong作为API网关
+      API网关选型
     </h1>
   
 
@@ -189,7 +189,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2018/use-kong-for-api-gateway.html" data-id="ckgos0map0037f0mj59dc1ukb" class="article-share-link">分享</a>
+      <a data-url="https://liluoao.github.io/2018/use-kong-for-api-gateway.html" data-id="cki15qpm500019gmj20m78nbx" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/tool/" rel="tag">tool</a></li></ul>
@@ -204,7 +204,7 @@
       <strong class="article-nav-caption">下一篇</strong>
       <div class="article-nav-title">
         
-          PHP7中XHProf内存泄漏
+          XHProf和内存泄漏
         
       </div>
     </a>
@@ -231,11 +231,15 @@
       <ul>
         
           <li>
-            <a href="/2020/php-upload-file-to-go-server.html">PHP发送文件给Go服务</a>
+            <a href="/2020/php-upload-file-to-go-server.html">Golang接收上传文件</a>
           </li>
         
           <li>
             <a href="/2020/laravel-event-observer-and-listener.html">事件、观察者与监听者</a>
+          </li>
+        
+          <li>
+            <a href="/2020/buffer-penetration-breakdown-and-avalanche.html">缓存穿透、击穿与雪崩</a>
           </li>
         
           <li>
@@ -247,15 +251,11 @@
           </li>
         
           <li>
-            <a href="/2020/redis-proxy-distributed-cache-project.html">Redis-Proxy分布式缓存方案分享</a>
-          </li>
-        
-          <li>
             <a href="/2020/consistency-of-master-and-slave-database.html">MySQL主从一致性方案</a>
           </li>
         
           <li>
-            <a href="/2019/php-structural-design-patterns-template-method.html">模板方法模式（TemplateMethod）</a>
+            <a href="/2019/php-structural-design-patterns-template-method.html">设计模式——TemplateMethod</a>
           </li>
         
           <li>
@@ -279,7 +279,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">分类</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/php-framework/">PHP框架</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/tool/">工具</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/database/">数据库</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/other/">杂谈</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/design-patterns/">设计模式</a><span class="category-list-count">8</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/php-framework/">PHP框架</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/tool/">工具</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/database/">数据库</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/other/">杂谈</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/design-patterns/">设计模式</a><span class="category-list-count">8</span></li></ul>
     </div>
   </div>
 

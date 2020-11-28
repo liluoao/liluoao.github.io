@@ -16,7 +16,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://liluoao.github.io/images/php-fig.png">
 <meta property="article:published_time" content="2019-07-02T06:25:53.000Z">
-<meta property="article:modified_time" content="2020-10-25T07:13:31.782Z">
+<meta property="article:modified_time" content="2020-11-28T03:50:45.467Z">
 <meta property="article:author" content="李罗奥">
 <meta property="article:tag" content="tool">
 <meta name="twitter:card" content="summary">
@@ -80,7 +80,7 @@
 <div class="article-gallery">
   <div class="article-gallery-photos">
     
-      <a class="article-gallery-img fancybox" href="/images/php-fig.png" rel="gallery_ckgos0mb5003df0mj042ggzrs">
+      <a class="article-gallery-img fancybox" href="/images/php-fig.png" rel="gallery_cki15qpng002r9gmj675y6rgt">
         <img src="/images/php-fig.png" itemprop="image">
       </a>
     
@@ -198,7 +198,7 @@
 <p><img src="/images/sonar-result.png" alt="质量分析结果"></p>
 <h4 id="本地搭建"><a href="#本地搭建" class="headerlink" title="本地搭建"></a>本地搭建</h4><p>为了在公司内网使用，我们在服务器自己搭建了这个分析工具，加入了 CI 流程中</p>
 <p>拉镜像：</p>
-<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">docker</span> <span class="string">pull postgres</span></span><br><span class="line"><span class="attr">docker</span> <span class="string">pull sonarqube</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">docker pull postgres</span></span><br><span class="line"><span class="attribute">docker pull sonarqube</span></span><br></pre></td></tr></table></figure>
 
 <p>启动</p>
 <figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#启动数据库</span></span><br><span class="line">docker <span class="builtin-name">run</span> --name db -e <span class="attribute">POSTGRES_USER</span>=sonar -e <span class="attribute">POSTGRES_PASSWORD</span>=sonar -d postgres</span><br><span class="line"><span class="comment">#启动sonarqube</span></span><br><span class="line">docker <span class="builtin-name">run</span> --name sq --link db -e <span class="attribute">SONARQUBE_JDBC_URL</span>=jdbc:postgresql://db:5432/sonar -p 9000:9000 -d sonarqube</span><br></pre></td></tr></table></figure>
@@ -213,7 +213,7 @@
 <li><p><strong>This branch duplicates the one on line xxx.</strong><br>条件语句的分支条件出现重复，例如：</p>
 </li>
 </ol>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> ($a &gt; <span class="number">10</span>) &#123;</span><br><span class="line"></span><br><span class="line">&#125; <span class="keyword">elseif</span> ($a &gt; <span class="number">5</span>) &#123;</span><br><span class="line"></span><br><span class="line">&#125; <span class="keyword">elseif</span> ($a &gt; <span class="number">5</span>) &#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (<span class="variable">$a</span> &gt; <span class="number">10</span>) &#123;</span><br><span class="line"></span><br><span class="line">&#125; <span class="keyword">elseif</span> (<span class="variable">$a</span> &gt; <span class="number">5</span>) &#123;</span><br><span class="line"></span><br><span class="line">&#125; <span class="keyword">elseif</span> (<span class="variable">$a</span> &gt; <span class="number">5</span>) &#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <ol start="4">
 <li><p><strong>Review the data-flow - use of uninitialized value.</strong><br>使用了未初始化的值/数组/对象，例如字符串的 <code>.=</code>，数字的 <code>$i++</code>，数组的 <code>$foo[&#39;bar&#39;]</code></p>
@@ -221,7 +221,7 @@
 <li><p><strong>Remove this conditional structure or edit its code blocks so that they’re not all the same.</strong><br>2个分支语句的内容一样，例如：</p>
 </li>
 </ol>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (<span class="literal">true</span>) &#123;</span><br><span class="line">    $a = <span class="number">1</span>;</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    $a = <span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (<span class="literal">true</span>) &#123;</span><br><span class="line">    <span class="variable">$a</span> = <span class="number">1</span>;</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="variable">$a</span> = <span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <ol start="6">
 <li><p><strong>Remove or correct this useless self-assignment.</strong><br>等号左右一样，也就是自己等于自己，无用代码</p>
@@ -233,7 +233,7 @@
 <li><p><strong>“$i” is incremented and will never reach “stop condition”.</strong><br>类似 <code>while (true)</code> 的写法，想在循环内部 break，应直接省略条件部分，例如</p>
 </li>
 </ol>
-<figure class="highlight arcade"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="symbol">$i</span> = <span class="number">0</span>; ;<span class="symbol">$i</span>++)</span><br></pre></td></tr></table></figure>
+<figure class="highlight parser3"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="xml">for (</span><span class="variable">$i</span><span class="xml"> = </span><span class="number">0</span><span class="xml">; ;</span><span class="variable">$i</span><span class="xml">++)</span></span><br></pre></td></tr></table></figure>
 
 <ol start="10">
 <li><strong>Remove this “if” statement.</strong><br>删除无用的 <code>if (true)</code></li>
@@ -271,7 +271,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2019/project-code-style-management.html" data-id="ckgos0mb5003df0mj042ggzrs" class="article-share-link">分享</a>
+      <a data-url="https://liluoao.github.io/2019/project-code-style-management.html" data-id="cki15qpng002r9gmj675y6rgt" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/tool/" rel="tag">tool</a></li></ul>
@@ -294,7 +294,7 @@
   
     <a href="/2019/php-structural-design-patterns-state.html" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">上一篇</strong>
-      <div class="article-nav-title">状态模式（State）</div>
+      <div class="article-nav-title">设计模式——State</div>
     </a>
   
 </nav>
@@ -313,11 +313,15 @@
       <ul>
         
           <li>
-            <a href="/2020/php-upload-file-to-go-server.html">PHP发送文件给Go服务</a>
+            <a href="/2020/php-upload-file-to-go-server.html">Golang接收上传文件</a>
           </li>
         
           <li>
             <a href="/2020/laravel-event-observer-and-listener.html">事件、观察者与监听者</a>
+          </li>
+        
+          <li>
+            <a href="/2020/buffer-penetration-breakdown-and-avalanche.html">缓存穿透、击穿与雪崩</a>
           </li>
         
           <li>
@@ -329,15 +333,11 @@
           </li>
         
           <li>
-            <a href="/2020/redis-proxy-distributed-cache-project.html">Redis-Proxy分布式缓存方案分享</a>
-          </li>
-        
-          <li>
             <a href="/2020/consistency-of-master-and-slave-database.html">MySQL主从一致性方案</a>
           </li>
         
           <li>
-            <a href="/2019/php-structural-design-patterns-template-method.html">模板方法模式（TemplateMethod）</a>
+            <a href="/2019/php-structural-design-patterns-template-method.html">设计模式——TemplateMethod</a>
           </li>
         
           <li>
@@ -361,7 +361,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">分类</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/php-framework/">PHP框架</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/tool/">工具</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/database/">数据库</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/other/">杂谈</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/design-patterns/">设计模式</a><span class="category-list-count">8</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/php-framework/">PHP框架</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/tool/">工具</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/database/">数据库</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/other/">杂谈</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/design-patterns/">设计模式</a><span class="category-list-count">8</span></li></ul>
     </div>
   </div>
 

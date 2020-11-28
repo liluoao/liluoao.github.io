@@ -5,17 +5,17 @@
   
 
   
-  <title>装饰器模式（Decorator） | 码之力三段</title>
+  <title>设计模式——Decorator | 码之力三段</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="装饰器模式允许我们根据运行时不同的情景动态地为某个对象调用前后添加不同的行为动作 以奇迹暖暖这种换装游戏为例，我们需要实现动态的换套装，或者混搭">
 <meta property="og:type" content="article">
-<meta property="og:title" content="装饰器模式（Decorator）">
+<meta property="og:title" content="设计模式——Decorator">
 <meta property="og:url" content="https://liluoao.github.io/2019/php-structural-design-patterns-decorator.html">
 <meta property="og:site_name" content="码之力三段">
 <meta property="og:description" content="装饰器模式允许我们根据运行时不同的情景动态地为某个对象调用前后添加不同的行为动作 以奇迹暖暖这种换装游戏为例，我们需要实现动态的换套装，或者混搭">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2019-04-18T01:23:38.000Z">
-<meta property="article:modified_time" content="2020-10-25T07:13:31.782Z">
+<meta property="article:modified_time" content="2020-11-28T03:50:45.467Z">
 <meta property="article:author" content="李罗奥">
 <meta property="article:tag" content="design-patterns">
 <meta name="twitter:card" content="summary">
@@ -62,7 +62,7 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-装饰器模式（Decorator）" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-设计模式——Decorator" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2019/php-structural-design-patterns-decorator.html" class="article-date">
   <time datetime="2019-04-18T01:23:38.000Z" itemprop="datePublished">2019-04-18</time>
@@ -80,7 +80,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      装饰器模式（Decorator）
+      设计模式——Decorator
     </h1>
   
 
@@ -102,15 +102,15 @@
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">NurseDecorator</span> <span class="keyword">implements</span> <span class="title">Decorator</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">beforeDress</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">echo</span> <span class="string">&quot;无&quot;</span> . PHP_EOL;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">afterDress</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">echo</span> <span class="string">&quot;穿上粉色大褂&quot;</span> . PHP_EOL;</span><br><span class="line">        <span class="keyword">echo</span> <span class="string">&quot;戴上护士帽&quot;</span> . PHP_EOL;</span><br><span class="line">        <span class="keyword">echo</span> <span class="string">&quot;戴上口罩&quot;</span> . PHP_EOL;</span><br><span class="line">        <span class="keyword">echo</span> <span class="string">&quot;穿戴完毕&quot;</span> . PHP_EOL;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>最后实现一个穿衣服的人：</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="keyword">protected</span> $decorators = []];</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">addDecorator</span>(<span class="params">Decorator $decorator</span>)</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">$this</span>-&gt;decorators[] = $decorator;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">beforeDress</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">foreach</span> (<span class="keyword">$this</span>-&gt;decorators <span class="keyword">as</span> $decorator) &#123;</span><br><span class="line">            $decorator-&gt;beforeDress();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">afterDress</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        $decorators = array_reverse(<span class="keyword">$this</span>-&gt;decorators);</span><br><span class="line">        <span class="keyword">foreach</span> ($decorators <span class="keyword">as</span> $decorator) &#123;</span><br><span class="line">            $decorator-&gt;afterDress();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//穿衣</span></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">dress</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">$this</span>-&gt;beforeDress();</span><br><span class="line">        <span class="keyword">echo</span> <span class="string">&quot;穿上纯白短袖&quot;</span> . PHP_EOL;</span><br><span class="line">        <span class="keyword">$this</span>-&gt;afterDress();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="keyword">protected</span> <span class="variable">$decorators</span> = []];</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">addDecorator</span>(<span class="params">Decorator <span class="variable">$decorator</span></span>)</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">$this</span>-&gt;decorators[] = <span class="variable">$decorator</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">beforeDress</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">foreach</span> (<span class="keyword">$this</span>-&gt;decorators <span class="keyword">as</span> <span class="variable">$decorator</span>) &#123;</span><br><span class="line">            <span class="variable">$decorator</span>-&gt;beforeDress();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">afterDress</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="variable">$decorators</span> = array_reverse(<span class="keyword">$this</span>-&gt;decorators);</span><br><span class="line">        <span class="keyword">foreach</span> (<span class="variable">$decorators</span> <span class="keyword">as</span> <span class="variable">$decorator</span>) &#123;</span><br><span class="line">            <span class="variable">$decorator</span>-&gt;afterDress();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//穿衣</span></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">dress</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">$this</span>-&gt;beforeDress();</span><br><span class="line">        <span class="keyword">echo</span> <span class="string">&quot;穿上纯白短袖&quot;</span> . PHP_EOL;</span><br><span class="line">        <span class="keyword">$this</span>-&gt;afterDress();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>现在我们可以创建一个混搭女生了：</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$girl = <span class="keyword">new</span> Person;</span><br><span class="line">$girl-&gt;addDecorator(<span class="keyword">new</span> PoliceDecorator);</span><br><span class="line">$girl-&gt;addDecorator(<span class="keyword">new</span> NurseDecorator);</span><br><span class="line">$girl-&gt;dress();</span><br></pre></td></tr></table></figure>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$girl</span> = <span class="keyword">new</span> Person;</span><br><span class="line"><span class="variable">$girl</span>-&gt;addDecorator(<span class="keyword">new</span> PoliceDecorator);</span><br><span class="line"><span class="variable">$girl</span>-&gt;addDecorator(<span class="keyword">new</span> NurseDecorator);</span><br><span class="line"><span class="variable">$girl</span>-&gt;dress();</span><br></pre></td></tr></table></figure>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2019/php-structural-design-patterns-decorator.html" data-id="ckgos0map002yf0mjd4hqdf32" class="article-share-link">分享</a>
+      <a data-url="https://liluoao.github.io/2019/php-structural-design-patterns-decorator.html" data-id="cki15qpn1002a9gmja85igcqs" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/design-patterns/" rel="tag">design-patterns</a></li></ul>
@@ -152,11 +152,15 @@
       <ul>
         
           <li>
-            <a href="/2020/php-upload-file-to-go-server.html">PHP发送文件给Go服务</a>
+            <a href="/2020/php-upload-file-to-go-server.html">Golang接收上传文件</a>
           </li>
         
           <li>
             <a href="/2020/laravel-event-observer-and-listener.html">事件、观察者与监听者</a>
+          </li>
+        
+          <li>
+            <a href="/2020/buffer-penetration-breakdown-and-avalanche.html">缓存穿透、击穿与雪崩</a>
           </li>
         
           <li>
@@ -168,15 +172,11 @@
           </li>
         
           <li>
-            <a href="/2020/redis-proxy-distributed-cache-project.html">Redis-Proxy分布式缓存方案分享</a>
-          </li>
-        
-          <li>
             <a href="/2020/consistency-of-master-and-slave-database.html">MySQL主从一致性方案</a>
           </li>
         
           <li>
-            <a href="/2019/php-structural-design-patterns-template-method.html">模板方法模式（TemplateMethod）</a>
+            <a href="/2019/php-structural-design-patterns-template-method.html">设计模式——TemplateMethod</a>
           </li>
         
           <li>
@@ -200,7 +200,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">分类</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/php-framework/">PHP框架</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/tool/">工具</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/database/">数据库</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/other/">杂谈</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/design-patterns/">设计模式</a><span class="category-list-count">8</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/php-framework/">PHP框架</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/tool/">工具</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/database/">数据库</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/other/">杂谈</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/design-patterns/">设计模式</a><span class="category-list-count">8</span></li></ul>
     </div>
   </div>
 
