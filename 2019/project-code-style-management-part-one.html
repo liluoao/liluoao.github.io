@@ -5,18 +5,18 @@
   
 
   
-  <title>项目代码风格管理 | 码之力三段</title>
+  <title>项目代码风格管理——上 | 码之力三段</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="在一个多人合作的项目中，使用同一份代码规范是非常重要的 风格混乱不统一会造成阅读困难、工作交接困难、增加 Review 成本等问题，还可能会造成潜在的 Bug">
+  <meta name="description" content="在一个多人合作的项目中，使用同一份代码规范是非常重要的 风格混乱不统一会造成阅读困难、工作交接困难、增加 Review 成本等问题，还可能会造成潜在的 Bug 今天分享一下几个代码风格工具  IDE CodeStyle EditorConfig CodeSniffer SonarQube StyleCI">
 <meta property="og:type" content="article">
-<meta property="og:title" content="项目代码风格管理">
-<meta property="og:url" content="https://liluoao.github.io/2019/project-code-style-management.html">
+<meta property="og:title" content="项目代码风格管理——上">
+<meta property="og:url" content="https://liluoao.github.io/2019/project-code-style-management-part-one.html">
 <meta property="og:site_name" content="码之力三段">
-<meta property="og:description" content="在一个多人合作的项目中，使用同一份代码规范是非常重要的 风格混乱不统一会造成阅读困难、工作交接困难、增加 Review 成本等问题，还可能会造成潜在的 Bug">
+<meta property="og:description" content="在一个多人合作的项目中，使用同一份代码规范是非常重要的 风格混乱不统一会造成阅读困难、工作交接困难、增加 Review 成本等问题，还可能会造成潜在的 Bug 今天分享一下几个代码风格工具  IDE CodeStyle EditorConfig CodeSniffer SonarQube StyleCI">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://liluoao.github.io/images/php-fig.png">
 <meta property="article:published_time" content="2019-07-02T06:25:53.000Z">
-<meta property="article:modified_time" content="2020-11-28T03:50:45.467Z">
+<meta property="article:modified_time" content="2020-11-30T06:57:50.192Z">
 <meta property="article:author" content="李罗奥">
 <meta property="article:tag" content="tool">
 <meta name="twitter:card" content="summary">
@@ -64,9 +64,9 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-项目代码风格管理" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-项目代码风格管理——上" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2019/project-code-style-management.html" class="article-date">
+    <a href="/2019/project-code-style-management-part-one.html" class="article-date">
   <time datetime="2019-07-02T06:25:53.000Z" itemprop="datePublished">2019-07-02</time>
 </a>
     
@@ -80,7 +80,7 @@
 <div class="article-gallery">
   <div class="article-gallery-photos">
     
-      <a class="article-gallery-img fancybox" href="/images/php-fig.png" rel="gallery_cki15qpng002r9gmj675y6rgt">
+      <a class="article-gallery-img fancybox" href="/images/php-fig.png" rel="gallery_cki47b2bq002s6wmj4e6833pr">
         <img src="/images/php-fig.png" itemprop="image">
       </a>
     
@@ -92,7 +92,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      项目代码风格管理
+      项目代码风格管理——上
     </h1>
   
 
@@ -102,6 +102,14 @@
       
         <p>在一个多人合作的项目中，使用同一份代码规范是非常重要的</p>
 <p>风格混乱不统一会造成阅读困难、工作交接困难、增加 Review 成本等问题，还可能会造成潜在的 Bug</p>
+<p>今天分享一下几个代码风格工具</p>
+<ul>
+<li>IDE CodeStyle</li>
+<li>EditorConfig</li>
+<li>CodeSniffer</li>
+<li>SonarQube</li>
+<li>StyleCI</li>
+</ul>
 <a id="more"></a>
 
 <h2 id="PHPStorm设置CodeStyle"><a href="#PHPStorm设置CodeStyle" class="headerlink" title="PHPStorm设置CodeStyle"></a>PHPStorm设置CodeStyle</h2><p>PHPStorm 中有 <code>CodeStyle</code> 配置，是格式化代码时的依据。当你新写或修改了一段代码，想要 <code>Commit</code> 的时候，先选中你的代码使用 <code>CTRL+ALT+L</code> 格式化一下。</p>
@@ -183,95 +191,14 @@
 <p>成功后代码里会出现对应的提示，默认是下图所示的下划线型的 <code>Warning</code> 警告</p>
 <p><img src="/images/phpcs3.png" alt="phpcs格式警告"></p>
 <p>为了和 IDE 已有的 <code>Warning</code> 区分开，可以设置定制的 <code>Severity</code>，例如为提示增加一个背景色，或者是在右侧提示的颜色</p>
-<blockquote>
+<h2 id="未完待续"><a href="#未完待续" class="headerlink" title="未完待续"></a>未完待续</h2><blockquote>
 <p>以上列举的措施，实施起来决定权在每个开发手里，不能百分百保证风格<br>必须要在代码的终端实现检查，最后加入持续集成或发布流程中</p>
 </blockquote>
-<h2 id="SonarQube"><a href="#SonarQube" class="headerlink" title="SonarQube"></a>SonarQube</h2><p><a target="_blank" rel="noopener" href="https://www.sonarqube.org/">SonarQube</a> 是一个代码自动审查工具，用于检测代码中的错误，漏洞和代码异味。它可以与现有的工作流程集成，以便在项目分支和拉取请求之间进行连续的代码检查。官方提供了2种方式，一种是下载后本地搭建，另一种是在线运行。</p>
-<h4 id="在线运行"><a href="#在线运行" class="headerlink" title="在线运行"></a>在线运行</h4><p>进入<a target="_blank" rel="noopener" href="https://sonarcloud.io/about/sq">SonarCloud</a>，使用 GitHub 账号登录导入我已有的项目</p>
-<p>在 <code>Create Organization</code> 创建组织后，可以开始 <code>Analyze projects</code> 分析你的项目了。这里由于是测试项目，我选择 <em>Free plan</em>，上传后所有人都可以看到源码与分析结果。</p>
-<p>开始分析后，SonarCloud 会创建一个 Token，在分析时填写</p>
-<p>创建完后，下面要选择项目主要使用的语言，使用的操作系统，还需要下载一个<a target="_blank" rel="noopener" href="https://docs.sonarqube.org/display/SCAN/Analyzing+with+SonarQube+Scanner">SonarQube Scanner</a></p>
-<p>以 Windows 为例，下载解压后将其中的 <code>/bin</code> 目录加入环境变量，进入你的项目根目录执行如下命令（也可以复制页面自动生成的命令）：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">D:\WWW\Sm&gt;sonar-scanner.bat </span><br><span class="line">-D<span class="string">&quot;sonar.projectKey=&#123;你的Project Key&#125;&quot;</span> </span><br><span class="line">-D<span class="string">&quot;sonar.organization=&#123;你的Organization Key&#125;&quot;</span> </span><br><span class="line">-D<span class="string">&quot;sonar.sources=.&quot;</span> </span><br><span class="line">-D<span class="string">&quot;sonar.host.url=https://sonarcloud.io&quot;</span> </span><br><span class="line">-D<span class="string">&quot;sonar.login=&#123;你的Token&#125;&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>分析结果如下：</p>
-<p><img src="/images/sonar-result.png" alt="质量分析结果"></p>
-<h4 id="本地搭建"><a href="#本地搭建" class="headerlink" title="本地搭建"></a>本地搭建</h4><p>为了在公司内网使用，我们在服务器自己搭建了这个分析工具，加入了 CI 流程中</p>
-<p>拉镜像：</p>
-<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">docker pull postgres</span></span><br><span class="line"><span class="attribute">docker pull sonarqube</span></span><br></pre></td></tr></table></figure>
-
-<p>启动</p>
-<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#启动数据库</span></span><br><span class="line">docker <span class="builtin-name">run</span> --name db -e <span class="attribute">POSTGRES_USER</span>=sonar -e <span class="attribute">POSTGRES_PASSWORD</span>=sonar -d postgres</span><br><span class="line"><span class="comment">#启动sonarqube</span></span><br><span class="line">docker <span class="builtin-name">run</span> --name sq --link db -e <span class="attribute">SONARQUBE_JDBC_URL</span>=jdbc:postgresql://db:5432/sonar -p 9000:9000 -d sonarqube</span><br></pre></td></tr></table></figure>
-
-<h4 id="PHP规则"><a href="#PHP规则" class="headerlink" title="PHP规则"></a>PHP规则</h4><p>把我们一个历史悠久的项目加入检查后，出来了 228 个 Bugs、64 个漏洞、1.5K 安全热点、30K 的异味……</p>
-<p>重构之路任重而道远，我们先解决掉 Bugs 类，经过整理后大致分为如下几点：</p>
-<ol>
-<li><p><strong>Remove this unreachable code.</strong><br>删除 <code>return</code> 语句后的无用代码</p>
-</li>
-<li><p><strong>Remove or refactor this statement.</strong><br>例如 <code>$i == 0;</code>，需要检查语句正确性或删除掉未使用的语句</p>
-</li>
-<li><p><strong>This branch duplicates the one on line xxx.</strong><br>条件语句的分支条件出现重复，例如：</p>
-</li>
-</ol>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (<span class="variable">$a</span> &gt; <span class="number">10</span>) &#123;</span><br><span class="line"></span><br><span class="line">&#125; <span class="keyword">elseif</span> (<span class="variable">$a</span> &gt; <span class="number">5</span>) &#123;</span><br><span class="line"></span><br><span class="line">&#125; <span class="keyword">elseif</span> (<span class="variable">$a</span> &gt; <span class="number">5</span>) &#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<ol start="4">
-<li><p><strong>Review the data-flow - use of uninitialized value.</strong><br>使用了未初始化的值/数组/对象，例如字符串的 <code>.=</code>，数字的 <code>$i++</code>，数组的 <code>$foo[&#39;bar&#39;]</code></p>
-</li>
-<li><p><strong>Remove this conditional structure or edit its code blocks so that they’re not all the same.</strong><br>2个分支语句的内容一样，例如：</p>
-</li>
-</ol>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (<span class="literal">true</span>) &#123;</span><br><span class="line">    <span class="variable">$a</span> = <span class="number">1</span>;</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="variable">$a</span> = <span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<ol start="6">
-<li><p><strong>Remove or correct this useless self-assignment.</strong><br>等号左右一样，也就是自己等于自己，无用代码</p>
-</li>
-<li><p><strong>Was “-=”/“!=” meant instead?</strong><br>等号后面无空格，和后面的运算符易产生误解</p>
-</li>
-<li><p><strong>Identical sub-expressions on both sides of operator “&amp;&amp;”/“||”</strong><br>与、或运算符左右一样，无意义</p>
-</li>
-<li><p><strong>“$i” is incremented and will never reach “stop condition”.</strong><br>类似 <code>while (true)</code> 的写法，想在循环内部 break，应直接省略条件部分，例如</p>
-</li>
-</ol>
-<figure class="highlight parser3"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="xml">for (</span><span class="variable">$i</span><span class="xml"> = </span><span class="number">0</span><span class="xml">; ;</span><span class="variable">$i</span><span class="xml">++)</span></span><br></pre></td></tr></table></figure>
-
-<ol start="10">
-<li><strong>Remove this “if” statement.</strong><br>删除无用的 <code>if (true)</code></li>
-</ol>
-<p>完整的规则可以在 <code>/coding_rules?language=php&amp;types=BUG</code> 中查看</p>
-<h2 id="StyleCI"><a href="#StyleCI" class="headerlink" title="StyleCI"></a>StyleCI</h2><p>如果是基于 PHP 的开源项目，可以使用 <a target="_blank" rel="noopener" href="https://github.styleci.io">StyleCI</a> 工具</p>
-<p>它可以导入 GitHub 账号里的项目，识别每一次提交内容的样式，把不符合规范的代码标红，而且设置后可以拒绝掉不规范的 PR</p>
-<p>最方便的是，它会直接给你添加一个修复这些问题的 PR，你只需要看看然后合并就完事了嗷</p>
-<p><img src="/images/styleci.png" alt="StyleCI"></p>
-<h2 id="版本控制工具提交规范"><a href="#版本控制工具提交规范" class="headerlink" title="版本控制工具提交规范"></a>版本控制工具提交规范</h2><p>在日常工作中，我们经常会使用版本控制工具，不管是 <strong>Git</strong> 还是 <strong>SVN</strong>，或是其它。</p>
-<p>在多人协作中，提交注释是一个可能会忽视的点。<strong>清晰明了的注释</strong>可以降低沟通成本，提高工作效率。而<strong>含糊不清的注释</strong>会在你需要找一次具体提交时造成麻烦。</p>
-<h4 id="规范内容"><a href="#规范内容" class="headerlink" title="规范内容"></a>规范内容</h4><p>最基础的规范，也是最重要的——就是每个任务的代码分开提交。这样在 Review 的时候比较清楚，出现 BUG 后可以快速回退单次提交。如果代码管理水平不足，出现了几个环境代码不统一，需要手动合并代码时，可能这个任务需要发布正式，另一个任务只需要发布测试或者预发布，糅杂在一起的提交就会导致噩梦般的后果。</p>
-<p>团队合作中一般会使用到事务跟踪工具，例如 <a target="_blank" rel="noopener" href="https://www.atlassian.com/software/jira">JIRA</a>、<a target="_blank" rel="noopener" href="https://www.zentao.net/">禅道</a> 等。每个开发任务有自己的编号，在提交时一定要带上。</p>
-<p>其它规范因人而异，举个例子：</p>
-<p>先把文件按类型分为如下几种</p>
-<ul>
-<li>【视图】如 Blade、Smarty、PHTML 等</li>
-<li>【功能】一般是业务代码，根据项目结构不同可分为 Model、Bean、Business 等</li>
-<li>【脚本】定时脚本 Crontab 类，也叫 Job</li>
-<li>【测试】单元测试，也叫 Test</li>
-<li>【插件】有的框架如 Yaf、Yii 中存在的概念，或者是自己封装的工具类</li>
-<li>【配置】根据项目要求的不同，有 php，ini，env，XML，Json 等</li>
-<li>【前端】JS、CSS、image等，或者是组件</li>
-<li>【接口】提供给外部的接口</li>
-<li>【API】调用的外部接口，可进一步分为公司内部的和外网的</li>
-<li>【SQL】也叫做 Migration。数据库迁移文件，或是结构变更的纯 SQL</li>
-<li>【FUNC】也叫做 helper，全局函数文件</li>
-</ul>
-<p>最后拼装成一整条 <code>commit message</code></p>
-<blockquote>
-<p>【任务编号】【新增|修改|删除】【功能|视图|脚本|等】任务标题-功能备注</p>
-</blockquote>
-<p>如果是复制的代码，可在后面加上 <code>@copy</code>（如果有统计代码量的要求）。再提一嘴，部分要找历史提交的原因可能是因为需求有变更，要还原回之前的代码。刚好脉脉给我推送了一条通知——删除代码时是注释掉还是直接删除。我的选择毫无疑问是直接删除掉，因为有版本控制工具在，找历史还是没啥难度的。如果是仅注释掉的话，代码的美观性可想而知（代码洁癖实锤）。</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2019/project-code-style-management.html" data-id="cki15qpng002r9gmj675y6rgt" class="article-share-link">分享</a>
+      <a data-url="https://liluoao.github.io/2019/project-code-style-management-part-one.html" data-id="cki47b2bq002s6wmj4e6833pr" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/tool/" rel="tag">tool</a></li></ul>
@@ -282,11 +209,11 @@
     
 <nav id="article-nav">
   
-    <a href="/2019/yii-codeception-and-laravel-phpunit.html" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2019/project-code-style-management-part-two.html" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption">下一篇</strong>
       <div class="article-nav-title">
         
-          Yii2与Laravel5的单元测试
+          项目代码风格管理——下
         
       </div>
     </a>
@@ -325,19 +252,15 @@
           </li>
         
           <li>
-            <a href="/2020/laravel-artisan-queue-and-task-scheduling.html">命令行、队列和任务调度</a>
-          </li>
-        
-          <li>
             <a href="/2020/review-what-has-been-learned-in-laravel.html">Laravel温故而知新</a>
           </li>
         
           <li>
-            <a href="/2020/consistency-of-master-and-slave-database.html">MySQL主从一致性方案</a>
+            <a href="/2020/laravel-artisan-queue-and-task-scheduling.html">命令行、队列和任务调度</a>
           </li>
         
           <li>
-            <a href="/2019/php-structural-design-patterns-template-method.html">设计模式——TemplateMethod</a>
+            <a href="/2020/consistency-of-master-and-slave-database.html">MySQL主从一致性方案</a>
           </li>
         
           <li>
@@ -349,7 +272,11 @@
           </li>
         
           <li>
-            <a href="/2019/yaf-individualization.html">Yaf框架结构个性化</a>
+            <a href="/2019/php-structural-design-patterns-template-method.html">设计模式——TemplateMethod</a>
+          </li>
+        
+          <li>
+            <a href="/2019/yaf-individualization.html">Yaf结构自定义</a>
           </li>
         
       </ul>
@@ -361,7 +288,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">分类</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/php-framework/">PHP框架</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/tool/">工具</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/database/">数据库</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/other/">杂谈</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/design-patterns/">设计模式</a><span class="category-list-count">8</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/php-framework/">PHP框架</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/tool/">工具</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/database/">数据库</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/other/">杂谈</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/design-patterns/">设计模式</a><span class="category-list-count">8</span></li></ul>
     </div>
   </div>
 
@@ -371,7 +298,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签</h3>
     <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/design-patterns/" rel="tag">design-patterns</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/go/" rel="tag">go</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/laravel/" rel="tag">laravel</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mongo/" rel="tag">mongo</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/" rel="tag">mysql</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/phalcon/" rel="tag">phalcon</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/php/" rel="tag">php</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/redis/" rel="tag">redis</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tool/" rel="tag">tool</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/yaf/" rel="tag">yaf</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/yii/" rel="tag">yii</a><span class="tag-list-count">2</span></li></ul>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/design-patterns/" rel="tag">design-patterns</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/golang/" rel="tag">golang</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/laravel/" rel="tag">laravel</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mongo/" rel="tag">mongo</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/" rel="tag">mysql</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/other-framework/" rel="tag">other framework</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/php/" rel="tag">php</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/redis/" rel="tag">redis</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tool/" rel="tag">tool</a><span class="tag-list-count">8</span></li></ul>
     </div>
   </div>
 

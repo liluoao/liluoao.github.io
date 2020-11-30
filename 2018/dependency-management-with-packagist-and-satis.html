@@ -5,18 +5,18 @@
   
 
   
-  <title>Packagist与Satis管理依赖 | 码之力三段</title>
+  <title>依赖管理 | 码之力三段</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="作为 PHP 使用者，平常会接触到 Composer 与很多包。如何发布一个自己的包让别人使用呢，下面介绍下实现步骤。">
+  <meta name="description" content="作为 PHP 使用者，平常会接触到 Composer 与很多包 下面介绍下相关工具，并如何发布一个自己的包">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Packagist与Satis管理依赖">
+<meta property="og:title" content="依赖管理">
 <meta property="og:url" content="https://liluoao.github.io/2018/dependency-management-with-packagist-and-satis.html">
 <meta property="og:site_name" content="码之力三段">
-<meta property="og:description" content="作为 PHP 使用者，平常会接触到 Composer 与很多包。如何发布一个自己的包让别人使用呢，下面介绍下实现步骤。">
+<meta property="og:description" content="作为 PHP 使用者，平常会接触到 Composer 与很多包 下面介绍下相关工具，并如何发布一个自己的包">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://liluoao.github.io/images/packagist.png">
 <meta property="article:published_time" content="2018-03-18T02:37:19.000Z">
-<meta property="article:modified_time" content="2020-11-28T03:50:45.467Z">
+<meta property="article:modified_time" content="2020-11-30T06:57:50.177Z">
 <meta property="article:author" content="李罗奥">
 <meta property="article:tag" content="tool">
 <meta name="twitter:card" content="summary">
@@ -64,7 +64,7 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-Packagist与Satis管理依赖" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-依赖管理" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2018/dependency-management-with-packagist-and-satis.html" class="article-date">
   <time datetime="2018-03-18T02:37:19.000Z" itemprop="datePublished">2018-03-18</time>
@@ -80,7 +80,7 @@
 <div class="article-gallery">
   <div class="article-gallery-photos">
     
-      <a class="article-gallery-img fancybox" href="/images/packagist.png" rel="gallery_cki15qpml000s9gmj4a9yap3o">
+      <a class="article-gallery-img fancybox" href="/images/packagist.png" rel="gallery_cki47b2ba001e6wmjg7xof34o">
         <img src="/images/packagist.png" itemprop="image">
       </a>
     
@@ -92,7 +92,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      Packagist与Satis管理依赖
+      依赖管理
     </h1>
   
 
@@ -100,10 +100,11 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>作为 PHP 使用者，平常会接触到 Composer 与很多包。如何发布一个自己的包让别人使用呢，下面介绍下实现步骤。</p>
+        <p>作为 PHP 使用者，平常会接触到 Composer 与很多包</p>
+<p>下面介绍下相关工具，并如何发布一个自己的包</p>
 <a id="more"></a>
 
-<h2 id="Composer-介绍"><a href="#Composer-介绍" class="headerlink" title="Composer 介绍"></a>Composer 介绍</h2><p><a target="_blank" rel="noopener" href="https://docs.phpcomposer.com/00-intro.html">Composer</a> 是 PHP 的依赖管理工具，它为你解决这类问题：</p>
+<h2 id="Composer"><a href="#Composer" class="headerlink" title="Composer"></a>Composer</h2><p><a target="_blank" rel="noopener" href="https://docs.phpcomposer.com/00-intro.html">Composer</a> 是 PHP 的依赖管理工具，它为你解决这类问题：</p>
 <ul>
 <li>你有一个项目依赖于若干个库</li>
 <li>其中一些库依赖于其他库</li>
@@ -111,18 +112,28 @@
 <li>找出哪个版本的包需要安装，并安装它们（将它们下载到你的项目中）</li>
 </ul>
 <p>要想使用 Composer，就必须要一个 <em>composer.json</em> 文件，该文件包含了项目的依赖和其它的一些元数据</p>
-<p>下面是项目配置示例：</p>
-<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="comment">//项目名 require时填</span></span><br><span class="line">    <span class="attr">&quot;name&quot;</span>: <span class="string">&quot;liluoao/api-doc&quot;</span>,</span><br><span class="line">    <span class="comment">//描述</span></span><br><span class="line">    <span class="attr">&quot;description&quot;</span>: <span class="string">&quot;Generate API doc from PHPDoc.&quot;</span>,</span><br><span class="line">    <span class="comment">//关键字</span></span><br><span class="line">    <span class="attr">&quot;keywords&quot;</span>: [</span><br><span class="line">        <span class="string">&quot;api-documentation&quot;</span>,</span><br><span class="line">        <span class="string">&quot;phpdoc&quot;</span></span><br><span class="line">    ],</span><br><span class="line">    <span class="comment">//项目主页</span></span><br><span class="line">    <span class="attr">&quot;homepage&quot;</span>: <span class="string">&quot;https://github.com/liluoao/api-doc&quot;</span>,</span><br><span class="line">    <span class="comment">//发布时间</span></span><br><span class="line">    <span class="attr">&quot;time&quot;</span>: <span class="string">&quot;2018-02-11&quot;</span>,</span><br><span class="line">    <span class="comment">//许可</span></span><br><span class="line">    <span class="attr">&quot;license&quot;</span>: <span class="string">&quot;MIT&quot;</span>,</span><br><span class="line">    <span class="comment">//分为library包和project项目</span></span><br><span class="line">    <span class="attr">&quot;type&quot;</span>: <span class="string">&quot;library&quot;</span>,</span><br><span class="line">    <span class="comment">//要求 包括环境与依赖包</span></span><br><span class="line">    <span class="attr">&quot;require&quot;</span>: &#123;</span><br><span class="line">        <span class="attr">&quot;php&quot;</span>: <span class="string">&quot;&gt;=5.4.0&quot;</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="comment">//作者信息</span></span><br><span class="line">    <span class="attr">&quot;authors&quot;</span>: [</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="attr">&quot;name&quot;</span>: <span class="string">&quot;Li Luoao&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;email&quot;</span>: <span class="string">&quot;liluoao@qq.com&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;homepage&quot;</span>: <span class="string">&quot;https://github.com/liluoao&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;role&quot;</span>: <span class="string">&quot;Developer&quot;</span></span><br><span class="line">        &#125;</span><br><span class="line">    ],</span><br><span class="line">    <span class="comment">//自动加载</span></span><br><span class="line">    <span class="attr">&quot;autoload&quot;</span>: &#123;</span><br><span class="line">        <span class="attr">&quot;psr-4&quot;</span>: &#123;</span><br><span class="line">            <span class="attr">&quot;Liluoao\\ApiDoc\\&quot;</span>: <span class="string">&quot;src&quot;</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="comment">//镜像</span></span><br><span class="line">    <span class="attr">&quot;repositories&quot;</span>: &#123;</span><br><span class="line">        <span class="attr">&quot;packagist&quot;</span>: &#123;</span><br><span class="line">            <span class="attr">&quot;type&quot;</span>: <span class="string">&quot;composer&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;url&quot;</span>: <span class="string">&quot;https://packagist.phpcomposer.com&quot;</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="文件详解"><a href="#文件详解" class="headerlink" title="文件详解"></a>文件详解</h2><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">&quot;name&quot;</span>: <span class="string">&quot;liluoao/api-doc&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;description&quot;</span>: <span class="string">&quot;Generate API doc from PHPDoc.&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;keywords&quot;</span>: [</span><br><span class="line">        <span class="string">&quot;api-documentation&quot;</span>,</span><br><span class="line">        <span class="string">&quot;phpdoc&quot;</span></span><br><span class="line">    ],</span><br><span class="line">    <span class="attr">&quot;homepage&quot;</span>: <span class="string">&quot;https://github.com/liluoao/api-doc&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;authors&quot;</span>: [</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="attr">&quot;name&quot;</span>: <span class="string">&quot;Li Luoao&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;email&quot;</span>: <span class="string">&quot;liluoao@qq.com&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;homepage&quot;</span>: <span class="string">&quot;https://github.com/liluoao&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;role&quot;</span>: <span class="string">&quot;Developer&quot;</span></span><br><span class="line">        &#125;</span><br><span class="line">    ],</span><br><span class="line">    <span class="attr">&quot;time&quot;</span>: <span class="string">&quot;2018-02-11&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;license&quot;</span>: <span class="string">&quot;MIT&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;type&quot;</span>: <span class="string">&quot;library&quot;</span>,</span><br><span class="line">    <span class="comment">//要求 包括环境与依赖包</span></span><br><span class="line">    <span class="attr">&quot;require&quot;</span>: &#123;</span><br><span class="line">        <span class="attr">&quot;php&quot;</span>: <span class="string">&quot;&gt;=5.4.0&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;ext-json&quot;</span>: <span class="string">&quot;*&quot;</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h2 id="Packagist-与发布包"><a href="#Packagist-与发布包" class="headerlink" title="Packagist 与发布包"></a>Packagist 与发布包</h2><p><a target="_blank" rel="noopener" href="https://packagist.org/">Packagist</a> 是包存储库，也是 Composer 的主要资源库。<br>在发布自己的包前，先注册一个账号，也可使用 GitHub 直接登录。</p>
-<p>在 <a target="_blank" rel="noopener" href="https://packagist.org/packages/submit">Submit页</a> 填写你的项目地址。<br>并在你的项目设置中开启 packagist 服务，让代码更新都自动同步：</p>
+<p>当项目有测试时，可以使用如下属性</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">&quot;require-dev&quot;</span>: &#123;</span><br><span class="line">    <span class="attr">&quot;fzaninotto/faker&quot;</span>: <span class="string">&quot;^1.4&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;mockery/mockery&quot;</span>: <span class="string">&quot;^1.0&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;nunomaduro/collision&quot;</span>: <span class="string">&quot;^2.0&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;orchestra/testbench&quot;</span>: <span class="string">&quot;3.7.6&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;phpunit/phpunit&quot;</span>: <span class="string">&quot;7.5.1&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;phpbench/phpbench&quot;</span>: <span class="string">&quot;^0.17.0&quot;</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">&quot;autoload-dev&quot;</span>: &#123;</span><br><span class="line">    <span class="attr">&quot;psr-4&quot;</span>: &#123;</span><br><span class="line">      <span class="attr">&quot;Tests\\&quot;</span>: <span class="string">&quot;tests/&quot;</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">&quot;scripts&quot;</span>: &#123;</span><br><span class="line">    <span class="attr">&quot;test&quot;</span>: <span class="string">&quot;vendor/bin/phpunit&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;test-coverage&quot;</span>: <span class="string">&quot;vendor/bin/phpunit --coverage-html coverage&quot;</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>像 Laravel 的数据填充并没有写命名空间，是直接在此定义的，还有帮助函数的文件等</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">&quot;autoload&quot;</span>: &#123;</span><br><span class="line">    <span class="attr">&quot;classmap&quot;</span>: [</span><br><span class="line">      <span class="string">&quot;database/seeds&quot;</span>,</span><br><span class="line">      <span class="string">&quot;database/factories&quot;</span></span><br><span class="line">    ],</span><br><span class="line">    <span class="attr">&quot;files&quot;</span>: [</span><br><span class="line">      <span class="string">&quot;src/helper.php&quot;</span></span><br><span class="line">    ],</span><br><span class="line">    <span class="attr">&quot;psr-4&quot;</span>: &#123;</span><br><span class="line">      <span class="attr">&quot;Liluoao\\ApiDoc\\&quot;</span>: <span class="string">&quot;src&quot;</span></span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>可以自动添加包里的服务提供者</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">&quot;extra&quot;</span>: &#123;</span><br><span class="line">    <span class="attr">&quot;laravel&quot;</span>: &#123;</span><br><span class="line">      <span class="attr">&quot;providers&quot;</span>: [</span><br><span class="line">        <span class="string">&quot;Liluoao\\Providers\\ServiceProvider&quot;</span></span><br><span class="line">      ],</span><br><span class="line">      <span class="attr">&quot;dont-discover&quot;</span>: [</span><br><span class="line">        <span class="string">&quot;barryvdh/laravel-ide-helper&quot;</span></span><br><span class="line">      ]</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Packagist"><a href="#Packagist" class="headerlink" title="Packagist"></a>Packagist</h2><p><a target="_blank" rel="noopener" href="https://packagist.org/">Packagist</a> 是包存储库，也是 Composer 的主要资源库</p>
+<p>在 Submit 页填写你的项目地址，并在你的项目设置中开启 packagist 服务，让代码同步更新：</p>
 <p><img src="/images/composer-setting.png" alt="GitHub项目开启服务"></p>
 <p>以上面例子项目发布成功后结果如下图所示</p>
 <p><img src="/images/packagist-final.png" alt="成功示例"></p>
 <h2 id="镜像"><a href="#镜像" class="headerlink" title="镜像"></a>镜像</h2><p>由于网络原因，下载包的速度很慢，可以替换为国内镜像提高速度：<a target="_blank" rel="noopener" href="https://pkg.phpcomposer.com/#how-to-use-packagist-mirror">Packagist 镜像使用方法</a></p>
-<p>更新：<br><a target="_blank" rel="noopener" href="https://learnku.com/articles/30758">《Laravel China 镜像完成历史使命，将于两个月后停用》</a><br><a target="_blank" rel="noopener" href="https://learnku.com/php/wikis/30594">《Composer 国内加速：可用镜像列表 》</a></p>
-<h2 id="用-Satis-处理私有资源包"><a href="#用-Satis-处理私有资源包" class="headerlink" title="用 Satis 处理私有资源包"></a>用 Satis 处理私有资源包</h2><p>以下为入职同花顺后更新</p>
-<ul>
+<blockquote>
+<p>2019-07 更新</p>
+</blockquote>
+<p><a target="_blank" rel="noopener" href="https://learnku.com/articles/30758">《Laravel China 镜像完成历史使命，将于两个月后停用》</a><br><a target="_blank" rel="noopener" href="https://learnku.com/php/wikis/30594">《Composer 国内加速：可用镜像列表 》</a></p>
+<h2 id="Satis-管理私有资源"><a href="#Satis-管理私有资源" class="headerlink" title="Satis 管理私有资源"></a>Satis 管理私有资源</h2><ul>
 <li>由于公司的架构是内外网分离，开发在内部局域网，无法拉取到公网的 Packagist</li>
 <li>顺便维护一些私有的包</li>
 </ul>
@@ -130,7 +141,7 @@
 <figure class="highlight dsconfig"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">composer </span><span class="built_in">create-project</span> <span class="string">composer/</span><span class="string">satis </span><span class="built_in">--stability=dev</span> <span class="built_in">--keep-vcs</span></span><br></pre></td></tr></table></figure>
 
 <p>Satis 的配置是通过 satis.json 进行的</p>
-<figure class="highlight json"><figcaption><span>satis.json</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">&quot;name&quot;</span>: <span class="string">&quot;crm&quot;</span>,</span><br><span class="line">  <span class="attr">&quot;homepage&quot;</span>: <span class="string">&quot;http://10.0.20.252:10450&quot;</span>,<span class="comment">//本项目地址，生成后可访问</span></span><br><span class="line">  <span class="attr">&quot;config&quot;</span>: &#123;</span><br><span class="line">    <span class="attr">&quot;disable-tls&quot;</span>: <span class="literal">true</span>,</span><br><span class="line">    <span class="attr">&quot;secure-http&quot;</span>: <span class="literal">false</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="comment">//镜像缓存设置，该设置会缓存require配置项中各个仓库的代码</span></span><br><span class="line">  <span class="attr">&quot;archive&quot;</span>: &#123;</span><br><span class="line">    <span class="attr">&quot;directory&quot;</span>: <span class="string">&quot;dist&quot;</span><span class="comment">//目录名</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">&quot;require&quot;</span>: &#123;</span><br><span class="line">    <span class="attr">&quot;monolog/monolog&quot;</span>: <span class="string">&quot;1.24.0&quot;</span></span><br><span class="line">    <span class="comment">//...</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">&quot;require-all&quot;</span>: <span class="literal">false</span>,<span class="comment">//为true时将从仓库获取所有相关的依赖包</span></span><br><span class="line">  <span class="attr">&quot;repositories&quot;</span>: [</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="attr">&quot;type&quot;</span>: <span class="string">&quot;git&quot;</span>,</span><br><span class="line">      <span class="attr">&quot;url&quot;</span>: <span class="string">&quot;http://10.0.20.254:10080/library/monolog/monolog.git&quot;</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//...</span></span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight json"><figcaption><span>satis.json</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">&quot;name&quot;</span>: <span class="string">&quot;crm&quot;</span>,</span><br><span class="line">  <span class="attr">&quot;homepage&quot;</span>: <span class="string">&quot;http://10.0.20.252:10450&quot;</span>,<span class="comment">//本项目地址，可以WEB访问</span></span><br><span class="line">  <span class="attr">&quot;config&quot;</span>: &#123;</span><br><span class="line">    <span class="attr">&quot;disable-tls&quot;</span>: <span class="literal">true</span>,</span><br><span class="line">    <span class="attr">&quot;secure-http&quot;</span>: <span class="literal">false</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="comment">//镜像缓存设置，该设置会缓存require配置项中各个仓库的代码</span></span><br><span class="line">  <span class="attr">&quot;archive&quot;</span>: &#123;</span><br><span class="line">    <span class="attr">&quot;directory&quot;</span>: <span class="string">&quot;dist&quot;</span><span class="comment">//目录名</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">&quot;require&quot;</span>: &#123;</span><br><span class="line">    <span class="attr">&quot;monolog/monolog&quot;</span>: <span class="string">&quot;1.24.0&quot;</span></span><br><span class="line">    <span class="comment">//...</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">&quot;require-all&quot;</span>: <span class="literal">false</span>,<span class="comment">//为true时将从仓库获取所有相关的依赖包</span></span><br><span class="line">  <span class="attr">&quot;repositories&quot;</span>: [</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="attr">&quot;type&quot;</span>: <span class="string">&quot;git&quot;</span>,</span><br><span class="line">      <span class="attr">&quot;url&quot;</span>: <span class="string">&quot;http://10.0.20.254:10080/library/monolog/monolog.git&quot;</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//...</span></span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>生成项目</p>
 <figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">php bin<span class="regexp">/satis build satis.json public/</span></span><br><span class="line"><span class="comment"># 添加新的repo</span></span><br><span class="line">php bin<span class="regexp">/satis add http:/</span><span class="regexp">/10.0.20.254:10080/</span>library<span class="regexp">/guzzlehttp/gu</span>zzle.git satis.json</span><br></pre></td></tr></table></figure>
@@ -141,7 +152,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2018/dependency-management-with-packagist-and-satis.html" data-id="cki15qpml000s9gmj4a9yap3o" class="article-share-link">分享</a>
+      <a data-url="https://liluoao.github.io/2018/dependency-management-with-packagist-and-satis.html" data-id="cki47b2ba001e6wmjg7xof34o" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/tool/" rel="tag">tool</a></li></ul>
@@ -156,7 +167,7 @@
       <strong class="article-nav-caption">下一篇</strong>
       <div class="article-nav-title">
         
-          PHP设计模式与重构
+          设计模式——概述与重构
         
       </div>
     </a>
@@ -164,7 +175,7 @@
   
     <a href="/2018/phalcon-installation-and-startup-process.html" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">上一篇</strong>
-      <div class="article-nav-title">Phalcon安装与启动流程</div>
+      <div class="article-nav-title">Phalcon启动流程</div>
     </a>
   
 </nav>
@@ -195,19 +206,15 @@
           </li>
         
           <li>
-            <a href="/2020/laravel-artisan-queue-and-task-scheduling.html">命令行、队列和任务调度</a>
-          </li>
-        
-          <li>
             <a href="/2020/review-what-has-been-learned-in-laravel.html">Laravel温故而知新</a>
           </li>
         
           <li>
-            <a href="/2020/consistency-of-master-and-slave-database.html">MySQL主从一致性方案</a>
+            <a href="/2020/laravel-artisan-queue-and-task-scheduling.html">命令行、队列和任务调度</a>
           </li>
         
           <li>
-            <a href="/2019/php-structural-design-patterns-template-method.html">设计模式——TemplateMethod</a>
+            <a href="/2020/consistency-of-master-and-slave-database.html">MySQL主从一致性方案</a>
           </li>
         
           <li>
@@ -219,7 +226,11 @@
           </li>
         
           <li>
-            <a href="/2019/yaf-individualization.html">Yaf框架结构个性化</a>
+            <a href="/2019/php-structural-design-patterns-template-method.html">设计模式——TemplateMethod</a>
+          </li>
+        
+          <li>
+            <a href="/2019/yaf-individualization.html">Yaf结构自定义</a>
           </li>
         
       </ul>
@@ -231,7 +242,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">分类</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/php-framework/">PHP框架</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/tool/">工具</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/database/">数据库</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/other/">杂谈</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/design-patterns/">设计模式</a><span class="category-list-count">8</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/php-framework/">PHP框架</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/tool/">工具</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/database/">数据库</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/other/">杂谈</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/design-patterns/">设计模式</a><span class="category-list-count">8</span></li></ul>
     </div>
   </div>
 
@@ -241,7 +252,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签</h3>
     <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/design-patterns/" rel="tag">design-patterns</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/go/" rel="tag">go</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/laravel/" rel="tag">laravel</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mongo/" rel="tag">mongo</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/" rel="tag">mysql</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/phalcon/" rel="tag">phalcon</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/php/" rel="tag">php</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/redis/" rel="tag">redis</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tool/" rel="tag">tool</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/yaf/" rel="tag">yaf</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/yii/" rel="tag">yii</a><span class="tag-list-count">2</span></li></ul>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/design-patterns/" rel="tag">design-patterns</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/golang/" rel="tag">golang</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/laravel/" rel="tag">laravel</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mongo/" rel="tag">mongo</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/" rel="tag">mysql</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/other-framework/" rel="tag">other framework</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/php/" rel="tag">php</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/redis/" rel="tag">redis</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tool/" rel="tag">tool</a><span class="tag-list-count">8</span></li></ul>
     </div>
   </div>
 

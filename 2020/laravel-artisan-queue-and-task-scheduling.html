@@ -7,15 +7,15 @@
   
   <title>命令行、队列和任务调度 | 码之力三段</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Love,Death&amp;Robots The Lion,the Witch and the Wardrobe Artisan,Queue Job and Task-Scheduling">
+  <meta name="description" content="主要介绍下 Console 内核与下面两者的使用：  Artisan Job">
 <meta property="og:type" content="article">
 <meta property="og:title" content="命令行、队列和任务调度">
 <meta property="og:url" content="https://liluoao.github.io/2020/laravel-artisan-queue-and-task-scheduling.html">
 <meta property="og:site_name" content="码之力三段">
-<meta property="og:description" content="Love,Death&amp;Robots The Lion,the Witch and the Wardrobe Artisan,Queue Job and Task-Scheduling">
+<meta property="og:description" content="主要介绍下 Console 内核与下面两者的使用：  Artisan Job">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2020-06-16T07:22:49.000Z">
-<meta property="article:modified_time" content="2020-11-28T03:50:45.467Z">
+<meta property="article:published_time" content="2020-04-16T07:22:49.000Z">
+<meta property="article:modified_time" content="2020-11-30T06:57:50.177Z">
 <meta property="article:author" content="李罗奥">
 <meta property="article:tag" content="laravel">
 <meta name="twitter:card" content="summary">
@@ -65,7 +65,7 @@
         <section id="main"><article id="post-命令行、队列和任务调度" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2020/laravel-artisan-queue-and-task-scheduling.html" class="article-date">
-  <time datetime="2020-06-16T07:22:49.000Z" itemprop="datePublished">2020-06-16</time>
+  <time datetime="2020-04-16T07:22:49.000Z" itemprop="datePublished">2020-04-16</time>
 </a>
     
   <div class="article-category">
@@ -88,26 +88,43 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>Love,Death&amp;Robots</p>
-<p>The Lion,the Witch and the Wardrobe</p>
-<p>Artisan,Queue Job and Task-Scheduling</p>
+        <p>主要介绍下 Console 内核与下面两者的使用：</p>
+<ul>
+<li>Artisan</li>
+<li>Job</li>
+</ul>
 <a id="more"></a>
 
+<h2 id="Console-内核"><a href="#Console-内核" class="headerlink" title="Console 内核"></a>Console 内核</h2><p>首先理解 <em>app/Console/Kernel</em> 的作用</p>
+<p><code>$commands</code> 属性定义了手动加载的命令</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">protected</span> <span class="variable">$commands</span> = [</span><br><span class="line">    Commands\ReserveExpired::class,</span><br><span class="line">    Commands\TestCommand::class</span><br><span class="line">];</span><br></pre></td></tr></table></figure>
+
+<p><code>commands()</code> 方法中引入自动加载命令的文件</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">protected</span> <span class="function"><span class="keyword">function</span> <span class="title">commands</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">require</span> base_path(<span class="string">&#x27;routes/console.php&#x27;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><code>schedule()</code> 方法中定义定时任务</p>
+<p>有如下几种方式：</p>
+<ol>
+<li><p>Closure 闭包</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$schedule</span>-&gt;call(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    DB::table(<span class="string">&#x27;should_delete&#x27;</span>)-&gt;delete();</span><br><span class="line">&#125;)-&gt;daily();</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Shell 命令</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$schedule</span>-&gt;exec(<span class="string">&#x27;node /home/forge/script.js&#x27;</span>)-&gt;daily();</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Artisan</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$schedule</span>-&gt;command(<span class="string">&#x27;reserve-expired&#x27;</span>)-&gt;dailyAt(<span class="string">&#x27;02:00&#x27;</span>);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Job</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$schedule</span>-&gt;job(<span class="keyword">new</span> ReceiveMoney)-&gt;everyFiveMinutes();</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<p>下面详细介绍下第 3、4 点</p>
 <h2 id="Artisan"><a href="#Artisan" class="headerlink" title="Artisan"></a>Artisan</h2><p>新建一个预约已过期命令：</p>
 <figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">php artisan <span class="keyword">make</span>:<span class="keyword">command</span> ReserveExpired</span><br></pre></td></tr></table></figure>
 
 <p>命令结构如下</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">namespace</span> <span class="title">App</span>\<span class="title">Console</span>\<span class="title">Commands</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">use</span> <span class="title">Illuminate</span>\<span class="title">Console</span>\<span class="title">Command</span>;</span><br><span class="line"><span class="keyword">use</span> <span class="title">Reserve</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ReserveExpired</span> <span class="keyword">extends</span> <span class="title">Command</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="keyword">protected</span> <span class="variable">$signature</span> = <span class="string">&#x27;reserve-expired&#x27;</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">protected</span> <span class="variable">$description</span> = <span class="string">&#x27;change expired reserve state&#x27;</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">handle</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="variable">$reserve</span> = <span class="keyword">new</span> Reserve();</span><br><span class="line">        <span class="variable">$reserve</span>-&gt;updateStateWhenExpired();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><code>signature</code> 属性是在使用时期望输入的命令，<code>description</code> 是命令的描述，<code>handle()</code> 是命令执行时调用的方法</p>
-<h4 id="注册命令"><a href="#注册命令" class="headerlink" title="注册命令"></a>注册命令</h4><p>在 <em>app/Console/Kernel</em> 中定义了手动加载的命令：</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">protected</span> <span class="variable">$commands</span> = [</span><br><span class="line">    Commands\ReserveExpired::class,<span class="comment">//修改已过期的预约的状态</span></span><br><span class="line">    Commands\TestCommand::class<span class="comment">//test</span></span><br><span class="line">];</span><br></pre></td></tr></table></figure>
-
-<p>在下面的 <code>commands()</code> 方法中定义了自动加载命令的文件：</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">protected</span> <span class="function"><span class="keyword">function</span> <span class="title">commands</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">require</span> base_path(<span class="string">&#x27;routes/console.php&#x27;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>在这个 <em>routes/console.php</em> 中命令是以闭包形式执行的，并使用了 Artisan Facade：</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Artisan::command(<span class="string">&#x27;reserve-expired&#x27;</span>, <span class="function"><span class="keyword">function</span> (<span class="params"><span class="variable">$project</span></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">$this</span>-&gt;info(<span class="string">&quot;Success&quot;</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">namespace</span> <span class="title">App</span>\<span class="title">Console</span>\<span class="title">Commands</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">use</span> <span class="title">Illuminate</span>\<span class="title">Console</span>\<span class="title">Command</span>;</span><br><span class="line"><span class="keyword">use</span> <span class="title">Reserve</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ReserveExpired</span> <span class="keyword">extends</span> <span class="title">Command</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="comment">//使用时期望输入的命令</span></span><br><span class="line">    <span class="keyword">protected</span> <span class="variable">$signature</span> = <span class="string">&#x27;reserve-expired&#x27;</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//命令描述</span></span><br><span class="line">    <span class="keyword">protected</span> <span class="variable">$description</span> = <span class="string">&#x27;change expired reserve state&#x27;</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//主方法</span></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">handle</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="variable">$reserve</span> = <span class="keyword">new</span> Reserve();</span><br><span class="line">        <span class="variable">$reserve</span>-&gt;updateStateWhenExpired();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <h4 id="交互式输入"><a href="#交互式输入" class="headerlink" title="交互式输入"></a>交互式输入</h4><ol>
 <li><p>获取输入</p>
@@ -130,138 +147,34 @@
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">protected</span> <span class="variable">$signature</span> = <span class="string">&#x27;wechat-menu &#123;type?&#125; &#123;officialType?&#125;&#x27;</span>;</span><br></pre></td></tr></table></figure>
 
 <p>当输入不符合时，直接返回提示信息：</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$usageString</span></span><br><span class="line">    = &lt;&lt;&lt;USAGE</span><br><span class="line">Usage: wechat-menu [options] [officialType]</span><br><span class="line"></span><br><span class="line">       options         args: create/get</span><br><span class="line">       officialType    args: one/two/three</span><br><span class="line">USAGE;</span><br><span class="line"><span class="keyword">$this</span>-&gt;info(<span class="variable">$usageString</span>);</span><br></pre></td></tr></table></figure>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$usageString</span> = &lt;&lt;&lt;USAGE</span><br><span class="line">Usage: wechat-menu [options] [officialType]</span><br><span class="line"></span><br><span class="line">       options         args: create/get</span><br><span class="line">       officialType    args: one/two/three</span><br><span class="line">USAGE;</span><br><span class="line"><span class="keyword">$this</span>-&gt;info(<span class="variable">$usageString</span>);</span><br></pre></td></tr></table></figure>
 
-<h2 id="Queue"><a href="#Queue" class="headerlink" title="Queue"></a>Queue</h2><p>先了解配置文件 <em>config/queue.php</em></p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&#x27;default&#x27;</span> =&gt; env(<span class="string">&#x27;QUEUE_DRIVER&#x27;</span>, <span class="string">&#x27;sync&#x27;</span>),</span><br><span class="line"><span class="string">&#x27;connections&#x27;</span> =&gt; [</span><br><span class="line">        <span class="string">&#x27;sync&#x27;</span> =&gt; [</span><br><span class="line">            <span class="string">&#x27;driver&#x27;</span> =&gt; <span class="string">&#x27;sync&#x27;</span>,</span><br><span class="line">        ],</span><br><span class="line">        <span class="string">&#x27;database&#x27;</span> =&gt; [</span><br><span class="line">            <span class="string">&#x27;driver&#x27;</span> =&gt; <span class="string">&#x27;database&#x27;</span>,</span><br><span class="line">        ],</span><br><span class="line">        <span class="comment">//...</span></span><br><span class="line">        <span class="string">&#x27;redis&#x27;</span> =&gt; [</span><br><span class="line">            <span class="string">&#x27;driver&#x27;</span> =&gt; <span class="string">&#x27;redis&#x27;</span>,</span><br><span class="line">        ],</span><br><span class="line">    ],</span><br></pre></td></tr></table></figure>
+<h2 id="Queue"><a href="#Queue" class="headerlink" title="Queue"></a>Queue</h2><p>查看配置文件 <em>config/queue.php</em></p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&#x27;default&#x27;</span> =&gt; env(<span class="string">&#x27;QUEUE_DRIVER&#x27;</span>, <span class="string">&#x27;sync&#x27;</span>),</span><br><span class="line"><span class="string">&#x27;connections&#x27;</span> =&gt; [</span><br><span class="line">    <span class="string">&#x27;sync&#x27;</span> =&gt; [</span><br><span class="line">        <span class="string">&#x27;driver&#x27;</span> =&gt; <span class="string">&#x27;sync&#x27;</span>,</span><br><span class="line">    ],</span><br><span class="line">    <span class="string">&#x27;database&#x27;</span> =&gt; [</span><br><span class="line">        <span class="string">&#x27;driver&#x27;</span> =&gt; <span class="string">&#x27;database&#x27;</span>,</span><br><span class="line">    ],</span><br><span class="line">    <span class="comment">//...</span></span><br><span class="line">    <span class="string">&#x27;redis&#x27;</span> =&gt; [</span><br><span class="line">        <span class="string">&#x27;driver&#x27;</span> =&gt; <span class="string">&#x27;redis&#x27;</span>,</span><br><span class="line">    ],</span><br><span class="line">],</span><br></pre></td></tr></table></figure>
 
-<p><code>default</code> 是队列系统默认使用的驱动，在连接时可以使用 <code>onConnection()</code> 方法将任务推到指定连接<br><code>connections</code> 可以配置各种驱动的设置，如 Redis 等<br><code>failed</code> 配置队列中的任务执行失败时，保存失败任务的库与表</p>
+<p><code>default</code> 是队列系统默认使用的驱动，在连接时可以使用 <code>onConnection()</code> 方法将任务推到指定连接</p>
+<p><code>connections</code> 可以配置各种驱动的设置，如 Redis 等</p>
+<p><code>failed</code> 配置队列中的任务执行失败时，保存失败任务的库与表</p>
 <p>这里以 <code>database</code> 驱动为例</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 生成jobs表</span></span><br><span class="line">php artisan queue:table</span><br><span class="line"><span class="comment"># 生成failed_jobs表</span></span><br><span class="line">php artisan queue:failed-table</span><br><span class="line">php artisan migrate</span><br></pre></td></tr></table></figure>
 
-<p>这里有一点，生成 jobs 表的迁移文件中，<code>attempts</code> 字段是无符号 tinyint 类型的</p>
-<p>我在一次任务重试次数过多时，会导致超出范围，修改成了 int</p>
-<h4 id="创建任务"><a href="#创建任务" class="headerlink" title="创建任务"></a>创建任务</h4><p>新建一个收款任务：</p>
-<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">php artisan <span class="attr">make:</span>job ReceiveMoney</span><br></pre></td></tr></table></figure>
+<h4 id="创建任务"><a href="#创建任务" class="headerlink" title="创建任务"></a>创建任务</h4><figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">php artisan <span class="attr">make:</span>job ReceiveMoney</span><br></pre></td></tr></table></figure>
 
 <p>任务类的基本格式：</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ReceiveMoney</span> <span class="keyword">implements</span> <span class="title">ShouldQueue</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="keyword">use</span> <span class="title">Dispatchable</span>, <span class="title">InteractsWithQueue</span>, <span class="title">Queueable</span>, <span class="title">SerializesModels</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span></span>&#123;&#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">handle</span></span>&#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>其中它引用了 <code>SerializesModels</code> trait，可以优雅地序列化Eloquent</p>
-<p><code>hanle</code> 是任务被处理时调用的主方法</p>
-<h4 id="分发任务"><a href="#分发任务" class="headerlink" title="分发任务"></a>分发任务</h4><p>在你的逻辑（控制器、或自定义的逻辑层等等）中，使用 <code>dispatch</code> 辅助函数分发它：</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">\App\Jobs\ReceiveMoney::dispatch(<span class="variable">$updateArray</span>, <span class="variable">$type</span>);</span><br></pre></td></tr></table></figure>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ReceiveMoney</span> <span class="keyword">implements</span> <span class="title">ShouldQueue</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="keyword">use</span> <span class="title">Dispatchable</span>, <span class="title">InteractsWithQueue</span>, <span class="title">Queueable</span>, <span class="title">SerializesModels</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span> (<span class="params"></span>) </span>&#123;&#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">handle</span> (<span class="params"></span>) </span>&#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<blockquote>
-<p>需要延迟执行时可以链式调用 <code>delay()</code> 方法</p>
-</blockquote>
-<p>适当修改我们的 <code>ReceiveMoney</code> 任务类，让它接收传递进来的两个参数，并保存一条收支记录：</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">protected</span> <span class="variable">$updateArray</span>;</span><br><span class="line"><span class="keyword">protected</span> <span class="variable">$type</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span>(<span class="params"><span class="variable">$updateArray</span>, <span class="variable">$type</span></span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">$this</span>-&gt;updateArray = <span class="variable">$updateArray</span>;</span><br><span class="line">    <span class="keyword">$this</span>-&gt;type = <span class="variable">$type</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">handle</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">$this</span>-&gt;saveReceiptRecord(<span class="keyword">$this</span>-&gt;updateArray, <span class="keyword">$this</span>-&gt;type);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">protected</span> <span class="function"><span class="keyword">function</span> <span class="title">saveReceiptRecord</span>(<span class="params"><span class="variable">$updateArray</span>, <span class="variable">$type</span></span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">//do sth...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="分发任务"><a href="#分发任务" class="headerlink" title="分发任务"></a>分发任务</h4><p>使用 <code>dispatch</code> 辅助函数分发它：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ReceiveMoney::dispatch(<span class="variable">$data</span>, <span class="variable">$type</span>)-&gt;onQueue(env(<span class="string">&#x27;ROCKETMQ_TOPIC_JOB&#x27;</span>));</span><br></pre></td></tr></table></figure>
 
-<h4 id="运行队列"><a href="#运行队列" class="headerlink" title="运行队列"></a>运行队列</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 常驻</span></span><br><span class="line">php artisan queue:work</span><br><span class="line"><span class="comment"># 或者运行一次</span></span><br><span class="line">php artisan queue:work --once</span><br></pre></td></tr></table></figure>
+<h4 id="运行队列"><a href="#运行队列" class="headerlink" title="运行队列"></a>运行队列</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 常驻</span></span><br><span class="line">php artisan queue:work</span><br><span class="line"><span class="comment"># 单次</span></span><br><span class="line">php artisan queue:work --once</span><br><span class="line"></span><br><span class="line">php artisan queue:listen --queue=common --delay=1 --sleep=3 --tries=3 --timeout=600 --quiet | bash &gt;&gt; /var/<span class="built_in">log</span>/message_common.log 2&gt;&amp;1</span><br></pre></td></tr></table></figure>
 
-<h4 id="失败处理"><a href="#失败处理" class="headerlink" title="失败处理"></a>失败处理</h4><p>所有失败任务会存到 <code>failed_jobs</code> 表中，可以用表格方式展示：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">php artisan <span class="built_in">queue</span>:failed</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 重试单个ID</span></span><br><span class="line">php artisan queue:retry 1</span><br><span class="line"><span class="comment"># 重试全部</span></span><br><span class="line">php artisan queue:retry all</span><br><span class="line"><span class="comment"># 删除单个ID</span></span><br><span class="line">php artisan queue:forget 2</span><br><span class="line"><span class="comment"># 删除全部</span></span><br><span class="line">php artisan queue:flush</span><br></pre></td></tr></table></figure>
-
-<h2 id="Task-Scheduling"><a href="#Task-Scheduling" class="headerlink" title="Task-Scheduling"></a>Task-Scheduling</h2><p>在 <em>App\Console\Kernel</em> 中 <code>schedule()</code> 方法中定义所有调度任务</p>
-<p>有如下几种方式：</p>
-<ol>
-<li><p>Closure</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$schedule</span>-&gt;call(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    DB::table(<span class="string">&#x27;should_delete&#x27;</span>)-&gt;delete();</span><br><span class="line">&#125;)-&gt;daily();</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>Artisan</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 以上面的ReserveExpired为例</span></span><br><span class="line"><span class="variable">$schedule</span>-&gt;command(<span class="string">&#x27;reserve-expired&#x27;</span>)-&gt;dailyAt(<span class="string">&#x27;02:00&#x27;</span>);</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>Job</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 以上面的ReceiveMoney为例</span></span><br><span class="line"><span class="variable">$schedule</span>-&gt;job(<span class="keyword">new</span> ReceiveMoney)-&gt;everyFiveMinutes();</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>Shell</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$schedule</span>-&gt;exec(<span class="string">&#x27;node /home/forge/script.js&#x27;</span>)-&gt;daily();</span><br></pre></td></tr></table></figure>
-
-</li>
-</ol>
-<h3 id="可用的时间限制"><a href="#可用的时间限制" class="headerlink" title="可用的时间限制"></a>可用的时间限制</h3><table>
-<thead>
-<tr>
-<th>方法</th>
-<th>描述</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>-&gt;cron(‘* * * * * *’);</td>
-<td>在自定义的 Cron 时间表上执行该任务</td>
-</tr>
-<tr>
-<td>-&gt;everyMinute();</td>
-<td>每分钟执行一次任务</td>
-</tr>
-<tr>
-<td>-&gt;everyFiveMinutes();</td>
-<td>每五分钟执行一次任务</td>
-</tr>
-<tr>
-<td>-&gt;everyTenMinutes();</td>
-<td>每十分钟执行一次任务</td>
-</tr>
-<tr>
-<td>-&gt;everyFifteenMinutes();</td>
-<td>每十五分钟执行一次任务</td>
-</tr>
-<tr>
-<td>-&gt;everyThirtyMinutes();</td>
-<td>每半小时执行一次任务</td>
-</tr>
-<tr>
-<td>-&gt;hourly();</td>
-<td>每小时执行一次任务</td>
-</tr>
-<tr>
-<td>-&gt;hourlyAt(17);</td>
-<td>每小时的第 17 分钟执行一次任务</td>
-</tr>
-<tr>
-<td>-&gt;daily();</td>
-<td>每天午夜执行一次任务</td>
-</tr>
-<tr>
-<td>-&gt;dailyAt(‘13:00’);</td>
-<td>每天的 13:00 执行一次任务</td>
-</tr>
-<tr>
-<td>-&gt;twiceDaily(1, 13);</td>
-<td>每天的 1:00 和 13:00 分别执行一次任务</td>
-</tr>
-<tr>
-<td>-&gt;weekly();</td>
-<td>每周执行一次任务</td>
-</tr>
-<tr>
-<td>-&gt;monthly();</td>
-<td>每月执行一次任务</td>
-</tr>
-<tr>
-<td>-&gt;monthlyOn(4, ‘15:00’);</td>
-<td>在每个月的第四天的 15:00 执行一次任务</td>
-</tr>
-<tr>
-<td>-&gt;quarterly();</td>
-<td>每季度执行一次任务</td>
-</tr>
-<tr>
-<td>-&gt;yearly();</td>
-<td>每年执行一次任务</td>
-</tr>
-<tr>
-<td>-&gt;timezone(‘America/New_York’);</td>
-<td>设置时区</td>
-</tr>
-</tbody></table>
+<h4 id="失败处理"><a href="#失败处理" class="headerlink" title="失败处理"></a>失败处理</h4><p>所有失败任务会存到 <code>failed_jobs</code> 表中</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 以表格展示</span></span><br><span class="line">php artisan queue:failed</span><br><span class="line"><span class="comment"># 重试单个ID</span></span><br><span class="line">php artisan queue:retry 1</span><br><span class="line"><span class="comment"># 重试全部</span></span><br><span class="line">php artisan queue:retry all</span><br><span class="line"><span class="comment"># 删除单个ID</span></span><br><span class="line">php artisan queue:forget 2</span><br><span class="line"><span class="comment"># 删除全部</span></span><br><span class="line">php artisan queue:flush</span><br></pre></td></tr></table></figure>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://liluoao.github.io/2020/laravel-artisan-queue-and-task-scheduling.html" data-id="cki15qpn1001q9gmjch3deyy2" class="article-share-link">分享</a>
+      <a data-url="https://liluoao.github.io/2020/laravel-artisan-queue-and-task-scheduling.html" data-id="cki47b2ba001m6wmj6sbk48cj" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/laravel/" rel="tag">laravel</a></li></ul>
@@ -272,19 +185,19 @@
     
 <nav id="article-nav">
   
-    <a href="/2020/buffer-penetration-breakdown-and-avalanche.html" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2020/review-what-has-been-learned-in-laravel.html" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption">下一篇</strong>
       <div class="article-nav-title">
         
-          缓存穿透、击穿与雪崩
+          Laravel温故而知新
         
       </div>
     </a>
   
   
-    <a href="/2020/review-what-has-been-learned-in-laravel.html" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2020/consistency-of-master-and-slave-database.html" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">上一篇</strong>
-      <div class="article-nav-title">Laravel温故而知新</div>
+      <div class="article-nav-title">MySQL主从一致性方案</div>
     </a>
   
 </nav>
@@ -315,19 +228,15 @@
           </li>
         
           <li>
-            <a href="/2020/laravel-artisan-queue-and-task-scheduling.html">命令行、队列和任务调度</a>
-          </li>
-        
-          <li>
             <a href="/2020/review-what-has-been-learned-in-laravel.html">Laravel温故而知新</a>
           </li>
         
           <li>
-            <a href="/2020/consistency-of-master-and-slave-database.html">MySQL主从一致性方案</a>
+            <a href="/2020/laravel-artisan-queue-and-task-scheduling.html">命令行、队列和任务调度</a>
           </li>
         
           <li>
-            <a href="/2019/php-structural-design-patterns-template-method.html">设计模式——TemplateMethod</a>
+            <a href="/2020/consistency-of-master-and-slave-database.html">MySQL主从一致性方案</a>
           </li>
         
           <li>
@@ -339,7 +248,11 @@
           </li>
         
           <li>
-            <a href="/2019/yaf-individualization.html">Yaf框架结构个性化</a>
+            <a href="/2019/php-structural-design-patterns-template-method.html">设计模式——TemplateMethod</a>
+          </li>
+        
+          <li>
+            <a href="/2019/yaf-individualization.html">Yaf结构自定义</a>
           </li>
         
       </ul>
@@ -351,7 +264,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">分类</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/php-framework/">PHP框架</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/tool/">工具</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/database/">数据库</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/other/">杂谈</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/design-patterns/">设计模式</a><span class="category-list-count">8</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/php-framework/">PHP框架</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/tool/">工具</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/database/">数据库</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/other/">杂谈</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/design-patterns/">设计模式</a><span class="category-list-count">8</span></li></ul>
     </div>
   </div>
 
@@ -361,7 +274,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签</h3>
     <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/design-patterns/" rel="tag">design-patterns</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/go/" rel="tag">go</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/laravel/" rel="tag">laravel</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mongo/" rel="tag">mongo</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/" rel="tag">mysql</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/phalcon/" rel="tag">phalcon</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/php/" rel="tag">php</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/redis/" rel="tag">redis</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tool/" rel="tag">tool</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/yaf/" rel="tag">yaf</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/yii/" rel="tag">yii</a><span class="tag-list-count">2</span></li></ul>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/design-patterns/" rel="tag">design-patterns</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/golang/" rel="tag">golang</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/laravel/" rel="tag">laravel</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mongo/" rel="tag">mongo</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/" rel="tag">mysql</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/other-framework/" rel="tag">other framework</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/php/" rel="tag">php</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/redis/" rel="tag">redis</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tool/" rel="tag">tool</a><span class="tag-list-count">8</span></li></ul>
     </div>
   </div>
 
