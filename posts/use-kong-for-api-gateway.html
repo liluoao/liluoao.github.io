@@ -1,0 +1,193 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="theme-color" content="#0078E7"><meta name="author" content="丶基调"><meta name="copyright" content="丶基调"><meta name="generator" content="Hexo 5.2.0"><meta name="theme" content="hexo-theme-yun"><title>API网关选型 | 码之气三段</title><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@900&amp;display=swap" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/star-markdown-css@0.1.22/dist/yun/yun-markdown.min.css"><script src="//at.alicdn.com/t/font_1140697_ed8vp4atwoj.js" async></script><script src="https://cdn.jsdelivr.net/npm/scrollreveal/dist/scrollreveal.min.js" defer></script><script>document.addEventListener("DOMContentLoaded", () => {
+  [".post-card",".post-content img"].forEach((target)=> {
+    ScrollReveal().reveal(target);
+  })
+});
+</script><link id="light-prism-css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.20.0/themes/prism.css" media="(prefers-color-scheme: light)"><link id="dark-prism-css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.20.0/themes/prism-tomorrow.css" media="(prefers-color-scheme: dark)"><link rel="shortcut icon" type="image/svg+xml" href="/favicon.ico"><link rel="mask-icon" href="/favicon.ico" color="#0078E7"><link rel="alternate icon" href="/yun.ico"><link rel="preload" href="/css/hexo-theme-yun.css" as="style"><link rel="preload" href="/js/utils.js" as="script"><link rel="preload" href="/js/hexo-theme-yun.js" as="script"><link rel="prefetch" href="/js/sidebar.js" as="script"><link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin><link rel="stylesheet" href="/css/hexo-theme-yun.css"><script id="yun-config">
+    const Yun = window.Yun || {};
+    window.CONFIG = {"hostname":"liluoao.github.io","root":"/","title":"码之气三段","version":"1.3.0","mode":"auto","copycode":true,"anonymous_image":"https://cdn.jsdelivr.net/gh/YunYouJun/cdn/img/avatar/none.jpg","say":{"api":"https://v1.hitokoto.cn","hitokoto":true},"fireworks":{"colors":["102, 167, 221","62, 131, 225","33, 78, 194"]}};
+  </script><meta name="description" content="随着移动互联网的兴起、开放合作思维的盛行，不同终端和第三方开发者都需要大量的接入企业核心业务能力，此时各业务系统将会面临同一系列的问题，例如：如何让调用方快速接入、如何让业务方安全地对外开放能力，如何应对和控制业务洪峰调用等等 于是就诞生了一个隔离企业内部业务系统和外部系统调用的屏障 - API 网关，它负责在上层抽象出各业务系统需要的通用功能，例如：鉴权、限流、ACL、降级等 另外随着近年来微服">
+<meta property="og:type" content="article">
+<meta property="og:title" content="API网关选型">
+<meta property="og:url" content="https://liluoao.github.io/posts/use-kong-for-api-gateway.html">
+<meta property="og:site_name" content="码之气三段">
+<meta property="og:description" content="随着移动互联网的兴起、开放合作思维的盛行，不同终端和第三方开发者都需要大量的接入企业核心业务能力，此时各业务系统将会面临同一系列的问题，例如：如何让调用方快速接入、如何让业务方安全地对外开放能力，如何应对和控制业务洪峰调用等等 于是就诞生了一个隔离企业内部业务系统和外部系统调用的屏障 - API 网关，它负责在上层抽象出各业务系统需要的通用功能，例如：鉴权、限流、ACL、降级等 另外随着近年来微服">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://liluoao.github.io/images/different-of-kong.png">
+<meta property="og:image" content="https://liluoao.github.io/images/openresty_phases.png">
+<meta property="article:published_time" content="2018-11-09T12:17:07.000Z">
+<meta property="article:modified_time" content="2020-12-05T06:43:12.811Z">
+<meta property="article:author" content="丶基调">
+<meta property="article:tag" content="tool">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://liluoao.github.io/images/different-of-kong.png"><script src="/js/ui/mode.js"></script></head><body><script defer src="https://cdn.jsdelivr.net/npm/animejs@latest/anime.min.js"></script><script defer src="/js/ui/fireworks.js"></script><canvas class="fireworks"></canvas><div class="container"><a class="sidebar-toggle hty-icon-button" id="menu-btn"><div class="hamburger hamburger--spin" type="button"><span class="hamburger-box"><span class="hamburger-inner"></span></span></div></a><div class="sidebar-toggle sidebar-overlay"></div><aside class="sidebar"><script src="/js/sidebar.js"></script><ul class="sidebar-nav"><li class="sidebar-nav-item sidebar-nav-toc hty-icon-button sidebar-nav-active" data-target="post-toc-wrap" title="文章目录"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-list-ordered"></use></svg></li><li class="sidebar-nav-item sidebar-nav-overview hty-icon-button" data-target="site-overview-wrap" title="站点概览"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-passport-line"></use></svg></li></ul><div class="sidebar-panel" id="site-overview-wrap"><div class="site-info fix-top"><a class="site-author-avatar" href="/about/" title="丶基调"><img width="96" loading="lazy" src="/avatar.jpg" alt="丶基调"></a><div class="site-author-name"><a href="/about/">丶基调</a></div><a class="site-name" href="/about/site.html">码之气三段</a><sub class="site-subtitle">To be a Web Artisan</sub><div class="site-desciption">丶基调的博客</div></div><nav class="site-state"><a class="site-state-item hty-icon-button icon-home" href="/" title="首页"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-home-4-line"></use></svg></span></a><div class="site-state-item"><a href="/archives/" title="归档"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-archive-line"></use></svg></span><span class="site-state-item-count">32</span></a></div><div class="site-state-item"><a href="/categories/" title="分类"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-folder-2-line"></use></svg></span><span class="site-state-item-count">5</span></a></div><div class="site-state-item"><a href="/tags/" title="标签"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-price-tag-3-line"></use></svg></span><span class="site-state-item-count">9</span></a></div><a class="site-state-item hty-icon-button" target="_blank" rel="noopener" href="https://yun.yunyoujun.cn" title="文档"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-settings-line"></use></svg></span></a></nav><hr style="margin-bottom:0.5rem"><div class="links-of-author"><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://github.com/liluoao" title="GitHub" target="_blank" style="color:#6e5494"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-github-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="mailto:liluoao@qq.com" title="E-Mail" target="_blank" style="color:#8E71C1"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-mail-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://space.bilibili.com/19377772" title="哔哩哔哩" target="_blank" style="color:#FF8EB3"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-bilibili-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://music.163.com/#/user/home?id=121449072" title="网易云音乐" target="_blank" style="color:#C20C0C"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-netease-cloud-music-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://www.zhihu.com/people/li-luo-ao/" title="知乎" target="_blank" style="color:#0084FF"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-zhihu-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://twitter.com/easonlee82" title="Twitter" target="_blank" style="color:#1da1f2"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-twitter-line"></use></svg></a></div><br><a class="links-item hty-icon-button" id="toggle-mode-btn" href="javascript:;" title="Mode" style="color: #f1cb64"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-contrast-2-line"></use></svg></a></div><div class="sidebar-panel sidebar-panel-active" id="post-toc-wrap"><div class="post-toc"><div class="post-toc-content"><ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%AC%E5%9C%B0%E4%BA%8B%E4%BB%B6-%E5%85%B1%E4%BA%AB%E5%86%85%E5%AD%98"><span class="toc-number">1.</span> <span class="toc-text">本地事件-共享内存</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9B%86%E7%BE%A4%E4%BA%8B%E4%BB%B6-%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="toc-number">2.</span> <span class="toc-text">集群事件-数据库</span></a></li></ol></div></div></div></aside><main class="sidebar-translate" id="content"><div id="post"><article class="post-block" itemscope itemtype="https://schema.org/Article"><link itemprop="mainEntityOfPage" href="https://liluoao.github.io/posts/use-kong-for-api-gateway.html"><span hidden itemprop="author" itemscope itemtype="https://schema.org/Person"><meta itemprop="name" content="丶基调"><meta itemprop="description"></span><span hidden itemprop="publisher" itemscope itemtype="https://schema.org/Organization"><meta itemprop="name" content="码之气三段"></span><header class="post-header"><h1 class="post-title" itemprop="name headline">API网关选型</h1><div class="post-meta"><div class="post-time" style="display:inline-block"><span class="post-meta-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-calendar-line"></use></svg></span> <time title="创建时间：2018-11-09 20:17:07" itemprop="dateCreated datePublished" datetime="2018-11-09T20:17:07+08:00">2018-11-09</time><span class="post-meta-divider">-</span><span class="post-meta-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-calendar-2-line"></use></svg></span> <time title="修改时间：2020-12-05 14:43:12" itemprop="dateModified" datetime="2020-12-05T14:43:12+08:00">2020-12-05</time></div><div class="post-classify"><span class="post-category"> <span class="post-meta-item-icon" style="margin-right:3px;"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-folder-line"></use></svg></span><span itemprop="about" itemscope itemtype="https://schema.org/Thing"><a class="category" href="/categories/tool/" style="--text-color:var(--hty-text-color)" itemprop="url" rel="index"><span itemprop="text">工具</span></a></span></span><span class="post-tag"><span class="post-meta-divider">-</span><a class="tag" href="/tags/tool/" style="--text-color:var(--hty-text-color)"><span class="post-meta-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-price-tag-3-line"></use></svg></span><span class="tag-name">tool</span></a></span></div></div></header><section class="post-body" itemprop="articleBody"><div class="post-content markdown-body" style="--smc-primary:#0078E7;"><p>随着移动互联网的兴起、开放合作思维的盛行，不同终端和第三方开发者都需要大量的接入企业核心业务能力，此时各业务系统将会面临同一系列的问题，例如：如何让调用方快速接入、如何让业务方安全地对外开放能力，如何应对和控制业务洪峰调用等等</p>
+<p>于是就诞生了一个隔离企业内部业务系统和外部系统调用的屏障 - API 网关，它负责在上层抽象出各业务系统需要的通用功能，例如：鉴权、限流、ACL、降级等</p>
+<p>另外随着近年来微服务的流行，API 网关已经成为一个微服务架构中的标配组件</p>
+<a id="more"></a>
+
+<p><img src="/images/different-of-kong.png" alt="" loading="lazy"></p>
+<p>在微服务架构之下，服务被拆的非常零散，降低了耦合度的同时也给服务的统一管理增加了难度。如上图左所示，在旧的服务治理体系之下，鉴权、限流、日志、监控等通用功能需要在每个服务中单独实现，这使得系统维护者没有一个全局的视图来统一管理这些功能。API 网关致力于解决的问题便是为微服务纳管这些通用的功能，在此基础上提高系统的可扩展性。如右图所示，微服务搭配上 API 网关，可以使得服务本身更专注于自己的领域，很好地对服务调用者和服务提供者做了隔离。</p>
+<p>认证中心部门提供了大量接口给外部门，非常需要这样一个网关。在选型时，放弃了 <a target="_blank" rel="noopener" href="http://orange.sumory.com/">Orange</a>，虽然它的优点有自带管理端、流量筛选和变量提取方面支持丰富，过滤统计配合配置规则比较好用，自带管理后台。但是从 2017 年 5 月开始后续没有开发，BUG 比较多。</p>
+<p><a target="_blank" rel="noopener" href="https://konghq.com/kong/">Kong</a> 的插件机制是其高可扩展性的根源，它可以很方便地为路由和服务提供各种插件，网关所需要的基本特性，Kong 都支持：</p>
+<ul>
+<li>熔断 Circuit-Breaker</li>
+<li>限流 Rate-limiting</li>
+<li>OAuth2.0: 身份验证</li>
+<li>认证 Authentications: HMAC，JWT，Basic等</li>
+<li>监控 Monitoring: 实时监视提供关键的负载和性能服务器指标</li>
+<li>REST API: 通过 RESTful API 管理</li>
+<li>高性能 Performance: 背靠非阻塞通信的 Nginx</li>
+<li>可扩展性 Scalability: 只需添加节点即可水平扩展</li>
+<li>安全性 Security: ACL，僵尸程序检测，白名单/黑名单IP等</li>
+<li>动态负载均衡 Dynamic Load Balancing：在多个上游服务之间平衡流量</li>
+<li>插件 Plugins: <a target="_blank" rel="noopener" href="https://docs.konghq.com/hub/">Kong Hub</a> 提供众多开箱即用的插件</li>
+</ul>
+<p>在入手前，需要学习 OpenResty 的相关知识，还有 Lua 的语法。我看的李明江的《Nginx Lua开发实战》，内容大量搬运文档，不推荐</p>
+<p>重点需要关注的是 11 个用户可介入阶段：</p>
+<p><img src="/images/openresty_phases.png" alt="ngx_lua 的 11 个用户可介入阶段" loading="lazy"></p>
+<p>对比这些阶段，再看 Kong 框架的入口文件，就容易理解的多了：</p>
+<pre class="language-lua" data-language="lua"><div class="caption"><span>init.lua</span></div><code class="language-lua"><span class="token keyword">local</span> Kong <span class="token operator">=</span> <span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span>
+
+<span class="token comment">-- init_by_lua_block</span>
+<span class="token comment">-- 用来完成耗时长的模块加载</span>
+<span class="token comment">-- 或者初始化一些全局常量</span>
+<span class="token keyword">function</span> Kong<span class="token punctuation">.</span><span class="token function">init</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token keyword">end</span>
+
+<span class="token comment">-- init_worker_by_lua_block</span>
+<span class="token comment">-- 用于定时拉取配置/数据（启动一些定时任务）</span>
+<span class="token comment">-- 有几个Nginx工作进程就有几个定时任务</span>
+<span class="token keyword">function</span> Kong<span class="token punctuation">.</span><span class="token function">init_worker</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token keyword">end</span>
+
+<span class="token comment">-- ssl_certificate_by_lua_block</span>
+<span class="token comment">-- 在Nginx和下游服务开始一个SSL握手时处理</span>
+<span class="token keyword">function</span> Kong<span class="token punctuation">.</span><span class="token function">ssl_certificate</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token keyword">end</span>
+
+<span class="token comment">-- balancer_by_lua_block</span>
+<span class="token comment">-- 上游服务器中的负载均衡器</span>
+<span class="token keyword">function</span> Kong<span class="token punctuation">.</span><span class="token function">balancer</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token keyword">end</span>
+
+<span class="token comment">-- rewrite_by_lua_block</span>
+<span class="token comment">-- 内部URL重写或者外部重定向</span>
+<span class="token keyword">function</span> Kong<span class="token punctuation">.</span><span class="token function">rewrite</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token keyword">end</span>
+
+<span class="token comment">-- access_by_lua_block</span>
+<span class="token comment">-- 访问控制</span>
+<span class="token keyword">function</span> Kong<span class="token punctuation">.</span><span class="token function">access</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token keyword">end</span>
+
+<span class="token comment">-- header_filter_by_lua_block</span>
+<span class="token comment">-- 设置响应头</span>
+<span class="token keyword">function</span> Kong<span class="token punctuation">.</span><span class="token function">header_filter</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token keyword">end</span>
+
+<span class="token comment">-- body_filter_by_lua_block</span>
+<span class="token comment">-- 对响应数据进行过滤</span>
+<span class="token keyword">function</span> Kong<span class="token punctuation">.</span><span class="token function">body_filter</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token keyword">end</span>
+
+<span class="token comment">-- log_by_lua_block</span>
+<span class="token comment">-- 使用Lua处理日志</span>
+<span class="token keyword">function</span> Kong<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token keyword">end</span>
+
+<span class="token comment">-- content_by_lua_block</span>
+<span class="token keyword">function</span> Kong<span class="token punctuation">.</span><span class="token function">handle_error</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token keyword">end</span>
+
+<span class="token comment">-- content_by_lua_block</span>
+<span class="token comment">-- 提供AdminAPI功能</span>
+<span class="token keyword">function</span> Kong<span class="token punctuation">.</span><span class="token function">serve_admin_api</span><span class="token punctuation">(</span>options<span class="token punctuation">)</span>
+<span class="token keyword">end</span>
+
+<span class="token keyword">return</span> Kong</code></pre>
+
+<p>Nginx 在启动后，会有一个 master 进程和多个相互独立的 worker 进程</p>
+<p>Kong 的代码运行于 worker 进程，数据存储在数据库，同时在缓存中保留一份</p>
+<p>当数据被修改时，需要通知给本地的其他 worker 进程和其他机器上的 worker 进程</p>
+<p>其他 worker 接收事件后，删除缓存中对应的数据。下次从缓存读数据时发现没有的话，就从数据库加载出来。</p>
+<p>事件分为本地事件和集群事件。本地事件用于通知在一台机器上的 worker，集群事件用于通知在多台机器上的 worker</p>
+<h3 id="本地事件-共享内存"><a href="#本地事件-共享内存" class="headerlink" title="本地事件-共享内存"></a>本地事件-共享内存</h3><p>Kong 实现了一套基于 Nginx 共享内存的事件发布-订阅（PUB/SUB）机制</p>
+<ul>
+<li>post_local() 方法在 worker 进程内进行事件发布</li>
+<li>post() 方法在同属于一台机器上的 worker 进程间进行事件发布</li>
+</ul>
+<p>这 2 个方法需要指定 <code>source</code> 和 <code>event</code> 来确定事件源。</p>
+<p>数据访问层封装了 insert、update 和 delete 3 个对数据操作的方法，分别会使用 post_local() 发出 event 对应增、删、改的事件</p>
+<p>事件的数据格式如下:</p>
+<pre class="language-lua" data-language="lua"><code class="language-lua"><span class="token punctuation">&#123;</span>
+   schema    <span class="token operator">=</span> self<span class="token punctuation">.</span>schema<span class="token punctuation">,</span> <span class="token comment">--表名</span>
+   operation <span class="token operator">=</span> <span class="token string">"create"</span><span class="token punctuation">,</span> <span class="token comment">--操作类型</span>
+   entity    <span class="token operator">=</span> res<span class="token punctuation">,</span> <span class="token comment">--数据</span>
+<span class="token punctuation">&#125;</span></code></pre>
+
+<p>worker 启动的时候会在 init_worker 阶段注册这些事件的订阅方法，见 <code>worker_events.register()</code></p>
+<p>订阅方法中把所有的 dao:crud 事件按表名称使用 post_local() 再进行分发，事件如下:</p>
+<ul>
+<li><p>source=crud, event=api</p>
+<p>这个事件会通知 apis 数据的修改<br>这里对缓存中对 key 为 <code>api_router:version</code> 进行 invalidate 操作会发送一条 channel=invalidations 集群事件</p>
+</li>
+<li><p>source=crud, event=routes</p>
+<p>这个事件会通知 routes 数据的修改<br>这里对缓存中对 key 为 <code>router:version</code> 进行 invalidate 操作会发送一条 channel=invalidations 集群事件</p>
+</li>
+<li><p>source=crud, event=services<br>这个事件会通知 services 数据的修改<br>只有当不是新增和删除操作时才需要更新路由，因为新增时服务还是空的，下面没有路由，删除时只有没有路由时才能删除<br>对缓存中对 key 为 <code>router:version</code> 进行 invalidate 操作会发送一条 channel=invalidations 集群事件</p>
+</li>
+<li><p>source=crud, event=targets<br>这个事件会通知 targets 数据的修改<br>使用 <code>cluster_events:broadcast</code> 方法发送一条 channel=balancer:targets 集群事件</p>
+</li>
+<li><p>source=crud, event=upstreams<br>这个事件会通知 upstreams 数据的修改<br>使用 <code>cluster_events:broadcast</code> 方法发送一条 channel=balancer:upstreams 集群事件</p>
+</li>
+</ul>
+<h3 id="集群事件-数据库"><a href="#集群事件-数据库" class="headerlink" title="集群事件-数据库"></a>集群事件-数据库</h3><p>集群事件通过数据库实现。表 <em>cluster_events</em> 存放用于集群间分发的事件，表结构如下:</p>
+<pre class="language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">CREATE</span> <span class="token keyword">TABLE</span> cluster_events <span class="token punctuation">(</span>
+  id <span class="token keyword">varchar</span><span class="token punctuation">(</span><span class="token number">64</span><span class="token punctuation">)</span> <span class="token operator">NOT</span> <span class="token boolean">NULL</span><span class="token punctuation">,</span>
+  <span class="token comment">-- 标识生成事件的节点id</span>
+  node_id <span class="token keyword">varchar</span><span class="token punctuation">(</span><span class="token number">64</span><span class="token punctuation">)</span> <span class="token operator">NOT</span> <span class="token boolean">NULL</span><span class="token punctuation">,</span>
+  <span class="token comment">-- 事件产生时间，精确到毫秒</span>
+  at <span class="token keyword">timestamp</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span> <span class="token operator">NOT</span> <span class="token boolean">NULL</span><span class="token punctuation">,</span>
+  <span class="token comment">-- 事件生效时间，精确到毫秒</span>
+  nbf <span class="token keyword">timestamp</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span> <span class="token boolean">NULL</span> <span class="token keyword">DEFAULT</span> <span class="token boolean">NULL</span><span class="token punctuation">,</span>
+  <span class="token comment">-- 事件过期时间，精确到毫秒</span>
+  expire_at <span class="token keyword">timestamp</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span> <span class="token operator">NOT</span> <span class="token boolean">NULL</span><span class="token punctuation">,</span>
+  <span class="token comment">-- 事件类型</span>
+  channel <span class="token keyword">varchar</span><span class="token punctuation">(</span><span class="token number">1023</span><span class="token punctuation">)</span> <span class="token keyword">DEFAULT</span> <span class="token boolean">NULL</span><span class="token punctuation">,</span>
+  <span class="token comment">-- 事件数据</span>
+  <span class="token keyword">data</span> <span class="token keyword">varchar</span><span class="token punctuation">(</span><span class="token number">10000</span><span class="token punctuation">)</span> <span class="token keyword">DEFAULT</span> <span class="token boolean">NULL</span><span class="token punctuation">,</span>
+  
+  <span class="token keyword">PRIMARY</span> <span class="token keyword">KEY</span> <span class="token punctuation">(</span>id<span class="token punctuation">)</span><span class="token punctuation">,</span>
+  <span class="token keyword">KEY</span> cluster_events_at_idx <span class="token punctuation">(</span>at<span class="token punctuation">)</span><span class="token punctuation">,</span>
+  <span class="token keyword">KEY</span> cluster_events_channelt_idx <span class="token punctuation">(</span>channel<span class="token punctuation">)</span>
+<span class="token punctuation">)</span> <span class="token keyword">ENGINE</span><span class="token operator">=</span><span class="token keyword">InnoDB</span> <span class="token keyword">DEFAULT</span> <span class="token keyword">CHARSET</span><span class="token operator">=</span>utf8 ROW_FORMAT<span class="token operator">=</span>DYNAMIC<span class="token punctuation">;</span></code></pre>
+
+<p>channel 的类型有:</p>
+<ul>
+<li>invalidations</li>
+</ul>
+<p>表示路由规则、插件配置的变更</p>
+<ul>
+<li><p>balancer:targets</p>
+<p>表示负载均衡的 targets 列表发生变更</p>
+</li>
+<li><p>balancer:upstreams</p>
+<p>表示 upstream 对象发生变更</p>
+</li>
+<li><p>balancer:post_health</p>
+<p>表示 target 的健康状态发生变更。由于被动健康检查拉出实例后，kong 不会在对该实例进行自动拉入，需要通过该事件来拉入实例。</p>
+</li>
+</ul>
+<p>调用 <code>cluster_events:broadcast()</code> 方法会往 <em>cluster_events</em> 表中新增一条记录</p>
+<p>在 init_worker 阶段通过调用 <code>cluster_events:subscribe()</code> 会开启一个定时器，定时查询出表中新增的记录</p>
+<p>这里要注意的是同一台机器上只会有一个 worker 进程会对数据库进行查询（通过加锁实现，代码见 get_lock()），查询出来后再通过共享内存的方式通知给这台机器上的其他 worker</p>
+<p>配置参数 <em>db_update_frequency</em> 确定查询数据库的间隔，默认为 5 秒。数据范围根据 at 字段是否落在 <strong>(起始时间, 结束时间]</strong> 确定。起始时间第一次设置在 init_worker 阶段，调用 ngx.now() 获取当前时间（精确到毫秒）并放入 key 为 <code>cluster_events:at</code> 的共享内存中。</p>
+<p>之后抢到锁的 worker 会从共享内存中取出该时间，该时间需要减去 db_update_propagation + 0.001 来确定起始时间，以防止事件丢失。配置参数 <em>db_update_propagation</em> 默认为 0。结束时间取 ngx.now() 的值。</p>
+<p>查询成功后会把结束时间覆盖之前的起始时间，并把该事件分发到本机的其他 worker</p>
+<p>对于设置了 nbf 的事件，kong 如果发现还没到生效时间，就会通过 ngx.timer 设置一个定时器延后分发该事件。</p>
+</div><ul class="post-copyright"><li class="post-copyright-author"><strong>本文作者：</strong>丶基调</li><li class="post-copyright-link"><strong>本文链接：</strong><a href="https://liluoao.github.io/posts/use-kong-for-api-gateway.html" title="API网关选型">https://liluoao.github.io/posts/use-kong-for-api-gateway.html</a></li><li class="post-copyright-license"><strong>版权声明：</strong>本博客所有文章除特别声明外，均默认采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank" rel="noopener" title="CC BY-NC-SA 4.0 "><svg class="icon"><use xlink:href="#icon-creative-commons-line"></use></svg><svg class="icon"><use xlink:href="#icon-creative-commons-by-line"></use></svg><svg class="icon"><use xlink:href="#icon-creative-commons-nc-line"></use></svg><svg class="icon"><use xlink:href="#icon-creative-commons-sa-line"></use></svg></a> 许可协议。</li></ul></section></article><div class="post-nav"><div class="post-nav-item"><a class="post-nav-prev" href="/posts/xhprof-memory-leak-in-php7.html" rel="prev" title="XHProf和内存泄漏"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-arrow-left-s-line"></use></svg><span class="post-nav-text">XHProf和内存泄漏</span></a></div><div class="post-nav-item"><a class="post-nav-next" href="/posts/use-dingo-api-and-interface-development.html" rel="next" title="Dingo与接口开发"><span class="post-nav-text">Dingo与接口开发</span><svg class="icon" aria-hidden="true"><use xlink:href="#icon-arrow-right-s-line"></use></svg></a></div></div></div><div id="comment"><div class="comment-tooltip text-center"><span>点击按钮跳转 GitHub Issues 评论。</span><br><span>若没有本文 Issue，您可以使用 Comment 模版新建。</span><br><a class="hty-button hty-button--raised" id="github-issues" target="_blank" rel="noopener" href="https://github.com/liluoao/blog-source/issues?q=is:issue+API网关选型">GitHub Issues</a></div></div></main><footer class="sidebar-translate" id="footer"><div class="copyright"><span>&copy; 2018 – 2020 </span><span class="with-love" id="animate"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-heart-line"></use></svg></span><span class="author"> 丶基调</span></div><div class="powered"><span>由 <a href="https://hexo.io" target="_blank" rel="noopener">Hexo</a> 驱动 v5.2.0</span><span class="footer-separator">|</span><span>主题 - <a rel="noopener" href="https://github.com/YunYouJun/hexo-theme-yun" target="_blank"><span>Yun</span></a> v1.3.0</span></div></footer><a class="hty-icon-button" id="goUp" aria-label="back-to-top" href="#"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-arrow-up-s-line"></use></svg><svg class="progress-circle-container" viewBox="0 0 100 100"><circle class="progress-circle" id="progressCircle" cx="50" cy="50" r="48" fill="none" stroke="#0078E7" stroke-width="2" stroke-linecap="round"></circle></svg></a><script>const date = new Date();
+const today = (date.getMonth() + 1) + "-" + date.getDate()
+const mourn_days = ["5-12","9-18"]
+if (mourn_days.includes(today)) {
+  document.documentElement.style.filter = "grayscale(1)";
+}</script></div><script defer src="/js/utils.js"></script><script defer src="/js/hexo-theme-yun.js"></script></body></html>

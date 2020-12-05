@@ -1,0 +1,95 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="theme-color" content="#0078E7"><meta name="author" content="丶基调"><meta name="copyright" content="丶基调"><meta name="generator" content="Hexo 5.2.0"><meta name="theme" content="hexo-theme-yun"><title>缓存穿透、击穿与雪崩 | 码之气三段</title><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@900&amp;display=swap" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/star-markdown-css@0.1.22/dist/yun/yun-markdown.min.css"><script src="//at.alicdn.com/t/font_1140697_ed8vp4atwoj.js" async></script><script src="https://cdn.jsdelivr.net/npm/scrollreveal/dist/scrollreveal.min.js" defer></script><script>document.addEventListener("DOMContentLoaded", () => {
+  [".post-card",".post-content img"].forEach((target)=> {
+    ScrollReveal().reveal(target);
+  })
+});
+</script><link id="light-prism-css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.20.0/themes/prism.css" media="(prefers-color-scheme: light)"><link id="dark-prism-css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.20.0/themes/prism-tomorrow.css" media="(prefers-color-scheme: dark)"><link rel="shortcut icon" type="image/svg+xml" href="/favicon.ico"><link rel="mask-icon" href="/favicon.ico" color="#0078E7"><link rel="alternate icon" href="/yun.ico"><link rel="preload" href="/css/hexo-theme-yun.css" as="style"><link rel="preload" href="/js/utils.js" as="script"><link rel="preload" href="/js/hexo-theme-yun.js" as="script"><link rel="prefetch" href="/js/sidebar.js" as="script"><link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin><link rel="stylesheet" href="/css/hexo-theme-yun.css"><script id="yun-config">
+    const Yun = window.Yun || {};
+    window.CONFIG = {"hostname":"liluoao.github.io","root":"/","title":"码之气三段","version":"1.3.0","mode":"auto","copycode":true,"anonymous_image":"https://cdn.jsdelivr.net/gh/YunYouJun/cdn/img/avatar/none.jpg","say":{"api":"https://v1.hitokoto.cn","hitokoto":true},"fireworks":{"colors":["102, 167, 221","62, 131, 225","33, 78, 194"]}};
+  </script><meta name="description" content="介绍一下缓存的常见问题，与分布式缓存方案">
+<meta property="og:type" content="article">
+<meta property="og:title" content="缓存穿透、击穿与雪崩">
+<meta property="og:url" content="https://liluoao.github.io/posts/buffer-penetration-breakdown-and-avalanche.html">
+<meta property="og:site_name" content="码之气三段">
+<meta property="og:description" content="介绍一下缓存的常见问题，与分布式缓存方案">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-07-16T03:50:29.000Z">
+<meta property="article:modified_time" content="2020-12-05T06:43:12.811Z">
+<meta property="article:author" content="丶基调">
+<meta property="article:tag" content="redis">
+<meta name="twitter:card" content="summary"><script src="/js/ui/mode.js"></script></head><body><script defer src="https://cdn.jsdelivr.net/npm/animejs@latest/anime.min.js"></script><script defer src="/js/ui/fireworks.js"></script><canvas class="fireworks"></canvas><div class="container"><a class="sidebar-toggle hty-icon-button" id="menu-btn"><div class="hamburger hamburger--spin" type="button"><span class="hamburger-box"><span class="hamburger-inner"></span></span></div></a><div class="sidebar-toggle sidebar-overlay"></div><aside class="sidebar"><script src="/js/sidebar.js"></script><ul class="sidebar-nav"><li class="sidebar-nav-item sidebar-nav-toc hty-icon-button sidebar-nav-active" data-target="post-toc-wrap" title="文章目录"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-list-ordered"></use></svg></li><li class="sidebar-nav-item sidebar-nav-overview hty-icon-button" data-target="site-overview-wrap" title="站点概览"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-passport-line"></use></svg></li></ul><div class="sidebar-panel" id="site-overview-wrap"><div class="site-info fix-top"><a class="site-author-avatar" href="/about/" title="丶基调"><img width="96" loading="lazy" src="/avatar.jpg" alt="丶基调"></a><div class="site-author-name"><a href="/about/">丶基调</a></div><a class="site-name" href="/about/site.html">码之气三段</a><sub class="site-subtitle">To be a Web Artisan</sub><div class="site-desciption">丶基调的博客</div></div><nav class="site-state"><a class="site-state-item hty-icon-button icon-home" href="/" title="首页"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-home-4-line"></use></svg></span></a><div class="site-state-item"><a href="/archives/" title="归档"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-archive-line"></use></svg></span><span class="site-state-item-count">32</span></a></div><div class="site-state-item"><a href="/categories/" title="分类"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-folder-2-line"></use></svg></span><span class="site-state-item-count">5</span></a></div><div class="site-state-item"><a href="/tags/" title="标签"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-price-tag-3-line"></use></svg></span><span class="site-state-item-count">9</span></a></div><a class="site-state-item hty-icon-button" target="_blank" rel="noopener" href="https://yun.yunyoujun.cn" title="文档"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-settings-line"></use></svg></span></a></nav><hr style="margin-bottom:0.5rem"><div class="links-of-author"><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://github.com/liluoao" title="GitHub" target="_blank" style="color:#6e5494"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-github-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="mailto:liluoao@qq.com" title="E-Mail" target="_blank" style="color:#8E71C1"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-mail-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://space.bilibili.com/19377772" title="哔哩哔哩" target="_blank" style="color:#FF8EB3"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-bilibili-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://music.163.com/#/user/home?id=121449072" title="网易云音乐" target="_blank" style="color:#C20C0C"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-netease-cloud-music-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://www.zhihu.com/people/li-luo-ao/" title="知乎" target="_blank" style="color:#0084FF"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-zhihu-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://twitter.com/easonlee82" title="Twitter" target="_blank" style="color:#1da1f2"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-twitter-line"></use></svg></a></div><br><a class="links-item hty-icon-button" id="toggle-mode-btn" href="javascript:;" title="Mode" style="color: #f1cb64"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-contrast-2-line"></use></svg></a></div><div class="sidebar-panel sidebar-panel-active" id="post-toc-wrap"><div class="post-toc"><div class="post-toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%A9%BF%E9%80%8F"><span class="toc-number">1.</span> <span class="toc-text">穿透</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%87%BB%E7%A9%BF"><span class="toc-number">2.</span> <span class="toc-text">击穿</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%9B%AA%E5%B4%A9"><span class="toc-number">3.</span> <span class="toc-text">雪崩</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%86%E5%B8%83%E5%BC%8F%E7%BC%93%E5%AD%98"><span class="toc-number">4.</span> <span class="toc-text">分布式缓存</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%97%AE%E9%A2%98%E6%8F%90%E5%87%BA"><span class="toc-number">5.</span> <span class="toc-text">问题提出</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A7%A3%E5%86%B3%E6%80%9D%E8%B7%AF"><span class="toc-number">6.</span> <span class="toc-text">解决思路</span></a></li></ol></div></div></div></aside><main class="sidebar-translate" id="content"><div id="post"><article class="post-block" itemscope itemtype="https://schema.org/Article"><link itemprop="mainEntityOfPage" href="https://liluoao.github.io/posts/buffer-penetration-breakdown-and-avalanche.html"><span hidden itemprop="author" itemscope itemtype="https://schema.org/Person"><meta itemprop="name" content="丶基调"><meta itemprop="description"></span><span hidden itemprop="publisher" itemscope itemtype="https://schema.org/Organization"><meta itemprop="name" content="码之气三段"></span><header class="post-header"><h1 class="post-title" itemprop="name headline">缓存穿透、击穿与雪崩</h1><div class="post-meta"><div class="post-time" style="display:inline-block"><span class="post-meta-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-calendar-line"></use></svg></span> <time title="创建时间：2020-07-16 11:50:29" itemprop="dateCreated datePublished" datetime="2020-07-16T11:50:29+08:00">2020-07-16</time><span class="post-meta-divider">-</span><span class="post-meta-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-calendar-2-line"></use></svg></span> <time title="修改时间：2020-12-05 14:43:12" itemprop="dateModified" datetime="2020-12-05T14:43:12+08:00">2020-12-05</time></div><div class="post-classify"><span class="post-category"> <span class="post-meta-item-icon" style="margin-right:3px;"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-folder-line"></use></svg></span><span itemprop="about" itemscope itemtype="https://schema.org/Thing"><a class="category" href="/categories/other/" style="--text-color:var(--hty-text-color)" itemprop="url" rel="index"><span itemprop="text">杂谈</span></a></span></span><span class="post-tag"><span class="post-meta-divider">-</span><a class="tag" href="/tags/redis/" style="--text-color:var(--hty-text-color)"><span class="post-meta-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-price-tag-3-line"></use></svg></span><span class="tag-name">redis</span></a></span></div></div></header><section class="post-body" itemprop="articleBody"><div class="post-content markdown-body" style="--smc-primary:#0078E7;"><p>介绍一下缓存的常见问题，与分布式缓存方案</p>
+<a id="more"></a>
+
+<h2 id="穿透"><a href="#穿透" class="headerlink" title="穿透"></a>穿透</h2><p>访问透过缓存直接经过数据库层，通常是一个不存在的 key，在数据库查询为空</p>
+<p>像这样每次请求都落在数据库、并且高并发，导致数据库扛不住挂掉</p>
+<p>解决方案：</p>
+<ul>
+<li>将查到的 null 设成该 key 的缓存对象</li>
+<li>明显错误的 key 在逻辑层验证</li>
+<li>分析用户行为，是否为恶意请求或者爬虫，针对用户访问做限制</li>
+</ul>
+<h2 id="击穿"><a href="#击穿" class="headerlink" title="击穿"></a>击穿</h2><p>一个 key 非常热点，在不停的扛着大并发，集中对这一个点进行访问</p>
+<p>当这个 key 在失效的瞬间，持续的大并发就穿破缓存，直接请求数据库，好像蛮力击穿一样</p>
+<p>解决方案</p>
+<ul>
+<li>可以使用互斥锁避免大量请求同时落到数据库</li>
+<li>部分情况下可以将缓存设置永不过期</li>
+<li>做好熔断、降级，防止系统崩溃</li>
+</ul>
+<h2 id="雪崩"><a href="#雪崩" class="headerlink" title="雪崩"></a>雪崩</h2><p>缓存集体大规模集体失效，在高并发情况下突然使 key 大规模访问数据库</p>
+<p>解决方案</p>
+<ul>
+<li>将 key 的过期时间后面加上一个随机数，让 key 均匀的失效</li>
+<li>用队列或者锁让程序执行在压力范围之内，可能会影响并发量</li>
+<li>热点数据可以不失效</li>
+</ul>
+<h2 id="分布式缓存"><a href="#分布式缓存" class="headerlink" title="分布式缓存"></a>分布式缓存</h2><p>想必在大家的架构中，Redis 已经是一个必不可少的部件，丰富的数据结构、超高的性能以及简单的协议，让它能够很好的作为数据库的上游缓存层</p>
+<p>正是人们大量使用 Redis，逐渐暴露了一些缺点：</p>
+<ul>
+<li>单节点物理内存有限，不能满足日益增长的业务内存的需要</li>
+<li>不能提供高可用服务。节点挂掉或者该节点机器宕机，导致大量请求走向数据库，造成数据库压力增大，加大数据库宕机风险</li>
+<li>运维为每个业务方创建一个节点，各业务方内存分配不均匀；机器部署杂、多，请求入口多，运维管理复杂、难以维护等</li>
+</ul>
+<p>于是，人们将目光投向了分布式存储。市面上的分布式存储主要包括两大类：</p>
+<ol>
+<li>在服务端做的分片，由运维手动给服务端每个实例分槽，服务端再根据请求的 key 所对应的槽找到对应的机器<br>代表服务 redis-cluster</li>
+<li>在客户端和服务端之间做一层代理服务，由代理服务根据一致性 hash 算法将请求路由到指定机器<br>代表服务 twemproxy 和 codis。</li>
+</ol>
+<h2 id="问题提出"><a href="#问题提出" class="headerlink" title="问题提出"></a>问题提出</h2><p>集群服务相比较单点有了很好的扩展性，但是在使用过程中，弊端逐渐凸显（以 codis 为例）：</p>
+<ol>
+<li><p>业务方混用。所有的业务方都混用一个集群，只要有一个业务方有不当使用，造成集群处理速度变慢，其他业务方都会受影响</p>
+</li>
+<li><p>key 冲突。在混用同一个集群时，会有 key 冲突隐患</p>
+</li>
+<li><p>集群快速恢复难。直接关闭业务方服务不现实，需要一个集群服务能够快速降级</p>
+</li>
+<li><p>不设置缓存时间，导致随着时间的增长，无用的 key 越来越多，占用大量内存</p>
+</li>
+<li><p>连接数过大。线上大家在用同一个集群时，如果有一个业务方不靠谱，占用了集群所有的连接，导致系统异常</p>
+</li>
+</ol>
+<p>以上部分问题不是说一定会导致出现严重后果，但这些是安全隐患，而且一直存在，根据<em>墨菲定律</em>，这种隐患肯定会在以后发生</p>
+<p>而且很难通过运维规范来阻止这类事情的发生，这就迫切需要一个能解决上述问题的服务来替代市面上的集群</p>
+<h2 id="解决思路"><a href="#解决思路" class="headerlink" title="解决思路"></a>解决思路</h2><p>针对以上问题，我们新开发一个服务，有如下亮点</p>
+<ul>
+<li><p>针对混用问题，建两个子集群，业务方 A 和 B 分别属于 group1 和 group2，这样业务方是物理隔离，如果 A 出了问题，不会影响业务方B</p>
+</li>
+<li><p>针对扩容问题，搭建一个新的子集群。比如子集群 group1 快要用完了，我们可以搭建 group2，而且搭建和使用都不会影响 group1 里面的业务</p>
+</li>
+<li><p>针对 key 冲突问题，给每个业务方分配一个 source 作为业务方每个请求 key 的前缀，如 <code>&#123;source&#125;&amp;key</code></p>
+</li>
+<li><p>针对命令乱用问题，给每个业务方分配请求 redis 的命令，未分配的命令禁止使用</p>
+</li>
+<li><p>针对集群难以恢复和连接数占用严重，我们在内部平台中快速降级或限制</p>
+</li>
+<li><p>针对业务方不设置缓存失效时间问题，可以让业务方请求的 key 强制失效</p>
+</li>
+<li><p>打印日志并接入报表，在 Kibana 上查看</p>
+</li>
+</ul>
+</div><ul class="post-copyright"><li class="post-copyright-author"><strong>本文作者：</strong>丶基调</li><li class="post-copyright-link"><strong>本文链接：</strong><a href="https://liluoao.github.io/posts/buffer-penetration-breakdown-and-avalanche.html" title="缓存穿透、击穿与雪崩">https://liluoao.github.io/posts/buffer-penetration-breakdown-and-avalanche.html</a></li><li class="post-copyright-license"><strong>版权声明：</strong>本博客所有文章除特别声明外，均默认采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank" rel="noopener" title="CC BY-NC-SA 4.0 "><svg class="icon"><use xlink:href="#icon-creative-commons-line"></use></svg><svg class="icon"><use xlink:href="#icon-creative-commons-by-line"></use></svg><svg class="icon"><use xlink:href="#icon-creative-commons-nc-line"></use></svg><svg class="icon"><use xlink:href="#icon-creative-commons-sa-line"></use></svg></a> 许可协议。</li></ul></section></article><div class="post-nav"><div class="post-nav-item"><a class="post-nav-prev" href="/posts/laravel-event-observer-and-listener.html" rel="prev" title="事件、观察者与监听者"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-arrow-left-s-line"></use></svg><span class="post-nav-text">事件、观察者与监听者</span></a></div><div class="post-nav-item"><a class="post-nav-next" href="/posts/review-what-has-been-learned-in-laravel.html" rel="next" title="Laravel温故而知新"><span class="post-nav-text">Laravel温故而知新</span><svg class="icon" aria-hidden="true"><use xlink:href="#icon-arrow-right-s-line"></use></svg></a></div></div></div><div id="comment"><div class="comment-tooltip text-center"><span>点击按钮跳转 GitHub Issues 评论。</span><br><span>若没有本文 Issue，您可以使用 Comment 模版新建。</span><br><a class="hty-button hty-button--raised" id="github-issues" target="_blank" rel="noopener" href="https://github.com/liluoao/blog-source/issues?q=is:issue+缓存穿透、击穿与雪崩">GitHub Issues</a></div></div></main><footer class="sidebar-translate" id="footer"><div class="copyright"><span>&copy; 2018 – 2020 </span><span class="with-love" id="animate"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-heart-line"></use></svg></span><span class="author"> 丶基调</span></div><div class="powered"><span>由 <a href="https://hexo.io" target="_blank" rel="noopener">Hexo</a> 驱动 v5.2.0</span><span class="footer-separator">|</span><span>主题 - <a rel="noopener" href="https://github.com/YunYouJun/hexo-theme-yun" target="_blank"><span>Yun</span></a> v1.3.0</span></div></footer><a class="hty-icon-button" id="goUp" aria-label="back-to-top" href="#"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-arrow-up-s-line"></use></svg><svg class="progress-circle-container" viewBox="0 0 100 100"><circle class="progress-circle" id="progressCircle" cx="50" cy="50" r="48" fill="none" stroke="#0078E7" stroke-width="2" stroke-linecap="round"></circle></svg></a><script>const date = new Date();
+const today = (date.getMonth() + 1) + "-" + date.getDate()
+const mourn_days = ["5-12","9-18"]
+if (mourn_days.includes(today)) {
+  document.documentElement.style.filter = "grayscale(1)";
+}</script></div><script defer src="/js/utils.js"></script><script defer src="/js/hexo-theme-yun.js"></script></body></html>
