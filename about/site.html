@@ -6,20 +6,135 @@
 </script><link id="light-prism-css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.20.0/themes/prism.css" media="(prefers-color-scheme: light)"><link id="dark-prism-css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.20.0/themes/prism-tomorrow.css" media="(prefers-color-scheme: dark)"><link rel="shortcut icon" type="image/svg+xml" href="/favicon.ico"><link rel="mask-icon" href="/favicon.ico" color="#0078E7"><link rel="alternate icon" href="/yun.ico"><link rel="preload" href="/css/hexo-theme-yun.css" as="style"><link rel="preload" href="/js/utils.js" as="script"><link rel="preload" href="/js/hexo-theme-yun.js" as="script"><link rel="prefetch" href="/js/sidebar.js" as="script"><link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin><link rel="stylesheet" href="/css/hexo-theme-yun.css"><script id="yun-config">
     const Yun = window.Yun || {};
     window.CONFIG = {"hostname":"liluoao.github.io","root":"/","title":"码之气三段","version":"1.3.0","mode":"auto","copycode":true,"anonymous_image":"https://cdn.jsdelivr.net/gh/YunYouJun/cdn/img/avatar/none.jpg","say":{"api":"https://v1.hitokoto.cn","hitokoto":true},"fireworks":{"colors":["102, 167, 221","62, 131, 225","33, 78, 194"]}};
-  </script><meta name="description" content="丶基调的博客">
+  </script><meta name="description" content="在决定写自己的博客时，了解了几款市面上的博客系统，最后选择了使用人数多、自由度高的 Hexo Hexo Hexo 使用 Markdown（或其他渲染引擎）解析文章，在几秒内，即可利用靓丽的主题生成静态网页  Hexo 使用步骤直接用 NPM 全局安装，方便使用 CLI 命令： npm install -g hexo-cli  hexo new &#39;这是新文章的标题&#39;  可以用如下命令在本地运行，预览">
 <meta property="og:type" content="website">
 <meta property="og:title" content="About Site">
 <meta property="og:url" content="https://liluoao.github.io/about/site.html">
 <meta property="og:site_name" content="码之气三段">
-<meta property="og:description" content="丶基调的博客">
+<meta property="og:description" content="在决定写自己的博客时，了解了几款市面上的博客系统，最后选择了使用人数多、自由度高的 Hexo Hexo Hexo 使用 Markdown（或其他渲染引擎）解析文章，在几秒内，即可利用靓丽的主题生成静态网页  Hexo 使用步骤直接用 NPM 全局安装，方便使用 CLI 命令： npm install -g hexo-cli  hexo new &#39;这是新文章的标题&#39;  可以用如下命令在本地运行，预览">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://liluoao.github.io/images/appveyor_project_env.png">
+<meta property="og:image" content="https://liluoao.github.io/images/github_token.png">
+<meta property="og:image" content="https://liluoao.github.io/images/appveyor_encrypt.png">
+<meta property="og:image" content="https://liluoao.github.io/images/appveyor_build.png">
 <meta property="article:published_time" content="2018-10-12T02:47:16.000Z">
-<meta property="article:modified_time" content="2020-12-05T07:12:44.703Z">
+<meta property="article:modified_time" content="2020-12-06T07:12:55.183Z">
 <meta property="article:author" content="丶基调">
 <meta property="article:tag" content="丶基调">
 <meta property="article:tag" content="Blog">
 <meta property="article:tag" content="博客">
-<meta name="twitter:card" content="summary"><script src="/js/ui/mode.js"></script></head><body><script defer src="https://cdn.jsdelivr.net/npm/animejs@latest/anime.min.js"></script><script defer src="/js/ui/fireworks.js"></script><canvas class="fireworks"></canvas><div class="container"><a class="sidebar-toggle hty-icon-button" id="menu-btn"><div class="hamburger hamburger--spin" type="button"><span class="hamburger-box"><span class="hamburger-inner"></span></span></div></a><div class="sidebar-toggle sidebar-overlay"></div><aside class="sidebar"><script src="/js/sidebar.js"></script><div class="sidebar-panel sidebar-panel-active" id="site-overview-wrap"><div class="site-info"><a class="site-author-avatar" href="/about/" title="丶基调"><img width="96" loading="lazy" src="/avatar.jpg" alt="丶基调"></a><div class="site-author-name"><a href="/about/">丶基调</a></div><a class="site-name" href="/about/site.html">码之气三段</a><sub class="site-subtitle">To be a Web Artisan</sub><div class="site-desciption">丶基调的博客</div></div><nav class="site-state"><a class="site-state-item hty-icon-button icon-home" href="/" title="首页"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-home-4-line"></use></svg></span></a><div class="site-state-item"><a href="/archives/" title="归档"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-archive-line"></use></svg></span><span class="site-state-item-count">32</span></a></div><div class="site-state-item"><a href="/categories/" title="分类"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-folder-2-line"></use></svg></span><span class="site-state-item-count">5</span></a></div><div class="site-state-item"><a href="/tags/" title="标签"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-price-tag-3-line"></use></svg></span><span class="site-state-item-count">9</span></a></div><a class="site-state-item hty-icon-button" target="_blank" rel="noopener" href="https://yun.yunyoujun.cn" title="文档"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-settings-line"></use></svg></span></a></nav><hr style="margin-bottom:0.5rem"><div class="links-of-author"><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://github.com/liluoao" title="GitHub" target="_blank" style="color:#6e5494"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-github-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="mailto:liluoao@qq.com" title="E-Mail" target="_blank" style="color:#8E71C1"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-mail-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://space.bilibili.com/19377772" title="哔哩哔哩" target="_blank" style="color:#FF8EB3"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-bilibili-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://music.163.com/#/user/home?id=121449072" title="网易云音乐" target="_blank" style="color:#C20C0C"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-netease-cloud-music-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://www.zhihu.com/people/li-luo-ao/" title="知乎" target="_blank" style="color:#0084FF"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-zhihu-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://twitter.com/easonlee82" title="Twitter" target="_blank" style="color:#1da1f2"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-twitter-line"></use></svg></a></div><br><a class="links-item hty-icon-button" id="toggle-mode-btn" href="javascript:;" title="Mode" style="color: #f1cb64"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-contrast-2-line"></use></svg></a></div></aside><main class="sidebar-translate" id="content"><div id="page"><header class="post-header"><h1 class="post-title">About Site</h1></header><article id="page"><section class="post-body" itemprop="articleBody"><div class="post-content markdown-body"></div></section></article></div><div id="comment"><div class="comment-tooltip text-center"><span>点击按钮跳转 GitHub Issues 评论。</span><br><span>若没有本文 Issue，您可以使用 Comment 模版新建。</span><br><a class="hty-button hty-button--raised" id="github-issues" target="_blank" rel="noopener" href="https://github.com/liluoao/blog-source/issues?q=is:issue+About Site">GitHub Issues</a></div></div></main><footer class="sidebar-translate" id="footer"><div class="copyright"><span>&copy; 2018 – 2020 </span><span class="with-love" id="animate"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-heart-line"></use></svg></span><span class="author"> 丶基调</span></div><div class="powered"><span>由 <a href="https://hexo.io" target="_blank" rel="noopener">Hexo</a> 驱动 v5.2.0</span><span class="footer-separator">|</span><span>主题 - <a rel="noopener" href="https://github.com/YunYouJun/hexo-theme-yun" target="_blank"><span>Yun</span></a> v1.3.0</span></div></footer><a class="hty-icon-button" id="goUp" aria-label="back-to-top" href="#"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-arrow-up-s-line"></use></svg><svg class="progress-circle-container" viewBox="0 0 100 100"><circle class="progress-circle" id="progressCircle" cx="50" cy="50" r="48" fill="none" stroke="#0078E7" stroke-width="2" stroke-linecap="round"></circle></svg></a><script>const date = new Date();
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://liluoao.github.io/images/appveyor_project_env.png"><script src="/js/ui/mode.js"></script></head><body><script defer src="https://cdn.jsdelivr.net/npm/animejs@latest/anime.min.js"></script><script defer src="/js/ui/fireworks.js"></script><canvas class="fireworks"></canvas><div class="container"><a class="sidebar-toggle hty-icon-button" id="menu-btn"><div class="hamburger hamburger--spin" type="button"><span class="hamburger-box"><span class="hamburger-inner"></span></span></div></a><div class="sidebar-toggle sidebar-overlay"></div><aside class="sidebar"><script src="/js/sidebar.js"></script><div class="sidebar-panel sidebar-panel-active" id="site-overview-wrap"><div class="site-info"><a class="site-author-avatar" href="/about/" title="丶基调"><img width="96" loading="lazy" src="/avatar.jpg" alt="丶基调"></a><div class="site-author-name"><a href="/about/">丶基调</a></div><a class="site-name" href="/about/site.html">码之气三段</a><sub class="site-subtitle">To be a Web Artisan</sub><div class="site-desciption">丶基调的博客</div></div><nav class="site-state"><a class="site-state-item hty-icon-button icon-home" href="/" title="首页"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-home-4-line"></use></svg></span></a><div class="site-state-item"><a href="/archives/" title="归档"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-archive-line"></use></svg></span><span class="site-state-item-count">32</span></a></div><div class="site-state-item"><a href="/categories/" title="分类"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-folder-2-line"></use></svg></span><span class="site-state-item-count">5</span></a></div><div class="site-state-item"><a href="/tags/" title="标签"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-price-tag-3-line"></use></svg></span><span class="site-state-item-count">16</span></a></div><a class="site-state-item hty-icon-button" target="_blank" rel="noopener" href="https://yun.yunyoujun.cn" title="文档"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-settings-line"></use></svg></span></a></nav><hr style="margin-bottom:0.5rem"><div class="links-of-author"><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://github.com/liluoao" title="GitHub" target="_blank" style="color:#6e5494"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-github-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="mailto:liluoao@qq.com" title="E-Mail" target="_blank" style="color:#8E71C1"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-mail-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://space.bilibili.com/19377772" title="哔哩哔哩" target="_blank" style="color:#FF8EB3"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-bilibili-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://music.163.com/#/user/home?id=121449072" title="网易云音乐" target="_blank" style="color:#C20C0C"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-netease-cloud-music-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://www.zhihu.com/people/li-luo-ao/" title="知乎" target="_blank" style="color:#0084FF"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-zhihu-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://twitter.com/easonlee82" title="Twitter" target="_blank" style="color:#1da1f2"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-twitter-line"></use></svg></a></div><br><a class="links-item hty-icon-button" id="toggle-mode-btn" href="javascript:;" title="Mode" style="color: #f1cb64"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-contrast-2-line"></use></svg></a></div></aside><main class="sidebar-translate" id="content"><div id="page"><header class="post-header"><h1 class="post-title">About Site</h1></header><article id="page"><section class="post-body" itemprop="articleBody"><div class="post-content markdown-body"><p>在决定写自己的博客时，了解了几款市面上的博客系统，最后选择了使用人数多、自由度高的 <a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/docs/">Hexo</a></p>
+<h2 id="Hexo"><a href="#Hexo" class="headerlink" title="Hexo"></a>Hexo</h2><blockquote>
+<p>Hexo 使用 Markdown（或其他渲染引擎）解析文章，在几秒内，即可利用靓丽的主题生成静态网页</p>
+</blockquote>
+<h3 id="Hexo-使用步骤"><a href="#Hexo-使用步骤" class="headerlink" title="Hexo 使用步骤"></a>Hexo 使用步骤</h3><p>直接用 NPM 全局安装，方便使用 CLI 命令：</p>
+<pre class="language-npm" data-language="npm"><code class="language-npm">npm install -g hexo-cli</code></pre>
+
+<pre class="language-bash" data-language="bash"><code class="language-bash">hexo new <span class="token string">'这是新文章的标题'</span></code></pre>
+
+<p>可以用如下命令在本地运行，预览效果：</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash">D:<span class="token punctuation">\</span>WWW<span class="token punctuation">\</span>blog-source<span class="token operator">></span>hexo server
+INFO  Validating config
+INFO  Start processing
+INFO  Hexo is running at http://localhost:4000/. Press Ctrl+C to stop.</code></pre>
+
+<p>在新增修改完成后，使用这个命令来生成真实的 HTML/CSS 文件</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash">hexo generate</code></pre>
+
+<p>你可以在配置文件 <em>_config.yml</em> 指定一个仓库地址，例如</p>
+<pre class="language-yml" data-language="yml"><code class="language-yml"># Deployment
+## Docs: https:&#x2F;&#x2F;hexo.io&#x2F;docs&#x2F;deployment.html
+deploy:
+  type: git
+  repo: https:&#x2F;&#x2F;github.com&#x2F;liluoao&#x2F;liluoao.github.io.git
+  branch: master</code></pre>
+
+<p>然后使用如下命令来部署过去</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash">hexo deploy</code></pre>
+
+<h3 id="维护缺陷"><a href="#维护缺陷" class="headerlink" title="维护缺陷"></a>维护缺陷</h3><p>为了把博客部署更新，我每次都需要把整个的博客静态文件生成好，并提交到 GIT 上，再去服务器上把整个博客 PULL 下来</p>
+<p>那么有没有办法让这个流程变的智能些，让我可以从搭建流程脱离出来呢？接下来就介绍下我的解决方案</p>
+<h2 id="CI"><a href="#CI" class="headerlink" title="CI"></a>CI</h2><h3 id="持续集成介绍"><a href="#持续集成介绍" class="headerlink" title="持续集成介绍"></a>持续集成介绍</h3><p>持续集成（Continuous integration，简称 CI）是一种软件开发实践，即团队开发成员经常集成他们的工作，通常每个成员每天至少集成一次，也就意味着每天可能会发生多次集成。每次集成都通过自动化的构建（包括编译，发布，自动化测试）来验证，从而尽早地发现集成错误。</p>
+<p>减少重复的过程可以节省时间、费用和工作量。说起来简单，做起来难。这些浪费时间的重复劳动可能在我们的项目活动的任何一个环节发生，包括代码编译、数据库集成、测试、审查、部署及反馈。通过自动化的持续集成可以将这些重复的动作都变成自动化的，无需太多人工干预，让人们的时间更多的投入到动脑筋的、更高价值的事情上。</p>
+<p>市面上常见的持续集成工具有 <a target="_blank" rel="noopener" href="https://jenkins.io/zh/">Jenkins</a>，<a target="_blank" rel="noopener" href="https://www.travis-ci.org/">TravisCI</a>，和本文要使用的 <a target="_blank" rel="noopener" href="https://ci.appveyor.com">AppVeyor</a>（一般代码管理平台也支持 CI/CD）</p>
+<h3 id="配置项目"><a href="#配置项目" class="headerlink" title="配置项目"></a>配置项目</h3><p>可以使用 GitHub 账号授权登陆，快速导入自己的项目。在 <code>/projects</code> 页面选择你的博客源码仓库</p>
+<p>点击项目中 <code>SETTINGS</code> 选项卡，如果项目分支不是默认的，修改 <code>Default branch</code> </p>
+<p>再点击 <code>Environment</code> 栏目，设置如下 4 个环境变量：</p>
+<p><img src="/images/appveyor_project_env.png" alt="项目环境变量" loading="lazy"><em>项目环境变量</em></p>
+<p>变量解释：</p>
+<table>
+<thead>
+<tr>
+<th>name</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>STATIC_SITE_REPO</td>
+<td>静态页面的仓库地址</td>
+</tr>
+<tr>
+<td>TARGET_BRANCH</td>
+<td>编译后文件存放的分支</td>
+</tr>
+<tr>
+<td>GIT_USER_EMAIL</td>
+<td>Github用户邮箱</td>
+</tr>
+<tr>
+<td>GIT_USER_NAME</td>
+<td>Github用户名</td>
+</tr>
+</tbody></table>
+<h3 id="获取-GitHub-的-Token"><a href="#获取-GitHub-的-Token" class="headerlink" title="获取 GitHub 的 Token"></a>获取 GitHub 的 Token</h3><p>打开 GitHub 个人设置</p>
+<p>点击 <code>Developer settings</code> 栏目，再点击 <code>Personal access tokens</code> 选项卡，可以看到已有的 Token</p>
+<p>这里点击 <code>Generate new token</code> 按钮创建一个博客专用的 Token</p>
+<p><img src="/images/github_token.png" alt="个人TOKEN" loading="lazy"><em>个人TOKEN</em></p>
+<p>由于这个 Token 可以直接操作代码仓库，而且项目的配置文件是公开的，所以最好对它进行加密</p>
+<p>AppVeyor 提供了专门的<a target="_blank" rel="noopener" href="https://ci.appveyor.com/tools/encrypt">加密功能</a>，如下</p>
+<p><img src="/images/appveyor_encrypt.png" alt="TOKEN加密" loading="lazy"><em>TOKEN加密</em></p>
+<h3 id="配置构建命令"><a href="#配置构建命令" class="headerlink" title="配置构建命令"></a>配置构建命令</h3><p>在项目中新建 AppVeyor 的指定配置文件 <em>appveyor.yml</em>，以我的配置为例：</p>
+<pre class="language-yml" data-language="yml"><div class="caption"><span>appveyor.yml</span></div><code class="language-yml">clone_depth: 5
+
+environment:
+    access_token:
+        secure: # 自己的加密token
+install:
+    - ps: Install-Product node 6.9 # 默认node版本太老，具体版本根据包要求来
+    - node --version
+    - npm --version
+    - npm install
+    - npm install hexo-cli -g
+
+build_script:
+    - hexo generate
+
+artifacts:
+    - path: public
+
+on_success:
+    - git config --global credential.helper store
+    - ps: Add-Content &quot;$env:USERPROFILE\.git-credentials&quot; &quot;https:&#x2F;&#x2F;$($env:access_token):x-oauth-basic@github.com&#96;n&quot;
+    - git config --global user.email &quot;%GIT_USER_EMAIL%&quot;
+    - git config --global user.name &quot;%GIT_USER_NAME%&quot;
+    - git clone --depth 5 -q --branch&#x3D;%TARGET_BRANCH% %STATIC_SITE_REPO% %TEMP%\static-site
+    - cd %TEMP%\static-site
+    - del * &#x2F;f &#x2F;q
+    - for &#x2F;d %%p IN (*) do rmdir &quot;%%p&quot; &#x2F;s &#x2F;q
+    - SETLOCAL EnableDelayedExpansion &amp; robocopy &quot;%APPVEYOR_BUILD_FOLDER%\public&quot; &quot;%TEMP%\static-site&quot; &#x2F;e &amp; IF !ERRORLEVEL! EQU 1 (exit 0) ELSE (IF !ERRORLEVEL! EQU 3 (exit 0) ELSE (exit 1))
+    - git add -A
+    - git commit -m &quot;&quot; # 自定义注释
+    - git push origin %TARGET_BRANCH%
+    - appveyor AddMessage &quot;Static Site Updated&quot;</code></pre>
+
+<p>意思是从仓库的当前分支拉取下来，使用 <code>hexo generate</code> 命令编译成静态文件后，再 push 到目标项目</p>
+<blockquote>
+<p>由于 Hexo 自带的部署 <code>hexo g -d</code> 在访问的过程中需要我们输入帐号密码，所以不适合在这里使用</p>
+</blockquote>
+<p><img src="/images/appveyor_build.png" alt="构建结果" loading="lazy"><em>构建结果</em></p>
+<p>持续集成实现后，我可以随时随地把博客源文件项目（blog-source）给 PULL 下来写文章，提交后 AppVeyor 会根据源文件来生成最新的静态文件，并自动提交到展示项目（liluoao.github.io）中</p>
+</div></section></article></div><div id="comment"><div class="comment-tooltip text-center"><span>点击按钮跳转 GitHub Issues 评论。</span><br><span>若没有本文 Issue，您可以使用 Comment 模版新建。</span><br><a class="hty-button hty-button--raised" id="github-issues" target="_blank" rel="noopener" href="https://github.com/liluoao/blog-source/issues?q=is:issue+About Site">GitHub Issues</a></div></div></main><footer class="sidebar-translate" id="footer"><div class="copyright"><span>&copy; 2018 – 2020 </span><span class="with-love" id="animate"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-heart-line"></use></svg></span><span class="author"> 丶基调</span></div><div class="powered"><span>由 <a href="https://hexo.io" target="_blank" rel="noopener">Hexo</a> 驱动 v5.2.0</span><span class="footer-separator">|</span><span>主题 - <a rel="noopener" href="https://github.com/YunYouJun/hexo-theme-yun" target="_blank"><span>Yun</span></a> v1.3.0</span></div></footer><a class="hty-icon-button" id="goUp" aria-label="back-to-top" href="#"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-arrow-up-s-line"></use></svg><svg class="progress-circle-container" viewBox="0 0 100 100"><circle class="progress-circle" id="progressCircle" cx="50" cy="50" r="48" fill="none" stroke="#0078E7" stroke-width="2" stroke-linecap="round"></circle></svg></a><script>const date = new Date();
 const today = (date.getMonth() + 1) + "-" + date.getDate()
 const mourn_days = ["5-12","9-18"]
 if (mourn_days.includes(today)) {
