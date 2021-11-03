@@ -1,0 +1,79 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="theme-color" content="#0078E7"><meta name="author" content="大梦成空"><meta name="copyright" content="大梦成空"><meta name="generator" content="Hexo 5.4.0"><meta name="theme" content="hexo-theme-yun"><title>领域驱动设计怎么搞的 | 码之气三段</title><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@900&amp;display=swap" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/star-markdown-css@0.1.25/dist/yun/yun-markdown.min.css"><script src="//at.alicdn.com/t/font_1140697_dxory92pb0h.js" async></script><script src="https://cdn.jsdelivr.net/npm/scrollreveal/dist/scrollreveal.min.js" defer></script><script>document.addEventListener("DOMContentLoaded", () => {
+  [".post-card",".post-content img"].forEach((target)=> {
+    ScrollReveal().reveal(target);
+  })
+});
+</script><link id="light-prism-css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@latest/themes/prism.css" media="(prefers-color-scheme: light)"><link id="dark-prism-css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@latest/themes/prism-tomorrow.css" media="(prefers-color-scheme: dark)"><link rel="icon" href="/favicon.ico"><link rel="mask-icon" href="/favicon.ico" color="#0078E7"><link rel="alternate icon" href="/yun.ico"><link rel="preload" href="/css/hexo-theme-yun.css" as="style"><link rel="preload" href="/js/utils.js" as="script"><link rel="preload" href="/js/hexo-theme-yun.js" as="script"><link rel="prefetch" href="/js/sidebar.js" as="script"><link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin><script id="yun-config">
+    const Yun = window.Yun || {};
+    window.CONFIG = {"hostname":"liluoao.github.io","root":"/","title":"码之气三段","version":"1.6.1","mode":"auto","copycode":true,"page":{"isPost":true},"i18n":{"placeholder":"搜索...","empty":"找不到您查询的内容: ${query}","hits":"找到 ${hits} 条结果","hits_time":"找到 ${hits} 条结果（用时 ${time} 毫秒）"},"anonymous_image":"https://cdn.jsdelivr.net/gh/YunYouJun/cdn/img/avatar/none.jpg","say":{"api":"https://v1.hitokoto.cn","hitokoto":true},"fireworks":{"colors":["102, 167, 221","62, 131, 225","33, 78, 194"]}};
+  </script><link rel="stylesheet" href="/css/hexo-theme-yun.css"><script src="/js/utils.js"></script><script src="/js/hexo-theme-yun.js"></script><meta name="description" content="领域驱动设计（Domain Driven Design，简称 DDD）最近 5 年越来越🔥，很多公司都把它作为解决复杂业务的良药。由于 DDD 不是一套框架，而是一种架构思想，所以在代码层面缺乏了足够的约束，导致 DDD 在实际应用中上手门槛很高。 对于前期的准备工作来说，你需要把公司的各业务域划分清楚，并且知道什么是公司的核心域。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="领域驱动设计怎么搞的">
+<meta property="og:url" content="https://liluoao.github.io/posts/about-domain-driven-design.html">
+<meta property="og:site_name" content="码之气三段">
+<meta property="og:description" content="领域驱动设计（Domain Driven Design，简称 DDD）最近 5 年越来越🔥，很多公司都把它作为解决复杂业务的良药。由于 DDD 不是一套框架，而是一种架构思想，所以在代码层面缺乏了足够的约束，导致 DDD 在实际应用中上手门槛很高。 对于前期的准备工作来说，你需要把公司的各业务域划分清楚，并且知道什么是公司的核心域。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-10-22T04:40:15.000Z">
+<meta property="article:modified_time" content="2021-11-03T06:43:35.078Z">
+<meta property="article:author" content="大梦成空">
+<meta property="article:tag" content="大梦成空">
+<meta property="article:tag" content="Blog">
+<meta property="article:tag" content="博客">
+<meta name="twitter:card" content="summary"><script src="/js/ui/mode.js"></script></head><body><script defer src="https://cdn.jsdelivr.net/npm/animejs@latest"></script><script defer src="/js/ui/fireworks.js"></script><canvas class="fireworks"></canvas><div class="container"><a class="sidebar-toggle hty-icon-button" id="menu-btn"><div class="hamburger hamburger--spin" type="button"><span class="hamburger-box"><span class="hamburger-inner"></span></span></div></a><div class="sidebar-toggle sidebar-overlay"></div><aside class="sidebar"><script src="/js/sidebar.js"></script><ul class="sidebar-nav"><li class="sidebar-nav-item sidebar-nav-toc hty-icon-button" data-target="post-toc-wrap" title="文章目录"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-list-ordered"></use></svg></li><li class="sidebar-nav-item sidebar-nav-overview hty-icon-button sidebar-nav-active" data-target="site-overview-wrap" title="站点概览"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-passport-line"></use></svg></li></ul><div class="sidebar-panel sidebar-panel-active" id="site-overview-wrap"><div class="site-info fix-top"><a class="site-author-avatar" href="/about/" title="大梦成空"><img width="96" loading="lazy" src="https://cdn.jsdelivr.net/gh/liluoao/cdn@main/image/avatar.jpg" alt="大梦成空"></a><div class="site-author-name"><a href="/about/">大梦成空</a></div><a class="site-name" href="/about/site.html">码之气三段</a><sub class="site-subtitle">To be a Web Artisan</sub><div class="site-desciption">大梦成空的博客</div></div><nav class="site-state"><a class="site-state-item hty-icon-button icon-home" href="/" title="首页"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-home-4-line"></use></svg></span></a><div class="site-state-item"><a href="/archives/" title="归档"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-archive-line"></use></svg></span><span class="site-state-item-count">38</span></a></div><div class="site-state-item"><a href="/categories/" title="分类"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-folder-2-line"></use></svg></span><span class="site-state-item-count">5</span></a></div><div class="site-state-item"><a href="/tags/" title="标签"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-price-tag-3-line"></use></svg></span><span class="site-state-item-count">16</span></a></div><a class="site-state-item hty-icon-button" target="_blank" rel="noopener" href="https://segmentfault.com/u/liluoao" title="SegmentFault"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-men-line"></use></svg></span></a></nav><hr style="margin-bottom:0.5rem"><div class="links-of-author"><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://github.com/liluoao" title="GitHub" target="_blank" style="color:#6e5494"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-github-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="mailto:liluoao@qq.com" title="E-Mail" target="_blank" style="color:#8E71C1"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-mail-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://space.bilibili.com/19377772" title="哔哩哔哩" target="_blank" style="color:#FF8EB3"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-bilibili-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://music.163.com/#/user/home?id=121449072" title="网易云音乐" target="_blank" style="color:#C20C0C"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-netease-cloud-music-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://www.zhihu.com/people/li-luo-ao/" title="知乎" target="_blank" style="color:#0084FF"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-zhihu-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://twitter.com/easonlee82" title="Twitter" target="_blank" style="color:#1da1f2"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-twitter-line"></use></svg></a></div><br><a class="links-item hty-icon-button" id="toggle-mode-btn" href="javascript:;" title="Mode" style="color: #f1cb64"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-contrast-2-line"></use></svg></a></div><div class="sidebar-panel" id="post-toc-wrap"><div class="post-toc"><div class="post-toc-content">很遗憾，咱没写啥目录</div></div></div></aside><main class="sidebar-translate" id="content"><div id="post"><article class="hty-card post-block" itemscope itemtype="https://schema.org/Article"><link itemprop="mainEntityOfPage" href="https://liluoao.github.io/posts/about-domain-driven-design.html"><span hidden itemprop="author" itemscope itemtype="https://schema.org/Person"><meta itemprop="name" content="大梦成空"><meta itemprop="description"></span><span hidden itemprop="publisher" itemscope itemtype="https://schema.org/Organization"><meta itemprop="name" content="码之气三段"></span><header class="post-header"><h1 class="post-title" itemprop="name headline">领域驱动设计怎么搞的</h1><div class="post-meta"><div class="post-time" style="display:inline-block"><span class="post-meta-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-calendar-line"></use></svg></span> <time title="创建时间：2021-10-22 12:40:15" itemprop="dateCreated datePublished" datetime="2021-10-22T12:40:15+08:00">2021-10-22</time><span class="post-meta-divider">-</span><span class="post-meta-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-calendar-2-line"></use></svg></span> <time title="修改时间：2021-11-03 14:43:35" itemprop="dateModified" datetime="2021-11-03T14:43:35+08:00">2021-11-03</time></div><div class="post-classify"><span class="post-category"> <span class="post-meta-item-icon" style="margin-right:3px;"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-folder-line"></use></svg></span><span itemprop="about" itemscope itemtype="https://schema.org/Thing"><a class="category-item" href="/categories/other/" style="--text-color:var(--hty-text-color)" itemprop="url" rel="index"><span itemprop="text">杂谈</span></a></span></span></div></div></header><section class="post-body" itemprop="articleBody"><div class="post-content markdown-body" style="--smc-primary:#0078E7;"><p>领域驱动设计（Domain Driven Design，简称 DDD）最近 5 年越来越🔥，很多公司都把它作为解决复杂业务的良药。由于 DDD 不是一套框架，而是一种架构思想，所以在代码层面缺乏了足够的约束，导致 DDD 在实际应用中上手门槛很高。</p>
+<p>对于前期的准备工作来说，你需要把公司的各业务域划分清楚，并且知道什么是公司的核心域。</p>
+<span id="more"></span>
+
+<blockquote>
+<p>在上篇文章末尾有咱公司的划分，涉及我的就是供应链、零售、信息化等域</p>
+</blockquote>
+<p>网上关于 DDD 的资料基本都是 Java 栈的，确实对于 PHP 这个脚本语言来说，你想搞 DDD 还不如直接换语言实现来的快。但是咱公司技术确实 niubility，在自己的框架基础上实现了一套 DDD 约束。</p>
+<p>Entity 领域实体作为核心内容，拥有着唯一标识（例如主键的值对象）和可变的内容。类似于 Laravel 中模型的关联关系，咱也实现了实体的关联关系，可以通过定义方法来实现实体间、实体与值对象间的一对一、一对多、多对多等。</p>
+<blockquote>
+<p>Entity 和 VO（Value Object）的区别在于是否存在生命周期。</p>
+</blockquote>
+<p>Persistence 持久化层，就是与数据库交互的位置。每个 PO 像 MVC 的 Model 一样映射了一张表，并且应该实现 2 个方法，一个是 PO 向实体进行转换，一个是让实体转换成本 PO。Repository 还是和其它规范一样，作为查询封装。</p>
+<p>Cmd 入参规范定义，实现了数据校验与便捷的传递。Translator 对象转换，用于复杂的出入参处理。</p>
+<p>DTO 数据传输对象 (Data Transfer Object)，就是接口最终返回出去的规范。PHP 也一样可以通过类型约束、Annotation 注解来实现和 Java 一样的效果。</p>
+<p>最终结构如下：</p>
+<pre class="language-none"><code class="language-none">├── app
+│     ├── Application 应用层
+│     ├── Domain 领域层
+│     │     └── AnonymousMail 领域名称
+│     │         ├── Exception 领域异常
+│     │         ├── Model 领域模型
+│     │         │     ├── Entity 领域实体
+│     │         │     │     └── Relationship 领域关联关系
+│     │         │     ├── Repository 领域仓储接口
+│     │         │     └── VO 领域值对象
+│     │         ├── Setting 领域配置
+│     │         ├── Service 领域服务
+│     │         ├── Factory 领域工厂
+│     │         └── Enum 领域枚举
+│     ├── Infrastructure 基础设施层
+│     │     ├── Bridge 外部依赖服务(Rpc&#x2F;第三方服务)
+│     │     │     └── Notify 服务名称
+│     │     │         └── Cmd 传入参数
+│     │     ├── Console [laravel Console]
+│     │     ├── Exceptions 基础异常类
+│     │     ├── Persistence 持久化层
+│     │     │     ├── PO 持久化对象
+│     │     │     └── Repository 仓储实现
+│     │     ├── Setting 基础配置
+│     │     └── Providers [laravel 服务提供者]
+│     └── Interfaces 接口层
+│         └── AnonymousMail 领域名称
+│               ├── Cmd 传入参数
+│               ├── Controllers 接口类
+│               ├── DTO 响应对象
+│               └── Translator 传入&#x2F;响应 对象转换类</code></pre>
+
+<p>作为第一个吃螃蟹的，我用这套设计完成了一个迭代的新系统。在开发的前期由于刚走出舒适区，无论是设计还是实现，都需要花费 4 倍于之前的时间。经过一两个领域中的基础接口实现后，这个倍数大概会降到 2。</p>
+<blockquote>
+<p>以老项目来实现时，需要考虑两个底层同时存在的情况<br>But 我们大佬在实现新约束时就支持了两者并行🤩</p>
+</blockquote>
+</div><ul class="post-copyright"><li class="post-copyright-author"><strong>本文作者：</strong>大梦成空</li><li class="post-copyright-link"><strong>本文链接：</strong><a href="https://liluoao.github.io/posts/about-domain-driven-design.html" title="领域驱动设计怎么搞的">https://liluoao.github.io/posts/about-domain-driven-design.html</a></li><li class="post-copyright-license"><strong>版权声明：</strong>本博客所有文章除特别声明外，均默认采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank" rel="noopener" title="CC BY-NC-SA 4.0 "><svg class="icon"><use xlink:href="#icon-creative-commons-line"></use></svg><svg class="icon"><use xlink:href="#icon-creative-commons-by-line"></use></svg><svg class="icon"><use xlink:href="#icon-creative-commons-nc-line"></use></svg><svg class="icon"><use xlink:href="#icon-creative-commons-sa-line"></use></svg></a> 许可协议。</li></ul></section></article><div class="post-nav"><div class="post-nav-item"></div><div class="post-nav-item"><a class="post-nav-next" href="/posts/about-micro-services.html" rel="next" title="为啥要做微服务"><span class="post-nav-text">为啥要做微服务</span><svg class="icon" aria-hidden="true"><use xlink:href="#icon-arrow-right-s-line"></use></svg></a></div></div></div></main><footer class="sidebar-translate" id="footer"><div class="copyright"><span>&copy; 2018 – 2021 </span><span class="with-love" id="animate"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-heart-line"></use></svg></span><span class="author"> 大梦成空</span></div><div class="powered"><span>由 <a href="https://hexo.io" target="_blank" rel="noopener">Hexo</a> 驱动 v5.4.0</span><span class="footer-separator">|</span><span>主题 - <a rel="noopener" href="https://github.com/YunYouJun/hexo-theme-yun" target="_blank"><span>Yun</span></a> v1.6.1</span></div></footer><a class="hty-icon-button" id="back-to-top" aria-label="back-to-top" href="#"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-arrow-up-s-line"></use></svg><svg class="progress-circle-container" viewBox="0 0 100 100"><circle class="progress-circle" id="progressCircle" cx="50" cy="50" r="48" fill="none" stroke="#0078E7" stroke-width="2" stroke-linecap="round"></circle></svg></a><script>const date = new Date();
+const today = (date.getMonth() + 1) + "-" + date.getDate()
+const mourn_days = ["5-12","9-18","12-13"]
+if (mourn_days.includes(today)) {
+  document.documentElement.style.filter = "grayscale(1)";
+}</script></div></body></html>
