@@ -20,7 +20,7 @@ document.addEventListener("pjax:success", initScrollReveal);
 <meta property="og:image" content="https://i.imgtg.com/2022/08/09/AR2kt.png">
 <meta property="og:image" content="https://i.imgtg.com/2022/08/09/AR96X.png">
 <meta property="article:published_time" content="2018-10-12T02:47:16.000Z">
-<meta property="article:modified_time" content="2022-08-23T12:32:34.594Z">
+<meta property="article:modified_time" content="2022-08-23T12:34:04.014Z">
 <meta property="article:author" content="大梦成空">
 <meta property="article:tag" content="大梦成空">
 <meta property="article:tag" content="Blog">
@@ -57,7 +57,7 @@ INFO  Validating config
 INFO  Start processing
 INFO  Hexo is running at http://localhost:4000/. Press Ctrl+C to stop.<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 
-<p>在新增修改完成后，使用这个命令来生成真实的 HTML&#x2F;CSS 文件</p>
+<p>在新增修改完成后，使用这个命令来生成真实的 HTML/CSS 文件</p>
 <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">hexo generate<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <p>你可以在配置文件 <em>_config.yml</em> 指定一个仓库地址，例如</p>
@@ -75,7 +75,7 @@ deploy:
 <p>那么有没有办法让这个流程变的智能些，让我可以从搭建流程脱离出来呢？接下来就介绍下我的解决方案</p>
 <h2 id="CI"><a href="#CI" class="headerlink" title="CI"></a>CI</h2><h3 id="持续集成介绍"><a href="#持续集成介绍" class="headerlink" title="持续集成介绍"></a>持续集成介绍</h3><p>持续集成（Continuous integration，简称 CI）是一种软件开发实践，即团队开发成员经常集成他们的工作，通常每个成员每天至少集成一次，也就意味着每天可能会发生多次集成。每次集成都通过自动化的构建（包括编译，发布，自动化测试）来验证，从而尽早地发现集成错误。</p>
 <p>减少重复的过程可以节省时间、费用和工作量。说起来简单，做起来难。这些浪费时间的重复劳动可能在我们的项目活动的任何一个环节发生，包括代码编译、数据库集成、测试、审查、部署及反馈。通过自动化的持续集成可以将这些重复的动作都变成自动化的，无需太多人工干预，让人们的时间更多的投入到动脑筋的、更高价值的事情上。</p>
-<p>市面上常见的持续集成工具有 <a target="_blank" rel="noopener" href="https://jenkins.io/zh/">Jenkins</a>，<a target="_blank" rel="noopener" href="https://www.travis-ci.org/">TravisCI</a>，和本文要使用的 <a target="_blank" rel="noopener" href="https://ci.appveyor.com/">AppVeyor</a>（一般代码管理平台也支持 CI&#x2F;CD）</p>
+<p>市面上常见的持续集成工具有 <a target="_blank" rel="noopener" href="https://jenkins.io/zh/">Jenkins</a>，<a target="_blank" rel="noopener" href="https://www.travis-ci.org/">TravisCI</a>，和本文要使用的 <a target="_blank" rel="noopener" href="https://ci.appveyor.com">AppVeyor</a>（一般代码管理平台也支持 CI/CD）</p>
 <h3 id="配置项目"><a href="#配置项目" class="headerlink" title="配置项目"></a>配置项目</h3><p>可以使用 GitHub 账号授权登陆，快速导入自己的项目。在 <code>/projects</code> 页面选择你的博客源码仓库</p>
 <p>点击项目中 <code>SETTINGS</code> 选项卡，如果项目分支不是默认的，修改 <code>Default branch</code></p>
 <p>再点击 <code>Environment</code> 栏目，设置如下 4 个环境变量：</p>
