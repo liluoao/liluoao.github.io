@@ -16,7 +16,7 @@ document.addEventListener("pjax:success", initScrollReveal);
 <meta property="og:description" content="对于公司千万级的客户数据，在数据库查询时要特别小心，避免出现内存溢出与慢查询的问题">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2019-02-19T07:39:11.000Z">
-<meta property="article:modified_time" content="2022-08-23T12:35:23.787Z">
+<meta property="article:modified_time" content="2022-08-23T12:37:01.544Z">
 <meta property="article:author" content="大梦成空">
 <meta property="article:tag" content="yii">
 <meta name="twitter:card" content="summary"><script>(function() {
@@ -88,7 +88,7 @@ IconifyProviders = {
 <p>OFFSET 和 LIMIT 对于数据量少的项目来说是没有问题的</p>
 <p>但是，当数据库里的数据量超过服务器内存能够存储的能力，并且需要对所有数据进行分页，问题就会出现</p>
 <p>为了实现分页，每次收到分页请求时，数据库都需要进行低效的全表扫描</p>
-<p>什么是全表扫描？全表扫描 (又称顺序扫描) 就是在数据库中进行逐行扫描，顺序读取表中的每一行记录，然后检查各个列是否符合查询条件。这种扫描是已知最慢的，因为需要进行大量的磁盘 I/O，而且从磁盘到内存的传输开销也很大。</p>
+<p>什么是全表扫描？全表扫描 (又称顺序扫描) 就是在数据库中进行逐行扫描，顺序读取表中的每一行记录，然后检查各个列是否符合查询条件。这种扫描是已知最慢的，因为需要进行大量的磁盘 I&#x2F;O，而且从磁盘到内存的传输开销也很大。</p>
 <p>这意味着，如果你有 1 亿个用户，OFFSET 是 5 千万，那么它需要获取所有这些记录 (包括那么多根本不需要的数据)，将它们放入内存，然后获取 LIMIT 指定的 20 条结果</p>
 <p>替代方案，基于指针的分页：</p>
 <pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">SELECT</span> <span class="token operator">*</span> <span class="token keyword">FROM</span> table_name <span class="token keyword">WHERE</span> id <span class="token operator">></span> <span class="token number">40</span> <span class="token keyword">LIMIT</span> <span class="token number">10</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
