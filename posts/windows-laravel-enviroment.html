@@ -1,0 +1,207 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="theme-color" content="#0078E7"><meta name="author" content="李罗奥"><meta name="copyright" content="李罗奥"><meta name="generator" content="Hexo 6.2.0"><meta name="theme" content="hexo-theme-yun"><title>Windows环境与Laravel11 | 大梦成空</title><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@900&amp;display=swap" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://fastly.jsdelivr.net/npm/star-markdown-css@0.3.3/dist/yun/yun-markdown.min.css"><link rel="stylesheet" href="https://fastly.jsdelivr.net/npm/prism-theme-vars/base.css"><script src="https://fastly.jsdelivr.net/npm/scrollreveal/dist/scrollreveal.min.js" defer></script><script>function initScrollReveal() {
+  [".post-card",".markdown-body img"].forEach((target)=> {
+    ScrollReveal().reveal(target);
+  })
+}
+document.addEventListener("DOMContentLoaded", initScrollReveal);
+document.addEventListener("pjax:success", initScrollReveal);
+</script><link rel="icon" type="image/png" href="/favicon.ico"><link rel="mask-icon" href="/favicon.ico" color="#0078E7"><link rel="preload" href="/css/hexo-theme-yun.css" as="style"><link rel="prefetch" href="/js/sidebar.js" as="script"><link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin><link rel="preconnect" href="https://fastly.jsdelivr.net/npm/" crossorigin><script id="yun-config">
+    window.Yun = {}
+    window.CONFIG = {"hostname":"liluoao.github.io","root":"/","title":"大梦成空","version":"1.10.6","mode":"auto","copycode":true,"page":{"isPost":true},"i18n":{"placeholder":"搜索...","empty":"找不到您查询的内容: ${query}","hits":"找到 ${hits} 条结果","hits_time":"找到 ${hits} 条结果（用时 ${time} 毫秒）"},"anonymous_image":"https://cdn.yunyoujun.cn/img/avatar/none.jpg","say":{"api":"https://v1.hitokoto.cn","hitokoto":true},"fireworks":{"colors":null},"vendors":{"host":"https://fastly.jsdelivr.net/npm/","darken":"https://fastly.jsdelivr.net/npm/darken@1.5.0"}};
+  </script><link rel="stylesheet" href="/css/hexo-theme-yun.css"><script src="/js/hexo-theme-yun.js" type="module"></script><meta name="description" content="上次使用 Windows 环境开发还是大学期间  常见的环境管理：  WSL（Windows Subsystem for Linux） Windows 集成环境（例如 PHPStudy） Laragon 虚拟机+宝塔">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Windows环境与Laravel11">
+<meta property="og:url" content="https://liluoao.github.io/posts/windows-laravel-enviroment.html">
+<meta property="og:site_name" content="大梦成空">
+<meta property="og:description" content="上次使用 Windows 环境开发还是大学期间  常见的环境管理：  WSL（Windows Subsystem for Linux） Windows 集成环境（例如 PHPStudy） Laragon 虚拟机+宝塔">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://ooo.0x0.ooo/2024/06/03/OJEQ6U.jpg">
+<meta property="og:image" content="https://ooo.0x0.ooo/2024/06/03/OJE0bY.jpg">
+<meta property="og:image" content="https://ooo.0x0.ooo/2024/06/03/OJEYAr.jpg">
+<meta property="article:published_time" content="2024-06-03T06:16:55.000Z">
+<meta property="article:modified_time" content="2024-06-03T08:17:04.970Z">
+<meta property="article:author" content="李罗奥">
+<meta property="article:tag" content="李罗奥">
+<meta property="article:tag" content="Blog">
+<meta property="article:tag" content="博客">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://ooo.0x0.ooo/2024/06/03/OJEQ6U.jpg"><script>(function() {
+  const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+  const setting = localStorage.getItem('darken-mode') || 'auto'
+  if (setting === 'dark' || (prefersDark && setting !== 'light'))
+    document.documentElement.classList.toggle('dark', true)
+})()</script></head><body><script src="https://code.iconify.design/2/2.1.1/iconify.min.js"></script><script>// Define global variable
+IconifyProviders = {
+  // Empty prefix: overwrite default API provider configuration
+  '': {
+    // Use custom API first, use Iconify public API as backup
+    resources: [
+        'https://api.iconify.design',
+    ],
+    // Wait for 1 second before switching API hosts
+    rotate: 1000,
+  },
+};</script><script defer src="https://fastly.jsdelivr.net/npm/animejs@latest"></script><script defer src="/js/ui/fireworks.js" type="module"></script><canvas class="fireworks"></canvas><canvas id="trianglifyContainer"></canvas><script defer src="https://fastly.jsdelivr.net/npm/trianglify@4/dist/trianglify.bundle.js"></script><script>document.addEventListener("DOMContentLoaded", () => {
+  const pattern = trianglify({
+    width: 1980,
+    height: 1600,
+    cellSize: 75,
+    palette: ["YlGnBu", "GnBu", "Purples", "Blues"],
+  });
+  const canvasOpts = {
+    applyCssScaling: false
+  }
+  document.body.appendChild(pattern.toCanvas(trianglifyContainer, canvasOpts));
+});</script><div class="container"><a class="sidebar-toggle hty-icon-button" id="menu-btn"><div class="hamburger hamburger--spin" type="button"><span class="hamburger-box"><span class="hamburger-inner"></span></span></div></a><div class="sidebar-toggle sidebar-overlay"></div><aside class="sidebar"><script src="/js/sidebar.js" type="module"></script><ul class="sidebar-nav"><li class="sidebar-nav-item sidebar-nav-toc hty-icon-button sidebar-nav-active" data-target="post-toc-wrap" title="文章目录"><span class="icon iconify" data-icon="ri:list-ordered"></span></li><li class="sidebar-nav-item sidebar-nav-overview hty-icon-button" data-target="site-overview-wrap" title="站点概览"><span class="icon iconify" data-icon="ri:passport-line"></span></li></ul><div class="sidebar-panel" id="site-overview-wrap"><div class="site-info fix-top"><a class="site-author-avatar" href="/about/" title="李罗奥"><img width="96" loading="lazy" src="https://i.imgtg.com/2022/08/09/AR3SY.jpg" alt="李罗奥"></a><div class="site-author-name"><a href="/about/">李罗奥</a></div><a class="site-name" href="/about/site.html">大梦成空</a><sub class="site-subtitle">To be a Web Artisan</sub><div class="site-description">李罗奥的博客</div></div><nav class="site-state"><a class="site-state-item hty-icon-button icon-home" href="/" title="首页"><span class="site-state-item-icon"><span class="icon iconify" data-icon="ri:home-4-line"></span></span></a><div class="site-state-item"><a href="/archives/" title="归档"><span class="site-state-item-icon"><span class="icon iconify" data-icon="ri:archive-line"></span></span><span class="site-state-item-count">47</span></a></div><div class="site-state-item"><a href="/categories/" title="分类"><span class="site-state-item-icon"><span class="icon iconify" data-icon="ri:folder-2-line"></span></span><span class="site-state-item-count">8</span></a></div><div class="site-state-item"><a href="/tags/" title="标签"><span class="site-state-item-icon"><span class="icon iconify" data-icon="ri:price-tag-3-line"></span></span><span class="site-state-item-count">10</span></a></div><a class="site-state-item hty-icon-button" target="_blank" rel="noopener" href="https://yun.yunyoujun.cn" title="文档"><span class="site-state-item-icon"><span class="icon iconify" data-icon="ri:settings-line"></span></span></a></nav><hr style="margin-bottom:0.5rem"><div class="links-of-author"><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://github.com/liluoao" title="GitHub" target="_blank" style="color:#6e5494"><span class="icon iconify" data-icon="ri:github-line"></span></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="mailto:liluoao@qq.com" title="E-Mail" target="_blank" style="color:#8E71C1"><span class="icon iconify" data-icon="ri:mail-line"></span></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://space.bilibili.com/19377772" title="哔哩哔哩" target="_blank" style="color:#FF8EB3"><span class="icon iconify" data-icon="ri:bilibili-line"></span></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://music.163.com/#/user/home?id=121449072" title="网易云音乐" target="_blank" style="color:#C20C0C"><span class="icon iconify" data-icon="ri:netease-cloud-music-line"></span></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://www.zhihu.com/people/li-luo-ao/" title="知乎" target="_blank" style="color:#0084FF"><span class="icon iconify" data-icon="ri:zhihu-line"></span></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://twitter.com/easonlee82" title="Twitter" target="_blank" style="color:#1da1f2"><span class="icon iconify" data-icon="ri:twitter-line"></span></a></div><br><a class="links-item hty-icon-button" id="toggle-mode-btn" href="javascript:;" title="Mode" style="color: #f1cb64"><span class="icon iconify" data-icon="ri:contrast-2-line"></span></a></div><div class="sidebar-panel sidebar-panel-active" id="post-toc-wrap"><div class="post-toc"><div class="post-toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#WSL"><span class="toc-number">1.</span> <span class="toc-text">WSL</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BC%98%E5%8A%BF"><span class="toc-number">1.1.</span> <span class="toc-text">优势</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%94%9F%E4%BA%A7%E7%8E%AF%E5%A2%83%E5%8C%BA%E5%88%AB"><span class="toc-number">1.2.</span> <span class="toc-text">生产环境区别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#WSL2"><span class="toc-number">1.3.</span> <span class="toc-text">WSL2</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-number">1.4.</span> <span class="toc-text">总结</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#PHPStudy"><span class="toc-number">2.</span> <span class="toc-text">PHPStudy</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE"><span class="toc-number">2.1.</span> <span class="toc-text">配置</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#PATH"><span class="toc-number">2.1.1.</span> <span class="toc-text">PATH</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#track-errors"><span class="toc-number">2.1.2.</span> <span class="toc-text">track_errors</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%89%A9%E5%B1%95"><span class="toc-number">2.1.3.</span> <span class="toc-text">扩展</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%90%E8%A1%8C-Laravel"><span class="toc-number">2.2.</span> <span class="toc-text">运行 Laravel</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Laravel-11-API"><span class="toc-number">3.</span> <span class="toc-text">Laravel 11 API</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Sanctum"><span class="toc-number">3.1.</span> <span class="toc-text">Sanctum</span></a></li></ol></li></ol></div></div></div></aside><main class="sidebar-translate" id="content"><div id="post"><article class="hty-card post-block" itemscope itemtype="https://schema.org/Article" style="--smc-primary:#0078E7;"><link itemprop="mainEntityOfPage" href="https://liluoao.github.io/posts/windows-laravel-enviroment.html"><span hidden itemprop="author" itemscope itemtype="https://schema.org/Person"><meta itemprop="name" content="李罗奥"><meta itemprop="description"></span><span hidden itemprop="publisher" itemscope itemtype="https://schema.org/Organization"><meta itemprop="name" content="大梦成空"></span><header class="post-header"><h1 class="post-title" itemprop="name headline">Windows环境与Laravel11<a class="post-edit-link" href="https://github.com/liluoao/blog-source/tree/master/source/_posts/Windows环境与Laravel11.md" target="_blank" title="编辑" rel="noopener"><span class="icon iconify" data-icon="ri:edit-line"></span></a></h1><div class="post-meta"><div class="post-time"><span class="post-meta-item-icon"><span class="icon iconify" data-icon="ri:calendar-line"></span></span> <time title="创建时间：2024-06-03 14:16:55" itemprop="dateCreated datePublished" datetime="2024-06-03T14:16:55+08:00">2024-06-03</time></div><div class="post-classify"><span class="post-category"> <span class="post-meta-item-icon" style="margin-right:3px;"><span class="icon iconify" data-icon="ri:folder-line"></span></span><span itemprop="about" itemscope itemtype="https://schema.org/Thing"><a class="category-item" href="/categories/tool/" style="--text-color:#5298d1" itemprop="url" rel="index"><span itemprop="text">工具</span></a></span></span></div></div></header><section class="post-body" itemprop="articleBody"><div class="post-content markdown-body"><blockquote>
+<p>上次使用 Windows 环境开发还是大学期间</p>
+</blockquote>
+<p>常见的环境管理：</p>
+<ul>
+<li>WSL（Windows Subsystem for Linux）</li>
+<li>Windows 集成环境（例如 PHPStudy）</li>
+<li>Laragon</li>
+<li>虚拟机+宝塔</li>
+</ul>
+<span id="more"></span>
+
+<h2 id="WSL"><a href="#WSL" class="headerlink" title="WSL"></a>WSL</h2><p>Windows Subsystem for Linux（简称WSL）是一个在 Windows 10&#x2F;11 上能够运行原生 Linux 二进制可执行文件（ELF 格式）的兼容层，由微软与 Canonical 公司合作开发</p>
+<p>它能使您能够直接在 Windows 上运行 Linux 文件系统以及 Linux 命令行工具和 GUI 应用程序，以及传统的 Windows 桌面和应用程序</p>
+<blockquote>
+<p>2022年11月16日，WSL 1.0 正式版发布</p>
+</blockquote>
+<h3 id="优势"><a href="#优势" class="headerlink" title="优势"></a>优势</h3><p>WSL 所需的资源（CPU、内存和存储）比完整的虚拟机要少。WSL 还允许您在运行 Windows 命令行、桌面和商店应用的同时运行 Linux 命令行工具和应用，并允许您在 Linux 中访问 Windows 文件</p>
+<p>本地机器上的硬盘挂载点会自动创建，并可轻松访问 Windows 文件系统。</p>
+<p>&#x2F;mnt&#x2F;&lt;驱动器号&gt;&#x2F;</p>
+<blockquote>
+<p>cd &#x2F;mnt&#x2F;c 访问 c:\</p>
+</blockquote>
+<h3 id="生产环境区别"><a href="#生产环境区别" class="headerlink" title="生产环境区别"></a>生产环境区别</h3><ul>
+<li>WSL 有一个轻量级实用程序 VM，可以自动启动、停止和管理资源。</li>
+<li>如果您没有打开 Windows 进程的文件句柄，WSL VM 将自动关闭。这意味着如果您将其用作 Web 服务器，请通过 SSH 进入它以运行您的服务器然后退出，VM 可能会关闭，因为它检测到用户已完成使用并将清理其资源。</li>
+<li>WSL 用户对其 Linux 实例具有完全访问权限。VM 的生命周期、已注册的 WSL 发行版等均可供用户访问，并可由用户修改。</li>
+<li>WSL 自动授予 Windows 文件访问权限。</li>
+<li>默认情况下，Windows 路径会附加到您的路径中，与传统的 Linux 环境相比，这可能会导致某些 Linux 应用程序出现意外行为。</li>
+<li>WSL 可以从 Linux 运行 Windows 可执行文件，这也可能导致与传统 Linux VM 不同的环境。</li>
+<li>WSL 使用的 Linux 内核会自动更新。</li>
+<li>WSL 中的 GPU 访问通过一个<code>/dev/dxg</code>设备进行，该设备将 GPU 调用路由到 Windows GPU。此设置与传统的 Linux 设置不同。</li>
+</ul>
+<blockquote>
+<p>与裸机 Linux 相比，还有其他较小的差异，并且随着内循环开发工作流程的优先考虑，预计未来会出现更多差异。</p>
+</blockquote>
+<h3 id="WSL2"><a href="#WSL2" class="headerlink" title="WSL2"></a>WSL2</h3><p>WSL 2 对底层架构进行了重大改造，并使用虚拟化技术和 Linux 内核来实现新功能</p>
+<p>git clone、npm install、apt update、apt upgrade 等文件密集型操作都明显更快</p>
+<p>实际速度提升将取决于您正在运行的应用程序以及它如何与文件系统交互。与 WSL 1 相比，WSL 2 的初始版本在解压压缩包时运行速度最高可提高 20 倍，在各种项目上使用 git clone、npm install 和 cmake 时运行速度最高可提高 2-5 倍。</p>
+<p><img src="https://ooo.0x0.ooo/2024/06/03/OJEQ6U.jpg" alt="OJEQ6U.jpg" loading="lazy"></p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>Windows 主要就是扩展问题，加扩展简单的简单（提供 dll 的直接下载），难的非常难（需要 VS2022 编译）。另外如果在 Windows 开发 CGI 应用需要依赖一个额外的 web 服务器，比如 IIS、EasyWebSvr。如果只开发 cli 程序或者使用内置 Server 那其实比 *nix 要简单很多的，官网下载即用。</p>
+<p>另外一个重要的问题就是很多框架、组件、扩展虽然写明支持各种 PHP 版本，但是它可能没有在 Win32 上面的 PHP 测试过，甚至根本没有提供兼容 API。可能存在路径问题（比如典型的根目录问题和反斜杠问题）。这些可能不是 PHP 本身的问题，是大家都倾向 *nix 生态而设计导致的。毕竟 PHP 是一个更适合服务端运行的语言，特意去考虑在 Windows 上运行的人并不多。</p>
+<p>如果一定要在 Windows 上 Win32 PHP 下开发 CLI、Web 程序，我觉得最好的方式就是直接使用兼容 Win32 环境的框架。除此之外，如果你开发的代码最终只会在 Linux 运行，也许 remote 开发或者虚拟机是更好的方案（WSL 在实际使用过程中有不少坑，短时间可能发现不了）。</p>
+<h2 id="PHPStudy"><a href="#PHPStudy" class="headerlink" title="PHPStudy"></a>PHPStudy</h2><p>初学时市面上还有 WAMP&#x2F;XAMPP 等等集成环境，现在好像就 PHPStudy 依然坚挺</p>
+<p>但是打开后的界面和当年比还是变化挺大的</p>
+<p><img src="https://ooo.0x0.ooo/2024/06/03/OJE0bY.jpg" alt="OJE0bY.jpg" loading="lazy"></p>
+<p>由于 Laravel 10.x 要求至少使用 PHP 版本 8.1，所以我们选择应用商店里最高的版本 8.2.9</p>
+<h3 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h3><h4 id="PATH"><a href="#PATH" class="headerlink" title="PATH"></a>PATH</h4><p>Windows 环境很不同的一点就是可视化配置环境变量</p>
+<blockquote>
+<p>记得以前 Win7 修改 PATH 全在一个输入框里，所有路径都丢进去，中间用分号分隔</p>
+</blockquote>
+<p>Win11 分开展示 PATH 还是可读性高太多了</p>
+<p><img src="https://ooo.0x0.ooo/2024/06/03/OJEYAr.jpg" alt="OJEYAr.jpg" loading="lazy"></p>
+<h4 id="track-errors"><a href="#track-errors" class="headerlink" title="track_errors"></a>track_errors</h4><p>使用 <code>php -v</code> 命令测试，报错</p>
+<pre class="line-numbers language-php" data-language="php"><code class="language-php">Deprecated<span class="token punctuation">:</span> Directive <span class="token string single-quoted-string">'track_errors'</span> is deprecated in Unknown on line <span class="token number">0</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>原因是 <code>track_errors</code> 从 PHP 7.2 开始已被弃用，去配置文件停用</p>
+<pre class="line-numbers language-ini" data-language="ini"><code class="language-ini"><span class="token key attr-name">track_errors</span><span class="token punctuation">=</span><span class="token value attr-value">Off</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<h4 id="扩展"><a href="#扩展" class="headerlink" title="扩展"></a>扩展</h4><p>与其他环境不同的是，下载好后它并没有设置扩展文件，需要去配置文件里添加</p>
+<pre class="line-numbers language-ini" data-language="ini"><code class="language-ini"><span class="token key attr-name">extension_dir</span><span class="token punctuation">=</span><span class="token value attr-value">D:/phpstudy_pro/Extensions/php/php8.2.9nts/ext</span>
+<span class="token key attr-name">extension</span><span class="token punctuation">=</span><span class="token value attr-value">php_mbstring</span>
+<span class="token key attr-name">extension</span><span class="token punctuation">=</span><span class="token value attr-value">php_pdo_mysql</span>
+<span class="token key attr-name">extension</span><span class="token punctuation">=</span><span class="token value attr-value">php_fileinfo</span>
+<span class="token key attr-name">extension</span><span class="token punctuation">=</span><span class="token value attr-value">php_curl</span>
+<span class="token key attr-name">extension</span><span class="token punctuation">=</span><span class="token value attr-value">php_zip</span>
+<span class="token key attr-name">extension</span><span class="token punctuation">=</span><span class="token value attr-value">php_openssl.dll</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>如果在 PHPStudy 里勾选，不会添加 <code>extension_dir</code></p>
+<h3 id="运行-Laravel"><a href="#运行-Laravel" class="headerlink" title="运行 Laravel"></a>运行 Laravel</h3><p>继续在 PHPStudy 里下载好 MySQL 8.0.12，服务器用自带的 Nginx 1.15.11</p>
+<blockquote>
+<p>MySQL 设置引擎为 InnoDB</p>
+</blockquote>
+<p>下载 Composer，更新到最新版本，并设置好镜像</p>
+<blockquote>
+<p>Laravel 要求 Composer 2.2.0 或更高版本</p>
+</blockquote>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">composer</span> self-update
+<span class="token function">composer</span> config -g repo.packagist <span class="token function">composer</span> https://mirrors.aliyun.com/composer/<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<p>使用 <code>create-project</code> 命令创建测试项目</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">composer</span> create-project laravel/laravel lla-test<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>报错</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">Updating dependencies
+Your requirements could not be resolved to an installable <span class="token builtin class-name">set</span> of packages.
+ Problem <span class="token number">1</span>
+    - laravel/framework<span class="token punctuation">[</span>v11.0.0, <span class="token punctuation">..</span>., v11.8.0<span class="token punctuation">]</span> require fruitcake/php-cors ^1.3 -<span class="token operator">></span> found fruitcake/php-cors<span class="token punctuation">[</span>dev-feat-setOptions, dev-master, dev-main, dev-test-8.2, v0.1.0, v0.1.1, v0.1.2, v1.0-alpha1, <span class="token punctuation">..</span>., <span class="token number">1.2</span>.x-dev <span class="token punctuation">(</span>alias of dev-master<span class="token punctuation">)</span><span class="token punctuation">]</span> but it does not match the constraint.
+    - Root composer.json requires laravel/framework ^11.0 -<span class="token operator">></span> satisfiable by laravel/framework<span class="token punctuation">[</span>v11.0.0, <span class="token punctuation">..</span>., v11.8.0<span class="token punctuation">]</span>.<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>很怪，依赖管理是官方写好的，不可能指定个错版本吧，说明是镜像有问题，先停用</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">composer</span> config -g --unset repos.packagist<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>接下来就是随着命令一步步常规操作了</p>
+<ul>
+<li>复制 env 文件，配置 MySQL 参数</li>
+<li>创建随机 Key</li>
+<li>运行迁移 migrate</li>
+</ul>
+<h2 id="Laravel-11-API"><a href="#Laravel-11-API" class="headerlink" title="Laravel 11 API"></a>Laravel 11 API</h2><p>打开项目，发现 <code>/routes</code> 下没有 <code>api.php</code>，需要使用命令或者手动添加</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">php artisan install:api<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>会在 <code>bootstrap/app.php</code> 里添加 API 路由，这里可以设置所有 API 的前缀，默认 <code>/api</code></p>
+<pre class="line-numbers language-php" data-language="php"><div class="caption"><span>app.php</span></div><code class="language-php"><span class="token keyword">return</span> <span class="token class-name static-context">Application</span><span class="token operator">::</span><span class="token function">configure</span><span class="token punctuation">(</span>basePath<span class="token punctuation">:</span> <span class="token function">dirname</span><span class="token punctuation">(</span><span class="token constant">__DIR__</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token operator">-></span><span class="token function">withRouting</span><span class="token punctuation">(</span>
+        <span class="token argument-name">web</span><span class="token punctuation">:</span> <span class="token constant">__DIR__</span><span class="token operator">.</span><span class="token string single-quoted-string">'/../routes/web.php'</span><span class="token punctuation">,</span>
+        <span class="token argument-name">api</span><span class="token punctuation">:</span> <span class="token constant">__DIR__</span><span class="token operator">.</span><span class="token string single-quoted-string">'/../routes/api.php'</span><span class="token punctuation">,</span>
+        <span class="token argument-name">commands</span><span class="token punctuation">:</span> <span class="token constant">__DIR__</span><span class="token operator">.</span><span class="token string single-quoted-string">'/../routes/console.php'</span><span class="token punctuation">,</span>
+        <span class="token argument-name">health</span><span class="token punctuation">:</span> <span class="token string single-quoted-string">'/up'</span><span class="token punctuation">,</span>
+    <span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="Sanctum"><a href="#Sanctum" class="headerlink" title="Sanctum"></a>Sanctum</h3><p>Laravel Sanctum 提供了一个轻量级的认证系统，可用于 SPA（单页应用程序）、移动应用程序和基于简单令牌的 API</p>
+<p>Sanctum 允许的应用程序中的每个用户为他们的账户生成多个 API 令牌。这些令牌可以被授予权限 &#x2F; 范围，以指定令牌允许执行哪些操作。</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">composer</span> require laravel/sanctum
+php artisan vendor:publish --provider<span class="token operator">=</span><span class="token string">"Laravel\Sanctum\SanctumServiceProvider"</span>
+php artisan migrate<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<p>使用上述命令生成迁移文件并运行，就可以在现有模型上使用令牌了</p>
+<pre class="line-numbers language-php" data-language="php"><code class="language-php"><span class="token keyword">use</span> <span class="token package">Laravel<span class="token punctuation">\</span>Sanctum<span class="token punctuation">\</span>HasApiTokens</span><span class="token punctuation">;</span>
+
+<span class="token keyword">class</span> <span class="token class-name-definition class-name">Admin</span> <span class="token keyword">extends</span> <span class="token class-name">Model</span>
+<span class="token punctuation">&#123;</span>
+    <span class="token keyword">use</span> <span class="token package">HasFactory</span><span class="token punctuation">,</span> HasApiTokens<span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>在用户登录后发送 token 给前端</p>
+<pre class="line-numbers language-php" data-language="php"><code class="language-php"><span class="token variable">$admin</span> <span class="token operator">=</span> <span class="token class-name static-context">Admin</span><span class="token operator">::</span><span class="token function">query</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token operator">-></span><span class="token function">where</span><span class="token punctuation">(</span><span class="token string single-quoted-string">'account'</span><span class="token punctuation">,</span> <span class="token variable">$request</span><span class="token operator">-></span><span class="token function">get</span><span class="token punctuation">(</span><span class="token string single-quoted-string">'account'</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token operator">-></span><span class="token function">first</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token variable">$admin</span><span class="token operator">-></span><span class="token function">doesntExist</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">return</span> <span class="token variable">$this</span><span class="token operator">-></span><span class="token function">fail</span><span class="token punctuation">(</span><span class="token number">402</span><span class="token punctuation">,</span> <span class="token string single-quoted-string">'用户不存在'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+<span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span><span class="token function">password_verify</span><span class="token punctuation">(</span><span class="token variable">$request</span><span class="token operator">-></span><span class="token function">get</span><span class="token punctuation">(</span><span class="token string single-quoted-string">'password'</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token variable">$admin</span><span class="token operator">-></span><span class="token property">password</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">return</span> <span class="token variable">$this</span><span class="token operator">-></span><span class="token function">success</span><span class="token punctuation">(</span><span class="token number">403</span><span class="token punctuation">,</span> <span class="token string single-quoted-string">'密码错误'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+<span class="token variable">$token</span> <span class="token operator">=</span> <span class="token variable">$admin</span><span class="token operator">-></span><span class="token function">createToken</span><span class="token punctuation">(</span><span class="token string single-quoted-string">'linglan'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">return</span> <span class="token variable">$this</span><span class="token operator">-></span><span class="token function">success</span><span class="token punctuation">(</span><span class="token number">200</span><span class="token punctuation">,</span> <span class="token punctuation">[</span>
+    <span class="token string single-quoted-string">'token'</span> <span class="token operator">=></span> <span class="token variable">$token</span><span class="token operator">-></span><span class="token property">plainTextToken</span><span class="token punctuation">,</span>
+<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<blockquote>
+<p>variables_order&#x3D;GPCS</p>
+</blockquote>
+</div></section><ul class="post-copyright"><li class="post-copyright-author"><strong>本文作者：</strong>李罗奥</li><li class="post-copyright-link"><strong>本文链接：</strong><a href="https://liluoao.github.io/posts/windows-laravel-enviroment.html" title="Windows环境与Laravel11">https://liluoao.github.io/posts/windows-laravel-enviroment.html</a></li><li class="post-copyright-license"><strong>版权声明：</strong>本博客所有文章除特别声明外，均默认采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank" rel="noopener" title="CC BY-NC-SA 4.0 "><span class="icon iconify" data-icon="ri:creative-commons-line"></span><span class="icon iconify" data-icon="ri:creative-commons-by-line"></span><span class="icon iconify" data-icon="ri:creative-commons-nc-line"></span><span class="icon iconify" data-icon="ri:creative-commons-sa-line"></span></a> 许可协议。</li></ul></article><div class="post-nav"><div class="post-nav-item"></div><div class="post-nav-item"><a class="post-nav-next" href="/posts/uni-app.html" rel="next" title="uni-app的区别"><span class="post-nav-text">uni-app的区别</span><span class="icon iconify" data-icon="ri:arrow-right-s-line"></span></a></div></div></div></main><footer class="sidebar-translate" id="footer"><div class="copyright"><span>&copy; 2018 – 2024 </span><span class="with-love" id="animate"><span class="icon iconify" data-icon="ri:heart-line"></span></span><span class="author"> 李罗奥</span></div><div class="powered"><span>由 <a href="https://hexo.io" target="_blank" rel="noopener">Hexo</a> 驱动 v6.2.0</span><span class="footer-separator">|</span><span>主题 - <a rel="noopener" href="https://github.com/YunYouJun/hexo-theme-yun" target="_blank"><span>Yun</span></a> v1.10.6</span></div></footer></div><a class="hty-icon-button" id="back-to-top" aria-label="back-to-top" href="#"><span class="icon iconify" data-icon="ri:arrow-up-s-line"></span><svg class="progress-circle-container" viewBox="0 0 100 100"><circle class="progress-circle" id="progressCircle" cx="50" cy="50" r="48" fill="none" stroke="#0078E7" stroke-width="2" stroke-linecap="round"></circle></svg></a><script>function initMourn() {
+  const date = new Date();
+  const today = (date.getMonth() + 1) + "-" + date.getDate()
+  const mourn_days = ["4-4","9-18","5-12"]
+  if (mourn_days.includes(today)) {
+    document.documentElement.style.filter = "grayscale(1)";
+  }
+}
+initMourn();</script></body></html>
