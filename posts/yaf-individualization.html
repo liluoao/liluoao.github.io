@@ -1,222 +1,86 @@
-<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="theme-color" content="#0078E7"><meta name="author" content="李罗奥"><meta name="copyright" content="李罗奥"><meta name="generator" content="Hexo 6.3.0"><meta name="theme" content="hexo-theme-yun"><title>Yaf结构自定义 | 大梦成空</title><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@900&amp;display=swap" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://fastly.jsdelivr.net/npm/star-markdown-css@0.4.1/dist/yun/yun-markdown.min.css"><link rel="stylesheet" href="https://fastly.jsdelivr.net/npm/prism-theme-vars/base.css"><script src="https://fastly.jsdelivr.net/npm/scrollreveal/dist/scrollreveal.min.js" defer></script><script>function initScrollReveal() {
-  [".post-card",".markdown-body img"].forEach((target)=> {
-    ScrollReveal().reveal(target);
-  })
+.post-block {
+  color: var(--hty-text-color);
+  margin: 0 1rem;
+  padding: 1rem;
+  background-color: var(--post-block-bg-color);
+mobile()
 }
-document.addEventListener("DOMContentLoaded", initScrollReveal);
-document.addEventListener("pjax:success", initScrollReveal);
-</script><link rel="icon" type="image/png" href="/favicon.ico"><link rel="mask-icon" href="/favicon.ico" color="#0078E7"><link rel="preload" href="/css/hexo-theme-yun.css" as="style"><link rel="prefetch" href="/js/sidebar.js" as="script"><link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin><link rel="preconnect" href="https://fastly.jsdelivr.net/npm/" crossorigin><script id="yun-config">
-    window.Yun = {}
-    window.CONFIG = {"hostname":"liluoao.github.io","root":"/","title":"大梦成空","version":"1.10.11","mode":"auto","copycode":true,"page":{"isPost":true},"i18n":{"placeholder":"搜索...","empty":"找不到您查询的内容: ${query}","hits":"找到 ${hits} 条结果","hits_time":"找到 ${hits} 条结果（用时 ${time} 毫秒）"},"anonymous_image":"https://cdn.yunyoujun.cn/img/avatar/none.jpg","say":{"api":"https://v1.hitokoto.cn","hitokoto":true},"fireworks":{"colors":null},"vendors":{"host":"https://fastly.jsdelivr.net/npm/","darken":"https://fastly.jsdelivr.net/npm/darken@1.5.0"}};
-  </script><link rel="stylesheet" href="/css/hexo-theme-yun.css"><script src="/js/hexo-theme-yun.js" type="module"></script><meta name="description" content="Yaf 介绍 用 C 语言开发的 PHP 框架，相比原生的 PHP 几乎不会带来额外的性能开销 所有的框架类不需要编译，在 PHP 启动的时候加载并常驻内存 更短的内存周转周期，提高内存利用率，降低内存占用率 灵巧的自动加载。支持全局和同部两种加载规则，方便类库共享 高性能的视图引擎 高度灵活可扩展的框架，支持自定义视图引擎、插件、自定义路由等等 内建多种路由，可以兼容目前常见的各种路由协议 强大">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Yaf结构自定义">
-<meta property="og:url" content="https://liluoao.github.io/posts/yaf-individualization.html">
-<meta property="og:site_name" content="大梦成空">
-<meta property="og:description" content="Yaf 介绍 用 C 语言开发的 PHP 框架，相比原生的 PHP 几乎不会带来额外的性能开销 所有的框架类不需要编译，在 PHP 启动的时候加载并常驻内存 更短的内存周转周期，提高内存利用率，降低内存占用率 灵巧的自动加载。支持全局和同部两种加载规则，方便类库共享 高性能的视图引擎 高度灵活可扩展的框架，支持自定义视图引擎、插件、自定义路由等等 内建多种路由，可以兼容目前常见的各种路由协议 强大">
-<meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://i.imgtg.com/2022/08/09/ADmYx.png">
-<meta property="article:published_time" content="2019-09-21T06:14:44.000Z">
-<meta property="article:modified_time" content="2024-09-02T09:34:45.635Z">
-<meta property="article:author" content="李罗奥">
-<meta property="article:tag" content="yaf">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://i.imgtg.com/2022/08/09/ADmYx.png"><script>(function() {
-  if (CONFIG.mode !== 'auto') return
-  const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
-  const setting = localStorage.getItem('darken-mode') || 'auto'
-  if (setting === 'dark' || (prefersDark && setting !== 'light'))
-    document.documentElement.classList.toggle('dark', true)
-})()</script></head><body><script src="https://code.iconify.design/2/2.1.1/iconify.min.js"></script><script>// Define global variable
-IconifyProviders = {
-  // Empty prefix: overwrite default API provider configuration
-  '': {
-    // Use custom API first, use Iconify public API as backup
-    resources: [
-        'https://api.iconify.design',
-    ],
-    // Wait for 1 second before switching API hosts
-    rotate: 1000,
-  },
-};</script><script defer src="https://fastly.jsdelivr.net/npm/animejs@latest"></script><script defer src="/js/ui/fireworks.js" type="module"></script><canvas class="fireworks"></canvas><canvas id="trianglifyContainer"></canvas><script defer src="https://fastly.jsdelivr.net/npm/trianglify@4/dist/trianglify.bundle.js"></script><script>document.addEventListener("DOMContentLoaded", () => {
-  const pattern = trianglify({
-    width: 1980,
-    height: 1600,
-    cellSize: 75,
-    palette: ["YlGnBu", "GnBu", "Purples", "Blues"],
-  });
-  const canvasOpts = {
-    applyCssScaling: false
-  }
-  document.body.appendChild(pattern.toCanvas(trianglifyContainer, canvasOpts));
-});</script><div class="container"><a class="sidebar-toggle hty-icon-button" id="menu-btn"><div class="hamburger hamburger--spin" type="button"><span class="hamburger-box"><span class="hamburger-inner"></span></span></div></a><div class="sidebar-toggle sidebar-overlay"></div><aside class="sidebar"><script src="/js/sidebar.js" type="module"></script><ul class="sidebar-nav"><li class="sidebar-nav-item sidebar-nav-toc hty-icon-button sidebar-nav-active" data-target="post-toc-wrap" title="文章目录"><span class="icon iconify" data-icon="ri:list-ordered"></span></li><li class="sidebar-nav-item sidebar-nav-overview hty-icon-button" data-target="site-overview-wrap" title="站点概览"><span class="icon iconify" data-icon="ri:passport-line"></span></li></ul><div class="sidebar-panel" id="site-overview-wrap"><div class="site-info fix-top"><a class="site-author-avatar" href="/about/" title="李罗奥"><img width="96" loading="lazy" src="https://i.imgtg.com/2022/08/09/AR3SY.jpg" alt="李罗奥"></a><div class="site-author-name"><a href="/about/">李罗奥</a></div><a class="site-name" href="/about/site.html">大梦成空</a><sub class="site-subtitle">To be a Web Artisan</sub><div class="site-description">李罗奥的博客</div></div><nav class="site-state"><a class="site-state-item hty-icon-button icon-home" href="/" title="首页"><span class="site-state-item-icon"><span class="icon iconify" data-icon="ri:home-4-line"></span></span></a><div class="site-state-item"><a href="/archives/" title="归档"><span class="site-state-item-icon"><span class="icon iconify" data-icon="ri:archive-line"></span></span><span class="site-state-item-count">51</span></a></div><div class="site-state-item"><a href="/categories/" title="分类"><span class="site-state-item-icon"><span class="icon iconify" data-icon="ri:folder-2-line"></span></span><span class="site-state-item-count">8</span></a></div><div class="site-state-item"><a href="/tags/" title="标签"><span class="site-state-item-icon"><span class="icon iconify" data-icon="ri:price-tag-3-line"></span></span><span class="site-state-item-count">10</span></a></div><a class="site-state-item hty-icon-button" target="_blank" rel="noopener" href="https://yun.yunyoujun.cn" title="文档"><span class="site-state-item-icon"><span class="icon iconify" data-icon="ri:settings-line"></span></span></a></nav><hr style="margin-bottom:0.5rem"><div class="links-of-author"><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://github.com/liluoao" title="GitHub" target="_blank" style="color:#6e5494"><span class="icon iconify" data-icon="ri:github-line"></span></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="mailto:liluoao@qq.com" title="E-Mail" target="_blank" style="color:#8E71C1"><span class="icon iconify" data-icon="ri:mail-line"></span></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://space.bilibili.com/19377772" title="哔哩哔哩" target="_blank" style="color:#FF8EB3"><span class="icon iconify" data-icon="ri:bilibili-line"></span></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://music.163.com/#/user/home?id=121449072" title="网易云音乐" target="_blank" style="color:#C20C0C"><span class="icon iconify" data-icon="ri:netease-cloud-music-line"></span></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://www.zhihu.com/people/li-luo-ao/" title="知乎" target="_blank" style="color:#0084FF"><span class="icon iconify" data-icon="ri:zhihu-line"></span></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://twitter.com/easonlee82" title="Twitter" target="_blank" style="color:#1da1f2"><span class="icon iconify" data-icon="ri:twitter-line"></span></a></div><br><a class="links-item hty-icon-button" id="toggle-mode-btn" href="javascript:;" title="Mode" style="color: #f1cb64"><span class="icon iconify" data-icon="ri:contrast-2-line"></span></a></div><div class="sidebar-panel sidebar-panel-active" id="post-toc-wrap"><div class="post-toc"><div class="post-toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Yaf-%E4%BB%8B%E7%BB%8D"><span class="toc-number">1.</span> <span class="toc-text">Yaf 介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%89%A7%E8%A1%8C%E6%B5%81%E7%A8%8B"><span class="toc-number">2.</span> <span class="toc-text">执行流程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E7%8E%B0Laravel%E7%BB%93%E6%9E%84"><span class="toc-number">3.</span> <span class="toc-text">实现Laravel结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%90%AF%E5%8A%A8%E6%96%87%E4%BB%B6"><span class="toc-number">4.</span> <span class="toc-text">启动文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95"><span class="toc-number">5.</span> <span class="toc-text">单元测试</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%91%BD%E4%BB%A4%E8%A1%8C%E8%84%9A%E6%9C%AC"><span class="toc-number">6.</span> <span class="toc-text">命令行脚本</span></a></li></ol></div></div></div></aside><main class="sidebar-translate" id="content"><div id="post"><article class="hty-card post-block" itemscope itemtype="https://schema.org/Article" style="--smc-primary:#0078E7;"><link itemprop="mainEntityOfPage" href="https://liluoao.github.io/posts/yaf-individualization.html"><span hidden itemprop="author" itemscope itemtype="https://schema.org/Person"><meta itemprop="name" content="李罗奥"><meta itemprop="description"></span><span hidden itemprop="publisher" itemscope itemtype="https://schema.org/Organization"><meta itemprop="name" content="大梦成空"></span><header class="post-header"><h1 class="post-title" itemprop="name headline">Yaf结构自定义<a class="post-edit-link" href="https://github.com/liluoao/blog-source/tree/master/source/_posts/Yaf结构自定义.md" target="_blank" title="编辑" rel="noopener"><span class="icon iconify" data-icon="ri:edit-line"></span></a></h1><div class="post-meta"><div class="post-time"><span class="post-meta-item-icon"><span class="icon iconify" data-icon="ri:calendar-line"></span></span> <time title="创建时间：2019-09-21 14:14:44" itemprop="dateCreated datePublished" datetime="2019-09-21T14:14:44+08:00">2019-09-21</time></div><div class="post-classify"><span class="post-category"> <span class="post-meta-item-icon" style="margin-right:3px;"><span class="icon iconify" data-icon="ri:folder-line"></span></span><span itemprop="about" itemscope itemtype="https://schema.org/Thing"><a class="category-item" href="/categories/php-framework/" style="--text-color:#8892BF" itemprop="url" rel="index"><span itemprop="text">PHP框架</span></a></span></span></div></div></header><section class="post-body" itemprop="articleBody"><div class="post-content markdown-body"><h2 id="Yaf-介绍"><a href="#Yaf-介绍" class="headerlink" title="Yaf 介绍"></a>Yaf 介绍</h2><ol>
-<li>用 C 语言开发的 PHP 框架，相比原生的 PHP 几乎不会带来额外的性能开销</li>
-<li>所有的框架类不需要编译，在 PHP 启动的时候加载并常驻内存</li>
-<li>更短的内存周转周期，提高内存利用率，降低内存占用率</li>
-<li>灵巧的自动加载。支持全局和同部两种加载规则，方便类库共享</li>
-<li>高性能的视图引擎</li>
-<li>高度灵活可扩展的框架，支持自定义视图引擎、插件、自定义路由等等</li>
-<li>内建多种路由，可以兼容目前常见的各种路由协议</li>
-<li>强大而又高度灵活的配置文件支持，并支持缓存配置文件，避免复杂的配置结构带来的性能损失</li>
-<li>在框架本身，对危险的操作习惯做了禁止</li>
-<li>更快的执行速度，更少的内存占用</li>
-</ol>
-<span id="more"></span>
-
-<p>由于 Yaf 只提供一个 MVC 的基本骨架，所以我们有很大的开发自由度，可以实现一个自己最习惯的项目</p>
-<h2 id="执行流程"><a href="#执行流程" class="headerlink" title="执行流程"></a>执行流程</h2><p><img src="https://i.imgtg.com/2022/08/09/ADmYx.png" alt="Yaf生命流程" loading="lazy"></p>
-<h2 id="实现Laravel结构"><a href="#实现Laravel结构" class="headerlink" title="实现Laravel结构"></a>实现Laravel结构</h2><p>可以通过修改配置来变更代码结构，例如在入口修改配置文件夹</p>
-<pre class="line-numbers language-php" data-language="php"><div class="caption"><span>public/index.php</span></div><code class="language-php"><span class="token function">define</span><span class="token punctuation">(</span><span class="token string single-quoted-string">'APP_ROOT'</span><span class="token punctuation">,</span> <span class="token function">dirname</span><span class="token punctuation">(</span><span class="token constant">__DIR__</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-<span class="token variable">$app</span> <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name class-name-fully-qualified">Yaf<span class="token punctuation">\</span>Application</span><span class="token punctuation">(</span><span class="token constant">APP_ROOT</span><span class="token operator">.</span><span class="token string single-quoted-string">'/config/application.ini'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token keyword">try</span> <span class="token punctuation">&#123;</span>
-    <span class="token variable">$app</span><span class="token operator">-></span><span class="token function">bootstrap</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">-></span><span class="token function">run</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name class-name-fully-qualified">Yaf<span class="token punctuation">\</span>Exception<span class="token punctuation">\</span>LoadFailed<span class="token punctuation">\</span>Action</span> <span class="token variable">$e</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-    <span class="token keyword">echo</span> <span class="token string single-quoted-string">'方法输入错误'</span><span class="token punctuation">;</span>
-    <span class="token keyword">exit</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name class-name-fully-qualified">Yaf<span class="token punctuation">\</span>Exception<span class="token punctuation">\</span>LoadFailed<span class="token punctuation">\</span>Controller</span> <span class="token variable">$e</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-    <span class="token keyword">echo</span> <span class="token string single-quoted-string">'控制器输入错误'</span><span class="token punctuation">;</span>
-    <span class="token keyword">exit</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<p>修改应用目录和启动文件位置</p>
-<pre class="line-numbers language-ini" data-language="ini"><div class="caption"><span>application.ini</span></div><code class="language-ini"><span class="token key attr-name">application.directory</span> <span class="token punctuation">=</span> <span class="token value attr-value">APP_ROOT "/app/"</span>
-<span class="token key attr-name">application.bootstrap</span> <span class="token punctuation">=</span> <span class="token value attr-value">APP_ROOT "/bootstrap/app.php"</span>
-<span class="token key attr-name">application.library</span> <span class="token punctuation">=</span> <span class="token value attr-value">APP_ROOT "/app/Library"</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-
-<p>这样就有了基础的结构，你可以加入 <code>Laravel Mix</code> 支持前端，或者是引入 <code>Symfony 命令行</code></p>
-<pre class="line-numbers language-php" data-language="php"><code class="language-php"><span class="token keyword">use</span> <span class="token package">Symfony<span class="token punctuation">\</span>Component<span class="token punctuation">\</span>Console<span class="token punctuation">\</span>Application</span><span class="token punctuation">;</span>
-<span class="token variable">$application</span> <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Application</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token comment">// ... register commands</span>
-<span class="token variable">$application</span><span class="token operator">-></span><span class="token function">run</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
-
-<h2 id="启动文件"><a href="#启动文件" class="headerlink" title="启动文件"></a>启动文件</h2><p>启动文件经常实现的方法有几个，例如</p>
-<pre class="line-numbers language-php" data-language="php"><code class="language-php"><span class="token comment">/**
- * composer autoload.
- */</span>
-<span class="token keyword">public</span> <span class="token keyword">function</span> <span class="token function-definition function">_initAutoload</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-<span class="token punctuation">&#123;</span>
-    <span class="token variable">$autoload</span> <span class="token operator">=</span> <span class="token constant">APP_ROOT</span> <span class="token operator">.</span> <span class="token string single-quoted-string">'/vendor/autoload.php'</span><span class="token punctuation">;</span>
-    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">file_exists</span><span class="token punctuation">(</span><span class="token variable">$autoload</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-        <span class="token class-name class-name-fully-qualified static-context">Yaf<span class="token punctuation">\</span>Loader</span><span class="token operator">::</span><span class="token function">import</span><span class="token punctuation">(</span><span class="token variable">$autoload</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">&#125;</span>
-<span class="token punctuation">&#125;</span>
-
-<span class="token comment">/**
- * disable view.
- *
- * @param Yaf\Dispatcher $dispatcher
- */</span>
-<span class="token keyword">public</span> <span class="token keyword">function</span> <span class="token function-definition function">_initView</span><span class="token punctuation">(</span><span class="token class-name type-declaration">Dispatcher</span> <span class="token variable">$dispatcher</span><span class="token punctuation">)</span>
-<span class="token punctuation">&#123;</span>
-    <span class="token variable">$dispatcher</span><span class="token operator">-></span><span class="token function">disableView</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<p>你可以选择把很多验证放在这里，如白名单、参数处理、路由重新分发等。我选择在这里把常量放入 Registry</p>
-<pre class="line-numbers language-php" data-language="php"><code class="language-php"><span class="token keyword">public</span> <span class="token keyword">function</span> <span class="token function-definition function">_initConfig</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-<span class="token punctuation">&#123;</span>
-    <span class="token variable">$const</span> <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name class-name-fully-qualified"><span class="token punctuation">\</span>Yaf<span class="token punctuation">\</span>Config<span class="token punctuation">\</span>Ini</span><span class="token punctuation">(</span><span class="token constant">APP_ROOT</span> <span class="token operator">.</span> <span class="token string single-quoted-string">'/config/const.ini'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token class-name class-name-fully-qualified static-context">Yaf<span class="token punctuation">\</span>Registry</span><span class="token operator">::</span><span class="token function">set</span><span class="token punctuation">(</span><span class="token string single-quoted-string">'const_config'</span><span class="token punctuation">,</span> <span class="token variable">$const</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<p>在项目中使用常量时可以直接获取</p>
-<pre class="line-numbers language-php" data-language="php"><code class="language-php"><span class="token variable">$foo</span> <span class="token operator">=</span> <span class="token class-name class-name-fully-qualified static-context">Yaf<span class="token punctuation">\</span>Registry</span><span class="token operator">::</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token string single-quoted-string">'const_config'</span><span class="token punctuation">)</span><span class="token operator">-></span><span class="token property">bar</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<h2 id="单元测试"><a href="#单元测试" class="headerlink" title="单元测试"></a>单元测试</h2><p>由于 Yaf 只能同时存在一个应用，所以我们需要一个基类实现单例</p>
-<p>如果是测试接口的返回值，需要测试用例，可以使用 Simple 请求</p>
-<pre class="line-numbers language-php" data-language="php"><code class="language-php"><span class="token keyword">public</span> <span class="token keyword">function</span> <span class="token function-definition function">testQueryMobile</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-<span class="token punctuation">&#123;</span>
-    <span class="token function">ob_start</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-    <span class="token variable">$request</span> <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name class-name-fully-qualified">Yaf<span class="token punctuation">\</span>Request<span class="token punctuation">\</span>Simple</span><span class="token punctuation">(</span><span class="token string single-quoted-string">'CLI'</span><span class="token punctuation">,</span> <span class="token string single-quoted-string">'index'</span><span class="token punctuation">,</span> <span class="token string single-quoted-string">'querymobile'</span><span class="token punctuation">,</span> <span class="token string single-quoted-string">'exec'</span><span class="token punctuation">,</span> <span class="token punctuation">[</span>
-        <span class="token string single-quoted-string">'ascode'</span> <span class="token operator">=></span> <span class="token string single-quoted-string">'xxxxx'</span><span class="token punctuation">,</span>
-        <span class="token comment">//...</span>
-    <span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword static-context">self</span><span class="token operator">::</span><span class="token function">getInstance</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">-></span><span class="token function">getDispatch</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">-></span><span class="token function">dispatch</span><span class="token punctuation">(</span><span class="token variable">$request</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-    <span class="token variable">$result</span> <span class="token operator">=</span> <span class="token function">ob_get_contents</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token function">ob_end_clean</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token variable">$this</span><span class="token operator">-></span><span class="token function">assertEquals</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token variable">$result</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<p>如果是单元测试，直接常规操作就行了</p>
-<pre class="line-numbers language-php" data-language="php"><code class="language-php"><span class="token keyword">const</span> <span class="token constant">TEST_MOBILE</span> <span class="token operator">=</span> <span class="token string single-quoted-string">'156XXXXXXXX'</span><span class="token punctuation">;</span>
-
-<span class="token keyword">public</span> <span class="token keyword">function</span> <span class="token function-definition function">testInsertMobile</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-<span class="token punctuation">&#123;</span>
-    <span class="token variable">$model</span> <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name class-name-fully-qualified"><span class="token punctuation">\</span>MobileModel</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token variable">$result</span> <span class="token operator">=</span> <span class="token variable">$model</span><span class="token operator">-></span><span class="token function">insertMobile</span><span class="token punctuation">(</span><span class="token keyword static-context">self</span><span class="token operator">::</span><span class="token constant">TEST_MOBILE</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token variable">$this</span><span class="token operator">-></span><span class="token function">assertArrayHasKey</span><span class="token punctuation">(</span><span class="token string single-quoted-string">'mobile'</span><span class="token punctuation">,</span> <span class="token variable">$result</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<h2 id="命令行脚本"><a href="#命令行脚本" class="headerlink" title="命令行脚本"></a>命令行脚本</h2><p>如果想自己实现命令行脚本，可以使用控制器的抽象方法实现</p>
-<p>先创建一个脚本统一入口 <code>yaf</code></p>
-<pre class="line-numbers language-php" data-language="php"><div class="caption"><span>yaf</span></div><code class="language-php">#!/usr/bin/env php
-<span class="token php language-php"><span class="token delimiter important">&lt;?php</span>
-
-<span class="token variable">$env</span> <span class="token operator">=</span> <span class="token function">get_cfg_var</span><span class="token punctuation">(</span><span class="token string single-quoted-string">'env'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-<span class="token function">define</span><span class="token punctuation">(</span><span class="token string single-quoted-string">'APPLICATION_ENV'</span><span class="token punctuation">,</span> <span class="token variable">$env</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-<span class="token function">define</span><span class="token punctuation">(</span><span class="token string single-quoted-string">'APP_ROOT'</span><span class="token punctuation">,</span> <span class="token function">dirname</span><span class="token punctuation">(</span><span class="token constant">__FILE__</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-<span class="token variable">$action</span> <span class="token operator">=</span> <span class="token variable">$argv</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">??</span> <span class="token string single-quoted-string">''</span><span class="token punctuation">;</span>
-<span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">empty</span><span class="token punctuation">(</span><span class="token variable">$action</span><span class="token punctuation">)</span> <span class="token operator">||</span> <span class="token operator">!</span><span class="token function">is_string</span><span class="token punctuation">(</span><span class="token variable">$action</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-    <span class="token keyword">echo</span> <span class="token string single-quoted-string">'请输入命令'</span> <span class="token operator">.</span> <span class="token constant">PHP_EOL</span><span class="token punctuation">;</span>
-    <span class="token keyword">exit</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span>
-
-<span class="token variable">$origin_params</span> <span class="token operator">=</span> <span class="token function">array_slice</span><span class="token punctuation">(</span><span class="token variable">$argv</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token variable">$params</span> <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
-
-<span class="token keyword">foreach</span> <span class="token punctuation">(</span><span class="token variable">$origin_params</span> <span class="token keyword">as</span> <span class="token variable">$origin_param</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-    <span class="token variable">$temp</span> <span class="token operator">=</span> <span class="token function">explode</span><span class="token punctuation">(</span><span class="token string single-quoted-string">'='</span><span class="token punctuation">,</span> <span class="token variable">$origin_param</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token variable">$params</span><span class="token punctuation">[</span><span class="token variable">$temp</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token variable">$temp</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span>
-
-<span class="token variable">$app</span> <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name class-name-fully-qualified">Yaf<span class="token punctuation">\</span>Application</span><span class="token punctuation">(</span><span class="token constant">APP_ROOT</span> <span class="token operator">.</span> <span class="token string single-quoted-string">'/config/application.ini'</span><span class="token punctuation">,</span> <span class="token constant">APPLICATION_ENV</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token variable">$app</span><span class="token operator">-></span><span class="token function">bootstrap</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-<span class="token keyword">try</span> <span class="token punctuation">&#123;</span>
-    <span class="token variable">$app</span><span class="token operator">-></span><span class="token function">getDispatcher</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">-></span><span class="token function">dispatch</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name class-name-fully-qualified">Yaf<span class="token punctuation">\</span>Request<span class="token punctuation">\</span>Simple</span><span class="token punctuation">(</span><span class="token string single-quoted-string">'CLI'</span><span class="token punctuation">,</span> <span class="token string single-quoted-string">'index'</span><span class="token punctuation">,</span> <span class="token string single-quoted-string">'console'</span><span class="token punctuation">,</span> <span class="token variable">$action</span><span class="token punctuation">,</span> <span class="token variable">$params</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name class-name-fully-qualified">Yaf<span class="token punctuation">\</span>Exception<span class="token punctuation">\</span>LoadFailed<span class="token punctuation">\</span>Action</span> <span class="token variable">$e</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-    <span class="token keyword">echo</span> <span class="token string single-quoted-string">'未识别的命令'</span> <span class="token operator">.</span> <span class="token constant">PHP_EOL</span><span class="token punctuation">;</span>
-    <span class="token keyword">exit</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<p>这样就能在命令行统一访问 console 控制器了</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">php yaf 脚本名<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<p>下一步就是创建 <code>ConsoleController</code></p>
-<pre class="line-numbers language-php" data-language="php"><code class="language-php"><span class="token keyword">class</span> <span class="token class-name-definition class-name">ConsoleController</span> <span class="token keyword">extends</span> <span class="token class-name">BaseController</span>
-<span class="token punctuation">&#123;</span>
-    <span class="token comment">/**
-     * 命令定义.
-     *
-     * @var array 虚拟方法名 映射命令文件
-     */</span>
-    <span class="token keyword">public</span> <span class="token variable">$actions</span> <span class="token operator">=</span> <span class="token punctuation">[</span>
-        <span class="token string single-quoted-string">'test'</span> <span class="token operator">=></span> <span class="token string single-quoted-string">'Consoles/Test.php'</span><span class="token punctuation">,</span>
-    <span class="token punctuation">]</span><span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<p>最后就是具体的脚本，统一放在 <code>app/Consoles</code> 下</p>
-<pre class="line-numbers language-php" data-language="php"><code class="language-php"><span class="token keyword">class</span> <span class="token class-name-definition class-name">TestAction</span> <span class="token keyword">extends</span> <span class="token class-name class-name-fully-qualified"><span class="token punctuation">\</span>Yaf<span class="token punctuation">\</span>Action_Abstract</span>
-<span class="token punctuation">&#123;</span>
-    <span class="token keyword">public</span> <span class="token keyword">function</span> <span class="token function-definition function">execute</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-    <span class="token punctuation">&#123;</span>
-        <span class="token variable">$controller</span> <span class="token operator">=</span> <span class="token variable">$this</span><span class="token operator">-></span><span class="token function">getController</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token comment">//...</span>
-    <span class="token punctuation">&#125;</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<p><code>execute()</code> 是控制器实际调用的方法</p>
-</div></section><ul class="post-copyright"><li class="post-copyright-author"><strong>本文作者：</strong>李罗奥</li><li class="post-copyright-link"><strong>本文链接：</strong><a href="https://liluoao.github.io/posts/yaf-individualization.html" title="Yaf结构自定义">https://liluoao.github.io/posts/yaf-individualization.html</a></li><li class="post-copyright-license"><strong>版权声明：</strong>本博客所有文章除特别声明外，均默认采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank" rel="noopener" title="CC BY-NC-SA 4.0 "><span class="icon iconify" data-icon="ri:creative-commons-line"></span><span class="icon iconify" data-icon="ri:creative-commons-by-line"></span><span class="icon iconify" data-icon="ri:creative-commons-nc-line"></span><span class="icon iconify" data-icon="ri:creative-commons-sa-line"></span></a> 许可协议。</li></ul></article><div class="post-nav"><div class="post-nav-item"><a class="post-nav-prev" href="/posts/php-structural-design-patterns-template-method.html" rel="prev" title="设计模式——TemplateMethod"><span class="icon iconify" data-icon="ri:arrow-left-s-line"></span><span class="post-nav-text">设计模式——TemplateMethod</span></a></div><div class="post-nav-item"><a class="post-nav-next" href="/posts/yii-codeception-and-laravel-phpunit.html" rel="next" title="Yii2单元测试"><span class="post-nav-text">Yii2单元测试</span><span class="icon iconify" data-icon="ri:arrow-right-s-line"></span></a></div></div></div></main><footer class="sidebar-translate" id="footer"><div class="copyright"><span>&copy; 2018 – 2024 </span><span class="with-love" id="animate"><span class="icon iconify" data-icon="ri:heart-line"></span></span><span class="author"> 李罗奥</span></div><div class="powered"><span>由 <a href="https://hexo.io" target="_blank" rel="noopener">Hexo</a> 驱动 v6.3.0</span><span class="footer-separator">|</span><span>主题 - <a rel="noopener" href="https://github.com/YunYouJun/hexo-theme-yun" target="_blank"><span>Yun</span></a> v1.10.11</span></div></footer></div><a class="hty-icon-button" id="back-to-top" aria-label="back-to-top" href="#"><span class="icon iconify" data-icon="ri:arrow-up-s-line"></span><svg class="progress-circle-container" viewBox="0 0 100 100"><circle class="progress-circle" id="progressCircle" cx="50" cy="50" r="48" fill="none" stroke="#0078E7" stroke-width="2" stroke-linecap="round"></circle></svg></a><script>function initMourn() {
-  const date = new Date();
-  const today = (date.getMonth() + 1) + "-" + date.getDate()
-  const mourn_days = ["4-4","9-18","5-12"]
-  if (mourn_days.includes(today)) {
-    document.documentElement.style.filter = "grayscale(1)";
-  }
+.post-body {
+  padding: 0 5rem;
+tablet()
+mobile()
 }
-initMourn();</script></body></html>
+.post-meta {
+  font-size: 14px;
+  color: var(--hty-secondary-text-color);
+}
+.post-meta .icon {
+  margin-bottom: -1px;
+}
+.post-description {
+  font-weight: normal;
+  padding: 0.5rem;
+}
+.post-author {
+  display: flex;
+  justify-content: center;
+}
+.post-author .author-avatar {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  line-height: 0;
+}
+.post-author .author-avatar img {
+  border-radius: 50%;
+  height: 1rem;
+  width: 1rem;
+  padding: 2px;
+  border: 2px solid #d3d3d3;
+}
+.post-author .author-name {
+  margin-left: 0.5rem;
+  font-size: 1rem;
+}
+.post-meta-item-icon {
+  display: inline-block;
+  color: var(--text-color, --hty-secondary-text-color);
+}
+.post-meta-divider {
+  height: 25px;
+  color: var(--hty-secondary-text-color);
+  margin: 0 0.5rem;
+}
+.post-eof {
+  margin: 50px auto;
+  width: 50%;
+  height: 1px;
+  background: $blue;
+  opacity: 0.1;
+}
+.post-copyright {
+  font-size: 0.9rem;
+  margin: 0.5rem 5rem 1rem 5rem;
+  padding: 0.5rem 1rem;
+  border-left: 4px solid #ff5252;
+  background-color: var(--hty-bg-color);
+  list-style: none;
+  word-break: break-all;
+  position: relative;
+  overflow: hidden;
+mobile()
+}
+.post-copyright::after {
+  position: absolute;
+  color: #fff;
+  background: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 496 512'%3E%3Cpath fill='gray' d='M245.8 214.9l-33.2 17.3c-9.4-19.6-25.2-20-27.4-20-22.2 0-33.3 14.6-33.3 43.9 0 23.5 9.2 43.8 33.3 43.8 14.4 0 24.6-7 30.5-21.3l30.6 15.5a73.2 73.2 0 01-65.1 39c-22.6 0-74-10.3-74-77 0-58.7 43-77 72.6-77 30.8-.1 52.7 11.9 66 35.8zm143 0l-32.7 17.3c-9.5-19.8-25.7-20-27.9-20-22.1 0-33.2 14.6-33.2 43.9 0 23.5 9.2 43.8 33.2 43.8 14.5 0 24.7-7 30.5-21.3l31 15.5c-2 3.8-21.3 39-65 39-22.7 0-74-9.9-74-77 0-58.7 43-77 72.6-77C354 179 376 191 389 214.8zM247.7 8C104.7 8 0 123 0 256c0 138.4 113.6 248 247.6 248C377.5 504 496 403 496 256 496 118 389.4 8 247.6 8zm.8 450.8c-112.5 0-203.7-93-203.7-202.8 0-105.5 85.5-203.3 203.8-203.3A201.7 201.7 0 01451.3 256c0 121.7-99.7 202.9-202.9 202.9z'/%3E%3C/svg%3E");
+  content: ' ';
+  height: 10rem;
+  width: 10rem;
+  right: -2rem;
+  top: -2rem;
+  opacity: 0.1;
+}
+.tag-name {
+  padding: 0 0.1rem;
+}

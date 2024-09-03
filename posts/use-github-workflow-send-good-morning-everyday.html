@@ -1,282 +1,86 @@
-<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="theme-color" content="#0078E7"><meta name="author" content="李罗奥"><meta name="copyright" content="李罗奥"><meta name="generator" content="Hexo 6.3.0"><meta name="theme" content="hexo-theme-yun"><title>利用Github-Actions自动推送 | 大梦成空</title><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@900&amp;display=swap" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://fastly.jsdelivr.net/npm/star-markdown-css@0.4.1/dist/yun/yun-markdown.min.css"><link rel="stylesheet" href="https://fastly.jsdelivr.net/npm/prism-theme-vars/base.css"><script src="https://fastly.jsdelivr.net/npm/scrollreveal/dist/scrollreveal.min.js" defer></script><script>function initScrollReveal() {
-  [".post-card",".markdown-body img"].forEach((target)=> {
-    ScrollReveal().reveal(target);
-  })
+.post-block {
+  color: var(--hty-text-color);
+  margin: 0 1rem;
+  padding: 1rem;
+  background-color: var(--post-block-bg-color);
+mobile()
 }
-document.addEventListener("DOMContentLoaded", initScrollReveal);
-document.addEventListener("pjax:success", initScrollReveal);
-</script><link rel="icon" type="image/png" href="/favicon.ico"><link rel="mask-icon" href="/favicon.ico" color="#0078E7"><link rel="preload" href="/css/hexo-theme-yun.css" as="style"><link rel="prefetch" href="/js/sidebar.js" as="script"><link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin><link rel="preconnect" href="https://fastly.jsdelivr.net/npm/" crossorigin><script id="yun-config">
-    window.Yun = {}
-    window.CONFIG = {"hostname":"liluoao.github.io","root":"/","title":"大梦成空","version":"1.10.11","mode":"auto","copycode":true,"page":{"isPost":true},"i18n":{"placeholder":"搜索...","empty":"找不到您查询的内容: ${query}","hits":"找到 ${hits} 条结果","hits_time":"找到 ${hits} 条结果（用时 ${time} 毫秒）"},"anonymous_image":"https://cdn.yunyoujun.cn/img/avatar/none.jpg","say":{"api":"https://v1.hitokoto.cn","hitokoto":true},"fireworks":{"colors":null},"vendors":{"host":"https://fastly.jsdelivr.net/npm/","darken":"https://fastly.jsdelivr.net/npm/darken@1.5.0"}};
-  </script><link rel="stylesheet" href="/css/hexo-theme-yun.css"><script src="/js/hexo-theme-yun.js" type="module"></script><meta name="description" content="工具介绍GitHub Actions 是一种持续集成和持续交付 (CI&#x2F;CD) 平台，可用于自动执行生成、测试和部署管道 您可以创建工作流程来构建和测试存储库的每个拉取请求，或将合并的拉取请求部署到生产环境 GitHub Actions 不仅仅是 DevOps，还允许您在存储库中发生其他事件时运行工作流程。 例如，您可以运行工作流程，以便在有人在您的存储库中创建新问题时自动添加相应的标签">
-<meta property="og:type" content="article">
-<meta property="og:title" content="利用Github-Actions自动推送">
-<meta property="og:url" content="https://liluoao.github.io/posts/use-github-workflow-send-good-morning-everyday.html">
-<meta property="og:site_name" content="大梦成空">
-<meta property="og:description" content="工具介绍GitHub Actions 是一种持续集成和持续交付 (CI&#x2F;CD) 平台，可用于自动执行生成、测试和部署管道 您可以创建工作流程来构建和测试存储库的每个拉取请求，或将合并的拉取请求部署到生产环境 GitHub Actions 不仅仅是 DevOps，还允许您在存储库中发生其他事件时运行工作流程。 例如，您可以运行工作流程，以便在有人在您的存储库中创建新问题时自动添加相应的标签">
-<meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://s21.ax1x.com/2024/05/26/pklytQe.jpg">
-<meta property="og:image" content="https://i.imgtg.com/2022/08/30/ZmN9s.png">
-<meta property="og:image" content="https://i.imgtg.com/2022/08/30/ZmrUK.png">
-<meta property="og:image" content="https://i.imgtg.com/2022/08/30/ZmKdS.png">
-<meta property="og:image" content="https://i.imgtg.com/2022/08/30/ZmgEL.png">
-<meta property="og:image" content="https://i.imgtg.com/2022/08/30/ZmJFX.jpg">
-<meta property="article:published_time" content="2022-08-30T04:02:32.000Z">
-<meta property="article:modified_time" content="2024-09-02T09:34:45.635Z">
-<meta property="article:author" content="李罗奥">
-<meta property="article:tag" content="李罗奥">
-<meta property="article:tag" content="Blog">
-<meta property="article:tag" content="博客">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://s21.ax1x.com/2024/05/26/pklytQe.jpg"><script>(function() {
-  if (CONFIG.mode !== 'auto') return
-  const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
-  const setting = localStorage.getItem('darken-mode') || 'auto'
-  if (setting === 'dark' || (prefersDark && setting !== 'light'))
-    document.documentElement.classList.toggle('dark', true)
-})()</script></head><body><script src="https://code.iconify.design/2/2.1.1/iconify.min.js"></script><script>// Define global variable
-IconifyProviders = {
-  // Empty prefix: overwrite default API provider configuration
-  '': {
-    // Use custom API first, use Iconify public API as backup
-    resources: [
-        'https://api.iconify.design',
-    ],
-    // Wait for 1 second before switching API hosts
-    rotate: 1000,
-  },
-};</script><script defer src="https://fastly.jsdelivr.net/npm/animejs@latest"></script><script defer src="/js/ui/fireworks.js" type="module"></script><canvas class="fireworks"></canvas><canvas id="trianglifyContainer"></canvas><script defer src="https://fastly.jsdelivr.net/npm/trianglify@4/dist/trianglify.bundle.js"></script><script>document.addEventListener("DOMContentLoaded", () => {
-  const pattern = trianglify({
-    width: 1980,
-    height: 1600,
-    cellSize: 75,
-    palette: ["YlGnBu", "GnBu", "Purples", "Blues"],
-  });
-  const canvasOpts = {
-    applyCssScaling: false
-  }
-  document.body.appendChild(pattern.toCanvas(trianglifyContainer, canvasOpts));
-});</script><div class="container"><a class="sidebar-toggle hty-icon-button" id="menu-btn"><div class="hamburger hamburger--spin" type="button"><span class="hamburger-box"><span class="hamburger-inner"></span></span></div></a><div class="sidebar-toggle sidebar-overlay"></div><aside class="sidebar"><script src="/js/sidebar.js" type="module"></script><ul class="sidebar-nav"><li class="sidebar-nav-item sidebar-nav-toc hty-icon-button sidebar-nav-active" data-target="post-toc-wrap" title="文章目录"><span class="icon iconify" data-icon="ri:list-ordered"></span></li><li class="sidebar-nav-item sidebar-nav-overview hty-icon-button" data-target="site-overview-wrap" title="站点概览"><span class="icon iconify" data-icon="ri:passport-line"></span></li></ul><div class="sidebar-panel" id="site-overview-wrap"><div class="site-info fix-top"><a class="site-author-avatar" href="/about/" title="李罗奥"><img width="96" loading="lazy" src="https://i.imgtg.com/2022/08/09/AR3SY.jpg" alt="李罗奥"></a><div class="site-author-name"><a href="/about/">李罗奥</a></div><a class="site-name" href="/about/site.html">大梦成空</a><sub class="site-subtitle">To be a Web Artisan</sub><div class="site-description">李罗奥的博客</div></div><nav class="site-state"><a class="site-state-item hty-icon-button icon-home" href="/" title="首页"><span class="site-state-item-icon"><span class="icon iconify" data-icon="ri:home-4-line"></span></span></a><div class="site-state-item"><a href="/archives/" title="归档"><span class="site-state-item-icon"><span class="icon iconify" data-icon="ri:archive-line"></span></span><span class="site-state-item-count">51</span></a></div><div class="site-state-item"><a href="/categories/" title="分类"><span class="site-state-item-icon"><span class="icon iconify" data-icon="ri:folder-2-line"></span></span><span class="site-state-item-count">8</span></a></div><div class="site-state-item"><a href="/tags/" title="标签"><span class="site-state-item-icon"><span class="icon iconify" data-icon="ri:price-tag-3-line"></span></span><span class="site-state-item-count">10</span></a></div><a class="site-state-item hty-icon-button" target="_blank" rel="noopener" href="https://yun.yunyoujun.cn" title="文档"><span class="site-state-item-icon"><span class="icon iconify" data-icon="ri:settings-line"></span></span></a></nav><hr style="margin-bottom:0.5rem"><div class="links-of-author"><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://github.com/liluoao" title="GitHub" target="_blank" style="color:#6e5494"><span class="icon iconify" data-icon="ri:github-line"></span></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="mailto:liluoao@qq.com" title="E-Mail" target="_blank" style="color:#8E71C1"><span class="icon iconify" data-icon="ri:mail-line"></span></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://space.bilibili.com/19377772" title="哔哩哔哩" target="_blank" style="color:#FF8EB3"><span class="icon iconify" data-icon="ri:bilibili-line"></span></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://music.163.com/#/user/home?id=121449072" title="网易云音乐" target="_blank" style="color:#C20C0C"><span class="icon iconify" data-icon="ri:netease-cloud-music-line"></span></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://www.zhihu.com/people/li-luo-ao/" title="知乎" target="_blank" style="color:#0084FF"><span class="icon iconify" data-icon="ri:zhihu-line"></span></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://twitter.com/easonlee82" title="Twitter" target="_blank" style="color:#1da1f2"><span class="icon iconify" data-icon="ri:twitter-line"></span></a></div><br><a class="links-item hty-icon-button" id="toggle-mode-btn" href="javascript:;" title="Mode" style="color: #f1cb64"><span class="icon iconify" data-icon="ri:contrast-2-line"></span></a></div><div class="sidebar-panel sidebar-panel-active" id="post-toc-wrap"><div class="post-toc"><div class="post-toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B7%A5%E5%85%B7%E4%BB%8B%E7%BB%8D"><span class="toc-number">1.</span> <span class="toc-text">工具介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Configuration"><span class="toc-number">2.</span> <span class="toc-text">Configuration</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Github"><span class="toc-number">2.1.</span> <span class="toc-text">Github</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BE%AE%E4%BF%A1%E6%B5%8B%E8%AF%95%E5%8F%B7"><span class="toc-number">2.2.</span> <span class="toc-text">微信测试号</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Workflow"><span class="toc-number">3.</span> <span class="toc-text">Workflow</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Python"><span class="toc-number">4.</span> <span class="toc-text">Python</span></a></li></ol></div></div></div></aside><main class="sidebar-translate" id="content"><div id="post"><article class="hty-card post-block" itemscope itemtype="https://schema.org/Article" style="--smc-primary:#0078E7;"><link itemprop="mainEntityOfPage" href="https://liluoao.github.io/posts/use-github-workflow-send-good-morning-everyday.html"><span hidden itemprop="author" itemscope itemtype="https://schema.org/Person"><meta itemprop="name" content="李罗奥"><meta itemprop="description"></span><span hidden itemprop="publisher" itemscope itemtype="https://schema.org/Organization"><meta itemprop="name" content="大梦成空"></span><header class="post-header"><h1 class="post-title" itemprop="name headline">利用Github-Actions自动推送<a class="post-edit-link" href="https://github.com/liluoao/blog-source/tree/master/source/_posts/利用Github-Actions自动推送.md" target="_blank" title="编辑" rel="noopener"><span class="icon iconify" data-icon="ri:edit-line"></span></a></h1><div class="post-meta"><div class="post-time"><span class="post-meta-item-icon"><span class="icon iconify" data-icon="ri:calendar-line"></span></span> <time title="创建时间：2022-08-30 12:02:32" itemprop="dateCreated datePublished" datetime="2022-08-30T12:02:32+08:00">2022-08-30</time></div><div class="post-classify"><span class="post-category"> <span class="post-meta-item-icon" style="margin-right:3px;"><span class="icon iconify" data-icon="ri:folder-line"></span></span><span itemprop="about" itemscope itemtype="https://schema.org/Thing"><a class="category-item" href="/categories/tool/" style="--text-color:#5298d1" itemprop="url" rel="index"><span itemprop="text">工具</span></a></span></span></div></div></header><section class="post-body" itemprop="articleBody"><div class="post-content markdown-body"><h2 id="工具介绍"><a href="#工具介绍" class="headerlink" title="工具介绍"></a>工具介绍</h2><p>GitHub Actions 是一种持续集成和持续交付 (CI&#x2F;CD) 平台，可用于自动执行生成、测试和部署管道</p>
-<p>您可以创建工作流程来构建和测试存储库的每个拉取请求，或将合并的拉取请求部署到生产环境</p>
-<p>GitHub Actions 不仅仅是 DevOps，还允许您在存储库中发生其他事件时运行工作流程。 例如，您可以运行工作流程，以便在有人在您的存储库中创建新问题时自动添加相应的标签</p>
-<span id="more"></span>
-
-<blockquote>
-<p>GitHub 提供 Linux、Windows 和 macOS 虚拟机来运行工作流程，或者您可以在自己的数据中心或云基础架构中托管自己的自托管运行器</p>
-</blockquote>
-<p><img src="https://s21.ax1x.com/2024/05/26/pklytQe.jpg" alt="pklytQe.jpg" loading="lazy"></p>
-<p>Workflow 是一个可配置的自动化过程，它将运行一个或多个作业。 工作流程由签入到存储库的 YAML 文件定义，并在存储库中的事件触发时运行，也可以手动触发，或按定义的时间表触发</p>
-<p>工作流程在存储库的 <code>.github/workflows</code> 目录中定义，存储库可以有多个工作流程，每个工作流程都可以执行不同的任务集</p>
-<p>例如，您可以有一个工作流程来构建和测试拉取请求，另一个工作流程用于在每次创建发布时部署应用程序，还有一个工作流程在每次有人打开新议题时添加标签</p>
-<h2 id="Configuration"><a href="#Configuration" class="headerlink" title="Configuration"></a>Configuration</h2><h3 id="Github"><a href="#Github" class="headerlink" title="Github"></a>Github</h3><p>创建项目，在项目 Setting -&gt; Secrets -&gt; Actions 里新建几个我们要用的配置：</p>
-<ul>
-<li>需要查询天气的城市 <code>CITY</code> 是地级市汉字</li>
-<li>生日 <code>BIRTHDAY</code> 是 <code>m-d</code> 格式</li>
-<li>纪念日 <code>START_DATE</code> 是 <code>Y-m-d</code> 格式</li>
-</ul>
-<p><img src="https://i.imgtg.com/2022/08/30/ZmN9s.png" alt="secrets" loading="lazy"></p>
-<h3 id="微信测试号"><a href="#微信测试号" class="headerlink" title="微信测试号"></a>微信测试号</h3><p>创建一个测试号（<a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/devtools/sandbox.html">申请测试号|微信开发文档</a>），并且让收消息的人关注，获取到他的 <code>USER_ID</code></p>
-<blockquote>
-<p>有自己个人号更好（我的号没管它被自动注销了）</p>
-</blockquote>
-<p><img src="https://i.imgtg.com/2022/08/30/ZmrUK.png" alt="微信测试号关注" loading="lazy"></p>
-<p>加个消息模版，获取 <code>TEMPLATE_ID</code>，加上测试号本身的 <code>APP_ID</code> <code>APP_SECRET</code> ，配置就齐了：</p>
-<p><img src="https://i.imgtg.com/2022/08/30/ZmKdS.png" alt="模版消息" loading="lazy"></p>
-<h2 id="Workflow"><a href="#Workflow" class="headerlink" title="Workflow"></a>Workflow</h2><p>使用 GitHub 的 Actions 建立工作流：</p>
-<blockquote>
-<p>支持定时 <code>schedule</code> 与手动 <code>workflow_dispatch</code> 执行脚本 <em>main.py</em>，并且把设置中写的配置读出来</p>
-</blockquote>
-<pre class="line-numbers language-yaml" data-language="yaml"><div class="caption"><span>.github/workflows/main.yml</span></div><code class="language-yaml"><span class="token key atrule">name</span><span class="token punctuation">:</span> morning
-<span class="token key atrule">on</span><span class="token punctuation">:</span>
-  <span class="token key atrule">schedule</span><span class="token punctuation">:</span>
-  <span class="token punctuation">-</span> <span class="token key atrule">cron</span><span class="token punctuation">:</span>  <span class="token string">'1 23 * * *'</span>
-  <span class="token key atrule">workflow_dispatch</span><span class="token punctuation">:</span>
-
-<span class="token key atrule">jobs</span><span class="token punctuation">:</span>
-  <span class="token key atrule">send_message</span><span class="token punctuation">:</span>
-    <span class="token key atrule">runs-on</span><span class="token punctuation">:</span> ubuntu<span class="token punctuation">-</span>latest
-    <span class="token key atrule">name</span><span class="token punctuation">:</span> send good morning
-
-    <span class="token key atrule">steps</span><span class="token punctuation">:</span>
-    <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> checkout
-      <span class="token key atrule">uses</span><span class="token punctuation">:</span> actions/checkout@v3
-      <span class="token key atrule">with</span><span class="token punctuation">:</span>
-        <span class="token key atrule">ref</span><span class="token punctuation">:</span> master
-
-    <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> sender
-      <span class="token key atrule">uses</span><span class="token punctuation">:</span> actions/setup<span class="token punctuation">-</span>python@v2
-      <span class="token key atrule">with</span><span class="token punctuation">:</span>
-        <span class="token key atrule">python-version</span><span class="token punctuation">:</span> <span class="token string">'3.x'</span>
-        <span class="token key atrule">architecture</span><span class="token punctuation">:</span> <span class="token string">'x64'</span>
-    <span class="token punctuation">-</span> <span class="token key atrule">run</span><span class="token punctuation">:</span> pip install <span class="token punctuation">-</span>r ./requirements.txt <span class="token important">&amp;&amp;</span> python ./main.py
-
-    <span class="token key atrule">env</span><span class="token punctuation">:</span>
-      <span class="token key atrule">APP_ID</span><span class="token punctuation">:</span> $<span class="token punctuation">&#123;</span><span class="token punctuation">&#123;</span> secrets.APP_ID <span class="token punctuation">&#125;</span><span class="token punctuation">&#125;</span>
-      <span class="token key atrule">APP_SECRET</span><span class="token punctuation">:</span> $<span class="token punctuation">&#123;</span><span class="token punctuation">&#123;</span> secrets.APP_SECRET <span class="token punctuation">&#125;</span><span class="token punctuation">&#125;</span>
-      <span class="token key atrule">TEMPLATE_ID</span><span class="token punctuation">:</span> $<span class="token punctuation">&#123;</span><span class="token punctuation">&#123;</span> secrets.TEMPLATE_ID <span class="token punctuation">&#125;</span><span class="token punctuation">&#125;</span>
-      <span class="token key atrule">USER_ID</span><span class="token punctuation">:</span> $<span class="token punctuation">&#123;</span><span class="token punctuation">&#123;</span> secrets.USER_ID <span class="token punctuation">&#125;</span><span class="token punctuation">&#125;</span>
-      <span class="token key atrule">START_DATE</span><span class="token punctuation">:</span> $<span class="token punctuation">&#123;</span><span class="token punctuation">&#123;</span> secrets.START_DATE <span class="token punctuation">&#125;</span><span class="token punctuation">&#125;</span>
-      <span class="token key atrule">BIRTHDAY</span><span class="token punctuation">:</span> $<span class="token punctuation">&#123;</span><span class="token punctuation">&#123;</span> secrets.BIRTHDAY <span class="token punctuation">&#125;</span><span class="token punctuation">&#125;</span>
-      <span class="token key atrule">CITY</span><span class="token punctuation">:</span> $<span class="token punctuation">&#123;</span><span class="token punctuation">&#123;</span> secrets.CITY <span class="token punctuation">&#125;</span><span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<p>这里 Cron 格式是标准的<em>分时日月年</em>，更多内容查看文档：</p>
-<blockquote>
-<p>UTC 时间，北京时间要减 8</p>
-</blockquote>
-<p><img src="https://i.imgtg.com/2022/08/30/ZmgEL.png" alt="schedule" loading="lazy"></p>
-<h2 id="Python"><a href="#Python" class="headerlink" title="Python"></a>Python</h2><p>先把配置拿出来：</p>
-<pre class="line-numbers language-python" data-language="python"><code class="language-python">today <span class="token operator">=</span> datetime<span class="token punctuation">.</span>utcnow<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">+</span> timedelta<span class="token punctuation">(</span>hours<span class="token operator">=</span><span class="token number">8</span><span class="token punctuation">)</span>
-today <span class="token operator">=</span> datetime<span class="token punctuation">.</span>strptime<span class="token punctuation">(</span><span class="token builtin">str</span><span class="token punctuation">(</span>today<span class="token punctuation">.</span>date<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token string">"%Y-%m-%d"</span><span class="token punctuation">)</span>
-start_date <span class="token operator">=</span> os<span class="token punctuation">.</span>getenv<span class="token punctuation">(</span><span class="token string">'START_DATE'</span><span class="token punctuation">)</span>
-city <span class="token operator">=</span> os<span class="token punctuation">.</span>getenv<span class="token punctuation">(</span><span class="token string">'CITY'</span><span class="token punctuation">)</span>
-birthday <span class="token operator">=</span> os<span class="token punctuation">.</span>getenv<span class="token punctuation">(</span><span class="token string">'BIRTHDAY'</span><span class="token punctuation">)</span>
-
-app_id <span class="token operator">=</span> os<span class="token punctuation">.</span>getenv<span class="token punctuation">(</span><span class="token string">'APP_ID'</span><span class="token punctuation">)</span>
-app_secret <span class="token operator">=</span> os<span class="token punctuation">.</span>getenv<span class="token punctuation">(</span><span class="token string">'APP_SECRET'</span><span class="token punctuation">)</span>
-user_ids <span class="token operator">=</span> os<span class="token punctuation">.</span>getenv<span class="token punctuation">(</span><span class="token string">'USER_ID'</span><span class="token punctuation">,</span> <span class="token string">''</span><span class="token punctuation">)</span><span class="token punctuation">.</span>split<span class="token punctuation">(</span><span class="token string">"\n"</span><span class="token punctuation">)</span>
-template_id <span class="token operator">=</span> os<span class="token punctuation">.</span>getenv<span class="token punctuation">(</span><span class="token string">'TEMPLATE_ID'</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<p>获取城市天气：</p>
-<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">def</span> <span class="token function">get_weather</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
-  <span class="token keyword">if</span> city <span class="token keyword">is</span> <span class="token boolean">None</span><span class="token punctuation">:</span>
-    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'check your CITY config'</span><span class="token punctuation">)</span>
-    <span class="token keyword">return</span> <span class="token boolean">None</span>
-  url <span class="token operator">=</span> <span class="token string">"http://autodev.openspeech.cn/csp/api/v2.1/weather?openId=aiuicus&amp;clientType=android&amp;sign=android&amp;city="</span> <span class="token operator">+</span> city
-  res <span class="token operator">=</span> requests<span class="token punctuation">.</span>get<span class="token punctuation">(</span>url<span class="token punctuation">)</span><span class="token punctuation">.</span>json<span class="token punctuation">(</span><span class="token punctuation">)</span>
-  <span class="token keyword">if</span> res <span class="token keyword">is</span> <span class="token boolean">None</span><span class="token punctuation">:</span>
-    <span class="token keyword">return</span> <span class="token boolean">None</span>
-  weather <span class="token operator">=</span> res<span class="token punctuation">[</span><span class="token string">'data'</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token string">'list'</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span>
-  <span class="token keyword">return</span> weather<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<p>计算纪念日：</p>
-<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">def</span> <span class="token function">get_memorial_days_count</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
-  <span class="token keyword">if</span> start_date <span class="token keyword">is</span> <span class="token boolean">None</span><span class="token punctuation">:</span>
-    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'check your START_DATE config'</span><span class="token punctuation">)</span>
-    <span class="token keyword">return</span> <span class="token number">0</span>
-  delta <span class="token operator">=</span> today <span class="token operator">-</span> datetime<span class="token punctuation">.</span>strptime<span class="token punctuation">(</span>start_date<span class="token punctuation">,</span> <span class="token string">"%Y-%m-%d"</span><span class="token punctuation">)</span>
-  <span class="token keyword">return</span> delta<span class="token punctuation">.</span>days<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<p>计算生日：</p>
-<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">def</span> <span class="token function">get_birthday_left</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
-  <span class="token keyword">if</span> birthday <span class="token keyword">is</span> <span class="token boolean">None</span><span class="token punctuation">:</span>
-    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'check your BIRTHDAY config'</span><span class="token punctuation">)</span>
-    <span class="token keyword">return</span> <span class="token number">0</span>
-  <span class="token builtin">next</span> <span class="token operator">=</span> datetime<span class="token punctuation">.</span>strptime<span class="token punctuation">(</span><span class="token builtin">str</span><span class="token punctuation">(</span>date<span class="token punctuation">.</span>today<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>year<span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string">"-"</span> <span class="token operator">+</span> birthday<span class="token punctuation">,</span> <span class="token string">"%Y-%m-%d"</span><span class="token punctuation">)</span>
-  <span class="token keyword">if</span> <span class="token builtin">next</span> <span class="token operator">&lt;</span> datetime<span class="token punctuation">.</span>now<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
-    <span class="token builtin">next</span> <span class="token operator">=</span> <span class="token builtin">next</span><span class="token punctuation">.</span>replace<span class="token punctuation">(</span>year<span class="token operator">=</span><span class="token builtin">next</span><span class="token punctuation">.</span>year <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span>
-  <span class="token keyword">return</span> <span class="token punctuation">(</span><span class="token builtin">next</span> <span class="token operator">-</span> today<span class="token punctuation">)</span><span class="token punctuation">.</span>days<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<p>获取一句情话：</p>
-<blockquote>
-<p>失败重新调用</p>
-</blockquote>
-<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">def</span> <span class="token function">get_words</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
-  words <span class="token operator">=</span> requests<span class="token punctuation">.</span>get<span class="token punctuation">(</span><span class="token string">"https://api.shadiao.pro/chp"</span><span class="token punctuation">)</span>
-  <span class="token keyword">if</span> words<span class="token punctuation">.</span>status_code <span class="token operator">!=</span> <span class="token number">200</span><span class="token punctuation">:</span>
-    <span class="token keyword">return</span> get_words<span class="token punctuation">(</span><span class="token punctuation">)</span>
-  <span class="token keyword">return</span> words<span class="token punctuation">.</span>json<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token string">'data'</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token string">'text'</span><span class="token punctuation">]</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<p>请求微信接口：</p>
-<blockquote>
-<p>配置模版消息时 <code>&#123;&#123;words.DATA&#125;&#125;</code> 对应 <code>data.words</code> 字段，依此类推</p>
-</blockquote>
-<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">try</span><span class="token punctuation">:</span>
-  client <span class="token operator">=</span> WeChatClient<span class="token punctuation">(</span>app_id<span class="token punctuation">,</span> app_secret<span class="token punctuation">)</span>
-<span class="token keyword">except</span> WeChatClientException <span class="token keyword">as</span> e<span class="token punctuation">:</span>
-  <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'get access token fail'</span><span class="token punctuation">)</span>
-  exit<span class="token punctuation">(</span><span class="token number">502</span><span class="token punctuation">)</span>
-
-wm <span class="token operator">=</span> WeChatMessage<span class="token punctuation">(</span>client<span class="token punctuation">)</span>
-weather <span class="token operator">=</span> get_weather<span class="token punctuation">(</span><span class="token punctuation">)</span>
-<span class="token keyword">if</span> weather <span class="token keyword">is</span> <span class="token boolean">None</span><span class="token punctuation">:</span>
-  <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'get weather fail'</span><span class="token punctuation">)</span>
-  exit<span class="token punctuation">(</span><span class="token number">422</span><span class="token punctuation">)</span>
-data <span class="token operator">=</span> <span class="token punctuation">&#123;</span>
-  <span class="token string">"city"</span><span class="token punctuation">:</span> <span class="token punctuation">&#123;</span>
-    <span class="token string">"value"</span><span class="token punctuation">:</span> city<span class="token punctuation">,</span>
-    <span class="token string">"color"</span><span class="token punctuation">:</span> get_random_color<span class="token punctuation">(</span><span class="token punctuation">)</span>
-  <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
-  <span class="token string">"date"</span><span class="token punctuation">:</span> <span class="token punctuation">&#123;</span>
-    <span class="token string">"value"</span><span class="token punctuation">:</span> today<span class="token punctuation">.</span>strftime<span class="token punctuation">(</span><span class="token string">'%Y年%m月%d日'</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
-    <span class="token string">"color"</span><span class="token punctuation">:</span> get_random_color<span class="token punctuation">(</span><span class="token punctuation">)</span>
-  <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
-  <span class="token string">"weather"</span><span class="token punctuation">:</span> <span class="token punctuation">&#123;</span>
-    <span class="token string">"value"</span><span class="token punctuation">:</span> weather<span class="token punctuation">[</span><span class="token string">'weather'</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
-    <span class="token string">"color"</span><span class="token punctuation">:</span> get_random_color<span class="token punctuation">(</span><span class="token punctuation">)</span>
-  <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
-  <span class="token string">"temperature"</span><span class="token punctuation">:</span> <span class="token punctuation">&#123;</span>
-    <span class="token string">"value"</span><span class="token punctuation">:</span> math<span class="token punctuation">.</span>floor<span class="token punctuation">(</span>weather<span class="token punctuation">[</span><span class="token string">'temp'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
-    <span class="token string">"color"</span><span class="token punctuation">:</span> get_random_color<span class="token punctuation">(</span><span class="token punctuation">)</span>
-  <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
-  <span class="token string">"highest"</span><span class="token punctuation">:</span> <span class="token punctuation">&#123;</span>
-    <span class="token string">"value"</span><span class="token punctuation">:</span> math<span class="token punctuation">.</span>floor<span class="token punctuation">(</span>weather<span class="token punctuation">[</span><span class="token string">'high'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
-    <span class="token string">"color"</span><span class="token punctuation">:</span> get_random_color<span class="token punctuation">(</span><span class="token punctuation">)</span>
-  <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
-  <span class="token string">"lowest"</span><span class="token punctuation">:</span> <span class="token punctuation">&#123;</span>
-    <span class="token string">"value"</span><span class="token punctuation">:</span> math<span class="token punctuation">.</span>floor<span class="token punctuation">(</span>weather<span class="token punctuation">[</span><span class="token string">'low'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
-    <span class="token string">"color"</span><span class="token punctuation">:</span> get_random_color<span class="token punctuation">(</span><span class="token punctuation">)</span>
-  <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
-  <span class="token string">"love_days"</span><span class="token punctuation">:</span> <span class="token punctuation">&#123;</span>
-    <span class="token string">"value"</span><span class="token punctuation">:</span> get_memorial_days_count<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
-    <span class="token string">"color"</span><span class="token punctuation">:</span> get_random_color<span class="token punctuation">(</span><span class="token punctuation">)</span>
-  <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
-  <span class="token string">"birthday_left"</span><span class="token punctuation">:</span> <span class="token punctuation">&#123;</span>
-    <span class="token string">"value"</span><span class="token punctuation">:</span> get_birthday_left<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
-    <span class="token string">"color"</span><span class="token punctuation">:</span> get_random_color<span class="token punctuation">(</span><span class="token punctuation">)</span>
-  <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
-  <span class="token string">"words"</span><span class="token punctuation">:</span> <span class="token punctuation">&#123;</span>
-    <span class="token string">"value"</span><span class="token punctuation">:</span> get_words<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
-    <span class="token string">"color"</span><span class="token punctuation">:</span> get_random_color<span class="token punctuation">(</span><span class="token punctuation">)</span>
-  <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
-<span class="token punctuation">&#125;</span>
-
-<span class="token keyword">if</span> __name__ <span class="token operator">==</span> <span class="token string">'__main__'</span><span class="token punctuation">:</span>
-  count <span class="token operator">=</span> <span class="token number">0</span>
-  <span class="token keyword">try</span><span class="token punctuation">:</span>
-    <span class="token keyword">for</span> user_id <span class="token keyword">in</span> user_ids<span class="token punctuation">:</span>
-      res <span class="token operator">=</span> wm<span class="token punctuation">.</span>send_template<span class="token punctuation">(</span>user_id<span class="token punctuation">,</span> template_id<span class="token punctuation">,</span> data<span class="token punctuation">)</span>
-      count<span class="token operator">+=</span><span class="token number">1</span>
-  <span class="token keyword">except</span> WeChatClientException <span class="token keyword">as</span> e<span class="token punctuation">:</span>
-    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'wechat error:%s.code:%d'</span> <span class="token operator">%</span> <span class="token punctuation">(</span>e<span class="token punctuation">.</span>errmsg<span class="token punctuation">,</span> e<span class="token punctuation">.</span>errcode<span class="token punctuation">)</span><span class="token punctuation">)</span>
-    exit<span class="token punctuation">(</span><span class="token number">502</span><span class="token punctuation">)</span>
-
-  <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"total"</span> <span class="token operator">+</span> <span class="token builtin">str</span><span class="token punctuation">(</span>count<span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string">"messages"</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<p>随机颜色为了好看点，手机上生效：</p>
-<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">def</span> <span class="token function">get_random_color</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
-  <span class="token keyword">return</span> <span class="token string">"#%06x"</span> <span class="token operator">%</span> random<span class="token punctuation">.</span>randint<span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0xFFFFFF</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-
-<p>引入依赖：</p>
-<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">from</span> datetime <span class="token keyword">import</span> date<span class="token punctuation">,</span> datetime<span class="token punctuation">,</span> timedelta
-<span class="token keyword">import</span> math
-<span class="token keyword">from</span> wechatpy <span class="token keyword">import</span> WeChatClient<span class="token punctuation">,</span> WeChatClientException
-<span class="token keyword">from</span> wechatpy<span class="token punctuation">.</span>client<span class="token punctuation">.</span>api <span class="token keyword">import</span> WeChatMessage
-<span class="token keyword">import</span> requests
-<span class="token keyword">import</span> os
-<span class="token keyword">import</span> random<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<pre class="line-numbers language-python" data-language="python"><div class="caption"><span>requirements.txt</span></div><code class="language-python">certifi<span class="token operator">==</span><span class="token number">2022.6</span><span class="token number">.15</span>
-cffi<span class="token operator">==</span><span class="token number">1.15</span><span class="token number">.1</span>
-charset<span class="token operator">-</span>normalizer<span class="token operator">==</span><span class="token number">2.1</span><span class="token number">.0</span>
-cryptography<span class="token operator">==</span><span class="token number">37.0</span><span class="token number">.4</span>
-idna<span class="token operator">==</span><span class="token number">3.3</span>
-optionaldict<span class="token operator">==</span><span class="token number">0.1</span><span class="token number">.2</span>
-pycparser<span class="token operator">==</span><span class="token number">2.21</span>
-python<span class="token operator">-</span>dateutil<span class="token operator">==</span><span class="token number">2.8</span><span class="token number">.2</span>
-requests<span class="token operator">==</span><span class="token number">2.28</span><span class="token number">.1</span>
-six<span class="token operator">==</span><span class="token number">1.16</span><span class="token number">.0</span>
-urllib3<span class="token operator">==</span><span class="token number">1.26</span><span class="token number">.11</span>
-wechatpy<span class="token operator">==</span><span class="token number">1.8</span><span class="token number">.18</span>
-xmltodict<span class="token operator">==</span><span class="token number">0.13</span><span class="token number">.0</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<p>最终效果如图：</p>
-<p><img src="https://i.imgtg.com/2022/08/30/ZmJFX.jpg" alt="手机效果" loading="lazy"></p>
-</div></section><ul class="post-copyright"><li class="post-copyright-author"><strong>本文作者：</strong>李罗奥</li><li class="post-copyright-link"><strong>本文链接：</strong><a href="https://liluoao.github.io/posts/use-github-workflow-send-good-morning-everyday.html" title="利用Github-Actions自动推送">https://liluoao.github.io/posts/use-github-workflow-send-good-morning-everyday.html</a></li><li class="post-copyright-license"><strong>版权声明：</strong>本博客所有文章除特别声明外，均默认采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank" rel="noopener" title="CC BY-NC-SA 4.0 "><span class="icon iconify" data-icon="ri:creative-commons-line"></span><span class="icon iconify" data-icon="ri:creative-commons-by-line"></span><span class="icon iconify" data-icon="ri:creative-commons-nc-line"></span><span class="icon iconify" data-icon="ri:creative-commons-sa-line"></span></a> 许可协议。</li></ul></article><div class="post-nav"><div class="post-nav-item"><a class="post-nav-prev" href="/posts/es6-promise.html" rel="prev" title="ES6的Promise"><span class="icon iconify" data-icon="ri:arrow-left-s-line"></span><span class="post-nav-text">ES6的Promise</span></a></div><div class="post-nav-item"><a class="post-nav-next" href="/posts/cross-origin-resource-sharing.html" rel="next" title="跨域问题"><span class="post-nav-text">跨域问题</span><span class="icon iconify" data-icon="ri:arrow-right-s-line"></span></a></div></div></div></main><footer class="sidebar-translate" id="footer"><div class="copyright"><span>&copy; 2018 – 2024 </span><span class="with-love" id="animate"><span class="icon iconify" data-icon="ri:heart-line"></span></span><span class="author"> 李罗奥</span></div><div class="powered"><span>由 <a href="https://hexo.io" target="_blank" rel="noopener">Hexo</a> 驱动 v6.3.0</span><span class="footer-separator">|</span><span>主题 - <a rel="noopener" href="https://github.com/YunYouJun/hexo-theme-yun" target="_blank"><span>Yun</span></a> v1.10.11</span></div></footer></div><a class="hty-icon-button" id="back-to-top" aria-label="back-to-top" href="#"><span class="icon iconify" data-icon="ri:arrow-up-s-line"></span><svg class="progress-circle-container" viewBox="0 0 100 100"><circle class="progress-circle" id="progressCircle" cx="50" cy="50" r="48" fill="none" stroke="#0078E7" stroke-width="2" stroke-linecap="round"></circle></svg></a><script>function initMourn() {
-  const date = new Date();
-  const today = (date.getMonth() + 1) + "-" + date.getDate()
-  const mourn_days = ["4-4","9-18","5-12"]
-  if (mourn_days.includes(today)) {
-    document.documentElement.style.filter = "grayscale(1)";
-  }
+.post-body {
+  padding: 0 5rem;
+tablet()
+mobile()
 }
-initMourn();</script></body></html>
+.post-meta {
+  font-size: 14px;
+  color: var(--hty-secondary-text-color);
+}
+.post-meta .icon {
+  margin-bottom: -1px;
+}
+.post-description {
+  font-weight: normal;
+  padding: 0.5rem;
+}
+.post-author {
+  display: flex;
+  justify-content: center;
+}
+.post-author .author-avatar {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  line-height: 0;
+}
+.post-author .author-avatar img {
+  border-radius: 50%;
+  height: 1rem;
+  width: 1rem;
+  padding: 2px;
+  border: 2px solid #d3d3d3;
+}
+.post-author .author-name {
+  margin-left: 0.5rem;
+  font-size: 1rem;
+}
+.post-meta-item-icon {
+  display: inline-block;
+  color: var(--text-color, --hty-secondary-text-color);
+}
+.post-meta-divider {
+  height: 25px;
+  color: var(--hty-secondary-text-color);
+  margin: 0 0.5rem;
+}
+.post-eof {
+  margin: 50px auto;
+  width: 50%;
+  height: 1px;
+  background: $blue;
+  opacity: 0.1;
+}
+.post-copyright {
+  font-size: 0.9rem;
+  margin: 0.5rem 5rem 1rem 5rem;
+  padding: 0.5rem 1rem;
+  border-left: 4px solid #ff5252;
+  background-color: var(--hty-bg-color);
+  list-style: none;
+  word-break: break-all;
+  position: relative;
+  overflow: hidden;
+mobile()
+}
+.post-copyright::after {
+  position: absolute;
+  color: #fff;
+  background: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 496 512'%3E%3Cpath fill='gray' d='M245.8 214.9l-33.2 17.3c-9.4-19.6-25.2-20-27.4-20-22.2 0-33.3 14.6-33.3 43.9 0 23.5 9.2 43.8 33.3 43.8 14.4 0 24.6-7 30.5-21.3l30.6 15.5a73.2 73.2 0 01-65.1 39c-22.6 0-74-10.3-74-77 0-58.7 43-77 72.6-77 30.8-.1 52.7 11.9 66 35.8zm143 0l-32.7 17.3c-9.5-19.8-25.7-20-27.9-20-22.1 0-33.2 14.6-33.2 43.9 0 23.5 9.2 43.8 33.2 43.8 14.5 0 24.7-7 30.5-21.3l31 15.5c-2 3.8-21.3 39-65 39-22.7 0-74-9.9-74-77 0-58.7 43-77 72.6-77C354 179 376 191 389 214.8zM247.7 8C104.7 8 0 123 0 256c0 138.4 113.6 248 247.6 248C377.5 504 496 403 496 256 496 118 389.4 8 247.6 8zm.8 450.8c-112.5 0-203.7-93-203.7-202.8 0-105.5 85.5-203.3 203.8-203.3A201.7 201.7 0 01451.3 256c0 121.7-99.7 202.9-202.9 202.9z'/%3E%3C/svg%3E");
+  content: ' ';
+  height: 10rem;
+  width: 10rem;
+  right: -2rem;
+  top: -2rem;
+  opacity: 0.1;
+}
+.tag-name {
+  padding: 0 0.1rem;
+}
