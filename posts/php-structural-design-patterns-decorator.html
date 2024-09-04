@@ -1,86 +1,142 @@
-.post-block {
-  color: var(--hty-text-color);
-  margin: 0 1rem;
-  padding: 1rem;
-  background-color: var(--post-block-bg-color);
-mobile()
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="theme-color" content="#0078E7"><meta name="author" content="李罗奥"><meta name="copyright" content="李罗奥"><meta name="generator" content="Hexo 6.3.0"><meta name="theme" content="hexo-theme-yun"><title>设计模式——Decorator | 大梦成空</title><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@900&amp;display=swap" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://fastly.jsdelivr.net/npm/star-markdown-css@0.4.1/dist/yun/yun-markdown.min.css"><link rel="stylesheet" href="https://fastly.jsdelivr.net/npm/prism-theme-vars/base.css"><script src="https://fastly.jsdelivr.net/npm/scrollreveal/dist/scrollreveal.min.js" defer></script><script>function initScrollReveal() {
+  [".post-card",".markdown-body img"].forEach((target)=> {
+    ScrollReveal().reveal(target);
+  })
 }
-.post-body {
-  padding: 0 5rem;
-tablet()
-mobile()
+document.addEventListener("DOMContentLoaded", initScrollReveal);
+document.addEventListener("pjax:success", initScrollReveal);
+</script><link rel="icon" type="image/png" href="/favicon.ico"><link rel="mask-icon" href="/favicon.ico" color="#0078E7"><link rel="preload" href="/css/hexo-theme-yun.css" as="style"><link rel="prefetch" href="/js/sidebar.js" as="script"><link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin><link rel="preconnect" href="https://fastly.jsdelivr.net/npm/" crossorigin><script id="yun-config">
+    window.Yun = {}
+    window.CONFIG = {"hostname":"liluoao.github.io","root":"/","title":"大梦成空","version":"1.10.11","mode":"auto","copycode":true,"page":{"isPost":true},"i18n":{"placeholder":"搜索...","empty":"找不到您查询的内容: ${query}","hits":"找到 ${hits} 条结果","hits_time":"找到 ${hits} 条结果（用时 ${time} 毫秒）"},"anonymous_image":"https://cdn.yunyoujun.cn/img/avatar/none.jpg","say":{"api":"https://v1.hitokoto.cn","hitokoto":true},"fireworks":{"colors":null},"vendors":{"host":"https://fastly.jsdelivr.net/npm/","darken":"https://fastly.jsdelivr.net/npm/darken@1.5.0"}};
+  </script><link rel="stylesheet" href="/css/hexo-theme-yun.css"><script src="/js/hexo-theme-yun.js" type="module"></script><meta name="description" content="Decorator 装饰器模式允许我们根据运行时不同的情景动态地为某个对象调用前后添加不同的行为动作 以奇迹暖暖这种换装游戏为例，我们需要实现动态的换套装，或者混搭">
+<meta property="og:type" content="article">
+<meta property="og:title" content="设计模式——Decorator">
+<meta property="og:url" content="https://liluoao.github.io/posts/php-structural-design-patterns-decorator.html">
+<meta property="og:site_name" content="大梦成空">
+<meta property="og:description" content="Decorator 装饰器模式允许我们根据运行时不同的情景动态地为某个对象调用前后添加不同的行为动作 以奇迹暖暖这种换装游戏为例，我们需要实现动态的换套装，或者混搭">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2019-04-18T01:23:38.000Z">
+<meta property="article:modified_time" content="2024-09-04T03:24:47.790Z">
+<meta property="article:author" content="李罗奥">
+<meta property="article:tag" content="design-patterns">
+<meta name="twitter:card" content="summary"><script>(function() {
+  if (CONFIG.mode !== 'auto') return
+  const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+  const setting = localStorage.getItem('darken-mode') || 'auto'
+  if (setting === 'dark' || (prefersDark && setting !== 'light'))
+    document.documentElement.classList.toggle('dark', true)
+})()</script></head><body><script src="https://code.iconify.design/2/2.1.1/iconify.min.js"></script><script>// Define global variable
+IconifyProviders = {
+  // Empty prefix: overwrite default API provider configuration
+  '': {
+    // Use custom API first, use Iconify public API as backup
+    resources: [
+        'https://api.iconify.design',
+    ],
+    // Wait for 1 second before switching API hosts
+    rotate: 1000,
+  },
+};</script><script defer src="https://fastly.jsdelivr.net/npm/animejs@latest"></script><script defer src="/js/ui/fireworks.js" type="module"></script><canvas class="fireworks"></canvas><canvas id="trianglifyContainer"></canvas><script defer src="https://fastly.jsdelivr.net/npm/trianglify@4/dist/trianglify.bundle.js"></script><script>document.addEventListener("DOMContentLoaded", () => {
+  const pattern = trianglify({
+    width: 1980,
+    height: 1600,
+    cellSize: 75,
+    palette: ["YlGnBu", "GnBu", "Purples", "Blues"],
+  });
+  const canvasOpts = {
+    applyCssScaling: false
+  }
+  document.body.appendChild(pattern.toCanvas(trianglifyContainer, canvasOpts));
+});</script><div class="container"><a class="sidebar-toggle hty-icon-button" id="menu-btn"><div class="hamburger hamburger--spin" type="button"><span class="hamburger-box"><span class="hamburger-inner"></span></span></div></a><div class="sidebar-toggle sidebar-overlay"></div><aside class="sidebar"><script src="/js/sidebar.js" type="module"></script><ul class="sidebar-nav"><li class="sidebar-nav-item sidebar-nav-toc hty-icon-button" data-target="post-toc-wrap" title="文章目录"><span class="icon iconify" data-icon="ri:list-ordered"></span></li><li class="sidebar-nav-item sidebar-nav-overview hty-icon-button sidebar-nav-active" data-target="site-overview-wrap" title="站点概览"><span class="icon iconify" data-icon="ri:passport-line"></span></li></ul><div class="sidebar-panel sidebar-panel-active" id="site-overview-wrap"><div class="site-info fix-top"><a class="site-author-avatar" href="/about/" title="李罗奥"><img width="96" loading="lazy" src="https://i.imgtg.com/2022/08/09/AR3SY.jpg" alt="李罗奥"></a><div class="site-author-name"><a href="/about/">李罗奥</a></div><a class="site-name" href="/about/site.html">大梦成空</a><sub class="site-subtitle">To be a Web Artisan</sub><div class="site-description">李罗奥的博客</div></div><nav class="site-state"><a class="site-state-item hty-icon-button icon-home" href="/" title="首页"><span class="site-state-item-icon"><span class="icon iconify" data-icon="ri:home-4-line"></span></span></a><div class="site-state-item"><a href="/archives/" title="归档"><span class="site-state-item-icon"><span class="icon iconify" data-icon="ri:archive-line"></span></span><span class="site-state-item-count">51</span></a></div><div class="site-state-item"><a href="/categories/" title="分类"><span class="site-state-item-icon"><span class="icon iconify" data-icon="ri:folder-2-line"></span></span><span class="site-state-item-count">8</span></a></div><div class="site-state-item"><a href="/tags/" title="标签"><span class="site-state-item-icon"><span class="icon iconify" data-icon="ri:price-tag-3-line"></span></span><span class="site-state-item-count">10</span></a></div><a class="site-state-item hty-icon-button" target="_blank" rel="noopener" href="https://yun.yunyoujun.cn" title="文档"><span class="site-state-item-icon"><span class="icon iconify" data-icon="ri:settings-line"></span></span></a></nav><hr style="margin-bottom:0.5rem"><div class="links-of-author"><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://github.com/liluoao" title="GitHub" target="_blank" style="color:#6e5494"><span class="icon iconify" data-icon="ri:github-line"></span></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="mailto:liluoao@qq.com" title="E-Mail" target="_blank" style="color:#8E71C1"><span class="icon iconify" data-icon="ri:mail-line"></span></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://space.bilibili.com/19377772" title="哔哩哔哩" target="_blank" style="color:#FF8EB3"><span class="icon iconify" data-icon="ri:bilibili-line"></span></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://music.163.com/#/user/home?id=121449072" title="网易云音乐" target="_blank" style="color:#C20C0C"><span class="icon iconify" data-icon="ri:netease-cloud-music-line"></span></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://www.zhihu.com/people/li-luo-ao/" title="知乎" target="_blank" style="color:#0084FF"><span class="icon iconify" data-icon="ri:zhihu-line"></span></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://twitter.com/easonlee82" title="Twitter" target="_blank" style="color:#1da1f2"><span class="icon iconify" data-icon="ri:twitter-line"></span></a></div><br><a class="links-item hty-icon-button" id="toggle-mode-btn" href="javascript:;" title="Mode" style="color: #f1cb64"><span class="icon iconify" data-icon="ri:contrast-2-line"></span></a></div><div class="sidebar-panel" id="post-toc-wrap"><div class="post-toc"><div class="post-toc-content">暂无目录</div></div></div></aside><main class="sidebar-translate" id="content"><div id="post"><article class="hty-card post-block" itemscope itemtype="https://schema.org/Article" style="--smc-primary:#0078E7;"><link itemprop="mainEntityOfPage" href="https://liluoao.github.io/posts/php-structural-design-patterns-decorator.html"><span hidden itemprop="author" itemscope itemtype="https://schema.org/Person"><meta itemprop="name" content="李罗奥"><meta itemprop="description"></span><span hidden itemprop="publisher" itemscope itemtype="https://schema.org/Organization"><meta itemprop="name" content="大梦成空"></span><header class="post-header"><h1 class="post-title" itemprop="name headline">设计模式——Decorator<a class="post-edit-link" href="https://github.com/liluoao/blog-source/tree/master/source/_posts/设计模式——Decorator.md" target="_blank" title="编辑" rel="noopener"><span class="icon iconify" data-icon="ri:edit-line"></span></a></h1><div class="post-meta"><div class="post-time"><span class="post-meta-item-icon"><span class="icon iconify" data-icon="ri:calendar-line"></span></span> <time title="创建时间：2019-04-18 09:23:38" itemprop="dateCreated datePublished" datetime="2019-04-18T09:23:38+08:00">2019-04-18</time></div><div class="post-classify"><span class="post-category"> <span class="post-meta-item-icon" style="margin-right:3px;"><span class="icon iconify" data-icon="ri:folder-line"></span></span><span itemprop="about" itemscope itemtype="https://schema.org/Thing"><a class="category-item" href="/categories/design-patterns/" style="--text-color:#ff9933" itemprop="url" rel="index"><span itemprop="text">设计模式</span></a></span></span></div></div></header><section class="post-body" itemprop="articleBody"><div class="post-content markdown-body"><p>Decorator 装饰器模式允许我们根据运行时不同的情景动态地为某个对象调用前后添加不同的行为动作</p>
+<p>以奇迹暖暖这种换装游戏为例，我们需要实现动态的换套装，或者混搭</p>
+<span id="more"></span>
+
+<p>我们先创建好装饰器接口：</p>
+<pre class="line-numbers language-php" data-language="php"><div class="caption"><span>Decorator.php</span></div><code class="language-php"><span class="token keyword">interface</span> <span class="token class-name-definition class-name">Decorator</span>
+<span class="token punctuation">&#123;</span>
+   <span class="token keyword">public</span> <span class="token keyword">function</span> <span class="token function-definition function">beforeDress</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+   <span class="token keyword">public</span> <span class="token keyword">function</span> <span class="token function-definition function">afterDress</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>实现一个警察装扮：</p>
+<pre class="line-numbers language-php" data-language="php"><div class="caption"><span>PoliceDecorator.php</span></div><code class="language-php"><span class="token keyword">class</span> <span class="token class-name-definition class-name">PoliceDecorator</span> <span class="token keyword">implements</span> <span class="token class-name">Decorator</span>
+<span class="token punctuation">&#123;</span>
+    <span class="token keyword">public</span> <span class="token keyword">function</span> <span class="token function-definition function">beforeDress</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">&#123;</span>
+        <span class="token keyword">echo</span> <span class="token string double-quoted-string">"穿上警服"</span> <span class="token operator">.</span> <span class="token constant">PHP_EOL</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">function</span> <span class="token function-definition function">afterDress</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">&#123;</span>
+        <span class="token keyword">echo</span> <span class="token string double-quoted-string">"穿上防弹衣"</span> <span class="token operator">.</span> <span class="token constant">PHP_EOL</span><span class="token punctuation">;</span>
+        <span class="token keyword">echo</span> <span class="token string double-quoted-string">"带好配枪"</span> <span class="token operator">.</span> <span class="token constant">PHP_EOL</span><span class="token punctuation">;</span>
+        <span class="token keyword">echo</span> <span class="token string double-quoted-string">"别上警徽"</span> <span class="token operator">.</span> <span class="token constant">PHP_EOL</span><span class="token punctuation">;</span>
+        <span class="token keyword">echo</span> <span class="token string double-quoted-string">"戴上警帽"</span> <span class="token operator">.</span> <span class="token constant">PHP_EOL</span><span class="token punctuation">;</span>
+        <span class="token keyword">echo</span> <span class="token string double-quoted-string">"穿戴完毕"</span> <span class="token operator">.</span> <span class="token constant">PHP_EOL</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>再实现一个护士装扮：</p>
+<pre class="line-numbers language-php" data-language="php"><div class="caption"><span>NurseDecorator.php</span></div><code class="language-php"><span class="token keyword">class</span> <span class="token class-name-definition class-name">NurseDecorator</span> <span class="token keyword">implements</span> <span class="token class-name">Decorator</span>
+<span class="token punctuation">&#123;</span>
+    <span class="token keyword">public</span> <span class="token keyword">function</span> <span class="token function-definition function">beforeDress</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">&#123;</span>
+        <span class="token keyword">echo</span> <span class="token string double-quoted-string">"无"</span> <span class="token operator">.</span> <span class="token constant">PHP_EOL</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">function</span> <span class="token function-definition function">afterDress</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">&#123;</span>
+        <span class="token keyword">echo</span> <span class="token string double-quoted-string">"穿上粉色大褂"</span> <span class="token operator">.</span> <span class="token constant">PHP_EOL</span><span class="token punctuation">;</span>
+        <span class="token keyword">echo</span> <span class="token string double-quoted-string">"戴上护士帽"</span> <span class="token operator">.</span> <span class="token constant">PHP_EOL</span><span class="token punctuation">;</span>
+        <span class="token keyword">echo</span> <span class="token string double-quoted-string">"戴上口罩"</span> <span class="token operator">.</span> <span class="token constant">PHP_EOL</span><span class="token punctuation">;</span>
+        <span class="token keyword">echo</span> <span class="token string double-quoted-string">"穿戴完毕"</span> <span class="token operator">.</span> <span class="token constant">PHP_EOL</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>最后实现一个穿衣服的人：</p>
+<pre class="line-numbers language-php" data-language="php"><div class="caption"><span>Person.php</span></div><code class="language-php"><span class="token keyword">class</span> <span class="token class-name-definition class-name">Person</span>
+<span class="token punctuation">&#123;</span>
+    <span class="token keyword">protected</span> <span class="token variable">$decorators</span> <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">function</span> <span class="token function-definition function">addDecorator</span><span class="token punctuation">(</span><span class="token class-name type-declaration">Decorator</span> <span class="token variable">$decorator</span><span class="token punctuation">)</span>
+    <span class="token punctuation">&#123;</span>
+        <span class="token variable">$this</span><span class="token operator">-></span><span class="token property">decorators</span><span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token variable">$decorator</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">function</span> <span class="token function-definition function">beforeDress</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">&#123;</span>
+        <span class="token keyword">foreach</span> <span class="token punctuation">(</span><span class="token variable">$this</span><span class="token operator">-></span><span class="token property">decorators</span> <span class="token keyword">as</span> <span class="token variable">$decorator</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+            <span class="token variable">$decorator</span><span class="token operator">-></span><span class="token function">beforeDress</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+    <span class="token punctuation">&#125;</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">function</span> <span class="token function-definition function">afterDress</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">&#123;</span>
+        <span class="token variable">$decorators</span> <span class="token operator">=</span> <span class="token function">array_reverse</span><span class="token punctuation">(</span><span class="token variable">$this</span><span class="token operator">-></span><span class="token property">decorators</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">foreach</span> <span class="token punctuation">(</span><span class="token variable">$decorators</span> <span class="token keyword">as</span> <span class="token variable">$decorator</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+            <span class="token variable">$decorator</span><span class="token operator">-></span><span class="token function">afterDress</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+    <span class="token punctuation">&#125;</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">function</span> <span class="token function-definition function">dress</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">&#123;</span>
+        <span class="token variable">$this</span><span class="token operator">-></span><span class="token function">beforeDress</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">echo</span> <span class="token string double-quoted-string">"穿上纯白短袖"</span> <span class="token operator">.</span> <span class="token constant">PHP_EOL</span><span class="token punctuation">;</span>
+        <span class="token variable">$this</span><span class="token operator">-></span><span class="token function">afterDress</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>现在我们可以创建一个混搭<del>女生</del>青年了：</p>
+<pre class="line-numbers language-php" data-language="php"><code class="language-php"><span class="token variable">$girl</span> <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Person</span><span class="token punctuation">;</span>
+<span class="token variable">$girl</span><span class="token operator">-></span><span class="token function">addDecorator</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">PoliceDecorator</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token variable">$girl</span><span class="token operator">-></span><span class="token function">addDecorator</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">NurseDecorator</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token variable">$girl</span><span class="token operator">-></span><span class="token function">dress</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+</div></section><ul class="post-copyright"><li class="post-copyright-author"><strong>本文作者：</strong>李罗奥</li><li class="post-copyright-link"><strong>本文链接：</strong><a href="https://liluoao.github.io/posts/php-structural-design-patterns-decorator.html" title="设计模式——Decorator">https://liluoao.github.io/posts/php-structural-design-patterns-decorator.html</a></li><li class="post-copyright-license"><strong>版权声明：</strong>本博客所有文章除特别声明外，均默认采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank" rel="noopener" title="CC BY-NC-SA 4.0 "><span class="icon iconify" data-icon="ri:creative-commons-line"></span><span class="icon iconify" data-icon="ri:creative-commons-by-line"></span><span class="icon iconify" data-icon="ri:creative-commons-nc-line"></span><span class="icon iconify" data-icon="ri:creative-commons-sa-line"></span></a> 许可协议。</li></ul></article><div class="post-nav"><div class="post-nav-item"><a class="post-nav-prev" href="/posts/use-mongodb-aggregation.html" rel="prev" title="MongoDB的聚合"><span class="icon iconify" data-icon="ri:arrow-left-s-line"></span><span class="post-nav-text">MongoDB的聚合</span></a></div><div class="post-nav-item"><a class="post-nav-next" href="/posts/query-and-paging-under-big-data-in-yii2.html" rel="next" title="Yii2大数据处理"><span class="post-nav-text">Yii2大数据处理</span><span class="icon iconify" data-icon="ri:arrow-right-s-line"></span></a></div></div></div></main><footer class="sidebar-translate" id="footer"><div class="copyright"><span>&copy; 2018 – 2024 </span><span class="with-love" id="animate"><span class="icon iconify" data-icon="ri:heart-line"></span></span><span class="author"> 李罗奥</span></div><div class="powered"><span>由 <a href="https://hexo.io" target="_blank" rel="noopener">Hexo</a> 驱动 v6.3.0</span><span class="footer-separator">|</span><span>主题 - <a rel="noopener" href="https://github.com/YunYouJun/hexo-theme-yun" target="_blank"><span>Yun</span></a> v1.10.11</span></div></footer></div><a class="hty-icon-button" id="back-to-top" aria-label="back-to-top" href="#"><span class="icon iconify" data-icon="ri:arrow-up-s-line"></span><svg class="progress-circle-container" viewBox="0 0 100 100"><circle class="progress-circle" id="progressCircle" cx="50" cy="50" r="48" fill="none" stroke="#0078E7" stroke-width="2" stroke-linecap="round"></circle></svg></a><script>function initMourn() {
+  const date = new Date();
+  const today = (date.getMonth() + 1) + "-" + date.getDate()
+  const mourn_days = ["4-4","9-18","5-12"]
+  if (mourn_days.includes(today)) {
+    document.documentElement.style.filter = "grayscale(1)";
+  }
 }
-.post-meta {
-  font-size: 14px;
-  color: var(--hty-secondary-text-color);
-}
-.post-meta .icon {
-  margin-bottom: -1px;
-}
-.post-description {
-  font-weight: normal;
-  padding: 0.5rem;
-}
-.post-author {
-  display: flex;
-  justify-content: center;
-}
-.post-author .author-avatar {
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  line-height: 0;
-}
-.post-author .author-avatar img {
-  border-radius: 50%;
-  height: 1rem;
-  width: 1rem;
-  padding: 2px;
-  border: 2px solid #d3d3d3;
-}
-.post-author .author-name {
-  margin-left: 0.5rem;
-  font-size: 1rem;
-}
-.post-meta-item-icon {
-  display: inline-block;
-  color: var(--text-color, --hty-secondary-text-color);
-}
-.post-meta-divider {
-  height: 25px;
-  color: var(--hty-secondary-text-color);
-  margin: 0 0.5rem;
-}
-.post-eof {
-  margin: 50px auto;
-  width: 50%;
-  height: 1px;
-  background: $blue;
-  opacity: 0.1;
-}
-.post-copyright {
-  font-size: 0.9rem;
-  margin: 0.5rem 5rem 1rem 5rem;
-  padding: 0.5rem 1rem;
-  border-left: 4px solid #ff5252;
-  background-color: var(--hty-bg-color);
-  list-style: none;
-  word-break: break-all;
-  position: relative;
-  overflow: hidden;
-mobile()
-}
-.post-copyright::after {
-  position: absolute;
-  color: #fff;
-  background: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 496 512'%3E%3Cpath fill='gray' d='M245.8 214.9l-33.2 17.3c-9.4-19.6-25.2-20-27.4-20-22.2 0-33.3 14.6-33.3 43.9 0 23.5 9.2 43.8 33.3 43.8 14.4 0 24.6-7 30.5-21.3l30.6 15.5a73.2 73.2 0 01-65.1 39c-22.6 0-74-10.3-74-77 0-58.7 43-77 72.6-77 30.8-.1 52.7 11.9 66 35.8zm143 0l-32.7 17.3c-9.5-19.8-25.7-20-27.9-20-22.1 0-33.2 14.6-33.2 43.9 0 23.5 9.2 43.8 33.2 43.8 14.5 0 24.7-7 30.5-21.3l31 15.5c-2 3.8-21.3 39-65 39-22.7 0-74-9.9-74-77 0-58.7 43-77 72.6-77C354 179 376 191 389 214.8zM247.7 8C104.7 8 0 123 0 256c0 138.4 113.6 248 247.6 248C377.5 504 496 403 496 256 496 118 389.4 8 247.6 8zm.8 450.8c-112.5 0-203.7-93-203.7-202.8 0-105.5 85.5-203.3 203.8-203.3A201.7 201.7 0 01451.3 256c0 121.7-99.7 202.9-202.9 202.9z'/%3E%3C/svg%3E");
-  content: ' ';
-  height: 10rem;
-  width: 10rem;
-  right: -2rem;
-  top: -2rem;
-  opacity: 0.1;
-}
-.tag-name {
-  padding: 0 0.1rem;
-}
+initMourn();</script></body></html>

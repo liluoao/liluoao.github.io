@@ -1,86 +1,212 @@
-.post-block {
-  color: var(--hty-text-color);
-  margin: 0 1rem;
-  padding: 1rem;
-  background-color: var(--post-block-bg-color);
-mobile()
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="theme-color" content="#0078E7"><meta name="author" content="李罗奥"><meta name="copyright" content="李罗奥"><meta name="generator" content="Hexo 6.3.0"><meta name="theme" content="hexo-theme-yun"><title>特殊表单验证 | 大梦成空</title><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@900&amp;display=swap" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://fastly.jsdelivr.net/npm/star-markdown-css@0.4.1/dist/yun/yun-markdown.min.css"><link rel="stylesheet" href="https://fastly.jsdelivr.net/npm/prism-theme-vars/base.css"><script src="https://fastly.jsdelivr.net/npm/scrollreveal/dist/scrollreveal.min.js" defer></script><script>function initScrollReveal() {
+  [".post-card",".markdown-body img"].forEach((target)=> {
+    ScrollReveal().reveal(target);
+  })
 }
-.post-body {
-  padding: 0 5rem;
-tablet()
-mobile()
+document.addEventListener("DOMContentLoaded", initScrollReveal);
+document.addEventListener("pjax:success", initScrollReveal);
+</script><link rel="icon" type="image/png" href="/favicon.ico"><link rel="mask-icon" href="/favicon.ico" color="#0078E7"><link rel="preload" href="/css/hexo-theme-yun.css" as="style"><link rel="prefetch" href="/js/sidebar.js" as="script"><link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin><link rel="preconnect" href="https://fastly.jsdelivr.net/npm/" crossorigin><script id="yun-config">
+    window.Yun = {}
+    window.CONFIG = {"hostname":"liluoao.github.io","root":"/","title":"大梦成空","version":"1.10.11","mode":"auto","copycode":true,"page":{"isPost":true},"i18n":{"placeholder":"搜索...","empty":"找不到您查询的内容: ${query}","hits":"找到 ${hits} 条结果","hits_time":"找到 ${hits} 条结果（用时 ${time} 毫秒）"},"anonymous_image":"https://cdn.yunyoujun.cn/img/avatar/none.jpg","say":{"api":"https://v1.hitokoto.cn","hitokoto":true},"fireworks":{"colors":null},"vendors":{"host":"https://fastly.jsdelivr.net/npm/","darken":"https://fastly.jsdelivr.net/npm/darken@1.5.0"}};
+  </script><link rel="stylesheet" href="/css/hexo-theme-yun.css"><script src="/js/hexo-theme-yun.js" type="module"></script><meta name="description" content="常见被前端验证的表单数据有：  用户是否已填写表单中的必填项目？ 用户输入的邮件地址是否合法？ 用户是否已输入合法的日期？ 用户是否在数据域(numeric field) 中输入了文本？  Laravel 提供了几种不同的方法来验证传入应用程序的数据">
+<meta property="og:type" content="article">
+<meta property="og:title" content="特殊表单验证">
+<meta property="og:url" content="https://liluoao.github.io/posts/special-form-validation-in-laravel.html">
+<meta property="og:site_name" content="大梦成空">
+<meta property="og:description" content="常见被前端验证的表单数据有：  用户是否已填写表单中的必填项目？ 用户输入的邮件地址是否合法？ 用户是否已输入合法的日期？ 用户是否在数据域(numeric field) 中输入了文本？  Laravel 提供了几种不同的方法来验证传入应用程序的数据">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://i.imgtg.com/2022/08/23/K68mB.png">
+<meta property="article:published_time" content="2018-07-16T03:52:14.000Z">
+<meta property="article:modified_time" content="2024-09-04T03:24:47.790Z">
+<meta property="article:author" content="李罗奥">
+<meta property="article:tag" content="李罗奥">
+<meta property="article:tag" content="Blog">
+<meta property="article:tag" content="博客">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.imgtg.com/2022/08/23/K68mB.png"><script>(function() {
+  if (CONFIG.mode !== 'auto') return
+  const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+  const setting = localStorage.getItem('darken-mode') || 'auto'
+  if (setting === 'dark' || (prefersDark && setting !== 'light'))
+    document.documentElement.classList.toggle('dark', true)
+})()</script></head><body><script src="https://code.iconify.design/2/2.1.1/iconify.min.js"></script><script>// Define global variable
+IconifyProviders = {
+  // Empty prefix: overwrite default API provider configuration
+  '': {
+    // Use custom API first, use Iconify public API as backup
+    resources: [
+        'https://api.iconify.design',
+    ],
+    // Wait for 1 second before switching API hosts
+    rotate: 1000,
+  },
+};</script><script defer src="https://fastly.jsdelivr.net/npm/animejs@latest"></script><script defer src="/js/ui/fireworks.js" type="module"></script><canvas class="fireworks"></canvas><canvas id="trianglifyContainer"></canvas><script defer src="https://fastly.jsdelivr.net/npm/trianglify@4/dist/trianglify.bundle.js"></script><script>document.addEventListener("DOMContentLoaded", () => {
+  const pattern = trianglify({
+    width: 1980,
+    height: 1600,
+    cellSize: 75,
+    palette: ["YlGnBu", "GnBu", "Purples", "Blues"],
+  });
+  const canvasOpts = {
+    applyCssScaling: false
+  }
+  document.body.appendChild(pattern.toCanvas(trianglifyContainer, canvasOpts));
+});</script><div class="container"><a class="sidebar-toggle hty-icon-button" id="menu-btn"><div class="hamburger hamburger--spin" type="button"><span class="hamburger-box"><span class="hamburger-inner"></span></span></div></a><div class="sidebar-toggle sidebar-overlay"></div><aside class="sidebar"><script src="/js/sidebar.js" type="module"></script><ul class="sidebar-nav"><li class="sidebar-nav-item sidebar-nav-toc hty-icon-button sidebar-nav-active" data-target="post-toc-wrap" title="文章目录"><span class="icon iconify" data-icon="ri:list-ordered"></span></li><li class="sidebar-nav-item sidebar-nav-overview hty-icon-button" data-target="site-overview-wrap" title="站点概览"><span class="icon iconify" data-icon="ri:passport-line"></span></li></ul><div class="sidebar-panel" id="site-overview-wrap"><div class="site-info fix-top"><a class="site-author-avatar" href="/about/" title="李罗奥"><img width="96" loading="lazy" src="https://i.imgtg.com/2022/08/09/AR3SY.jpg" alt="李罗奥"></a><div class="site-author-name"><a href="/about/">李罗奥</a></div><a class="site-name" href="/about/site.html">大梦成空</a><sub class="site-subtitle">To be a Web Artisan</sub><div class="site-description">李罗奥的博客</div></div><nav class="site-state"><a class="site-state-item hty-icon-button icon-home" href="/" title="首页"><span class="site-state-item-icon"><span class="icon iconify" data-icon="ri:home-4-line"></span></span></a><div class="site-state-item"><a href="/archives/" title="归档"><span class="site-state-item-icon"><span class="icon iconify" data-icon="ri:archive-line"></span></span><span class="site-state-item-count">51</span></a></div><div class="site-state-item"><a href="/categories/" title="分类"><span class="site-state-item-icon"><span class="icon iconify" data-icon="ri:folder-2-line"></span></span><span class="site-state-item-count">8</span></a></div><div class="site-state-item"><a href="/tags/" title="标签"><span class="site-state-item-icon"><span class="icon iconify" data-icon="ri:price-tag-3-line"></span></span><span class="site-state-item-count">10</span></a></div><a class="site-state-item hty-icon-button" target="_blank" rel="noopener" href="https://yun.yunyoujun.cn" title="文档"><span class="site-state-item-icon"><span class="icon iconify" data-icon="ri:settings-line"></span></span></a></nav><hr style="margin-bottom:0.5rem"><div class="links-of-author"><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://github.com/liluoao" title="GitHub" target="_blank" style="color:#6e5494"><span class="icon iconify" data-icon="ri:github-line"></span></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="mailto:liluoao@qq.com" title="E-Mail" target="_blank" style="color:#8E71C1"><span class="icon iconify" data-icon="ri:mail-line"></span></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://space.bilibili.com/19377772" title="哔哩哔哩" target="_blank" style="color:#FF8EB3"><span class="icon iconify" data-icon="ri:bilibili-line"></span></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://music.163.com/#/user/home?id=121449072" title="网易云音乐" target="_blank" style="color:#C20C0C"><span class="icon iconify" data-icon="ri:netease-cloud-music-line"></span></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://www.zhihu.com/people/li-luo-ao/" title="知乎" target="_blank" style="color:#0084FF"><span class="icon iconify" data-icon="ri:zhihu-line"></span></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://twitter.com/easonlee82" title="Twitter" target="_blank" style="color:#1da1f2"><span class="icon iconify" data-icon="ri:twitter-line"></span></a></div><br><a class="links-item hty-icon-button" id="toggle-mode-btn" href="javascript:;" title="Mode" style="color: #f1cb64"><span class="icon iconify" data-icon="ri:contrast-2-line"></span></a></div><div class="sidebar-panel sidebar-panel-active" id="post-toc-wrap"><div class="post-toc"><div class="post-toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A1%A8%E5%8D%95%E9%AA%8C%E8%AF%81"><span class="toc-number">1.</span> <span class="toc-text">表单验证</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AF%86%E7%A0%81"><span class="toc-number">1.1.</span> <span class="toc-text">密码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E7%BB%84"><span class="toc-number">1.2.</span> <span class="toc-text">数组</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Authorize"><span class="toc-number">1.3.</span> <span class="toc-text">Authorize</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Unique"><span class="toc-number">1.4.</span> <span class="toc-text">Unique</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89%E9%AA%8C%E8%AF%81%E8%A7%84%E5%88%99"><span class="toc-number">2.</span> <span class="toc-text">自定义验证规则</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%BD%E9%99%85%E5%8C%96%E4%B8%8E%E6%9C%AC%E5%9C%B0%E5%8C%96"><span class="toc-number">3.</span> <span class="toc-text">国际化与本地化</span></a></li></ol></div></div></div></aside><main class="sidebar-translate" id="content"><div id="post"><article class="hty-card post-block" itemscope itemtype="https://schema.org/Article" style="--smc-primary:#0078E7;"><link itemprop="mainEntityOfPage" href="https://liluoao.github.io/posts/special-form-validation-in-laravel.html"><span hidden itemprop="author" itemscope itemtype="https://schema.org/Person"><meta itemprop="name" content="李罗奥"><meta itemprop="description"></span><span hidden itemprop="publisher" itemscope itemtype="https://schema.org/Organization"><meta itemprop="name" content="大梦成空"></span><header class="post-header"><h1 class="post-title" itemprop="name headline">特殊表单验证<a class="post-edit-link" href="https://github.com/liluoao/blog-source/tree/master/source/_posts/特殊表单验证.md" target="_blank" title="编辑" rel="noopener"><span class="icon iconify" data-icon="ri:edit-line"></span></a></h1><div class="post-meta"><div class="post-time"><span class="post-meta-item-icon"><span class="icon iconify" data-icon="ri:calendar-line"></span></span> <time title="创建时间：2018-07-16 11:52:14" itemprop="dateCreated datePublished" datetime="2018-07-16T11:52:14+08:00">2018-07-16</time></div><div class="post-classify"><span class="post-category"> <span class="post-meta-item-icon" style="margin-right:3px;"><span class="icon iconify" data-icon="ri:folder-line"></span></span><span itemprop="about" itemscope itemtype="https://schema.org/Thing"><a class="category-item" href="/categories/laravel/" style="--text-color:#F4645F" itemprop="url" rel="index"><span itemprop="text">Laravel</span></a></span></span></div></div></header><section class="post-body" itemprop="articleBody"><div class="post-content markdown-body"><p>常见被前端验证的表单数据有：</p>
+<ul>
+<li>用户是否已填写表单中的必填项目？</li>
+<li>用户输入的邮件地址是否合法？</li>
+<li>用户是否已输入合法的日期？</li>
+<li>用户是否在数据域(numeric field) 中输入了文本？</li>
+</ul>
+<p>Laravel 提供了几种不同的方法来验证传入应用程序的数据</p>
+<p><img src="https://i.imgtg.com/2022/08/23/K68mB.png" alt="laravel slogan" loading="lazy"></p>
+<span id="more"></span>
+
+<h2 id="表单验证"><a href="#表单验证" class="headerlink" title="表单验证"></a>表单验证</h2><p>最常见的做法是在所有传入的 HTTP 请求中使用 <code>validate</code> 方法</p>
+<pre class="line-numbers language-php" data-language="php"><code class="language-php"><span class="token comment">/**
+ * 存储一篇新的博客文章。
+ *
+ * @param  \Illuminate\Http\Request  $request
+ * @return \Illuminate\Http\Response
+ */</span>
+<span class="token keyword">public</span> <span class="token keyword">function</span> <span class="token function-definition function">store</span><span class="token punctuation">(</span><span class="token class-name type-declaration">Request</span> <span class="token variable">$request</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+    <span class="token variable">$validated</span> <span class="token operator">=</span> <span class="token variable">$request</span><span class="token operator">-></span><span class="token function">validate</span><span class="token punctuation">(</span><span class="token punctuation">[</span>
+        <span class="token string single-quoted-string">'title'</span> <span class="token operator">=></span> <span class="token string single-quoted-string">'required|unique:posts|max:255'</span><span class="token punctuation">,</span>
+        <span class="token string single-quoted-string">'body'</span>  <span class="token operator">=></span> <span class="token string single-quoted-string">'required'</span><span class="token punctuation">,</span>
+    <span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment">// 博客文章验证通过...</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="密码"><a href="#密码" class="headerlink" title="密码"></a>密码</h3><pre class="line-numbers language-php" data-language="php"><code class="language-php"><span class="token keyword">return</span> <span class="token punctuation">[</span>
+    <span class="token string single-quoted-string">'old_password'</span>          <span class="token operator">=></span> <span class="token string single-quoted-string">''</span><span class="token punctuation">,</span>
+    <span class="token string single-quoted-string">'password'</span>              <span class="token operator">=></span> <span class="token string single-quoted-string">'bail|required|string|between:8,20|confirmed|different:old_password'</span><span class="token punctuation">,</span>
+    <span class="token string single-quoted-string">'password_confirmation'</span> <span class="token operator">=></span> <span class="token string single-quoted-string">'bail|required|string|between:8,20'</span><span class="token punctuation">,</span>
+<span class="token punctuation">]</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<ul>
+<li>Confirmed<br>如果要验证的字段是 <code>password</code>，输入中必须存在匹配的 <code>password_confirmation</code> 字段</li>
+<li>Different<br>验证的字段值必须与参数字段的值不同</li>
+<li>Bail<br>第一次验证失败后停止运行验证规则。只是停止这个字段的验证，其它字段不影响</li>
+</ul>
+<h3 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h3><p>当获取前端传递的数组内容时，一般有如下要求：</p>
+<ol>
+<li>数组不能为空</li>
+<li>里面的每一个元素是唯一的</li>
+</ol>
+<p>所以可以用下面的验证方法：</p>
+<pre class="line-numbers language-php" data-language="php"><code class="language-php"><span class="token class-name static-context">Validator</span><span class="token operator">::</span><span class="token function">make</span><span class="token punctuation">(</span><span class="token variable">$request</span><span class="token operator">-></span><span class="token function">all</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token punctuation">[</span>    
+  <span class="token string double-quoted-string">"tags"</span>    <span class="token operator">=></span> <span class="token string single-quoted-string">'required|array'</span><span class="token punctuation">,</span>    
+  <span class="token string double-quoted-string">"tags.*"</span>  <span class="token operator">=></span> <span class="token string single-quoted-string">'required|string|distinct|min:3'</span><span class="token punctuation">,</span>
+<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p><code>tags</code> 数组里面每个元素都是字符串，而且是唯一的，每个元素最小长度为 3</p>
+<h3 id="Authorize"><a href="#Authorize" class="headerlink" title="Authorize"></a>Authorize</h3><p>检查经过身份验证的用户确定其是否具有更新给定资源的权限</p>
+<p>如果 <code>authorize()</code> 方法返回 false，则会返回出一个 403 的 HTTP 响应</p>
+<pre class="line-numbers language-php" data-language="php"><code class="language-php"><span class="token keyword">public</span> <span class="token keyword">function</span> <span class="token function-definition function">authorize</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+    <span class="token keyword">return</span> <span class="token constant boolean">true</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="Unique"><a href="#Unique" class="headerlink" title="Unique"></a>Unique</h3><p>第一种写法：unique:（连接名）表名，表中对应字段，忽略值，表主键</p>
+<ol>
+<li>当字段名和表中字段相等时可省略</li>
+<li>忽略值一般用于修改判断时去掉自己</li>
+<li>表主键为 id 时可省略</li>
+</ol>
+<pre class="line-numbers language-php" data-language="php"><code class="language-php"><span class="token keyword">return</span> <span class="token punctuation">[</span>
+    <span class="token string single-quoted-string">'name'</span> <span class="token operator">=></span> <span class="token string single-quoted-string">'required|string|unique:mysql.sometable,name'</span><span class="token punctuation">,</span>
+<span class="token punctuation">]</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<p>第二种写法：使用 <code>Illuminate\Validation\Rule::unique()</code> 静态方法</p>
+<pre class="line-numbers language-php" data-language="php"><code class="language-php"><span class="token variable">$id</span> <span class="token operator">=</span> <span class="token variable">$this</span><span class="token operator">-></span><span class="token function">get</span><span class="token punctuation">(</span><span class="token string single-quoted-string">'id'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">return</span> <span class="token punctuation">[</span>
+    <span class="token string single-quoted-string">'id'</span> <span class="token operator">=></span> <span class="token string single-quoted-string">'required|integer'</span><span class="token punctuation">,</span>
+    <span class="token string single-quoted-string">'name'</span> <span class="token operator">=></span> <span class="token punctuation">[</span>
+        <span class="token string single-quoted-string">'required'</span><span class="token punctuation">,</span>
+        <span class="token string single-quoted-string">'string'</span><span class="token punctuation">,</span>
+        <span class="token class-name static-context">Rule</span><span class="token operator">::</span><span class="token function">unique</span><span class="token punctuation">(</span><span class="token string single-quoted-string">'mysql.sometable'</span><span class="token punctuation">)</span><span class="token operator">-></span><span class="token function">ignore</span><span class="token punctuation">(</span><span class="token variable">$id</span><span class="token punctuation">,</span> <span class="token string single-quoted-string">'id'</span><span class="token punctuation">)</span>
+    <span class="token punctuation">]</span><span class="token punctuation">,</span>
+<span class="token punctuation">]</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>还有其他查询条件时，可以链式使用 <code>where()</code> 等方法</p>
+<pre class="line-numbers language-php" data-language="php"><code class="language-php"><span class="token variable">$stationId</span> <span class="token operator">=</span> <span class="token variable">$this</span><span class="token operator">-></span><span class="token function">get</span><span class="token punctuation">(</span><span class="token string single-quoted-string">'station_id'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">return</span> <span class="token punctuation">[</span>
+    <span class="token string single-quoted-string">'car_number'</span> <span class="token operator">=></span> <span class="token punctuation">[</span>
+        <span class="token string single-quoted-string">'required'</span><span class="token punctuation">,</span>
+        <span class="token string single-quoted-string">'string'</span><span class="token punctuation">,</span>
+        <span class="token class-name static-context">Rule</span><span class="token operator">::</span><span class="token function">unique</span><span class="token punctuation">(</span><span class="token string single-quoted-string">'queue'</span><span class="token punctuation">)</span><span class="token operator">-></span><span class="token function">where</span><span class="token punctuation">(</span><span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token variable">$query</span><span class="token punctuation">)</span> <span class="token keyword">use</span> <span class="token punctuation">(</span><span class="token variable">$stationId</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+            <span class="token variable">$query</span><span class="token operator">-></span><span class="token function">where</span><span class="token punctuation">(</span><span class="token punctuation">[</span>
+                <span class="token punctuation">[</span><span class="token string single-quoted-string">'station_id'</span><span class="token punctuation">,</span> <span class="token variable">$stationId</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+                <span class="token punctuation">[</span><span class="token string single-quoted-string">'cancel_state'</span><span class="token punctuation">,</span> <span class="token class-name static-context">StateEnum</span><span class="token operator">::</span><span class="token constant">NOT_CANCEL</span><span class="token punctuation">]</span>
+            <span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token operator">-></span><span class="token function">whereDate</span><span class="token punctuation">(</span><span class="token string single-quoted-string">'create_time'</span><span class="token punctuation">,</span> <span class="token function">today</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">-></span><span class="token function">toDateString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span><span class="token punctuation">)</span>
+    <span class="token punctuation">]</span><span class="token punctuation">,</span>
+<span class="token punctuation">]</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h2 id="自定义验证规则"><a href="#自定义验证规则" class="headerlink" title="自定义验证规则"></a>自定义验证规则</h2><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">php artisan make:rule CheckPhoneNumber<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>规则对象包括 <code>passes()</code> 和 <code>message()</code> 方法</p>
+<p><code>passes</code> 方法接收属性值和名称，并根据属性值是否符合规则而返回 <code>true</code> 或者 <code>false</code>：</p>
+<pre class="line-numbers language-php" data-language="php"><code class="language-php"><span class="token keyword">public</span> <span class="token keyword">function</span> <span class="token function-definition function">passes</span><span class="token punctuation">(</span><span class="token variable">$attribute</span><span class="token punctuation">,</span> <span class="token variable">$value</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+    <span class="token keyword">return</span> <span class="token function">preg_match</span><span class="token punctuation">(</span><span class="token string single-quoted-string">'/^1[3456789]\d&#123;9&#125;$/'</span><span class="token punctuation">,</span><span class="token variable">$value</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">public</span> <span class="token keyword">function</span> <span class="token function-definition function">message</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+    <span class="token keyword">return</span> <span class="token string single-quoted-string">'电话号码格式不正确'</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>创建表单请求类并使用新规则</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">php artisan make:request Auth<span class="token punctuation">\</span>LoginRequest<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<pre class="line-numbers language-php" data-language="php"><code class="language-php"><span class="token keyword">return</span> <span class="token punctuation">[</span>
+    <span class="token string single-quoted-string">'mobile'</span> <span class="token operator">=></span> <span class="token punctuation">[</span>
+        <span class="token string single-quoted-string">'required'</span><span class="token punctuation">,</span>
+        <span class="token keyword">new</span> <span class="token class-name">CheckPhoneNumber</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">]</span><span class="token punctuation">,</span>
+<span class="token punctuation">]</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h2 id="国际化与本地化"><a href="#国际化与本地化" class="headerlink" title="国际化与本地化"></a>国际化与本地化</h2><p><strong>i18n</strong>（其来源是英文单词 internationalization 的首末字符 i 和 n，18 为中间的字符数）是“国际化”的简称</p>
+<p>在资讯领域，国际化(i18n)指让产品（出版物，软件，硬件等）无需做大的改变就能够适应不同的语言和地区的需要。对程序来说，在不修改内部代码的情况下，能根据不同语言及地区显示相应的界面</p>
+<p>对应的有 <strong>l10n</strong>（localization 的缩写形式，意即在 l 和 n 之间有 10 个字母），指软件的“本地化”</p>
+<p><code>config/app.php</code> 中的区域（语言）设置：</p>
+<pre class="line-numbers language-php" data-language="php"><code class="language-php"><span class="token string single-quoted-string">'locale'</span>            <span class="token operator">=></span> <span class="token string single-quoted-string">'zh-CN'</span><span class="token punctuation">,</span>
+<span class="token string single-quoted-string">'fallback_locale'</span>   <span class="token operator">=></span> <span class="token string single-quoted-string">'en'</span><span class="token punctuation">,</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<p>可以使用 <code>App Facade</code> 的 <code>setLocale()</code> 方法动态地更改当前语言：</p>
+<pre class="line-numbers language-php" data-language="php"><code class="language-php"><span class="token class-name static-context">Route</span><span class="token operator">::</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token string single-quoted-string">'welcome/&#123;locale&#125;'</span><span class="token punctuation">,</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token variable">$locale</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token class-name static-context">App</span><span class="token operator">::</span><span class="token function">setLocale</span><span class="token punctuation">(</span><span class="token variable">$locale</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment">//...</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>还有 <code>getLocale()</code> 及 <code>isLocale()</code> 方法确定当前的区域设置或者检查语言环境是否为给定值</p>
+<p>例如Element文档：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="http://element-cn.eleme.io/#/zh-CN">http://element-cn.eleme.io/#/zh-CN</a></li>
+<li><a target="_blank" rel="noopener" href="http://element-cn.eleme.io/#/en-US">http://element-cn.eleme.io/#/en-US</a></li>
+<li><a target="_blank" rel="noopener" href="http://element-cn.eleme.io/#/es/">http://element-cn.eleme.io/#/es/</a></li>
+</ul>
+<p><strong>zh</strong> 为中文大类，其中还分为许多小类：</p>
+<ul>
+<li>zh-CN 简体中文，中华人民共和国</li>
+<li>zh-HK 繁体中文，香港特别行政区</li>
+<li>zh-MO 繁体中文，澳门特别行政区</li>
+<li>zh-SG 简体中文，新加坡</li>
+<li>zh-TW 繁体中文，中国台湾</li>
+</ul>
+<p><code>resources/lang/zh-CN/validation.php</code> 设置语言后会翻译表单验证的规则、标签等</p>
+<p>在应用中还可以使用 <code>__()</code>、<code>trans()</code>、<code>trans_choice()</code> 辅助方法来翻译</p>
+</div></section><ul class="post-copyright"><li class="post-copyright-author"><strong>本文作者：</strong>李罗奥</li><li class="post-copyright-link"><strong>本文链接：</strong><a href="https://liluoao.github.io/posts/special-form-validation-in-laravel.html" title="特殊表单验证">https://liluoao.github.io/posts/special-form-validation-in-laravel.html</a></li><li class="post-copyright-license"><strong>版权声明：</strong>本博客所有文章除特别声明外，均默认采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank" rel="noopener" title="CC BY-NC-SA 4.0 "><span class="icon iconify" data-icon="ri:creative-commons-line"></span><span class="icon iconify" data-icon="ri:creative-commons-by-line"></span><span class="icon iconify" data-icon="ri:creative-commons-nc-line"></span><span class="icon iconify" data-icon="ri:creative-commons-sa-line"></span></a> 许可协议。</li></ul></article><div class="post-nav"><div class="post-nav-item"><a class="post-nav-prev" href="/posts/use-mongodb-in-php-7.html" rel="prev" title="MongoDB In PHP7"><span class="icon iconify" data-icon="ri:arrow-left-s-line"></span><span class="post-nav-text">MongoDB In PHP7</span></a></div><div class="post-nav-item"><a class="post-nav-next" href="/posts/php-structural-design-patterns-adapter.html" rel="next" title="设计模式——Adapter"><span class="post-nav-text">设计模式——Adapter</span><span class="icon iconify" data-icon="ri:arrow-right-s-line"></span></a></div></div></div></main><footer class="sidebar-translate" id="footer"><div class="copyright"><span>&copy; 2018 – 2024 </span><span class="with-love" id="animate"><span class="icon iconify" data-icon="ri:heart-line"></span></span><span class="author"> 李罗奥</span></div><div class="powered"><span>由 <a href="https://hexo.io" target="_blank" rel="noopener">Hexo</a> 驱动 v6.3.0</span><span class="footer-separator">|</span><span>主题 - <a rel="noopener" href="https://github.com/YunYouJun/hexo-theme-yun" target="_blank"><span>Yun</span></a> v1.10.11</span></div></footer></div><a class="hty-icon-button" id="back-to-top" aria-label="back-to-top" href="#"><span class="icon iconify" data-icon="ri:arrow-up-s-line"></span><svg class="progress-circle-container" viewBox="0 0 100 100"><circle class="progress-circle" id="progressCircle" cx="50" cy="50" r="48" fill="none" stroke="#0078E7" stroke-width="2" stroke-linecap="round"></circle></svg></a><script>function initMourn() {
+  const date = new Date();
+  const today = (date.getMonth() + 1) + "-" + date.getDate()
+  const mourn_days = ["4-4","9-18","5-12"]
+  if (mourn_days.includes(today)) {
+    document.documentElement.style.filter = "grayscale(1)";
+  }
 }
-.post-meta {
-  font-size: 14px;
-  color: var(--hty-secondary-text-color);
-}
-.post-meta .icon {
-  margin-bottom: -1px;
-}
-.post-description {
-  font-weight: normal;
-  padding: 0.5rem;
-}
-.post-author {
-  display: flex;
-  justify-content: center;
-}
-.post-author .author-avatar {
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  line-height: 0;
-}
-.post-author .author-avatar img {
-  border-radius: 50%;
-  height: 1rem;
-  width: 1rem;
-  padding: 2px;
-  border: 2px solid #d3d3d3;
-}
-.post-author .author-name {
-  margin-left: 0.5rem;
-  font-size: 1rem;
-}
-.post-meta-item-icon {
-  display: inline-block;
-  color: var(--text-color, --hty-secondary-text-color);
-}
-.post-meta-divider {
-  height: 25px;
-  color: var(--hty-secondary-text-color);
-  margin: 0 0.5rem;
-}
-.post-eof {
-  margin: 50px auto;
-  width: 50%;
-  height: 1px;
-  background: $blue;
-  opacity: 0.1;
-}
-.post-copyright {
-  font-size: 0.9rem;
-  margin: 0.5rem 5rem 1rem 5rem;
-  padding: 0.5rem 1rem;
-  border-left: 4px solid #ff5252;
-  background-color: var(--hty-bg-color);
-  list-style: none;
-  word-break: break-all;
-  position: relative;
-  overflow: hidden;
-mobile()
-}
-.post-copyright::after {
-  position: absolute;
-  color: #fff;
-  background: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 496 512'%3E%3Cpath fill='gray' d='M245.8 214.9l-33.2 17.3c-9.4-19.6-25.2-20-27.4-20-22.2 0-33.3 14.6-33.3 43.9 0 23.5 9.2 43.8 33.3 43.8 14.4 0 24.6-7 30.5-21.3l30.6 15.5a73.2 73.2 0 01-65.1 39c-22.6 0-74-10.3-74-77 0-58.7 43-77 72.6-77 30.8-.1 52.7 11.9 66 35.8zm143 0l-32.7 17.3c-9.5-19.8-25.7-20-27.9-20-22.1 0-33.2 14.6-33.2 43.9 0 23.5 9.2 43.8 33.2 43.8 14.5 0 24.7-7 30.5-21.3l31 15.5c-2 3.8-21.3 39-65 39-22.7 0-74-9.9-74-77 0-58.7 43-77 72.6-77C354 179 376 191 389 214.8zM247.7 8C104.7 8 0 123 0 256c0 138.4 113.6 248 247.6 248C377.5 504 496 403 496 256 496 118 389.4 8 247.6 8zm.8 450.8c-112.5 0-203.7-93-203.7-202.8 0-105.5 85.5-203.3 203.8-203.3A201.7 201.7 0 01451.3 256c0 121.7-99.7 202.9-202.9 202.9z'/%3E%3C/svg%3E");
-  content: ' ';
-  height: 10rem;
-  width: 10rem;
-  right: -2rem;
-  top: -2rem;
-  opacity: 0.1;
-}
-.tag-name {
-  padding: 0 0.1rem;
-}
+initMourn();</script></body></html>

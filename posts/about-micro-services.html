@@ -1,86 +1,116 @@
-.post-block {
-  color: var(--hty-text-color);
-  margin: 0 1rem;
-  padding: 1rem;
-  background-color: var(--post-block-bg-color);
-mobile()
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="theme-color" content="#0078E7"><meta name="author" content="李罗奥"><meta name="copyright" content="李罗奥"><meta name="generator" content="Hexo 6.3.0"><meta name="theme" content="hexo-theme-yun"><title>Why 微服务 ？ | 大梦成空</title><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@900&amp;display=swap" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://fastly.jsdelivr.net/npm/star-markdown-css@0.4.1/dist/yun/yun-markdown.min.css"><link rel="stylesheet" href="https://fastly.jsdelivr.net/npm/prism-theme-vars/base.css"><script src="https://fastly.jsdelivr.net/npm/scrollreveal/dist/scrollreveal.min.js" defer></script><script>function initScrollReveal() {
+  [".post-card",".markdown-body img"].forEach((target)=> {
+    ScrollReveal().reveal(target);
+  })
 }
-.post-body {
-  padding: 0 5rem;
-tablet()
-mobile()
+document.addEventListener("DOMContentLoaded", initScrollReveal);
+document.addEventListener("pjax:success", initScrollReveal);
+</script><link rel="icon" type="image/png" href="/favicon.ico"><link rel="mask-icon" href="/favicon.ico" color="#0078E7"><link rel="preload" href="/css/hexo-theme-yun.css" as="style"><link rel="prefetch" href="/js/sidebar.js" as="script"><link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin><link rel="preconnect" href="https://fastly.jsdelivr.net/npm/" crossorigin><script id="yun-config">
+    window.Yun = {}
+    window.CONFIG = {"hostname":"liluoao.github.io","root":"/","title":"大梦成空","version":"1.10.11","mode":"auto","copycode":true,"page":{"isPost":true},"i18n":{"placeholder":"搜索...","empty":"找不到您查询的内容: ${query}","hits":"找到 ${hits} 条结果","hits_time":"找到 ${hits} 条结果（用时 ${time} 毫秒）"},"anonymous_image":"https://cdn.yunyoujun.cn/img/avatar/none.jpg","say":{"api":"https://v1.hitokoto.cn","hitokoto":true},"fireworks":{"colors":null},"vendors":{"host":"https://fastly.jsdelivr.net/npm/","darken":"https://fastly.jsdelivr.net/npm/darken@1.5.0"}};
+  </script><link rel="stylesheet" href="/css/hexo-theme-yun.css"><script src="/js/hexo-theme-yun.js" type="module"></script><meta name="description" content="微服务（或称微服务架构）是一种云原生架构方法，在单个应用中包含众多松散耦合且可单独部署的小型组件或服务 这些服务通常拥有自己的技术栈，包括数据库和数据管理模型；通过一个 REST API、事件流和消息代理组合彼此通信；以及按照业务能力进行组织，具有通常称为有界上下文的服务分隔线">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Why 微服务 ？">
+<meta property="og:url" content="https://liluoao.github.io/posts/about-micro-services.html">
+<meta property="og:site_name" content="大梦成空">
+<meta property="og:description" content="微服务（或称微服务架构）是一种云原生架构方法，在单个应用中包含众多松散耦合且可单独部署的小型组件或服务 这些服务通常拥有自己的技术栈，包括数据库和数据管理模型；通过一个 REST API、事件流和消息代理组合彼此通信；以及按照业务能力进行组织，具有通常称为有界上下文的服务分隔线">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s21.ax1x.com/2024/05/26/pklySMQ.jpg">
+<meta property="og:image" content="https://i.imgtg.com/2022/08/24/K3A9b.png">
+<meta property="og:image" content="https://i.imgtg.com/2022/08/09/A4kUx.png">
+<meta property="article:published_time" content="2021-07-25T03:06:55.000Z">
+<meta property="article:modified_time" content="2024-09-04T03:24:47.774Z">
+<meta property="article:author" content="李罗奥">
+<meta property="article:tag" content="李罗奥">
+<meta property="article:tag" content="Blog">
+<meta property="article:tag" content="博客">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s21.ax1x.com/2024/05/26/pklySMQ.jpg"><script>(function() {
+  if (CONFIG.mode !== 'auto') return
+  const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+  const setting = localStorage.getItem('darken-mode') || 'auto'
+  if (setting === 'dark' || (prefersDark && setting !== 'light'))
+    document.documentElement.classList.toggle('dark', true)
+})()</script></head><body><script src="https://code.iconify.design/2/2.1.1/iconify.min.js"></script><script>// Define global variable
+IconifyProviders = {
+  // Empty prefix: overwrite default API provider configuration
+  '': {
+    // Use custom API first, use Iconify public API as backup
+    resources: [
+        'https://api.iconify.design',
+    ],
+    // Wait for 1 second before switching API hosts
+    rotate: 1000,
+  },
+};</script><script defer src="https://fastly.jsdelivr.net/npm/animejs@latest"></script><script defer src="/js/ui/fireworks.js" type="module"></script><canvas class="fireworks"></canvas><canvas id="trianglifyContainer"></canvas><script defer src="https://fastly.jsdelivr.net/npm/trianglify@4/dist/trianglify.bundle.js"></script><script>document.addEventListener("DOMContentLoaded", () => {
+  const pattern = trianglify({
+    width: 1980,
+    height: 1600,
+    cellSize: 75,
+    palette: ["YlGnBu", "GnBu", "Purples", "Blues"],
+  });
+  const canvasOpts = {
+    applyCssScaling: false
+  }
+  document.body.appendChild(pattern.toCanvas(trianglifyContainer, canvasOpts));
+});</script><div class="container"><a class="sidebar-toggle hty-icon-button" id="menu-btn"><div class="hamburger hamburger--spin" type="button"><span class="hamburger-box"><span class="hamburger-inner"></span></span></div></a><div class="sidebar-toggle sidebar-overlay"></div><aside class="sidebar"><script src="/js/sidebar.js" type="module"></script><ul class="sidebar-nav"><li class="sidebar-nav-item sidebar-nav-toc hty-icon-button sidebar-nav-active" data-target="post-toc-wrap" title="文章目录"><span class="icon iconify" data-icon="ri:list-ordered"></span></li><li class="sidebar-nav-item sidebar-nav-overview hty-icon-button" data-target="site-overview-wrap" title="站点概览"><span class="icon iconify" data-icon="ri:passport-line"></span></li></ul><div class="sidebar-panel" id="site-overview-wrap"><div class="site-info fix-top"><a class="site-author-avatar" href="/about/" title="李罗奥"><img width="96" loading="lazy" src="https://i.imgtg.com/2022/08/09/AR3SY.jpg" alt="李罗奥"></a><div class="site-author-name"><a href="/about/">李罗奥</a></div><a class="site-name" href="/about/site.html">大梦成空</a><sub class="site-subtitle">To be a Web Artisan</sub><div class="site-description">李罗奥的博客</div></div><nav class="site-state"><a class="site-state-item hty-icon-button icon-home" href="/" title="首页"><span class="site-state-item-icon"><span class="icon iconify" data-icon="ri:home-4-line"></span></span></a><div class="site-state-item"><a href="/archives/" title="归档"><span class="site-state-item-icon"><span class="icon iconify" data-icon="ri:archive-line"></span></span><span class="site-state-item-count">51</span></a></div><div class="site-state-item"><a href="/categories/" title="分类"><span class="site-state-item-icon"><span class="icon iconify" data-icon="ri:folder-2-line"></span></span><span class="site-state-item-count">8</span></a></div><div class="site-state-item"><a href="/tags/" title="标签"><span class="site-state-item-icon"><span class="icon iconify" data-icon="ri:price-tag-3-line"></span></span><span class="site-state-item-count">10</span></a></div><a class="site-state-item hty-icon-button" target="_blank" rel="noopener" href="https://yun.yunyoujun.cn" title="文档"><span class="site-state-item-icon"><span class="icon iconify" data-icon="ri:settings-line"></span></span></a></nav><hr style="margin-bottom:0.5rem"><div class="links-of-author"><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://github.com/liluoao" title="GitHub" target="_blank" style="color:#6e5494"><span class="icon iconify" data-icon="ri:github-line"></span></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="mailto:liluoao@qq.com" title="E-Mail" target="_blank" style="color:#8E71C1"><span class="icon iconify" data-icon="ri:mail-line"></span></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://space.bilibili.com/19377772" title="哔哩哔哩" target="_blank" style="color:#FF8EB3"><span class="icon iconify" data-icon="ri:bilibili-line"></span></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://music.163.com/#/user/home?id=121449072" title="网易云音乐" target="_blank" style="color:#C20C0C"><span class="icon iconify" data-icon="ri:netease-cloud-music-line"></span></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://www.zhihu.com/people/li-luo-ao/" title="知乎" target="_blank" style="color:#0084FF"><span class="icon iconify" data-icon="ri:zhihu-line"></span></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://twitter.com/easonlee82" title="Twitter" target="_blank" style="color:#1da1f2"><span class="icon iconify" data-icon="ri:twitter-line"></span></a></div><br><a class="links-item hty-icon-button" id="toggle-mode-btn" href="javascript:;" title="Mode" style="color: #f1cb64"><span class="icon iconify" data-icon="ri:contrast-2-line"></span></a></div><div class="sidebar-panel sidebar-panel-active" id="post-toc-wrap"><div class="post-toc"><div class="post-toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%9D%A2%E5%90%91%E8%BF%87%E7%A8%8B-gt-%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1"><span class="toc-number">1.</span> <span class="toc-text">面向过程 -&gt; 面向对象</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1-gt-%E5%8C%85-x2F-%E6%A8%A1%E5%9D%97"><span class="toc-number">2.</span> <span class="toc-text">面向对象 -&gt; 包&#x2F;模块</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8C%85-x2F-%E6%A8%A1%E5%9D%97-gt-%E6%9C%8D%E5%8A%A1"><span class="toc-number">3.</span> <span class="toc-text">包&#x2F;模块 -&gt; 服务</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%8D%E5%8A%A1-gt-%E5%BE%AE%E6%9C%8D%E5%8A%A1"><span class="toc-number">4.</span> <span class="toc-text">服务 -&gt; 微服务</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%A4%BA%E4%BE%8B"><span class="toc-number">5.</span> <span class="toc-text">示例</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%BA%E4%BD%95%E9%80%89%E6%8B%A9%E5%BE%AE%E6%9C%8D%E5%8A%A1"><span class="toc-number">6.</span> <span class="toc-text">为何选择微服务</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%9A%E5%8A%A1%E9%A9%B1%E5%8A%A8%E3%80%81%E4%B8%9A%E5%8A%A1%E5%A2%9E%E9%95%BF"><span class="toc-number">6.1.</span> <span class="toc-text">业务驱动、业务增长</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%9A%E5%8A%A1%E6%A0%B8%E5%BF%83%E8%81%9A%E5%90%88"><span class="toc-number">6.2.</span> <span class="toc-text">业务核心聚合</span></a></li></ol></li></ol></div></div></div></aside><main class="sidebar-translate" id="content"><div id="post"><article class="hty-card post-block" itemscope itemtype="https://schema.org/Article" style="--smc-primary:#0078E7;"><link itemprop="mainEntityOfPage" href="https://liluoao.github.io/posts/about-micro-services.html"><span hidden itemprop="author" itemscope itemtype="https://schema.org/Person"><meta itemprop="name" content="李罗奥"><meta itemprop="description"></span><span hidden itemprop="publisher" itemscope itemtype="https://schema.org/Organization"><meta itemprop="name" content="大梦成空"></span><header class="post-header"><h1 class="post-title" itemprop="name headline">Why 微服务 ？<a class="post-edit-link" href="https://github.com/liluoao/blog-source/tree/master/source/_posts/Why 微服务 ？.md" target="_blank" title="编辑" rel="noopener"><span class="icon iconify" data-icon="ri:edit-line"></span></a></h1><div class="post-meta"><div class="post-time"><span class="post-meta-item-icon"><span class="icon iconify" data-icon="ri:calendar-line"></span></span> <time title="创建时间：2021-07-25 11:06:55" itemprop="dateCreated datePublished" datetime="2021-07-25T11:06:55+08:00">2021-07-25</time></div><div class="post-classify"><span class="post-category"> <span class="post-meta-item-icon" style="margin-right:3px;"><span class="icon iconify" data-icon="ri:folder-line"></span></span><span itemprop="about" itemscope itemtype="https://schema.org/Thing"><a class="category-item" href="/categories/share/" style="--text-color:#ff66ff" itemprop="url" rel="index"><span itemprop="text">分享</span></a></span></span></div></div></header><section class="post-body" itemprop="articleBody"><div class="post-content markdown-body"><p>微服务（或称微服务架构）是一种云原生架构方法，在单个应用中包含众多松散耦合且可单独部署的小型组件或服务</p>
+<p>这些服务通常拥有自己的技术栈，包括数据库和数据管理模型；通过一个 REST API、事件流和消息代理组合彼此通信；以及按照业务能力进行组织，具有通常称为有界上下文的服务分隔线</p>
+<span id="more"></span>
+
+<p><img src="https://s21.ax1x.com/2024/05/26/pklySMQ.jpg" alt="pklySMQ.jpg" loading="lazy"></p>
+<h2 id="面向过程-gt-面向对象"><a href="#面向过程-gt-面向对象" class="headerlink" title="面向过程 -&gt; 面向对象"></a>面向过程 -&gt; 面向对象</h2><p>早期代码都是面向过程编程，多个业务近似的逻辑代码无法实现继承、封装困难</p>
+<p>导致开发工作量巨大，维护性指数级增长</p>
+<p>面向对象随之而来，增强了代码编写的可维护性、减少了大量开发时间成本</p>
+<p>面向对象引入了许多新的概念，类、封装、多态、继承等</p>
+<h2 id="面向对象-gt-包-x2F-模块"><a href="#面向对象-gt-包-x2F-模块" class="headerlink" title="面向对象 -&gt; 包&#x2F;模块"></a>面向对象 -&gt; 包&#x2F;模块</h2><p>随着业务线的增多、业务模块的迁移，面向对象的弊端也开始展现</p>
+<p>对象间的依赖开始加深，导致对象无法实现单个对象的拷贝</p>
+<p>产生拷贝的代码，若存在系统性的逻辑问题（BUG），因为复制粘贴，修复难度递增</p>
+<p>故而衍生出，包&#x2F;模块的管理工具，将整体逻辑服务能力，整合至 拓展包</p>
+<p>包解决了 多个模块间的依赖管理、代码版本管理、整体迁移能力等多个问题</p>
+<h2 id="包-x2F-模块-gt-服务"><a href="#包-x2F-模块-gt-服务" class="headerlink" title="包&#x2F;模块 -&gt; 服务"></a>包&#x2F;模块 -&gt; 服务</h2><p>包&#x2F;模块，解决了工具属性的拓展包（框架）管理</p>
+<p>但若业务层级的包&#x2F;模块，也采用此方式的话，存在包变更频繁</p>
+<p>每一次业务的调整，都需要各个依赖此业务的项目进行包的升级变更</p>
+<p>进而 业务层级的模块，慢慢演变为 SOA 服务，通过远程调用的释放开发人员的负担</p>
+<p>业务层级的模块，可以随时根据业务情况进行优化调整，而调用方无需关心 服务方的实现方式</p>
+<p>此场景，与平时调用第三方 API 类似，都属于远端调用</p>
+<p>第三方 API 可以释放开发人员大量的时间成本</p>
+<p><img src="https://i.imgtg.com/2022/08/24/K3A9b.png" alt="微服务" loading="lazy"></p>
+<h2 id="服务-gt-微服务"><a href="#服务-gt-微服务" class="headerlink" title="服务 -&gt; 微服务"></a>服务 -&gt; 微服务</h2><p>随着 SOA 服务概念的兴起，普通的API服务也开始面临更多的挑战</p>
+<p>服务的扩容成本高昂（一个服务项目占用大量内存、CPU、存储空间）</p>
+<p>而往往扩容的需求，仅仅来源于几个处理逻辑</p>
+<p>微服务的概念由此衍生，将大而全的服务细分，由多个微服务组成整体服务能力</p>
+<p>微服务间通过特有的通讯方式（RPC）进行调用</p>
+<p>从而避免了服务集群的一荣俱荣、一损俱损</p>
+<blockquote>
+<p>由于使用了同一个内存环境、机器环境、公共逻辑代码，往往一个内容的崩溃导致整体服务的不可用</p>
+</blockquote>
+<h2 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h2><p>双十一时期：</p>
+<ul>
+<li>订单业务大幅增长 - 确保抢购流程</li>
+<li>支付业务大幅增长 - 确保支付流程</li>
+<li>资金流水查询延迟 - 让渡服务能力</li>
+<li>农场、植树临时关闭 - 让渡服务能力</li>
+</ul>
+<p>订单互通：</p>
+<blockquote>
+<p>天猫、飞猪、淘宝、1688 … 各种淘系软件内的交易订单均可互通<br>构建订单中台，统一处理订单逻辑能力、及支付逻辑<br>做整体中台数据分析，实时统计订单销售总量、各平台总量<br>所有新增内容中，无需进行支付系统的对接，仅需跟订单系统做简单对接</p>
+</blockquote>
+<h2 id="为何选择微服务"><a href="#为何选择微服务" class="headerlink" title="为何选择微服务"></a>为何选择微服务</h2><h3 id="业务驱动、业务增长"><a href="#业务驱动、业务增长" class="headerlink" title="业务驱动、业务增长"></a>业务驱动、业务增长</h3><p>业务线快速拓展，出现更多重叠性的业务内容</p>
+<p>早期重叠性业务内容解决主要依托多业务线数据库互相调用</p>
+<p>由于互相依赖对方的数据库，但业务线又存在调整数据库结构的情况</p>
+<p>单业务线调整时，容易影响到其他业务线，产生了更多的开发成本</p>
+<h3 id="业务核心聚合"><a href="#业务核心聚合" class="headerlink" title="业务核心聚合"></a>业务核心聚合</h3><p>随着业务线的发展，越来越多的重叠性业务展现</p>
+<p>将核心重叠业务提炼、单独管理，成为基础服务能力，也迫在眉睫</p>
+<p>通过微服务等概念驱动，逐渐剥离出中台相关服务能力</p>
+<p>例如：产品服务、订单服务</p>
+<p>订单自行与第三方支付平台进行对接，业务组仅需要接入订单系统即可完成整体能力</p>
+<p><img src="https://i.imgtg.com/2022/08/09/A4kUx.png" alt="缦图服务" loading="lazy"></p>
+</div></section><ul class="post-copyright"><li class="post-copyright-author"><strong>本文作者：</strong>李罗奥</li><li class="post-copyright-link"><strong>本文链接：</strong><a href="https://liluoao.github.io/posts/about-micro-services.html" title="Why 微服务 ？">https://liluoao.github.io/posts/about-micro-services.html</a></li><li class="post-copyright-license"><strong>版权声明：</strong>本博客所有文章除特别声明外，均默认采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank" rel="noopener" title="CC BY-NC-SA 4.0 "><span class="icon iconify" data-icon="ri:creative-commons-line"></span><span class="icon iconify" data-icon="ri:creative-commons-by-line"></span><span class="icon iconify" data-icon="ri:creative-commons-nc-line"></span><span class="icon iconify" data-icon="ri:creative-commons-sa-line"></span></a> 许可协议。</li></ul></article><div class="post-nav"><div class="post-nav-item"><a class="post-nav-prev" href="/posts/about-domain-driven-design.html" rel="prev" title="How DDD ？"><span class="icon iconify" data-icon="ri:arrow-left-s-line"></span><span class="post-nav-text">How DDD ？</span></a></div><div class="post-nav-item"><a class="post-nav-next" href="/posts/my-story-of-2020.html" rel="next" title="&lt;/2020&gt;&lt;2021&gt;"><span class="post-nav-text">&lt;/2020&gt;&lt;2021&gt;</span><span class="icon iconify" data-icon="ri:arrow-right-s-line"></span></a></div></div></div></main><footer class="sidebar-translate" id="footer"><div class="copyright"><span>&copy; 2018 – 2024 </span><span class="with-love" id="animate"><span class="icon iconify" data-icon="ri:heart-line"></span></span><span class="author"> 李罗奥</span></div><div class="powered"><span>由 <a href="https://hexo.io" target="_blank" rel="noopener">Hexo</a> 驱动 v6.3.0</span><span class="footer-separator">|</span><span>主题 - <a rel="noopener" href="https://github.com/YunYouJun/hexo-theme-yun" target="_blank"><span>Yun</span></a> v1.10.11</span></div></footer></div><a class="hty-icon-button" id="back-to-top" aria-label="back-to-top" href="#"><span class="icon iconify" data-icon="ri:arrow-up-s-line"></span><svg class="progress-circle-container" viewBox="0 0 100 100"><circle class="progress-circle" id="progressCircle" cx="50" cy="50" r="48" fill="none" stroke="#0078E7" stroke-width="2" stroke-linecap="round"></circle></svg></a><script>function initMourn() {
+  const date = new Date();
+  const today = (date.getMonth() + 1) + "-" + date.getDate()
+  const mourn_days = ["4-4","9-18","5-12"]
+  if (mourn_days.includes(today)) {
+    document.documentElement.style.filter = "grayscale(1)";
+  }
 }
-.post-meta {
-  font-size: 14px;
-  color: var(--hty-secondary-text-color);
-}
-.post-meta .icon {
-  margin-bottom: -1px;
-}
-.post-description {
-  font-weight: normal;
-  padding: 0.5rem;
-}
-.post-author {
-  display: flex;
-  justify-content: center;
-}
-.post-author .author-avatar {
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  line-height: 0;
-}
-.post-author .author-avatar img {
-  border-radius: 50%;
-  height: 1rem;
-  width: 1rem;
-  padding: 2px;
-  border: 2px solid #d3d3d3;
-}
-.post-author .author-name {
-  margin-left: 0.5rem;
-  font-size: 1rem;
-}
-.post-meta-item-icon {
-  display: inline-block;
-  color: var(--text-color, --hty-secondary-text-color);
-}
-.post-meta-divider {
-  height: 25px;
-  color: var(--hty-secondary-text-color);
-  margin: 0 0.5rem;
-}
-.post-eof {
-  margin: 50px auto;
-  width: 50%;
-  height: 1px;
-  background: $blue;
-  opacity: 0.1;
-}
-.post-copyright {
-  font-size: 0.9rem;
-  margin: 0.5rem 5rem 1rem 5rem;
-  padding: 0.5rem 1rem;
-  border-left: 4px solid #ff5252;
-  background-color: var(--hty-bg-color);
-  list-style: none;
-  word-break: break-all;
-  position: relative;
-  overflow: hidden;
-mobile()
-}
-.post-copyright::after {
-  position: absolute;
-  color: #fff;
-  background: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 496 512'%3E%3Cpath fill='gray' d='M245.8 214.9l-33.2 17.3c-9.4-19.6-25.2-20-27.4-20-22.2 0-33.3 14.6-33.3 43.9 0 23.5 9.2 43.8 33.3 43.8 14.4 0 24.6-7 30.5-21.3l30.6 15.5a73.2 73.2 0 01-65.1 39c-22.6 0-74-10.3-74-77 0-58.7 43-77 72.6-77 30.8-.1 52.7 11.9 66 35.8zm143 0l-32.7 17.3c-9.5-19.8-25.7-20-27.9-20-22.1 0-33.2 14.6-33.2 43.9 0 23.5 9.2 43.8 33.2 43.8 14.5 0 24.7-7 30.5-21.3l31 15.5c-2 3.8-21.3 39-65 39-22.7 0-74-9.9-74-77 0-58.7 43-77 72.6-77C354 179 376 191 389 214.8zM247.7 8C104.7 8 0 123 0 256c0 138.4 113.6 248 247.6 248C377.5 504 496 403 496 256 496 118 389.4 8 247.6 8zm.8 450.8c-112.5 0-203.7-93-203.7-202.8 0-105.5 85.5-203.3 203.8-203.3A201.7 201.7 0 01451.3 256c0 121.7-99.7 202.9-202.9 202.9z'/%3E%3C/svg%3E");
-  content: ' ';
-  height: 10rem;
-  width: 10rem;
-  right: -2rem;
-  top: -2rem;
-  opacity: 0.1;
-}
-.tag-name {
-  padding: 0 0.1rem;
-}
+initMourn();</script></body></html>

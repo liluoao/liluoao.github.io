@@ -1,86 +1,176 @@
-.post-block {
-  color: var(--hty-text-color);
-  margin: 0 1rem;
-  padding: 1rem;
-  background-color: var(--post-block-bg-color);
-mobile()
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="theme-color" content="#0078E7"><meta name="author" content="李罗奥"><meta name="copyright" content="李罗奥"><meta name="generator" content="Hexo 6.3.0"><meta name="theme" content="hexo-theme-yun"><title>人人都说Mac好 | 大梦成空</title><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@900&amp;display=swap" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://fastly.jsdelivr.net/npm/star-markdown-css@0.4.1/dist/yun/yun-markdown.min.css"><link rel="stylesheet" href="https://fastly.jsdelivr.net/npm/prism-theme-vars/base.css"><script src="https://fastly.jsdelivr.net/npm/scrollreveal/dist/scrollreveal.min.js" defer></script><script>function initScrollReveal() {
+  [".post-card",".markdown-body img"].forEach((target)=> {
+    ScrollReveal().reveal(target);
+  })
 }
-.post-body {
-  padding: 0 5rem;
-tablet()
-mobile()
+document.addEventListener("DOMContentLoaded", initScrollReveal);
+document.addEventListener("pjax:success", initScrollReveal);
+</script><link rel="icon" type="image/png" href="/favicon.ico"><link rel="mask-icon" href="/favicon.ico" color="#0078E7"><link rel="preload" href="/css/hexo-theme-yun.css" as="style"><link rel="prefetch" href="/js/sidebar.js" as="script"><link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin><link rel="preconnect" href="https://fastly.jsdelivr.net/npm/" crossorigin><script id="yun-config">
+    window.Yun = {}
+    window.CONFIG = {"hostname":"liluoao.github.io","root":"/","title":"大梦成空","version":"1.10.11","mode":"auto","copycode":true,"page":{"isPost":true},"i18n":{"placeholder":"搜索...","empty":"找不到您查询的内容: ${query}","hits":"找到 ${hits} 条结果","hits_time":"找到 ${hits} 条结果（用时 ${time} 毫秒）"},"anonymous_image":"https://cdn.yunyoujun.cn/img/avatar/none.jpg","say":{"api":"https://v1.hitokoto.cn","hitokoto":true},"fireworks":{"colors":null},"vendors":{"host":"https://fastly.jsdelivr.net/npm/","darken":"https://fastly.jsdelivr.net/npm/darken@1.5.0"}};
+  </script><link rel="stylesheet" href="/css/hexo-theme-yun.css"><script src="/js/hexo-theme-yun.js" type="module"></script><meta name="description" content="Mac 优势Unix操作系统Mac 电脑的操作系统是 Unix 操作系统的一个变种。Unix 是一个非常强大的操作系统，因为它具有广泛的应用程序支持和大量的工具和库 Unix 操作系统在程序员社区中非常流行，因为它提供了更好的编程环境。因此，程序员可以更容易地使用许多强大的工具和库来编写代码">
+<meta property="og:type" content="article">
+<meta property="og:title" content="人人都说Mac好">
+<meta property="og:url" content="https://liluoao.github.io/posts/workspace-enviroment-backup.html">
+<meta property="og:site_name" content="大梦成空">
+<meta property="og:description" content="Mac 优势Unix操作系统Mac 电脑的操作系统是 Unix 操作系统的一个变种。Unix 是一个非常强大的操作系统，因为它具有广泛的应用程序支持和大量的工具和库 Unix 操作系统在程序员社区中非常流行，因为它提供了更好的编程环境。因此，程序员可以更容易地使用许多强大的工具和库来编写代码">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://i.imgtg.com/2022/08/24/K3BXY.png">
+<meta property="article:published_time" content="2020-12-19T06:58:53.000Z">
+<meta property="article:modified_time" content="2024-09-04T03:24:47.790Z">
+<meta property="article:author" content="李罗奥">
+<meta property="article:tag" content="李罗奥">
+<meta property="article:tag" content="Blog">
+<meta property="article:tag" content="博客">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.imgtg.com/2022/08/24/K3BXY.png"><script>(function() {
+  if (CONFIG.mode !== 'auto') return
+  const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+  const setting = localStorage.getItem('darken-mode') || 'auto'
+  if (setting === 'dark' || (prefersDark && setting !== 'light'))
+    document.documentElement.classList.toggle('dark', true)
+})()</script></head><body><script src="https://code.iconify.design/2/2.1.1/iconify.min.js"></script><script>// Define global variable
+IconifyProviders = {
+  // Empty prefix: overwrite default API provider configuration
+  '': {
+    // Use custom API first, use Iconify public API as backup
+    resources: [
+        'https://api.iconify.design',
+    ],
+    // Wait for 1 second before switching API hosts
+    rotate: 1000,
+  },
+};</script><script defer src="https://fastly.jsdelivr.net/npm/animejs@latest"></script><script defer src="/js/ui/fireworks.js" type="module"></script><canvas class="fireworks"></canvas><canvas id="trianglifyContainer"></canvas><script defer src="https://fastly.jsdelivr.net/npm/trianglify@4/dist/trianglify.bundle.js"></script><script>document.addEventListener("DOMContentLoaded", () => {
+  const pattern = trianglify({
+    width: 1980,
+    height: 1600,
+    cellSize: 75,
+    palette: ["YlGnBu", "GnBu", "Purples", "Blues"],
+  });
+  const canvasOpts = {
+    applyCssScaling: false
+  }
+  document.body.appendChild(pattern.toCanvas(trianglifyContainer, canvasOpts));
+});</script><div class="container"><a class="sidebar-toggle hty-icon-button" id="menu-btn"><div class="hamburger hamburger--spin" type="button"><span class="hamburger-box"><span class="hamburger-inner"></span></span></div></a><div class="sidebar-toggle sidebar-overlay"></div><aside class="sidebar"><script src="/js/sidebar.js" type="module"></script><ul class="sidebar-nav"><li class="sidebar-nav-item sidebar-nav-toc hty-icon-button sidebar-nav-active" data-target="post-toc-wrap" title="文章目录"><span class="icon iconify" data-icon="ri:list-ordered"></span></li><li class="sidebar-nav-item sidebar-nav-overview hty-icon-button" data-target="site-overview-wrap" title="站点概览"><span class="icon iconify" data-icon="ri:passport-line"></span></li></ul><div class="sidebar-panel" id="site-overview-wrap"><div class="site-info fix-top"><a class="site-author-avatar" href="/about/" title="李罗奥"><img width="96" loading="lazy" src="https://i.imgtg.com/2022/08/09/AR3SY.jpg" alt="李罗奥"></a><div class="site-author-name"><a href="/about/">李罗奥</a></div><a class="site-name" href="/about/site.html">大梦成空</a><sub class="site-subtitle">To be a Web Artisan</sub><div class="site-description">李罗奥的博客</div></div><nav class="site-state"><a class="site-state-item hty-icon-button icon-home" href="/" title="首页"><span class="site-state-item-icon"><span class="icon iconify" data-icon="ri:home-4-line"></span></span></a><div class="site-state-item"><a href="/archives/" title="归档"><span class="site-state-item-icon"><span class="icon iconify" data-icon="ri:archive-line"></span></span><span class="site-state-item-count">51</span></a></div><div class="site-state-item"><a href="/categories/" title="分类"><span class="site-state-item-icon"><span class="icon iconify" data-icon="ri:folder-2-line"></span></span><span class="site-state-item-count">8</span></a></div><div class="site-state-item"><a href="/tags/" title="标签"><span class="site-state-item-icon"><span class="icon iconify" data-icon="ri:price-tag-3-line"></span></span><span class="site-state-item-count">10</span></a></div><a class="site-state-item hty-icon-button" target="_blank" rel="noopener" href="https://yun.yunyoujun.cn" title="文档"><span class="site-state-item-icon"><span class="icon iconify" data-icon="ri:settings-line"></span></span></a></nav><hr style="margin-bottom:0.5rem"><div class="links-of-author"><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://github.com/liluoao" title="GitHub" target="_blank" style="color:#6e5494"><span class="icon iconify" data-icon="ri:github-line"></span></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="mailto:liluoao@qq.com" title="E-Mail" target="_blank" style="color:#8E71C1"><span class="icon iconify" data-icon="ri:mail-line"></span></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://space.bilibili.com/19377772" title="哔哩哔哩" target="_blank" style="color:#FF8EB3"><span class="icon iconify" data-icon="ri:bilibili-line"></span></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://music.163.com/#/user/home?id=121449072" title="网易云音乐" target="_blank" style="color:#C20C0C"><span class="icon iconify" data-icon="ri:netease-cloud-music-line"></span></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://www.zhihu.com/people/li-luo-ao/" title="知乎" target="_blank" style="color:#0084FF"><span class="icon iconify" data-icon="ri:zhihu-line"></span></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://twitter.com/easonlee82" title="Twitter" target="_blank" style="color:#1da1f2"><span class="icon iconify" data-icon="ri:twitter-line"></span></a></div><br><a class="links-item hty-icon-button" id="toggle-mode-btn" href="javascript:;" title="Mode" style="color: #f1cb64"><span class="icon iconify" data-icon="ri:contrast-2-line"></span></a></div><div class="sidebar-panel sidebar-panel-active" id="post-toc-wrap"><div class="post-toc"><div class="post-toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Mac-%E4%BC%98%E5%8A%BF"><span class="toc-number">1.</span> <span class="toc-text">Mac 优势</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Unix%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F"><span class="toc-number">1.1.</span> <span class="toc-text">Unix操作系统</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%98%93%E7%94%A8%E6%80%A7"><span class="toc-number">1.2.</span> <span class="toc-text">易用性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83"><span class="toc-number">1.3.</span> <span class="toc-text">开发环境</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%BE%E8%AE%A1"><span class="toc-number">1.4.</span> <span class="toc-text">设计</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A4%BE%E5%8C%BA%E6%94%AF%E6%8C%81"><span class="toc-number">1.5.</span> <span class="toc-text">社区支持</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E7%A1%80"><span class="toc-number">2.</span> <span class="toc-text">基础</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#PHP"><span class="toc-number">3.</span> <span class="toc-text">PHP</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Apache"><span class="toc-number">4.</span> <span class="toc-text">Apache</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#PHP%E6%89%A9%E5%B1%95"><span class="toc-number">5.</span> <span class="toc-text">PHP扩展</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8D%9A%E5%AE%A2"><span class="toc-number">6.</span> <span class="toc-text">博客</span></a></li></ol></div></div></div></aside><main class="sidebar-translate" id="content"><div id="post"><article class="hty-card post-block" itemscope itemtype="https://schema.org/Article" style="--smc-primary:#0078E7;"><link itemprop="mainEntityOfPage" href="https://liluoao.github.io/posts/workspace-enviroment-backup.html"><span hidden itemprop="author" itemscope itemtype="https://schema.org/Person"><meta itemprop="name" content="李罗奥"><meta itemprop="description"></span><span hidden itemprop="publisher" itemscope itemtype="https://schema.org/Organization"><meta itemprop="name" content="大梦成空"></span><header class="post-header"><h1 class="post-title" itemprop="name headline">人人都说Mac好<a class="post-edit-link" href="https://github.com/liluoao/blog-source/tree/master/source/_posts/人人都说Mac好.md" target="_blank" title="编辑" rel="noopener"><span class="icon iconify" data-icon="ri:edit-line"></span></a></h1><div class="post-meta"><div class="post-time"><span class="post-meta-item-icon"><span class="icon iconify" data-icon="ri:calendar-line"></span></span> <time title="创建时间：2020-12-19 14:58:53" itemprop="dateCreated datePublished" datetime="2020-12-19T14:58:53+08:00">2020-12-19</time></div><div class="post-classify"><span class="post-category"> <span class="post-meta-item-icon" style="margin-right:3px;"><span class="icon iconify" data-icon="ri:folder-line"></span></span><span itemprop="about" itemscope itemtype="https://schema.org/Thing"><a class="category-item" href="/categories/tool/" style="--text-color:#5298d1" itemprop="url" rel="index"><span itemprop="text">工具</span></a></span></span></div></div></header><section class="post-body" itemprop="articleBody"><div class="post-content markdown-body"><h2 id="Mac-优势"><a href="#Mac-优势" class="headerlink" title="Mac 优势"></a>Mac 优势</h2><h3 id="Unix操作系统"><a href="#Unix操作系统" class="headerlink" title="Unix操作系统"></a>Unix操作系统</h3><p>Mac 电脑的操作系统是 Unix 操作系统的一个变种。Unix 是一个非常强大的操作系统，因为它具有广泛的应用程序支持和大量的工具和库</p>
+<p>Unix 操作系统在程序员社区中非常流行，因为它提供了更好的编程环境。因此，程序员可以更容易地使用许多强大的工具和库来编写代码</p>
+<span id="more"></span>
+
+<h3 id="易用性"><a href="#易用性" class="headerlink" title="易用性"></a>易用性</h3><p>Mac 电脑有着非常优秀的用户界面和易用性，这对于程序员来说非常重要。Mac 电脑可以让程序员更加专注于编程，而不是担心电脑的一些问题</p>
+<p>此外，Mac 电脑提供了一些非常有用的工具，例如终端、编辑器和调试器，这些工具可以帮助程序员更好地编写和调试代码</p>
+<h3 id="开发环境"><a href="#开发环境" class="headerlink" title="开发环境"></a>开发环境</h3><p>Mac 电脑是专业的开发环境。Apple 提供了一些非常好的开发工具，例如 Xcode 和 Swift Playground。这些工具可以帮助程序员更好地编写代码、构建应用程序，并进行调试</p>
+<p>此外，Mac 电脑还支持许多其他的开发工具和框架，如 Java、Python、Ruby 和 PHP 等</p>
+<h3 id="设计"><a href="#设计" class="headerlink" title="设计"></a>设计</h3><p>许多程序员也喜欢 Mac 电脑的设计。Mac 电脑有着简洁、流畅、漂亮的外观，让人感到愉悦。设计感非常强，这也是许多程序员选择 Mac 电脑的原因之一</p>
+<h3 id="社区支持"><a href="#社区支持" class="headerlink" title="社区支持"></a>社区支持</h3><p>Mac 电脑的程序员社区非常庞大和活跃。这意味着程序员可以得到更好的技术支持，并可以轻松地获取各种资源和教程</p>
+<p>这对于新手程序员来说非常有帮助，因为他们可以从社区中获得许多有用的信息，以帮助他们更好地学习编程。</p>
+<p><img src="https://i.imgtg.com/2022/08/24/K3BXY.png" alt="macbook pro" loading="lazy"></p>
+<p>入职配的新 Mac Pro(No.1) 坏了，换了一台旧的 Air(No.2)，没用多久就修好了。然后又换了台新 Pro(No.3) 用，今天记录下要装的东西。</p>
+<blockquote>
+<p>2021-10更新，自己买了台真香(No.4)，用迁移助理就搞定了🥶</p>
+</blockquote>
+<h2 id="基础"><a href="#基础" class="headerlink" title="基础"></a>基础</h2><p>默认已安装了</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://www.jetbrains.com/phpstorm/download/">PhpStorm</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.jetbrains.com/datagrip/download/">DataGrip</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.postman.com/downloads/">Postman</a></li>
+<li><a target="_blank" rel="noopener" href="https://code.visualstudio.com/">Visual Studio Code</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.sublimetext.com/">Sublime Text</a></li>
+<li><a target="_blank" rel="noopener" href="https://typora.io/">Typora</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.xmind.cn/">XMind</a></li>
+</ul>
+<p>先下个 Chrome 把书签同步回来，咱需要用到 <a target="_blank" rel="noopener" href="https://github.com/shadowsocks/ShadowsocksX-NG">ShadowsocksX-NG</a> 来登录</p>
+<p>安装 XCode Command Line Tools</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">xcode-select <span class="token parameter variable">--install</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>下载 <a target="_blank" rel="noopener" href="https://brew.sh/">Homebrew</a></p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">/bin/bash <span class="token parameter variable">-c</span> <span class="token string">"<span class="token variable"><span class="token variable">$(</span><span class="token function">curl</span> <span class="token parameter variable">-fsSL</span> https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh<span class="token variable">)</span></span>"</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>然后装好 <code>wget</code>，并下载咱的基础容器</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">brew <span class="token function">install</span> <span class="token function">wget</span>
+<span class="token function">wget</span> <span class="token string">'http://what/is/this.tar'</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<p>下载 <a target="_blank" rel="noopener" href="https://www.docker.com/products/docker-desktop">Docker</a>，初始化下好的容器</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">tar</span> <span class="token parameter variable">-xvf</span> rpc.tar
+<span class="token builtin class-name">cd</span> rpc-app-base
+<span class="token function">docker-compose</span> up <span class="token parameter variable">-d</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<p>Git 设置下用户名，在公司里用花名🤣</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> config <span class="token parameter variable">--global</span> user.name <span class="token string">"斯内普"</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<h2 id="PHP"><a href="#PHP" class="headerlink" title="PHP"></a>PHP</h2><p>如果需要 8，可以用 <a target="_blank" rel="noopener" href="https://github.com/shivammathur/homebrew-php">shivammathur</a> 的 tap</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">brew tap shivammathur/php<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>选择咱需要的 7.4</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">brew <span class="token function">install</span> php@7.4<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>安装 <code>Composer</code> 并回退版本（部分项目依赖需要）</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">brew <span class="token function">install</span> <span class="token function">composer</span>
+<span class="token function">composer</span> self-update <span class="token parameter variable">--1</span>
+
+<span class="token function">composer</span> config <span class="token parameter variable">-g</span> repo.packagist <span class="token function">composer</span> https://packagist.phpcomposer.com<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h2 id="Apache"><a href="#Apache" class="headerlink" title="Apache"></a>Apache</h2><p>有个项目独立在微服务外，那就安排个 Web 服务器</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">brew <span class="token function">install</span> httpd
+brew services start httpd<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<p>此时访问 <code>http://localhost:8080</code> 可以看到 <code>It works!</code></p>
+<p>现在编辑下 Apache 的配置</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">open</span> <span class="token parameter variable">-e</span> /usr/local/etc/httpd/httpd.conf<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>就这么几个需要改的：</p>
+<pre class="line-numbers language-conf" data-language="conf"><code class="language-conf">Listen 80
+
+LoadModule rewrite_module lib&#x2F;httpd&#x2F;modules&#x2F;mod_rewrite.so
+LoadModule php7_module &#x2F;usr&#x2F;local&#x2F;opt&#x2F;php@7.4&#x2F;lib&#x2F;httpd&#x2F;modules&#x2F;libphp7.so
+
+ServerName localhost
+
+DocumentRoot &#x2F;Users&#x2F;your_user&#x2F;Sites
+&lt;Directory &quot;&#x2F;Users&#x2F;your_user&#x2F;Sites&quot;&gt;
+    AllowOverride All
+&lt;&#x2F;Directory&gt;
+
+&lt;IfModule dir_module&gt;
+    DirectoryIndex index.php index.html
+&lt;&#x2F;IfModule&gt;
+
+&lt;FilesMatch \.php$&gt;
+    SetHandler application&#x2F;x-httpd-php
+&lt;&#x2F;FilesMatch&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>最后重启下服务</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> apachectl restart<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<h2 id="PHP扩展"><a href="#PHP扩展" class="headerlink" title="PHP扩展"></a>PHP扩展</h2><p>安装 <code>SSH2</code> 扩展（传文件的业务）</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">brew <span class="token function">install</span> libssh2
+
+<span class="token builtin class-name">cd</span> ~/Downloads
+<span class="token function">git</span> clone https://git.php.net/repository/pecl/networking/ssh2.git
+<span class="token builtin class-name">cd</span> ssh2
+phpize
+./configure
+<span class="token function">make</span>
+<span class="token function">make</span> <span class="token function">install</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>把扩展 <code>extension=&quot;ssh2.so&quot;</code> 写到配置文件中：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">open</span> <span class="token parameter variable">-e</span> /usr/local/etc/php/7.4/php.ini<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<h2 id="博客"><a href="#博客" class="headerlink" title="博客"></a>博客</h2><p>顺便装下咱这个项目需要的环境</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">brew <span class="token function">install</span> <span class="token function">node</span>
+<span class="token function">node</span> <span class="token parameter variable">-v</span>
+<span class="token function">npm</span> <span class="token parameter variable">-v</span>
+
+<span class="token function">npm</span> <span class="token function">install</span>
+<span class="token function">npm</span> <span class="token function">install</span> hexo-cli <span class="token parameter variable">-g</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>下载子模块（主题）</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> submodule init
+<span class="token function">git</span> submodule update<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+</div></section><ul class="post-copyright"><li class="post-copyright-author"><strong>本文作者：</strong>李罗奥</li><li class="post-copyright-link"><strong>本文链接：</strong><a href="https://liluoao.github.io/posts/workspace-enviroment-backup.html" title="人人都说Mac好">https://liluoao.github.io/posts/workspace-enviroment-backup.html</a></li><li class="post-copyright-license"><strong>版权声明：</strong>本博客所有文章除特别声明外，均默认采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank" rel="noopener" title="CC BY-NC-SA 4.0 "><span class="icon iconify" data-icon="ri:creative-commons-line"></span><span class="icon iconify" data-icon="ri:creative-commons-by-line"></span><span class="icon iconify" data-icon="ri:creative-commons-nc-line"></span><span class="icon iconify" data-icon="ri:creative-commons-sa-line"></span></a> 许可协议。</li></ul></article><div class="post-nav"><div class="post-nav-item"><a class="post-nav-prev" href="/posts/my-story-of-2020.html" rel="prev" title="&lt;/2020&gt;&lt;2021&gt;"><span class="icon iconify" data-icon="ri:arrow-left-s-line"></span><span class="post-nav-text">&lt;/2020&gt;&lt;2021&gt;</span></a></div><div class="post-nav-item"><a class="post-nav-next" href="/posts/dependable-business.html" rel="next" title="业务可用性第一位"><span class="post-nav-text">业务可用性第一位</span><span class="icon iconify" data-icon="ri:arrow-right-s-line"></span></a></div></div></div></main><footer class="sidebar-translate" id="footer"><div class="copyright"><span>&copy; 2018 – 2024 </span><span class="with-love" id="animate"><span class="icon iconify" data-icon="ri:heart-line"></span></span><span class="author"> 李罗奥</span></div><div class="powered"><span>由 <a href="https://hexo.io" target="_blank" rel="noopener">Hexo</a> 驱动 v6.3.0</span><span class="footer-separator">|</span><span>主题 - <a rel="noopener" href="https://github.com/YunYouJun/hexo-theme-yun" target="_blank"><span>Yun</span></a> v1.10.11</span></div></footer></div><a class="hty-icon-button" id="back-to-top" aria-label="back-to-top" href="#"><span class="icon iconify" data-icon="ri:arrow-up-s-line"></span><svg class="progress-circle-container" viewBox="0 0 100 100"><circle class="progress-circle" id="progressCircle" cx="50" cy="50" r="48" fill="none" stroke="#0078E7" stroke-width="2" stroke-linecap="round"></circle></svg></a><script>function initMourn() {
+  const date = new Date();
+  const today = (date.getMonth() + 1) + "-" + date.getDate()
+  const mourn_days = ["4-4","9-18","5-12"]
+  if (mourn_days.includes(today)) {
+    document.documentElement.style.filter = "grayscale(1)";
+  }
 }
-.post-meta {
-  font-size: 14px;
-  color: var(--hty-secondary-text-color);
-}
-.post-meta .icon {
-  margin-bottom: -1px;
-}
-.post-description {
-  font-weight: normal;
-  padding: 0.5rem;
-}
-.post-author {
-  display: flex;
-  justify-content: center;
-}
-.post-author .author-avatar {
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  line-height: 0;
-}
-.post-author .author-avatar img {
-  border-radius: 50%;
-  height: 1rem;
-  width: 1rem;
-  padding: 2px;
-  border: 2px solid #d3d3d3;
-}
-.post-author .author-name {
-  margin-left: 0.5rem;
-  font-size: 1rem;
-}
-.post-meta-item-icon {
-  display: inline-block;
-  color: var(--text-color, --hty-secondary-text-color);
-}
-.post-meta-divider {
-  height: 25px;
-  color: var(--hty-secondary-text-color);
-  margin: 0 0.5rem;
-}
-.post-eof {
-  margin: 50px auto;
-  width: 50%;
-  height: 1px;
-  background: $blue;
-  opacity: 0.1;
-}
-.post-copyright {
-  font-size: 0.9rem;
-  margin: 0.5rem 5rem 1rem 5rem;
-  padding: 0.5rem 1rem;
-  border-left: 4px solid #ff5252;
-  background-color: var(--hty-bg-color);
-  list-style: none;
-  word-break: break-all;
-  position: relative;
-  overflow: hidden;
-mobile()
-}
-.post-copyright::after {
-  position: absolute;
-  color: #fff;
-  background: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 496 512'%3E%3Cpath fill='gray' d='M245.8 214.9l-33.2 17.3c-9.4-19.6-25.2-20-27.4-20-22.2 0-33.3 14.6-33.3 43.9 0 23.5 9.2 43.8 33.3 43.8 14.4 0 24.6-7 30.5-21.3l30.6 15.5a73.2 73.2 0 01-65.1 39c-22.6 0-74-10.3-74-77 0-58.7 43-77 72.6-77 30.8-.1 52.7 11.9 66 35.8zm143 0l-32.7 17.3c-9.5-19.8-25.7-20-27.9-20-22.1 0-33.2 14.6-33.2 43.9 0 23.5 9.2 43.8 33.2 43.8 14.5 0 24.7-7 30.5-21.3l31 15.5c-2 3.8-21.3 39-65 39-22.7 0-74-9.9-74-77 0-58.7 43-77 72.6-77C354 179 376 191 389 214.8zM247.7 8C104.7 8 0 123 0 256c0 138.4 113.6 248 247.6 248C377.5 504 496 403 496 256 496 118 389.4 8 247.6 8zm.8 450.8c-112.5 0-203.7-93-203.7-202.8 0-105.5 85.5-203.3 203.8-203.3A201.7 201.7 0 01451.3 256c0 121.7-99.7 202.9-202.9 202.9z'/%3E%3C/svg%3E");
-  content: ' ';
-  height: 10rem;
-  width: 10rem;
-  right: -2rem;
-  top: -2rem;
-  opacity: 0.1;
-}
-.tag-name {
-  padding: 0 0.1rem;
-}
+initMourn();</script></body></html>
